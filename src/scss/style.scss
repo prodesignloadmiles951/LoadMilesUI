@@ -1,0 +1,103 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+
+.forma {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .forma input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: rgb(196, 193, 193);
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .forma:hover input ~ .checkmark {
+    background-color: rgb(177, 172, 172);
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .forma input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .forma  input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .forma .checkmark:after {
+       top: 5px;
+      left: 5px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+  }
+
+  .table-bordered thead th, .table-bordered thead td{
+    font-size: 12px;
+  }
+
+  .table-bordered th, .table-bordered td {
+    font-size: 14px;
+  }
+
+  thead th {
+    cursor: pointer;
+    margin-right: 15px;
+    margin-left: 15px;
+  
+    span {
+      visibility: hidden;
+    }
+  
+    &.active {
+      color: #000;
+  
+      span {
+        visibility: visible;
+      }
+    }
+
+    
+
+  }
