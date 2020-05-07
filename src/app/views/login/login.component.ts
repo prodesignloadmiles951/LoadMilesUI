@@ -33,9 +33,7 @@ export class LoginComponent {
         usertype: reponse.usertype,
         salespersonId: reponse.salespersonId,
       }
-      this.authenticate.setLogin(user);
-      
-      
+      this.router.navigateByUrl("dashboard");
       
       if(user){
         this.router.navigateByUrl("dashboard");

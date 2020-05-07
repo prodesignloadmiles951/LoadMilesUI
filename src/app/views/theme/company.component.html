@@ -19,6 +19,20 @@
               </div>
               
               <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="fedid">FED ID<span style="color:red;"> *</span> :</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="fedid" formControlName="fedid" required>
+                </div>
+              </div>
+              
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="us-dot">US DOT <span style="color:red;"> *</span># :</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="us-dot" formControlName="usdot" required>
+                </div>
+              </div>
+              
+              <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="mc">MC<span style="color:red;"> *</span> :</label>
                 <div class="col-md-9">
                     <input type="text" class="form-control" id="mc" formControlName="mc" required>
@@ -26,12 +40,12 @@
               </div>
 
               <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="fedid">FED ID<span style="color:red;"> *</span> :</label>
+                <label class="col-md-3 col-form-label" for="ifta-license">IFTA License # :</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="fedid" formControlName="fedid" required>
+                    <input type="text" class="form-control" id="ifta-license" formControlName="iftalicense" required>
                 </div>
               </div>
-
+              
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="phone">Phone :</label>
                 <div class="col-md-9">
@@ -52,56 +66,24 @@
                 <div class="col-md-9">
                     <input type="text" class="form-control" id="email" formControlName="email" required>
                 </div>
-              </div>
-
-              <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="website">Website :</label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" id="website" formControlName="website" required>
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="ifta-license">IFTA License # :</label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" id="ifta-license" formControlName="iftalicense" required>
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="us-dot">US DOT <span style="color:red;"> *</span># :</label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" id="us-dot" formControlName="usdot" required>
-                </div>
-              </div>
+              </div> 
           </div>
         </div>
 
         <div class="card">
           <div class="card-header"><strong>Mailing</strong> Address</div>
             <div class="card-body">
+                
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="bill">Bill :</label>
+                  <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="bill" formControlName="bill" required>
+                      <input type="text" class="form-control" id="address1" formControlName="address1" required>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="attention">Attention :</label>
+                  <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="attention" formControlName="attention" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="street1">Street1 :</label>
-                  <div class="col-md-9">
-                      <input type="text" class="form-control" id="street1" formControlName="street1" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="street2">Street2 :</label>
-                  <div class="col-md-9">
-                      <input type="text" class="form-control" id="street2" formControlName="street2" required>
+                      <input type="text" class="form-control" id="address2" formControlName="address2" required>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -192,22 +174,17 @@
                 <div class="form-group row">
                     <button class="btn btn-outline-secondary btn-lg btn-block" type="button">Copy From Mailing Address</button>
                 </div>
+                
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="attention1">Attention :</label>
+                  <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="attention1" formControlName="attention1" required>
+                      <input type="text" class="form-control" id="address1" formControlName="address3" required>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="strret1.1">Strret 1 :</label>
+                  <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="strret1.1" formControlName="street3" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="strret2.1">Strret 2 :</label>
-                  <div class="col-md-9">
-                      <input type="text" class="form-control" id="strret2.1" formControlName="street4" required>
+                      <input type="text" class="form-control" id="address2" formControlName="address4" required>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -238,15 +215,7 @@
                 <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
             </div>
         </div>
-
-        
-
       </div>
-
-      
-  
-
-    
   </div>
 </form>
 

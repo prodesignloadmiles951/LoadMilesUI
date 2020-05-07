@@ -16,6 +16,6 @@ constructor(private http:Http,
 }
 Login(userName:string,password:string,usertype:string){
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    return this.http.get(this.url+"ValidateLogin?username="+userName+"&password="+password+"&usertype="+usertype,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+    return this.http.get(this.url,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
 }
 }

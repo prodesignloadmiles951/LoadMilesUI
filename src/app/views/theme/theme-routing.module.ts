@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CompanyComponent } from './company.component';
+import { TrucksComponent } from './trucks.component';
+import { TrailersComponent } from './trailers.component';
 
 const routes: Routes = [
   {
@@ -113,14 +115,20 @@ const routes: Routes = [
         path:'company',
         component:CompanyComponent,
         runGuardsAndResolvers:'always',
-        data:{title:'company'}
+        data:{title:'Company'}
       },
-      // {
-      //   path:'dndrelease',
-      //   component:DNDReleaseComponent,
-      //   runGuardsAndResolvers:'always',
-      //   data:{title:'DND Release'}
-      // }
+      {
+        path:'trucks',
+        component:TrucksComponent,
+        runGuardsAndResolvers:'always',
+        data:{title:'Trucks'}
+      },
+      {
+        path:'trailers',
+        component:TrailersComponent,
+        runGuardsAndResolvers:'always',
+        data:{title:'Trailres'}
+      }
     ]
   }
 ];

@@ -1,3 +1,4 @@
+import { TrailersComponent } from './trailers.component';
 // Angular
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -10,6 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 // Theme Routing
 import { ThemeRoutingModule } from './theme-routing.module';
 import {CompanyComponent} from './company.component';
+import { TrucksComponent } from './trucks.component';
 
 
 @NgModule({
@@ -23,8 +25,9 @@ import {CompanyComponent} from './company.component';
     ModalModule.forRoot()
   ],
   declarations: [
-    CompanyComponent
-    
+    CompanyComponent,
+    TrucksComponent,
+    TrailersComponent
   ]
 })
 export class ThemeModule { }

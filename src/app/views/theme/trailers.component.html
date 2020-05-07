@@ -1,0 +1,477 @@
+<form class="form-horizontal" [formGroup]="trailersForm">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-header">Trucks Information</div>
+          <div class="card-body">
+            
+              <!-- <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
+                  <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
+                </div>
+              </div> -->
+              
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Unit Number: <span style="color:red">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Trailer Type: <span style="color:red">*</span></label>
+                <div class="col-md-9">
+                  <select class="form-control" id="state2">
+                    <option value="0">Select</option>
+                    <option value="1">Option #1</option>
+                    <option value="2">Option #2</option>
+                    <option value="3">Option #3</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Make: <span style="color:red">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Color: <span style="color:red">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Year: <span style="color:red">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" [formControl]="make" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Reefer Make:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Reefer Model:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Reefer VIN:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" ng-pattern="/^[0-9]/" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Deduct Tolls:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Deduct Fuel:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" required>
+                </div>
+              </div>
+
+              
+          
+          </div>
+        </div>
+
+      <div class="card">
+          <div class="card-header">Safety Information</div>
+          <div class="card-body">
+            
+              <!-- <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
+                  <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
+                </div>
+              </div> -->
+              
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">DOT Inspection Expiry Date:</label>
+                <div class="col-md-9">
+                    <input type="date" class="form-control" id="address1" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Plates Registered State:</label>
+                <div class="col-md-9">
+                    <input type="date" class="form-control" id="address1" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Plates Expiration Date:</label>
+                <div class="col-md-9">
+                    <input type="date" class="form-control" id="address1" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Insurance Expiration Date:</label>
+                <div class="col-md-9">
+                    <input type="date" class="form-control" id="address1" required>
+                </div>
+              </div>
+              
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Insurance Value:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" required>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Ownership Information</div>
+            <div class="card-body">
+              
+                <!-- <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
+                    <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
+                  </div>
+                </div> -->
+                
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Company Owned:</label>
+                  <div class="col-md-9 col-form-label">
+                        <div class="form-check form-check-inline mr-1">
+                          <input class="form-check-input" id="inline-radio1" type="radio" value="option1" name="inline-radios">
+                          <label class="form-check-label" for="inline-radio1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline mr-1">
+                          <input class="form-check-input" id="inline-radio2" type="radio" value="option2" name="inline-radios">
+                          <label class="form-check-label" for="inline-radio2">No</label>
+                        </div>
+                        
+                      </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Price:</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" required>
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Purchase Date:</label>
+                  <div class="col-md-9">
+                      <input type="date" class="form-control" id="address1" required>
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Operation Date:</label>
+                  <div class="col-md-9">
+                      <input type="date" class="form-control" id="address1" required>
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Financer:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="address1" [formControl]="make" required>
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Dealer:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="address1" required>
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Leased:</label>
+                  <div class="col-md-9 col-form-label">
+                    <div class="form-check form-check-inline mr-1">
+                        <input class="form-check-input" id="inline-radio1" type="radio" value="option1" name="inline-radios">
+                        <label class="form-check-label" for="inline-radio1">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline mr-1">
+                        <input class="form-check-input" id="inline-radio2" type="radio" value="option2" name="inline-radios">
+                        <label class="form-check-label" for="inline-radio2">No</label>
+                    </div>
+                    </div>
+                </div>
+  
+                
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Leased from:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="leasedfrom" required>
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Lease Start:</label>
+                  <div class="col-md-9">
+                      <input type="date" class="form-control" id="address1" required>
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Lease Expiry Date:</label>
+                  <div class="col-md-9">
+                      <input type="date" class="form-control" id="address1" required>
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Lease Installment:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="address1" required>
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Reefer Purchase Date:</label>
+                  <div class="col-md-9">
+                      <input type="date" class="form-control" id="address1" required>
+                  </div>
+                </div>
+            
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address1">Reefer Price:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="address1" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address1">Installment:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="address1" required>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+        
+      </div>
+
+
+      <!-- <div class="col-sm-2">
+        <div class="card">
+          <div class="card-header">Example Form</div>
+          <div class="card-body">
+           
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Address1:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" required>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div> -->
+
+
+      <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header"> Information</div>
+            <div class="card-body">
+              
+                <!-- <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
+                    <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
+                  </div>
+                </div> -->
+                
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Trailer Size:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="address1" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Operating Status:</label>
+                  <div class="col-md-9">
+                    <select class="form-control" id="state2">
+                        <option value="0">Select</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Reefer Miles:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="address1" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Reefer Hours:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="address1" required>
+                  </div>
+                </div>
+                
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Vin:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="address1" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address1">Registered State:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="address1" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address1">Plate Number:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="address1" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address1">Fuel Card:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="address1" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address1">Fuel Type:</label>
+                    <div class="col-md-9">
+                    <select class="form-control" id="state2">
+                        <option value="0">Select</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address1">Ez Pass:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="address1" required>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+        <div class="card">
+          <div class="card-header">Maintanance Records</div>
+          <div class="card-body">
+            
+              <!-- <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
+                  <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
+                </div>
+              </div> -->
+              
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Category:</label>
+                <div class="col-md-9">
+                <select class="form-control" id="state2">
+                    <option value="0">Select</option>
+                    <option value="1">Option #1</option>
+                    <option value="2">Option #2</option>
+                    <option value="3">Option #3</option>
+                </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Description:</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="address1" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address1">Start Date:</label>
+                <div class="col-md-9">
+                    <input type="date" class="form-control" id="address1" required>
+                </div>
+              </div>
+ 
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Starting Mileage:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="address1" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Number of Miles:</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" id="address1" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address1">Next Service Miles:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="address1" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address1">Last Service Date:</label>
+                    <div class="col-md-9">
+                        <input type="date" class="form-control" id="address1" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address1">Next Service Date:</label>
+                    <div class="col-md-9">
+                        <input type="date" class="form-control" id="address1" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address1">Comments:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="address1" required>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+    <div class="card-footer">
+        <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+          <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" 
+          />
+          Submit</button>&nbsp;&nbsp;
+        <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+    </div>
+
+  </form>

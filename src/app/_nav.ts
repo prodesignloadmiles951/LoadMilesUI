@@ -54,12 +54,12 @@ export const navItems: NavData[] = [
   // },
   {
     name: 'Trucks',
-    url: '/theme/smssummary',
+    url: '/theme/trucks',
     icon: 'icon-info'
   },
   {
     name: 'Trailers',
-    url: '/theme/smslogs',
+    url: '/theme/trailers',
     icon: 'icon-info'
   },
   {
