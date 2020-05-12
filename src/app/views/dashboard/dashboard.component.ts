@@ -13,12 +13,9 @@ import {Router} from '@angular/router';
 export class DashboardComponent implements OnInit {
 
  userData: any = [
-   {slno: '1', companyname: 'abc', companydetails: 'abc', username: 'abc'},
-   {slno: '2', companyname: 'abc', companydetails: 'abc', username: 'abc'},
-   {slno: '3', companyname: 'abc', companydetails: 'abc', username: 'abc'},
-   {slno: '4', companyname: 'abc', companydetails: 'abc', username: 'abc'},
-   {slno: '5', companyname: 'abc', companydetails: 'abc', username: 'abc'},
-   {slno: '6', companyname: 'abc', companydetails: 'abc', username: 'abc'}
+   {slno: '1', companyname: 'Company', fedid: 'abc123', usdot: 'abc', mc: 'abc', phone: '0123456789', email: 'test@gmail.com'},
+   {slno: '2', companyname: 'Company', fedid: 'abc123', usdot: 'abc', mc: 'abc', phone: '0123456789', email: 'test@gmail.com'},
+   {slno: '3', companyname: 'Company', fedid: 'abc123', usdot: 'abc', mc: 'abc', phone: '0123456789', email: 'test@gmail.com'},
  ];
 
 

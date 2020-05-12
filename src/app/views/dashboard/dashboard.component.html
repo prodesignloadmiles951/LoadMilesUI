@@ -36,24 +36,32 @@
           <table class="table table-responsive-sm table-hover table-outline mb-0">
             <thead class="thead-light">
               <tr>
-                <th>Sl No.</th>
+                <th>S.no</th>
                 <th>Company Name</th>
-                <th>Company Details</th>
-                <th>User Name</th>
-                <th>Actions</th>
+                <th>FEDID</th>
+                <th>US DOT #</th>
+                <th>MC</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
               <tr *ngFor="let data of userData">
                 <td>{{data.slno}}</td>
                 <td>{{data.companyname}}</td>
-                <td>{{data.companydetails}}</td>
-                <td>{{data.username}}</td>
+                <td>{{data.fedid}}</td>
+                <td>{{data.usdot}}</td>
+                <td>{{data.mc}}</td>
+                <td>{{data.phone}}</td>
+                <td>{{data.email}}</td>
                 <td>
                   <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                  (click)="viewModal.show();viewData(user)">view</a> |
+                  (click)="viewModal.show();viewData(user)">View</a> |
                     <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                        (click)="editModal.show();convertData(user);">Edit</a>
+                    (click)="editModal.show();convertData(user);">Edit</a> |
+                    <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
+                    (click)="deleteModal.show();convertData(user);">Delete</a>
                 </td>
             </tr>
             </tbody>
@@ -236,6 +244,55 @@
                         src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                 </button>    
             </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!-- Delete Modal-->
+
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="max-width: 30%" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Company - <span class="badge badge-success">company name</span></h4>
+                <button type="button" class="close" (click)="deleteModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="animated fadeIn">
+                       
+                        <!-- <div id="editsection" *ngIf="EditMode==true"> -->
+                            <div id="editsection">
+                                <div class="card">
+                                    <div class="card-header" style="text-align:center;">
+                                      <strong>Do you want to Delete this Company</strong>
+                                    </div>
+                                    <div class="card-body">
+                                            
+                                    <!-- <button type="reset" aria-label="Close" (click)="editModal.hide()" style="float: right"
+                                        class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
+                                    
+                                    <button type="reset" (click)="EditUser()"  style="float: right"
+                                        class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Save 
+                                        <img *ngIf="Iseditusrloading"
+                                            src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                    </button>     -->
+                                   <div class="form-group-row">
+                                        <button type="reset" style="float: left " class="btn btn-sm btn-danger" (click)="delete()"><i class="fa fa-thumbs-up"></i> Yes</button>    
+                                        <button type="add" style="float: right" class="btn btn-sm btn-info" (click)="deleteModal.hide()"><i class="fa fa-thumbs-down"></i> No</button>    
+                                    </div>
+                                </div>
+                                </div>
+                                
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>

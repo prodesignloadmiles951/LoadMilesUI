@@ -24,7 +24,7 @@ export class LoginComponent {
   }
   Login() {
     this.isLogin=true;
-    debugger;
+    //debugger;
     this._loginsevice.Login(this.Email,this.Password,this.Usertype).subscribe(data => {
       this.router.navigateByUrl("dashboard");
       // if(user){

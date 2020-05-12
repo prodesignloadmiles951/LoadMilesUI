@@ -1,19 +1,29 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { CompanyFilters } from '../../model/companydetails';
+import { AuthHeaderService } from '../authheader.service';
+import { CompanyService } from '../../services/company.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-company',
     templateUrl: './company.component.html',
-    providers: []
-}) 
+    providers: [CompanyService,ToastrService,AuthHeaderService]
+})
 
 export class CompanyComponent implements OnInit {
   public pageFilters: CompanyFilters;
   companyForm: FormGroup;
     submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+     private _toaster: ToastrService,
+     private _companyservice: CompanyService,
+     private authHeader: AuthHeaderService,
+     private router: Router) {
+       this.pageFilters = new CompanyFilters();
+      }
 
   ngOnInit() {
       this.companyForm = this.formBuilder.group({
@@ -46,6 +56,15 @@ export class CompanyComponent implements OnInit {
     this.submitted = true;
     if (this.companyForm.invalid) {
         return;
+    } else{
+    this._companyservice.SendForm(this.companyForm.value).subscribe(data => {
+      this.submitted = true;
+      this._toaster.info("Data Submitted","Success");
+      this.router.navigateByUrl("dashboard");
+    },error=>{
+      this.submitted=false;
+      this._toaster.error("Submit Agian","Faild");
+    });
     }
     //alert('success');
     console.log(this.companyForm.value);

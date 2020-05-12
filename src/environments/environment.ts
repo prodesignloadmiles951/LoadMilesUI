@@ -6,13 +6,11 @@
 export const environment = {
   production: false,
   Login_User:"LOGIN_USER",
+  dashboardurl:"http://localhost:4200/api/dashboard/",
   url:"http://54.166.101.176:8081/",
-  conurl:"http://devapi.bulksmsapps.com/api/Transactions/",
-  dashboardurl:"http://devapi.bulksmsapps.com/api/dashboard/",
   loginurl:"http://54.166.101.176:8081/adminapi/login",
-  userurl:"http://devapi.bulksmsapps.com/api/user/",
-  msgurl:"http://devapi.bulksmsapps.com/api/sendmsg/",
-  maskurl:"http://devapi.bulksmsapps.com/api/senderid/",
+  companyurl:"http://54.166.101.176:8081/company/companyapi",
+
 
   // url:"http://localhost:62585/api/",
   // conurl:"http://localhost:62585/api/Transactions/",
