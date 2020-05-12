@@ -14,8 +14,8 @@ constructor(private http:Http,
     private _headerService:AuthHeaderService  ){
         this.url=environment.loginurl;
 }
-Login(userName:string,password:string,usertype:string){
-    let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    return this.http.get(this.url,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+Login(email:string,password:string,usertype:string){
+  let options = new RequestOptions({ headers: this._headerService.getHeader() });
+  return this.http.get(this.url,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
 }
 }

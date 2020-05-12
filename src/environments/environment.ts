@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   Login_User:"LOGIN_USER",
-  url:"http://54.166.101.176:8081/api/",
+  url:"http://54.166.101.176:8081/",
   conurl:"http://devapi.bulksmsapps.com/api/Transactions/",
   dashboardurl:"http://devapi.bulksmsapps.com/api/dashboard/",
   loginurl:"http://54.166.101.176:8081/adminapi/login",

@@ -9,6 +9,8 @@ import { LoginUser } from '../model/loginuser';
 export class AuthenticationService {
     public sessionData: string = environment.Login_User;
     public LoginUser: LoginUser;
+    redirectUrl: string;
+    isLoggedin: boolean;
     constructor(
         private router: Router
     ) {

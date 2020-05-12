@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   providers: [LoginService,AuthenticationService,AuthHeaderService,ToastrService]
 })
 export class LoginComponent {
-  public Username: string;
+  public Email: string;
   public Password: string;
   public Usertype: string;
   public isLogin:boolean=false;
@@ -24,23 +24,15 @@ export class LoginComponent {
   }
   Login() {
     this.isLogin=true;
-    this._loginsevice.Login(this.Username, this.Password, this.Usertype).subscribe(reponse => {
-      let user = {
-        user_id: reponse.user_id,
-        username: reponse.username,
-        user_passwd: reponse.user_passwd,
-        token: reponse.token,
-        usertype: reponse.usertype,
-        salespersonId: reponse.salespersonId,
-      }
+    debugger;
+    this._loginsevice.Login(this.Email,this.Password,this.Usertype).subscribe(data => {
       this.router.navigateByUrl("dashboard");
-      
-      if(user){
-        this.router.navigateByUrl("dashboard");
-      }
-      else{
-        this._toaster.warning("Invalid UserId and Password","Login Faild")
-      }
+      // if(user){
+      //   this.router.navigateByUrl("dashboard");
+      // }
+      // else{
+      //   this._toaster.warning("Invalid UserId and Password","Login Faild")
+      // }
       this.isLogin=false;
     },error=>{
       this.isLogin=false;

@@ -13,18 +13,21 @@
                 </div> -->
                 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Plate:
+                  <label class="col-md-3 col-form-label" for="plate">Plate:
                     <span style="color:red">*</span>
                   </label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                    <input type="text" class="form-control" id="plate" formControlName="plate" [ngClass]="{ 'is-invalid': submitted && f.plate.errors }">
+                    <div *ngIf="submitted && f.plate.errors" class="invalid-feedback">
+                      <div *ngIf="f.plate.errors.required">Plate is Required</div>
+                  </div>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Operation Status:</label>
+                  <label class="col-md-3 col-form-label" for="operationstatus">Operation Status:</label>
                   <div class="col-md-9">
-                    <select class="form-control" id="state2">
+                    <select class="form-control" id="operationstatus" formControlName="operationStatus">
                       <option value="0">Select</option>
                       <option value="1">Option #1</option>
                       <option value="2">Option #2</option>
@@ -34,58 +37,67 @@
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Starting Mileage:</label>
+                  <label class="col-md-3 col-form-label" for="startingmileage">Starting Mileage:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="startingmileage" formControlName="startingMileage"  required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Current Miles:</label>
+                  <label class="col-md-3 col-form-label" for="currentmiles">Current Miles:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="currentmiles" formControlName="currentMiles" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Make: <span style="color:red">*</span></label>
+                  <label class="col-md-3 col-form-label" for="make">Make: <span style="color:red">*</span></label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" [formControl]="make" required>
+                    <input type="text" class="form-control" id="make" formControlName="make" [ngClass]="{ 'is-invalid': submitted && f.make.errors }">
+                    <div *ngIf="submitted && f.make.errors" class="invalid-feedback">
+                      <div *ngIf="f.make.errors.required">Make is Required</div>
+                  </div>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Modal: <span style="color:red">*</span></label>
+                  <label class="col-md-3 col-form-label" for="modal">Modal: <span style="color:red">*</span></label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                    <input type="text" class="form-control" id="modal" formControlName="modal" [ngClass]="{ 'is-invalid': submitted && f.modal.errors }">
+                    <div *ngIf="submitted && f.modal.errors" class="invalid-feedback">
+                      <div *ngIf="f.modal.errors.required">Modal is Required</div>
+                  </div>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Color:</label>
+                  <label class="col-md-3 col-form-label" for="color">Color:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="color" formControlName="color" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Year of make: <span style="color:red">*</span></label>
+                  <label class="col-md-3 col-form-label" for="yearofmake">Year of make: <span style="color:red">*</span></label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" ng-pattern="/^[0-9]/" required>
+                    <input type="text" class="form-control" placeholder="Ex: 2020" id="yearofmake" formControlName="yom" [ngClass]="{ 'is-invalid': submitted && f.yom.errors }" pattern="[0-9]*" minlength="4" maxlength="4" required>
+                    <div *ngIf="submitted && f.yom.errors" class="invalid-feedback">
+                      <div *ngIf="f.yom.errors.yom">Enter Valid Year</div>
+                  </div>
+                </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="vin">Vin:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="vin" formControlName="vin" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Vin:</label>
+                  <label class="col-md-3 col-form-label" for="geartype">Gear Type:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Gear Type:</label>
-                  <div class="col-md-9">
-                    <select class="form-control" id="state2">
+                    <select class="form-control" id="geartype" formControlName="gearType">
                       <option value="0">Select</option>
                       <option value="1">Option #1</option>
                       <option value="2">Option #2</option>
@@ -95,30 +107,30 @@
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">ELD:</label>
+                  <label class="col-md-3 col-form-label" for="eld">ELD:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="eld" formControlName="eld" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">GPS:</label>
+                  <label class="col-md-3 col-form-label" for="gps">GPS:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="gps" formControlName="gps" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Fuel Card:</label>
+                  <label class="col-md-3 col-form-label" for="fuelcard">Fuel Card:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="fuelcard" formControlName="fuelCard" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">EZ Pass:</label>
+                  <label class="col-md-3 col-form-label" for="ezpass">EZ Pass:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="ezpass" formControlName="ezPass" required>
                   </div>
                 </div>
             
@@ -137,37 +149,37 @@
                 </div> -->
                 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">DOT Inspection Expiry Date:</label>
+                  <label class="col-md-3 col-form-label" for="expirydate">DOT Inspection Expiry Date:</label>
                   <div class="col-md-9">
-                      <input type="date" class="form-control" id="address1" required>
+                      <input type="date" class="form-control" id="expirydate" formControlName="expiryDate" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Plates Registered State:</label>
+                  <label class="col-md-3 col-form-label" for="registerdstate">Plates Registered State:</label>
                   <div class="col-md-9">
-                      <input type="date" class="form-control" id="address1" required>
+                      <input type="date" class="form-control" id="registerdstate" formControlName="registerdState" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Plates Expiration Date:</label>
+                  <label class="col-md-3 col-form-label" for="plates_expirationdate">Plates Expiration Date:</label>
                   <div class="col-md-9">
-                      <input type="date" class="form-control" id="address1" required>
+                      <input type="date" class="form-control" id="plates_expirationdate" formControlName="platesExpirationdate" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Insurance Expiration Date:</label>
+                  <label class="col-md-3 col-form-label" for="insuranceexpirationdate">Insurance Expiration Date:</label>
                   <div class="col-md-9">
-                      <input type="date" class="form-control" id="address1" required>
+                      <input type="date" class="form-control" id="insuranceexpirationdate" formControlName="insuranceExpirationdate" required>
                   </div>
                 </div>
                 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Insurance Value:</label>
+                  <label class="col-md-3 col-form-label" for="insurancevalue1">Insurance Value:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="insurancevalue1" formControlName="insuranceValue1" required>
                   </div>
                 </div>
             </div>
@@ -185,37 +197,37 @@
                   </div> -->
                   
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="address1">Driver Name:</label>
+                    <label class="col-md-3 col-form-label" for="drivername">Driver Name:</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="address1" required>
+                        <input type="text" class="form-control" id="drivername" formControlName="driverName" required>
                     </div>
                   </div>
   
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="address1">Cell Phone:</label>
+                    <label class="col-md-3 col-form-label" for="phone">Cell Phone:</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="address1" required>
-                    </div>
+                      <input type="text" class="form-control" placeholder="Ex: 012 345 6789" id="phone" formControlName="phone" pattern="[0-9]*" minlength="10" maxlength="10" required>
+                  </div>
                   </div>
   
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="address1">Email:</label>
+                    <label class="col-md-3 col-form-label" for="email">Email:</label>
                     <div class="col-md-9">
-                        <input type="date" class="form-control" id="address1" required>
-                    </div>
+                    <input type="text" class="form-control" placeholder="example@info.com" id="email" formControlName="email" >
+                </div>
                   </div>
   
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="address1">Insurance Expiration Date:</label>
+                    <label class="col-md-3 col-form-label" for="insuranceexpirationdate2">Insurance Expiration Date:</label>
                     <div class="col-md-9">
-                        <input type="date" class="form-control" id="address1" required>
+                        <input type="date" class="form-control" id="insuranceexpirationdate2" formControlName="insuranceExpirationdate2" required>
                     </div>
                   </div>
                   
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="address1">Insurance Value:</label>
+                    <label class="col-md-3 col-form-label" for="insurancevalue2">Insurance Value:</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="address1" required>
+                        <input type="text" class="form-control" id="insurancevalue2" formControlName="insuranceValue2" required>
                     </div>
                   </div>
               </div>
@@ -252,100 +264,100 @@
                 </div> -->
                 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Company Owned:</label>
+                  <label class="col-md-3 col-form-label" for="companyowned">Company Owned:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="companyowned" formControlName="comapnyOwned" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Price:</label>
+                  <label class="col-md-3 col-form-label" for="price">Price:</label>
                   <div class="col-md-9">
-                    <input type="text" class="form-control" id="address1" required>
+                    <input type="text" class="form-control" id="price" formControlName="price" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Purchase Date:</label>
+                  <label class="col-md-3 col-form-label" for="purchasedate">Purchase Date:</label>
                   <div class="col-md-9">
-                      <input type="date" class="form-control" id="address1" required>
+                      <input type="date" class="form-control" id="purchasedate" formControlName="purchaseDate" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Operation Date:</label>
+                  <label class="col-md-3 col-form-label" for="operationdate">Operation Date:</label>
                   <div class="col-md-9">
-                      <input type="date" class="form-control" id="address1" required>
+                      <input type="date" class="form-control" id="operationdate" formControlName="operationDate" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Financer:</label>
+                  <label class="col-md-3 col-form-label" for="financer">Financer:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" [formControl]="make" required>
+                      <input type="text" class="form-control" id="financer" formControlName="financer" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Installment:</label>
+                  <label class="col-md-3 col-form-label" for="installment1">Installment:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="installment1" formControlName="installment1" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Installment Due Date:</label>
+                  <label class="col-md-3 col-form-label" for="installmentduedate1">Installment Due Date:</label>
                   <div class="col-md-9">
-                      <input type="date" class="form-control" id="address1" required>
+                      <input type="date" class="form-control" id="installmentduedate1" formControlName="installmentDuedate1" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Dealer:</label>
+                  <label class="col-md-3 col-form-label" for="dealer">Dealer:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" ng-pattern="/^[0-9]/" required>
+                      <input type="text" class="form-control" id="dealer" formControlName="dealer" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Leased:</label>
+                  <label class="col-md-3 col-form-label" for="leased">Leased:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="leassed" formControlName="leased" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Leased from:</label>
+                  <label class="col-md-3 col-form-label" for="leasedfrom">Leased from:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="leasedfrom" required>
+                      <input type="text" class="form-control" id="leasedfrom" formControlName="leasedFrom" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Lease Start:</label>
+                  <label class="col-md-3 col-form-label" for="leasestart">Lease Start:</label>
                   <div class="col-md-9">
-                      <input type="date" class="form-control" id="address1" required>
+                      <input type="date" class="form-control" id="leasestart" formControlName="leaaseStart" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Lease Expiry Date:</label>
+                  <label class="col-md-3 col-form-label" for="leaseexpirydate">Lease Expiry Date:</label>
                   <div class="col-md-9">
-                      <input type="date" class="form-control" id="address1" required>
+                      <input type="date" class="form-control" id="leaseexpirydate" formControlName="leaseExpirydate" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Installment:</label>
+                  <label class="col-md-3 col-form-label" for="installment2">Installment:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="installment2" formControlName="installment2" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Installment Due Date:</label>
+                  <label class="col-md-3 col-form-label" for="installmentduedate2">Installment Due Date:</label>
                   <div class="col-md-9">
-                      <input type="date" class="form-control" id="address1" required>
+                      <input type="date" class="form-control" id="installmentduedate2" formControlName="installmentDuedate2" required>
                   </div>
                 </div>
             
@@ -364,23 +376,23 @@
                 </div> -->
                 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Dispatcher:</label>
+                  <label class="col-md-3 col-form-label" for="dispatcher">Dispatcher:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="dispatcher" formControlName="dispatcher" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Dispatcher Contact:</label>
+                  <label class="col-md-3 col-form-label" for="dispatchercontact">Dispatcher Contact:</label>
                   <div class="col-md-9">
-                    <input type="text" class="form-control" id="address1" required>
+                    <input type="text" class="form-control" placeholder="Ex: 012 345 6789" id="dispatchercontact" formControlName="dispatcherContact" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Dispatcher Email:</label>
+                  <label class="col-md-3 col-form-label" for="dispatcheremail">Dispatcher Email:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" placeholder="example@info.com" id="dispatcheremail" formControlName="dispatcherEmail" required>
                   </div>
                 </div>
             </div>
@@ -390,16 +402,16 @@
               <div class="card-header">Trailer Information</div>
               <div class="card-body">  
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="address1">Trailer Type:</label>
+                    <label class="col-md-3 col-form-label" for="trailertype">Trailer Type:</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="address1" required>
+                        <input type="text" class="form-control" id="trailertype" formControlName="trailerType" required>
                     </div>
                   </div>
   
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="address1">Plate Number:</label>
+                    <label class="col-md-3 col-form-label" for="platenumber">Plate Number:</label>
                     <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" required>
+                      <input type="text" class="form-control" id="platenumber" formControlName="plateNumber" required>
                     </div>
                   </div>
               </div>

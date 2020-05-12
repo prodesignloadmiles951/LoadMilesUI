@@ -1,13 +1,6 @@
 export class LoginUser {
-    username: string;
+    email: string;
     password: string;
     token: string;
     usertype: string;
-
-    constructor() {
-    this.username = null;
-    this.password = null;
-    this.token = null;
-    this.usertype = null;
-    }
 }
