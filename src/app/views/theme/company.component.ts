@@ -16,6 +16,8 @@ export class CompanyComponent implements OnInit {
   public pageFilters: CompanyFilters;
   companyForm: FormGroup;
     submitted = false;
+    companylist = [];
+  Isuserloading: boolean;
 
   constructor(private formBuilder: FormBuilder,
      private _toaster: ToastrService,
@@ -23,6 +25,7 @@ export class CompanyComponent implements OnInit {
      private authHeader: AuthHeaderService,
      private router: Router) {
        this.pageFilters = new CompanyFilters();
+       this.companylist = [];
       }
 
   ngOnInit() {
@@ -57,16 +60,32 @@ export class CompanyComponent implements OnInit {
     if (this.companyForm.invalid) {
         return;
     } else{
-    this._companyservice.SendForm(this.companyForm.value).subscribe(data => {
+    this._companyservice.SendForm(this.companyForm.value).subscribe(response => {
       this.submitted = true;
       this._toaster.info("Data Submitted","Success");
-      this.router.navigateByUrl("dashboard");
+      //this.router.navigateByUrl("dashboard");
     },error=>{
       this.submitted=false;
       this._toaster.error("Submit Agian","Faild");
     });
     }
     //alert('success');
-    console.log(this.companyForm.value);
+    //console.log(this.companyForm.value);
+
+    this._companyservice.GetSendForm(this.companyForm.value).subscribe(response => {
+      this.companylist = response;
+    });
    }
+
+   editCompany() {
+    this._companyservice.EditCompany(this.companyForm.value).subscribe(response => {
+      this._toaster.success("Company Details updated", "Success");
+    }, error => {this._toaster.error(error, "Error"); });
+  }
+
+    deleteCompany(){
+     this._companyservice.DeleteCompany(this.companyForm.value).subscribe(response => {
+      this._toaster.info("Company Data Delete", "Success");
+    });
+    }
 }

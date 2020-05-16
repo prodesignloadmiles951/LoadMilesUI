@@ -9,7 +9,7 @@ import { map,catchError } from 'rxjs/operators'
 @Injectable()
 
 export class CompanyService {
-   
+    
     companyurl: string;
     constructor(private http: Http, private _headerService:AuthHeaderService){
         this.companyurl=environment.companyurl;
@@ -17,6 +17,21 @@ export class CompanyService {
 
     SendForm(filters: CompanyFilters){
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
-        return this.http.post(this.companyurl,{filters},options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+        return this.http.post(this.companyurl,filters,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+      }
+
+      GetSendForm(filters: CompanyFilters){
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.post(this.companyurl,filters,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+      }
+      
+      EditCompany(id: number){
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.put(this.companyurl,id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+      }
+
+      DeleteCompany(id: number){
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.delete(this.companyurl,id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
 }

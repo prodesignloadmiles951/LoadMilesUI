@@ -9,7 +9,7 @@ export const environment = {
   dashboardurl:"http://localhost:4200/api/dashboard/",
   url:"http://54.166.101.176:8081/",
   loginurl:"http://54.166.101.176:8081/adminapi/login",
-  companyurl:"http://54.166.101.176:8081/company/companyapi",
+  companyurl:"http://54.166.101.176:8081/companyapi/company",
 
 
   // url:"http://localhost:62585/api/",
