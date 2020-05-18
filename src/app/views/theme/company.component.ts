@@ -18,6 +18,7 @@ export class CompanyComponent implements OnInit {
     submitted = false;
     companylist = [];
   Isuserloading: boolean;
+  data: any;
 
   constructor(private formBuilder: FormBuilder,
      private _toaster: ToastrService,
@@ -38,7 +39,7 @@ export class CompanyComponent implements OnInit {
             mc: ['', Validators.required],
             dba: [''],
             iftalicense: [''],
-            fax: [''],
+            fax: ['', Validators.required],
             address1: [''],
             address2: [''],
             city: [''],
@@ -52,6 +53,7 @@ export class CompanyComponent implements OnInit {
             state2: [''],
             zip2: [''],
           });
+          //this.getData();
 }
         get f() { return this.companyForm.controls; }
 
@@ -63,29 +65,31 @@ export class CompanyComponent implements OnInit {
     this._companyservice.SendForm(this.companyForm.value).subscribe(response => {
       this.submitted = true;
       this._toaster.info("Data Submitted","Success");
-      //this.router.navigateByUrl("dashboard");
+      this.router.navigateByUrl("dashboard");
     },error=>{
       this.submitted=false;
       this._toaster.error("Submit Agian","Faild");
     });
     }
-    //alert('success');
-    //console.log(this.companyForm.value);
 
-    this._companyservice.GetSendForm(this.companyForm.value).subscribe(response => {
-      this.companylist = response;
-    });
    }
 
-   editCompany() {
-    this._companyservice.EditCompany(this.companyForm.value).subscribe(response => {
-      this._toaster.success("Company Details updated", "Success");
-    }, error => {this._toaster.error(error, "Error"); });
-  }
+  //  getData() {
+  //   this._companyservice.getCompanyData().subscribe(data => {
+  //     this.data = data;
+  //   });
+  // }
 
-    deleteCompany(){
-     this._companyservice.DeleteCompany(this.companyForm.value).subscribe(response => {
-      this._toaster.info("Company Data Delete", "Success");
+  //  editCompany() {
+  //   this._companyservice.EditCompany(this.companyForm.value).subscribe(response => {
+  //     this._toaster.success("Company Details updated", "Success");
+  //   }, error => {this._toaster.error(error, "Error"); });
+  // } 
+
+    deleteCompany(_id: number){
+     this._companyservice.DeleteCompany(_id).subscribe(data => {
+     this._toaster.info("Company Data Delete", "Success");
+     //this.getData();
     });
     }
 }

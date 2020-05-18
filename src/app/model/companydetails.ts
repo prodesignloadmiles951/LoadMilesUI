@@ -6,20 +6,20 @@ export class CompanyFilters {
    usdot: number;
    iftalicense: string;
    phone: number;
-   fax: number;
+   fax: any;
    email: string;
    address1: string;
    address2:  string;
    city: string;
    state: string;
-   zip: number;
+   zip: any;
    file: any;
    position: string;
    address3: string;
    address4: string;
    city2: string;
    state2: string;
-   zip2: string;
+   zip2: any;
 
    constructor() {
       this.companyname = null;
