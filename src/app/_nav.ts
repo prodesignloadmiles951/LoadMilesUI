@@ -39,19 +39,11 @@ export const navItems: NavData[] = [
       text: ''
     }
   },
-  // {
-  //   title:false,
-  //   name:'Manage'
-  // },
   {
     name: 'Company',
     url: '/theme/company',
     icon: 'icon-info'
   },
-  // {
-  //  title:false,
-  //  name:'Reports'
-  // },
   {
     name: 'Trucks',
     url: '/theme/trucks',
@@ -63,50 +55,50 @@ export const navItems: NavData[] = [
     icon: 'icon-info'
   },
   {
-    name:'Fuel Cards',
-    url:'/theme/numberwise',
+    name: 'Driver',
+    url: '/theme/driver',
     icon: 'icon-info'
   },
   {
-    name:'Customers',
-    url:'/theme/dndrelease',
-    icon:'icon-info'
-  },
-  {
-    name: 'Factoring',
-    url: '/theme/deliveryreports',
-    icon: 'icon-info'
-  },
-  // {
-  //   title: false,
-  //   name: 'Accounts'
-  // },
-  {
-    name: 'Dispatchers',
-    url: '/theme/users',
+    name: 'Carrier',
+    url: '/theme/carrier',
     icon: 'icon-info'
   },
   {
-    name: 'Drivers / OPRS',
-    url: '/theme/reseller',
+    name: 'Customers',
+    url: '/theme/customers',
     icon: 'icon-info'
   },
-  // {
-  //   name: 'Sales',
-  //   url: '/theme/purchases',
-  //   icon: 'icon-note'
-  // },
-  // {
-  //   name: 'Sales(Pendings)',
-  //   url: '/theme/transsummary',
-  //   icon: 'icon-puzzle'
-  // },
-  // {
-  //   name: 'Payments',
-  //   url: '/theme/payments',
-  //   icon: 'icon-info'
-  // },
-
+  {
+    name: 'Dispatcher',
+    url: '/theme/dispatcher',
+    icon: 'icon-info'
+  },
+  {
+    name: 'Vendor',
+    url: '/theme/vendor',
+    icon: 'icon-info'
+  },
+  {
+    name: 'Factor',
+    url: '/theme/factor',
+    icon: 'icon-info'
+  },
+  {
+    name: 'Fuel Card',
+    url: '/theme/fuelcard',
+    icon: 'icon-info'
+  },
+  {
+    name: 'Accident',
+    url: '/theme/accident',
+    icon: 'icon-info'
+  },
+  {
+    name: 'Map (Trucks/Drivers)',
+    url: '/theme/map',
+    icon: 'icon-info'
+  },
   {
     divider: true
   },

@@ -61,13 +61,13 @@
                         <td>{{cmp.email}}</td>
                         <td>
                           <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                              (click)="viewModal.show();maagedata(user);">View</a> |
+                              (click)="viewModal.show();viewData(cmp);">View</a> |
     
                           <!-- <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
                           (click)="editModal.show();edti(user);">Edit</a> |    -->
                           
                           <a style="cursor: pointer;color: #20a8d8;"
-                              (click)="deleteCompany(cmp._id)">Delete</a>
+                              (click)="deleteCompany(cmp)">Delete</a>
                       </td>
                     </tr>
                 </tbody>
@@ -77,9 +77,7 @@
                     <td class="alert alert-warning" style="width:1050px;" align="center" colspan="10"><span>No records available</span></td>
                   </tr>
                 </tbody> -->
-                
               </table>
-             
             </div>
           </div>
         </div>
@@ -87,10 +85,10 @@
 
 <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="max-width: 60%" role="document">
+    <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Manage Company - <span class="badge badge-success" >ABC</span></h4>
+                <h4 class="modal-title">Manage Company - <span class="badge badge-success" >{{selectedCompany}}</span></h4>
                 <button type="button" class="close" (click)="viewModal.hide()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -98,41 +96,77 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="animated fadeIn">
-                        <!-- <div id="viewsection" *ngIf="EditMode==false"> -->
-                            <div id="viewsection">
+                        <div id="viewsection" *ngIf="EditMode==false">
+                            <!-- <div id="viewsection"> -->
                         <div class="row">
                             <div class="col-md-6">
                                 
                                 <div class="row" style="text-align: center">
                                     <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>First Name:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 14px;">firstname</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Last Name:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 14px;">lastname</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
                                         <span style="font-size: 12px;"><b>Company Name:</b></span>
                                     </div>
                                     <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 14px;">company_name</span>
+                                        <span style="font-size: 14px;">{{company.companyname}}</span>
                                     </div>
                                 </div>
                                 <div class="row" style="text-align: center">
                                     <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Mobile No:</b></span>
+                                        <span style="font-size: 12px;"><b>FED ID:</b></span>
                                     </div>
                                     <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 14px;">mobile_no</span>
+                                        <span style="font-size: 14px;">{{company.fedid}}</span>
+                                    </div>
+                                </div>
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>US DOT #:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 14px;">{{company.usdot}}</span>
+                                    </div>
+                                </div>
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>MC:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 14px;">{{company.mc}}</span>
+                                    </div>
+                                </div>
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>IFTA License #:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 14px;">{{company.iftalicense}}</span>
+                                    </div>
+                                </div>
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Phone:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 14px;">{{company.phone}}</span>
+                                    </div>
+                                </div>
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Email:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{company.email}}</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-6">
+                                
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Address:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{company.address1}}</span>
                                     </div>
                                 </div>
                                 <div class="row" style="text-align: center">
@@ -140,47 +174,103 @@
                                         <span style="font-size: 12px;"><b>City:</b></span>
                                     </div>
                                     <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 14px;">city</span>
+                                        <span style="font-size: 12px;">{{company.city}}</span>
                                     </div>
                                 </div>
                                 <div class="row" style="text-align: center">
                                     <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Address:</b></span>
+                                        <span style="font-size: 12px;"><b>State:</b></span>
                                     </div>
                                     <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 14px;">null</span>
+                                        <span style="font-size: 12px;">{{company.state}}</span>
                                     </div>
                                 </div>
-                              
-                            </div>
-                            <div class="col-md-6">
                                 <div class="row" style="text-align: center">
                                     <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Email:</b></span>
+                                        <span style="font-size: 12px;"><b>Zip:</b></span>
                                     </div>
                                     <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 12px;">user_email</span>
+                                        <span style="font-size: 12px;">{{company.zip}}</span>
                                     </div>
                                 </div>
                                 
                             </div>
                         </div>
                         </div>
-                        
+
+                        <div id="editsection" *ngIf="EditMode==true">
+                            <div class="card">
+                                <div class="card-header">
+                                  <strong>Edit</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="companyname">Company Name :</label>
+                                                <input type="text" class="form-control" id="companyname" [(ngModel)]="company.companyname">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="dba">DBA :</label>
+                                                <input type="text" class="form-control" id="dba" [(ngModel)]="company.dba">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="fedid">FED ID :</label>
+                                                <input type="text" class="form-control" id="fedid" [(ngModel)]="company.fedid">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="mc">MC :</label>
+                                                <input type="text" class="form-control" id="mc" [(ngModel)]="company.mc">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="iftalicense">IFTA License # :</label>
+                                                <input type="text" class="form-control" id="iftalicense" [(ngModel)]="company.iftalicense">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phone">Phone :</label>
+                                                <input type="text" class="form-control" id="phone" [(ngModel)]="company.phone">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email">Email :</label>
+                                                <input type="text" class="form-control" id="email" [(ngModel)]="company.email">
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            </div>                        
+                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right"
                     class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
-                
+                    <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
+                    class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> 
+                <button *ngIf="EditMode==true" type="reset" (click)="editCompany(cmp)"  style="float: right"
+                    class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
+                    <img *ngIf="Iseditusrloading"
+                        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                </button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
 
 <!-- Edit-->
-<div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<!-- <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" style="max-width: 60%" role="document">
         <div class="modal-content">
@@ -194,7 +284,7 @@
                 <div class="container">
                     <div class="animated fadeIn">
                        
-                        <!-- <div id="editsection" *ngIf="EditMode==true"> -->
+                        <div id="editsection" *ngIf="EditMode==true">
                             <div id="editsection">
                                 <div class="card">
                                     <div class="card-header">
@@ -249,17 +339,16 @@
             <div class="modal-footer">
                 <button type="reset" aria-label="Close" (click)="editModal.hide()" style="float: right"
                     class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
-                <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
-                    class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> -->
-                <button type="reset" (click)="EditUser()"  style="float: right"
+                
+                <button type="submit" (click)="save()"  style="float: right"
                     class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Save 
                     <img *ngIf="Iseditusrloading"
                         src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                 </button>    
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
+        </div>
+    </div>
+</div> -->
 
 <!-- Delete Modal-->
 

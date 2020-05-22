@@ -15,9 +15,9 @@ export class CompanyService {
         this.companyurl=environment.companyurl;
     }
 
-    SendForm(filters: CompanyFilters){
+    SendForm(pageFilters: CompanyFilters){
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
-        return this.http.post(this.companyurl,filters,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+        return this.http.post(this.companyurl,pageFilters,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
 
       getCompanyData(){
@@ -27,13 +27,11 @@ export class CompanyService {
       
       EditCompany(_id){
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
-        return this.http.put(this.companyurl,_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+        return this.http.put(this.companyurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
 
-      // DeleteCompany(_id){
-      //   return this.http.delete(this.companyurl,_id).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
-      // }
       DeleteCompany(_id) {
-        return this.http.delete(this.companyurl,_id);
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.delete(this.companyurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
 }

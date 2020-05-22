@@ -1,77 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { TrailersFilters } from '../../model/trailers';
+import { TrailerService } from '../../services/trailers.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-trailers',
     templateUrl: './trailers.component.html',
-    providers: []
+    providers: [TrailerService, ToastrService, ]
 })
 export class TrailersComponent implements OnInit {
-    trailersForm: FormGroup;
-    submitted = false;
+    pageFilters: TrailersFilters;
+    Trailerslistdata = new Array<TrailersFilters>();
+    model: any = {};
+    submitted: boolean;
 
-    constructor(private formBuilder: FormBuilder) { }
-
-    ngOnInit() {
-        this.trailersForm = this.formBuilder.group({
-            unitNumber: ['', Validators.required],
-            trailerType: ['', Validators.required],
-            make: ['', Validators.required],
-            color: ['', Validators.required, Validators.pattern],
-            year: ['', Validators.required, Validators.pattern],
-            reeferMake: [''],
-            reeferModal: [''],
-            reeferVin: ['', Validators.pattern],
-            deductTools: [''],
-            deductFuel: [''],
-            inspectionExpirydate: [''],
-            registerdState: [''],
-            platesExpirationdate: [''],
-            insuranceExpirationdate: [''],
-            insuranceValue: [''],
-            companyOwned: [''],
-            price: [''],
-            purchaseDate: [''],
-            operationDate: [''],
-            financer: [''],
-            dealer: [''],
-            leased: [''],
-            leasedfrom: [''],
-            leaseStart: [''],
-            leaseExpirydate: [''],
-            leaseInstallment: [''],
-            reeferPurchasedate: [''],
-            reeferPrice: [''],
-            installment: [''],
-            trailerSize: [''],
-            operatingStatus: [''],
-            reeferMiles: [''],
-            reeferHours: [''],
-            vin: [''],
-            registerState: [''],
-            plateNumber: [''],
-            fuelCard: [''],
-            fuelType: [''],
-            ezPass: [''],
-            category: [''],
-            description: [''],
-            startDate: [''],
-            startingMileage: [''],
-            noofMiles: [''],
-            nextServicemiles: [''],
-            lastServicedate: [''],
-            nextServicedate: [''],
-            comments: [''],
-        });
+    onSubmit() {
+        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model));
     }
-    get f() { return this.trailersForm.controls; }
+
+    constructor(private _toaster: ToastrService, private trailersService: TrailerService) { }
+
+    ngOnInit(): void {
+        this.pageFilters = new TrailersFilters();
+    }
 
     submit() {
-        this.submitted = true;
-        if (this.trailersForm.invalid) {
-            return;
-        }
-        //alert('success');
-        console.log(this.trailersForm.value);
-       }
+            // this.trailersService.saveTrailers(this.pageFilters).subscribe(
+            //     resp => {
+            //         this.submitted = true;
+            //         this._toaster.info("trailers Data Submitted","Success");
+            //       },error=>{
+            //         this.submitted = false;
+            //         this._toaster.error("Submit Agian","Faild");
+            //       });
+            console.log(this.pageFilters);
+    }
 }

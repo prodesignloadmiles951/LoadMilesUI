@@ -3,6 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { CompanyComponent } from './company.component';
 import { TrucksComponent } from './trucks.component';
 import { TrailersComponent } from './trailers.component';
+import { DriverComponent } from './driver.component';
+import { CarrierComponent } from './carrier.component';
+import { CustomersComponent } from './customers.component';
+import { DispatcherComponent } from './dispatcher.component';
+import { VendorComponent } from './vendor.component';
+import { FactorComponent } from './factor.component';
+import { FuelcardComponent } from './fuelcard.component';
+import { AccidentComponent } from './accident.component';
+import { MapComponent } from './map.component';
 
 const routes: Routes = [
   {
@@ -15,102 +24,6 @@ const routes: Routes = [
         path: '',
         redirectTo: 'colors'
       },
-      // {
-      //   path: 'purchases',
-      //   component: PurchasesComponent,
-      //   runGuardsAndResolvers: 'always',
-      //   data: {
-      //     title: 'Purchases'
-      //   }
-      // },
-      // {
-      //   path: 'users',
-      //   component: UsersComponent,
-      //   runGuardsAndResolvers: 'always',
-      //   data: {
-      //     title: 'users'
-      //   }
-      // },
-      // {
-      //   path: 'users/:id',
-      //   component: UsersComponent,
-      //   runGuardsAndResolvers: 'always',
-      //   data: {
-      //     title: 'users'
-      //   }
-      // },
-      // {
-      //   path: 'reseller',
-      //   component: ResellerComponent,
-      //   runGuardsAndResolvers: 'always',
-      //   data: {
-      //     title: 'Reseller'
-      //   }
-      // },
-      // {
-      //   path: 'transsummary',
-      //   component: TranssummaryComponent,
-      //   runGuardsAndResolvers: 'always',
-      //   data: {
-      //     title: 'transsummary'
-      //   }
-      // },
-      // {
-      //   path: 'payments',
-      //   component: PaymentsComponent,
-      //   runGuardsAndResolvers: 'always',
-      //   data: {
-      //     title: 'Payments'
-      //   }
-      // },
-      // {
-      //   path: 'salespayments',
-      //   component: SalesPaymentsComponent,
-      //   runGuardsAndResolvers: 'always',
-      //   data: {
-      //     title: 'Payments'
-      //   }
-      // },
-      // {
-      //   path: 'salestransactions',
-      //   component: SalesPurchasesComponent,
-      //   runGuardsAndResolvers: 'always',
-      //   data: {
-      //     title: 'Purchases'
-      //   }
-      // },
-      // {
-      //   path: 'salesallusers',
-      //   component: SalesAllUsersComponent,
-      //   runGuardsAndResolvers: 'always',
-      //   data: {
-      //     title: 'AllUsers'
-      //   }
-      // },
-      // {
-      //   path:'smssummary',
-      //   component:SMSSummaryComponent,
-      //   runGuardsAndResolvers: 'always',
-      //   data:{title:'SMSSummary'}
-      // },
-      // {
-      //   path:'deliveryreports',
-      //   component:DeliveryreportsComponent,
-      //   runGuardsAndResolvers: 'always',
-      //   data:{title:'Delivery Reports'}
-      // },
-      // {
-      //   path:'smslogs',
-      //   component:SMSLogsComponent,
-      //   runGuardsAndResolvers: 'always',
-      //   data:{title:'SMSLogs'}
-      // },
-      // {
-      //   path:'numberwise',
-      //   component:NumberWiseReportComponent,
-      //   runGuardsAndResolvers :'always',
-      //   data:{title:'RecepientWise'}
-      // },
       {
         path:'company',
         component:CompanyComponent,
@@ -128,7 +41,61 @@ const routes: Routes = [
         component:TrailersComponent,
         runGuardsAndResolvers:'always',
         data:{title:'Trailres'}
-      }
+      },
+      {
+        path:'driver',
+        component:DriverComponent,
+        runGuardsAndResolvers:'always',
+        data:{title:'Driver'}
+      },
+      {
+        path:'carrier',
+        component:CarrierComponent,
+        runGuardsAndResolvers:'always',
+        data:{title:'Carrier'}
+      },
+      {
+        path:'customers',
+        component:CustomersComponent,
+        runGuardsAndResolvers:'always',
+        data:{title:'Customers'}
+      },
+      {
+        path:'dispatcher',
+        component:DispatcherComponent,
+        runGuardsAndResolvers:'always',
+        data:{title:'Dispatcher'}
+      },
+      {
+        path:'vendor',
+        component:VendorComponent,
+        runGuardsAndResolvers:'always',
+        data:{title:'Vendor'}
+      },
+      {
+        path:'factor',
+        component:FactorComponent,
+        runGuardsAndResolvers:'always',
+        data:{title:'Factor'}
+      },
+      {
+        path:'fuelcard',
+        component:FuelcardComponent,
+        runGuardsAndResolvers:'always',
+        data:{title:'Fuelcard'}
+      },
+      {
+        path:'accident',
+        component:AccidentComponent,
+        runGuardsAndResolvers:'always',
+        data:{title:'Accident'}
+      },
+      {
+        path:'map',
+        component:MapComponent,
+        runGuardsAndResolvers:'always',
+        data:{title:'Map'}
+      },
     ]
   }
 ];

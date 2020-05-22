@@ -1,4 +1,3 @@
-import { TrailersComponent } from './trailers.component';
 // Angular
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -12,7 +11,16 @@ import { ToastrModule } from 'ngx-toastr';
 import { ThemeRoutingModule } from './theme-routing.module';
 import {CompanyComponent} from './company.component';
 import { TrucksComponent } from './trucks.component';
-
+import { TrailersComponent } from './trailers.component';
+import { DriverComponent } from './driver.component';
+import { CarrierComponent } from './carrier.component';
+import { CustomersComponent } from './customers.component';
+import { DispatcherComponent } from './dispatcher.component';
+import { VendorComponent } from './vendor.component';
+import { FactorComponent } from './factor.component';
+import { FuelcardComponent } from './fuelcard.component';
+import { AccidentComponent } from './accident.component';
+import { MapComponent } from './map.component'
 
 @NgModule({
   imports: [
@@ -27,7 +35,16 @@ import { TrucksComponent } from './trucks.component';
   declarations: [
     CompanyComponent,
     TrucksComponent,
-    TrailersComponent
+    TrailersComponent,
+    DriverComponent,
+    CarrierComponent,
+    CustomersComponent,
+    DispatcherComponent,
+    VendorComponent,
+    FactorComponent,
+    FuelcardComponent,
+    AccidentComponent,
+    MapComponent
   ]
 })
 export class ThemeModule { }
