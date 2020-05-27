@@ -5,12 +5,13 @@
 
 export const environment = {
   production: false,
-  Login_User:"LOGIN_USER",
-  dashboardurl:"http://localhost:4200/api/dashboard/",
-  url:"http://54.166.101.176:8081/",
-  loginurl:"http://54.166.101.176:8081/adminapi/login",
-  companyurl:"http://54.166.101.176:8081/companyapi/company",
-
+  Login_User: 'LOGIN_USER',
+  dashboardurl: 'http://localhost:4200/api/dashboard/',
+  url: 'http://54.166.101.176:8081/',
+  loginurl: 'http://54.166.101.176:8081/adminapi/login',
+  companyurl: 'http://54.166.101.176:8081/companyapi/company',
+  trucksurl: 'http://54.166.101.176:8081/trucksapi/trucks',
+  trailersurl: 'http://54.166.101.176:8081/trailersapi/trailers',
 
   // url:"http://localhost:62585/api/",
   // conurl:"http://localhost:62585/api/Transactions/",

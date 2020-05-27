@@ -114,24 +114,4 @@ export const salesNavItems: NavData[] = [
       text: ''
     }
   },
-  // {
-  //   title: false,
-  //   name: 'Sales'
-  // },
- 
-  // {
-  //   name: 'Sales',
-  //   url: '/theme/salestransactions',
-  //   icon: 'icon-note'
-  // },
-  // {
-  //   name: 'Payments',
-  //   url: '/theme/salespayments',
-  //   icon: 'icon-info'
-  // },
-  // {
-  //   name:'All Users',
-  //   url:'/theme/salesallusers',
-  //   icon: 'icon-info'
-  // }
 ];

@@ -10,30 +10,60 @@ import { ToastrService } from 'ngx-toastr';
     providers: [TrailerService, ToastrService, ]
 })
 export class TrailersComponent implements OnInit {
+  public trailers: TrailersFilters;
     pageFilters: TrailersFilters;
     Trailerslistdata = new Array<TrailersFilters>();
     model: any = {};
     submitted: boolean;
+    data: any;
+    selectedTrailer: any;
+    EditMode: boolean;
 
-    onSubmit() {
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model));
-    }
-
-    constructor(private _toaster: ToastrService, private trailersService: TrailerService) { }
+    constructor(private _toaster: ToastrService,
+         private _trailersService: TrailerService) { }
 
     ngOnInit(): void {
         this.pageFilters = new TrailersFilters();
+        this.getData();
+    }
+    viewData(trailer) {
+      this.EditMode = false;
+      this.trailers = new TrailersFilters();
+      this.trailers = trailer;
+      this.selectedTrailer = trailer.plate;
     }
 
     submit() {
-            // this.trailersService.saveTrailers(this.pageFilters).subscribe(
-            //     resp => {
-            //         this.submitted = true;
-            //         this._toaster.info("trailers Data Submitted","Success");
-            //       },error=>{
-            //         this.submitted = false;
-            //         this._toaster.error("Submit Agian","Faild");
-            //       });
-            console.log(this.pageFilters);
-    }
+        this.submitted = true;
+        this._trailersService.SendForm(this.pageFilters).subscribe(response => {
+          this.submitted = true;
+          this._toaster.info("Data Submitted","Success");
+         //this.router.navigateByUrl("theme/trailers");
+        },error=>{
+          this.submitted=false;
+          this._toaster.error("Submit Agian","Faild");
+        });
+        // console.log(this.pageFilters);
+       }
+    
+       getData() {
+        this._trailersService.getTrailersData().subscribe(data => {
+          this.data = data;
+        });
+      }
+    
+      editTrailers(trailer) {
+        this._trailersService.EditTrailers(trailer._id).subscribe(response => {
+          this._toaster.success("Trucks successfull updated", "Success");
+        }, error => {
+           this._toaster.error("error", "Try Again");
+          });
+      }
+    
+      deleteTrailers(trailer) {
+        this._trailersService.DeleteTrailers(trailer._id).subscribe(data => {
+        this._toaster.info("Trucks Data Delete", "Success");
+        this.getData();
+       });
+       }
 }
