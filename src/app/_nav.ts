@@ -41,47 +41,52 @@ export const navItems: NavData[] = [
   },
   {
     name: 'Company',
-    url: '/theme/company',
+    url: '/theme/company-list',
     icon: 'icon-info'
   },
   {
     name: 'Trucks',
-    url: '/theme/trucks',
+    url: '/theme/trucks-list',
     icon: 'icon-info'
   },
+  // {
+  //   name: 'Trucks',
+  //   url: '/theme/trucks',
+  //   icon: 'icon-info'
+  // },
   {
     name: 'Trailers',
-    url: '/theme/trailers',
+    url: '/theme/trailers-list',
     icon: 'icon-info'
   },
   {
     name: 'Driver',
-    url: '/theme/driver',
+    url: '/theme/driver-list',
     icon: 'icon-info'
   },
   {
     name: 'Carrier',
-    url: '/theme/carrier',
+    url: '/theme/carrier-list',
     icon: 'icon-info'
   },
   {
     name: 'Customers',
-    url: '/theme/customers',
+    url: '/theme/customers-list',
     icon: 'icon-info'
   },
   {
     name: 'Dispatcher',
-    url: '/theme/dispatcher',
+    url: '/theme/dispatcher-list',
     icon: 'icon-info'
   },
   {
     name: 'Vendor',
-    url: '/theme/vendor',
+    url: '/theme/vendor-list',
     icon: 'icon-info'
   },
   {
     name: 'Factor',
-    url: '/theme/factor',
+    url: '/theme/factor-list',
     icon: 'icon-info'
   },
   {

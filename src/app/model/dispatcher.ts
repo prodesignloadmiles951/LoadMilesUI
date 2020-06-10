@@ -1,3 +1,36 @@
 export class DispatcherFilters {
-
+    companyname: string;
+    dba: any;
+    firstname: string;
+    middlename: string;
+    lastname: string;
+    dislpalyname: string;
+    mcff: any;
+    usdot: any;
+    fein: any;
+    scac: any;
+    address1: string;
+    address2: string;
+    city: string;
+    state: string;
+    zipcode: any;
+    country: any;
+    contact: any;
+    homephone: number;
+    cellphone: number;
+    email: string;
+    payrate: any;
+    frequency: any;
+    paymentterms: any;
+    payto: any;
+    address3; string;
+    address4: string;
+    city1: string;
+    state1: string;
+    zipcode1: any;
+    comments: string;
+    memo: any;
+    customeraccount1: any;
+    customeraccount2: any;
+    vendor: any;
 }

@@ -9,16 +9,19 @@
                     <span style="color:red">*</span>
                   </label>
                   <div class="col-md-9">
-                    <input type="text" class="form-control" id="plate" #plate="ngModel" name="plate" [(ngModel)]="pageFilters.plate" required>
+                    <input type="text" class="form-control" id="plate" placeholder="Ex: 1234" #plate="ngModel" name="plate" [(ngModel)]="pageFilters.plate" [pattern] = "'^[1-9][0-9]*$'" required>
                     <div *ngIf="plate.errors && (plate.dirty || plate.touched)" style="font-size: smaller;">
                       <div [hidden]="!plate.errors.required">
                           <span style="color: red;">Plate is required</span>
                       </div>
+                      <div [hidden]="!plate.errors?.pattern">
+                        <span style="color: red;">Enter Numbers only</span>
+                     </div>
                     </div>
                   </div>
                 </div>
  
-                <div class="form-group row">
+                <div class="form-group row"> 
                   <label class="col-md-3 col-form-label" for="operationstatus">Operation Status:</label>
                   <div class="col-md-9">
                     <select class="form-control" id="operationstatus" #operationStatus="ngModel" name="operationStatus" [(ngModel)]="pageFilters.operationStatus">
@@ -33,14 +36,14 @@
                 <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="startingmileage">Starting Mileage:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="startingmileage" #startingMileage="ngModel" name="startingMileage" [(ngModel)]="pageFilters.startingMileage"  required>
+                      <input type="text" class="form-control" placeholder="Ex: 12" id="startingmileage" #startingMileage="ngModel" name="startingMileage" [(ngModel)]="pageFilters.startingMileage"  required>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="currentmiles">Current Miles:</label>
                   <div class="col-md-9">
-                      <input type="text" class="form-control" id="currentmiles" #currentMiles="ngModel" name="currentMiles" [(ngModel)]="pageFilters.currentMiles" required>
+                      <input type="text" class="form-control" id="currentmiles" placeholder="Ex: 12" #currentMiles="ngModel" name="currentMiles" [(ngModel)]="pageFilters.currentMiles" required>
                   </div>
                 </div>
 
@@ -498,59 +501,7 @@
 
     </form>
 
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-header">
-              <i class="fa fa-align-justify"></i>Data
-              
-            </div>
-          <div class="card-body">
-              <div class="animated fadeIn">
-            </div>
-            <table class="table table-responsive-sm table-hover table-outline mb-0">
-              <thead>
-                <tr>
-                  <th>S.no</th>
-                  <th>Plate Number</th>
-                  <th>Make</th>
-                  <th>Modal</th>
-                  <th>Year of Make</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-  
-              <tbody>
-                <tr>
-                  <tr *ngFor="let truck of data; let i=index">
-                      <td>{{i + 1}}</td>
-                      <td>{{truck.plate}}</td>
-                      <td>{{truck.make}}</td>
-                      <td>{{truck.modal}}</td>
-                      <td>{{truck.yom}}</td>
-                      <td>
-                        <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                            (click)="viewModal.show();viewData(truck);">View</a> |
-  
-                        <!-- <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                        (click)="editModal.show();edti(user);">Edit</a> |    -->
-                        
-                        <a style="cursor: pointer;color: #20a8d8;"
-                            (click)="deleteTrucks(truck)">Delete</a>
-                    </td>
-                  </tr>
-              </tbody>
-  
-              <!-- <tbody *ngIf="logslist.length==0">
-                <tr>
-                  <td class="alert alert-warning" style="width:1050px;" align="center" colspan="10"><span>No records available</span></td>
-                </tr>
-              </tbody> -->
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>  
+    
 
     <!--View-->
     <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

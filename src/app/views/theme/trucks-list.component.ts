@@ -1,16 +1,16 @@
-import { TrucksFilters } from './../../model/trucks';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { TrucksService } from '../../services/trucks.service';
-import { Router } from '@angular/router';
+import { TrucksFilters } from '../../model/trucks';
+import {Router} from '@angular/router';
 
 @Component({
-    selector: 'app-trucks',
-    templateUrl: './trucks.component.html',
+    selector: 'app-trucks-list',
+    templateUrl: './trucks-list.component.html',
     providers: [TrucksService, ToastrService]
 })
-export class TrucksComponent implements OnInit {
-    public trucks: TrucksFilters;
+export class TruckslistComponent implements OnInit {
+  public trucks: TrucksFilters;
     pageFilters: TrucksFilters;
     Truckslistdata = new Array<TrucksFilters>();
     submitted: boolean;
@@ -19,13 +19,12 @@ export class TrucksComponent implements OnInit {
     EditMode: boolean;
 
     constructor(private _toaster: ToastrService,
-        private _trucksservice: TrucksService,
-        private router: Router) {
+      private _trucksservice: TrucksService,
+      private router: Router) {
          }
 
     ngOnInit() {
-        this.getData();
-        this.pageFilters = new TrucksFilters();
+      this.getData();
   }
   viewData(truck) {
     this.EditMode = false;
@@ -33,22 +32,7 @@ export class TrucksComponent implements OnInit {
     this.trucks = truck;
     this.selectedTruck = truck.plate;
   }
-
-
-  submit() {
-    this.submitted = true;
-    this._trucksservice.SendForm(this.pageFilters).subscribe(response => {
-      this.submitted = true;
-      this._toaster.info("Data Submitted","Success");
-      this.router.navigateByUrl("theme/trucks-list");
-    },error=>{
-      this.submitted=false;
-      this._toaster.error("Submit Agian","Faild");
-    });
-    // console.log(this.pageFilters);
-   }
-
-   getData() {
+  getData() {
     this._trucksservice.getTrucksData().subscribe(data => {
       this.data = data;
     });
@@ -60,6 +44,10 @@ export class TrucksComponent implements OnInit {
     }, error => {
        this._toaster.error("error", "Try Again");
       });
+  }
+
+  Add() {
+    this.router.navigateByUrl('/theme/trucks');
   }
 
   deleteTrucks(truck) {

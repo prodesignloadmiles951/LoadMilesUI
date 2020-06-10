@@ -20,7 +20,16 @@ import { VendorComponent } from './vendor.component';
 import { FactorComponent } from './factor.component';
 import { FuelcardComponent } from './fuelcard.component';
 import { AccidentComponent } from './accident.component';
-import { MapComponent } from './map.component'
+import { MapComponent } from './map.component';
+import { TruckslistComponent } from './trucks-list.component';
+import { TrailerslistComponent } from './trailers-list.component';
+import { DriverlistComponent } from './driver-list.component';
+import { CarrierlistComponent } from './carrier-list.component';
+import { CustomerslistComponent } from './customers-list.component';
+import { DispatcherlistComponent } from './dispatcher-list.component';
+import { CompanylistComponent } from './company-list.component';
+import { VendorlistComponent } from './vendor-list.component';
+import { FactorlistComponent } from './factor-list.component';
 
 @NgModule({
   imports: [
@@ -44,7 +53,16 @@ import { MapComponent } from './map.component'
     FactorComponent,
     FuelcardComponent,
     AccidentComponent,
-    MapComponent
+    MapComponent,
+    TruckslistComponent,
+    TrailerslistComponent,
+    DriverlistComponent,
+    CarrierlistComponent,
+    CustomerslistComponent,
+    DispatcherlistComponent,
+    CompanylistComponent,
+    VendorlistComponent,
+    FactorlistComponent
   ]
 })
 export class ThemeModule { }

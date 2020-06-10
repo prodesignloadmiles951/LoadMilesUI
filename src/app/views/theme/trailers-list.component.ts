@@ -6,11 +6,11 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-trailers',
-    templateUrl: './trailers.component.html',
+    selector: 'app-trailers-list',
+    templateUrl: './trailers-list.component.html',
     providers: [TrailerService, ToastrService, ]
 })
-export class TrailersComponent implements OnInit {
+export class TrailerslistComponent implements OnInit {
   public trailers: TrailersFilters;
     pageFilters: TrailersFilters;
     Trailerslistdata = new Array<TrailersFilters>();
@@ -40,7 +40,7 @@ export class TrailersComponent implements OnInit {
         this._trailersService.SendForm(this.pageFilters).subscribe(response => {
           this.submitted = true;
           this._toaster.info("Data Submitted","Success");
-         this.router.navigateByUrl("theme/trailers-list");
+          this.router.navigateByUrl("theme/trailers");
         },error=>{
           this.submitted=false;
           this._toaster.error("Submit Agian","Faild");
@@ -68,4 +68,8 @@ export class TrailersComponent implements OnInit {
         this.getData();
        });
        }
+
+       Add() {
+        this.router.navigateByUrl('/theme/trailers');
+      }
 }

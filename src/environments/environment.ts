@@ -12,6 +12,7 @@ export const environment = {
   companyurl: 'http://54.166.101.176:8081/companyapi/company',
   trucksurl: 'http://54.166.101.176:8081/trucksapi/trucks',
   trailersurl: 'http://54.166.101.176:8081/trailersapi/trailers',
+  driversurl: 'http://54.166.101.176:8081/driversapi/drivers'
 
   // url:"http://localhost:62585/api/",
   // conurl:"http://localhost:62585/api/Transactions/",
@@ -21,5 +22,4 @@ export const environment = {
   // msgurl:"http://localhost:62585/api/sendmsg/",
   // maskurl:"http://localhost:62585/api/senderid/",
 
-   
 };

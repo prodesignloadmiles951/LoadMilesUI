@@ -6,10 +6,10 @@ import {Router} from '@angular/router';
 
 
 @Component({
-  templateUrl: 'dashboard.component.html',
+  templateUrl: 'company-list.component.html',
   providers: [ToastrService, CompanyService]
 })
-export class DashboardComponent implements OnInit {
+export class CompanylistComponent implements OnInit {
   public company: CompanyFilters;
   // public EditMode: boolean = false;
   data: any;
@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
    //console.log(this.userData);
  }
   ngOnInit(): void {
-    //this.getData();
+    this.getData();
   }
   viewData(cmp) {
     this.EditMode = false;
@@ -41,28 +41,28 @@ export class DashboardComponent implements OnInit {
     this.selectedCompany = cmp.companyname;
 
   }
-  // getData() {
-  //   this._companyservice.getCompanyData().subscribe(data => {
-  //     this.data = data;
-  //   });
-  // }
+  getData() {
+    this._companyservice.getCompanyData().subscribe(data => {
+      this.data = data;
+    });
+  }
 
-  // editCompany(cmp) {
-  //   this._companyservice.EditCompany(cmp._id).subscribe(response => {
-  //     this._toaster.success("company successfull updated", "Success");
-  //   }, error => {
-  //      this._toaster.error("error", "Try Again");
-  //     });
-  // }
+  editCompany(cmp) {
+    this._companyservice.EditCompany(cmp._id).subscribe(response => {
+      this._toaster.success("company successfull updated", "Success");
+    }, error => {
+       this._toaster.error("error", "Try Again");
+      });
+  }
 
-  // deleteCompany(cmp) {
-  //   this._companyservice.DeleteCompany(cmp._id).subscribe(data => {
-  //   this._toaster.info("Company Data Delete", "Success");
-  //   this.getData();
-  //  });
-  //  }
+  deleteCompany(cmp) {
+    this._companyservice.DeleteCompany(cmp._id).subscribe(data => {
+    this._toaster.info("Company Data Delete", "Success");
+    this.getData();
+   });
+   }
 
-  // Add() {
-  //   this.router.navigateByUrl('/theme/company');
-  // }
+  Add() {
+    this.router.navigateByUrl('/theme/company');
+  }
 }

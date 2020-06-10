@@ -1,1 +1,301 @@
-<p>Vendor Works!</p>
+<form class="form-horizontal" #vendorForm="ngForm" novalidate autocomplete="off"> 
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-header">Personal Information</div>
+          <div class="card-body">
+            
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="unitnumber">Company Name: <span style="color:red">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="unitNumber" placeholder="Ex: 0123" name="unitNumber" #unitNumber="ngModel" [(ngModel)]="pageFilters.unitNumber" [pattern] = "'^[1-9][0-9]*$'" required>
+                    <div *ngIf="unitNumber.errors && (unitNumber.dirty || unitNumber.touched)" style="font-size: smaller;">
+                      <div [hidden]="!unitNumber.errors.required">
+                         <span style="color: red;">Unit Number is required</span>
+                      </div>
+                      <div [hidden]="!unitNumber.errors?.pattern">
+                        <span style="color: red;">Enter Numbers only</span>
+                     </div>
+                    </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="make">DBA:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="make" name="make" #make="ngModel" [(ngModel)]="pageFilters.make">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="color">First Name: <span style="color:red">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="color" name="color" #color="ngModel" [(ngModel)]="pageFilters.color">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="year">Middle Name:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="year" placeholder="Ex: 2020" name="year" #year="ngModel" [(ngModel)]="pageFilters.year">
+                  </div>
+              </div>
+              
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="year">Last Name:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="year" placeholder="Ex: 2020" name="year" #year="ngModel" [(ngModel)]="pageFilters.year">
+                    </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="reefermake">Display Name:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="reefermake" name="reeferMake" #reeferMake="ngModel" [(ngModel)]="pageFilters.reefermake">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="reefermodal">MC/FF:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="reefermodal" name="reeferModal" #reeferModal="ngModel" [(ngModel)]="pageFilters.reefermodal">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="reefervin">US DOT:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="reefervin" name="reeferVin" #reeferVin="ngModel" [(ngModel)]="pageFilters.reefervin">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="deducttolls">FEIN:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="deducttools" name="deductTools" #deductTools="ngModel" [(ngModel)]="pageFilters.deductTolls">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="deductfuel">SCAC:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="deductfuel" name="deductFuel" #deductFuel="ngModel" [(ngModel)]="pageFilters.deductFuel">
+                </div>
+              </div>
+            </div>
+        </div>
+
+            <div class="card">
+              <div class="card-header">Address</div>
+                <div class="card-body">
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="deductfuel">Address 1:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="deductfuel" name="deductFuel" #deductFuel="ngModel" [(ngModel)]="pageFilters.deductFuel">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="deductfuel">Address2:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="deductfuel" name="deductFuel" #deductFuel="ngModel" [(ngModel)]="pageFilters.deductFuel">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="deductfuel">City:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="deductfuel" name="deductFuel" #deductFuel="ngModel" [(ngModel)]="pageFilters.deductFuel">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="deductfuel">State:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="deductfuel" name="deductFuel" #deductFuel="ngModel" [(ngModel)]="pageFilters.deductFuel">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="deductfuel">Zipcode:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="deductfuel" name="deductFuel" #deductFuel="ngModel" [(ngModel)]="pageFilters.deductFuel">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="deductfuel">Country:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="deductfuel" name="deductFuel" #deductFuel="ngModel" [(ngModel)]="pageFilters.deductFuel">
+                </div>
+              </div>
+             </div>
+        </div>
+      </div>
+
+      
+      <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header"> Contact Information</div>
+            <div class="card-body">
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="trailesize">Contact:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="trailersize" name="trailerSize" #trailerSize="ngModel" [(ngModel)]="pageFilters.trailerSize">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="reefermiles">Home Phone:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="reefermiles" name="reeferMiles" #reeferMiles="ngModel" [(ngModel)]="pageFilters.reeferMiles">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="reeferhours">Cell Phone:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="reeferhours" name="reeferHours" #reeferHours="ngModel" [(ngModel)]="pageFilters.reeferHours">
+                  </div>
+                </div>
+                
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="vin">Email:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="vin" name="vin" #vin="ngModel" [(ngModel)]="pageFilters.vin">
+                  </div>
+                </div>
+            </div>
+          </div>
+
+        <div class="card">
+          <div class="card-header">Pay Rate Information</div>
+          <div class="card-body">
+            
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="description">Pay Rate:</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" id="description" name="description" #description="ngModel" [(ngModel)]="pageFilters.description">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="statedate">Frequency:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="startdate" name="startDate" #startDate="ngModel" [(ngModel)]="pageFilters.startDate">
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Payment Information</div>
+                <div class="card-body">
+ 
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="startingmileage">Payment Terms:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="startingmileage" name="startingMileage" #startingMileage="ngModel" [(ngModel)]="pageFilters.startingMileage">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="numberofmiles">Pay to:</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" id="numberofmiles" name="noofMiles" #noofMiles="ngModel" [(ngModel)]="pageFilters.noofMiles">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="nextservicemiles">Address 1:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="nextservicemiles" name="nextServicemiles" #nextServicemiles="ngModel" [(ngModel)]="pageFilters.nextServicemiles">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="lastservicedate">Address 2:</label>
+                    <div class="col-md-9">
+                        <input type="date" class="form-control" id="lastservicedate" name="lastServicedate" #lastServicedate="ngModel" [(ngModel)]="pageFilters.lastServicedate">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="nextservicedate">City:</label>
+                    <div class="col-md-9">
+                        <input type="date" class="form-control" id="nextservicedate" name="nextServicedate" #nextServicedate="ngModel" [(ngModel)]="pageFilters.nextServicedate">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="comments">State:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="comments" name="comments" #comments="ngModel" [(ngModel)]="pageFilters.comments">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="comments">Zipcode:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="comments" name="comments" #comments="ngModel" [(ngModel)]="pageFilters.comments">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="comments">Comments:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="comments" name="comments" #comments="ngModel" [(ngModel)]="pageFilters.comments">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="comments">Memo:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="comments" name="comments" #comments="ngModel" [(ngModel)]="pageFilters.comments">
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">General Ledger</div>
+            <div class="card-body">
+              
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="description">Customer Account:</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" id="description" name="description" #description="ngModel" [(ngModel)]="pageFilters.description">
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="statedate">GL Account:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="startdate" name="startDate" #startDate="ngModel" [(ngModel)]="pageFilters.startDate">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="statedate">1099 Vendor</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="startdate" name="startDate" #startDate="ngModel" [(ngModel)]="pageFilters.startDate">
+                    </div>
+                </div>
+              </div>
+          </div>
+
+      </div>
+    </div>
+
+    <div class="card-footer">
+        <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+          <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" 
+          />
+          Submit</button>&nbsp;&nbsp;
+        <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+    </div>
+
+  </form>
+
