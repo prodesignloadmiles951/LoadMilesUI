@@ -208,20 +208,6 @@
                         <input type="text" class="form-control" id="drivername" #driverName="ngModel" name="driverName" [(ngModel)]="pageFilters.driverName">
                     </div>
                   </div>
-  
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="phone">Cell Phone:</label>
-                    <div class="col-md-9">
-                      <input type="text" class="form-control" placeholder="Ex: 012 345 6789" id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" pattern="[0-9]*" minlength="10" maxlength="10">
-                  </div>
-                  </div>
-  
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="email">Email:</label>
-                    <div class="col-md-9">
-                    <input type="text" class="form-control" placeholder="example@info.com" id="email" #email="ngModel" name="email" [(ngModel)]="pageFilters.email">
-                </div>
-                  </div>
               </div>
             </div>
 
@@ -240,20 +226,6 @@
                       <label class="col-md-3 col-form-label" for="dispatcher">Dispatcher:</label>
                       <div class="col-md-9">
                           <input type="text" class="form-control" id="dispatcher" #dispatcher="ngModel" name="dispatcher" [(ngModel)]="pageFilters.dispatcher">
-                      </div>
-                    </div>
-    
-                    <div class="form-group row">
-                      <label class="col-md-3 col-form-label" for="dispatchercontact">Dispatcher Contact:</label>
-                      <div class="col-md-9">
-                        <input type="text" class="form-control" placeholder="Ex: 012 345 6789" id="dispatchercontact" #dispatcherContact="ngModel" name="dispatcherContact" [(ngModel)]="pageFilters.dispatcherContact">
-                      </div>
-                    </div>
-    
-                    <div class="form-group row">
-                      <label class="col-md-3 col-form-label" for="dispatcheremail">Dispatcher Email:</label>
-                      <div class="col-md-9">
-                          <input type="text" class="form-control" placeholder="example@info.com" id="dispatcheremail" #dispatcherEmail="ngModel" name="dispatcherEmail" [(ngModel)]="pageFilters.dispatcherEmail">
                       </div>
                     </div>
                 </div>
@@ -285,8 +257,8 @@
               <div class="card-body">  
 
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="Category">Category :</label>
-                    <div class="col-md-9">
+                    <label class="col-md-4 col-form-label" for="Category">Category :</label>
+                    <div class="col-md-8">
                       <select class="form-control" id="category" #category:="ngModel" name="category" [(ngModel)]="pageFilters.category">
                         <option value="0">Select</option>
                         <option value="1">Option #1</option>
@@ -297,58 +269,58 @@
                   </div>
 
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="description">Description:</label>
-                    <div class="col-md-9">
+                    <label class="col-md-4 col-form-label" for="description">Description:</label>
+                    <div class="col-md-8">
                         <input type="text" class="form-control" id="description" #description="ngModel" name="description" [(ngModel)]="pageFilters.description">
                     </div>
                   </div>
 
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="startdate">Start Date :</label>
-                    <div class="col-md-9">
+                    <label class="col-md-4 col-form-label" for="startdate">Start Date :</label>
+                    <div class="col-md-8">
                         <input type="date" class="form-control" id="startdate" #startdate="ngModel" name="startdate" [(ngModel)]="pageFilters.startdate">
                     </div>
                   </div>
   
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="startingmileage1">Starting Mileage :</label>
-                    <div class="col-md-9">
+                    <label class="col-md-4 col-form-label" for="startingmileage1">Starting Mileage :</label>
+                    <div class="col-md-8">
                       <input type="text" class="form-control" id="startingmileage1" #startingmileage1="ngModel" name="startingmileage1" [(ngModel)]="pageFilters.startingmileage1">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="noofmiles">Number of Miles :</label>
-                    <div class="col-md-9">
+                    <label class="col-md-4 col-form-label" for="noofmiles">Number of Miles :</label>
+                    <div class="col-md-8">
                       <input type="text" class="form-control" id="noofmiles" #noofmiles="ngModel" name="noofmiles" [(ngModel)]="pageFilters.noofmiles">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="nextservicemiles">Next Service Miles :</label>
-                    <div class="col-md-9">
+                    <label class="col-md-4 col-form-label" for="nextservicemiles">Next Service Miles :</label>
+                    <div class="col-md-8">
                       <input type="text" class="form-control" id="nextservicemiles" #nextservicemiles="ngModel" name="nextservicemiles" [(ngModel)]="pageFilters.nextservicemiles">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="servicedfrom">Serviced From :</label>
-                    <div class="col-md-9">
+                    <label class="col-md-4 col-form-label" for="servicedfrom">Serviced From :</label>
+                    <div class="col-md-8">
                       <input type="text" class="form-control" id="servicedfrom" #servicedfrom="ngModel" name="servicedfrom" [(ngModel)]="pageFilters.servicedfrom">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="lastServicedate">Last Service Date :</label>
-                    <div class="col-md-9">
+                    <label class="col-md-4 col-form-label" for="lastServicedate">Last Service Date :</label>
+                    <div class="col-md-8">
                       <input type="date" class="form-control" id="lastServicedate" #lastServicedate="ngModel" name="lastServicedate" [(ngModel)]="pageFilters.lastServicedate">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="nextServicedate">Next Service Date :</label>
-                    <div class="col-md-9">
+                    <label class="col-md-4 col-form-label" for="nextServicedate">Next Service Date :</label>
+                    <div class="col-md-8">
                       <input type="date" class="form-control" id="nextServicedate" #nextServicedate="ngModel" name="nextServicedate" [(ngModel)]="pageFilters.nextServicedate">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="comments">Comments :</label>
-                    <div class="col-md-9">
+                    <label class="col-md-4 col-form-label" for="comments">Comments :</label>
+                    <div class="col-md-8">
                       <input type="text" class="form-control" id="comments" #comments="ngModel" name="comments" [(ngModel)]="pageFilters.comments">
                     </div>
                   </div>
@@ -367,102 +339,102 @@
                 </div> -->
                 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="companyowned">Company Owned:</label>
+                  <label class="col-md-4 col-form-label" for="companyowned">Company Owned:</label>
                   <!-- <div class="col-md-9">
                       <input type="text" class="form-control" id="companyowned" #comapnyOwned="ngModel" name="comapnyOwned" [(ngModel)]="pageFilters.comapnyOwned" required>
                   </div> -->
-                  <div class="col-md-9 col-form-label">
+                  <div class="col-md-8 col-form-label">
                       <input class="form-check-label" id="companyowned" type="checkbox" value="true" #comapnyOwned="ngModel" name="comapnyOwned" [(ngModel)]="pageFilters.comapnyOwned">
                     </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="price">Price:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="price">Price:</label>
+                  <div class="col-md-8">
                     <input type="text" class="form-control" id="price" #price="ngModel" name="price" [(ngModel)]="pageFilters.price">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="purchasedate">Purchase Date:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="purchasedate">Purchase Date:</label>
+                  <div class="col-md-8">
                       <input type="date" class="form-control" id="purchasedate" #purchaseDate="ngModel" name="purchaseDate" [(ngModel)]="pageFilters.purchaseDate">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="operationdate">Operation Date:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="operationdate">Operation Date:</label>
+                  <div class="col-md-8">
                       <input type="date" class="form-control" id="operationdate" #operationDate="ngModel" name="operationDate" [(ngModel)]="pageFilters.operationDate">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="financer">Financer:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="financer">Financer:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" id="financer" #financer="ngModel" name="financer" [(ngModel)]="pageFilters.financer">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="installment1">Installment:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="installment1">Installment:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" id="installment1" #installment1="ngModel" name="installment1" [(ngModel)]="pageFilters.installment1">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="installmentduedate1">Installment Due Date:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="installmentduedate1">Installment Due Date:</label>
+                  <div class="col-md-8">
                       <input type="date" class="form-control" id="installmentduedate1" #installmentDuedate1="ngModel" name="installmentDuedate1" [(ngModel)]="pageFilters.installmentDuedate1">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="dealer">Dealer:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="dealer">Dealer:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" id="dealer" #dealer="ngModel" name="dealer" [(ngModel)]="pageFilters.dealer">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="leased">Leased:</label>
-                  <div class="col-md-9 col-form-label">
+                  <label class="col-md-4 col-form-label" for="leased">Leased:</label>
+                  <div class="col-md-8 col-form-label">
                     <input class="form-check-label" id="leassed" type="checkbox" value="true" #leassed="ngModel" name="leassed" [(ngModel)]="pageFilters.leassed">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="leasedfrom">Leased from:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="leasedfrom">Leased from:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" id="leasedfrom" #leasedFrom="ngModel" name="leasedFrom" [(ngModel)]="pageFilters.leasedFrom">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="leasestart">Lease Start:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="leasestart">Lease Start:</label>
+                  <div class="col-md-8">
                       <input type="date" class="form-control" id="leasestart" #leaaseStart="ngModel" name="leaaseStart" [(ngModel)]="pageFilters.leaaseStart">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="leaseexpirydate">Lease Expiry Date:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="leaseexpirydate">Lease Expiry Date:</label>
+                  <div class="col-md-8">
                       <input type="date" class="form-control" id="leaseexpirydate" #leaseExpirydate="ngModel" name="leaseExpirydate" [(ngModel)]="pageFilters.leaseExpirydate">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="installment2">Installment:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="installment2">Installment:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" id="installment2" #installment2="ngModel" name="installment2" [(ngModel)]="pageFilters.installment2">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="installmentduedate2">Installment Due Date:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="installmentduedate2">Installment Due Date:</label>
+                  <div class="col-md-8">
                       <input type="date" class="form-control" id="installmentduedate2" #installmentDuedate2="ngModel" name="dispatcher" [(ngModel)]="pageFilters.dispatcher">
                   </div>
                 </div>
@@ -477,13 +449,6 @@
                     <label class="col-md-3 col-form-label" for="trailertype">Trailer Type:</label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" id="trailertype" #trailerType="ngModel" name="trailerType" [(ngModel)]="pageFilters.trailerType">
-                    </div>
-                  </div>
-  
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="platenumber">Plate Number:</label>
-                    <div class="col-md-9">
-                      <input type="text" class="form-control" id="platenumber" #plateNumber="ngModel" name="plateNumber" [(ngModel)]="pageFilters.plateNumber">
                     </div>
                   </div>
               </div>
