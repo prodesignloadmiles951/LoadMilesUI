@@ -5,10 +5,10 @@
             <div class="card-header">Trucks Information</div>
             <div class="card-body">
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="plate">Plate:
+                  <label class="col-md-4 col-form-label" for="plate">Plate:
                     <span style="color:red">*</span>
                   </label>
-                  <div class="col-md-9">
+                  <div class="col-md-8">
                     <input type="text" class="form-control" id="plate" placeholder="Ex: 1234" #plate="ngModel" name="plate" [(ngModel)]="pageFilters.plate" [pattern] = "'^[1-9][0-9]*$'" required>
                     <div *ngIf="plate.errors && (plate.dirty || plate.touched)" style="font-size: smaller;">
                       <div [hidden]="!plate.errors.required">
@@ -22,8 +22,8 @@
                 </div>
  
                 <div class="form-group row"> 
-                  <label class="col-md-3 col-form-label" for="operationstatus">Operation Status:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="operationstatus">Operation Status:</label>
+                  <div class="col-md-8">
                     <select class="form-control" id="operationstatus" #operationStatus="ngModel" name="operationStatus" [(ngModel)]="pageFilters.operationStatus">
                       <option value="0">Select</option>
                       <option value="1">Option #1</option>
@@ -34,22 +34,22 @@
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="startingmileage">Starting Mileage:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="startingmileage">Starting Mileage:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" placeholder="Ex: 12" id="startingmileage" #startingMileage="ngModel" name="startingMileage" [(ngModel)]="pageFilters.startingMileage"  required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="currentmiles">Current Miles:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="currentmiles">Current Miles:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" id="currentmiles" placeholder="Ex: 12" #currentMiles="ngModel" name="currentMiles" [(ngModel)]="pageFilters.currentMiles" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="make">Make: <span style="color:red">*</span></label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="make">Make: <span style="color:red">*</span></label>
+                  <div class="col-md-8">
                     <input type="text" class="form-control" id="make" #make="ngModel" name="make" [(ngModel)]="pageFilters.make" required>
                     <div *ngIf="make.errors && (make.dirty || make.touched)" style="font-size: smaller;">
                       <div [hidden]="!make.errors.required">
@@ -60,8 +60,8 @@
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="modal">Modal: <span style="color:red">*</span></label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="modal">Modal: <span style="color:red">*</span></label>
+                  <div class="col-md-8">
                     <input type="text" class="form-control" id="modal" #modal="ngModel" name="modal" [(ngModel)]="pageFilters.modal" required>
                     <div *ngIf="modal.errors && (modal.dirty || modal.touched)" style="font-size: smaller;">
                       <div [hidden]="!modal.errors.required">
@@ -72,8 +72,8 @@
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="color">Color:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="color">Color:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" id="color" #color="ngModel" name="color" [(ngModel)]="pageFilters.color">
                       <!-- <div *ngIf="color.errors && (color.dirty || color.touched)" style="font-size: smaller;">
                         <div [hidden]="!color.errors.required">
@@ -84,8 +84,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="yom">Year of Make: <span style="color:red">*</span></label>
-                    <div class="col-md-9">
+                    <label class="col-md-4 col-form-label" for="yom">Year of Make: <span style="color:red">*</span></label>
+                    <div class="col-md-8">
                         <input type="text" class="form-control" id="yom" placeholder="Ex: 2020" name="yom" #yom="ngModel" [(ngModel)]="pageFilters.yom" [pattern] = "'^[1-9][0-9]*$'" minlength="4" maxlength="4" required>
                         <div *ngIf="yom.errors && (yom.dirty || yom.touched)" style="font-size: smaller;">
                           <div [hidden]="!yom.errors.required">
@@ -102,15 +102,15 @@
                   </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="vin">Vin:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="vin">Vin:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" id="vin" #vin="ngModel" name="vin" [(ngModel)]="pageFilters.vin">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="geartype">Gear Type:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="geartype">Gear Type:</label>
+                  <div class="col-md-8">
                     <select class="form-control" id="geartype" #gearType="ngModel" name="gearType" [(ngModel)]="pageFilters.gearType">
                       <option value="0">Select</option>
                       <option value="1">Option #1</option>
@@ -121,29 +121,29 @@
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="eld">ELD:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="eld">ELD:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" id="eld" #eld="ngModel" name="eld" [(ngModel)]="pageFilters.eld">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="gps">GPS:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="gps">GPS:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" id="gps" #gps="ngModel" name="gps" [(ngModel)]="pageFilters.gps">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="fuelcard">Fuel Card:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="fuelcard">Fuel Card:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" id="fuelcard" #fuelCard="ngModel" name="fuelCard" [(ngModel)]="pageFilters.fuelCard">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="ezpass">EZ Pass:</label>
-                  <div class="col-md-9">
+                  <label class="col-md-4 col-form-label" for="ezpass">EZ Pass:</label>
+                  <div class="col-md-8">
                       <input type="text" class="form-control" id="ezpass" #ezPass="ngModel" name="ezPass" [(ngModel)]="pageFilters.ezPass">
                   </div>
                 </div>
