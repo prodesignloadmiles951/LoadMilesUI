@@ -36,6 +36,12 @@ export class DriverlistComponent implements OnInit {
         this.selectedDriver = driver.plate;
       }
 
+      editdata(driver) {
+        this.EditMode = true;
+        this.drivers = new DriverFilters();
+        this.drivers = driver;
+        this.selectedDriver = driver.plate;
+      }
     submit() {
         //console.log(this.pageFilters);
     }
@@ -50,11 +56,12 @@ export class DriverlistComponent implements OnInit {
       }
 
       editDrivers(driver) {
-        this._driversService.EditDrivers(driver._id).subscribe(response => {
-          this._toaster.success("Driver successfull updated", "Success");
+        this._driversService.EditDrivers(driver).subscribe(response => {
+          this._toaster.success("Driver successfully updated", "Success");
         }, error => {
            this._toaster.error("error", "Try Again");
           });
+          this.EditMode = false;
       }
     
       deleteDrivers(driver) {

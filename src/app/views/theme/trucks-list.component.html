@@ -66,7 +66,7 @@
                       (click)="editModal.show();edti(user);">Edit</a> |    -->
                       
                       <a style="cursor: pointer;color: #20a8d8;"
-                          (click)="editCompany(truck)">Edit</a>
+                          (click)="viewModal.show();editData(truck)">Edit</a>
 
                       <!-- <a style="cursor: pointer;color: #20a8d8;"
                           (click)="deleteTrucks(truck)">Delete</a> -->
@@ -244,7 +244,7 @@
                   class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
                   <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
                   class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> 
-              <button *ngIf="EditMode==true" type="reset" (click)="editCompany(truck)"  style="float: right"
+              <button *ngIf="EditMode==true" type="reset" (click)="editTrucks(trucks)"  style="float: right"
                   class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
                   <img *ngIf="Iseditusrloading"
                       src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />

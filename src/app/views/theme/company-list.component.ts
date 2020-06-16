@@ -56,7 +56,6 @@ export class CompanylistComponent implements OnInit {
   }
 
   editCompany(cmp) {
-    console.log(cmp)
     this._companyservice.EditCompany(cmp).subscribe(response => {
       this._toaster.success("company successfully updated", "Success");
     }, error => {

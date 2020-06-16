@@ -35,6 +35,14 @@ export class TrailerslistComponent implements OnInit {
       this.selectedTrailer = trailer.plate;
     }
 
+    editData(trailer) {
+      this.EditMode = true;
+      this.trailers = new TrailersFilters();
+      this.trailers = trailer;
+      this.selectedTrailer = trailer.companyname;
+  
+    }
+
     submit() {
         this.submitted = true;
         this._trailersService.SendForm(this.pageFilters).subscribe(response => {
@@ -47,6 +55,7 @@ export class TrailerslistComponent implements OnInit {
         });
         // console.log(this.pageFilters);
        }
+
     
        getData() {
         this._trailersService.getTrailersData().subscribe(data => {
@@ -54,12 +63,13 @@ export class TrailerslistComponent implements OnInit {
         });
       }
     
-      editTrailers(trailer) {
-        this._trailersService.EditTrailers(trailer._id).subscribe(response => {
-          this._toaster.success("Trucks successfull updated", "Success");
+      editTrailer(trailer) {
+        this._trailersService.EditTrailers(trailer).subscribe(response => {
+          this._toaster.success("Trailer successfully updated", "Success");
         }, error => {
            this._toaster.error("error", "Try Again");
           });
+          this.EditMode = false;
       }
     
       deleteTrailers(trailer) {
