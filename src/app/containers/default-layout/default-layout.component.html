@@ -9,9 +9,9 @@
     
   </ul>
    <div class="row col-md-2"> 
-      <select *ngFor="let cmp of data" class="form-control">
+      <select class="form-control">
         <option value="" disabled selected hidden>Company name</option>
-        <option value="0">{{cmp.companyname}}</option>
+        <option *ngFor="let cmp of data" value="0">{{cmp.companyname}}</option>
       </select>
   </div>
   <ul class="nav navbar-nav ml-auto">
