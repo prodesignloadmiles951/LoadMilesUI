@@ -42,7 +42,8 @@
             <thead>
               <tr>
                 <th>S.no</th>
-                <th>Name</th>
+                <th>Company Nmae</th>
+                <th>Display Name</th>
                 <th>MC/FF</th>
                 <th>US DOT</th>
                 <th>FEIN</th>
@@ -52,24 +53,25 @@
 
             <tbody>
               <tr>
-                <tr *ngFor="let truck of data; let i=index">
+                <tr *ngFor="let carrier of data; let i=index">
                     <td>{{i + 1}}</td>
-                    <td>{{truck.plate}}</td>
-                    <td>{{truck.make}}</td>
-                    <td>{{truck.modal}}</td>
-                    <td>{{truck.yom}}</td>
+                    <td>{{carrier.companyname}}</td>
+                    <td>{{carrier.dislpalyname}}</td>
+                    <td>{{carrier.mc/ff}}</td>
+                    <td>{{carrier.usdot}}</td>
+                    <td>{{carrier.fein}}</td>
                     <td>
                       <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                          (click)="viewModal.show();viewData(truck);">View</a> |
+                          (click)="viewModal.show();viewData(carrier);">View</a> |
 
                       <!-- <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
                       (click)="editModal.show();edti(user);">Edit</a> |    -->
                       
                       <a style="cursor: pointer;color: #20a8d8;"
-                          (click)="editCompany(truck)">Edit</a>
+                          (click)="viewModal.show();editData(carrier)">Edit</a>
 
                       <!-- <a style="cursor: pointer;color: #20a8d8;"
-                          (click)="deleteTrucks(truck)">Delete</a> -->
+                          (click)="deleteCarriers(carrier)">Delete</a> -->
                   </td>
                 </tr>
             </tbody>
@@ -88,163 +90,859 @@
   <!--View-->
   <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
+  <div class="modal-dialog modal-lg" style="max-width: 90%" role="document">
       <div class="modal-content">
           <div class="modal-header">
-              <h4 class="modal-title">Manage Trucks - <span class="badge badge-success" >{{selectedTruck}}</span></h4>
+              <h4 class="modal-title">Manage Carriers - <span class="badge badge-success" >{{selectedCarrier}}</span></h4>
               <button type="button" class="close" (click)="viewModal.hide()" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
           </div>
           <div class="modal-body">
-              <div class="container">
-                  <div class="animated fadeIn">
-                      <div id="viewsection" *ngIf="EditMode==false">
-                          <!-- <div id="viewsection"> -->
-                      <div class="row">
-                          <div class="col-md-6">
-                              
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Plate Number:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.plate}}</span>
-                                  </div>
+            <div class="container">
+                <div class="animated fadeIn">
+                    <div id="viewsection" *ngIf="EditMode==false">
+                        <!-- <div id="viewsection"> -->
+                    <div class="row">
+                        <div class="col-md-6">
+                          <h6 style="color:firebrick">Carrier Information</h6>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Company Name:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 14px;">{{carriers.companyname}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>DBA:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 14px;">{{carriers.dba}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>First Name:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 14px;">{{carriers.firstname}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Middle Name::</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 14px;">{{carriers.middlename}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Last Name:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 14px;">{{carriers.lastname}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Dispaly Name:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 14px;">{{carriers.dislpalyname}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>MC/FF:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{carriers.mcsf}}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>US DOT:</b></span>
                               </div>
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Starting Mileage:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.startingMileage}}</span>
-                                  </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.usdot}}</span>
                               </div>
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Current Miles:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.currentMiles}}</span>
-                                  </div>
-                              </div>
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Make:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.make}}</span>
-                                  </div>
-                              </div>
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Modal:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.make}}</span>
-                                  </div>
-                              </div>
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Color:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.color}}</span>
-                                  </div>
-                              </div>
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Year of Make:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.yom}}</span>
-                                  </div>
-                              </div>
-                              
                           </div>
-                          <div class="col-md-6">
-                              
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Vin:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.vin}}</span>
-                                  </div>
+                          <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>FEIN:</b></span>
                               </div>
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Gear Type:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.gearType}}</span>
-                                  </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.fein}}</span>
                               </div>
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>ELD:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.eld}}</span>
-                                  </div>
+                          </div>
+                        <h6 style="color:firebrick">Address</h6>
+                          <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Address 1:</b></span>
                               </div>
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Fuel Card:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.fuelCard}}</span>
-                                  </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.address1}}</span>
                               </div>
-                              
+                          </div>
+                          <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Address 2:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.address2}}</span>
+                              </div>
+                          </div>
+                          
+                          <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>City :</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{carriers.city}}</span>
+                            </div>
+                          </div>
+                          <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>State :</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{carriers.state}}</span>
+                            </div>
+                          </div>
+                          <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>Zip Code :</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{carriers.zipcode}}</span>
+                            </div>
+                          </div>
+                          <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>Country:</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{carriers.country}}</span>
+                            </div>
+                          </div>
+
+                    <h6 style="color:firebrick">Employment Information</h6>
+
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Employment Type:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.employmenttype1}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Termination Date:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.hiredate}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Dispatch Category:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.dispatchcategory}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                               <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Truck</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.truck}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Truck Plate:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.truckplate}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Trailer Type:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{carriers.trailertype}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Trailer Number:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{carriers.trailernumber}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Memo:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{carriers.memo}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Comments:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{carriers.comments}}</span>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-md-6">
+                          
+                        <h6 style="color:firebrick">Contact Information</h6>
+
+                          <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Contact:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.ccontact}}</span>
+                              </div>
+                          </div>
+                          <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Home Phone:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.chomephone}}</span>
+                              </div>
+                          </div>
+                          <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Cell Phone:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.ccellphone}}</span>
+                              </div>
+                          </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Email:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{carriers.cemail}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Emergency Contact:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.cemergenctcontact}}</span>
+                              </div>
+                          </div>
+                          <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>Emergency Phone:</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{carriers.cemergencyphone}}</span>
+                            </div>
+                        </div>
+                          <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>Emergency Relationship:</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{carriers.cemergencyrelationship}}</span>
+                            </div>
+                            </div>
+
+                      <h6 style="color:firebrick">Driver Information</h6>
+                          <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Contact</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{carriers.contact}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Home Phone:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.homephone}}</span>
+                              </div>
+                          </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Cell Phone:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.cellphone}}</span>
+                              </div>
+                          </div>
+                          
+                          <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>Email</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{carriers.demail}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>Emergency Contact:</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{carriers.demergenctcontact}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>Emergency Phone:</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{carriers.demergencyphone}}</span>
+                            </div>
+                        </div>
+                          <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Emergency Relationship:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.demergencyrelationship}}</span>
+                              </div>
+                          </div>
+
+                      <h6 style="color:firebrick">Payment Information</h6>
+                          <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>Employment Type:</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{carriers.employmenttype}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="text-align: center">
+                          <div class="col-md-6" style="text-align: left">
+                              <span style="font-size: 12px;"><b>Payrate:</b></span>
+                          </div>
+                          <div class="col-md-5" style="text-align: left">
+                              <span style="font-size: 12px;">{{carriers.payrate}}</span>
                           </div>
                       </div>
+                        <div class="row" style="text-align: center">
+                          <div class="col-md-6" style="text-align: left">
+                              <span style="font-size: 12px;"><b>Dispatch Deduction:</b></span>
+                          </div>
+                          <div class="col-md-5" style="text-align: left">
+                              <span style="font-size: 12px;">{{carriers.dispatchdeduction}}</span>
+                          </div>
+                          </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>QuickPay Id:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{carriers.quickpayid}}</span>
+                              </div>
+                          </div>
+                          <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>Bank Name:</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{carriers.bankname}}</span>
+                            </div>
+                        </div>
+                          <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>Account type:</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{carriers.accounttype}}</span>
+                            </div>
+                        </div>
+                        <div class="row" style="text-align: center">
+                          <div class="col-md-6" style="text-align: left">
+                              <span style="font-size: 12px;"><b>Account Number:</b></span>
+                          </div>
+                          <div class="col-md-5" style="text-align: left">
+                              <span style="font-size: 12px;">{{carriers.accountnumber}}</span>
+                          </div>
+                        </div>
+                        <div class="row" style="text-align: center">
+                          <div class="col-md-6" style="text-align: left">
+                              <span style="font-size: 12px;"><b>Routing Number:</b></span>
+                          </div>
+                          <div class="col-md-5" style="text-align: left">
+                              <span style="font-size: 12px;">{{carriers.routingnumber}}</span>
+                          </div>
+                       </div>
+                       <div class="row" style="text-align: center">
+                        <div class="col-md-6" style="text-align: left">
+                            <span style="font-size: 12px;"><b>Advances:</b></span>
+                        </div>
+                        <div class="col-md-5" style="text-align: left">
+                            <span style="font-size: 12px;">{{carriers.advances}}</span>
+                        </div>
                       </div>
 
-                      <div id="editsection" *ngIf="EditMode==true">
-                          <div class="card">
-                              <div class="card-header">
-                                <strong>Edit</strong>
+                  <h6 style="color:firebrick">Genral Ledger</h6>
+                      <div class="row" style="text-align: center">
+                          <div class="col-md-6" style="text-align: left">
+                              <span style="font-size: 12px;"><b>Customer Account:</b></span>
+                          </div>
+                          <div class="col-md-5" style="text-align: left">
+                              <span style="font-size: 12px;">{{carriers.customeraccount}}</span>
+                          </div>
+                        </div>
+                        <div class="row" style="text-align: center">
+                          <div class="col-md-6" style="text-align: left">
+                              <span style="font-size: 12px;"><b>GL Account:</b></span>
+                          </div>
+                          <div class="col-md-5" style="text-align: left">
+                              <span style="font-size: 12px;">{{carriers.glaccount}}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+
+                    <div id="editsection" *ngIf="EditMode==true">
+                        <div class="row">
+                            <div class="col-sm-6">
+                              <div class="card">
+                                <div class="card-header">Carrier Information</div>
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="companyname">Company Name :</label>
+                                      <div class="col-md-8">
+                                      <input type="text" class="form-control" id="companyname" [(ngModel)]="carriers.companyname">
+                                    </div>
+                                    </div>
+                     
+                                    <div class="form-group row"> 
+                                      <label  class="col-md-4 col-form-label" for="dba">DBA :</label>
+                                      <div class="col-md-8">
+                                        <input type="text" class="form-control" id="dba" [(ngModel)]="carriers.dba">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="firstname">First Name :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="firstname" [(ngModel)]="carriers.firstname">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="middlename">Middle Name :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="middlename" [(ngModel)]="carriers.middlename">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="lastname">Last Name: :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="lastname" [(ngModel)]="carriers.lastname">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="dislpalyname">Dispaly Name:</label>
+                                          <div class="col-md-8">
+                                              <input type="text" class="form-control" id="dislpalyname" [(ngModel)]="carriers.dislpalyname">
+                                          </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                     <label  class="col-md-4 col-form-label" for="mcsf">MC/FF :</label>
+                                     <div class="col-md-8">
+                                           <input type="text" class="form-control" id="mcsf" [(ngModel)]="carriers.mcsf">
+                                      </div>
+                                      </div>
+                    
+                                      <div class="form-group row">
+                                          <label  class="col-md-4 col-form-label" for="usdot">US DOT :</label>
+                                          <div class="col-md-8">
+                                              <input type="text" class="form-control" id="usdot" [(ngModel)]="carriers.usdot">
+                                          </div>
+                                      </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="fein">FEIN :</label>
+                                      <div class="col-md-8">
+                                        <input type="text" class="form-control" id="fein" [(ngModel)]="carriers.fein">
+                                    </div>
+                    
+                                </div>
                               </div>
-                              <div class="card-body">
-                                  <div class="row">
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="plate">Plate :</label>
-                                              <input type="text" class="form-control" id="plate" [(ngModel)]="trucks.plate">
+                              </div>
+                            <div class="card">
+                                <div class="card-header">Address</div>
+                                <div class="card-body">
+                                 
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="address1">Address 1:</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="address1" [(ngModel)]="carriers.address1">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="address2">Address 2:</label>
+                                      <div class="col-md-8">
+                                         <input type="text" class="form-control" id="address2" [(ngModel)]="carriers.address2">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="city">City :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="city" [(ngModel)]="carriers.city">
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                     <label  class="col-md-4 col-form-label" for="state">State :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="state" [(ngModel)]="carriers.state">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="zipcode">Zip Code :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="zipcode" [(ngModel)]="carriers.zipcode">
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="country">Country :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="country" [(ngModel)]="carriers.country">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                              </div>
+                    
+                              <div class="card">
+                                  <div class="card-header">Employment Information</div>
+                                  <div class="card-body">                
+                                      <div class="form-group row">
+                                          <label  class="col-md-4 col-form-label" for="employmenttype1">Employment Type:</label>
+                                          <div class="col-md-8">  
+                                            <div class="form-check form-check-inline mr-1">
+                                                <input class="form-check-input" id="inline-radio1" type="radio" value="employee" checked="checked" name="employmenttype1" [(ngModel)]="carriers.employmenttype1">
+                                                <label class="form-check-label" for="inline-radio1">Employee</label>
+                                              </div>
+                                              <div class="form-check form-check-inline mr-1">
+                                                <input class="form-check-input" id="inline-radio2" type="radio" value="1099" name="employmenttype1" [(ngModel)]="carriers.employmenttype1">
+                                                <label class="form-check-label" for="inline-radio2">1099?</label>
+                                              </div>
                                           </div>
                                       </div>
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="dba">Make :</label>
-                                              <input type="text" class="form-control" id="make" [(ngModel)]="trucks.make">
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="hiredate">Hire Date :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="hiredate" [(ngModel)]="carriers.hiredate">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="terminationdate">Termination Date :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="terminationdate" [(ngModel)]="carriers.terminationdate">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="dispatchcategory">Dispatch Category :</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control" id="dispatchcategory" name="dispatchcategory" [(ngModel)]="carriers.dispatchcategory">
+                                                <option value="#">Select</option>
+                                                <option value="1"> option 1</option>
+                                                <option value="2">option 2</option>
+                                                <option value="3">option 3</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="truck">Truck :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="truck" [(ngModel)]="carriers.truck">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="truckplate">Truck Plate :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="truckplate" [(ngModel)]="carriers.truckplate">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="trailertype">Trailer Type :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="trailertype" [(ngModel)]="carriers.trailertype">
+                                        </div>
+                                      </div>
+                                     
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="trailernumber">Trailer Number :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="trailernumber" [(ngModel)]="carriers.trailernumber">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="memo">Memo :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="memo" [(ngModel)]="carriers.memo">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="comments">Comments:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="comments" [(ngModel)]="carriers.comments">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  
+                             
+                          </div>
+
+                          <div class="col-sm-6">
+                              <div class="card">
+                                <div class="card-header">Contact Information</div>
+                                  <div class="card-body">
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="ccontact">Contact :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="ccontact" [(ngModel)]="carriers.ccontact">
+                                        </div>
+                                      </div>
+                                  
+                                    <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="chomephone">Home Phone :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="chomephone" [(ngModel)]="carriers.chomephone">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="ccellphone">Cell Phone :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="ccellphone" [(ngModel)]="carriers.ccellphone">
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="cemail">Email :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="cemail" [(ngModel)]="carriers.cemail">
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="cemergenctcontact">Emergency Contact :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="cemergenctcontact" [(ngModel)]="carriers.cemergenctcontact">
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="cemergencyphone">Emergency Phone :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="cemergencyphone" [(ngModel)]="carriers.cemergencyphone">
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="cemergencyrelationship">Emergency Relationship :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="cemergencyrelationship" [(ngModel)]="carriers.cemergencyrelationship">
+                                      </div>
+                                  </div>
+                                  </div>
+                              </div>
+                              
+                              <div class="card">
+                                  <div class="card-header">Driver Information</div>
+                                  <div class="card-body">  
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="contact">Contact :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="contact" name="contact" [(ngModel)]="carriers.contact">
+                                        </div>
+                                      </div>
+                    
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="homephone">Home Phone:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="homephone" name="homephone" [(ngModel)]="carriers.homephone">
+                                        </div>
+                                      </div>
+                    
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="cellphone">Cell Phone :</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="cellphone" name="cellphone" [(ngModel)]="carriers.cellphone">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="demail">Email :</label>
+                                        <div class="col-md-8">
+                                          <input type="text" class="form-control" id="demail" name="demail" [(ngModel)]="carriers.demail">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="demergenctcontact">Emergency Contact :</label>
+                                        <div class="col-md-8">
+                                          <input type="text" class="form-control" id="demergenctcontact" name="demergenctcontact" [(ngModel)]="carriers.demergenctcontact">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="demergencyphone">Emergency Phone :</label>
+                                        <div class="col-md-8">
+                                          <input type="text" class="form-control" id="demergencyphone" name="demergencyphone" [(ngModel)]="carriers.demergencyphone">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="demergencyrelationship">Emergency Relationship :</label>
+                                        <div class="col-md-8">
+                                          <input type="text" class="form-control" id="demergencyrelationship" name="demergencyrelationship" [(ngModel)]="carriers.demergencyrelationship">
+                                        </div>
+                                      </div>
+                                      
+                                  </div>
+                                </div>
+                    
+                              <div class="card">
+                                <div class="card-header">Payment Information</div>
+                                <div class="card-body">
+                                                                      
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="employmenttype">Employment Type::</label>
+                                      <div class="col-md-8 col-form-label">
+                                        <div class="form-check form-check-inline mr-1">
+                                            <input class="form-check-input" id="inline-radio1" type="radio" value="employee" checked="checked" name="employmenttype" [(ngModel)]="carriers.employmenttype">
+                                            <label class="form-check-label" for="inline-radio1">Employee</label>
+                                          </div>
+                                          <div class="form-check form-check-inline mr-1">
+                                            <input class="form-check-input" id="inline-radio2" type="radio" value="contractor" name="employmenttype" [(ngModel)]="carriers.employmenttype">
+                                            <label class="form-check-label" for="inline-radio2">Contractor</label>
+                                          </div>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="payrate">Payrate:</label>
+                                      <div class="col-md-8">
+                                        <div class="form-check form-check-inline mr-1">
+                                            <input class="form-check-input" id="inline-radio1" type="radio" value="sales" checked="checked" name="payrate" [(ngModel)]="carriers.payrate">
+                                            <label class="form-check-label" for="inline-radio1">%sales</label>
+                                          </div>
+                                          <div class="form-check form-check-inline mr-1">
+                                            <input class="form-check-input" id="inline-radio2" type="radio" value="perhour" name="payrate" [(ngModel)]="carriers.payrate">
+                                            <label class="form-check-label" for="inline-radio2">Per-Hour Rate</label>
                                           </div>
                                       </div>
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="fedid">Modal :</label>
-                                              <input type="text" class="form-control" id="modal" [(ngModel)]="trucks.modal">
-                                          </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="dispatchdeduction">Dispatch Deduction:</label>
+                                      <div class="col-md-8">
+                                          <input type="date" class="form-control" id="dispatchdeduction" name="dispatchdeduction" [(ngModel)]="carriers.dispatchdeduction">
                                       </div>
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="mc">Year Of Make :</label>
-                                              <input type="text" class="form-control" id="yom" [(ngModel)]="trucks.yom">
-                                          </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="quickpayid">QuickPay Id:</label>
+                                      <div class="col-md-8">
+                                          <input type="date" class="form-control" id="quickpayid" name="quickpayid" [(ngModel)]="carriers.quickpayid">
                                       </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="bankname">Bank Name:</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="bankname" name="bankname" [(ngModel)]="carriers.bankname">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="accounttype">Account type:</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="accounttype" name="accounttype" [(ngModel)]="carriers.accounttype">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="accountnumber">Account Number:</label>
+                                      <div class="col-md-8">
+                                          <input type="date" class="form-control" id="accountnumber" name="accountnumber" [(ngModel)]="carriers.accountnumber">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="routingnumber">Routing Number:</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="routingnumber" name="routingnumber" [(ngModel)]="carriers.routingnumber">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="advances">Advances:</label>
+                                      <div class="col-md-8 col-form-label">
+                                        <input type="text" class="form-control" id="advances" name="advances" [(ngModel)]="carriers.advances">
+                                      </div>
+                                    </div>
+                    
+                                </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-header">Genral Ledger</div>
+                                <div class="card-body">
+                                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="customeraccount">Customer Account:</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="customeraccount" name="customeraccount" [(ngModel)]="carriers.customeraccount">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="glaccount">GL Account:</label>
+                                      <div class="col-md-8 col-form-label">
+                                        <input type="text" class="form-control" id="glaccount" name="glaccount" [(ngModel)]="carriers.glaccount">
+                                      </div>
+                                    </div>
+                    
+                                </div>
                               </div>
                           </div>
-                          </div>                        
-                       </div>
-                  </div>
-              </div>
-          </div>
+                      </div>
+                
+                     </div>
+                    
+                </div>
+            </div>
+        </div>
           <div class="modal-footer">
               <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right"
                   class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
-                  <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
-                  class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> 
-              <button *ngIf="EditMode==true" type="reset" (click)="editCompany(truck)"  style="float: right"
+                  <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
+                  class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>  -->
+              <button *ngIf="EditMode==true" type="reset" (click)="editCarriers(carrier)"  style="float: right"
                   class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
                   <img *ngIf="Iseditusrloading"
                       src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />

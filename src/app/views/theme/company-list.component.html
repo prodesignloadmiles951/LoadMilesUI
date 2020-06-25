@@ -100,7 +100,7 @@
                               <!-- <div id="viewsection"> -->
                           <div class="row">
                               <div class="col-md-6">
-                                  
+                                  <h6 style="color:firebrick">Company Information</h6>
                                   <div class="row" style="text-align: center">
                                       <div class="col-md-6" style="text-align: left">
                                           <span style="font-size: 12px;"><b>Company Name:</b></span>
@@ -160,7 +160,7 @@
                                   
                               </div>
                               <div class="col-md-6">
-                                  
+                                  <h6 style="color:firebrick">Physical Address</h6>
                                   <div class="row" style="text-align: center">
                                       <div class="col-md-6" style="text-align: left">
                                           <span style="font-size: 12px;"><b>Address:</b></span>
@@ -193,13 +193,46 @@
                                           <span style="font-size: 12px;">{{company.zip}}</span>
                                       </div>
                                   </div>
-                                  
+
+                                  <h6 style="color:firebrick">Mailing Address</h6>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Address:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{company.address3}}</span>
+                                    </div>
+                                </div>
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>City:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{company.city2}}</span>
+                                    </div>
+                                </div>
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>State:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{company.sate2}}</span>
+                                    </div>
+                                </div>
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Zip:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{company.zip2}}</span>
+                                    </div>
+                                </div>
                               </div>
                           </div>
                           </div>
   
                           <div id="editsection" *ngIf="EditMode">
-<<<<<<< HEAD
+
                               <div class="row">
                                 <div class="col-sm-6">
                                   <div class="card">
@@ -254,7 +287,7 @@
                                             </div>
                                             </div>
                                     </div>
-=======
+
                            
                                   </div>
                         
@@ -301,9 +334,9 @@
                                           </div>
                                           
                                           <div class="form-group row">
-                                            <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
+                                            <label class="col-md-3 col-form-label" for="address3">Address1 :</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="address1" name="address3" [(ngModel)]="company.address3" required>
+                                                <input type="text" class="form-control" id="address3" name="address3" [(ngModel)]="company.address3" required>
                                             </div>
                                           </div>
                                           <div class="form-group row">
@@ -347,13 +380,13 @@
               <div class="modal-footer">
                   <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right"
                       class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
-<<<<<<< HEAD
+
                       <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
                       class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>  -->
-=======
-                      <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
+
+                      <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
                       class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> 
->>>>>>> 06d4f976001cc63caa50bc15e96eaec0c18f8618
+                       -->
                   <button *ngIf="EditMode" type="reset" (click)="editCompany(company)" style="float: right"
                       class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
                       <img *ngIf="Iseditusrloading"
@@ -364,11 +397,10 @@
       </div><!-- /.modal-dialog -->
   </div>
   
-<<<<<<< HEAD
+
   <!-- Edit
-=======
-  <!-- Edit-->
->>>>>>> 06d4f976001cc63caa50bc15e96eaec0c18f8618
+
+  
   <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-lg" style="max-width: 60%" role="document">

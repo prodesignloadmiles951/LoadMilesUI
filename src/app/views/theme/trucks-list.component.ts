@@ -21,7 +21,7 @@ export class TruckslistComponent implements OnInit {
     selectedTruck: any;
     selectedCompany: any;
     EditMode: boolean;
-
+ 
     constructor(private _toaster: ToastrService,
       private _trucksservice: TrucksService,
       private router: Router) {

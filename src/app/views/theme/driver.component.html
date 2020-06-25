@@ -83,7 +83,7 @@
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="cdlnumber">CDL Number:</label>
                     <div class="col-md-9">
-                        <input type="date" class="form-control" id="cdlnumber" name="cdlnumber" #cdlnumber="ngModel" [(ngModel)]="pageFilters.cdlnumber">
+                        <input type="text" class="form-control" id="cdlnumber" name="cdlnumber" #cdlnumber="ngModel" [(ngModel)]="pageFilters.cdlnumber">
                     </div>
                   </div>
       
@@ -410,38 +410,40 @@
             <div class="card">
               <div class="card-header">Company Address</div>
               <div class="card-body">   
-                  <!-- <div class="form-group row">
+                  
+
+                  <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="companydriver">Company Driver ?:</label>
-                    <div class="col-md-9 col-form-label" name="companydriver" #companydriver="ngModel" [(ngModel)]="pageFilters.companydriver">
-                      <div class="form-check form-check-inline mr-1">
-                        <input class="form-check-input" id="inline-radio1" type="radio" value="yes" name="inline-radios">
-                        <label class="form-check-label" for="inline-radio1">Yes</label>
-                      </div>
-                      <div class="form-check form-check-inline mr-1">
-                        <input class="form-check-input" id="inline-radio2" type="radio" value="no" name="inline-radios">
-                        <label class="form-check-label" for="inline-radio2">No</label>
-                      </div>
-                    </div>
+                    <div class="col-md-9 col-form-label" name="companydriver">
+                          <div class="form-check form-check-inline mr-1">
+                            <input class="form-check-input" id="inline-radio1" type="radio" value="yes" checked="checked" name="companydriver" #companydriver="ngModel" [value]="true" [(ngModel)]="pageFilters.companydriver">
+                            <label class="form-check-label" for="inline-radio1">Yes</label>
+                          </div>
+                          <div class="form-check form-check-inline mr-1">
+                            <input class="form-check-input" id="inline-radio2" type="radio" value="no" name="companydriver" #companydriver="ngModel" [value]="false" [(ngModel)]="pageFilters.companydriver">
+                            <label class="form-check-label" for="inline-radio2">No</label>
+                          </div>
+                        </div>
                   </div>
       
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="companyinfo">Company Info:</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="companyinfo" name="companyinfo" #companyinfo="ngModel" [(ngModel)]="pageFilters.companyinfo">
+                        <input type="text" class="form-control" id="companyinfo" name="companyinfo" [(ngModel)]="pageFilters.companyinfo">
                     </div>
                   </div>
       
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="companyname1">Company Name:</label>
                       <div class="col-md-9">
-                          <input type="text" class="form-control" id="companyname1" name="companyname1" #companyname1="ngModel" [(ngModel)]="pageFilters.companyname1">
+                          <input type="text" class="form-control" id="companyname1" name="companyname1" [(ngModel)]="pageFilters.companyname1">
                       </div>
                     </div>
       
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="address3">Address1:</label>
                       <div class="col-md-9">
-                          <input type="text" class="form-control" id="address3" name="address3" #address3="ngModel" [(ngModel)]="pageFilters.address3">
+                          <input type="text" class="form-control" id="address3" name="address3" [(ngModel)]="pageFilters.address3">
                       </div>
                     </div>
        
@@ -478,7 +480,7 @@
                         <div class="col-md-9">
                             <input type="text" class="form-control" id="country1" name="country1" #country1="ngModel" [(ngModel)]="pageFilters.country1">
                         </div>
-                    </div> -->
+                    </div>
                 </div>
               </div>  
   
@@ -575,7 +577,6 @@
               </div> 
         </div>
    
-        
       <div class="card-footer">
           <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
             <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" 

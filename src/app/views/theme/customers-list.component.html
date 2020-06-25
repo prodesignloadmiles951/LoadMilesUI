@@ -1,7 +1,7 @@
 <div class="animated fadeIn">
   
   <div class="card">
-    <div class="card-header"> Search For Truck
+    <div class="card-header"> Search For Customer
         <strong></strong> <span *ngIf="Isusersloading"><img *ngIf="Isusersloading"
             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             Loading..</span>
@@ -42,36 +42,36 @@
             <thead>
               <tr>
                 <th>S.no</th>
-                <th>Name</th>
                 <th>Company Name</th>
-                <th>DOB</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Emergency Contact</th>
+                <th>DBA</th>
+                <th>Dispaly Name</th>
+                <th>MC/FF</th>
+                <th>US DOT</th>
+                <th>FEIN</th>
                 <th>Action</th>
               </tr>
             </thead>
 
             <tbody>
               <tr>
-                <tr *ngFor="let truck of data; let i=index">
+                <tr *ngFor="let customer of data; let i=index">
                     <td>{{i + 1}}</td>
-                    <td>{{truck.plate}}</td>
-                    <td>{{truck.make}}</td>
-                    <td>{{truck.modal}}</td>
-                    <td>{{truck.yom}}</td>
+                    <td>{{customer.companyname}}</td>
+                    <td>{{customer.dba}}</td>
+                    <td>{{customer.dislpalyname}}</td>
+                    <td>{{customer.mcsf}}</td>
+                    <td>{{customer.usdot}}</td>
+                    <td>{{customer.fein}}</td>
                     <td>
                       <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                          (click)="viewModal.show();viewData(truck);">View</a> |
+                          (click)="viewModal.show();viewData(customer);">View</a> |
 
-                      <!-- <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                      (click)="editModal.show();edti(user);">Edit</a> |    -->
                       
                       <a style="cursor: pointer;color: #20a8d8;"
-                          (click)="editCompany(truck)">Edit</a>
+                          (click)="editCustomer(customer)">Edit</a>
 
                       <!-- <a style="cursor: pointer;color: #20a8d8;"
-                          (click)="deleteTrucks(truck)">Delete</a> -->
+                          (click)="deleteCustomer(customer)">Delete</a> -->
                   </td>
                 </tr>
             </tbody>
@@ -90,10 +90,10 @@
   <!--View-->
   <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
+  <div class="modal-dialog modal-lg" style="max-width: 90%" role="document">
       <div class="modal-content">
           <div class="modal-header">
-              <h4 class="modal-title">Manage Trucks - <span class="badge badge-success" >{{selectedTruck}}</span></h4>
+              <h4 class="modal-title">Manage Customer - <span class="badge badge-success" >{{selectedCustomer}}</span></h4>
               <button type="button" class="close" (click)="viewModal.hide()" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
@@ -105,53 +105,53 @@
                           <!-- <div id="viewsection"> -->
                       <div class="row">
                           <div class="col-md-6">
-                              
+                            <h6 style="color:firebrick">Personal Information</h6>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Plate Number:</b></span>
+                                      <span style="font-size: 12px;"><b>Company Name:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.plate}}</span>
+                                      <span style="font-size: 14px;">{{customers.companyname}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Starting Mileage:</b></span>
+                                      <span style="font-size: 12px;"><b>DBA:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.startingMileage}}</span>
+                                      <span style="font-size: 14px;">{{customers.dba}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Current Miles:</b></span>
+                                      <span style="font-size: 12px;"><b>Dispaly Name:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.currentMiles}}</span>
+                                      <span style="font-size: 14px;">{{customers.dislpalyname}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Make:</b></span>
+                                      <span style="font-size: 12px;"><b>MC/FF:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.make}}</span>
+                                      <span style="font-size: 14px;">{{customers.mcsf}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Modal:</b></span>
+                                      <span style="font-size: 12px;"><b>US DOT:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.make}}</span>
+                                      <span style="font-size: 14px;">{{customers.usdot}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Color:</b></span>
+                                      <span style="font-size: 12px;"><b>FEIN:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.color}}</span>
+                                      <span style="font-size: 14px;">{{customers.fein}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
@@ -159,7 +159,7 @@
                                       <span style="font-size: 12px;"><b>Year of Make:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.yom}}</span>
+                                      <span style="font-size: 12px;">{{customers.yom}}</span>
                                   </div>
                               </div>
                               

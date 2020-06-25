@@ -97,7 +97,7 @@
                           <!-- <div id="viewsection"> -->
                       <div class="row">
                           <div class="col-md-6">
-                              
+                            <h6 style="color:firebrick">Trailer Information</h6>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
                                       <span style="font-size: 12px;"><b>Unit Number:</b></span>
@@ -154,26 +154,30 @@
                                       <span style="font-size: 12px;">{{trailers.reeferMake}}</span>
                                   </div>
                               </div>
-                              
-                          </div>
-                          <div class="col-md-6">
-                              
                               <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Reefer Modal:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trailers.reeferModal}}</span>
-                                  </div>
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Reefer Modal:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trailers.reeferModal}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Reefer Vin:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trailers.reeferVin}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Deduct Tools:</b></span>
                               </div>
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Reefer Vin:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trailers.reeferVin}}</span>
-                                  </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trailers.deductTools}}</span>
                               </div>
+                            </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
                                       <span style="font-size: 12px;"><b>Deduct Fuel:</b></span>
@@ -182,15 +186,318 @@
                                       <span style="font-size: 12px;">{{trailers.deductFuel}}</span>
                                   </div>
                               </div>
-                              <div class="row" style="text-align: center">
+                            <h6 style="color:firebrick">Safty Information</h6>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>DOT Inspection Expiry Date:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.inspectionexpirydate}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Plates Registered State:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.registerdstate}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Plates Expiration Date:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.platesExpirationdate}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Insurance Expiration Date:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.insuranceExpirationdate}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Insurance Value:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.insuranceValue}}</span>
+                                    </div>
+                                  </div>
+                              <h6 style="color:firebrick">Ownership Information</h6>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Company Owned:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.isFilter}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Price:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.price}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Purchase Date:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.purchaseDate}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Operation Date:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.operationDate}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Financer:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.financer}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Dealer:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.dealer}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Leased:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.isFilter1}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Leased from:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.leasedfrom}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Lease Start:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.leaseStart}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Lease Expiry Date:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.leaseExpirydate}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Lease Installment:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.leaseInstallment}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Reefer Purchase Date:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.reeferPurchasedate}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Reefer Price:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.reeferPrice}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Installment:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trailers.installment}}</span>
+                                    </div>
+                                  </div>
+                                  
+                          </div>
+                        <div class="col-md-6">
+                        <h6 style="color:firebrick">Information</h6>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Trailer Size:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trailers.trailerSize}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Operating Status:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trailers.operatingStatus}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Reefer Miles:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trailers.reeferMiles}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Reefer Hours:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trailers.reeferHours}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Vin:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trailers.vin}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Registered State:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trailers.registerState}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Plate Number:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trailers.plateNumber}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Fuel Card:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trailers.fuelCard}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Fuel Type:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trailers.fuelType}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Ez Pass:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trailers.ezPass}}</span>
+                              </div>
+                            </div>            
+
+                          <h6 style="color:firebrick">Maintanance Records</h6>
+                                <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Deduct Tools:</b></span>
+                                      <span style="font-size: 12px;"><b>Categor:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trailers.deductTools}}</span>
+                                      <span style="font-size: 12px;">{{trailers.category}}</span>
                                   </div>
-                              </div>
-                              
+                                </div> 
+                                <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Description:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trailers.description}}</span>
+                                  </div>
+                                </div>     
+                                <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Start Date:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trailers.startDate}}</span>
+                                  </div>
+                                </div>     
+                                <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Starting Mileage:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trailers.startingMileage}}</span>
+                                  </div>
+                                </div>     
+                                <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Number of Miles:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trailers.noofMiles}}</span>
+                                  </div>
+                                </div>     
+                                <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Next Service Miles:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trailers.nextServicemiles}}</span>
+                                  </div>
+                                </div>     
+                                <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Last Service Date:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trailers.lastServicedate}}</span>
+                                  </div>
+                                </div>     
+                                <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Next Service Date:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trailers.nextServicedate}}</span>
+                                  </div>
+                                </div>     
+                                <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Comments:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trailers.comments}}</span>
+                                  </div>
+                                </div>         
                           </div>
                       </div>
                       </div>

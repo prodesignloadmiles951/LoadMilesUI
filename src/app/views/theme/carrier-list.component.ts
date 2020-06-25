@@ -32,7 +32,7 @@ viewData(carrier) {
     this.EditMode = false;
     this.carriers = new CarrierFilters();
     this.carriers = carrier;
-    this.selectedCarrier = carrier.plate;
+    this.selectedCarrier = carrier.companyname;
 }
     getData() {
     this._carrierservice.getCarrierData().subscribe(data => {
@@ -45,15 +45,17 @@ editData(carrier) {
     this.carriers = new CarrierFilters();
     this.carriers = carrier;
     this.selectedCarrier = carrier.companyname;
+
+}
+
+editCarriers(carrier) {
+    this._carrierservice.EditCarrier(carrier).subscribe(response => {
+        this._toaster.success("Carrier successfully updated", "Success");
+    }, error => {
+        this._toaster.error("error", "Try Again");
+        });
+        this.EditMode = false;
     }
-    editTrucks(carrier) {
-        this._carrierservice.EditCarrier(carrier).subscribe(response => {
-            this._toaster.success("Carrier successfully updated", "Success");
-        }, error => {
-            this._toaster.error("error", "Try Again");
-            });
-            this.EditMode = false;
-        }
 
     // submit() {
     //     console.log(this.pageFilters);
@@ -61,7 +63,7 @@ editData(carrier) {
     Add() {
         this.router.navigateByUrl('/theme/carrier');
       }
-deleteTrucks(carrier) {
+deleteCarriers(carrier) {
     this._carrierservice.DeleteCarrier(carrier._id).subscribe(data => {
     this._toaster.info("Carrier Data Delete", "Success");
     this.getData();

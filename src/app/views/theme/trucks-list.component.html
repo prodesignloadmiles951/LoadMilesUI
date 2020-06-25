@@ -103,7 +103,7 @@
                           <!-- <div id="viewsection"> -->
                       <div class="row">
                           <div class="col-md-6">
-                              
+                            <h6 style="color:firebrick">Trucks Information</h6>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
                                       <span style="font-size: 12px;"><b>Plate Number:</b></span>
@@ -161,42 +161,315 @@
                                   </div>
                               </div>
                               
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Vin:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.vin}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Gear Type:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.gearType}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>ELD:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.eld}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Fuel Card:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.fuelCard}}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>EZ Pass:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trucks.ezpass}}</span>
+                              </div>
+                            </div>
+
+                      <h6 style="color:firebrick">Safety Information</h6>
+
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>DOT Inspection Expiry Date:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.expiryDate}}</span>
+                                </div>
+                              </div>
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Plates Registered State:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.registerdState}}</span>
+                                </div>
+                              </div>
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Plates Expiration Date:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.platesExpirationdate}}</span>
+                                </div>
+                              </div>
+                              <div class="row" style="text-align: center">
+                                 <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Insurance Expiration Date:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.insuranceexpirationdate}}</span>
+                                </div>
+                              </div>
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Insurance Value:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.insurancevalue1}}</span>
+                                </div>
+                              </div>
+
+                        <h6 style="color:firebrick">Driver Information</h6>
+
+                                <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Driver Name:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trucks.drivername}}</span>
+                                  </div>
+                                </div>
+                                
+                        <h6 style="color:firebrick">Dispatcher Information</h6>
+
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Dispatcher:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.dispatcher}}</span>
+                                </div>
+                              </div>
+
+                        <h6 style="color:firebrick">Trailer Information</h6>
+
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Trailer Type:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.trailertype}}</span>
+                                </div>
+                              </div>
+
                           </div>
                           <div class="col-md-6">
-                              
+                            
+                            <h6 style="color:firebrick">Maintanance Records</h6>
+
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Vin:</b></span>
+                                      <span style="font-size: 12px;"><b>Category:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.vin}}</span>
+                                      <span style="font-size: 12px;">{{trucks.category}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Gear Type:</b></span>
+                                      <span style="font-size: 12px;"><b>Description:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.gearType}}</span>
+                                      <span style="font-size: 12px;">{{trucks.description}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>ELD:</b></span>
+                                      <span style="font-size: 12px;"><b>Start Date:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.eld}}</span>
+                                      <span style="font-size: 12px;">{{trucks.startdate}}</span>
+                                  </div>
+                              </div>
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Starting Mileage:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trucks.startingmileage1}}</span>
+                                    </div>
+                                </div>
+                                <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Number of Miles:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trucks.noofmiles}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Next Service Miles:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.nextservicemiles}}</span>
+                                </div>
+                            </div>
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Serviced From:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.servicedfrom}}</span>
+                                </div>
+                                </div>
+                                  <div class="row" style="text-align: center">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <span style="font-size: 12px;"><b>Last Service Date:</b></span>
+                                    </div>
+                                    <div class="col-md-5" style="text-align: left">
+                                        <span style="font-size: 12px;">{{trucks.lastServicedate}}</span>
+                                    </div>
+                                </div>
+                                <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Fuel Card:</b></span>
+                                      <span style="font-size: 12px;"><b>Next Service Date</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.fuelCard}}</span>
+                                      <span style="font-size: 12px;">{{trucks.nextServicedate}}</span>
                                   </div>
                               </div>
-                              
+                                <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Comments</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trucks.comments}}</span>
+                                  </div>
+                              </div>
+                              <h6 style="color:firebrick">Ownership Information</h6>
+
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Company Owned:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.comapnyOwned}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Price:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.price}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Start Date:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.purchaseDate}}</span>
+                                </div>
+                            </div>
+                              <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Operation Date:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trucks.operationDate}}</span>
+                                  </div>
+                              </div>
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Financer:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.financer}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Installment:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trucks.installment1}}</span>
+                              </div>
+                          </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Installment Due Date:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trucks.installmentDuedate1}}</span>
+                              </div>
+                              </div>
+                                <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Dealer:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 12px;">{{trucks.dealer}}</span>
+                                  </div>
+                              </div>
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Leased:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.leassed}}</span>
+                                </div>
+                            </div>
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Leased from:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{trucks.leasedFrom}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Lease Start:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trucks.leaaseStart}}</span>
+                              </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                              <div class="col-md-6" style="text-align: left">
+                                  <span style="font-size: 12px;"><b>Lease Expiry Date:</b></span>
+                              </div>
+                              <div class="col-md-5" style="text-align: left">
+                                  <span style="font-size: 12px;">{{trucks.leaseExpirydate}}</span>
+                              </div>
+                           </div>
+                           <div class="row" style="text-align: center">
+                            <div class="col-md-6" style="text-align: left">
+                                <span style="font-size: 12px;"><b>Installment:</b></span>
+                            </div>
+                            <div class="col-md-5" style="text-align: left">
+                                <span style="font-size: 12px;">{{trucks.installment2}}</span>
+                            </div>
+                          </div>
                           </div>
                       </div>
                       </div>
@@ -330,7 +603,7 @@
                                       </div>
                       
                                       <div class="form-group row">
-                                        <label  class="col-md-4 col-form-label" for="registerdState">Plates Registered State :</label>
+                                        <label  class="col-md-4 col-form-label" for="registerdState">Plates Registered State:</label>
                                         <div class="col-md-8">
                                            <input type="text" class="form-control" id="registerdState" [(ngModel)]="trucks.registerdState">
                                         </div>
