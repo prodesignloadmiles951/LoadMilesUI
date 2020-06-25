@@ -10,6 +10,7 @@
                   </label>
                   <div class="col-md-8">
                     <input type="text" class="form-control" id="plate" placeholder="Ex: 1234" #plate="ngModel" name="plate" [(ngModel)]="pageFilters.plate" required>
+
                     <div *ngIf="plate.errors && (plate.dirty || plate.touched)" style="font-size: smaller;">
                       <div [hidden]="!plate.errors.required">
                           <span style="color: red;">Plate is required</span>
@@ -172,7 +173,11 @@
                 <div class="form-group row">
                   <label class="col-md-5 col-form-label" for="registerdstate">Plates Registered State:</label>
                   <div class="col-md-7">
+<<<<<<< HEAD
                       <input type="text" class="form-control" id="registerdstate" #registerdState="ngModel" name="registerdState" [(ngModel)]="pageFilters.registerdState">
+=======
+                      <input type="date" class="form-control" id="registerdstate" #registerdState="ngModel" name="registerdState" [(ngModel)]="pageFilters.registerdState">
+>>>>>>> 06d4f976001cc63caa50bc15e96eaec0c18f8618
                   </div>
                 </div>
 
@@ -449,6 +454,21 @@
             
             </div>
           </div>
+<<<<<<< HEAD
+=======
+
+          <div class="card">
+              <div class="card-header">Trailer Information</div>
+              <div class="card-body">  
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="trailertype">Trailer Type:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="trailertype" #trailerType="ngModel" name="trailerType" [(ngModel)]="pageFilters.trailerType">
+                    </div>
+                  </div>
+              </div>
+            </div>
+>>>>>>> 06d4f976001cc63caa50bc15e96eaec0c18f8618
         </div>
       </div>
 

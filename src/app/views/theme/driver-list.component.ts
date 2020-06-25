@@ -40,7 +40,6 @@ export class DriverlistComponent implements OnInit {
       this.drivers = new DriverFilters();
       this.drivers = driver;
       this.selectedDriver = driver.firstname;
-  
     }
 
     submit() {
@@ -56,15 +55,16 @@ export class DriverlistComponent implements OnInit {
         // console.log(this.pageFilters);
        }
 
-    
        getData() {
         this._driverService.getDriversData().subscribe(data => {
           this.data = data;
         });
       }
 
+
       editTrucks(driver) {
         this._driverService.EditDrivers(driver).subscribe(response => {
+  
           this._toaster.success("Driver successfully updated", "Success");
         }, error => {
            this._toaster.error("error", "Try Again");

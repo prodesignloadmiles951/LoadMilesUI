@@ -199,6 +199,7 @@
                           </div>
   
                           <div id="editsection" *ngIf="EditMode">
+<<<<<<< HEAD
                               <div class="row">
                                 <div class="col-sm-6">
                                   <div class="card">
@@ -253,6 +254,8 @@
                                             </div>
                                             </div>
                                     </div>
+=======
+                           
                                   </div>
                         
                                   <div class="card">
@@ -344,8 +347,13 @@
               <div class="modal-footer">
                   <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right"
                       class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
+<<<<<<< HEAD
                       <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
                       class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>  -->
+=======
+                      <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
+                      class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> 
+>>>>>>> 06d4f976001cc63caa50bc15e96eaec0c18f8618
                   <button *ngIf="EditMode" type="reset" (click)="editCompany(company)" style="float: right"
                       class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
                       <img *ngIf="Iseditusrloading"
@@ -356,7 +364,11 @@
       </div><!-- /.modal-dialog -->
   </div>
   
+<<<<<<< HEAD
   <!-- Edit
+=======
+  <!-- Edit-->
+>>>>>>> 06d4f976001cc63caa50bc15e96eaec0c18f8618
   <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-lg" style="max-width: 60%" role="document">
@@ -435,7 +447,7 @@
               </div>
           </div>
       </div>
-  </div> -->
+  </div> 
   
   <!-- Delete Modal
   

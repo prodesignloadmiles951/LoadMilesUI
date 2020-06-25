@@ -598,8 +598,10 @@
           <div class="modal-footer">
               <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right"
                   class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
+
                   <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
                   class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>  -->
+
               <button *ngIf="EditMode==true" type="reset" (click)="editTrucks(trucks)"  style="float: right"
                   class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
                   <img *ngIf="Iseditusrloading"
