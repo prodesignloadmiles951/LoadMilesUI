@@ -66,7 +66,7 @@
                       (click)="editModal.show();edti(user);">Edit</a> |    -->
                       
                       <a style="cursor: pointer;color: #20a8d8;"
-                          (click)="editCompany(truck)">Edit</a>
+                          (click)="viewModal.show();editData(truck)">Edit</a>
 
                       <!-- <a style="cursor: pointer;color: #20a8d8;"
                           (click)="deleteTrucks(truck)">Delete</a> -->
@@ -84,14 +84,14 @@
       </div>
     </div>
   </div>  
-
+ 
   <!--View-->
   <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
+  <div class="modal-dialog modal-lg" style="max-width: 90%" role="document">
       <div class="modal-content">
           <div class="modal-header">
-              <h4 class="modal-title">Manage Trucks - <span class="badge badge-success" >{{selectedTruck}}</span></h4>
+              <h4 class="modal-title">Trucks Informtion - <span class="badge badge-success">{{selectedTruck}}</span></h4>
               <button type="button" class="close" (click)="viewModal.hide()" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
@@ -202,39 +202,395 @@
                       </div>
 
                       <div id="editsection" *ngIf="EditMode==true">
-                          <div class="card">
-                              <div class="card-header">
-                                <strong>Edit</strong>
-                              </div>
-                              <div class="card-body">
-                                  <div class="row">
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="plate">Plate :</label>
-                                              <input type="text" class="form-control" id="plate" [(ngModel)]="trucks.plate">
+                          <div class="row">
+                              <div class="col-sm-6">
+                                <div class="card">
+                                  <div class="card-header">Trucks Information</div>
+                                  <div class="card-body">
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="plate">Plate :</label>
+                                        <div class="col-md-8">
+                                        <input type="text" class="form-control" id="plate" [(ngModel)]="trucks.plate">
+                                      </div>
+                                      </div>
+                       
+                                      <div class="form-group row"> 
+                                        <label  class="col-md-4 col-form-label" for="operationStatus">Operation Status :</label>
+                                        <div class="col-md-8">
+                                        <select class="form-control" id="operationStatus" [(ngModel)]="trucks.operationStatus">
+                                            <option value="0">Select</option>
+                                            <option value="1">Option #1</option>
+                                            <option value="2">Option #2</option>
+                                            <option value="3">Option #3</option>
+                                        </select>
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="startingMileage">Starting Mileage :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="startingMileage" [(ngModel)]="trucks.startingMileage">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="currentMiles">Current Miles :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="currentMiles" [(ngModel)]="trucks.currentMiles">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="vin">VIN :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="vin" [(ngModel)]="trucks.vin">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="color">Color:</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" id="color" [(ngModel)]="trucks.color">
+                                            </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                       <label  class="col-md-4 col-form-label" for="yom">Year of Make :</label>
+                                       <div class="col-md-8">
+                                             <input type="text" class="form-control" id="yom" [(ngModel)]="trucks.yom">
+                                        </div>
+                                        </div>
+                      
+                                        <div class="form-group row">
+                                            <label  class="col-md-4 col-form-label" for="make">Make :</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" id="make" [(ngModel)]="trucks.make">
+                                            </div>
+                                        </div>
+                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="gearType">Gear Type :</label>
+                                        <div class="col-md-8">
+                                        <select class="form-control" id="gearType" [(ngModel)]="trucks.gearType">
+                                              <option value="0">Select</option>
+                                              <option value="1">Option #1</option>
+                                              <option value="2">Option #2</option>
+                                              <option value="3">Option #3</option>
+                                            </select>
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="eld">ELD :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="eld" [(ngModel)]="trucks.eld">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="gps">GPS :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="gps" [(ngModel)]="trucks.gps">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="fuelCard">Fuel Card :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="fuelCard" [(ngModel)]="trucks.fuelCard">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="ezPass">EZ Pass :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="ezPass" [(ngModel)]="trucks.ezPass">
+                                        </div>
+                                      </div>
+                                  
+                                  </div>
+                                </div>
+                      
+                              <div class="card">
+                                  <div class="card-header">Safety Information</div>
+                                  <div class="card-body">
+                                    
+                                      <!-- <div class="form-group">
+                                        <div class="input-group">
+                                          <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
+                                          <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
+                                        </div>
+                                      </div> -->
+                                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="expiryDate">DOT Inspection Expiry Date :</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="expiryDate" [(ngModel)]="trucks.expiryDate">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="registerdState">Plates Registered State :</label>
+                                        <div class="col-md-8">
+                                           <input type="text" class="form-control" id="registerdState" [(ngModel)]="trucks.registerdState">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="platesExpirationdate">Plates Expiration Date :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="platesExpirationdate" [(ngModel)]="trucks.platesExpirationdate">
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group row">
+                                       <label  class="col-md-4 col-form-label" for="insuranceexpirationdate">Insurance Expiration Date :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="insuranceexpirationdate" [(ngModel)]="trucks.insuranceexpirationdate">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="insurancevalue1">Insurance Value :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="insurancevalue1" [(ngModel)]="trucks.insurancevalue1">
+                                        </div>
+                                      </div>
+                                      
+                                  </div>
+                                </div>
+                      
+                                <div class="card">
+                                    <div class="card-header">Driver Information</div>
+                                    <div class="card-body">                
+                                        <div class="form-group row">
+                                            <label  class="col-md-4 col-form-label" for="driverName">Driver Name :</label>
+                                            <div class="col-md-8">  
+                                                <input type="text" class="form-control" id="driverName" [(ngModel)]="trucks.driverName">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header">Dispatch Information</div>
+                                      <div class="card-body">
+                                        
+                                          <!-- <div class="form-group">
+                                            <div class="input-group">
+                                              <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
+                                              <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
+                                            </div>
+                                          </div> -->
+                                          
+                                          <div class="form-group row">
+                                            <label  class="col-md-4 col-form-label" for="dispatcher">Dispatcher :</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" id="dispatcher" [(ngModel)]="trucks.dispatcher">
+                                            </div>
                                           </div>
                                       </div>
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="dba">Make :</label>
-                                              <input type="text" class="form-control" id="make" [(ngModel)]="trucks.make">
+                                      <div class="card-header">Trailer Information</div>
+                                    <div class="card-body">  
+                                        <div class="form-group row">
+                                            <label  class="col-md-4 col-form-label" for="trailertype">Trailer Type :</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" id="trailertype" [(ngModel)]="trucks.trailertype">
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <div class="card-header">Maintanance Records</div>
+                                    <div class="card-body">  
+                                        <div class="form-group row">
+                                          <label class="col-md-4 col-form-label" for="Category">Category :</label>
+                                          <div class="col-md-8">
+                                            <select class="form-control" id="category" name="category" [(ngModel)]="trucks.category">
+                                              <option value="0">Select</option>
+                                              <option value="1">Option #1</option>
+                                              <option value="2">Option #2</option>
+                                              <option value="3">Option #3</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                      
+                                        <div class="form-group row">
+                                          <label class="col-md-4 col-form-label" for="description">Description:</label>
+                                          <div class="col-md-8">
+                                              <input type="text" class="form-control" id="description" name="description" [(ngModel)]="trucks.description">
+                                          </div>
+                                        </div>
+                      
+                                        <div class="form-group row">
+                                          <label class="col-md-4 col-form-label" for="startdate">Start Date :</label>
+                                          <div class="col-md-8">
+                                              <input type="date" class="form-control" id="startdate" name="startdate" [(ngModel)]="trucks.startdate">
+                                          </div>
+                                        </div>
+                        
+                                        <div class="form-group row">
+                                          <label class="col-md-4 col-form-label" for="startingmileage1">Starting Mileage :</label>
+                                          <div class="col-md-8">
+                                            <input type="text" class="form-control" id="startingmileage1" name="startingmileage1" [(ngModel)]="trucks.startingmileage1">
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                          <label class="col-md-4 col-form-label" for="noofmiles">Number of Miles :</label>
+                                          <div class="col-md-8">
+                                            <input type="text" class="form-control" id="noofmiles" name="noofmiles" [(ngModel)]="trucks.noofmiles">
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                          <label class="col-md-4 col-form-label" for="nextservicemiles">Next Service Miles :</label>
+                                          <div class="col-md-8">
+                                            <input type="text" class="form-control" id="nextservicemiles" name="nextservicemiles" [(ngModel)]="trucks.nextservicemiles">
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                          <label class="col-md-4 col-form-label" for="servicedfrom">Serviced From :</label>
+                                          <div class="col-md-8">
+                                            <input type="text" class="form-control" id="servicedfrom" name="servicedfrom" [(ngModel)]="trucks.servicedfrom">
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                          <label class="col-md-4 col-form-label" for="lastServicedate">Last Service Date :</label>
+                                          <div class="col-md-8">
+                                            <input type="date" class="form-control" id="lastServicedate" name="lastServicedate" [(ngModel)]="trucks.lastServicedate">
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                          <label class="col-md-4 col-form-label" for="nextServicedate">Next Service Date :</label>
+                                          <div class="col-md-8">
+                                            <input type="date" class="form-control" id="nextServicedate" name="nextServicedate" [(ngModel)]="trucks.nextServicedate">
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                          <label class="col-md-4 col-form-label" for="comments">Comments :</label>
+                                          <div class="col-md-8">
+                                            <input type="text" class="form-control" id="comments" name="comments" [(ngModel)]="trucks.comments">
+                                          </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                      
+                                <div class="card">
+                                  <div class="card-header">Ownership Information</div>
+                                  <div class="card-body">
+                                    
+                                      <!-- <div class="form-group">
+                                        <div class="input-group">
+                                          <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
+                                          <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
+                                        </div>
+                                      </div> -->
+                                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="companyowned">Company Owned:</label>
+                                        <!-- <div class="col-md-9">
+                                            <input type="text" class="form-control" id="companyowned" #comapnyOwned="ngModel" name="comapnyOwned" [(ngModel)]="pageFilters.comapnyOwned" required>
+                                        </div> -->
+                                        <div class="col-md-8 col-form-label">
+                                            <input class="form-check-label" id="companyowned" type="checkbox" value="true" name="comapnyOwned" [(ngModel)]="trucks.comapnyOwned">
                                           </div>
                                       </div>
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="fedid">Modal :</label>
-                                              <input type="text" class="form-control" id="modal" [(ngModel)]="trucks.modal">
-                                          </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="price">Price:</label>
+                                        <div class="col-md-8">
+                                          <input type="text" class="form-control" id="price" name="price" [(ngModel)]="trucks.price">
+                                        </div>
                                       </div>
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="mc">Year Of Make :</label>
-                                              <input type="text" class="form-control" id="yom" [(ngModel)]="trucks.yom">
-                                          </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="purchasedate">Purchase Date:</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="purchasedate" name="purchaseDate" [(ngModel)]="trucks.purchaseDate">
+                                        </div>
                                       </div>
-                              </div>
-                          </div>
-                          </div>                        
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="operationdate">Operation Date:</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="operationdate" name="operationDate" [(ngModel)]="trucks.operationDate">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="financer">Financer:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="financer" name="financer" [(ngModel)]="trucks.financer">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="installment1">Installment:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="installment1" name="installment1" [(ngModel)]="trucks.installment1">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="installmentduedate1">Installment Due Date:</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="installmentduedate1" name="installmentDuedate1" [(ngModel)]="trucks.installmentDuedate1">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="dealer">Dealer:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="dealer" name="dealer" [(ngModel)]="trucks.dealer">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="leased">Leased:</label>
+                                        <div class="col-md-8 col-form-label">
+                                          <input class="form-check-label" id="leassed" type="checkbox" value="true" name="leassed" [(ngModel)]="trucks.leassed">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="leasedfrom">Leased from:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="leasedfrom" name="leasedFrom" [(ngModel)]="trucks.leasedFrom">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="leasestart">Lease Start:</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="leasestart" name="leaaseStart" [(ngModel)]="trucks.leaaseStart">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="leaseexpirydate">Lease Expiry Date:</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="leaseexpirydate" name="leaseExpirydate" [(ngModel)]="trucks.leaseExpirydate">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="installment2">Installment:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="installment2" name="installment2" [(ngModel)]="trucks.installment2">
+                                        </div>
+                                      </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="installmentduedate2">Installment Due Date:</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="installmentduedate2" name="dispatcher" [(ngModel)]="trucks.dispatcher">
+                                        </div>
+                                      </div>
+                                  
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                  
                        </div>
                   </div>
               </div>
@@ -242,9 +598,9 @@
           <div class="modal-footer">
               <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right"
                   class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
-                  <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
-                  class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> 
-              <button *ngIf="EditMode==true" type="reset" (click)="editCompany(truck)"  style="float: right"
+                  <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
+                  class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>  -->
+              <button *ngIf="EditMode==true" type="reset" (click)="editTrucks(trucks)"  style="float: right"
                   class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
                   <img *ngIf="Iseditusrloading"
                       src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
@@ -253,4 +609,4 @@
       </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
-</div>
+</div> 

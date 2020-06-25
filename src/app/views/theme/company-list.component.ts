@@ -41,6 +41,14 @@ export class CompanylistComponent implements OnInit {
     this.selectedCompany = cmp.companyname;
 
   }
+  editData(cmp) {
+    this.EditMode = true;
+    this.company = new CompanyFilters();
+    this.company = cmp;
+    this.selectedCompany = cmp.companyname;
+
+  }
+
   getData() {
     this._companyservice.getCompanyData().subscribe(data => {
       this.data = data;
@@ -48,11 +56,12 @@ export class CompanylistComponent implements OnInit {
   }
 
   editCompany(cmp) {
-    this._companyservice.EditCompany(cmp._id).subscribe(response => {
-      this._toaster.success("company successfull updated", "Success");
+    this._companyservice.EditCompany(cmp).subscribe(response => {
+      this._toaster.success("company successfully updated", "Success");
     }, error => {
        this._toaster.error("error", "Try Again");
       });
+      this.EditMode = false;
   }
 
   deleteCompany(cmp) {

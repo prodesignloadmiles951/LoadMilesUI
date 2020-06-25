@@ -23,6 +23,7 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { AuthenticationService } from './views/authentication.service';
+import { CompanyService } from './services/company.service';
 import { AuthHeaderService } from './views/authheader.service';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
@@ -89,7 +90,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
   providers: [
     {provide: LocationStrategy,useClass: HashLocationStrategy},
     AuthenticationService,
-    AuthHeaderService
+    AuthHeaderService,CompanyService
    ],
   bootstrap: [ AppComponent ]
 })

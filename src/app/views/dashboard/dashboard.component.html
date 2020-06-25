@@ -106,59 +106,22 @@
                 </thead>
     
                 <tbody>
-                  <tr>
-                    <tr>
-                        <td>1020102</td>
-                        <td>Axp Logistics</td>
-                        <td>D121412</td>
-                        <td>222-333-444</td>
-                        <td>kack@Axpl.com</td>
-                        <td></td>
-                        <td>Dan Grisby</td>
-                        <td></td>
-                        <td>FLR12334</td>
-                        <td style="color: red;">Loaded-Delay</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>1020103</td>
-                        <td>Sam Exp</td>
-                        <td>E123122</td>
-                        <td>222-444-555</td>
-                        <td>kack@Axpl.com</td>
-                        <td></td>
-                        <td>Dan Grisby</td>
-                        <td></td>
-                        <td>FLR12334</td>
-                        <td style="color: red;">Loaded-Delay</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>1020104</td>
-                        <td>Uber</td>
-                        <td>1212111</td>
-                        <td>222-333-4445</td>
-                        <td>kack@Axpl.com</td>
-                        <td></td>
-                        <td>Dan Grisby</td>
-                        <td></td>
-                        <td>FLR12334</td>
-                        <td style="color: red;">Loaded-Delay</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr *ngFor="let load of loadDetails">
+                        <td><a href="javascript:void(0)">{{load.loadno}}</a></td>
+                        <td>{{load.Customer}}</td>
+                        <td>{{load.CustomerLoad}}</td>
+                        <td>{{load.contact}}</td>
+                        <td>{{load.email}}</td>
+                        <td>{{load.Dispatcher}}</td>
+                        <td>{{load.Driver}}</td>
+                        <td>{{load.Driverno}}</td>
+                        <td>{{load.Truck}}</td>
+                        <td style="color: red;">{{load.LoadStatus}}</td>
+                        <td>{{load.PickupLocation}}</td>
+                        <td>{{load.DropOffLocation}}</td>
+                        <td>{{load.Comments}}</td>
                     </tr>
                 </tbody>
-    
-                <!-- <tbody *ngIf="logslist.length==0">
-                  <tr>
-                    <td class="alert alert-warning" style="width:1050px;" align="center" colspan="10"><span>No records available</span></td>
-                  </tr>
-                </tbody> -->
               </table>
             </div>
           </div>

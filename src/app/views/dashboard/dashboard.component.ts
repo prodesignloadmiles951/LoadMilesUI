@@ -17,11 +17,7 @@ export class DashboardComponent implements OnInit {
   selectedCompany: any;
   EditMode: boolean;
  
-//  userData: any = [
-//    {slno: '1', companyname: 'Company', fedid: 'abc123', usdot: 'abc', mc: 'abc', phone: '0123456789', email: 'test@gmail.com'},
-//    {slno: '2', companyname: 'Company', fedid: 'abc123', usdot: 'abc', mc: 'abc', phone: '0123456789', email: 'test@gmail.com'},
-//    {slno: '3', companyname: 'Company', fedid: 'abc123', usdot: 'abc', mc: 'abc', phone: '0123456789', email: 'test@gmail.com'},
-//  ];
+
 
  constructor(
   private router: Router,
@@ -41,6 +37,13 @@ export class DashboardComponent implements OnInit {
     this.selectedCompany = cmp.companyname;
 
   }
+
+   loadDetails: any = [
+   {loadno: '1020102', Customer: 'AXP Logistics', CustomerLoad: 'D121412', contact: '222-333-444', email: 'kack@Axpl.com', Dispatcher: 'DXC Logistics', Driver: 'Dan Grisby', Driverno:'222-589-789', Truck:'FLR12334', LoadStatus: 'Loaded-ontime', PickupLocation:'Florida', DropOffLocation:'NYC', Comments:''},
+   {loadno: '1020103', Customer: 'DXC Logistics', CustomerLoad: 'D131412', contact: '222-666-444', email: 'jack@Axpl.com', Dispatcher: 'XMC Logistics', Driver: 'Dan Smith', Driverno:'222-589-789', Truck:'FLR56984', LoadStatus: 'Loaded-delay', PickupLocation:'NYC', DropOffLocation:'Georgia', Comments:''},
+   {loadno: '1020104', Customer: 'XYZ Logistics', CustomerLoad: 'D121342', contact: '222-333-777', email: 'xyz@Axpl.com', Dispatcher: 'YBK Logistics', Driver: 'Dan Fernandes', Driverno:'222-589-789', Truck:'FLR78514', LoadStatus: 'Arrival-ontime', PickupLocation:'Georgia', DropOffLocation:'Florida', Comments:''},
+   {loadno: '1020105', Customer: 'MYK Logistics', CustomerLoad: 'D455612', contact: '111-333-444', email: 'mycs@Axpl.com', Dispatcher: 'MUD Logistics', Driver: 'George Smith', Driverno:'222-589-789', Truck:'RFD589632', LoadStatus: 'Arrival-delay', PickupLocation:'San Fransisco', DropOffLocation:'NYC', Comments:''}
+ ];
   // getData() {
   //   this._companyservice.getCompanyData().subscribe(data => {
   //     this.data = data;

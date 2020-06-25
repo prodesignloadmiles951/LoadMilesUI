@@ -25,9 +25,9 @@ export class CompanyService {
         return this.http.get(this.companyurl,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
       
-      EditCompany(_id){
+      EditCompany(obj){
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
-        return this.http.put(this.companyurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+        return this.http.put(this.companyurl+"/"+obj._id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
 
       DeleteCompany(_id) {

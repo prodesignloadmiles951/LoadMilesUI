@@ -58,7 +58,7 @@
                 <tr *ngFor="let driver of data; let i=index">
                     <td>{{i + 1}}</td>
                     <td>{{driver.firstname}}</td>
-                    <td>{{driver.companyname}}</td>
+                    <td>{{driver.middlename}}</td>
                     <td>{{driver.ssn}}</td>
                     <td>{{driver.dateofbirth}}</td>
                     <td>{{driver.cellphone}}</td>
@@ -66,16 +66,14 @@
                     <td>{{driver.emergenctcontact}}</td>
                     <td>
                       <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                          (click)="viewModal.show();viewData(truck);">View</a> |
+                          (click)="viewModal.show();viewData(driver);">View</a> |
 
-                      <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                      (click)="editModal.show();edti(driver);">Edit</a>    
                       
-                      <!-- <a style="cursor: pointer;color: #20a8d8;"
-                          (click)="deleteDrivers(driver)">delete</a> -->
+                      <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
+                      (click)="viewModal.show();editData(driver);">Edit</a>
 
                       <!-- <a style="cursor: pointer;color: #20a8d8;"
-                          (click)="deleteTrucks(truck)">Delete</a> -->
+                          (click)="deleteDriver(driver)">delete</a> -->
                   </td>
                 </tr>
             </tbody>
@@ -93,77 +91,77 @@
 
   <!--View-->
   <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h4 class="modal-title">Manage Trucks - <span class="badge badge-success" >{{selectedTruck}}</span></h4>
-              <button type="button" class="close" (click)="viewModal.hide()" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <div class="modal-body">
-              <div class="container">
-                  <div class="animated fadeIn">
-                      <div id="viewsection" *ngIf="EditMode==false">
-                          <!-- <div id="viewsection"> -->
-                      <div class="row">
-                          <div class="col-md-6">
-                              
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" style="max-width: 90%" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Manage Driver - <span class="badge badge-success" >{{selectedDriver}}</span></h4>
+                  <button type="button" class="close" (click)="viewModal.hide()" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <div class="container">
+                      <div class="animated fadeIn">
+                          <div id="viewsection" *ngIf="EditMode==false">
+                              <!-- <div id="viewsection"> -->
+                          <div class="row">
+                              <div class="col-md-6">
+                                  
+                                  <div class="row" style="text-align: center">
+                                      <div class="col-md-6" style="text-align: left">
+                                          <span style="font-size: 12px;"><b>First Name:</b></span>
+                                      </div>
+                                      <div class="col-md-5" style="text-align: left">
+                                          <span style="font-size: 14px;">{{drivers.firstname}}</span>
+                                      </div>
+                                  </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Plate Number:</b></span>
+                                      <span style="font-size: 12px;"><b>Middle Name:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.plate}}</span>
+                                      <span style="font-size: 14px;">{{drivers.middlename}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Starting Mileage:</b></span>
+                                      <span style="font-size: 12px;"><b>Last Name:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.startingMileage}}</span>
+                                      <span style="font-size: 14px;">{{drivers.lastname}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Current Miles:</b></span>
+                                      <span style="font-size: 12px;"><b>Dispaly Name:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.currentMiles}}</span>
+                                      <span style="font-size: 14px;">{{drivers.dislpalyname}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Make:</b></span>
+                                      <span style="font-size: 12px;"><b>Date of Birth:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.make}}</span>
+                                      <span style="font-size: 14px;">{{drivers.dateofbirth}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Modal:</b></span>
+                                      <span style="font-size: 12px;"><b>SSN:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.make}}</span>
+                                      <span style="font-size: 14px;">{{drivers.ssn}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Color:</b></span>
+                                      <span style="font-size: 12px;"><b>FEIN:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 14px;">{{trucks.color}}</span>
-                                  </div>
-                              </div>
-                              <div class="row" style="text-align: center">
-                                  <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Year of Make:</b></span>
-                                  </div>
-                                  <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.yom}}</span>
+                                      <span style="font-size: 12px;">{{drivers.fein}}</span>
                                   </div>
                               </div>
                               
@@ -172,37 +170,44 @@
                               
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Vin:</b></span>
+                                      <span style="font-size: 12px;"><b>CDL Number:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.vin}}</span>
+                                      <span style="font-size: 12px;">{{drivers.cdlnumber}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Gear Type:</b></span>
+                                      <span style="font-size: 12px;"><b>CDL State:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.gearType}}</span>
+                                      <span style="font-size: 12px;">{{drivers.cdlstate}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>ELD:</b></span>
+                                      <span style="font-size: 12px;"><b>CDL Expiry Date:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.eld}}</span>
+                                      <span style="font-size: 12px;">{{drivers.cdlexpirytate}}</span>
                                   </div>
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Fuel Card:</b></span>
+                                      <span style="font-size: 12px;"><b>CDL Class:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
-                                      <span style="font-size: 12px;">{{trucks.fuelCard}}</span>
+                                      <span style="font-size: 12px;">{{drivers.cdlclass}}</span>
                                   </div>
                               </div>
-                              
+                              <div class="row" style="text-align: center">
+                                <div class="col-md-6" style="text-align: left">
+                                    <span style="font-size: 12px;"><b>Years Of Experience:</b></span>
+                                </div>
+                                <div class="col-md-5" style="text-align: left">
+                                    <span style="font-size: 12px;">{{drivers.yearsofexperience}}</span>
+                                </div>
+                            </div>
                           </div>
                       </div>
                       </div>
@@ -216,28 +221,122 @@
                                   <div class="row">
                                       <div class="col-md-6">
                                           <div class="form-group">
-                                              <label for="plate">Plate :</label>
-                                              <input type="text" class="form-control" id="plate" [(ngModel)]="trucks.plate">
+                                              <label for="firstname">First Name :</label>
+                                              <input type="text" class="form-control" id="firstname" [(ngModel)]="drivers.firstname">
                                           </div>
                                       </div>
                                       <div class="col-md-6">
                                           <div class="form-group">
-                                              <label for="dba">Make :</label>
-                                              <input type="text" class="form-control" id="make" [(ngModel)]="trucks.make">
+                                              <label for="middlename">Middle Name :</label>
+                                              <input type="text" class="form-control" id="middlename" [(ngModel)]="drivers.middlename">
                                           </div>
                                       </div>
                                       <div class="col-md-6">
                                           <div class="form-group">
-                                              <label for="fedid">Modal :</label>
-                                              <input type="text" class="form-control" id="modal" [(ngModel)]="trucks.modal">
+                                              <label for="lastname">Last Name :</label>
+                                              <input type="text" class="form-control" id="lastname" [(ngModel)]="drivers.lastname">
                                           </div>
                                       </div>
                                       <div class="col-md-6">
                                           <div class="form-group">
-                                              <label for="mc">Year Of Make :</label>
-                                              <input type="text" class="form-control" id="yom" [(ngModel)]="trucks.yom">
+                                              <label for="dateofbirth">Date of Birth :</label>
+                                              <input type="date" class="form-control" id="dateofbirth" [(ngModel)]="drivers.dateofbirth">
                                           </div>
                                       </div>
+                                      <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="ssn">SSN :</label>
+                                            <input type="text" class="form-control" id="ssn" [(ngModel)]="drivers.ssn">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="cdlnumber">CDL Number: :</label>
+                                            <input type="text" class="form-control" id="cdlnumber" [(ngModel)]="drivers.cdlnumber">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="cdlstate">CDL State :</label>
+                                            <input type="text" class="form-control" id="cdlstate" [(ngModel)]="drivers.cdlstate">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="cdlexpirytate">CDL Expiry Date:</label>
+                                            <input type="text" class="form-control" id="cdlexpirytate" [(ngModel)]="drivers.cdlexpirytate">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="col-md-3 col-form-label" for="cdlclass">CDL Class:</label>
+                                        <select class="form-control" id="cdlclass" name="cdlclass" #cdlclass="ngModel" [(ngModel)]="drivers.cdlclass">
+                                        <option value="0">Select</option>
+                                        <option value="1">Option #1</option>
+                                        <option value="2">Option #2</option>
+                                        <option value="3">Option #3</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="yearsofexperience">Years Of Experience :</label>
+                                            <input type="text" class="form-control" id="yearsofexperience" [(ngModel)]="drivers.yearsofexperience">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="statesoperated">States Operated :</label>
+                                            <input type="text" class="form-control" id="statesoperated" [(ngModel)]="drivers.statesoperated">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="safetyawards">Safety Awards :</label>
+                                            <input type="text" class="form-control" id="safetyawards" [(ngModel)]="drivers.safetyawards">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="specialtraining">Special Training :</label>
+                                            <input type="text" class="form-control" id="specialtraining" [(ngModel)]="drivers.specialtraining">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="medicalcardexpiration">Medical card Expiration :</label>
+                                            <input type="text" class="form-control" id="medicalcardexpiration" [(ngModel)]="drivers.medicalcardexpiration">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="preemploymentdrugtest">Pre-Employment Drug Test :</label>
+                                            <input type="text" class="form-control" id="preemploymentdrugtest" [(ngModel)]="drivers.preemploymentdrugtest">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="preemploymentdrugtestresult">Pre-Employment Drug Test Result :</label>
+                                            <div class="form-check form-check-inline mr-1">
+                                                <input class="form-check-input" id="inline-radio1" type="radio" value="positive" checked="checked" name="preemploymentdrugtestresult" #preemploymentdrugtestresult="ngModel" [value]="true" [(ngModel)]="drivers.preemploymentdrugtestresult">
+                                                <label class="form-check-label" for="inline-radio1">positive</label>
+                                              </div>
+                                              <div class="form-check form-check-inline mr-1">
+                                                <input class="form-check-input" id="inline-radio2" type="radio" value="negative" name="preemploymentdrugtestresult" #preemploymentdrugtestresult="ngModel" [value]="false" [(ngModel)]="drivers.preemploymentdrugtestresult">
+                                                <label class="form-check-label" for="inline-radio2">negative</label>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dislpalyname">Dispaly Name :</label>
+                                            <input type="text" class="form-control" id="dislpalyname" [(ngModel)]="drivers.dislpalyname">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dislpalyname">Dispaly Name :</label>
+                                            <input type="text" class="form-control" id="dislpalyname" [(ngModel)]="drivers.dislpalyname">
+                                        </div>
+                                    </div>
                               </div>
                           </div>
                           </div>                        
@@ -248,10 +347,11 @@
           <div class="modal-footer">
               <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right"
                   class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
-                  <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
-                  class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> 
-              <button *ngIf="EditMode==true" type="reset" (click)="editCompany(truck)"  style="float: right"
+                  <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
+                  class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>  -->
+              <button *ngIf="EditMode==true" type="reset" (click)="editDriver(driver)"  style="float: right"
                   class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
+                  
                   <img *ngIf="Iseditusrloading"
                       src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
               </button>

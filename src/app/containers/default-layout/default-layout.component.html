@@ -8,6 +8,12 @@
   <ul class="nav navbar-nav d-md-down-none">
     
   </ul>
+   <div class="row col-md-2"> 
+      <select class="form-control">
+        <option value="" disabled selected hidden>Company name</option>
+        <option *ngFor="let cmp of data" value="0">{{cmp.companyname}}</option>
+      </select>
+  </div>
   <ul class="nav navbar-nav ml-auto">
     
     <li class="nav-item dropdown" dropdown placement="bottom right">

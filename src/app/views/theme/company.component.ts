@@ -31,7 +31,7 @@ export class CompanyComponent implements OnInit {
     this._companyservice.SendForm(this.pageFilters).subscribe(response => {
       this.submitted = true;
       this._toaster.info("Data Submitted","Success");
-      this.router.navigateByUrl("dashboard");
+      this.router.navigateByUrl("/theme/company-list");
     },error=>{
       this.submitted=false;
       this._toaster.error("Submit Agian","Faild");

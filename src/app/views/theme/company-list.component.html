@@ -64,7 +64,7 @@
                                 (click)="viewModal.show();viewData(cmp);">View</a> |
       
                             <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                            (click)="editModal.show();edti(user);">Edit</a>    
+                            (click)="viewModal.show();editData(cmp);">Edit</a>    
                                                     
                             <!-- <a style="cursor: pointer;color: #20a8d8;"
                                 (click)="deleteCompany(cmp)">Delete</a> -->
@@ -85,7 +85,7 @@
   
   <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
       aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
+      <div class="modal-dialog modal-lg" style="max-width: 90%" role="document">
           <div class="modal-content">
               <div class="modal-header">
                   <h4 class="modal-title">Manage Company - <span class="badge badge-success" >{{selectedCompany}}</span></h4>
@@ -198,58 +198,145 @@
                           </div>
                           </div>
   
-                          <div id="editsection" *ngIf="EditMode==true">
-                              <div class="card">
-                                  <div class="card-header">
-                                    <strong>Edit</strong>
+                          <div id="editsection" *ngIf="EditMode">
+                              <div class="row">
+                                <div class="col-sm-6">
+                                  <div class="card">
+                                    <div class="card-header">Company Information</div>
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                <label  class="col-md-4 col-form-label" for="companyname">Company Name :</label>
+                                                <div class="col-md-8">
+                                                <input type="text" class="form-control" id="companyname" [(ngModel)]="company.companyname">
+                                            </div>
+                                            </div>
+                                            
+                                            <div class="form-group row">
+                                                <label  class="col-md-4 col-form-label" for="dba">DBA :</label>
+                                                <div class="col-md-8">
+                                                <input type="text" class="form-control" id="dba" [(ngModel)]="company.dba">
+                                            </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label  class="col-md-4 col-form-label" for="fedid">FED ID :</label>
+                                                <div class="col-md-8">
+                                                <input type="text" class="form-control" id="fedid" [(ngModel)]="company.fedid">
+                                            </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label  class="col-md-4 col-form-label" for="mc">MC :</label>
+                                                <div class="col-md-8">
+                                                <input type="text" class="form-control" id="mc" [(ngModel)]="company.mc">
+                                            </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label  class="col-md-4 col-form-label" for="iftalicense">IFTA License # :</label>
+                                                <div class="col-md-8">
+                                                <input type="text" class="form-control" id="iftalicense" [(ngModel)]="company.iftalicense">
+                                            </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label  class="col-md-4 col-form-label" for="phone">phone :</label>
+                                                <div class="col-md-8">
+                                                <input type="text" class="form-control" id="phone" [(ngModel)]="company.phone">
+                                            </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label  class="col-md-4 col-form-label" for="email">Email :</label>
+                                                <div class="col-md-8">
+                                                <input type="text" class="form-control" id="email" [(ngModel)]="company.email">
+                                            </div>
+                                            </div>
+                                    </div>
                                   </div>
-                                  <div class="card-body">
-                                      <div class="row">
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <label for="companyname">Company Name :</label>
-                                                  <input type="text" class="form-control" id="companyname" [(ngModel)]="company.companyname">
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <label for="dba">DBA :</label>
-                                                  <input type="text" class="form-control" id="dba" [(ngModel)]="company.dba">
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <label for="fedid">FED ID :</label>
-                                                  <input type="text" class="form-control" id="fedid" [(ngModel)]="company.fedid">
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <label for="mc">MC :</label>
-                                                  <input type="text" class="form-control" id="mc" [(ngModel)]="company.mc">
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <label for="iftalicense">IFTA License # :</label>
-                                                  <input type="text" class="form-control" id="iftalicense" [(ngModel)]="company.iftalicense">
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <label for="phone">Phone :</label>
-                                                  <input type="text" class="form-control" id="phone" [(ngModel)]="company.phone">
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <label for="email">Email :</label>
-                                                  <input type="text" class="form-control" id="email" [(ngModel)]="company.email">
-                                              </div>
-                                          </div>
+                        
+                                  <div class="card">
+                                    <div class="card-header">Mailing Address</div>
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label  class="col-md-4 col-form-label" for="address1">Address :</label>
+                                            <div class="col-md-8">
+                                            <input type="text" class="form-control" id="address1" [(ngModel)]="company.address1">
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label  class="col-md-4 col-form-label" for="city">City :</label>
+                                            <div class="col-md-8">
+                                            <input type="text" class="form-control" id="city" [(ngModel)]="company.city">
+                                        </div>
+                                        </div>
+                                            
+                                        <div class="form-group row">
+                                            <label  class="col-md-4 col-form-label" for="state">State :</label>
+                                            <div class="col-md-8">
+                                            <input type="text" class="form-control" id="state" [(ngModel)]="company.state">
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label  class="col-md-4 col-form-label" for="zip">Zip :</label>
+                                            <div class="col-md-8">
+                                            <input type="text" class="form-control" id="zip" [(ngModel)]="company.zip">
+                                        </div>
+                                        </div>
+                                    </div>
                                   </div>
-                              </div>
-                              </div>                        
+                          </div>        
+                          
+                          <div class="col-sm-6">
+                                <div class="card">
+                                    <div class="card-header"><strong>Physical</strong> Address</div>
+                                      <div class="card-body">
+                                          <div class="form-group row">
+                                              <button class="btn btn-outline-secondary btn-lg btn-block" type="button">Copy From Mailing Address</button>
+                                          </div>
+                                          
+                                          <div class="form-group row">
+                                            <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="address1" name="address3" [(ngModel)]="company.address3" required>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="address2" name="address4" [(ngModel)]="company.address4" required>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-md-3 col-form-label" for="city2">City :</label>
+                                            <div class="col-md-9">
+                                              <select class="form-control" type="text" name="city2"  id="city2" [(ngModel)]="company.city2">
+                                                  <option value="0">Select State</option>
+                                                  <option value="0">Select</option>
+                                                      <option value="1">Option #1</option>
+                                                      <option value="2">Option #2</option>
+                                                      <option value="3">Option #3</option>s
+                                                  
+                                                </select>
+                                          </div>
+                                          </div>
+                                          <div class="form-group row">
+                                              <div class="col-6">State:
+                                                  <select class="form-control" id="state2" name="state2" [(ngModel)]="company.state2">
+                                                      <option value="0">Select</option>
+                                                      <option value="1">Option #1</option>
+                                                      <option value="2">Option #2</option>
+                                                      <option value="3">Option #3</option>
+                                                    </select>
+                                              </div>
+                                              <div class="col-6">Zip:
+                                                  <input type="text" class="form-control" id="zip1" placeholder="Ex: 500013" name="zip2" [(ngModel)]="company.zip2" required>
+                                              </div>
+                                          </div>
+                                      </div>
+                            </div>
                            </div>
                       </div>
                   </div>
@@ -257,9 +344,9 @@
               <div class="modal-footer">
                   <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right"
                       class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
-                      <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
-                      class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> 
-                  <button *ngIf="EditMode==true" type="reset" (click)="editCompany(cmp)"  style="float: right"
+                      <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
+                      class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>  -->
+                  <button *ngIf="EditMode" type="reset" (click)="editCompany(company)" style="float: right"
                       class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
                       <img *ngIf="Iseditusrloading"
                           src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
@@ -269,8 +356,8 @@
       </div><!-- /.modal-dialog -->
   </div>
   
-  <!-- Edit-->
-  <!-- <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <!-- Edit
+  <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-lg" style="max-width: 60%" role="document">
           <div class="modal-content">
@@ -350,7 +437,7 @@
       </div>
   </div> -->
   
-  <!-- Delete Modal-->
+  <!-- Delete Modal
   
   <div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
       aria-hidden="true">
@@ -366,7 +453,7 @@
                   <div class="container">
                       <div class="animated fadeIn">
                          
-                          <!-- <div id="editsection" *ngIf="EditMode==true"> -->
+                          <div id="editsection" *ngIf="EditMode==true">
                               <div id="editsection">
                                   <div class="card">
                                       <div class="card-header" style="text-align:center;">
@@ -374,14 +461,14 @@
                                       </div>
                                       <div class="card-body">
                                               
-                                      <!-- <button type="reset" aria-label="Close" (click)="editModal.hide()" style="float: right"
+                                       <button type="reset" aria-label="Close" (click)="editModal.hide()" style="float: right"
                                           class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
                                       
                                       <button type="reset" (click)="EditUser()"  style="float: right"
                                           class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Save 
                                           <img *ngIf="Iseditusrloading"
                                               src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                                      </button>     -->
+                                      </button>     
                                      <div class="form-group-row">
                                           <button type="reset" style="float: left " class="btn btn-sm btn-danger" (click)="delete()"><i class="fa fa-thumbs-up"></i> Yes</button>    
                                           <button type="add" style="float: right" class="btn btn-sm btn-info" (click)="deleteModal.hide()"><i class="fa fa-thumbs-down"></i> No</button>    
@@ -395,8 +482,8 @@
                   </div>
               </div>
               
-          </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-  </div>
+          </div>
+      </div>
+  </div>-->
 </div>
   

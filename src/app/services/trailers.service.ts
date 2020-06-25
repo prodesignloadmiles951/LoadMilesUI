@@ -25,9 +25,9 @@ export class TrailerService {
     return this.http.get(this.trailersurl,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
     
-    EditTrailers(_id) {
+    EditTrailers(obj) {
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    return this.http.put(this.trailersurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+    return this.http.put(this.trailersurl+"/"+obj._id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 
     DeleteTrailers(_id) {

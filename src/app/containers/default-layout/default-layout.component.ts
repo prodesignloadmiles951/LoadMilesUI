@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginUser } from '../../model/loginuser';
 import { AuthenticationService } from '../../views/authentication.service';
 import {salesNavItems} from '../../_nav';
+import { CompanyService } from '../../services/company.service';
 
 
 @Component({
@@ -21,8 +22,10 @@ export class DefaultLayoutComponent implements OnDestroy {
   private router:Router;
   public loginUser: LoginUser;
   public usertype :string;
+  data: any;
   constructor(
     private authService: AuthenticationService,
+    private _companyservice: CompanyService,
     @Inject(DOCUMENT) _document?: any
     
   ) {
@@ -47,6 +50,13 @@ export class DefaultLayoutComponent implements OnDestroy {
          }
       }
     }
+    this.getData();
+  }
+  
+  getData() {
+    this._companyservice.getCompanyData().subscribe(data => {
+      this.data = data;
+    });
   }
 
   ngOnDestroy(): void {
