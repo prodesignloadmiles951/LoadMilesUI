@@ -62,7 +62,7 @@ export class CompanylistComponent implements OnInit {
        this._toaster.error("error", "Try Again");
       });
       this.EditMode = false;
-    
+
   }
 
   deleteCompany(cmp) {

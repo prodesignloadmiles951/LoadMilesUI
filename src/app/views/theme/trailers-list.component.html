@@ -39,7 +39,7 @@
                 <th>S.no</th>
                 <th>Unit Number</th>
                 <th>Trailer Type</th>
-                <th>make</th>
+                <th>Make</th>
                 <th>Color</th>
                 <th>Year</th>
                 <th>Action</th>
@@ -82,7 +82,7 @@
   <!--View-->
   <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
+  <div class="modal-dialog modal-lg" style="max-width: 90%" role="document">
       <div class="modal-content">
           <div class="modal-header">
               <h4 class="modal-title">Manage Trailer - <span class="badge badge-success" >{{selectedTrailer}}</span></h4>
@@ -132,7 +132,7 @@
                               </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
-                                      <span style="font-size: 12px;"><b>Modal:</b></span>
+                                      <span style="font-size: 12px;"><b>Make:</b></span>
                                   </div>
                                   <div class="col-md-5" style="text-align: left">
                                       <span style="font-size: 14px;">{{trailers.make}}</span>
@@ -196,51 +196,397 @@
                       </div>
 
                       <div id="editsection" *ngIf="EditMode==true">
-                          <div class="card">
-                              <div class="card-header">
-                                <strong>Edit</strong>
-                              </div>
-                              <div class="card-body">
-                                  <div class="row">
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="plate">unit Number:</label>
-                                              <input type="text" class="form-control" id="unitNumber" [(ngModel)]="trailers.unitNumber">
+                        <div class="row">
+                            <div class="col-sm-6">
+                              <div class="card">
+                                <div class="card-header">Trailer Information</div>
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="unitNumber">Unit Number :</label>
+                                      <div class="col-md-8">
+                                        <input type="text" class="form-control" id="unitNumber" [(ngModel)]="trailers.unitNumber">
+                                      </div>
+                                    </div>
+                     
+                                    <div class="form-group row"> 
+                                      <label  class="col-md-4 col-form-label" for="trailertype">Trailer Type :</label>
+                                      <div class="col-md-8">
+                                      <select class="form-control" id="trailertype" [(ngModel)]="trailers.trailertype">
+                                          <option value="0">Select</option>
+                                          <option value="1">Option #1</option>
+                                          <option value="2">Option #2</option>
+                                          <option value="3">Option #3</option>
+                                      </select>
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="make">Make :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="make" [(ngModel)]="trailers.make">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="color">Color :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="color" [(ngModel)]="trailers.color">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="year">Year :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="year" [(ngModel)]="trailers.year">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="reefermake">Reefer Make:</label>
+                                          <div class="col-md-8">
+                                              <input type="text" class="form-control" id="reefermake" [(ngModel)]="trailers.reefermake">
+                                          </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                     <label  class="col-md-4 col-form-label" for="reefermodal">Reefer Modal :</label>
+                                     <div class="col-md-8">
+                                           <input type="text" class="form-control" id="reefermodal" [(ngModel)]="trailers.reefermodal">
+                                      </div>
+                                      </div>
+                    
+                                      <div class="form-group row">
+                                          <label  class="col-md-4 col-form-label" for="reefervin">Reefer VIN :</label>
+                                          <div class="col-md-8">
+                                              <input type="text" class="form-control" id="reefervin" [(ngModel)]="trailers.reefervin">
                                           </div>
                                       </div>
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="dba">Trailer Type :</label>
-                                              <!-- <input type="text" class="form-control" id="trailerType" [(ngModel)]="trailers.trailerType"> -->
-                                              <select class="form-control" id="trailertype" [(ngModel)]="trailers.trailerType">
+
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="deducttolls">Deduct Tolls :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="deducttolls" [(ngModel)]="trailers.deducttolls">
+                                        </div>
+                                      </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="deductfuel">Deduct Fuel :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="deductfuel" [(ngModel)]="trailers.deductfuel">
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                    
+                            <div class="card">
+                                <div class="card-header">Safety Information</div>
+                                <div class="card-body">
+                                  
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="inspectionexpirydate">DOT Inspection Expiry Date :</label>
+                                      <div class="col-md-8">
+                                          <input type="date" class="form-control" id="inspectionexpirydate" [(ngModel)]="trailers.inspectionexpirydate">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="registerdstate">Plates Registered State :</label>
+                                      <div class="col-md-8">
+                                         <input type="text" class="form-control" id="registerdstate" [(ngModel)]="trailers.registerdstate">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="platesexpirationdate">Plates Expiration Date :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="platesexpirationdate" [(ngModel)]="trailers.platesexpirationdate">
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                     <label  class="col-md-4 col-form-label" for="insuranceexpirationdate">Insurance Expiration Date :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="insuranceexpirationdate" [(ngModel)]="trailers.insuranceexpirationdate">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label  class="col-md-4 col-form-label" for="insurancevalue">Insurance Value :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="insurancevalue" [(ngModel)]="trailers.insurancevalue">
+                                      </div>
+                                    </div>
+                                    
+                                </div>
+                              </div>
+                    
+                              <div class="card">
+                                  <div class="card-header">Ownership Information</div>
+                                  <div class="card-body">                
+                                      <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="companyowned">Company Owned:</label>
+                                        <div class="col-md-9 col-form-label" name="companyOwned">
+                                            <div class="form-check form-check-inline mr-1">
+                                              <input class="form-check-input" id="inline-radio1" type="radio" value="yes" checked="checked" name="isFilter" required [value]="true" [(ngModel)]="trailers.isFilter">
+                                              <label class="form-check-label" for="inline-radio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mr-1">
+                                              <input class="form-check-input" id="inline-radio2" type="radio" value="no" name="isFilter" required [value]="false" [(ngModel)]="trailers.isFilter">
+                                              <label class="form-check-label" for="inline-radio2">No</label>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="price">Price :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="price" [(ngModel)]="trailers.price">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="purchasedate">Purchase Date :</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="purchasedate" [(ngModel)]="trailers.purchasedate">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="financer">Operation Date :</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="financer" [(ngModel)]="trailers.financer">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="dealer">Dealer :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="dealer" [(ngModel)]="trailers.dealer">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="leased">Leased:</label>
+                                        <div class="col-md-9 col-form-label" name="leased">
+                                            <div class="form-check form-check-inline mr-1">
+                                              <input class="form-check-input" id="inline-radio1" type="radio" value="yes" checked="checked" name="isFilter1" required [value]="true" [(ngModel)]="trailers.isFilter1">
+                                              <label class="form-check-label" for="inline-radio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mr-1">
+                                              <input class="form-check-input" id="inline-radio2" type="radio" value="no" name="isFilter1" required [value]="false" [(ngModel)]="trailers.isFilter1">
+                                              <label class="form-check-label" for="inline-radio2">No</label>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="leasedfrom">Leased from :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="leasedfrom" [(ngModel)]="trailers.leasedfrom">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="leasestart">Lease Start :</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="leasestart" [(ngModel)]="trailers.leasestart">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="leaseexpirydate">Lease Expiry Date :</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="leaseexpirydate" [(ngModel)]="trailers.leaseexpirydate">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="leaseinstallment">Lease Installment :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="leaseinstallment" [(ngModel)]="trailers.leaseinstallment">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="reeferpurchasedate">Reefer Purchase Date :</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="reeferpurchasedate" [(ngModel)]="trailers.reeferpurchasedate">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="reeferPrice">Reefer Price :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="reeferPrice" [(ngModel)]="trailers.reeferPrice">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="installment">Installment :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="installment" [(ngModel)]="trailers.installment">
+                                        </div>
+                                      </div>
+                                  </div>
+                                 
+                                    
+                                    
+                                </div>
+                          </div>
+
+                          <div class="col-sm-6">
+                              <div class="card">
+                                  <div class="card-header">Information</div>
+                                  <div class="card-body">  
+                    
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="trailerSize">Trailer Size:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="trailerSize" name="trailerSize" [(ngModel)]="trailers.trailerSize">
+                                        </div>
+                                      </div>
+                    
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="operatingstatus">Operating Status :</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control" id="state2" name="operatingStatus" [(ngModel)]="trailers.operatingStatus">
                                                 <option value="0">Select</option>
                                                 <option value="1">Option #1</option>
                                                 <option value="2">Option #2</option>
                                                 <option value="3">Option #3</option>
-                                              </select>
-                                          </div>
+                                            </select>
+                                        </div>
                                       </div>
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="fedid">Make :</label>
-                                              <input type="text" class="form-control" id="make" [(ngModel)]="trailers.make">
-                                          </div>
+                      
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="reefermiles">Reefer Miles :</label>
+                                        <div class="col-md-8">
+                                          <input type="text" class="form-control" id="reefermiles" name="reefermiles" [(ngModel)]="trailers.reefermiles">
+                                        </div>
                                       </div>
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="mc">Color :</label>
-                                              <input type="text" class="form-control" id="color" [(ngModel)]="trailers.color">
-                                          </div>
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="reeferhours">Reefer Hours :</label>
+                                        <div class="col-md-8">
+                                          <input type="text" class="form-control" id="reeferhours" name="reeferhours" [(ngModel)]="trailers.reeferhours">
+                                        </div>
                                       </div>
-                                      <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="mc">Year :</label>
-                                            <input type="text" class="form-control" id="year" [(ngModel)]="trailers.year">
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="vin">Vin :</label>
+                                        <div class="col-md-8">
+                                          <input type="text" class="form-control" id="vin" name="vin" [(ngModel)]="trailers.vin">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="registerdstate">Registered State :</label>
+                                        <div class="col-md-8">
+                                          <input type="text" class="form-control" id="registerdstate" name="registerdstate" [(ngModel)]="trailers.registerdstate">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="platenumber">Plate Number :</label>
+                                        <div class="col-md-8">
+                                          <input type="text" class="form-control" id="platenumber" name="platenumber" [(ngModel)]="trailers.platenumber">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="fuelcard">Fuel Card :</label>
+                                        <div class="col-md-8">
+                                          <input type="text" class="form-control" id="fuelcard" name="fuelcard" [(ngModel)]="trailers.fuelcard">
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="fueltype">Fuel Type :</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control" id="fuelType" #fuelType="ngModel" name="fuelType" [(ngModel)]="trailers.fuelType">
+                                                <option value="0">Select</option>
+                                                <option value="1">Option #1</option>
+                                                <option value="2">Option #2</option>
+                                                <option value="3">Option #3</option>
+                                            </select>
+                                        </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="ezpass">Ez Pass :</label>
+                                        <div class="col-md-8">
+                                          <input type="text" class="form-control" id="ezpass" name="ezpass" [(ngModel)]="trailers.ezpass">
+                                        </div>
+                                      </div>
+                                  </div>
+                                </div>
+                    
+                              <div class="card">
+                                <div class="card-header">Maintanance Records</div>
+                                <div class="card-body">
+                                  
+                                    <!-- <div class="form-group">
+                                      <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
+                                        <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
+                                      </div>
+                                    </div> -->
+                                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="category">Category :</label>
+                                      <div class="col-md-8 col-form-label">
+                                        <select class="form-control" id="category" name="category" [(ngModel)]="trailers.category">
+                                            <option value="0">Select</option>
+                                            <option value="1">Option #1</option>
+                                            <option value="2">Option #2</option>
+                                            <option value="3">Option #3</option>
+                                        </select>
                                         </div>
                                     </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="description">Description :</label>
+                                      <div class="col-md-8">
+                                        <input type="text" class="form-control" id="description" name="description" [(ngModel)]="trailers.description">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="statedate">Start Date :</label>
+                                      <div class="col-md-8">
+                                          <input type="date" class="form-control" id="statedate" name="statedate" [(ngModel)]="trailers.statedate">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="startingmileage">Starting Mileage :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="startingmileage" name="startingmileage" [(ngModel)]="trailers.startingmileage">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="numberofmiles">Number of Miles :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="numberofmiles" name="numberofmiles" [(ngModel)]="trailers.numberofmiles">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="nextservicemiles">Next Service Miles :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="nextservicemiles" name="nextservicemiles" [(ngModel)]="trailers.nextservicemiles">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="lastservicedate">Last Service Date :</label>
+                                      <div class="col-md-8">
+                                          <input type="date" class="form-control" id="lastservicedate" name="lastservicedate" [(ngModel)]="trailers.lastservicedate">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="nextservicedate">Next Service Date:</label>
+                                      <div class="col-md-8">
+                                          <input type="date" class="form-control" id="nextservicedate" name="nextservicedate" [(ngModel)]="trailers.nextservicedate">
+                                      </div>
+                                    </div>
+                    
+                                    <div class="form-group row">
+                                      <label class="col-md-4 col-form-label" for="comments">Comments :</label>
+                                      <div class="col-md-8">
+                                          <input type="text" class="form-control" id="comments" name="comments" [(ngModel)]="trailers.comments">
+                                      </div>
+                                    </div>
+                    
+                                    
+                                
+                                </div>
                               </div>
                           </div>
-                          </div>                        
+                      </div>                        
                        </div>
                   </div>
               </div>
@@ -248,8 +594,10 @@
           <div class="modal-footer">
               <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right"
                   class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
-                  <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
-                  class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> 
+                  
+                  <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
+                  class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>  -->
+
               <button *ngIf="EditMode==true" type="reset" (click)="editTrailer(trailers)"  style="float: right"
                   class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
                   <img *ngIf="Iseditusrloading"
@@ -259,4 +607,4 @@
       </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
-</div>
+</div> 

@@ -141,6 +141,7 @@
               </div>
 
               <div class="form-group row">
+
                 <label class="col-md-5 col-form-label" for="registerdstate">Plates Registered State:</label>
                 <div class="col-md-7">
                     <input type="date" class="form-control" id="registerdstate" name="registerdState" #registerdState="ngModel" [(ngModel)]="pageFilters.registerdState">
@@ -229,7 +230,7 @@
                       <input type="text" class="form-control" id="dealer" name="dealer" #dealer="ngModel" [(ngModel)]="pageFilters.dealer">
                   </div>
                 </div>
-  
+   
                 <div class="form-group row">
                   <label class="col-md-5 col-form-label" for="leased">Leased:</label>
                   <div class="col-md-7 col-form-label">
@@ -393,7 +394,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="fueltype">Fuel Type:</label>
                     <div class="col-md-9">
-                    <select class="form-control" id="state2" #fuelType="ngModel" name="fuelType" [(ngModel)]="pageFilters.fuelType">
+                    <select class="form-control" id="fuelType" #fuelType="ngModel" name="fuelType" [(ngModel)]="pageFilters.fuelType">
                         <option value="0">Select</option>
                         <option value="1">Option #1</option>
                         <option value="2">Option #2</option>
@@ -425,7 +426,7 @@
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="category">Category:</label>
                 <div class="col-md-9">
-                <select class="form-control" id="state2" #category="ngModel" name="category" [(ngModel)]="pageFilters.category">
+                <select class="form-control" id="category" #category="ngModel" name="category" [(ngModel)]="pageFilters.category">
                     <option value="0">Select</option>
                     <option value="1">Option #1</option>
                     <option value="2">Option #2</option>

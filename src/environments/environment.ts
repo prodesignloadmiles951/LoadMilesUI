@@ -13,7 +13,11 @@ export const environment = {
   trucksurl: 'http://54.166.101.176:8081/trucksapi/trucks',
   trailersurl: 'http://54.166.101.176:8081/trailersapi/trailers',
   driversurl: 'http://54.166.101.176:8081/driversapi/drivers',
-  getloadsurl: 'http://54.166.101.176:8081/loadsapi/loads'
+
+  getloadsurl: 'http://54.166.101.176:8081/loadsapi/loads',
+
+  carrierurl: 'http://54.166.101.176:8081/carrierapi/carrier'
+
 
   // url:"http://localhost:62585/api/",
   // conurl:"http://localhost:62585/api/Transactions/",

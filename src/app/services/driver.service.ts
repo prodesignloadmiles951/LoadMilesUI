@@ -25,9 +25,10 @@ export class DriversService {
     return this.http.get(this.driversurl,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
     
-    EditDrivers(_id) {
+    EditDrivers(obj) {
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    return this.http.put(this.driversurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+    //return this.http.put(this.driversurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+    return this.http.put(this.driversurl+"/"+obj._id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 
     DeleteDrivers(_id) {

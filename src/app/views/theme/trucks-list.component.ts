@@ -70,3 +70,4 @@ export class TruckslistComponent implements OnInit {
    });
    }
 }
+ 
