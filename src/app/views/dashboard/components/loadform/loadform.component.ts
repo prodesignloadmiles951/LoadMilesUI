@@ -1,0 +1,149 @@
+import { Component, OnInit, ElementRef, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { NewLoadFilters } from '../../../../model/newload';
+import { CreateloadService } from '../../../../services/createload.service'
+import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-loadform',
+  templateUrl: './loadform.component.html',
+  styleUrls: ['./loadform.component.scss']
+})
+export class LoadformComponent implements OnInit {
+  public load: NewLoadFilters
+  newloadfilters: NewLoadFilters;
+  panelOpenState = false;
+  pickupchild = false;
+  dataSource=[];
+  states=[]
+  data: any;
+  drivertypeDetails: any = [];
+  loadstatusDetails: any = [];
+  showsubmit=false;
+  currency
+  loadForm: FormGroup;
+  constructor(
+    private _loadservice: CreateloadService,
+    private _toaster: ToastrService,
+  ) { }
+
+  ngOnInit() {
+    // this.loadForm = this.formBuilder.group({
+            
+    //     });
+    this.newloadfilters=new NewLoadFilters();
+    this.newloadfilters.currency='Select Currency'
+    this.newloadfilters.crossborder="Cross Border"
+    this.newloadfilters.Equiptype="Select Equipment type"
+    this.newloadfilters.sealed="Seal required"
+    this.newloadfilters.hazmat="Hazmat material"
+    // this.newloadfilters.drivertype="Select Driver type"
+    // this.newloadfilters.loadstatus="Select load status"
+    this.drivertypeDetails=[
+      {
+          "ID": 0,
+          "Name": "Solo"
+      },
+      {
+          "ID": 1,
+          "Name": "Team"
+      }
+    ]
+    this.loadstatusDetails=[
+      {
+          "ID": 0,
+          "Name": "Booked"
+      },
+      {
+          "ID": 1,
+          "Name": "Arrival Delay"
+      },
+      {
+          "ID": 2,
+          "Name": "Arrival Ontime"
+      },
+      {
+          "ID": 3,
+          "Name": "Loaded Delay"
+      },
+      {
+          "ID": 4,
+          "Name": "Loaded Ontime"
+      },
+      {
+          "ID": 5,
+          "Name": "In Transit"
+      },
+      {
+          "ID": 6,
+          "Name": "Delivery Delay"
+      },
+      {
+          "ID": 7,
+          "Name": "Delivery Delay"
+      },
+      {
+          "ID": 8,
+          "Name": "Completed"
+      }
+    ]
+    this.getData();
+  }
+
+
+ getData() {
+    this._loadservice.getLoadData().subscribe(data => {
+      for (var i = 0; i < data.length; i++) {
+        if(data[i].drivertype){
+          data[i]['drivType']=1
+        }else{
+          data[i]['drivType']=0
+        }
+        // data[i]['loadstatus']=JSON.parse(data[i]['loadstatus'])
+      }
+      this.dataSource=[]
+      this.dataSource = data;
+      console.log(data)
+    });
+  }
+  submit(){
+    console.log(this.newloadfilters)
+    this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
+          console.log(data)
+        });
+  }
+  submitload(){
+    console.log(this.newloadfilters)
+    this.showsubmit=true
+    this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
+          console.log(data)
+          this.showsubmit=false
+          this._toaster.success("company successfull updated", "Success");
+    }, error => {
+       this._toaster.error("error", "Try Again");
+    });
+  }
+  resetload(){}
+  addpickup(){
+    this.pickupchild= true
+    var element = document.getElementById("pickupform")
+    element.classList.remove('scroll')
+    var itm = document.getElementById("template");
+    var cln = itm.cloneNode(true);
+    document.getElementById("viewContainer").appendChild(cln);
+  }
+  deletepickup(){}
+  adddropoff(){
+    var element = document.getElementById("dropoffform")
+    element.classList.remove('scroll')
+    var itm = document.getElementById("droptemplate");
+    var cln = itm.cloneNode(true);
+    document.getElementById("dropoffContainer").appendChild(cln);
+  }
+  deletedropoff(){}
+   logEvent(eventName) {
+        // this.events.unshift(eventName);
+    }
+
+}
+

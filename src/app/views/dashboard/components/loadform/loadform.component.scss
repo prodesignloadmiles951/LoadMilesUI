@@ -1,0 +1,57 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+ -webkit-appearance: none;
+ margin: 0;
+}
+
+.mat-accordion .card{
+	height: 470px;
+}
+.mat-accordion .card:first-of-type{
+	height: 100% !important;
+}
+#template{
+	margin: 1rem 0 0 0;
+}
+.loadformfooter{
+    margin: 0 0 1rem 0;
+}
+.mat-expansion-panel-header-title{
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #20a8d8;
+}
+.card-footer{
+    background: none;
+    border-width: 0px;;
+}
+.mat-accordion .mat-expansion-panel{
+    margin: 1rem 0;
+    background: rgb(240, 243, 245);
+}
+.pickupcontainer{
+	display: flex; 
+	flex-direction: row;
+	overflow-x: scroll; 
+	padding: 0;
+}
+.dropoffcontainer{
+	display: flex; 
+	flex-direction: row;
+	overflow-x: scroll; 
+	padding: 0;
+}
+.scroll{
+	overflow-x: hidden !important;
+}
+
+.dx-datagrid-headers .dx-datagrid-table .dx-row > td{
+	font-weight: bold !important;
+    color: #03a9f4 !important;
+}
+.disable{
+	pointer-events: none;
+	background: #ccc
+}
+

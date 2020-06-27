@@ -1,0 +1,42 @@
+<h2 class="formheader">DROPOFF FORM</h2>
+<div class="dx-viewport">
+  <div class="grid-container">
+    <dx-data-grid id="gridContainer" [dataSource]="data" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onEditingStart)="logEvent('EditingStart')" (onInitNewRow)="logEvent('InitNewRow')" (onRowInserting)="logEvent('RowInserting')" (onRowInserted)="logEvent('RowInserted')" (onRowUpdating)="logEvent('RowUpdating')" (onRowUpdated)="logEvent('RowUpdated')" (onRowRemoving)="logEvent('RowRemoving')" (onRowRemoved)="logEvent('RowRemoved')">
+      <dxo-paging [enabled]="false"></dxo-paging>
+      <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+      </dxo-editing>
+      <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
+      <!-- <dxi-column dataField="drivertype" caption="Driver Type"></dxi-column> -->
+      <dxi-column dataField="driver" caption="Driver" [width]="100">
+        <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="truck" caption="Truck" [width]="110">
+        <dxo-lookup [dataSource]="truckDetails" displayExpr="Name" valueExpr="ID">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="trailer" caption="Trailer" [width]="110">
+        <dxo-lookup [dataSource]="trailerDetails" displayExpr="Name" valueExpr="ID">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="loadstatus" caption="Load Status" [width]="180">
+        <dxo-lookup [dataSource]="loadstatusDetails" displayExpr="Name" valueExpr="ID">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="pickcompany" caption="Pickup Company"></dxi-column>
+      <dxi-column dataField="contact" caption="Contact Name"></dxi-column>
+      <dxi-column dataField="contnumber" caption="Contact Number"></dxi-column>
+      <dxi-column dataField="address" caption="Address"></dxi-column>
+      <dxi-column dataField="Pickup Date" dataType="date">
+      </dxi-column>
+      <!-- <div *dxTemplate="let element of actionTemplate">
+                
+        <dxo-lookup
+            [dataSource]="drivertypeDetails"
+            displayExpr="Name"
+            valueExpr="ID">
+        </dxo-lookup>
+    </div> -->
+    </dx-data-grid>
+  </div>
+</div>

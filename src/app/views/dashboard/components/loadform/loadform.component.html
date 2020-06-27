@@ -1,0 +1,197 @@
+<form class="form-horizontal" #loadForm="ngForm" novalidate autocomplete="off" >
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">Load Creation Part - I</div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="customer">Customer:
+              <span style="color:red">*</span>
+            </label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="customer" placeholder="Customer name" #customer="ngModel" name="customer" [(ngModel)]="newloadfilters.customer" required>
+              <div *ngIf="customer.errors && (customer.dirty || customer.touched)" style="font-size: smaller;">
+                <div [hidden]="!customer.errors.required">
+                  <span style="color: red;">Customer is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Contact Phone:<span style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="phone" placeholder="Phone number" #phone="ngModel" name="phone" [(ngModel)]="newloadfilters.phone" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="phone.errors && (phone.dirty || phone.touched)" style="font-size: smaller;">
+                <div [hidden]="!phone.errors.required">
+                  <span style="color: red;">Phone is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Contact Email:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" name="email" [(ngModel)]="newloadfilters.email" #email="ngModel" placeholder="Email" autocomplete="off" required>
+              <div *ngIf="email.errors && (email.dirty || email.touched)" style="font-size: smaller;">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Shipper Ref Number:<span style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="srefno" placeholder="Shipper reference number" #srefno="ngModel" name="srefno" [(ngModel)]="newloadfilters.srefno" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="srefno.errors && (srefno.dirty || srefno.touched)" style="font-size: smaller;">
+                <div [hidden]="!srefno.errors.required">
+                  <span style="color: red;">Shipper Reference number is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">Currency:</label>
+            <div class="col-md-8">
+              <select class="form-control" id="currency" name="currency" [(ngModel)]="newloadfilters.currency">
+                <option value="Select Currency" disabled selected hidden>Select Currency</option>
+                <option value="0">GBP</option>
+                <option value="1">USD</option>
+                <option value="2">CAD</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Load price:</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="loadprice" placeholder="Load price" #loadprice="ngModel" name="loadprice" [(ngModel)]="newloadfilters.loadprice" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="loadprice.errors && (loadprice.dirty || loadprice.touched)" style="font-size: smaller;">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Distance:</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="distance" placeholder="Enter distance" #distance="ngModel" name="distance" [(ngModel)]="newloadfilters.distance" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="distance.errors && (distance.dirty || distance.touched)" style="font-size: smaller;">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Dead head:</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="deadhead" placeholder="Enter deadhead distance" #deadhead="ngModel" name="deadhead" [(ngModel)]="newloadfilters.deadhead" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="deadhead.errors && (deadhead.dirty || deadhead.touched)" style="font-size: smaller;">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="crossborder">Cross border :</label>
+            <div class="col-md-8">
+              <select class="form-control" id="crossborder" #crossborder="ngModel" name="crossborder" [(ngModel)]="newloadfilters.crossborder">
+                <option value="Cross Border" disabled selected hidden>Cross border</option>
+                <option value="0">Yes</option>
+                <option value="1">No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">Load Creation Part - II</div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="date">Date :</label>
+            <div class="col-md-8">
+              <input type="date" class="form-control" id="date" #startdate="ngModel" name="date" [(ngModel)]="newloadfilters.date">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="dispatcher">Dispatcher :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="dispatcher" #dispatcher="ngModel" placeholder="Enter dispatcher" name="dispatcher" [(ngModel)]="newloadfilters.dispatcher">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="Equiptype">Equipment type:</label>
+            <div class="col-md-8">
+              <select class="form-control" id="Equiptype" #Equiptype="ngModel" name="Equiptype" [(ngModel)]="newloadfilters.Equiptype">
+                <option value="Select equipment type" disabled selected hidden>Select equipment type</option>
+                <option value="0">Type-I</option>
+                <option value="1">Type-II</option>
+                <option value="2">Type-III</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="eqipsize">Equipment size :</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="eqipsize" #eqipsize="ngModel" placeholder="Equipment size" name="eqipsize" [(ngModel)]="newloadfilters.eqipsize">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="commodity">Commodity :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="commodity" #commodity="ngModel" placeholder="Enter commodity" name="commodity" [(ngModel)]="newloadfilters.commodity">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="weight">Weight :</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="weight" #weight="ngModel" placeholder="Enter weight" name="weight" [(ngModel)]="newloadfilters.weight">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="comments">Comments :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="comments" #comments="ngModel" placeholder="Enter comments" name="comments" [(ngModel)]="newloadfilters.comments">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="sealed">Sealed :</label>
+            <div class="col-md-8">
+              <select class="form-control" id="sealed" #sealed="ngModel" name="sealed" [(ngModel)]="newloadfilters.sealed">
+                <option value="Seal required" disabled selected hidden>Seal required</option>
+                <option value="0">Yes</option>
+                <option value="1">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="hazmat">Hazmat :</label>
+            <div class="col-md-8">
+              <select class="form-control" id="hazmat" #hazmat="ngModel" name="hazmat" [(ngModel)]="newloadfilters.hazmat">
+                <option value="Hazmat material" disabled selected hidden>Hazmat material</option>
+                <option value="0">Yes</option>
+                <option value="1">No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="loadformfooter">
+    <div class="card-footer">
+      <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submitload();loadForm.reset()" [ngClass]="showsubmit?'disable':''"><i class="fa fa-dot-circle-o"></i>
+        <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        Submit</button>&nbsp;&nbsp;
+      <button type="reset" style="float: right" (click)="resetload()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">Notes :</div>
+    <div class="card-body">
+      <div class="form-group row">
+        <div class="col-md-12">
+          <textarea class="form-control" id="notes" #notes="ngModel" name="notes" [(ngModel)]="newloadfilters.notes"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-pickup [data]='dataSource'></app-pickup>
+  <app-dropoff [data]='dataSource'></app-dropoff>
+  
+  <!-- <div id="dropoffContainer"></div> -->
+</form>
+<!--View-->
+

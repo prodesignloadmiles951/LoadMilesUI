@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { ToastrService } from 'ngx-toastr';
 import {Router} from '@angular/router';
+import { CreateloadService } from '../../services/createload.service';
 
 
 @Component({
@@ -23,12 +24,13 @@ export class DashboardComponent implements OnInit {
   private router: Router,
   private _companyservice: CompanyService,
   private _toaster: ToastrService,
+  private _loadservice: CreateloadService,
  ) {
   this.pageFilters = new CompanyFilters();
    //console.log(this.userData);
  }
   ngOnInit(): void {
-    //this.getData();
+    this.getData();
   }
   viewData(cmp) {
     this.EditMode = false;
@@ -44,11 +46,12 @@ export class DashboardComponent implements OnInit {
    {loadno: '1020104', Customer: 'XYZ Logistics', CustomerLoad: 'D121342', contact: '222-333-777', email: 'xyz@Axpl.com', Dispatcher: 'YBK Logistics', Driver: 'Dan Fernandes', Driverno:'222-589-789', Truck:'FLR78514', LoadStatus: 'Arrival-ontime', PickupLocation:'Georgia', DropOffLocation:'Florida', Comments:''},
    {loadno: '1020105', Customer: 'MYK Logistics', CustomerLoad: 'D455612', contact: '111-333-444', email: 'mycs@Axpl.com', Dispatcher: 'MUD Logistics', Driver: 'George Smith', Driverno:'222-589-789', Truck:'RFD589632', LoadStatus: 'Arrival-delay', PickupLocation:'San Fransisco', DropOffLocation:'NYC', Comments:''}
  ];
-  // getData() {
-  //   this._companyservice.getCompanyData().subscribe(data => {
-  //     this.data = data;
-  //   });
-  // }
+  getData() {
+    this._loadservice.getLoadData().subscribe(data => {
+      this.data = data;
+      console.log(data)
+    });
+  }
 
   // editCompany(cmp) {
   //   this._companyservice.EditCompany(cmp._id).subscribe(response => {
@@ -65,7 +68,7 @@ export class DashboardComponent implements OnInit {
   //  });
   //  }
 
-  // Add() {
-  //   this.router.navigateByUrl('/theme/company');
-  // }
+  createLoad() {
+    this.router.navigateByUrl('/dashboard/createload');
+  }
 }
