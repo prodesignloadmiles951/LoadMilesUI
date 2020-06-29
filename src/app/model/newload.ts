@@ -1,0 +1,110 @@
+export class NewLoadFilters {
+    customer: any;
+    phone: number;
+    srefno: any;
+    currency: any;
+    date: any;
+    loadprice: number;
+    dispatcher: any;
+    distance: number;
+    deadhead: number;
+    email: string;
+    currentMiles: number;
+    Equiptype: any;
+    eqipsize: any;
+    commodity: any;
+    weight: number;
+    comments: any;
+    sealed: any;
+    hazmat: any;
+    crossborder: any;
+    notes: any;
+
+    
+
+    // make: string;
+    // modal: string;
+    // color: string;
+    // yom: number;
+    // vin: string;
+    // gearType: any;
+    // eld: string;
+    // gps: string;
+    // fuelCard: any;
+    // ezPass: any;
+    // expiryDate: any;
+    // registerdState: any;
+    // platesExpirationdate: any;
+    // insuranceExpirationdate: any;
+    // insuranceValue1: any;
+    // driverName: string;
+    // comapnyOwned: any;
+    // price: any;
+    // purchaseDate: any;
+    // operationDate: any;
+    // financer: string;
+    // installment1: any;
+    // installmentDuedate1: any;
+    // dealer: string;
+    // leased: any;
+    // leasedFrom: string;
+    // leaaseStart: any;
+    // leaseExpirydate: any;
+    // installment2: number;
+    // installmentDuedate2: any;
+    // dispatcherContact: number;
+    // dispatcherEmail: string;
+    // trailerType: any;
+    // plateNumber: number;
+    // category: any;
+    // description: string;
+    // startingmileage1: number;
+    // noofmiles: number;
+    // nextservicemiles: number;
+    // servicedfrom: any;
+    // lastServicedate: any;
+    // nextServicedate: any;
+}
+
+// export class pickupdetails {
+//     drivertype: any;
+//     driver: any;
+//     truck: any;
+//     trailer: any;
+//     prefno: any;
+//     pickupplan: any;
+//     arrtime: any;
+//     deptime: any;
+//     loadstatus: any;
+//     pickcompany: any;
+//     contact: any;
+//     contnumber: any;
+//     address: any;
+//     dropcompany: any;
+//     dropcontact: any;
+//     dropcontnumber: any;
+//     dropaddress: any;
+//     dropcomments: any;
+//     pickcomments: any;
+// }
+// export class dropoffdetails {
+//     drivertype: any;
+//     driver: any;
+//     truck: any;
+//     trailer: any;
+//     prefno: any;
+//     pickupplan: any;
+//     arrtime: any;
+//     deptime: any;
+//     loadstatus: any;
+//     pickcompany: any;
+//     contact: any;
+//     contnumber: any;
+//     address: any;
+//     dropcompany: any;
+//     dropcontact: any;
+//     dropcontnumber: any;
+//     dropaddress: any;
+//     dropcomments: any;
+//     pickcomments: any;
+// }

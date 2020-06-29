@@ -9,6 +9,9 @@
 
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
+@import "../../node_modules/devextreme/dist/css/dx.common.css";
+@import "../../node_modules/devextreme/dist/css/dx.material.blue.light.css";
+
 
 .forma {
     display: block;
@@ -101,3 +104,19 @@
     
 
   }
+
+  tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
+    background: #d7edff !important;
+}
+
+.dx-scrollable-scroll {
+    height: 20px !important;
+}
+
+.dx-scrollable-scroll-content {
+    background-color: #b3cfe7 !important;
+}
+
+.dx-scrollbar-horizontal.dx-scrollbar-hoverable {
+    height: 10px !important;
+}
