@@ -20,6 +20,7 @@ export class CompanyFilters {
    city2: string;
    state2: string;
    zip2: any;
+   currency: any;
 
    // constructor() {
    //    this.companyname = new companyname();

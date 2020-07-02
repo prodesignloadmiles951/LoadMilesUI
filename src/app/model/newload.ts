@@ -2,6 +2,7 @@ export class NewLoadFilters {
     customer: any;
     phone: number;
     srefno: any;
+    crefno: any;
     currency: any;
     date: any;
     loadprice: number;

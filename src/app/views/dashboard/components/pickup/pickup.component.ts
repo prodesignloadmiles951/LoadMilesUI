@@ -7,9 +7,10 @@ import { CreateloadService } from '../../../../services/createload.service'
   styleUrls: ['./pickup.component.scss']
 })
 export class PickupComponent implements OnInit {
-  @Input() data;
+  data=[]
   drivertypeDetails=[]
   driverDetails=[]
+  typeDetails=[]
   trailerDetails=[]
   truckDetails=[]
   loadstatusDetails=[]
@@ -61,6 +62,16 @@ export class PickupComponent implements OnInit {
       {
           "ID": 2,
           "Name": "Max"
+      }
+    ]
+    this.typeDetails=[
+      {
+          "ID": 0,
+          "Name": "Driver"
+      },
+      {
+          "ID": 1,
+          "Name": "Carrier"
       }
     ]
     this.trailerDetails=[

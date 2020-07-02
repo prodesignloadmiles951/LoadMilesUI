@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header">Load Creation Part - I</div>
         <div class="card-body">
-          <div class="form-group row">
+          <!-- <div class="form-group row">
             <label class="col-md-4 col-form-label" for="customer">Customer:
               <span style="color:red">*</span>
             </label>
@@ -15,6 +15,21 @@
                   <span style="color: red;">Customer is required</span>
                 </div>
               </div>
+            </div>
+          </div> -->
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">Customer:<span style="color:red">*</span></label>
+            <div class="col-md-5">
+              <select class="form-control" id="customer" name="customer" [(ngModel)]="newloadfilters.customer">
+                <option value="Select customer" disabled selected hidden>Select custumer</option>
+                <option *ngFor="let cmp of companydata" value="0">{{cmp.companyname}}</option>
+              </select>
+            </div>
+            <div class="col-md-3 no-padding" (click)="Addcompany()">
+              <a href="javascript:void(0)" style="text-decoration: none"><small style="margin: 0 0.2rem 0 0">Add New customer</small>
+              <small><i class="fas fa-plus-circle"></i></small>
+              <!-- <small><i class="fas fa-plus"></i></small> -->
+              </a>
             </div>
           </div>
           <div class="form-group row">
@@ -37,6 +52,17 @@
             </div>
           </div>
           <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Cust Ref Number:<span style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="crefno" placeholder="Customer reference number" #crefno="ngModel" name="crefno" [(ngModel)]="newloadfilters.crefno" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="crefno.errors && (crefno.dirty || crefno.touched)" style="font-size: smaller;">
+                <div [hidden]="!crefno.errors.required">
+                  <span style="color: red;">Shipper Reference number is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
             <label class="col-md-4 col-form-label" for="phone">Shipper Ref Number:<span style="color:red">*</span></label>
             <div class="col-md-8">
               <input type="text" class="form-control" id="srefno" placeholder="Shipper reference number" #srefno="ngModel" name="srefno" [(ngModel)]="newloadfilters.srefno" [pattern]="'^[1-9][0-9]*$'" required>
@@ -51,7 +77,7 @@
             <label class="col-md-4 col-form-label">Currency:</label>
             <div class="col-md-8">
               <select class="form-control" id="currency" name="currency" [(ngModel)]="newloadfilters.currency">
-                <option value="Select Currency" disabled selected hidden>Select Currency</option>
+                <option value="Select currency" disabled selected hidden>Select currency</option>
                 <option value="0">GBP</option>
                 <option value="1">USD</option>
                 <option value="2">CAD</option>
@@ -82,16 +108,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="crossborder">Cross border :</label>
-            <div class="col-md-8">
-              <select class="form-control" id="crossborder" #crossborder="ngModel" name="crossborder" [(ngModel)]="newloadfilters.crossborder">
-                <option value="Cross Border" disabled selected hidden>Cross border</option>
-                <option value="0">Yes</option>
-                <option value="1">No</option>
-              </select>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -116,18 +133,25 @@
             <div class="col-md-8">
               <select class="form-control" id="Equiptype" #Equiptype="ngModel" name="Equiptype" [(ngModel)]="newloadfilters.Equiptype">
                 <option value="Select equipment type" disabled selected hidden>Select equipment type</option>
-                <option value="0">Type-I</option>
-                <option value="1">Type-II</option>
-                <option value="2">Type-III</option>
+                <option value="0">Dry Van</option>
+                <option value="1">Reefer</option>
+                <option value="2">Flatbed</option>
+                <option value="2">Stepdeck</option>
+                <option value="2">Special</option>
               </select>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="eqipsize">Equipment size :</label>
+            <label class="col-md-4 col-form-label" for="crossborder">Cross border :</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="eqipsize" #eqipsize="ngModel" placeholder="Equipment size" name="eqipsize" [(ngModel)]="newloadfilters.eqipsize">
+              <select class="form-control" id="crossborder" #crossborder="ngModel" name="crossborder" [(ngModel)]="newloadfilters.crossborder">
+                <option value="Cross border" disabled selected hidden>Cross border</option>
+                <option value="0">Yes</option>
+                <option value="1">No</option>
+              </select>
             </div>
           </div>
+          
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="commodity">Commodity :</label>
             <div class="col-md-8">
@@ -188,10 +212,9 @@
       </div>
     </div>
   </div>
-  <app-pickup [data]='dataSource'></app-pickup>
-  <app-dropoff [data]='dataSource'></app-dropoff>
+  <app-pickup></app-pickup>
+  <app-dropoff></app-dropoff>
   
   <!-- <div id="dropoffContainer"></div> -->
 </form>
 <!--View-->
-

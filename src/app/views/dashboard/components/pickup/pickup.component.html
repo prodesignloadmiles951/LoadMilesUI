@@ -7,7 +7,11 @@
       </dxo-editing>
       <dxo-selection mode="single"></dxo-selection>
       <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
-      <!-- <dxi-column dataField="drivertype" caption="Driver Type"></dxi-column> -->
+      <dxi-column dataField="slno" caption="Sl No."></dxi-column>
+      <dxi-column dataField="type" caption="Type" [width]="110">
+        <dxo-lookup [dataSource]="typeDetails" displayExpr="Name" valueExpr="ID">
+        </dxo-lookup>
+      </dxi-column>
       <dxi-column dataField="driver" caption="Driver" [width]="100">
         <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
@@ -35,14 +39,8 @@
       <!-- <dxi-column dataField="drivertype" caption="Driver Type" cellTemplate="actionTemplate"> -->
       <dxi-column dataField="PickupDate" dataType="date">
       </dxi-column>
-      <!-- <div *dxTemplate="let element of actionTemplate">
-                
-        <dxo-lookup
-            [dataSource]="drivertypeDetails"
-            displayExpr="Name"
-            valueExpr="ID">
-        </dxo-lookup>
-    </div> -->
+      <!-- <div *dxTemplate="let element of 'noTemplate'">
+      </div> -->
     </dx-data-grid>
   </div>
 </div>

@@ -6,8 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./dropoff.component.scss']
 })
 export class DropoffComponent implements OnInit {
-	@Input() data;
+  data=[]
   drivertypeDetails=[]
+  typeDetails=[]
   driverDetails=[]
   trailerDetails=[]
   truckDetails=[]
@@ -41,6 +42,16 @@ export class DropoffComponent implements OnInit {
       {
           "ID": 2,
           "Name": "Max"
+      }
+    ]
+    this.typeDetails=[
+      {
+          "ID": 0,
+          "Name": "Driver"
+      },
+      {
+          "ID": 1,
+          "Name": "Carrier"
       }
     ]
     this.trailerDetails=[

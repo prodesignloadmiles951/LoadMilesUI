@@ -2,166 +2,161 @@
   <div class="row">
     <div class="col-md-6">
       <div class="card">
-          <div class="card-header"><strong>Company</strong> Data</div> 
-            <div class="card-body">  
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="companyname">Company Name: <span style="color:red">*</span></label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" id="companyname" name="companyname" #companyname="ngModel" [(ngModel)]="pageFilters.companyname" required>
-                    <div *ngIf="companyname.errors && (companyname.dirty || companyname.touched)" style="font-size: smaller;">
-                      <div [hidden]="!companyname.errors.required">
-                         <span style="color: red;">Company Name is required</span>
-                      </div>
-                    </div>
+        <div class="card-header"><strong>Company</strong> Data</div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="companyname">Company Name: <span style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="companyname" name="companyname" #companyname="ngModel" [(ngModel)]="pageFilters.companyname" required>
+              <div *ngIf="companyname.errors && (companyname.dirty || companyname.touched)" style="font-size: smaller;">
+                <div [hidden]="!companyname.errors.required">
+                  <span style="color: red;">Company Name is required</span>
                 </div>
               </div>
-
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="dba">DBA :</label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" id="dba" #dba="ngModel" name="dba" [(ngModel)]="pageFilters.dba">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="dba">DBA :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="dba" #dba="ngModel" name="dba" [(ngModel)]="pageFilters.dba">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">Currency:</label>
+            <div class="col-md-8">
+              <select class="form-control" id="currency" name="currency" [(ngModel)]="pageFilters.currency">
+                <option value="Select currency" disabled selected hidden>Select currency</option>
+                <option value="0">USD</option>
+                <option value="1">CAD</option>
+                <option value="2">MXN</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="fedid">FED ID<span style="color:red;"> *</span> :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="fedid" #fedid="ngModel" name="fedid" [(ngModel)]="pageFilters.fedid" required>
+              <div *ngIf="fedid.errors && (fedid.dirty || fedid.touched)" style="font-size: smaller;">
+                <div [hidden]="!fedid.errors.required">
+                  <span style="color: red;">FED ID is required</span>
                 </div>
               </div>
-              
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="fedid">FED ID<span style="color:red;"> *</span> :</label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" id="fedid" #fedid="ngModel" name="fedid" [(ngModel)]="pageFilters.fedid" required>
-                    <div *ngIf="fedid.errors && (fedid.dirty || fedid.touched)" style="font-size: smaller;">
-                      <div [hidden]="!fedid.errors.required">
-                         <span style="color: red;">FED ID is required</span>
-                      </div>
-                    </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="us-dot">US DOT #<span style="color:red;"> *</span> :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="us-dot" #usdot="ngModel" name="usdot" [(ngModel)]="pageFilters.usdot" required>
+              <div *ngIf="usdot.errors && (usdot.dirty || usdot.touched)" style="font-size: smaller;">
+                <div [hidden]="!usdot.errors.required">
+                  <span style="color: red;">US DOT is required</span>
                 </div>
               </div>
-              
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="us-dot">US DOT #<span style="color:red;"> *</span> :</label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" id="us-dot" #usdot="ngModel" name="usdot" [(ngModel)]="pageFilters.usdot" required>
-                    <div *ngIf="usdot.errors && (usdot.dirty || usdot.touched)" style="font-size: smaller;">
-                      <div [hidden]="!usdot.errors.required">
-                         <span style="color: red;">US DOT is required</span>
-                      </div>
-                    </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="mc">MC<span style="color:red;"> *</span> :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="mc" #mc="ngModel" name="mc" [(ngModel)]="pageFilters.mc" required>
+              <div *ngIf="mc.errors && (mc.dirty || mc.touched)" style="font-size: smaller;">
+                <div [hidden]="!mc.errors.required">
+                  <span style="color: red;">MC is required</span>
                 </div>
               </div>
-              
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="mc">MC<span style="color:red;"> *</span> :</label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" id="mc" #mc="ngModel" name="mc" [(ngModel)]="pageFilters.mc" required>
-                    <div *ngIf="mc.errors && (mc.dirty || mc.touched)" style="font-size: smaller;">
-                      <div [hidden]="!mc.errors.required">
-                         <span style="color: red;">MC is required</span>
-                      </div>
-                    </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="ifta-license">IFTA License # :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="ifta-license" #iftalicense="ngModel" name="iftalicense" [(ngModel)]="pageFilters.iftalicense">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Phone :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" placeholder="Ex: 012 345 6789" id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" [pattern]="'^[1-9][0-9]*$'" minlength="10" maxlength="10" required>
+              <div *ngIf="phone.errors && (phone.dirty || phone.touched)" style="font-size: smaller;">
+                <div [hidden]="!phone.errors.required">
+                  <span style="color: red;">Phone must be in Numbers</span>
+                </div>
+                <div [hidden]="!phone.errors?.pattern">
+                  <span style="color: red;">Enter Numbers only</span>
+                </div>
+                <div *ngIf="phone.errors.maxlength || phone.errors.minlength">
+                  <span style="color: red;">Phone Number must be 10 digits</span>
                 </div>
               </div>
-
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="ifta-license">IFTA License # :</label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" id="ifta-license" #iftalicense="ngModel" name="iftalicense" [(ngModel)]="pageFilters.iftalicense">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="fax">Fax :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="fax" #fax="ngModel" name="fax" [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" required>
+              <div *ngIf="fax.errors && (fax.dirty || fax.touched)" style="font-size: smaller;">
+                <div [hidden]="!fax.errors.required">
+                  <span style="color: red;">Fax must be Number</span>
+                </div>
+                <div [hidden]="!fax.errors?.pattern">
+                  <span style="color: red;">Enter Numbers only</span>
                 </div>
               </div>
-              
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="phone">Phone :</label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" placeholder="Ex: 012 345 6789" id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" [pattern] = "'^[1-9][0-9]*$'" minlength="10" maxlength="10" required>
-                    <div *ngIf="phone.errors && (phone.dirty || phone.touched)" style="font-size: smaller;">
-                      <div [hidden]="!phone.errors.required">
-                         <span style="color: red;">Phone must be in Numbers</span>
-                      </div>
-                      <div [hidden]="!phone.errors?.pattern">
-                        <span style="color: red;">Enter Numbers only</span>
-                     </div>
-                     <div *ngIf="phone.errors.maxlength || phone.errors.minlength">
-                      <span style="color: red;">Phone Number must be 10 digits</span>
-                   </div>
-                    </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="email">Email :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" placeholder="example@info.com" id="email" #email="ngModel" name="email" [(ngModel)]="pageFilters.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+              <div *ngIf="email.errors && (email.dirty || email.touched)" style="font-size: smaller;">
+                <div [hidden]="!email.errors.required">
+                  <span style="color: red;"> Invalid email address</span>
+                </div>
+                <div [hidden]="!email.errors?.pattern">
+                  <span style="color: red;">Enter valid email only</span>
                 </div>
               </div>
-
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="fax">Fax :</label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" id="fax" #fax="ngModel" name="fax" [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" required>
-                    <div *ngIf="fax.errors && (fax.dirty || fax.touched)" style="font-size: smaller;">
-                      <div [hidden]="!fax.errors.required">
-                         <span style="color: red;">Fax must be Number</span>
-                      </div>
-                      <div [hidden]="!fax.errors?.pattern">
-                        <span style="color: red;">Enter Numbers only</span>
-                     </div>
-                    </div>
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="email">Email :</label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" placeholder="example@info.com" id="email" #email="ngModel" name="email" [(ngModel)]="pageFilters.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-                    <div *ngIf="email.errors && (email.dirty || email.touched)" style="font-size: smaller;">
-                      <div [hidden]="!email.errors.required">
-                         <span style="color: red;"> Invalid email address</span>
-                      </div>
-                      <div [hidden]="!email.errors?.pattern">
-                        <span style="color: red;">Enter valid email only</span>
-                     </div>
-                    </div>
-                </div>
-              </div> 
+            </div>
           </div>
         </div>
-
-        <div class="card">
-          <div class="card-header"><strong>Mailing</strong> Address</div>
-            <div class="card-body">
-                
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
-                  <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" #address1="ngModel" name="address1" [(ngModel)]="pageFilters.address1" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
-                  <div class="col-md-9">
-                      <input type="text" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.address2" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="city">City :</label>
-                  <div class="col-md-9">
-                    <select class="form-control" id="state" #city="ngModel" name="city" [(ngModel)]="pageFilters.city">
-                        <option value="0">Select</option>
-                        <option value="1">Option #1</option>
-                        <option value="2">Option #2</option>
-                        <option value="3">Option #3</option>
-                      </select>
-                </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-6">State:
-                        <select class="form-control" id="state" #state="ngModel" name="state" [(ngModel)]="pageFilters.state">
-                            <option value="0">Select</option>
-                            <option value="1">Option #1</option>
-                            <option value="2">Option #2</option>
-                            <option value="3">Option #3</option>
-                          </select>
-                    </div>
-                    <div class="col-6">Zip:
-                        <input type="text" class="form-control" id="zip1" placeholder="Ex: 500013" #zip="ngModel" name="zip" [(ngModel)]="pageFilters.zip" required>
-                    </div>
-                </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><strong>Mailing</strong> Address</div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="address1" #address1="ngModel" name="address1" [(ngModel)]="pageFilters.address1" required>
             </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.address2" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="address2">City :</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.city" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-6">State:
+              <select class="form-control" id="state" #state="ngModel" name="state" [(ngModel)]="pageFilters.state">
+                <option value="0">Select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
+              </select>
+            </div>
+            <div class="col-6">Zip:
+              <input type="text" class="form-control" id="zip1" placeholder="Ex: 500013" #zip="ngModel" name="zip" [(ngModel)]="pageFilters.zip" required>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="col-md-6">
-        <!-- <div class="card">
+    </div>
+    <div class="col-md-6">
+      <!-- <div class="card">
           <div class="card-header"><strong>Logo</strong></div>
           <div class="card-body">
               <div class="form-group row">
@@ -178,108 +173,97 @@
               </div>
           </div>
         </div> -->
-
-        <div class="card">
-            <div class="card-header"><strong>Logo</strong></div>
-            <div class="card-body">
-                <div class="form-group row">
-                <div class="carousel-inner">
-                  <div class="carousel-item active"><img class="d-block w-100" alt="image [800x800]" src="assets/img/brand/Load-miles.PNG" data-holder-rendered="true">
-                  </div>
-                </div>
-                </div>
-            </div>
-          
-            <div class="form-group row">
-                <div class="col-md-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
-                  <input type="file" style="display:none;" #file="ngModel" name="file" [(ngModel)]="pageFilters.file" />
-                  <button class="btn btn-pill btn-primary" type="button" (change)="onSelectFile()">Upload Logo</button>
-                </div>
-                <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
-                    <button class="btn btn-pill btn-danger" type="button">Delete Logo</button>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="col-md-1 col-form-label"></label>
-                <div class="col-md-6 col-form-label">
-                  <div class="form-check checkbox">
-                    <input class="form-check-input" id="check1" type="checkbox" value="">
-                    <label class="form-check-label" for="check1"> Show Mailing Information with Logo</label>
-                  </div>
-                </div>
-                <div class="col-sm-4">Position:
-                  <select class="form-control" id="position" #position="ngModel" name="position" [(ngModel)]="pageFilters.position">
-                      <option value="0">Select</option>
-                      <option value="1">Option #1</option>
-                      <option value="2">Option #2</option>
-                      <option value="3">Option #3</option>
-                    </select>
-                </div>
+      <div class="card">
+        <div class="card-header"><strong>Logo</strong></div>
+        <div class="card-body">
+          <div class="form-group row">
+            <div class="carousel-inner">
+              <div class="carousel-item active"><img class="d-block w-100" alt="image [800x800]" src="assets/img/brand/Load-miles.PNG" data-holder-rendered="true">
+              </div>
             </div>
           </div>
-
-        <div class="card">
-          <div class="card-header"><strong>Physical</strong> Address</div>
-            <div class="card-body">
-                <div class="form-group row">
-                    <button class="btn btn-outline-secondary btn-lg btn-block" type="button">Copy From Mailing Address</button>
-                </div>
-                
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
-                  <div class="col-md-9">
-                      <input type="text" class="form-control" id="address1" #address3="ngModel" name="address3" [(ngModel)]="pageFilters.address3" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
-                  <div class="col-md-9">
-                      <input type="text" class="form-control" id="address2" #address4="ngModel" name="address4" [(ngModel)]="pageFilters.address4" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="city2">City :</label>
-                  <div class="col-md-9">
-                    <select class="form-control" type="text" name="city2"  id="city2" #city2="ngModel" [(ngModel)]="pageFilters.city2">
-                        <option value="0">Select State</option>
-                        <option value="0">Select</option>
-                            <option value="1">Option #1</option>
-                            <option value="2">Option #2</option>
-                            <option value="3">Option #3</option>s
-                        
-                      </select>
-                </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-6">State:
-                        <select class="form-control" id="state2" name="state2" #state2="ngModel" [(ngModel)]="pageFilters.state2">
-                            <option value="0">Select</option>
-                            <option value="1">Option #1</option>
-                            <option value="2">Option #2</option>
-                            <option value="3">Option #3</option>
-                          </select>
-                    </div>
-                    <div class="col-6">Zip:
-                        <input type="text" class="form-control" id="zip1" placeholder="Ex: 500013" name="zip2" #zip2="ngModel" [(ngModel)]="pageFilters.zip2" required>
-                    </div>
-                </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+            <input type="file" style="display:none;" #file="ngModel" name="file" [(ngModel)]="pageFilters.file" />
+            <button class="btn btn-pill btn-primary" type="button" (change)="onSelectFile()">Upload Logo</button>
+          </div>
+          <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+            <button class="btn btn-pill btn-danger" type="button">Delete Logo</button>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-1 col-form-label"></label>
+          <div class="col-md-6 col-form-label">
+            <div class="form-check checkbox">
+              <input class="form-check-input" id="check1" type="checkbox" value="">
+              <label class="form-check-label" for="check1"> Show Mailing Information with Logo</label>
             </div>
-            <div class="card-footer">
-                <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
-                  <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" 
-                  />
-                  Submit</button>&nbsp;&nbsp;
-                <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-            </div>
+          </div>
+          <div class="col-sm-4">Position:
+            <select class="form-control" id="position" #position="ngModel" name="position" [(ngModel)]="pageFilters.position">
+              <option value="0">Select</option>
+              <option value="1">Option #1</option>
+              <option value="2">Option #2</option>
+              <option value="3">Option #3</option>
+            </select>
+          </div>
         </div>
       </div>
+      <div class="card">
+        <div class="card-header"><strong>Physical</strong> Address</div>
+        <div class="card-body">
+          <div class="form-group row">
+            <button class="btn btn-outline-secondary btn-lg btn-block" type="button">Copy From Mailing Address</button>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="address1" #address3="ngModel" name="address3" [(ngModel)]="pageFilters.address3" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="address2" #address4="ngModel" name="address4" [(ngModel)]="pageFilters.address4" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="city2">City :</label>
+            <div class="col-md-9">
+              <select class="form-control" type="text" name="city2" id="city2" #city2="ngModel" [(ngModel)]="pageFilters.city2">
+                <option value="0">Select State</option>
+                <option value="0">Select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>s
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-6">State:
+              <select class="form-control" id="state2" name="state2" #state2="ngModel" [(ngModel)]="pageFilters.state2">
+                <option value="0">Select</option>
+                <option value="1">Option #1</option>
+                <option value="2">Option #2</option>
+                <option value="3">Option #3</option>
+              </select>
+            </div>
+            <div class="col-6">Zip:
+              <input type="text" class="form-control" id="zip1" placeholder="Ex: 500013" name="zip2" #zip2="ngModel" [(ngModel)]="pageFilters.zip2" required>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+            <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            Submit</button>&nbsp;&nbsp;
+          <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+        </div>
+      </div>
+    </div>
   </div>
 </form>
-
-
-   
-
 <!--View-->
 <!-- <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
@@ -425,7 +409,6 @@
         </div>
     </div>
 </div> -->
-
 <!-- Edit-->
 <!-- <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 aria-hidden="true">
@@ -505,8 +488,3 @@ aria-hidden="true">
     </div>
 </div>
 </div> -->
-
-
-
-  
-  

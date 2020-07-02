@@ -3,6 +3,8 @@ import { NewLoadFilters } from '../../../../model/newload';
 import { CreateloadService } from '../../../../services/createload.service'
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CompanyService } from '../../../../services/company.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-loadform',
@@ -20,10 +22,13 @@ export class LoadformComponent implements OnInit {
   drivertypeDetails: any = [];
   loadstatusDetails: any = [];
   showsubmit=false;
+  companydata=[];
   currency
   loadForm: FormGroup;
   constructor(
     private _loadservice: CreateloadService,
+    private _companyservice: CompanyService,
+    private router: Router,
     private _toaster: ToastrService,
   ) { }
 
@@ -32,11 +37,12 @@ export class LoadformComponent implements OnInit {
             
     //     });
     this.newloadfilters=new NewLoadFilters();
-    this.newloadfilters.currency='Select Currency'
-    this.newloadfilters.crossborder="Cross Border"
-    this.newloadfilters.Equiptype="Select Equipment type"
+    this.newloadfilters.currency='Select currency'
+    this.newloadfilters.crossborder="Cross border"
+    this.newloadfilters.Equiptype="Select equipment type"
     this.newloadfilters.sealed="Seal required"
     this.newloadfilters.hazmat="Hazmat material"
+    this.newloadfilters.customer="Select customer"
     // this.newloadfilters.drivertype="Select Driver type"
     // this.newloadfilters.loadstatus="Select load status"
     this.drivertypeDetails=[
@@ -88,6 +94,7 @@ export class LoadformComponent implements OnInit {
       }
     ]
     this.getData();
+    this.getCompanyData();
   }
 
 
@@ -123,6 +130,12 @@ export class LoadformComponent implements OnInit {
        this._toaster.error("error", "Try Again");
     });
   }
+  getCompanyData() {
+    this._companyservice.getCompanyData().subscribe(data => {
+      this.data = this.companydata;
+      console.log(this.companydata)
+    });
+  }
   resetload(){}
   addpickup(){
     this.pickupchild= true
@@ -144,6 +157,10 @@ export class LoadformComponent implements OnInit {
    logEvent(eventName) {
         // this.events.unshift(eventName);
     }
+Addcompany(){
+  this.router.navigateByUrl('/theme/customers');
+}
+    
 
 }
 

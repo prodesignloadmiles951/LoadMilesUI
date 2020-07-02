@@ -7,6 +7,11 @@
       </dxo-editing>
       <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
       <!-- <dxi-column dataField="drivertype" caption="Driver Type"></dxi-column> -->
+      <dxi-column dataField="slno" caption="Sl No."></dxi-column>
+      <dxi-column dataField="type" caption="Type" [width]="110">
+        <dxo-lookup [dataSource]="typeDetails" displayExpr="Name" valueExpr="ID">
+        </dxo-lookup>
+      </dxi-column>
       <dxi-column dataField="driver" caption="Driver" [width]="100">
         <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>

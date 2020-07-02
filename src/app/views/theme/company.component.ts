@@ -15,6 +15,7 @@ export class CompanyComponent implements OnInit {
   Companylistdata = new Array<CompanyFilters>();
   submitted: boolean;
   data: any;
+  currency
   model: any = {};
 
   constructor(private _toaster: ToastrService,
@@ -24,6 +25,8 @@ export class CompanyComponent implements OnInit {
 
   ngOnInit() {
           this.pageFilters = new CompanyFilters();
+          this.pageFilters.currency='Select currency'
+          
 }
 
   submit() {
