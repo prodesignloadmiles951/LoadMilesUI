@@ -50,4 +50,6 @@ export class TrucksFilters {
     lastServicedate: any;
     nextServicedate: any;
     comments: string;
+    plateexpirydate: any;
+    registerdstate: any;
 }

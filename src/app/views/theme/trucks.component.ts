@@ -26,6 +26,7 @@ export class TrucksComponent implements OnInit {
     ngOnInit() {
         this.getData();
         this.pageFilters = new TrucksFilters();
+        this.pageFilters['geartype']='Select gear'
   }
   viewData(truck) {
     this.EditMode = false;

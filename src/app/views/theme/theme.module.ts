@@ -30,6 +30,8 @@ import { DispatcherlistComponent } from './dispatcher-list.component';
 import { CompanylistComponent } from './company-list.component';
 import { VendorlistComponent } from './vendor-list.component';
 import { FactorlistComponent } from './factor-list.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 @NgModule({
   imports: [
@@ -39,7 +41,8 @@ import { FactorlistComponent } from './factor-list.component';
     ReactiveFormsModule,
     ToastrModule,
     NgSelectModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    MatExpansionModule
   ],
   declarations: [
     CompanyComponent,

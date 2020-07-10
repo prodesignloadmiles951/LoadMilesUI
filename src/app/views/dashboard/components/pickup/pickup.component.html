@@ -1,7 +1,13 @@
 <h2 class="formheader">PICKUP FORM</h2>
 <div class="dx-viewport">
   <div class="grid-container">
-    <dx-data-grid #grid id="gridContainer" [dataSource]="data" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
+    <dx-data-grid #grid id="gridContainer" [dataSource]="data" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)"
+    (onEditingStart)="logEvent($event)"
+    (onInitNewRow)="logEvent($event)"
+    (onRowInserting)="logEvent($event)"
+    (onRowUpdating)="logEvent($event)"
+    (onRowRemoving)="logEvent($event)"
+    >
       <dxo-paging [enabled]="false"></dxo-paging>
       <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
       </dxo-editing>
@@ -12,7 +18,11 @@
         <dxo-lookup [dataSource]="typeDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="driver" caption="Driver" [width]="100">
+      <dxi-column dataField="driver" caption="Driver1" [width]="120" cellTemplate="DriverTemplate">
+        <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID" (change)="onSelect(Name)">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="driver" caption="Driver2" [width]="120">
         <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
@@ -20,11 +30,11 @@
         <dxo-lookup [dataSource]="drivertypeDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column> -->
-      <dxi-column dataField="truck" caption="Truck" [width]="110">
+      <dxi-column dataField="truck" caption="Truck" [width]="120">
         <dxo-lookup [dataSource]="truckDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="trailer" caption="Trailer" [width]="110">
+      <dxi-column dataField="trailer" caption="Trailer" [width]="120">
         <dxo-lookup [dataSource]="trailerDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
@@ -36,11 +46,15 @@
       <dxi-column dataField="contact" caption="Contact Name"></dxi-column>
       <dxi-column dataField="contnumber" caption="Contact Number"></dxi-column>
       <dxi-column dataField="address" caption="Address"></dxi-column>
-      <!-- <dxi-column dataField="drivertype" caption="Driver Type" cellTemplate="actionTemplate"> -->
       <dxi-column dataField="PickupDate" dataType="date">
       </dxi-column>
-      <!-- <div *dxTemplate="let element of 'noTemplate'">
-      </div> -->
+      <div *dxTemplate="let element of 'DriverTemplate'">
+        <!-- {{element.value}} -->
+           <span mat-button #menuTrigger="matMenuTrigger" class="left plate_color dash_color" [matMenuTriggerFor]="actions">{{element.value}}</span>
+           <mat-menu #actions="matMenu">
+               <button mat-menu-item>Add Driver</button>
+           </mat-menu>
+      </div>
     </dx-data-grid>
   </div>
 </div>

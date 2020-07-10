@@ -12,15 +12,19 @@
         <dxo-lookup [dataSource]="typeDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="driver" caption="Driver" [width]="100">
+      <dxi-column dataField="driver" caption="Driver1" [width]="120">
         <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="truck" caption="Truck" [width]="110">
+      <dxi-column dataField="driver" caption="Driver2" [width]="120">
+        <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="truck" caption="Truck" [width]="120">
         <dxo-lookup [dataSource]="truckDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="trailer" caption="Trailer" [width]="110">
+      <dxi-column dataField="trailer" caption="Trailer" [width]="120">
         <dxo-lookup [dataSource]="trailerDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
@@ -28,11 +32,11 @@
         <dxo-lookup [dataSource]="loadstatusDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="pickcompany" caption="Pickup Company"></dxi-column>
+      <dxi-column dataField="dropcompany" caption="Dropoff Company"></dxi-column>
       <dxi-column dataField="contact" caption="Contact Name"></dxi-column>
       <dxi-column dataField="contnumber" caption="Contact Number"></dxi-column>
       <dxi-column dataField="address" caption="Address"></dxi-column>
-      <dxi-column dataField="Pickup Date" dataType="date">
+      <dxi-column dataField="Dropoff Date" caption="Dropoff date" dataType="date">
       </dxi-column>
       <!-- <div *dxTemplate="let element of actionTemplate">
                 

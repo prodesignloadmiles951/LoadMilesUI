@@ -39,6 +39,14 @@ export class PickupComponent implements OnInit {
     });
   }
 
+  logEvent(event){
+    console.log(event)
+  }
+
+  onSelect(e){
+    console.log(e)
+  }
+
   ngOnInit() {
   	this.drivertypeDetails=[
       {
@@ -122,22 +130,6 @@ export class PickupComponent implements OnInit {
       {
           "ID": 4,
           "Name": "Loaded Ontime"
-      },
-      {
-          "ID": 5,
-          "Name": "In Transit"
-      },
-      {
-          "ID": 6,
-          "Name": "Delivery Delay"
-      },
-      {
-          "ID": 7,
-          "Name": "Delivery Delay"
-      },
-      {
-          "ID": 8,
-          "Name": "Completed"
       }
     ]
   }

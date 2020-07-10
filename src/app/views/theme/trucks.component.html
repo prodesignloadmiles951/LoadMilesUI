@@ -1,249 +1,440 @@
 <form class="form-horizontal" #trucksForm="ngForm" novalidate autocomplete="off">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-header">Trucks Information</div>
-            <div class="card-body">
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="plate">Plate:
-                    <span style="color:red">*</span>
-                  </label>
-                  <div class="col-md-8">
-                    <input type="text" class="form-control" id="plate" placeholder="Ex: 1234" #plate="ngModel" name="plate" [(ngModel)]="pageFilters.plate" required>
-
-                    <div *ngIf="plate.errors && (plate.dirty || plate.touched)" style="font-size: smaller;">
-                      <div [hidden]="!plate.errors.required">
-                          <span style="color: red;">Plate is required</span>
-                      </div>
-                      <!-- <div [hidden]="!plate.errors?.pattern">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">Trucks Information</div>
+        <div style="display: flex;">
+          <div class="card-body col-sm-6">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="plate">Plate:
+                <span style="color:red">*</span>
+              </label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="plate" placeholder="Ex: 1234" #plate="ngModel" name="plate" [(ngModel)]="pageFilters.plate" required>
+                <div *ngIf="plate.errors && (plate.dirty || plate.touched)" style="font-size: smaller;">
+                  <div [hidden]="!plate.errors.required">
+                    <span style="color: red;">Plate is required</span>
+                  </div>
+                  <!-- <div [hidden]="!plate.errors?.pattern">
                         <span style="color: red;">Enter Numbers only</span>
                      </div> -->
-                    </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="operationstatus">Operation Status:</label>
+              <div class="col-md-8">
+                <select class="form-control" id="operationstatus" #operationStatus="ngModel" name="operationStatus" [(ngModel)]="pageFilters.operationStatus">
+                  <option value="0">Select</option>
+                  <option value="1">Option #1</option>
+                  <option value="2">Option #2</option>
+                  <option value="3">Option #3</option>
+                </select>
+              </div>
+            </div> -->
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="registerdstate">Plates registered State:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" placeholder="Enter plate registered state" id="registerdstate" #registerdstate="ngModel" name="registerdstate" [(ngModel)]="pageFilters.registerdstate" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="plateexpirydate">Plates Expiration Date :</label>
+              <div class="col-md-8">
+                <input type="date" class="form-control" id="plateexpirydate" #plateexpirydate="ngModel" name="plateexpirydate" [ngModel]="pageFilters.plateexpirydate">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="startingmileage">Starting Mileage:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" placeholder="Ex: 12" id="startingmileage" #startingMileage="ngModel" name="startingMileage" [(ngModel)]="pageFilters.startingMileage" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="currentmiles">Current Miles:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="currentmiles" placeholder="Ex: 12" #currentMiles="ngModel" name="currentMiles" [(ngModel)]="pageFilters.currentMiles" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="make">Make: <span style="color:red">*</span></label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="make" placeholder="Enter make details" #make="ngModel" name="make" [(ngModel)]="pageFilters.make" required>
+                <div *ngIf="make.errors && (make.dirty || make.touched)" style="font-size: smaller;">
+                  <div [hidden]="!make.errors.required">
+                    <span style="color: red;">Make is required</span>
                   </div>
                 </div>
- 
-                <div class="form-group row"> 
-                  <label class="col-md-4 col-form-label" for="operationstatus">Operation Status:</label>
-                  <div class="col-md-8">
-                    <select class="form-control" id="operationstatus" #operationStatus="ngModel" name="operationStatus" [(ngModel)]="pageFilters.operationStatus">
-                      <option value="0">Select</option>
-                      <option value="1">Option #1</option>
-                      <option value="2">Option #2</option>
-                      <option value="3">Option #3</option>
-                    </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="modal">Modal: <span style="color:red">*</span></label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="modal" placeholder="Enter modal details" #modal="ngModel" name="modal" [(ngModel)]="pageFilters.modal" required>
+                <div *ngIf="modal.errors && (modal.dirty || modal.touched)" style="font-size: smaller;">
+                  <div [hidden]="!modal.errors.required">
+                    <span style="color: red;">Modal is required</span>
                   </div>
                 </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="startingmileage">Starting Mileage:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" placeholder="Ex: 12" id="startingmileage" #startingMileage="ngModel" name="startingMileage" [(ngModel)]="pageFilters.startingMileage"  required>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="currentmiles">Current Miles:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" id="currentmiles" placeholder="Ex: 12" #currentMiles="ngModel" name="currentMiles" [(ngModel)]="pageFilters.currentMiles" required>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="make">Make: <span style="color:red">*</span></label>
-                  <div class="col-md-8">
-                    <input type="text" class="form-control" id="make" #make="ngModel" name="make" [(ngModel)]="pageFilters.make" required>
-                    <div *ngIf="make.errors && (make.dirty || make.touched)" style="font-size: smaller;">
-                      <div [hidden]="!make.errors.required">
-                          <span style="color: red;">Make is required</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="modal">Modal: <span style="color:red">*</span></label>
-                  <div class="col-md-8">
-                    <input type="text" class="form-control" id="modal" #modal="ngModel" name="modal" [(ngModel)]="pageFilters.modal" required>
-                    <div *ngIf="modal.errors && (modal.dirty || modal.touched)" style="font-size: smaller;">
-                      <div [hidden]="!modal.errors.required">
-                          <span style="color: red;">Modal is required</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="color">Color:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" id="color" #color="ngModel" name="color" [(ngModel)]="pageFilters.color">
-                      <!-- <div *ngIf="color.errors && (color.dirty || color.touched)" style="font-size: smaller;">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="color">Color:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="color" placeholder="Enter color details" #color="ngModel" name="color" [(ngModel)]="pageFilters.color">
+                <!-- <div *ngIf="color.errors && (color.dirty || color.touched)" style="font-size: smaller;">
                         <div [hidden]="!color.errors.required">
                             <span style="color: red;">Color is required</span>
                         </div>
                       </div> -->
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="yom">Year of Make: <span style="color:red">*</span></label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="yom" placeholder="Ex: 2020" name="yom" #yom="ngModel" [(ngModel)]="pageFilters.yom" [pattern]="'^[1-9][0-9]*$'" minlength="4" maxlength="4" required>
+                <div *ngIf="yom.errors && (yom.dirty || yom.touched)" style="font-size: smaller;">
+                  <div [hidden]="!yom.errors.required">
+                    <span style="color: red;">Year is Required</span>
+                  </div>
+                  <div [hidden]="!yom.errors?.pattern">
+                    <span style="color: red;">Enter Numbers only</span>
+                  </div>
+                  <div *ngIf="yom.errors.maxlength || yom.errors.minlength">
+                    <span style="color: red;">Year must be 4 numbers</span>
                   </div>
                 </div>
-
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label" for="yom">Year of Make: <span style="color:red">*</span></label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" id="yom" placeholder="Ex: 2020" name="yom" #yom="ngModel" [(ngModel)]="pageFilters.yom" [pattern] = "'^[1-9][0-9]*$'" minlength="4" maxlength="4" required>
-                        <div *ngIf="yom.errors && (yom.dirty || yom.touched)" style="font-size: smaller;">
-                          <div [hidden]="!yom.errors.required">
-                             <span style="color: red;">Year is Required</span>
-                          </div>
-                          <div [hidden]="!yom.errors?.pattern">
-                            <span style="color: red;">Enter Numbers only</span>
-                         </div>
-                         <div *ngIf="yom.errors.maxlength || yom.errors.minlength">
-                          <span style="color: red;">Year must be 4 numbers</span>
-                       </div>
-                        </div>
-                    </div>
-                  </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="vin">Vin:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" id="vin" #vin="ngModel" name="vin" [(ngModel)]="pageFilters.vin">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="geartype">Gear Type:</label>
-                  <div class="col-md-8">
-                    <select class="form-control" id="geartype" #gearType="ngModel" name="gearType" [(ngModel)]="pageFilters.gearType">
-                      <option value="0">Select</option>
-                      <option value="1">Option #1</option>
-                      <option value="2">Option #2</option>
-                      <option value="3">Option #3</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="eld">ELD:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" id="eld" #eld="ngModel" name="eld" [(ngModel)]="pageFilters.eld">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="gps">GPS:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" id="gps" #gps="ngModel" name="gps" [(ngModel)]="pageFilters.gps">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="fuelcard">Fuel Card:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" id="fuelcard" #fuelCard="ngModel" name="fuelCard" [(ngModel)]="pageFilters.fuelCard">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="ezpass">EZ Pass:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" id="ezpass" #ezPass="ngModel" name="ezPass" [(ngModel)]="pageFilters.ezPass">
-                  </div>
-                </div>
-            
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="vin">Vin:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="vin" placeholder="Enter vin details" #vin="ngModel" name="vin" [(ngModel)]="pageFilters.vin">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="geartype">Gear Type:</label>
+              <div class="col-md-8">
+                <select class="form-control" id="geartype" #gearType="ngModel" name="gearType" [(ngModel)]="pageFilters.gearType">
+                  <option value="Select gear" disabled selected hidden>Select gear</option>
+                  <option value="0">Auto</option>
+                  <option value="1">Manual</option>
+                </select>
+              </div>
             </div>
           </div>
-
-        <div class="card">
-            <div class="card-header">Safety Information</div>
-            <div class="card-body">
-              
-                <!-- <div class="form-group">
+          <div class="card-body col-sm-6">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="eld">ELD:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="eld" placeholder="Enter eld details" #eld="ngModel" name="eld" [(ngModel)]="pageFilters.eld">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="gps">GPS:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="gps" #gps="ngModel" placeholder="Enter gps details" name="gps" [(ngModel)]="pageFilters.gps">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="fuelcard">Fuel Card:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="fuelcard" placeholder="Enter fuelcard details" #fuelCard="ngModel" name="fuelCard" [(ngModel)]="pageFilters.fuelCard">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="ezpass">EZ Pass:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="ezpass" #ezPass="ngModel" placeholder="Enter ezpass details" name="ezPass" [(ngModel)]="pageFilters.ezPass">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="driver">Driver:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" name="driver">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="dispatcher">Dispatcher:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" name="dispatcher">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="truck">Truck:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" name="truck">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="notes">Notes:</label>
+              <div class="col-md-8">
+                <textarea class="form-control" name="notes"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body col-sm-6">
+          <input type="file" name="">
+        </div>
+      </div>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Safety Information
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="card">
+            <div class="card-body col-sm-6">
+              <!-- <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
                     <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
                   </div>
                 </div> -->
-                
-                <div class="form-group row">
-                  <label class="col-md-5 col-form-label" for="expirydate">DOT Inspection Expiry Date:</label>
-                  <div class="col-md-7">
-                      <input type="date" class="form-control" id="expirydate" #expiryDate="ngModel" name="expiryDate" [(ngModel)]="pageFilters.expiryDate">
-                  </div>
+              <div class="form-group row">
+                <label class="col-md-5 col-form-label" for="expirydate">DOT Inspection Expiry Date:</label>
+                <div class="col-md-7">
+                  <input type="date" class="form-control" id="expirydate" #expiryDate="ngModel" name="expiryDate" [(ngModel)]="pageFilters.expiryDate">
                 </div>
-
-                <div class="form-group row">
-                  <label class="col-md-5 col-form-label" for="registerdstate">Plates Registered State:</label>
-                  <div class="col-md-7">
-                      <input type="text" class="form-control" id="registerdstate" #registerdState="ngModel" name="registerdState" [(ngModel)]="pageFilters.registerdState">
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-5 col-form-label" for="registerdstate">Plates Registered State:</label>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="registerdstate" #registerdState="ngModel" name="registerdState" [(ngModel)]="pageFilters.registerdState">
                 </div>
-
-                <div class="form-group row">
-                  <label class="col-md-5 col-form-label" for="plates_expirationdate">Plates Expiration Date:</label>
-                  <div class="col-md-7">
-                      <input type="date" class="form-control" id="plates_expirationdate" #platesExpirationdate="ngModel" name="platesExpirationdate" [(ngModel)]="pageFilters.platesExpirationdate">
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-5 col-form-label" for="plates_expirationdate">Plates Expiration Date:</label>
+                <div class="col-md-7">
+                  <input type="date" class="form-control" id="plates_expirationdate" #platesExpirationdate="ngModel" name="platesExpirationdate" [(ngModel)]="pageFilters.platesExpirationdate">
                 </div>
-
-                <div class="form-group row">
-                  <label class="col-md-5 col-form-label" for="insuranceexpirationdate">Insurance Expiration Date:</label>
-                  <div class="col-md-7">
-                      <input type="date" class="form-control" id="insuranceexpirationdate" #insuranceExpirationdate="ngModel" name="insuranceExpirationdate" [(ngModel)]="pageFilters.insuranceExpirationdate">
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-5 col-form-label" for="insuranceexpirationdate">Insurance Expiration Date:</label>
+                <div class="col-md-7">
+                  <input type="date" class="form-control" id="insuranceexpirationdate" #insuranceExpirationdate="ngModel" name="insuranceExpirationdate" [(ngModel)]="pageFilters.insuranceExpirationdate">
                 </div>
-                
-                <div class="form-group row">
-                  <label class="col-md-5 col-form-label" for="insurancevalue1">Insurance Value:</label>
-                  <div class="col-md-7">
-                      <input type="text" class="form-control" id="insurancevalue1" #insuranceValue1="ngModel" name="insuranceValue1" [(ngModel)]="pageFilters.insuranceValue1">
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-5 col-form-label" for="insurancevalue1">Insurance Value:</label>
+                <div class="col-md-7">
+                  <input type="text" class="form-control" id="insurancevalue1" #insuranceValue1="ngModel" name="insuranceValue1" [(ngModel)]="pageFilters.insuranceValue1">
                 </div>
+              </div>
             </div>
           </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <!-- <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Safety Information
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
 
-          <div class="card">
-              <div class="card-header">Driver Information</div>
-              <div class="card-body">                
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="drivername">Driver Name:</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" id="drivername" #driverName="ngModel" name="driverName" [(ngModel)]="pageFilters.driverName">
-                    </div>
-                  </div>
-              </div>
-              <div class="card-header">Dispatch Information</div>
-                <div class="card-body">
-                  
-                    <!-- <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
-                        <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
-                      </div>
-                    </div> -->
-                    
-                    <div class="form-group row">
-                      <label class="col-md-3 col-form-label" for="dispatcher">Dispatcher:</label>
-                      <div class="col-md-9">
-                          <input type="text" class="form-control" id="dispatcher" #dispatcher="ngModel" name="dispatcher" [(ngModel)]="pageFilters.dispatcher">
-                      </div>
-                    </div>
+          </mat-expansion-panel>
+      </mat-accordion> -->
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Maintenance Records
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div style="display: flex;">
+            <div class="card-body col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="category">Category :</label>
+                <div class="col-md-8">
+                  <select class="form-control" id="category" #category:="ngModel" name="category" [(ngModel)]="pageFilters.category">
+                    <option value="0">Select</option>
+                    <option value="1">Option #1</option>
+                    <option value="2">Option #2</option>
+                    <option value="3">Option #3</option>
+                  </select>
                 </div>
-                <div class="card-header">Trailer Information</div>
-              <div class="card-body">  
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="trailertype">Trailer Type:</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" id="trailertype" #trailerType="ngModel" name="trailerType" [(ngModel)]="pageFilters.trailerType">
-                    </div>
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="description">Description:</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="description" #description="ngModel" name="description" [(ngModel)]="pageFilters.description">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="startdate">Start Date :</label>
+                <div class="col-md-8">
+                  <input type="date" class="form-control" id="startdate" #startdate="ngModel" name="startdate" [(ngModel)]="pageFilters.startdate">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="startingmileage1">Starting Mileage :</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="startingmileage1" #startingmileage1="ngModel" name="startingmileage1" [(ngModel)]="pageFilters.startingmileage1">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="noofmiles">Number of Miles :</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="noofmiles" #noofmiles="ngModel" name="noofmiles" [(ngModel)]="pageFilters.noofmiles">
+                </div>
               </div>
             </div>
-
-           
-
-        </div>
-
-
-        <!-- <div class="col-sm-2">
+            <div class="card-body col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="nextservicemiles">Next Service Miles :</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="nextservicemiles" #nextservicemiles="ngModel" name="nextservicemiles" [(ngModel)]="pageFilters.nextservicemiles">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="servicedfrom">Serviced From :</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="servicedfrom" #servicedfrom="ngModel" name="servicedfrom" [(ngModel)]="pageFilters.servicedfrom">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="lastServicedate">Last Service Date :</label>
+                <div class="col-md-8">
+                  <input type="date" class="form-control" id="lastServicedate" #lastServicedate="ngModel" name="lastServicedate" [(ngModel)]="pageFilters.lastServicedate">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="nextServicedate">Next Service Date :</label>
+                <div class="col-md-8">
+                  <input type="date" class="form-control" id="nextServicedate" #nextServicedate="ngModel" name="nextServicedate" [(ngModel)]="pageFilters.nextServicedate">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="comments">Comments :</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="comments" #comments="ngModel" name="comments" [(ngModel)]="pageFilters.comments">
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Ownership Information
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div style="display: flex;">
+            <div class="card-body col-sm-6">
+              <!-- <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
+                    <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
+                  </div>
+                </div> -->
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="companyowned">Company Owned:</label>
+                <!-- <div class="col-md-9">
+                      <input type="text" class="form-control" id="companyowned" #comapnyOwned="ngModel" name="comapnyOwned" [(ngModel)]="pageFilters.comapnyOwned" required>
+                  </div> -->
+                <div class="col-md-8 col-form-label">
+                  <input class="form-check-label" id="companyowned" type="checkbox" value="true" #comapnyOwned="ngModel" name="comapnyOwned" [(ngModel)]="pageFilters.comapnyOwned">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="price">Price:</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="price" #price="ngModel" name="price" [(ngModel)]="pageFilters.price">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="purchasedate">Start Date:</label>
+                <div class="col-md-8">
+                  <input type="date" class="form-control" id="purchasedate" #purchaseDate="ngModel" name="purchaseDate" [(ngModel)]="pageFilters.purchaseDate">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="operationdate">Operation Date:</label>
+                <div class="col-md-8">
+                  <input type="date" class="form-control" id="operationdate" #operationDate="ngModel" name="operationDate" [(ngModel)]="pageFilters.operationDate">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="financer">Financer:</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="financer" #financer="ngModel" name="financer" [(ngModel)]="pageFilters.financer">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="installment1">Installment:</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="installment1" #installment1="ngModel" name="installment1" [(ngModel)]="pageFilters.installment1">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="installmentduedate1">Installment Due Date:</label>
+                <div class="col-md-8">
+                  <input type="date" class="form-control" id="installmentduedate1" #installmentDuedate1="ngModel" name="installmentDuedate1" [(ngModel)]="pageFilters.installmentDuedate1">
+                </div>
+              </div>
+            </div>
+            <div class="card-body col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="leased">Leased:</label>
+                <div class="col-md-8 col-form-label">
+                  <input class="form-check-label" id="leassed" type="checkbox" value="true" #leassed="ngModel" name="leassed" [(ngModel)]="pageFilters.leassed">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="dealer">Dealer:</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="dealer" #dealer="ngModel" name="dealer" [(ngModel)]="pageFilters.dealer">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="leasedfrom">Leased from:</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="leasedfrom" #leasedFrom="ngModel" name="leasedFrom" [(ngModel)]="pageFilters.leasedFrom">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="leasestart">Lease Start:</label>
+                <div class="col-md-8">
+                  <input type="date" class="form-control" id="leasestart" #leaaseStart="ngModel" name="leaaseStart" [(ngModel)]="pageFilters.leaaseStart">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="leaseexpirydate">Lease Expiry Date:</label>
+                <div class="col-md-8">
+                  <input type="date" class="form-control" id="leaseexpirydate" #leaseExpirydate="ngModel" name="leaseExpirydate" [(ngModel)]="pageFilters.leaseExpirydate">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="installment2">Installment:</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="installment2" #installment2="ngModel" name="installment2" [(ngModel)]="pageFilters.installment2">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="installmentduedate2">Installment Due Date:</label>
+                <div class="col-md-8">
+                  <input type="date" class="form-control" id="installmentduedate2" #installmentDuedate2="ngModel" name="dispatcher" [(ngModel)]="pageFilters.dispatcher">
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <!-- <div class="col-sm-2">
           <div class="card">
             <div class="card-header">Example Form</div>
             <div class="card-body">
@@ -257,380 +448,169 @@
             </div>
           </div>
         </div> -->
-
-
-        <div class="col-sm-6">
-
-          <div class="card">
-              <div class="card-header">Maintanance Records</div>
-              <div class="card-body">  
-
-                  <div class="form-group row">
-                    <label class="col-md-4 col-form-label" for="category">Category :</label>
-                    <div class="col-md-8">
-                      <select class="form-control" id="category" #category:="ngModel" name="category" [(ngModel)]="pageFilters.category">
-                        <option value="0">Select</option>
-                        <option value="1">Option #1</option>
-                        <option value="2">Option #2</option>
-                        <option value="3">Option #3</option>
-                      </select>
+  </div>
+  <div class="card-footer">
+    <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+      <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      Submit</button>&nbsp;&nbsp;
+    <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+  </div>
+</form>
+<!--View-->
+<div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Manage Trucks - <span class="badge badge-success">{{selectedTruck}}</span></h4>
+        <button type="button" class="close" (click)="viewModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="animated fadeIn">
+            <div id="viewsection" *ngIf="EditMode==false">
+              <!-- <div id="viewsection"> -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row" style="text-align: center">
+                    <div class="col-md-6" style="text-align: left">
+                      <span style="font-size: 12px;"><b>Plate Number:</b></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left">
+                      <span style="font-size: 14px;">{{trucks.plate}}</span>
                     </div>
                   </div>
-
-                  <div class="form-group row">
-                    <label class="col-md-4 col-form-label" for="description">Description:</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" id="description" #description="ngModel" name="description" [(ngModel)]="pageFilters.description">
+                  <div class="row" style="text-align: center">
+                    <div class="col-md-6" style="text-align: left">
+                      <span style="font-size: 12px;"><b>Starting Mileage:</b></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left">
+                      <span style="font-size: 14px;">{{trucks.startingMileage}}</span>
                     </div>
                   </div>
-
-                  <div class="form-group row">
-                    <label class="col-md-4 col-form-label" for="startdate">Start Date :</label>
-                    <div class="col-md-8">
-                        <input type="date" class="form-control" id="startdate" #startdate="ngModel" name="startdate" [(ngModel)]="pageFilters.startdate">
+                  <div class="row" style="text-align: center">
+                    <div class="col-md-6" style="text-align: left">
+                      <span style="font-size: 12px;"><b>Current Miles:</b></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left">
+                      <span style="font-size: 14px;">{{trucks.currentMiles}}</span>
                     </div>
                   </div>
-  
-                  <div class="form-group row">
-                    <label class="col-md-4 col-form-label" for="startingmileage1">Starting Mileage :</label>
-                    <div class="col-md-8">
-                      <input type="text" class="form-control" id="startingmileage1" #startingmileage1="ngModel" name="startingmileage1" [(ngModel)]="pageFilters.startingmileage1">
+                  <div class="row" style="text-align: center">
+                    <div class="col-md-6" style="text-align: left">
+                      <span style="font-size: 12px;"><b>Make:</b></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left">
+                      <span style="font-size: 14px;">{{trucks.make}}</span>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <label class="col-md-4 col-form-label" for="noofmiles">Number of Miles :</label>
-                    <div class="col-md-8">
-                      <input type="text" class="form-control" id="noofmiles" #noofmiles="ngModel" name="noofmiles" [(ngModel)]="pageFilters.noofmiles">
+                  <div class="row" style="text-align: center">
+                    <div class="col-md-6" style="text-align: left">
+                      <span style="font-size: 12px;"><b>Modal:</b></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left">
+                      <span style="font-size: 14px;">{{trucks.make}}</span>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <label class="col-md-4 col-form-label" for="nextservicemiles">Next Service Miles :</label>
-                    <div class="col-md-8">
-                      <input type="text" class="form-control" id="nextservicemiles" #nextservicemiles="ngModel" name="nextservicemiles" [(ngModel)]="pageFilters.nextservicemiles">
+                  <div class="row" style="text-align: center">
+                    <div class="col-md-6" style="text-align: left">
+                      <span style="font-size: 12px;"><b>Color:</b></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left">
+                      <span style="font-size: 14px;">{{trucks.color}}</span>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <label class="col-md-4 col-form-label" for="servicedfrom">Serviced From :</label>
-                    <div class="col-md-8">
-                      <input type="text" class="form-control" id="servicedfrom" #servicedfrom="ngModel" name="servicedfrom" [(ngModel)]="pageFilters.servicedfrom">
+                  <div class="row" style="text-align: center">
+                    <div class="col-md-6" style="text-align: left">
+                      <span style="font-size: 12px;"><b>Year of Make:</b></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left">
+                      <span style="font-size: 12px;">{{trucks.yom}}</span>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <label class="col-md-4 col-form-label" for="lastServicedate">Last Service Date :</label>
-                    <div class="col-md-8">
-                      <input type="date" class="form-control" id="lastServicedate" #lastServicedate="ngModel" name="lastServicedate" [(ngModel)]="pageFilters.lastServicedate">
+                </div>
+                <div class="col-md-6">
+                  <div class="row" style="text-align: center">
+                    <div class="col-md-6" style="text-align: left">
+                      <span style="font-size: 12px;"><b>Vin:</b></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left">
+                      <span style="font-size: 12px;">{{trucks.vin}}</span>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <label class="col-md-4 col-form-label" for="nextServicedate">Next Service Date :</label>
-                    <div class="col-md-8">
-                      <input type="date" class="form-control" id="nextServicedate" #nextServicedate="ngModel" name="nextServicedate" [(ngModel)]="pageFilters.nextServicedate">
+                  <div class="row" style="text-align: center">
+                    <div class="col-md-6" style="text-align: left">
+                      <span style="font-size: 12px;"><b>Gear Type:</b></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left">
+                      <span style="font-size: 12px;">{{trucks.gearType}}</span>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <label class="col-md-4 col-form-label" for="comments">Comments :</label>
-                    <div class="col-md-8">
-                      <input type="text" class="form-control" id="comments" #comments="ngModel" name="comments" [(ngModel)]="pageFilters.comments">
+                  <div class="row" style="text-align: center">
+                    <div class="col-md-6" style="text-align: left">
+                      <span style="font-size: 12px;"><b>ELD:</b></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left">
+                      <span style="font-size: 12px;">{{trucks.eld}}</span>
                     </div>
                   </div>
+                  <div class="row" style="text-align: center">
+                    <div class="col-md-6" style="text-align: left">
+                      <span style="font-size: 12px;"><b>Fuel Card:</b></span>
+                    </div>
+                    <div class="col-md-5" style="text-align: left">
+                      <span style="font-size: 12px;">{{trucks.fuelCard}}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-
-          <div class="card">
-            <div class="card-header">Ownership Information</div>
-            <div class="card-body">
-              
-                <!-- <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text">Plate:</span></div>
-                    <input class="form-control" id="username3" type="text" name="username3" autocomplete="username">
-                  </div>
-                </div> -->
-                
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="companyowned">Company Owned:</label>
-                  <!-- <div class="col-md-9">
-                      <input type="text" class="form-control" id="companyowned" #comapnyOwned="ngModel" name="comapnyOwned" [(ngModel)]="pageFilters.comapnyOwned" required>
-                  </div> -->
-                  <div class="col-md-8 col-form-label">
-                      <input class="form-check-label" id="companyowned" type="checkbox" value="true" #comapnyOwned="ngModel" name="comapnyOwned" [(ngModel)]="pageFilters.comapnyOwned">
+            <div id="editsection" *ngIf="EditMode==true">
+              <div class="card">
+                <div class="card-header">
+                  <strong>Edit</strong>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="plate">Plate :</label>
+                        <input type="text" class="form-control" id="plate" [(ngModel)]="trucks.plate">
+                      </div>
                     </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="price">Price:</label>
-                  <div class="col-md-8">
-                    <input type="text" class="form-control" id="price" #price="ngModel" name="price" [(ngModel)]="pageFilters.price">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="dba">Make :</label>
+                        <input type="text" class="form-control" id="make" [(ngModel)]="trucks.make">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="fedid">Modal :</label>
+                        <input type="text" class="form-control" id="modal" [(ngModel)]="trucks.modal">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="mc">Year Of Make :</label>
+                        <input type="text" class="form-control" id="yom" [(ngModel)]="trucks.yom">
+                      </div>
+                    </div>
                   </div>
                 </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="purchasedate">Start Date:</label>
-                  <div class="col-md-8">
-                      <input type="date" class="form-control" id="purchasedate" #purchaseDate="ngModel" name="purchaseDate" [(ngModel)]="pageFilters.purchaseDate">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="operationdate">Operation Date:</label>
-                  <div class="col-md-8">
-                      <input type="date" class="form-control" id="operationdate" #operationDate="ngModel" name="operationDate" [(ngModel)]="pageFilters.operationDate">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="financer">Financer:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" id="financer" #financer="ngModel" name="financer" [(ngModel)]="pageFilters.financer">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="installment1">Installment:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" id="installment1" #installment1="ngModel" name="installment1" [(ngModel)]="pageFilters.installment1">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="installmentduedate1">Installment Due Date:</label>
-                  <div class="col-md-8">
-                      <input type="date" class="form-control" id="installmentduedate1" #installmentDuedate1="ngModel" name="installmentDuedate1" [(ngModel)]="pageFilters.installmentDuedate1">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="dealer">Dealer:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" id="dealer" #dealer="ngModel" name="dealer" [(ngModel)]="pageFilters.dealer">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="leased">Leased:</label>
-                  <div class="col-md-8 col-form-label">
-                    <input class="form-check-label" id="leassed" type="checkbox" value="true" #leassed="ngModel" name="leassed" [(ngModel)]="pageFilters.leassed">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="leasedfrom">Leased from:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" id="leasedfrom" #leasedFrom="ngModel" name="leasedFrom" [(ngModel)]="pageFilters.leasedFrom">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="leasestart">Lease Start:</label>
-                  <div class="col-md-8">
-                      <input type="date" class="form-control" id="leasestart" #leaaseStart="ngModel" name="leaaseStart" [(ngModel)]="pageFilters.leaaseStart">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="leaseexpirydate">Lease Expiry Date:</label>
-                  <div class="col-md-8">
-                      <input type="date" class="form-control" id="leaseexpirydate" #leaseExpirydate="ngModel" name="leaseExpirydate" [(ngModel)]="pageFilters.leaseExpirydate">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="installment2">Installment:</label>
-                  <div class="col-md-8">
-                      <input type="text" class="form-control" id="installment2" #installment2="ngModel" name="installment2" [(ngModel)]="pageFilters.installment2">
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label" for="installmentduedate2">Installment Due Date:</label>
-                  <div class="col-md-8">
-                      <input type="date" class="form-control" id="installmentduedate2" #installmentDuedate2="ngModel" name="dispatcher" [(ngModel)]="pageFilters.dispatcher">
-                  </div>
-                </div>
-            
+              </div>
             </div>
           </div>
-
         </div>
       </div>
-
-      <div class="card-footer">
-          <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
-            <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" 
-            />
-            Submit</button>&nbsp;&nbsp;
-          <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+      <div class="modal-footer">
+        <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
+        <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right" class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>
+        <button *ngIf="EditMode==true" type="reset" (click)="editCompany(truck)" style="float: right" class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update
+          <img *ngIf="Iseditusrloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </button>
       </div>
-
-    </form>
-
-    
-
-    <!--View-->
-    <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Manage Trucks - <span class="badge badge-success" >{{selectedTruck}}</span></h4>
-                <button type="button" class="close" (click)="viewModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="animated fadeIn">
-                        <div id="viewsection" *ngIf="EditMode==false">
-                            <!-- <div id="viewsection"> -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Plate Number:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 14px;">{{trucks.plate}}</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Starting Mileage:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 14px;">{{trucks.startingMileage}}</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Current Miles:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 14px;">{{trucks.currentMiles}}</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Make:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 14px;">{{trucks.make}}</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Modal:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 14px;">{{trucks.make}}</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Color:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 14px;">{{trucks.color}}</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Year of Make:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 12px;">{{trucks.yom}}</span>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class="col-md-6">
-                                
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Vin:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 12px;">{{trucks.vin}}</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Gear Type:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 12px;">{{trucks.gearType}}</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>ELD:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 12px;">{{trucks.eld}}</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Fuel Card:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 12px;">{{trucks.fuelCard}}</span>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        </div>
-
-                        <div id="editsection" *ngIf="EditMode==true">
-                            <div class="card">
-                                <div class="card-header">
-                                  <strong>Edit</strong>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="plate">Plate :</label>
-                                                <input type="text" class="form-control" id="plate" [(ngModel)]="trucks.plate">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dba">Make :</label>
-                                                <input type="text" class="form-control" id="make" [(ngModel)]="trucks.make">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="fedid">Modal :</label>
-                                                <input type="text" class="form-control" id="modal" [(ngModel)]="trucks.modal">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="mc">Year Of Make :</label>
-                                                <input type="text" class="form-control" id="yom" [(ngModel)]="trucks.yom">
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                            </div>                        
-                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right"
-                    class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
-                    <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
-                    class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> 
-                <button *ngIf="EditMode==true" type="reset" (click)="editCompany(truck)"  style="float: right"
-                    class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
-                    <img *ngIf="Iseditusrloading"
-                        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                </button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
 </div>

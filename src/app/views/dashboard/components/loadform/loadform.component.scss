@@ -45,7 +45,17 @@ input[type="number"]::-webkit-inner-spin-button {
 .scroll{
 	overflow-x: hidden !important;
 }
+.dx-scrollable-scroll {
+   height: 25px !important;
+}
 
+.dx-scrollable-scroll-content {
+   background-color: #20a8d8 !important;
+}
+
+/*.dx-scrollbar-horizontal.dx-scrollbar-hoverable {
+   height: 15px !important;
+}*/
 .dx-datagrid-headers .dx-datagrid-table .dx-row > td{
 	font-weight: bold !important;
     color: #03a9f4 !important;

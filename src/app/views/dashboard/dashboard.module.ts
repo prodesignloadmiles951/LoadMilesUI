@@ -16,6 +16,7 @@ import {
     DxTemplateModule,
     DxDataGridComponent
 } from 'devextreme-angular';
+import {MatMenuModule} from '@angular/material';
 import { PickupComponent } from './components/pickup/pickup.component';
 import { DropoffComponent } from './components/dropoff/dropoff.component';
 
@@ -29,7 +30,8 @@ import { DropoffComponent } from './components/dropoff/dropoff.component';
     ModalModule,
     ButtonsModule.forRoot(),
     MatExpansionModule,
-    DxDataGridModule
+    DxDataGridModule,
+    MatMenuModule
 
   ],
   declarations: [ DashboardComponent, LoadformComponent, PickupComponent, DropoffComponent ]

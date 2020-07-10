@@ -15,6 +15,8 @@ export class LoginComponent {
   public Password: string;
   public Usertype: string;
   public isLogin:boolean=false;
+  username: any;
+  userdetails: any;
   constructor(private _loginsevice: LoginService,
     private authenticate: AuthenticationService,
     private authHeader:AuthHeaderService,
@@ -26,6 +28,8 @@ export class LoginComponent {
     this.isLogin=true;
     //debugger; 
     this._loginsevice.Login(this.Email,this.Password,this.Usertype).subscribe(data => {
+      this.userdetails= data.username
+      sessionStorage.setItem('userdetails', this.userdetails)
       this.router.navigateByUrl("dashboard");
       // if(user){
       //   this.router.navigateByUrl("dashboard");

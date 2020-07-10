@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
 })
 export class LoadformComponent implements OnInit {
   public load: NewLoadFilters
-  newloadfilters: NewLoadFilters;
+  newloadfilters= {};
   panelOpenState = false;
   pickupchild = false;
   dataSource=[];
@@ -23,6 +23,7 @@ export class LoadformComponent implements OnInit {
   loadstatusDetails: any = [];
   showsubmit=false;
   companydata=[];
+  user: any;
   currency
   loadForm: FormGroup;
   constructor(
@@ -30,21 +31,25 @@ export class LoadformComponent implements OnInit {
     private _companyservice: CompanyService,
     private router: Router,
     private _toaster: ToastrService,
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
     // this.loadForm = this.formBuilder.group({
             
     //     });
-    this.newloadfilters=new NewLoadFilters();
-    this.newloadfilters.currency='Select currency'
-    this.newloadfilters.crossborder="Cross border"
-    this.newloadfilters.Equiptype="Select equipment type"
-    this.newloadfilters.sealed="Seal required"
-    this.newloadfilters.hazmat="Hazmat material"
-    this.newloadfilters.customer="Select customer"
-    // this.newloadfilters.drivertype="Select Driver type"
-    // this.newloadfilters.loadstatus="Select load status"
+    this.newloadfilters['dispatcher']= sessionStorage.getItem('userdetails')
+    var date= new Date()
+    this.newloadfilters['date']= date.toLocaleDateString()
+    this.newloadfilters['currency']='Select currency'
+    this.newloadfilters['crossborder']="Cross border"
+    this.newloadfilters['Equiptype']="Select equipment type"
+    this.newloadfilters['sealed']="Seal required"
+    this.newloadfilters['hazmat']="Hazmat material"
+    this.newloadfilters['customer']="Select customer"
+    this.newloadfilters['drivertype']="Select Driver type"
+    this.newloadfilters['loadstatus']="Select load status"
     this.drivertypeDetails=[
       {
           "ID": 0,
@@ -86,7 +91,7 @@ export class LoadformComponent implements OnInit {
       },
       {
           "ID": 7,
-          "Name": "Delivery Delay"
+          "Name": "Delivery Ontime"
       },
       {
           "ID": 8,
@@ -132,8 +137,7 @@ export class LoadformComponent implements OnInit {
   }
   getCompanyData() {
     this._companyservice.getCompanyData().subscribe(data => {
-      this.data = this.companydata;
-      console.log(this.companydata)
+      this.companydata=data
     });
   }
   resetload(){}

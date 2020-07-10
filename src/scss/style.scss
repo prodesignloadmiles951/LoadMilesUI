@@ -25,7 +25,14 @@
     -ms-user-select: none;
     user-select: none;
   }
-  
+
+  .navlinks button:focus{
+    outline: none;
+  }
+  .mat-menu-content button:focus{
+    outline: none;
+  }
+
   /* Hide the browser's default radio button */
   .forma input {
     position: absolute;
@@ -110,13 +117,29 @@
 }
 
 .dx-scrollable-scroll {
-    height: 20px !important;
+    height: 25px !important;
 }
 
 .dx-scrollable-scroll-content {
-    background-color: #b3cfe7 !important;
+    background-color: #20a8d8 !important;
 }
 
 .dx-scrollbar-horizontal.dx-scrollbar-hoverable {
-    height: 10px !important;
+    height: 12px !important;
+}
+
+.dx-datagrid .dx-datagrid-content .dx-datagrid-table .dx-row > td.dx-command-edit.dx-command-edit-with-icons .dx-link{
+  font-size: 25px;
+}
+.mat-expansion-panel-header{
+  background: #f0f3f5;
+}
+.mat-expansion-panel{
+  margin: 7px 0 !important;
+}
+.mat-expansion-panel .card{
+  margin: 7px 0 0 0;
+}
+.mat-expansion-panel-header-title{
+  color: #2c5484;
 }

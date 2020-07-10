@@ -1,24 +1,58 @@
-<app-header
-  [navbarBrandRouterLink]="['/dashboard']"
-  [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/brand/Load-miles.PNG', width: 110, height: 45, alt: 'SNS Logo'}"
-  [navbarBrandMinimized]="{src: 'assets/img/brand/Load-miles.PNG', width: 50, height: 50, alt: 'SNS Logo'}"
-  [sidebarToggler]="'lg'"
-  [asideMenuToggler]="'lg'">
+<app-header [navbarBrandRouterLink]="['/dashboard']" [fixed]="true" [navbarBrandFull]="{src: 'assets/img/brand/Load-miles.PNG', width: 110, height: 45, alt: 'SNS Logo'}" [navbarBrandMinimized]="{src: 'assets/img/brand/Load-miles.PNG', width: 50, height: 50, alt: 'SNS Logo'}" [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
   <ul class="nav navbar-nav d-md-down-none">
-    
   </ul>
-   <div class="row col-md-2"> 
-      <select class="form-control">
-        <option value="" disabled selected hidden>Company name</option>
-        <option *ngFor="let cmp of data" value="0">{{cmp.companyname}}</option>
-      </select>
+  <div class="row col-md-2">
+    <select class="form-control">
+      <option value="" disabled selected hidden>Company name</option>
+      <option *ngFor="let cmp of data" value="0">{{cmp.companyname}}</option>
+    </select>
+  </div>
+  <div class="col-md-6 navlinks" style="display: flex; justify-content: flex-end;">
+  <div class="row col-md-2" style="display: block;">
+    <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="loadmenu">loads</button>
+    <mat-menu #loadmenu="matMenu">
+      <button mat-menu-item>Create Load</button>
+      <button mat-menu-item>Loads Report</button>
+    </mat-menu>
+  </div>
+  <div class="row col-md-2" style="display: block;">
+    <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="paymenu">Pay</button>
+    <mat-menu #paymenu="matMenu">
+      <button mat-menu-item>Driver Pay</button>
+      <button mat-menu-item>Dispatcher Pay</button>
+      <button mat-menu-item>Vendor Pay</button>
+    </mat-menu>
+  </div>
+  <div class="row col-md-2" style="display: block;">
+    <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="recordmenu">Record</button>
+    <mat-menu #recordmenu="matMenu">
+      <button mat-menu-item>Record Miles</button>
+      <button mat-menu-item>Fuel Charges</button>
+      <button mat-menu-item>Maintenance</button>
+      <button mat-menu-item>Insurance</button>
+      <button mat-menu-item>Incident</button>
+      <button mat-menu-item>Sale/Disposal</button>
+    </mat-menu>
+  </div>
+  <div class="row col-md-2" style="display: block;">
+    <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="reportsmenu">Reports</button>
+    <mat-menu #reportsmenu="matMenu">
+      <button mat-menu-item>Truck Performance</button>
+      <button mat-menu-item>Driver Performance</button>
+      <button mat-menu-item>Carrier Performance</button>
+      <button mat-menu-item>Dispatcher Performance</button>
+      <button mat-menu-item>Customer Performance</button>
+      <button mat-menu-item>Fuel Performance</button>
+      <button mat-menu-item>Maintenance Register</button>
+      <button mat-menu-item>Medical Register</button>
+      <button mat-menu-item>Incident Register</button>
+    </mat-menu>
+  </div>
   </div>
   <ul class="nav navbar-nav ml-auto">
-    
     <li class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
-        <img src="assets/img/avatars/male-icon.jpg" class="img-avatar" alt="admin@bootstrapmaster.com"/>
+        <img src="assets/img/avatars/male-icon.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" />
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
         <div class="dropdown-header text-center"><strong>Settings</strong></div>
@@ -32,7 +66,7 @@
 </app-header>
 <div class="app-body">
   <app-sidebar [fixed]="true" [display]="'lg'">
-    <app-sidebar-nav  [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
     <app-sidebar-minimizer></app-sidebar-minimizer>
   </app-sidebar>
   <!-- Main content -->
@@ -49,12 +83,10 @@
         </div>
       </li>
     </cui-breadcrumb>
-   
     <div class="container-fluid">
       <router-outlet></router-outlet>
     </div><!-- /.container-fluid -->
   </main>
-  
 </div>
 <app-footer>
   <!-- <span><a href="https://coreui.io">CoreUI</a> &copy; 2018 creativeLabs.</span>

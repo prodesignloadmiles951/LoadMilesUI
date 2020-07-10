@@ -85,38 +85,18 @@ export class DropoffComponent implements OnInit {
     this.loadstatusDetails=[
       {
           "ID": 0,
-          "Name": "Booked"
-      },
-      {
-          "ID": 1,
-          "Name": "Arrival Delay"
-      },
-      {
-          "ID": 2,
-          "Name": "Arrival Ontime"
-      },
-      {
-          "ID": 3,
-          "Name": "Loaded Delay"
-      },
-      {
-          "ID": 4,
-          "Name": "Loaded Ontime"
-      },
-      {
-          "ID": 5,
           "Name": "In Transit"
       },
       {
-          "ID": 6,
+          "ID": 1,
           "Name": "Delivery Delay"
       },
       {
-          "ID": 7,
-          "Name": "Delivery Delay"
+          "ID": 2,
+          "Name": "Delivery Ontime"
       },
       {
-          "ID": 8,
+          "ID": 3,
           "Name": "Completed"
       }
     ]

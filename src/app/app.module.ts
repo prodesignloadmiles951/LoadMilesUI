@@ -10,6 +10,7 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -27,6 +28,7 @@ import { CompanyService } from './services/company.service';
 import { AuthHeaderService } from './views/authheader.service';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import {MatMenuModule} from '@angular/material/menu';
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
@@ -70,6 +72,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     HttpClientModule,
     CommonModule,
     NgSelectModule,
+    MatMenuModule,
     ModalModule,
     ToastrModule.forRoot({
 			timeOut: 10000,
