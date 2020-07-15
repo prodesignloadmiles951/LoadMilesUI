@@ -6,6 +6,17 @@
         <div style="display: flex;">
           <div class="card-body col-sm-6">
             <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="truckunitnumber">Unit Number: <span style="color:red">*</span></label>
+              <div class="col-md-8">
+                <input type="number" class="form-control" id="truckunitnumber" placeholder="Ex: 0123" name="truckunitnumber" #truckunitnumber="ngModel" [(ngModel)]="pageFilters.truckunitnumber" [pattern]="'^[1-9][0-9]*$'" required>
+                <div *ngIf="truckunitnumber.errors && (truckunitnumber.dirty || truckunitnumber.touched)" style="font-size: smaller;">
+                  <div [hidden]="!truckunitnumber.errors.required">
+                    <span style="color: red;">Unit Number is required</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
               <label class="col-md-4 col-form-label" for="plate">Plate:
                 <span style="color:red">*</span>
               </label>
@@ -151,7 +162,12 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="driver">Driver:</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" name="driver">
+                <select class="form-control">
+                  <option value="" disabled selected hidden>Driver</option>
+                  <option *ngFor="let cmp of driverdata" value="0">
+                    <span>{{cmp.firstname}}</span>
+                  </option>
+                </select>
               </div>
             </div>
             <div class="form-group row">
@@ -163,7 +179,12 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="truck">Truck:</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" name="truck">
+                <select class="form-control">
+                  <option value="" disabled selected hidden>Truck</option>
+                  <option *ngFor="let cmp of unitNumberdata" value="0">
+                    <span *ngIf="cmp.truckunitnumber != undefined">{{cmp.truckunitnumber}}</span>
+                  </option>
+                </select>
               </div>
             </div>
             <div class="form-group row">
@@ -174,9 +195,16 @@
             </div>
           </div>
         </div>
-        <div class="card-body col-sm-6">
-          <input type="file" name="">
-        </div>
+        <div style="display: flex;">
+            <div class="card-body col-sm-3">
+              <input type="file" name="" multiple (change)="showfiles($event)">
+            </div>
+            <div class="card-body col-sm-9">
+              <div *ngFor="let data of filename">
+                {{data.name}}
+              </div>
+            </div>
+          </div>
       </div>
       <mat-accordion>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -420,7 +448,7 @@
               <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="installment2">Installment:</label>
                 <div class="col-md-8">
-                  <input type="text" class="form-control" id="installment2" #installment2="ngModel" name="installment2" [(ngModel)]="pageFilters.installment2">
+                  <input type="number" class="form-control" id="installment2" #installment2="ngModel" name="installment2" [(ngModel)]="pageFilters.installment2">
                 </div>
               </div>
               <div class="form-group row">

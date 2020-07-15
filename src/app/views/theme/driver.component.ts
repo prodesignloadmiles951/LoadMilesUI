@@ -13,7 +13,10 @@ export class DriverComponent implements OnInit {
     public pageFilters: DriverFilters;
     Driverlistdata = new Array<DriverFilters>();
     submitted: boolean;
-    data: any;
+    data=[];
+    typeDetails=[];
+    filename: any;
+    resultDetails=[];
     selectedDriver: any;
     EditMode: boolean;
     drivers: DriverFilters;
@@ -25,6 +28,35 @@ export class DriverComponent implements OnInit {
     ngOnInit(): void {
         this.pageFilters = new DriverFilters();
         //this.getData();
+        this.typeDetails=[
+      {
+          "ID": 0,
+          "Name": "% sales"
+      },
+      {
+          "ID": 1,
+          "Name": "Per Mile"
+      },
+      {
+          "ID": 2,
+          "Name": "Per Hour"
+      }
+    ]
+    this.resultDetails=[
+    {
+          "ID": 0,
+          "Name": "Pass"
+      },
+      {
+          "ID": 1,
+          "Name": "Fail"
+      }
+    ]
+    }
+
+    showfiles(e){
+      console.log(e.target.files)
+      this.filename = e.target.files
     }
 
     viewData(driver) {

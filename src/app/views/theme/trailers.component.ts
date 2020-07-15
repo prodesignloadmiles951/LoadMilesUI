@@ -17,6 +17,7 @@ export class TrailersComponent implements OnInit {
     model: any = {};
     submitted: boolean;
     data: any;
+    filename: any;
     selectedTrailer: any;
     EditMode: boolean;
 
@@ -34,7 +35,10 @@ export class TrailersComponent implements OnInit {
       this.trailers = trailer;
       this.selectedTrailer = trailer.plate;
     }
-
+    showfiles(e){
+      console.log(e.target.files)
+      this.filename = e.target.files
+    }
     submit() {
         this.submitted = true;
         this._trailersService.SendForm(this.pageFilters).subscribe(response => {

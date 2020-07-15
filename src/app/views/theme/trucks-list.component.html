@@ -42,6 +42,7 @@
             <thead>
               <tr>
                 <th>S.no</th>
+                <th>Unit Number</th>
                 <th>Plate Number</th>
                 <th>Make</th>
                 <th>Modal</th>
@@ -54,6 +55,7 @@
               <tr>
                 <tr *ngFor="let truck of data; let i=index">
                     <td>{{i + 1}}</td>
+                    <td>{{truck.truckunitnumber}}</td>
                     <td>{{truck.plate}}</td>
                     <td>{{truck.make}}</td>
                     <td>{{truck.modal}}</td>
@@ -104,6 +106,14 @@
                       <div class="row">
                           <div class="col-md-6">
                             <h6 style="color:firebrick">Trucks Information</h6>
+                            <div class="row" style="text-align: center">
+                                  <div class="col-md-6" style="text-align: left">
+                                      <span style="font-size: 12px;"><b>Unit Number:</b></span>
+                                  </div>
+                                  <div class="col-md-5" style="text-align: left">
+                                      <span style="font-size: 14px;">{{trucks.truckunitnumber}}</span>
+                                  </div>
+                              </div>
                               <div class="row" style="text-align: center">
                                   <div class="col-md-6" style="text-align: left">
                                       <span style="font-size: 12px;"><b>Plate Number:</b></span>
@@ -480,6 +490,12 @@
                                 <div class="card">
                                   <div class="card-header">Trucks Information</div>
                                   <div class="card-body">
+                                    <div class="form-group row">
+                                        <label  class="col-md-4 col-form-label" for="truckunitnumber">Unit Number :</label>
+                                        <div class="col-md-8">
+                                        <input type="number" class="form-control" id="truckunitnumber" [(ngModel)]="trucks.truckunitnumber">
+                                      </div>
+                                      </div>
                                       <div class="form-group row">
                                         <label  class="col-md-4 col-form-label" for="plate">Plate :</label>
                                         <div class="col-md-8">

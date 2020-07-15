@@ -50,54 +50,17 @@ export class LoadformComponent implements OnInit {
     this.newloadfilters['customer']="Select customer"
     this.newloadfilters['drivertype']="Select Driver type"
     this.newloadfilters['loadstatus']="Select load status"
-    this.drivertypeDetails=[
-      {
-          "ID": 0,
-          "Name": "Solo"
-      },
-      {
-          "ID": 1,
-          "Name": "Team"
-      }
-    ]
-    this.loadstatusDetails=[
-      {
-          "ID": 0,
-          "Name": "Booked"
-      },
-      {
-          "ID": 1,
-          "Name": "Arrival Delay"
-      },
-      {
-          "ID": 2,
-          "Name": "Arrival Ontime"
-      },
-      {
-          "ID": 3,
-          "Name": "Loaded Delay"
-      },
-      {
-          "ID": 4,
-          "Name": "Loaded Ontime"
-      },
-      {
-          "ID": 5,
-          "Name": "In Transit"
-      },
-      {
-          "ID": 6,
-          "Name": "Delivery Delay"
-      },
-      {
-          "ID": 7,
-          "Name": "Delivery Ontime"
-      },
-      {
-          "ID": 8,
-          "Name": "Completed"
-      }
-    ]
+    // this.drivertypeDetails=[
+    //   {
+    //       "ID": 0,
+    //       "Name": "Solo"
+    //   },
+    //   {
+    //       "ID": 1,
+    //       "Name": "Team"
+    //   }
+    // ]
+    
     this.getData();
     this.getCompanyData();
   }

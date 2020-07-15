@@ -13,6 +13,7 @@ export class CustomersComponent implements OnInit {
     public pageFilters: CustomersFilters;
     Vendorlistdata = new Array<CustomersFilters>();
     submitted: boolean;
+    filename: any;
 
     constructor(private _toaster: ToastrService,
         private _customersservice: CustomersService,
@@ -21,6 +22,11 @@ export class CustomersComponent implements OnInit {
 
     ngOnInit(): void {
         this.pageFilters = new CustomersFilters();
+    }
+
+    showfiles(e){
+      console.log(e.target.files)
+      this.filename = e.target.files
     }
 
     submit() {

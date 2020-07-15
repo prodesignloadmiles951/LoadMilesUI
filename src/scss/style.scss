@@ -13,133 +13,153 @@
 @import "../../node_modules/devextreme/dist/css/dx.material.blue.light.css";
 
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+ -webkit-appearance: none;
+ margin: 0;
+}
+
 .forma {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 14px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.formheader {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #20a8d8;
+}
+
+.navlinks button:focus {
+  outline: none;
+}
+
+.mat-menu-content button:focus {
+  outline: none;
+}
+
+/* Hide the browser's default radio button */
+.forma input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: rgb(196, 193, 193);
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.forma:hover input~.checkmark {
+  background-color: rgb(177, 172, 172);
+}
+
+/* When the radio button is checked, add a blue background */
+.forma input:checked~.checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.forma input:checked~.checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.forma .checkmark:after {
+  top: 5px;
+  left: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+.table-bordered thead th,
+.table-bordered thead td {
+  font-size: 12px;
+}
+
+.table-bordered th,
+.table-bordered td {
+  font-size: 14px;
+}
+
+thead th {
+  cursor: pointer;
+  margin-right: 15px;
+  margin-left: 15px;
+
+  span {
+    visibility: hidden;
   }
 
-  .navlinks button:focus{
-    outline: none;
-  }
-  .mat-menu-content button:focus{
-    outline: none;
-  }
+  &.active {
+    color: #000;
 
-  /* Hide the browser's default radio button */
-  .forma input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  /* Create a custom radio button */
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 18px;
-    width: 18px;
-    background-color: rgb(196, 193, 193);
-    border-radius: 50%;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .forma:hover input ~ .checkmark {
-    background-color: rgb(177, 172, 172);
-  }
-  
-  /* When the radio button is checked, add a blue background */
-  .forma input:checked ~ .checkmark {
-    background-color: #2196F3;
-  }
-  
-  /* Create the indicator (the dot/circle - hidden when not checked) */
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  /* Show the indicator (dot/circle) when checked */
-  .forma  input:checked ~ .checkmark:after {
-    display: block;
-  }
-  
-  /* Style the indicator (dot/circle) */
-  .forma .checkmark:after {
-       top: 5px;
-      left: 5px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: white;
-  }
-
-  .table-bordered thead th, .table-bordered thead td{
-    font-size: 12px;
-  }
-
-  .table-bordered th, .table-bordered td {
-    font-size: 14px;
-  }
-
-  thead th {
-    cursor: pointer;
-    margin-right: 15px;
-    margin-left: 15px;
-  
     span {
-      visibility: hidden;
+      visibility: visible;
     }
-  
-    &.active {
-      color: #000;
-  
-      span {
-        visibility: visible;
-      }
-    }
-
-    
-
   }
 
-  tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
-    background: #d7edff !important;
+
+
+}
+
+tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
+  background: #d7edff !important;
 }
 
 .dx-scrollable-scroll {
-    height: 25px !important;
+  height: 25px !important;
 }
 
 .dx-scrollable-scroll-content {
-    background-color: #20a8d8 !important;
+  background-color: #20a8d8 !important;
 }
 
 .dx-scrollbar-horizontal.dx-scrollbar-hoverable {
-    height: 12px !important;
+  height: 12px !important;
 }
 
-.dx-datagrid .dx-datagrid-content .dx-datagrid-table .dx-row > td.dx-command-edit.dx-command-edit-with-icons .dx-link{
+.dx-datagrid .dx-datagrid-content .dx-datagrid-table .dx-row>td.dx-command-edit.dx-command-edit-with-icons .dx-link {
   font-size: 25px;
 }
-.mat-expansion-panel-header{
+
+.mat-expansion-panel-header {
   background: #f0f3f5;
 }
-.mat-expansion-panel{
+
+.mat-expansion-panel {
   margin: 7px 0 !important;
 }
-.mat-expansion-panel .card{
+
+.mat-expansion-panel .card {
   margin: 7px 0 0 0;
 }
-.mat-expansion-panel-header-title{
+
+.mat-expansion-panel-header-title {
   color: #2c5484;
 }

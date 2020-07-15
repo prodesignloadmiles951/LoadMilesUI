@@ -1,5 +1,6 @@
 export class CompanyFilters {
    companyname: string;
+   companyid: any;
    dba: string;
    mc: string;
    fedid: string;

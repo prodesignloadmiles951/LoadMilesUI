@@ -31,6 +31,12 @@ import { CompanylistComponent } from './company-list.component';
 import { VendorlistComponent } from './vendor-list.component';
 import { FactorlistComponent } from './factor-list.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {
+    DxDataGridModule,
+    DxBulletModule,
+    DxTemplateModule,
+    DxDataGridComponent
+} from 'devextreme-angular';
 
 
 @NgModule({
@@ -41,6 +47,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ReactiveFormsModule,
     ToastrModule,
     NgSelectModule,
+    DxDataGridModule,
     ModalModule.forRoot(),
     MatExpansionModule
   ],
