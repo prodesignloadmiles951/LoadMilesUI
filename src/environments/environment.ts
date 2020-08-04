@@ -17,6 +17,8 @@ export const environment = {
   customersurl: 'http://54.166.101.176:8081/customersapi/customers',
   dispatchersurl: 'http://54.166.101.176:8081/dispatchersapi/dispatchers',
   getloadsurl: 'http://54.166.101.176:8081/loadsapi/loads',
+  pickupform: 'http://54.166.101.176:8081/pickupapi/pickup',
+  dropoffform: 'http://54.166.101.176:8081/dropoffapi/dropoff'
 
   // url:"http://localhost:62585/api/",
   // conurl:"http://localhost:62585/api/Transactions/",

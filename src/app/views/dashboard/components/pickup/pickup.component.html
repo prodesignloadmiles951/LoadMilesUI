@@ -7,43 +7,37 @@
       </dxo-editing>
       <dxo-selection mode="single"></dxo-selection>
       <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
-      <dxi-column dataField="slno" caption="Sl No."></dxi-column>
-      <dxi-column dataField="type" caption="Type" [width]="110">
+      <dxi-column dataField="SlNo" caption="Sl No."></dxi-column>
+      <dxi-column dataField="Type" caption="Type" [width]="110">
         <dxo-lookup [dataSource]="typeDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="driver" caption="Driver1" [width]="120" >
+      <dxi-column dataField="Driver1" caption="Driver1" [width]="120" >
         <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="driver" caption="Driver2" [width]="120">
+      <dxi-column dataField="Driver2" caption="Driver2" [width]="120">
         <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="truck" caption="Truck" [width]="120">
+      <dxi-column dataField="Truck" caption="Truck" dataType='string' [width]="120">
         <dxo-lookup [dataSource]="truckDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="trailer" caption="Trailer" [width]="120">
+      <dxi-column dataField="Trailer" caption="Trailer" [width]="120">
         <dxo-lookup [dataSource]="trailerDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="loadstatus" caption="Load Status" [width]="180">
+      <dxi-column dataField="LoadStatus" caption="Load Status" [width]="180">
         <dxo-lookup [dataSource]="loadstatusDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="pickcompany" caption="Pickup Company"></dxi-column>
-      <dxi-column dataField="contact" caption="Contact Name"></dxi-column>
-      <dxi-column dataField="contnumber" caption="Contact Number"></dxi-column>
-      <dxi-column dataField="address" caption="Address"></dxi-column>
+      <dxi-column dataField="PickupCompany" caption="Pickup Company"></dxi-column>
+      <dxi-column dataField="ContactName" caption="Contact Name"></dxi-column>
+      <dxi-column dataField="ContactNumber" caption="Contact Number"></dxi-column>
+      <dxi-column dataField="Address" caption="Address"></dxi-column>
       <dxi-column dataField="PickupDate" dataType="date">
       </dxi-column>
-      <!-- <div *dxTemplate="let element of 'DriverTemplate'">
-           <span mat-button #menuTrigger="matMenuTrigger" class="left plate_color dash_color" [matMenuTriggerFor]="actions">{{element.value}}</span>
-           <mat-menu #actions="matMenu">
-               <button mat-menu-item>Add Driver</button>
-           </mat-menu>
-      </div> -->
     </dx-data-grid>
   </div>
 </div>

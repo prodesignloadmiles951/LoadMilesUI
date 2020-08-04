@@ -37,6 +37,12 @@ import {
     DxTemplateModule,
     DxDataGridComponent
 } from 'devextreme-angular';
+import { TruckformComponent } from './truckform/truckform.component';
+import { TrailerformComponent } from './trailerform/trailerform.component';
+import { DriverformComponent } from './driverform/driverform.component';
+import { CarrierformComponent } from './carrierform/carrierform.component';
+import { CustomerformComponent } from './customerform/customerform.component';
+import { DispatcherformComponent } from './dispatcherform/dispatcherform.component';
 
 
 @NgModule({
@@ -72,7 +78,13 @@ import {
     DispatcherlistComponent,
     CompanylistComponent,
     VendorlistComponent,
-    FactorlistComponent
+    FactorlistComponent,
+    TruckformComponent,
+    TrailerformComponent,
+    DriverformComponent,
+    CarrierformComponent,
+    CustomerformComponent,
+    DispatcherformComponent
   ]
 })
 export class ThemeModule { }

@@ -4,11 +4,13 @@ import { ToastrService } from 'ngx-toastr';
 import { TrucksService } from '../../services/trucks.service';
 import { Router } from '@angular/router';
 import { DriversService } from '../../services/driver.service';
+import { DispatcherService } from '../../services/Dispatcher.service';
+import { TrailerService } from '../../services/trailers.service';
 
 @Component({
     selector: 'app-trucks',
     templateUrl: './trucks.component.html',
-    providers: [DriversService, TrucksService, ToastrService]
+    providers: [DriversService, TrucksService, ToastrService, DispatcherService, TrailerService]
 })
 export class TrucksComponent implements OnInit {
     public trucks: TrucksFilters;
@@ -16,9 +18,13 @@ export class TrucksComponent implements OnInit {
     Truckslistdata = new Array<TrucksFilters>();
     submitted: boolean;
     data: any;
+    maintenancedata=[];
     unitNumberdata: any;
     driverdata= [];
+    Dispatcherdata= [];
+    trailerData= [];
     filename: any;
+    categoryDetails= [];
     selectedTruck: any;
     EditMode: boolean;
     finalArry=[]
@@ -27,14 +33,33 @@ export class TrucksComponent implements OnInit {
     constructor(private _toaster: ToastrService,
         private _trucksservice: TrucksService,
         private _driverService: DriversService,
+        private _trailersService: TrailerService,
+        private _dispatcherService: DispatcherService,
         private router: Router) {
          }
 
     ngOnInit() {
         this.getData();
         this.getDriverData()
+        this.getDispatcherData()
+        this.getTrailerData()
         this.pageFilters = new TrucksFilters();
         this.pageFilters['geartype']='Select gear'
+
+         this.categoryDetails=[
+      {
+          "ID": 0,
+          "Name": "Maintenance"
+      },
+      {
+          "ID": 1,
+          "Name": "Repairs"
+      },
+      {
+          "ID": 2,
+          "Name": "Replacement"
+      }
+    ]
   }
   viewData(truck) {
     this.EditMode = false;
@@ -87,6 +112,11 @@ export class TrucksComponent implements OnInit {
       this.unitNumberdata = data;
     });
   }
+  getDispatcherData() {
+    this._dispatcherService.getDispatcherData().subscribe(data => {
+      this.Dispatcherdata = data;
+    });
+  }
 
   getDriverData() {
         this._driverService.getDriversData().subscribe(data => {
@@ -94,6 +124,11 @@ export class TrucksComponent implements OnInit {
           console.log(this.driverdata)
         });
       }
+  getTrailerData() {
+        this._trailersService.getTrailersData().subscribe(data => {
+          this.trailerData = data;
+        });
+      }    
 
   editTrucks(truck) {
     this._trucksservice.EditTrucks(truck._id).subscribe(response => {

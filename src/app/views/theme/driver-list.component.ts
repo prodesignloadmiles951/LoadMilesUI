@@ -19,6 +19,7 @@ export class DriverlistComponent implements OnInit {
     data: any;
     selectedDriver: any;
     EditMode: boolean;
+    driverData={}
 
     constructor(private _toaster: ToastrService,
          private _driverService: DriversService,
@@ -30,6 +31,9 @@ export class DriverlistComponent implements OnInit {
     }
     viewData(driver) {
       this.EditMode = false;
+      var driverObj=driver
+      driverObj['EditMode']=this.EditMode
+      this.driverData=driverObj
       this.drivers = new DriverFilters();
       this.drivers = driver;
       this.selectedDriver = driver.firstname;
@@ -37,6 +41,9 @@ export class DriverlistComponent implements OnInit {
 
     editData(driver) {
       this.EditMode = true;
+      var driverObj=driver
+      driverObj['EditMode']=this.EditMode
+      this.driverData=driverObj
       this.drivers = new DriverFilters();
       this.drivers = driver;
       this.selectedDriver = driver.firstname;

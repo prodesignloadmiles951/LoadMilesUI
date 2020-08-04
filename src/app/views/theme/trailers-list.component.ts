@@ -19,6 +19,7 @@ export class TrailerslistComponent implements OnInit {
     data: any;
     selectedTrailer: any;
     EditMode: boolean;
+    trailerData={}
 
     constructor(private _toaster: ToastrService,
          private _trailersService: TrailerService,
@@ -30,16 +31,22 @@ export class TrailerslistComponent implements OnInit {
     }
     viewData(trailer) {
       this.EditMode = false;
+      var trailerObj=trailer
+      trailerObj['EditMode']=this.EditMode
+      this.trailerData = trailerObj
       this.trailers = new TrailersFilters();
       this.trailers = trailer;
-      this.selectedTrailer = trailer.plate;
+      this.selectedTrailer = trailer.unitNumber;
     }
 
     editData(trailer) {
       this.EditMode = true;
+      var trailerObj=trailer
+      trailerObj['EditMode']=this.EditMode
+      this.trailerData = trailerObj
       this.trailers = new TrailersFilters();
       this.trailers = trailer;
-      this.selectedTrailer = trailer.companyname;
+      this.selectedTrailer = trailer.unitNumber;
   
     }
 

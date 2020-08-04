@@ -4,11 +4,12 @@ import { TrailersFilters } from '../../model/trailers';
 import { TrailerService } from '../../services/trailers.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { TrucksService } from '../../services/trucks.service';
 
 @Component({
     selector: 'app-trailers',
     templateUrl: './trailers.component.html',
-    providers: [TrailerService, ToastrService, ]
+    providers: [TrailerService, ToastrService, TrucksService]
 })
 export class TrailersComponent implements OnInit {
   public trailers: TrailersFilters;
@@ -17,17 +18,20 @@ export class TrailersComponent implements OnInit {
     model: any = {};
     submitted: boolean;
     data: any;
+    truckData: any;
     filename: any;
     selectedTrailer: any;
     EditMode: boolean;
 
     constructor(private _toaster: ToastrService,
          private _trailersService: TrailerService,
+         private _trucksservice: TrucksService,
          private router: Router) { }
 
     ngOnInit(): void {
         this.pageFilters = new TrailersFilters();
         this.getData();
+        this.getTruckData();
     }
     viewData(trailer) {
       this.EditMode = false;
@@ -57,6 +61,11 @@ export class TrailersComponent implements OnInit {
           this.data = data;
         });
       }
+       getTruckData() {
+    this._trucksservice.getTrucksData().subscribe(data => {
+      this.truckData = data;
+    });
+  }
     
       editTrailers(trailer) {
         this._trailersService.EditTrailers(trailer._id).subscribe(response => {

@@ -13,14 +13,16 @@ import {Router} from '@angular/router';
 })
 export class TruckslistComponent implements OnInit {
   public company: CompanyFilters;
-  public trucks: TrucksFilters;
-    pageFilters: TrucksFilters;
+  public trucks={}
+    pageFilters={}
     Truckslistdata = new Array<TrucksFilters>();
     submitted: boolean;
+    truckdata=[];
     data: any;
     selectedTruck: any;
     selectedCompany: any;
     EditMode: boolean;
+    truckData={}
  
     constructor(private _toaster: ToastrService,
       private _trucksservice: TrucksService,
@@ -32,21 +34,27 @@ export class TruckslistComponent implements OnInit {
   }
   viewData(truck) {
     this.EditMode = false;
+    var truckObj=truck
+    truckObj['EditMode']=this.EditMode
+    this.truckData=truckObj
     this.trucks = new TrucksFilters();
     this.trucks = truck;
-    this.selectedTruck = truck.plate;
+    this.selectedTruck = truck.truckunitnumber;
   }
   getData() {
     this._trucksservice.getTrucksData().subscribe(data => {
-      this.data = data;
+      this.truckdata = data;
     });
   }
 
   editData(truck) {
     this.EditMode = true;
+    var truckObj=truck
+    truckObj['EditMode']=this.EditMode
+    this.truckData=truckObj
     this.trucks = new TrucksFilters();
     this.trucks = truck;
-    this.selectedTruck = truck.companyname;
+    this.selectedTruck = truck.truckunitnumber;
 
   }
 

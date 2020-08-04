@@ -4,11 +4,13 @@ import { CompanyService } from '../../services/company.service';
 import { ToastrService } from 'ngx-toastr';
 import {Router} from '@angular/router';
 import { CreateloadService } from '../../services/createload.service';
+import { PickupserviceService } from '../../services/pickupservice.service';
+import { DropoffserviceService } from '../../services/dropoffservice.service';
 
 
 @Component({
   templateUrl: 'dashboard.component.html',
-  providers: [ToastrService, CompanyService]
+  providers: [ToastrService, CompanyService, PickupserviceService]
 })
 export class DashboardComponent implements OnInit {
   public company: CompanyFilters;
@@ -17,13 +19,18 @@ export class DashboardComponent implements OnInit {
   pageFilters: CompanyFilters;
   selectedCompany: any;
   EditMode: boolean;
- 
+  loadDetails=[];
+  companydata=[];
+  dropoffdata=[];
+  pickupdata=[];
 
 
  constructor(
   private router: Router,
   private _companyservice: CompanyService,
   private _toaster: ToastrService,
+  private _pickup: PickupserviceService,
+  private _dropoff: DropoffserviceService,
   private _loadservice: CreateloadService,
  ) {
   this.pageFilters = new CompanyFilters();
@@ -40,16 +47,39 @@ export class DashboardComponent implements OnInit {
 
   }
 
-   loadDetails: any = [
-   {loadno: '1020102', Customer: 'AXP Logistics', CustomerLoad: 'D121412', contact: '222-333-444', email: 'kack@Axpl.com', Dispatcher: 'DXC Logistics', Driver: 'Dan Grisby', Driverno:'222-589-789', Truck:'FLR12334', LoadStatus: 'Loaded-ontime', PickupLocation:'Florida', DropOffLocation:'NYC', Comments:''},
-   {loadno: '1020103', Customer: 'DXC Logistics', CustomerLoad: 'D131412', contact: '222-666-444', email: 'jack@Axpl.com', Dispatcher: 'XMC Logistics', Driver: 'Dan Smith', Driverno:'222-589-789', Truck:'FLR56984', LoadStatus: 'Loaded-delay', PickupLocation:'NYC', DropOffLocation:'Georgia', Comments:''},
-   {loadno: '1020104', Customer: 'XYZ Logistics', CustomerLoad: 'D121342', contact: '222-333-777', email: 'xyz@Axpl.com', Dispatcher: 'YBK Logistics', Driver: 'Dan Fernandes', Driverno:'222-589-789', Truck:'FLR78514', LoadStatus: 'Arrival-ontime', PickupLocation:'Georgia', DropOffLocation:'Florida', Comments:''},
-   {loadno: '1020105', Customer: 'MYK Logistics', CustomerLoad: 'D455612', contact: '111-333-444', email: 'mycs@Axpl.com', Dispatcher: 'MUD Logistics', Driver: 'George Smith', Driverno:'222-589-789', Truck:'RFD589632', LoadStatus: 'Arrival-delay', PickupLocation:'San Fransisco', DropOffLocation:'NYC', Comments:''}
- ];
+
   getData() {
     this._loadservice.getLoadData().subscribe(data => {
-      this.data = data;
-      console.log(data)
+      var res=data
+      this._companyservice.getCompanyData().subscribe(resp => {
+        console.log(resp)
+        for (var i = 0; i < res.length;i++) {
+          res[i]['load_number']=1000+i
+          res[i]['customer_name']=resp[JSON.parse(res[i]['customer'][0])].companyname
+        }
+          this._pickup.getpickupData().subscribe(data => {
+            this.pickupdata = data
+            for (var i = 0; i < this.loadDetails.length; i++) {
+               var pickitem = this.pickupdata.map(item => {
+                 if(item._id == this.loadDetails[i]._id){
+                   this.loadDetails[i]['pickupinfo'] = item
+                 }
+               })
+              }
+          })
+          this.loadDetails = res;
+           this._dropoff.getdroppoffData().subscribe(data => {
+            this.dropoffdata = data
+            for (var i = 0; i < this.loadDetails.length; i++) {
+               var dropitem = this.dropoffdata.map(item => {
+                 if(item._id == this.loadDetails[i]._id){
+                   this.loadDetails[i]['dropoffinfo'] = item
+                 }
+               })
+              }
+          })
+        console.log(this.loadDetails)
+      });
     });
   }
 

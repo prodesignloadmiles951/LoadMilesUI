@@ -3,6 +3,8 @@ import { CreateloadService } from '../../../../services/createload.service'
 import { DriversService } from '../../../../services/driver.service';
 import { TrucksService } from '../../../../services/trucks.service';
 import { TrailerService } from '../../../../services/trailers.service';
+import { DropoffserviceService } from '../../../../services/dropoffservice.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dropoff',
@@ -18,10 +20,83 @@ export class DropoffComponent implements OnInit {
   trailerDetails=[]
   truckDetails=[]
   loadstatusDetails=[]
-  constructor(private _loadservice: CreateloadService, private _driverService: DriversService, private _trucksservice: TrucksService, private _trailersService: TrailerService) { }
+  constructor(private _loadservice: CreateloadService, 
+    private _driverService: DriversService, private _trucksservice: TrucksService, private _toaster: ToastrService,
+    private _trailersService: TrailerService, private _dropoff: DropoffserviceService) { }
 
-  logEvent(e){
+   onAdd(eventName) {
+    console.log(eventName.key) 
+    var dropoffdata = eventName.key
+    this.SendDropoffform(dropoffdata)
+  }
+
+  onDelete(eventName) {
+    console.log(eventName.key)
+    this._loadservice.deleteLoadData(eventName.key).subscribe(data => {
+      console.log(data)
+    });
+  }
+
+   SendDropoffform(dropoffdata){
+
+    var dropoffinfo = {}
+    dropoffinfo['_id']=sessionStorage.getItem('submitID')
+    dropoffinfo['dropContnumber']= JSON.parse(dropoffdata['dropContnumber'])
+    dropoffinfo['DropoffDate']= new Date(dropoffdata['DropoffDate']).getTime()
+    dropoffinfo['dropCompany'] = dropoffdata['dropCompany']
+    dropoffinfo['dropContact'] = dropoffdata['dropContact']
+    dropoffinfo['dropAddress'] = dropoffdata['dropAddress']
     
+    for (var i = 0; i < this.typeDetails.length; i++) {
+      if(this.typeDetails[i]['ID'] == JSON.parse(dropoffdata['Type'])){
+        dropoffinfo['Type']= this.typeDetails[i]['Name']
+        break
+      }
+    }
+    for (var i = 0; i < this.driverDetails.length; i++) {
+      if(this.driverDetails[i]['ID'] == JSON.parse(dropoffdata['Driver1'])){
+        dropoffinfo['Driver1']= this.driverDetails[i]['Name']
+        break
+      }
+    }
+    for (var i = 0; i < this.driverDetails.length; i++) {
+      if(this.driverDetails[i]['ID'] == JSON.parse(dropoffdata['Driver2'])){
+        dropoffinfo['Driver2']= this.driverDetails[i]['Name']
+        break
+      }
+    }
+    for (var i = 0; i < this.truckDetails.length; i++) {
+      if(this.truckDetails[i]['ID'] == JSON.parse(dropoffdata['Truck'])){
+        dropoffinfo['Truck']= this.truckDetails[i]['Name']
+        break
+      }
+    }
+    for (var i = 0; i < this.trailerDetails.length; i++) {
+      if(this.trailerDetails[i]['ID'] == JSON.parse(dropoffdata['Trailer'])){
+        dropoffinfo['Trailer']= this.trailerDetails[i]['Name']
+        break
+      }
+    }
+    for (var i = 0; i < this.loadstatusDetails.length; i++) {
+      if(this.loadstatusDetails[i]['ID'] == JSON.parse(dropoffdata['loadStatus'])){
+        dropoffinfo['LoadStatus']= this.loadstatusDetails[i]['Name']
+        break
+      }
+    }
+    this._dropoff.SendDropoffform(dropoffinfo).subscribe(data => {
+      this.data = data
+      this._toaster.success("Dropoff successfully created", "Success");
+    }, error => {
+       this._toaster.error("error", "Try Again");
+        console.log(this.data)
+    })
+  }
+
+  getDropoffForm(){
+    this._dropoff.getdroppoffData().subscribe(data => {
+      this.data = data
+      console.log(this.data)
+    })
   }
 
   getDriverData() {
@@ -42,7 +117,6 @@ export class DropoffComponent implements OnInit {
               truckDetails['ID']=i
               truckDetails['Name']=data[i].truckunitnumber
               this.truckDetails.push(truckDetails)
-              console.log(this.truckDetails)
             }  
     });
   }
@@ -53,7 +127,6 @@ export class DropoffComponent implements OnInit {
               trailerDetails['ID']=i
               trailerDetails['Name']=data[i].unitNumber
               this.trailerDetails.push(trailerDetails)
-              console.log(this.trailerDetails)
             } 
         });
       }
@@ -62,6 +135,7 @@ export class DropoffComponent implements OnInit {
     this.getDriverData()
     this.getTruckData()
     this.getTrailerData()
+    // this.getDropoffForm()
   	this.drivertypeDetails=[
       {
           "ID": 0,
@@ -72,20 +146,6 @@ export class DropoffComponent implements OnInit {
           "Name": "Team"
       }
     ]
-    // this.driverDetails=[
-    //   {
-    //       "ID": 0,
-    //       "Name": "Dan"
-    //   },
-    //   {
-    //       "ID": 1,
-    //       "Name": "Steve"
-    //   },
-    //   {
-    //       "ID": 2,
-    //       "Name": "Max"
-    //   }
-    // ]
     this.typeDetails=[
       {
           "ID": 0,
@@ -96,34 +156,7 @@ export class DropoffComponent implements OnInit {
           "Name": "Carrier"
       }
     ]
-    // this.trailerDetails=[
-    //   {
-    //       "ID": 0,
-    //       "Name": "FLB654"
-    //   },
-    //   {
-    //       "ID": 1,
-    //       "Name": "GXV5654"
-    //   },
-    //   {
-    //       "ID": 2,
-    //       "Name": "KLO767"
-    //   }
-    // ]
-    // this.truckDetails=[
-    //   {
-    //       "ID": 0,
-    //       "Name": "FLB654"
-    //   },
-    //   {
-    //       "ID": 1,
-    //       "Name": "GXV5654"
-    //   },
-    //   {
-    //       "ID": 2,
-    //       "Name": "KLO767"
-    //   }
-    // ]
+
     this.loadstatusDetails=[
       {
           "ID": 0,

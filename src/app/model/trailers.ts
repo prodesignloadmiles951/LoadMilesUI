@@ -47,4 +47,6 @@ export class TrailersFilters {
     lastServicedate: any;
     nextServicedate: any;
     comments: any;
+    plateexpirydate: any;
+    notes: any;
 }

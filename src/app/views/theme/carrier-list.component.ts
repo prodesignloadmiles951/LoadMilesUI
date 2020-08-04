@@ -20,6 +20,7 @@ export class CarrierlistComponent implements OnInit {
     selectedCarrier: any;
     selectedCompany: any;
     EditMode: boolean;
+    carrierData={}
 
     constructor(private _toaster: ToastrService,
         private _carrierservice: CarrierService,
@@ -30,6 +31,9 @@ export class CarrierlistComponent implements OnInit {
         }
 viewData(carrier) {
     this.EditMode = false;
+    var carrierObj=carrier
+    carrierObj['EditMode']=this.EditMode
+    this.carrierData=carrierObj
     this.carriers = new CarrierFilters();
     this.carriers = carrier;
     this.selectedCarrier = carrier.companyname;
@@ -42,6 +46,9 @@ viewData(carrier) {
 
 editData(carrier) {
     this.EditMode = true;
+    var carrierObj=carrier
+    carrierObj['EditMode']=this.EditMode
+    this.carrierData=carrierObj
     this.carriers = new CarrierFilters();
     this.carriers = carrier;
     this.selectedCarrier = carrier.companyname;

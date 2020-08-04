@@ -14,6 +14,7 @@ export class CustomersComponent implements OnInit {
     Vendorlistdata = new Array<CustomersFilters>();
     submitted: boolean;
     filename: any;
+    customerdata= [];
 
     constructor(private _toaster: ToastrService,
         private _customersservice: CustomersService,

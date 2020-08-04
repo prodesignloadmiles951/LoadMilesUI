@@ -11,6 +11,7 @@ export class DispatcherComponent implements OnInit {
     Dispatcherlistdata = new Array<DispatcherFilters>();
     submitted: boolean;
     typeDetails=[];
+    dispatcherpaydata=[];
     filename: any;
 
     ngOnInit(): void {

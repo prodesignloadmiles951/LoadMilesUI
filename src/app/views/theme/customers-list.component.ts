@@ -18,6 +18,7 @@ export class CustomerslistComponent implements OnInit {
     selectedCustomer: any;
     selectedCompany: any;
     EditMode: boolean;
+    customerData={}
 
     constructor(private _customersservice: CustomersService,
         private _toasterservice: ToastrService,
@@ -29,6 +30,9 @@ export class CustomerslistComponent implements OnInit {
 
     viewData(customer) {
         this.EditMode = false;
+        var customerObj=customer
+        customerObj['EditMode']=this.EditMode
+        this.customerData=customerObj
         this.customers = new CustomersFilters();
         this.customers = customer;
         this.selectedCustomer = customer.companyname;
@@ -41,6 +45,9 @@ export class CustomerslistComponent implements OnInit {
 
       editData(customer) {
         this.EditMode = true;
+        var customerObj=customer
+        customerObj['EditMode']=this.EditMode
+        this.customerData=customerObj
         this.customers = new CustomersFilters();
         this.customers = customer;
         this.selectedCustomer = customer.companyname;

@@ -3,12 +3,14 @@ import { CreateloadService } from '../../../../services/createload.service'
 import { DriversService } from '../../../../services/driver.service';
 import { TrucksService } from '../../../../services/trucks.service';
 import { TrailerService } from '../../../../services/trailers.service';
+import { PickupserviceService } from '../../../../services/pickupservice.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-pickup',
   templateUrl: './pickup.component.html',
   styleUrls: ['./pickup.component.scss'],
-  providers: [TrucksService, DriversService, TrailerService]
+  providers: [TrucksService, DriversService, TrailerService, PickupserviceService]
 })
 export class PickupComponent implements OnInit {
   data=[]
@@ -19,16 +21,74 @@ export class PickupComponent implements OnInit {
   truckDetails=[]
   loadstatusDetails=[]
   unitNumberdata: any;
-  constructor(private _loadservice: CreateloadService, private _driverService: DriversService, private _trucksservice: TrucksService, private _trailersService: TrailerService) { }
+  constructor(private _loadservice: CreateloadService, 
+    private _driverService: DriversService, private _trucksservice: TrucksService,private _toaster: ToastrService, 
+    private _trailersService: TrailerService, private _pickup: PickupserviceService) { }
 
   onAdd(eventName) {
     console.log(eventName.key) 
-    // var obj=eventName.key
-    // obj['slno']=this.data.length+1
-    // this.data.push(obj)
-    // this._loadservice.addLoadData(eventName.key).subscribe(data => {
-    //   console.log(data)
-    // });
+    var pickupdata = eventName.key
+    this.SendPickupForm(pickupdata)
+  }
+  SendPickupForm(pickupdata){
+    var pickupinfo = {}
+    
+    pickupinfo['_id']=sessionStorage.getItem('submitID')
+    pickupinfo['ContactNumber']= JSON.parse(pickupdata['ContactNumber'])
+    pickupinfo['PickupDate']= new Date(pickupdata['PickupDate']).getTime()
+    pickupinfo['PickupCompany'] = pickupdata['PickupCompany']
+    pickupinfo['ContactName'] = pickupdata['ContactName']
+    pickupinfo['Address'] = pickupdata['Address']
+
+    for (var i = 0; i < this.typeDetails.length; i++) {
+      if(this.typeDetails[i]['ID'] == JSON.parse(pickupdata['Type'])){
+        pickupinfo['Type']= this.typeDetails[i]['Name']
+        break
+      }
+    }
+    for (var i = 0; i < this.driverDetails.length; i++) {
+      if(this.driverDetails[i]['ID'] == JSON.parse(pickupdata['Driver1'])){
+        pickupinfo['Driver1']= this.driverDetails[i]['Name']
+        break
+      }
+    }
+    for (var i = 0; i < this.driverDetails.length; i++) {
+      if(this.driverDetails[i]['ID'] == JSON.parse(pickupdata['Driver2'])){
+        pickupinfo['Driver2']= this.driverDetails[i]['Name']
+        break
+      }
+    }
+    for (var i = 0; i < this.truckDetails.length; i++) {
+      if(this.truckDetails[i]['ID'] == JSON.parse(pickupdata['Truck'])){
+        pickupinfo['Truck']= this.truckDetails[i]['Name']
+        break
+      }
+    }
+    for (var i = 0; i < this.trailerDetails.length; i++) {
+      if(this.trailerDetails[i]['ID'] == JSON.parse(pickupdata['Trailer'])){
+        pickupinfo['Trailer']= this.trailerDetails[i]['Name']
+        break
+      }
+    }
+    for (var i = 0; i < this.loadstatusDetails.length; i++) {
+      if(this.loadstatusDetails[i]['ID'] == JSON.parse(pickupdata['LoadStatus'])){
+        pickupinfo['LoadStatus']= this.loadstatusDetails[i]['Name']
+        break
+      }
+    }
+    this._pickup.SendPickupForm(pickupinfo).subscribe(data => {
+      this.data = data
+      this._toaster.success("Pickup successfully created", "Success");
+    }, error => {
+       this._toaster.error("error", "Try Again");
+        console.log(this.data)
+    })
+  }
+  getPickupForm(){
+    this._pickup.getpickupData().subscribe(data => {
+      this.data = data
+      console.log(this.data)
+    })
   }
 
   getDriverData() {
@@ -49,7 +109,6 @@ export class PickupComponent implements OnInit {
               truckDetails['ID']=i
               truckDetails['Name']=data[i].truckunitnumber
               this.truckDetails.push(truckDetails)
-              console.log(this.truckDetails)
             }  
     });
   }
@@ -60,7 +119,6 @@ export class PickupComponent implements OnInit {
               trailerDetails['ID']=i
               trailerDetails['Name']=data[i].unitNumber
               this.trailerDetails.push(trailerDetails)
-              console.log(this.trailerDetails)
             } 
         });
       }
@@ -90,6 +148,7 @@ export class PickupComponent implements OnInit {
     this.getDriverData()
     this.getTruckData()
     this.getTrailerData()
+    // this.getPickupForm()
   	this.drivertypeDetails=[
       {
           "ID": 0,

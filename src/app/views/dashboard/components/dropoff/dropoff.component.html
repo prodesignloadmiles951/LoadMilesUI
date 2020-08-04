@@ -1,42 +1,40 @@
 <h2 class="formheader">DROPOFF FORM</h2>
 <div class="dx-viewport">
   <div class="grid-container">
-    <dx-data-grid id="gridContainer" [dataSource]="data" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onEditingStart)="logEvent('EditingStart')" (onInitNewRow)="logEvent('InitNewRow')" (onRowInserting)="logEvent('RowInserting')" (onRowInserted)="logEvent('RowInserted')" (onRowUpdating)="logEvent('RowUpdating')" (onRowUpdated)="logEvent('RowUpdated')" (onRowRemoving)="logEvent('RowRemoving')" (onRowRemoved)="logEvent('RowRemoved')">
+    <dx-data-grid id="gridContainer" [dataSource]="data" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
       <dxo-paging [enabled]="false"></dxo-paging>
       <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
       </dxo-editing>
-      <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
-      <!-- <dxi-column dataField="drivertype" caption="Driver Type"></dxi-column> -->
-      <dxi-column dataField="slno" caption="Sl No."></dxi-column>
-      <dxi-column dataField="type" caption="Type" [width]="110">
+      <dxi-column dataField="slNo" caption="Sl No."></dxi-column>
+      <dxi-column dataField="Type" caption="Type" [width]="110">
         <dxo-lookup [dataSource]="typeDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="driver" caption="Driver1" [width]="120">
+      <dxi-column dataField="Driver1" caption="Driver1" [width]="120">
         <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="driver" caption="Driver2" [width]="120">
+      <dxi-column dataField="Driver2" caption="Driver2" [width]="120">
         <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="truck" caption="Truck" [width]="120">
+      <dxi-column dataField="Truck" caption="Truck" [width]="120">
         <dxo-lookup [dataSource]="truckDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="trailer" caption="Trailer" [width]="120">
+      <dxi-column dataField="Trailer" caption="Trailer" [width]="120">
         <dxo-lookup [dataSource]="trailerDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="loadstatus" caption="Load Status" [width]="180">
+      <dxi-column dataField="loadStatus" caption="Load Status" [width]="180">
         <dxo-lookup [dataSource]="loadstatusDetails" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
       </dxi-column>
-      <dxi-column dataField="dropcompany" caption="Dropoff Company"></dxi-column>
-      <dxi-column dataField="contact" caption="Contact Name"></dxi-column>
-      <dxi-column dataField="contnumber" caption="Contact Number"></dxi-column>
-      <dxi-column dataField="address" caption="Address"></dxi-column>
-      <dxi-column dataField="Dropoff Date" caption="Dropoff date" dataType="date">
+      <dxi-column dataField="dropCompany" caption="Dropoff Company"></dxi-column>
+      <dxi-column dataField="dropContact" caption="Contact Name"></dxi-column>
+      <dxi-column dataField="dropContnumber" caption="Contact Number"></dxi-column>
+      <dxi-column dataField="dropAddress" caption="Address"></dxi-column>
+      <dxi-column dataField="DropoffDate" caption="Dropoff date" dataType="date">
       </dxi-column>
       <!-- <div *dxTemplate="let element of actionTemplate">
                 

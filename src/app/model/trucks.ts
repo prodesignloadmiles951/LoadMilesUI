@@ -1,6 +1,7 @@
 export class TrucksFilters {
     plate: number;
     unitNumber: number;
+    truckunitnumber: number;
     operationStatus: any;
     startingMileage: number;
     currentMiles: number;

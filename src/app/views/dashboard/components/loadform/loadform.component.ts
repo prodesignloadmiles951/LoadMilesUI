@@ -36,9 +36,7 @@ export class LoadformComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.loadForm = this.formBuilder.group({
-            
-    //     });
+  
     this.newloadfilters['dispatcher']= sessionStorage.getItem('userdetails')
     var date= new Date()
     this.newloadfilters['date']= date.toLocaleDateString()
@@ -50,17 +48,6 @@ export class LoadformComponent implements OnInit {
     this.newloadfilters['customer']="Select customer"
     this.newloadfilters['drivertype']="Select Driver type"
     this.newloadfilters['loadstatus']="Select load status"
-    // this.drivertypeDetails=[
-    //   {
-    //       "ID": 0,
-    //       "Name": "Solo"
-    //   },
-    //   {
-    //       "ID": 1,
-    //       "Name": "Team"
-    //   }
-    // ]
-    
     this.getData();
     this.getCompanyData();
   }
@@ -88,12 +75,13 @@ export class LoadformComponent implements OnInit {
         });
   }
   submitload(){
-    console.log(this.newloadfilters)
     this.showsubmit=true
     this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
           console.log(data)
+          sessionStorage.setItem('submitID', data.data._id)
+          this.getData();
           this.showsubmit=false
-          this._toaster.success("company successfull updated", "Success");
+          this._toaster.success("Load successfully created", "Success");
     }, error => {
        this._toaster.error("error", "Try Again");
     });
