@@ -81,9 +81,9 @@ export class DriverlistComponent implements OnInit {
 
       deleteDriver(driver) {
         this._driverService.DeleteDrivers(driver._id).subscribe(data => {
-        this._toaster.info("Driver Data Delete", "Success");
-        this.getData();
-       });
+          this._toaster.info("Driver Data Delete", "Success");
+          this.getData();
+         });
        }
 
        Add() {

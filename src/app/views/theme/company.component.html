@@ -80,14 +80,14 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="phone">Phone :</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" placeholder="Ex: 012 345 6789" id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" [pattern]="'^[1-9][0-9]*$'" minlength="10" maxlength="10" required>
+              <input type="number" class="form-control" placeholder="Ex: 012 345 6789" id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" [pattern]="'^[1-9][0-9]*$'" minlength="10" maxlength="10" required>
               <div *ngIf="phone.errors && (phone.dirty || phone.touched)" style="font-size: smaller;">
-                <div [hidden]="!phone.errors.required">
+                <!-- <div [hidden]="!phone.errors.required">
                   <span style="color: red;">Phone must be in Numbers</span>
-                </div>
-                <div [hidden]="!phone.errors?.pattern">
+                </div> -->
+                <!-- <div [hidden]="!phone.errors?.pattern">
                   <span style="color: red;">Enter Numbers only</span>
-                </div>
+                </div> -->
                 <div *ngIf="phone.errors.maxlength || phone.errors.minlength">
                   <span style="color: red;">Phone Number must be 10 digits</span>
                 </div>
@@ -97,14 +97,14 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="fax">Fax :</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="fax" #fax="ngModel" name="fax" [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" required>
+              <input type="number" class="form-control" id="fax" #fax="ngModel" name="fax" [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" required>
               <div *ngIf="fax.errors && (fax.dirty || fax.touched)" style="font-size: smaller;">
-                <div [hidden]="!fax.errors.required">
+                <!-- <div [hidden]="!fax.errors.required">
                   <span style="color: red;">Fax must be Number</span>
                 </div>
                 <div [hidden]="!fax.errors?.pattern">
                   <span style="color: red;">Enter Numbers only</span>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -124,7 +124,7 @@
           </div>
         </div>
       </div>
-      <div class="card">
+      <!-- <div class="card">
         <div class="card-header"><strong>Mailing</strong> Address</div>
         <div class="card-body">
           <div class="form-group row">
@@ -159,7 +159,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="col-md-6">
       <!-- <div class="card">
@@ -216,7 +216,7 @@
           </div>
         </div>
       </div>
-      <div class="card">
+      <!-- <div class="card">
         <div class="card-header"><strong>Physical</strong> Address</div>
         <div class="card-body">
           <div class="form-group row">
@@ -265,6 +265,37 @@
             <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             Submit</button>&nbsp;&nbsp;
           <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+        </div>
+      </div> -->
+      <div class="card">
+        <div class="card-header"><strong>Mailing</strong> Address</div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="address1" #address1="ngModel" name="address1" [(ngModel)]="pageFilters.address1" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.address2" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="address2">City :</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.city" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-6">State:
+              <input type="text" class="form-control" id="state" placeholder="Enter state" #zip="ngModel" name="state" [(ngModel)]="pageFilters.state" required>
+            </div>
+            <div class="col-6">Zip:
+              <input type="text" class="form-control" id="zip1" placeholder="Ex: 500013" #zip="ngModel" name="zip" [(ngModel)]="pageFilters.zip" required>
+            </div>
+          </div>
         </div>
       </div>
     </div>

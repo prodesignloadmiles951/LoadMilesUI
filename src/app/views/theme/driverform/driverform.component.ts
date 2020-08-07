@@ -10,19 +10,24 @@ import { DriversService } from './../../../services/driver.service';
 })
 export class DriverformComponent implements OnInit {
 	pageFilters={};
-    Driverlistdata = new Array<DriverFilters>();
-    payratedata=[];
-    drugandmedicaldata=[];
-    @Input() datatype;
-    mode=false
-    finalArry=[]
+  Driverlistdata = new Array<DriverFilters>();
+  payratedata=[];
+  drugandmedicaldata=[];
+  @Input() datatype;
+  mode=false
+  finalArry=[]
 
   constructor(private _driverService: DriversService,) { }
 
   ngOnInit() {
     console.log(this.datatype)
-    this.pageFilters=this.datatype
-    this.mode=this.datatype['EditMode']
+    if(this.datatype == undefined){
+      this.pageFilters=this.Driverlistdata
+      this.mode=true
+    }else{
+      this.pageFilters=this.datatype
+      this.mode=this.datatype['EditMode']      
+    }
   }
 
   addfiles(e){

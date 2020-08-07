@@ -50,6 +50,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     P500Component,
     LoginComponent,
     RegisterComponent,
+    LoadstatusComponent
   ],
   providers: [
     {provide: LocationStrategy,useClass: HashLocationStrategy},

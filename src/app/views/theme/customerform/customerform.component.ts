@@ -21,8 +21,13 @@ export class CustomerformComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.datatype)
-    this.pageFilters=this.datatype
-    this.mode=this.datatype['EditMode']
+    if(this.datatype == undefined){
+      this.pageFilters=this.Customerslistdata
+      this.mode=true
+    }else{
+      this.pageFilters=this.datatype
+      this.mode=this.datatype['EditMode']      
+    }
   }
 
   addfiles(e){

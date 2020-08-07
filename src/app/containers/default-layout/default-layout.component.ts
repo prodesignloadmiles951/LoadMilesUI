@@ -19,13 +19,13 @@ export class DefaultLayoutComponent implements OnDestroy {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
-  private router:Router;
   public loginUser: LoginUser;
   public usertype :string;
   data: any;
   constructor(
     private authService: AuthenticationService,
     private _companyservice: CompanyService,
+    private router:Router,
     @Inject(DOCUMENT) _document?: any
     
   ) {
@@ -61,6 +61,10 @@ export class DefaultLayoutComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.changes.disconnect();
+  }
+
+  showLoadstatus() {
+    this.router.navigateByUrl('loadstatus');
   }
   Logout(){
     sessionStorage.clear();

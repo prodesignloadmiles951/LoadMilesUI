@@ -21,8 +21,13 @@ export class TruckformComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.datatype)
-    this.pageFilters=this.datatype
-    this.mode=this.datatype['EditMode']
+    if(this.datatype == undefined){
+      this.pageFilters=this.Truckslistdata
+      this.mode=true
+    }else{
+      this.pageFilters=this.datatype
+      this.mode=this.datatype['EditMode']      
+    }
   }
   addfiles(e){
       var finalArry=e.target.files
