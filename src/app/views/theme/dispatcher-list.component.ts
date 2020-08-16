@@ -2,11 +2,12 @@ import { DispatcherFilters } from '../../model/dispatcher';
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { DispatcherService } from '../../services/Dispatcher.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-dispatcher-list',
     templateUrl: './dispatcher-list.component.html',
-    providers: [DispatcherService]
+    providers: [DispatcherService, ToastrService]
 })
 export class DispatcherlistComponent implements OnInit {
     public pageFilters: DispatcherFilters;
@@ -17,9 +18,10 @@ export class DispatcherlistComponent implements OnInit {
     EditMode: boolean;
     selectedDispatcher: any;
     dispatcherData={}
+    showForm=false
 
     constructor(
-        private router: Router, private _dispatcherService: DispatcherService,) { }
+        private router: Router, private _dispatcherService: DispatcherService,private _toaster: ToastrService) { }
 
     ngOnInit(): void {
         this.pageFilters = new DispatcherFilters();
@@ -29,6 +31,7 @@ export class DispatcherlistComponent implements OnInit {
     getDispatcherData() {
     this._dispatcherService.getDispatcherData().subscribe(data => {
       this.Dispatcherdata = data;
+      console.log(this.Dispatcherdata)
     });
   }
 
@@ -40,7 +43,7 @@ export class DispatcherlistComponent implements OnInit {
     this.dispatchers = new DispatcherFilters();
     this.dispatchers = dispatcher;
     this.selectedDispatcher = dispatcher.firstname;
-
+    this.showForm=true
 }
 
 viewData(dispatcher) {
@@ -51,6 +54,20 @@ viewData(dispatcher) {
     this.dispatchers = new DispatcherFilters();
     this.dispatchers = dispatcher;
     this.selectedDispatcher = dispatcher.companyname;
+    this.showForm=true
+}
+
+hidePopup(){
+      this.showForm=false
+    }
+
+editDispatcher(dispatcher,selectedDispatcher) {
+    this._dispatcherService.EditDispatcher(dispatcher).subscribe(response => {
+          this._toaster.success(selectedDispatcher+ " dispatcher successfully updated", "Success");
+        }, error => {
+           this._toaster.error("error", "Try Again");
+          });
+          this.EditMode = false;
 }
 
     submit() {

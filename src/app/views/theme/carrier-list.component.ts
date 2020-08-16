@@ -21,6 +21,7 @@ export class CarrierlistComponent implements OnInit {
     selectedCompany: any;
     EditMode: boolean;
     carrierData={}
+    showForm=false
 
     constructor(private _toaster: ToastrService,
         private _carrierservice: CarrierService,
@@ -37,6 +38,7 @@ viewData(carrier) {
     this.carriers = new CarrierFilters();
     this.carriers = carrier;
     this.selectedCarrier = carrier.companyname;
+    this.showForm=true
 }
     getData() {
     this._carrierservice.getCarrierData().subscribe(data => {
@@ -52,12 +54,16 @@ editData(carrier) {
     this.carriers = new CarrierFilters();
     this.carriers = carrier;
     this.selectedCarrier = carrier.companyname;
-
+    this.showForm=true
 }
 
-editCarriers(carrier) {
+hidePopup(){
+      this.showForm=false
+    }
+
+editCarriers(carrier,selectedCarrier) {
     this._carrierservice.EditCarrier(carrier).subscribe(response => {
-        this._toaster.success("Carrier successfully updated", "Success");
+        this._toaster.success(selectedCarrier+ " carrier successfully updated", "Success");
     }, error => {
         this._toaster.error("error", "Try Again");
         });
@@ -70,11 +76,11 @@ editCarriers(carrier) {
     Add() {
         this.router.navigateByUrl('/theme/carrier');
       }
-deleteCarriers(carrier) {
-    this._carrierservice.DeleteCarrier(carrier._id).subscribe(data => {
-    this._toaster.info("Carrier Data Delete", "Success");
-    this.getData();
-    });
-    }
+// deleteCarriers(carrier) {
+//     this._carrierservice.DeleteCarrier(carrier._id).subscribe(data => {
+//     this._toaster.info("Carrier Data Delete", "Success");
+//     this.getData();
+//     });
+//     }
 }
  

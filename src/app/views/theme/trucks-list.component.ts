@@ -23,6 +23,7 @@ export class TruckslistComponent implements OnInit {
     selectedCompany: any;
     EditMode: boolean;
     truckData={}
+    showForm=false
  
     constructor(private _toaster: ToastrService,
       private _trucksservice: TrucksService,
@@ -40,6 +41,7 @@ export class TruckslistComponent implements OnInit {
     this.trucks = new TrucksFilters();
     this.trucks = truck;
     this.selectedTruck = truck.truckunitnumber;
+    this.showForm=true
   }
   getData() {
     this._trucksservice.getTrucksData().subscribe(data => {
@@ -55,12 +57,16 @@ export class TruckslistComponent implements OnInit {
     this.trucks = new TrucksFilters();
     this.trucks = truck;
     this.selectedTruck = truck.truckunitnumber;
+    this.showForm=true
 
   }
+   hidePopup(){
+      this.showForm=false
+    }
 
-  editTrucks(trucks) {
+  editTrucks(trucks,selectedTruck) {
     this._trucksservice.EditTrucks(trucks).subscribe(response => {
-      this._toaster.success("Trucks successfully updated", "Success");
+      this._toaster.success(selectedTruck+ " truck successfully updated", "Success");
     }, error => {
        this._toaster.error("error", "Try Again");
       });
@@ -73,7 +79,7 @@ export class TruckslistComponent implements OnInit {
 
   deleteTrucks(truck) {
     this._trucksservice.DeleteTrucks(truck._id).subscribe(data => {
-    this._toaster.info("Trucks Data Delete", "Success");
+    this._toaster.info("Trucks Data Deleted", "Success");
     this.getData();
    });
    }

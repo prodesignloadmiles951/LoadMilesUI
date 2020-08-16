@@ -1,4 +1,4 @@
-<div class="row" *ngIf="pageFilters">
+<div class="row" *ngIf="pageFiltersshow">
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">Personal Information</div>
@@ -125,6 +125,20 @@
                 <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode" name="zipcode" #zipcode="ngModel" [(ngModel)]="pageFilters.zipcode">
               </div>
             </div>
+            <div class="form-group row">
+              <label for="file-upload" class="custom-file-upload">
+                  <i class="fa fa-cloud-upload"></i> Upload
+              </label>
+              <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
+              <div class="col-sm-12">
+                <div *ngFor="let data of finalArry;let i=index">
+                  {{data}} <span style="color: blue;" (click)="onView()">View</span><span style="color: red;"(click)="ondelete(i)">delete</span>
+                </div>
+              </div>
+              <div *ngIf="itemShow">
+                <pdf-viewer #pdfViewer [src]="item" ></pdf-viewer>
+              </div>
+            </div>
           </div>
         </div>
         <div style="display: flex;">
@@ -155,7 +169,7 @@
                 </dxo-editing>
                 <dxo-selection mode="single"></dxo-selection>
                 <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
-                <dxi-column dataField="type" caption="Pay Type">
+                <dxi-column dataField="type" caption="Contact Type">
                   <dxo-lookup [dataSource]="typeDetails" displayExpr="Name" valueExpr="ID">
                   </dxo-lookup>
                 </dxi-column>
@@ -259,10 +273,10 @@
                 <label class="col-md-4 col-form-label" for="driver">Driver Name:</label>
                 <div class="col-md-8">
                   <select [ngClass]="mode?'':'disble'" class="form-control" id="driver" name="driver" #driver="ngModel" [(ngModel)]="pageFilters.driver">
-                    <option value="0">Select</option>
-                    <option value="1">Option #1</option>
-                    <option value="2">Option #2</option>
-                    <option value="3">Option #3</option>
+                    <option value="" disabled selected hidden>Driver</option>
+                    <option *ngFor="let cmp of driverdata" value="0">
+                      <span>{{cmp.firstname}}</span>
+                    </option>
                   </select>
                 </div>
               </div>
@@ -351,7 +365,7 @@
           </mat-expansion-panel-header>
           <div class="dx-viewport">
             <div class="grid-container">
-              <dx-data-grid #grid id="gridContainer" [dataSource]="payratedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
+              <dx-data-grid #grid id="gridContainer" [dataSource]="payratedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onpayrateDelete($event)" (onRowInserted)="onpayrateAdd($event)">
                 <dxo-paging [enabled]="false"></dxo-paging>
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
                 </dxo-editing>
@@ -359,7 +373,7 @@
                 <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
                 <dxi-column dataField="fromdate" dataType="date" caption="Date From"></dxi-column>
                 <dxi-column dataField="type" caption="Pay Type">
-                  <dxo-lookup [dataSource]="typeDetails" displayExpr="Name" valueExpr="ID">
+                  <dxo-lookup [dataSource]="paytypeDetails" displayExpr="Name" valueExpr="ID">
                   </dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="payrate" caption="Pay Rate"></dxi-column>
@@ -387,7 +401,7 @@
           </mat-expansion-panel-header>
           <div class="dx-viewport">
             <div class="grid-container">
-              <dx-data-grid #grid id="gridContainer" [dataSource]="drugmedicaldata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
+              <dx-data-grid #grid id="gridContainer" [dataSource]="drugmedicaldata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="ondrugDelete($event)" (onRowInserted)="ondrugAdd($event)">
                 <dxo-paging [enabled]="false"></dxo-paging>
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
                 </dxo-editing>
@@ -406,4 +420,10 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
+  </div>
+  <div class="card-footer">
+    <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+      <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      Submit</button>&nbsp;&nbsp;
+    <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
   </div>

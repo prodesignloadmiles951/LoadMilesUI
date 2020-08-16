@@ -124,61 +124,9 @@
           </div>
         </div>
       </div>
-      <!-- <div class="card">
-        <div class="card-header"><strong>Mailing</strong> Address</div>
-        <div class="card-body">
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" id="address1" #address1="ngModel" name="address1" [(ngModel)]="pageFilters.address1" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.address2" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="address2">City :</label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.city" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-6">State:
-              <select class="form-control" id="state" #state="ngModel" name="state" [(ngModel)]="pageFilters.state">
-                <option value="0">Select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
-              </select>
-            </div>
-            <div class="col-6">Zip:
-              <input type="text" class="form-control" id="zip1" placeholder="Ex: 500013" #zip="ngModel" name="zip" [(ngModel)]="pageFilters.zip" required>
-            </div>
-          </div>
-        </div>
-      </div> -->
+     
     </div>
     <div class="col-md-6">
-      <!-- <div class="card">
-          <div class="card-header"><strong>Logo</strong></div>
-          <div class="card-body">
-              <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="hf-email">Email</label>
-                <div class="col-md-9">
-                  <input class="form-control" id="hf-email" type="email" name="hf-email" placeholder="Enter Email.." autocomplete="email"><span class="help-block">Please enter your email</span>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="hf-password">Password</label>
-                <div class="col-md-9">
-                  <input class="form-control" id="hf-password" type="password" name="hf-password" placeholder="Enter Password.." autocomplete="current-password"><span class="help-block">Please enter your password</span>
-                </div>
-              </div>
-          </div>
-        </div> -->
       <div class="card">
         <div class="card-header"><strong>Logo</strong></div>
         <div class="card-body">
@@ -189,7 +137,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group row">
+        <!-- <div class="form-group row">
           <div class="col-md-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
             <input type="file" style="display:none;" #file="ngModel" name="file" [(ngModel)]="pageFilters.file" />
             <button class="btn btn-pill btn-primary" type="button" (change)="onSelectFile()">Upload Logo</button>
@@ -214,7 +162,7 @@
               <option value="3">Option #3</option>
             </select>
           </div>
-        </div>
+        </div> -->
       </div>
       <!-- <div class="card">
         <div class="card-header"><strong>Physical</strong> Address</div>
@@ -301,6 +249,44 @@
     </div>
   </div>
 </form>
+<mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              User Management
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <button (click)="onAdd()">Add itom</button>
+          </div>
+          <div class="dx-viewport">
+            <div class="grid-container">
+            <dx-data-grid id="grid" #grid [dataSource]="usermanagementdata"  [showBorders]="true" [allowColumnReordering]="true" [allowColumnResizing]="false" [columnAutoWidth]="true" [remoteOperations]="true">
+              <dxo-column-chooser [enabled]="false"></dxo-column-chooser>
+              <dxo-filter-row [visible]="false"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+              <dxo-paging [pageSize]="10"></dxo-paging>
+              <dxo-state-storing [enabled]="true" type="localStorage" storageKey="jobstorage"></dxo-state-storing>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10,15, 20]" [showInfo]="true">
+              </dxo-pager>
+              <dxo-selection mode="single"></dxo-selection>
+              <dxi-column dataField="firstname" dataType="date" caption="First name"></dxi-column>
+              <dxi-column dataField="middlename" caption="Middle name"></dxi-column>
+              <dxi-column dataField="lastname" caption="Last name"></dxi-column>
+              <dxi-column dataField="email" caption="Email"></dxi-column>
+              <dxi-column dataField="title" caption="Title"></dxi-column>
+              <dxi-column dataField="action" caption="Action" cellTemplate="actionTemplate"></dxi-column>
+              <div *dxTemplate="let element of 'actionTemplate'">
+                  <button (click)="onEdit()">Edit</button>
+              </div> 
+              
+          </dx-data-grid>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
 <!--View-->
 <!-- <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">

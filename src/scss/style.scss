@@ -19,6 +19,10 @@ input[type="number"]::-webkit-inner-spin-button {
  margin: 0;
 }
 
+.app-header .navbar-brand {
+  align-items: baseline !important;
+}
+
 .forma {
   display: block;
   position: relative;
@@ -163,3 +167,4 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
 .mat-expansion-panel-header-title {
   color: #2c5484;
 }
+

@@ -7,6 +7,7 @@ import { CreateloadService } from '../../services/createload.service';
 
 @Component({
   templateUrl: 'dashboard.component.html',
+  styleUrls: ['dashboard.css'],
   providers: [ToastrService]
 })
 export class DashboardComponent implements OnInit {

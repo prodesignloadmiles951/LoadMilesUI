@@ -1,49 +1,46 @@
 <app-header [navbarBrandRouterLink]="['/dashboard']" [fixed]="true" [navbarBrandFull]="{src: 'assets/img/brand/Load-miles.PNG', width: 110, height: 45, alt: 'SNS Logo'}" [navbarBrandMinimized]="{src: 'assets/img/brand/Load-miles.PNG', width: 50, height: 50, alt: 'SNS Logo'}" [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
   <ul class="nav navbar-nav d-md-down-none">
   </ul>
-  <div class="row col-md-2">
-    <select class="form-control">
-      <option value="" disabled selected hidden>Company name</option>
-      <option *ngFor="let cmp of data" value="0">{{cmp.companyname}}</option>
-    </select>
+  <div class="col-md-3">
+    <cui-breadcrumb></cui-breadcrumb>
   </div>
-  <div class="col-md-6 navlinks" style="display: flex; justify-content: flex-end;">
-  <div class="row col-md-2" style="display: block;">
-    <button style="border-width: 0; background: none;" mat-button (click)="showLoadstatus()">loads</button>
-  </div>
-  <div class="row col-md-2" style="display: block;">
-    <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="paymenu">Pay</button>
-    <mat-menu #paymenu="matMenu">
-      <button mat-menu-item>Driver Pay</button>
-      <button mat-menu-item>Dispatcher Pay</button>
-      <button mat-menu-item>Vendor Pay</button>
-    </mat-menu>
-  </div>
-  <div class="row col-md-2" style="display: block;">
-    <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="recordmenu">Record</button>
-    <mat-menu #recordmenu="matMenu">
-      <button mat-menu-item>Record Miles</button>
-      <button mat-menu-item>Fuel Charges</button>
-      <button mat-menu-item>Maintenance</button>
-      <button mat-menu-item>Insurance</button>
-      <button mat-menu-item>Incident</button>
-      <button mat-menu-item>Sale/Disposal</button>
-    </mat-menu>
-  </div>
-  <div class="row col-md-2" style="display: block;">
-    <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="reportsmenu">Reports</button>
-    <mat-menu #reportsmenu="matMenu">
-      <button mat-menu-item>Truck Performance</button>
-      <button mat-menu-item>Driver Performance</button>
-      <button mat-menu-item>Carrier Performance</button>
-      <button mat-menu-item>Dispatcher Performance</button>
-      <button mat-menu-item>Customer Performance</button>
-      <button mat-menu-item>Fuel Performance</button>
-      <button mat-menu-item>Maintenance Register</button>
-      <button mat-menu-item>Medical Register</button>
-      <button mat-menu-item>Incident Register</button>
-    </mat-menu>
-  </div>
+  <div class="col-md-6 navlinks" style="display: flex; justify-content: flex-end; padding: 0 0 1rem;">
+    <div class="row col-md-2" style="display: block;">
+      <button style="border-width: 0; background: none;" mat-button (click)="showLoadstatus()">loads</button>
+    </div>
+    <div class="row col-md-2" style="display: block;">
+      <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="paymenu">Pay</button>
+      <mat-menu #paymenu="matMenu">
+        <button mat-menu-item>Driver Pay</button>
+        <button mat-menu-item>Dispatcher Pay</button>
+        <button mat-menu-item>Vendor Pay</button>
+      </mat-menu>
+    </div>
+    <div class="row col-md-2" style="display: block;">
+      <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="recordmenu">Record</button>
+      <mat-menu #recordmenu="matMenu">
+        <button mat-menu-item>Record Miles</button>
+        <button mat-menu-item>Fuel Charges</button>
+        <button mat-menu-item>Maintenance</button>
+        <button mat-menu-item>Insurance</button>
+        <button mat-menu-item>Incident</button>
+        <button mat-menu-item>Sale/Disposal</button>
+      </mat-menu>
+    </div>
+    <div class="row col-md-2" style="display: block;">
+      <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="reportsmenu">Reports</button>
+      <mat-menu #reportsmenu="matMenu">
+        <button mat-menu-item>Truck Performance</button>
+        <button mat-menu-item>Driver Performance</button>
+        <button mat-menu-item>Carrier Performance</button>
+        <button mat-menu-item>Dispatcher Performance</button>
+        <button mat-menu-item>Customer Performance</button>
+        <button mat-menu-item>Fuel Performance</button>
+        <button mat-menu-item>Maintenance Register</button>
+        <button mat-menu-item>Medical Register</button>
+        <button mat-menu-item>Incident Register</button>
+      </mat-menu>
+    </div>
   </div>
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item dropdown" dropdown placement="bottom right">
@@ -69,16 +66,29 @@
   <main class="main">
     <!-- Breadcrumb -->
     <!-- breaking change 'cui-breadcrumb' -->
-    <cui-breadcrumb>
-      <!-- Breadcrumb Menu-->
-      <li class="breadcrumb-menu d-md-down-none">
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-          <a class="btn" href="#"><i class="icon-speech"></i></a>
-          <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
-          <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
-        </div>
-      </li>
-    </cui-breadcrumb>
+    <!-- <cui-breadcrumb> -->
+    <!-- Breadcrumb Menu-->
+    <div class="col-md-12" style="display: flex; justify-content: space-between;">
+      <div class="col-md-3">
+        <mat-form-field>
+          <mat-select [(ngModel)]="selectedCompany" name="cmp" placeholder="Select Company">
+            <mat-option *ngFor="let cmp of data" [value]="cmp.companyname" (click)="companyselected(cmp)">
+              {{cmp.companyname}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-5">
+        <li class="d-md-down-none" style="list-style-type: none; text-align: end;">
+          <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <a class="btn" href="#"><i class="icon-speech"></i></a>
+            <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+            <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+          </div>
+        </li>
+      </div>
+    </div>
+    <!-- </cui-breadcrumb> -->
     <div class="container-fluid">
       <router-outlet></router-outlet>
     </div><!-- /.container-fluid -->

@@ -6,12 +6,13 @@ import { LoginUser } from '../../model/loginuser';
 import { AuthenticationService } from '../../views/authentication.service';
 import {salesNavItems} from '../../_nav';
 import { CompanyService } from '../../services/company.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html',
-  providers: []
+  providers: [ToastrService]
 })
 export class DefaultLayoutComponent implements OnDestroy {
   public navItems = navItems;
@@ -21,11 +22,14 @@ export class DefaultLayoutComponent implements OnDestroy {
   public element: HTMLElement;
   public loginUser: LoginUser;
   public usertype :string;
+  private value:any = {};
   data: any;
+  selectedCompany=undefined
   constructor(
     private authService: AuthenticationService,
     private _companyservice: CompanyService,
     private router:Router,
+    private _toaster: ToastrService,
     @Inject(DOCUMENT) _document?: any
     
   ) {
@@ -66,6 +70,14 @@ export class DefaultLayoutComponent implements OnDestroy {
   showLoadstatus() {
     this.router.navigateByUrl('loadstatus');
   }
+
+  companyselected(cmp) {
+    console.log(cmp.companyname)
+   this._toaster.success(cmp.companyname+" selected successfully", "Success");
+    
+  }
+
+
   Logout(){
     sessionStorage.clear();
     this.router.navigate(["login"]);

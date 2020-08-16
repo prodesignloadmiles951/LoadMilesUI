@@ -20,6 +20,7 @@ export class TrailerslistComponent implements OnInit {
     selectedTrailer: any;
     EditMode: boolean;
     trailerData={}
+    showForm=false
 
     constructor(private _toaster: ToastrService,
          private _trailersService: TrailerService,
@@ -37,6 +38,7 @@ export class TrailerslistComponent implements OnInit {
       this.trailers = new TrailersFilters();
       this.trailers = trailer;
       this.selectedTrailer = trailer.unitNumber;
+      this.showForm=true
     }
 
     editData(trailer) {
@@ -47,21 +49,25 @@ export class TrailerslistComponent implements OnInit {
       this.trailers = new TrailersFilters();
       this.trailers = trailer;
       this.selectedTrailer = trailer.unitNumber;
+      this.showForm=true
   
     }
 
-    submit() {
-        this.submitted = true;
-        this._trailersService.SendForm(this.pageFilters).subscribe(response => {
-          this.submitted = true;
-          this._toaster.info("Data Submitted","Success");
-          this.router.navigateByUrl("theme/trailers");
-        },error=>{
-          this.submitted=false;
-          this._toaster.error("Submit Agian","Faild");
-        });
-        // console.log(this.pageFilters);
-       }
+    hidePopup(){
+      this.showForm=false
+    }
+
+    // submit() {
+    //     this.submitted = true;
+    //     this._trailersService.SendForm(this.pageFilters).subscribe(response => {
+    //       this.submitted = true;
+    //       this._toaster.info("Trailer Data Submitted","Success");
+    //       this.router.navigateByUrl("theme/trailers");
+    //     },error=>{
+    //       this.submitted=false;
+    //       this._toaster.error("Submit Agian","Faild");
+    //     });
+    //    }
 
     
        getData() {
@@ -70,9 +76,9 @@ export class TrailerslistComponent implements OnInit {
         });
       }
     
-      editTrailer(trailer) {
+      editTrailer(trailer,selectedTrailer) {
         this._trailersService.EditTrailers(trailer).subscribe(response => {
-          this._toaster.success("Trailer successfully updated", "Success");
+          this._toaster.success(selectedTrailer+" trailer successfully updated", "Success");
         }, error => {
            this._toaster.error("error", "Try Again");
           });

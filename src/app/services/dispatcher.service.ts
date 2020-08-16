@@ -15,7 +15,7 @@ export class DispatcherService {
         this.dispatchersurl = environment.dispatchersurl;
     }
 
-    SendForm(pageFilters: DispatcherFilters) {
+    SendForm(pageFilters) {
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
         return this.http.post(this.dispatchersurl,pageFilters,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }

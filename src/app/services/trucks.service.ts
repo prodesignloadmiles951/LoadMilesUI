@@ -11,8 +11,10 @@ import { map, catchError } from 'rxjs/operators';
 export class TrucksService {
 
     trucksurl: string;
+    uploadFileUrl: string;
     constructor(private http: Http, private _headerService: AuthHeaderService) {
         this.trucksurl = environment.trucksurl;
+        this.uploadFileUrl = environment.uploadUrl;
     }
 
     SendForm(pageFilters: TrucksFilters) {
@@ -33,5 +35,9 @@ export class TrucksService {
     DeleteTrucks(_id) {
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
     return this.http.delete(this.trucksurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+    }
+    uploadFile(file){
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.post(this.uploadFileUrl,file,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 }

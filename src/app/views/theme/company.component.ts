@@ -17,6 +17,7 @@ export class CompanyComponent implements OnInit {
   data: any;
   currency
   model: any = {};
+  usermanagementdata= [];
 
   constructor(private _toaster: ToastrService,
      private _companyservice: CompanyService,

@@ -98,13 +98,13 @@ export class TrucksComponent implements OnInit {
     this.submitted = true;
     this._trucksservice.SendForm(this.pageFilters).subscribe(response => {
       this.submitted = true;
-      this._toaster.info("Data Submitted","Success");
+      this._toaster.info("Truck Data Submitted","Success");
       this.router.navigateByUrl("theme/trucks-list");
     },error=>{
       this.submitted=false;
-      this._toaster.error("Submit Agian","Faild");
+      this._toaster.error("Submit Again","Failed");
     });
-    // console.log(this.pageFilters);
+    this.getData()
    }
 
    getData() {

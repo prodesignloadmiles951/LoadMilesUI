@@ -6,6 +6,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { ToastrModule } from 'ngx-toastr';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { MatDialogModule} from '@angular/material/dialog';
 
 // Theme Routing
 import { ThemeRoutingModule } from './theme-routing.module';
@@ -55,7 +58,10 @@ import { DispatcherformComponent } from './dispatcherform/dispatcherform.compone
     NgSelectModule,
     DxDataGridModule,
     ModalModule.forRoot(),
-    MatExpansionModule
+    MatExpansionModule,
+    NgxDocViewerModule,
+    PdfViewerModule,
+    MatDialogModule
   ],
   declarations: [
     CompanyComponent,
@@ -85,6 +91,8 @@ import { DispatcherformComponent } from './dispatcherform/dispatcherform.compone
     CarrierformComponent,
     CustomerformComponent,
     DispatcherformComponent
-  ]
+  ],
+  entryComponents: [
+  ],
 })
 export class ThemeModule { }

@@ -19,6 +19,7 @@ export class CustomerslistComponent implements OnInit {
     selectedCompany: any;
     EditMode: boolean;
     customerData={}
+    showForm=false
 
     constructor(private _customersservice: CustomersService,
         private _toasterservice: ToastrService,
@@ -36,6 +37,7 @@ export class CustomerslistComponent implements OnInit {
         this.customers = new CustomersFilters();
         this.customers = customer;
         this.selectedCustomer = customer.companyname;
+        this.showForm=true
       }
       getData() {
         this._customersservice.getCustomersData().subscribe(data => {
@@ -51,12 +53,16 @@ export class CustomerslistComponent implements OnInit {
         this.customers = new CustomersFilters();
         this.customers = customer;
         this.selectedCustomer = customer.companyname;
-
+        this.showForm=true
       }
 
-      editCustomer(customer) {
+      hidePopup(){
+      this.showForm=false
+    }
+
+      editCustomer(customer,selectedCustomer) {
         this._customersservice.EditCustomers(customer).subscribe(response => {
-          this._toasterservice.success("Customer successfully updated", "Success");
+          this._toasterservice.success(selectedCustomer+ " customer successfully updated", "Success");
         }, error => {
            this._toasterservice.error("error", "Try Again");
           });
@@ -69,10 +75,10 @@ export class CustomerslistComponent implements OnInit {
     Add() {
         this.router.navigateByUrl('/theme/customers');
       }
-      deleteCustomer(customer) {
-        this._customersservice.DeleteCustomers(customer._id).subscribe(data => {
-        this._toasterservice.info("Customer Data Delete", "Success");
-        this.getData();
-       });
-       }
+      // deleteCustomer(customer) {
+      //   this._customersservice.DeleteCustomers(customer._id).subscribe(data => {
+      //   this._toasterservice.info("Customer Data Delete", "Success");
+      //   this.getData();
+      //  });
+      //  }
 }

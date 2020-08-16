@@ -1,4 +1,4 @@
-<div class="row" *ngIf="pageFilters">
+<div class="row" *ngIf="pageFiltersshow">
   <div class="col-sm-12">
     <div class="card">
       <div class="card-header">Trailers Information</div>
@@ -21,14 +21,12 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="trailertype">Trailer Type: <span style="color:red">*</span></label>
             <div class="col-md-8">
-              <select class="form-control" [ngClass]="mode?'':'disble'" id="trailertype" name="trailerType" #trailerType="ngModel" [(ngModel)]="pageFilters.trailerType">
-                <option value="0">Select</option>
-                <option value="1">Option #1</option>
-                <option value="2">Option #2</option>
-                <option value="3">Option #3</option>
-                <!-- <div *ngIf="submitted && f.trailerType.errors" class="invalid-feedback">
-                      <div *ngIf="f.trailerType.errors.required">Trailertype is Required</div>
-                  </div> -->
+              <select class="form-control" placeholder="Select Trailer type" [ngClass]="mode?'':'disble'" id="trailertype" name="trailerType" #trailerType="ngModel" [(ngModel)]="pageFilters.trailerType">
+                <option value="0">Dry Van</option>
+                <option value="1">Reefer</option>
+                <option value="2">Flat Bed</option>
+                <option value="3">Step Deck</option>
+                <option value="4">Special</option>
               </select>
             </div>
           </div>
@@ -84,12 +82,6 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="reefervin">Reefer VIN:</label>
-            <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reefervin" name="reeferVin" #reeferVin="ngModel" [(ngModel)]="pageFilters.reefervin">
-            </div>
-          </div>
-          <div class="form-group row">
             <label class="col-md-4 col-form-label" for="reefermiles">Reefer Miles:</label>
             <div class="col-md-8">
               <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reefermiles" name="reefermiles" #reefermiles="ngModel" [(ngModel)]="pageFilters.reefermiles">
@@ -122,18 +114,12 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="plateexpirydate">Plates Expiration Date :</label>
-            <div class="col-md-8">
-              <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="plateexpirydate" #plateexpirydate="ngModel" name="plateexpirydate" [ngModel]="pageFilters.plateexpirydate">
-            </div>
-          </div>
-          <div class="form-group row">
             <label class="col-md-4 col-form-label" for="truck">Truck:</label>
             <div class="col-md-8">
               <select [ngClass]="mode?'':'disble'" class="form-control">
                 <option value="" disabled selected hidden>Truck</option>
                 <option *ngFor="let cmp of truckData" value="0">
-                  <span>{{cmp.truckunitnumber}}</span>
+                  <span *ngIf="cmp.truckunitnumber">{{cmp.truckunitnumber}}</span>
                 </option>
               </select>
             </div>
@@ -203,6 +189,116 @@
         </div>
       </mat-expansion-panel>
     </mat-accordion>
+
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Maintenance Records
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="dx-viewport">
+            <div class="grid-container">
+              <dx-data-grid #grid id="gridContainer" [dataSource]="maintenancedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
+                <dxo-paging [enabled]="false"></dxo-paging>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                </dxo-editing>
+                <dxo-selection mode="single"></dxo-selection>
+                <dxi-column dataField="fromdate" dataType="date" caption="Service Date"></dxi-column>
+                <dxi-column dataField="type" caption="Category">
+                  <dxo-lookup [dataSource]="categoryDetails" displayExpr="Name" valueExpr="ID">
+                  </dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="curmiles" caption="Current Miles"></dxi-column>
+                <dxi-column dataField="nummiles" caption="Number of Miles"></dxi-column>
+                <dxi-column dataField="nxtservicemile" caption="Next Service Miles"></dxi-column>
+                <dxi-column dataField="servicefrom" caption="Serviced From"></dxi-column>
+                <dxi-column dataField="cost" caption="Cost"></dxi-column>
+                <dxi-column dataField="comments" caption="Comments"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+   <!--  <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header class="card-header">
+          <mat-panel-title>
+            Maintanance Records
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div style="display: flex;">
+          <div class="card-body col-md-6">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="category">Category:</label>
+              <div class="col-md-9">
+                <select [ngClass]="mode?'':'disble'" class="form-control" id="category" #category="ngModel" name="category" [(ngModel)]="pageFilters.category">
+                  <option value="0">Select</option>
+                  <option value="1">Option #1</option>
+                  <option value="2">Option #2</option>
+                  <option value="3">Option #3</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="description">Description:</label>
+              <div class="col-md-9">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="description" name="description" #description="ngModel" [(ngModel)]="pageFilters.description">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="statedate">Start Date:</label>
+              <div class="col-md-9">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="startdate" name="startDate" #startDate="ngModel" [(ngModel)]="pageFilters.startDate">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="startingmileage">Starting Mileage:</label>
+              <div class="col-md-9">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="startingmileage" name="startingMileage" #startingMileage="ngModel" [(ngModel)]="pageFilters.startingMileage">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="numberofmiles">Number of Miles:</label>
+              <div class="col-md-9">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="numberofmiles" name="noofMiles" #noofMiles="ngModel" [(ngModel)]="pageFilters.noofMiles">
+              </div>
+            </div>
+          </div>
+          <div class="card-body col-md-6">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="nextservicemiles">Next Service Miles:</label>
+              <div class="col-md-9">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="nextservicemiles" name="nextServicemiles" #nextServicemiles="ngModel" [(ngModel)]="pageFilters.nextServicemiles">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="lastservicedate">Last Service Date:</label>
+              <div class="col-md-9">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="lastservicedate" name="lastServicedate" #lastServicedate="ngModel" [(ngModel)]="pageFilters.lastServicedate">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="nextservicedate">Next Service Date:</label>
+              <div class="col-md-9">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="nextservicedate" name="nextServicedate" #nextServicedate="ngModel" [(ngModel)]="pageFilters.nextServicedate">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="comments">Comments:</label>
+              <div class="col-md-9">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="comments" name="comments" #comments="ngModel" [(ngModel)]="pageFilters.comments">
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion> -->
+
     <mat-accordion>
       <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header class="card-header">
@@ -318,168 +414,11 @@
         </div>
       </mat-expansion-panel>
     </mat-accordion>
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header class="card-header">
-          <mat-panel-title>
-            Information
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div style="display: flex;">
-          <div class="card-body col-md-6">
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="trailesize">Trailer Size:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="trailersize" name="trailerSize" #trailerSize="ngModel" [(ngModel)]="pageFilters.trailerSize">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="operatingstatus">Operating Status:</label>
-              <div class="col-md-9">
-                <select [ngClass]="mode?'':'disble'" class="form-control" id="state2" #operatingStatus="ngModel" name="operatingStatus" [(ngModel)]="pageFilters.operatingStatus">
-                  <option value="0">Select</option>
-                  <option value="1">Option #1</option>
-                  <option value="2">Option #2</option>
-                  <option value="3">Option #3</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="reefermiles">Reefer Miles:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reefermiles" name="reeferMiles" #reeferMiles="ngModel" [(ngModel)]="pageFilters.reeferMiles">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="reeferhours">Reefer Hours:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reeferhours" name="reeferHours" #reeferHours="ngModel" [(ngModel)]="pageFilters.reeferHours">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="vin">Vin:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="vin" name="vin" #vin="ngModel" [(ngModel)]="pageFilters.vin">
-              </div>
-            </div>
-          </div>
-          <div class="card-body col-md-6">
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="registerdstate">Registered State:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="registerdstate" name="registerState" #registerState="ngModel" [(ngModel)]="pageFilters.registerState">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="platenumber">Plate Number:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="platenumber" name="plateNumber" #plateNumber="ngModel" [(ngModel)]="pageFilters.plateNumber">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="fuelcard">Fuel Card:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="fuelcard" name="fuelcard" #fuelCard="ngModel" [(ngModel)]="pageFilters.fuelCard">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="fueltype">Fuel Type:</label>
-              <div class="col-md-9">
-                <select [ngClass]="mode?'':'disble'" class="form-control" id="fuelType" #fuelType="ngModel" name="fuelType" [(ngModel)]="pageFilters.fuelType">
-                  <option value="0">Select</option>
-                  <option value="1">Option #1</option>
-                  <option value="2">Option #2</option>
-                  <option value="3">Option #3</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="ezpass">Ez Pass:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ezpass" name="ezPass" #ezPass="ngModel" [(ngModel)]="pageFilters.ezPass">
-              </div>
-            </div>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header class="card-header">
-          <mat-panel-title>
-            Maintanance Records
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div style="display: flex;">
-          <div class="card-body col-md-6">
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="category">Category:</label>
-              <div class="col-md-9">
-                <select [ngClass]="mode?'':'disble'" class="form-control" id="category" #category="ngModel" name="category" [(ngModel)]="pageFilters.category">
-                  <option value="0">Select</option>
-                  <option value="1">Option #1</option>
-                  <option value="2">Option #2</option>
-                  <option value="3">Option #3</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="description">Description:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="description" name="description" #description="ngModel" [(ngModel)]="pageFilters.description">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="statedate">Start Date:</label>
-              <div class="col-md-9">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="startdate" name="startDate" #startDate="ngModel" [(ngModel)]="pageFilters.startDate">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="startingmileage">Starting Mileage:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="startingmileage" name="startingMileage" #startingMileage="ngModel" [(ngModel)]="pageFilters.startingMileage">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="numberofmiles">Number of Miles:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="numberofmiles" name="noofMiles" #noofMiles="ngModel" [(ngModel)]="pageFilters.noofMiles">
-              </div>
-            </div>
-          </div>
-          <div class="card-body col-md-6">
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="nextservicemiles">Next Service Miles:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="nextservicemiles" name="nextServicemiles" #nextServicemiles="ngModel" [(ngModel)]="pageFilters.nextServicemiles">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="lastservicedate">Last Service Date:</label>
-              <div class="col-md-9">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="lastservicedate" name="lastServicedate" #lastServicedate="ngModel" [(ngModel)]="pageFilters.lastServicedate">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="nextservicedate">Next Service Date:</label>
-              <div class="col-md-9">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="nextservicedate" name="nextServicedate" #nextServicedate="ngModel" [(ngModel)]="pageFilters.nextServicedate">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="comments">Comments:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="comments" name="comments" #comments="ngModel" [(ngModel)]="pageFilters.comments">
-              </div>
-            </div>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
   </div>
 </div>
+ <div class="card-footer">
+    <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+      <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      Submit</button>&nbsp;&nbsp;
+    <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+  </div>

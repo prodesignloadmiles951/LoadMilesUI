@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DriverFilters } from '../../../model/driver';
 import { DriversService } from './../../../services/driver.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-driverform',
@@ -9,25 +11,58 @@ import { DriversService } from './../../../services/driver.service';
   providers: [DriversService ]
 })
 export class DriverformComponent implements OnInit {
-	pageFilters={};
+  // public pageFilters: DriverFilters;
+  pageFilters={};
   Driverlistdata = new Array<DriverFilters>();
   payratedata=[];
-  drugandmedicaldata=[];
+  drugandmedicaldata=[]; 
   @Input() datatype;
   mode=false
-  finalArry=[]
+  finalArry=[];
+  typeDetails= [];
+  resultDetails= [];
+  showAddOption=false
+  submitted: boolean;
+  pageFiltersshow=false;
 
-  constructor(private _driverService: DriversService,) { }
+  constructor(private _driverService: DriversService,private _toaster: ToastrService,private router: Router) { }
 
   ngOnInit() {
     console.log(this.datatype)
     if(this.datatype == undefined){
-      this.pageFilters=this.Driverlistdata
+      // this.pageFilters=this.Driverlistdata
       this.mode=true
+      this.showAddOption=true
     }else{
       this.pageFilters=this.datatype
-      this.mode=this.datatype['EditMode']      
+      this.mode=this.datatype['EditMode']
+      this.showAddOption=false      
     }
+    this.pageFiltersshow=true;
+    this.typeDetails=[
+      {
+          "ID": 0,
+          "Name": "Per Hour"
+      },
+      {
+          "ID": 1,
+          "Name": "Per Mile"
+      },
+      {
+          "ID": 2,
+          "Name": "Percentage(%)"
+      }
+    ]
+    this.resultDetails=[
+      {
+          "ID": 0,
+          "Name": "Pass"
+      },
+      {
+          "ID": 1,
+          "Name": "Fail"
+      }
+    ]
   }
 
   addfiles(e){
@@ -40,5 +75,18 @@ export class DriverformComponent implements OnInit {
         this.finalArry=JSON.parse(sessionStorage.file_upload)
       }
   }
+   submit() {
+        this.submitted = true;
+        var Driverlistdata:any=this.pageFilters
+        this._driverService.SendForm(Driverlistdata).subscribe(response => {
+          this.submitted = true;
+          this._toaster.info("Data Submitted","Success");
+         this.router.navigateByUrl("theme/driver-list");
+        },error=>{
+          this.submitted=false;
+          this._toaster.error("Submit Agian","Faild");
+        });
+        console.log(this.pageFilters);
+       }
 
 }

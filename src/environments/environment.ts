@@ -18,7 +18,10 @@ export const environment = {
   dispatchersurl: 'http://54.166.101.176:8081/dispatchersapi/dispatchers',
   getloadsurl: 'http://54.166.101.176:8081/loadsapi/loads',
   pickupform: 'http://54.166.101.176:8081/pickupapi/pickup',
-  dropoffform: 'http://54.166.101.176:8081/dropoffapi/dropoff'
+  dropoffform: 'http://54.166.101.176:8081/dropoffapi/dropoff',
+  // uploadUrl:'http://ec2-54-166-101-176.compute-1.amazonaws.com:8081/fileapi/file'
+  uploadUrl:'http://54.166.101.176:8081/fileapi/file'
+  
 
   // url:"http://localhost:62585/api/",
   // conurl:"http://localhost:62585/api/Transactions/",

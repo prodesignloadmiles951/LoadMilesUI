@@ -29,6 +29,7 @@ import { AuthHeaderService } from './views/authheader.service';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
@@ -74,6 +75,7 @@ import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
     CommonModule,
     NgSelectModule,
     MatMenuModule,
+    MatSelectModule,
     ModalModule,
     ToastrModule.forRoot({
 			timeOut: 10000,
