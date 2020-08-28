@@ -75,6 +75,7 @@
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Pickup Load Status</th>
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Pick-up Location</th>
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Drop-off Location</th>
+                <th style="background-color: rgb(178, 178, 224); text-align: center;">Dropoff Load Status</th>
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Comments</th>
               </tr>
             </thead>
@@ -105,6 +106,9 @@
                         <td>
                           <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.dropCompany}},</span>
                           <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.dropAddress}}</span>
+                        </td>
+                        <td style="color: red; font-weight: 700">
+                          <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.LoadStatus}}</span>
                         </td>
                         <td>{{load.comments}}</td>
                     </tr>

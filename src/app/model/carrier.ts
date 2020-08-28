@@ -49,4 +49,18 @@ export class CarrierFilters {
     advances: any;
     customeraccount: any;
     glaccount: any;
+    ssn: any;
+    dateofbirth: any;
+    vendoraccount: any;
+    cdlclass: any;
+    driver: string;
+    cdlnumber: number;
+    cdlstate: string;
+    cdlexpirytate: number;
+    medicalcardexpiration: number;
+    yearsofexperience: number;
+    statesoperated: number;
+    safetyawards: any;
+    specialtraining: any;
+    hazmatcertified: boolean;
 }

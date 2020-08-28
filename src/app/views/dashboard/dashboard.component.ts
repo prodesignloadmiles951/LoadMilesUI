@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
 
  createLoad() {
     this.router.navigateByUrl('/dashboard/createload');
+    sessionStorage.clear()
   }
 
  //  public company: CompanyFilters;

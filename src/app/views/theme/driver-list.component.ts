@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-driver-list',
     templateUrl: './driver-list.component.html',
-    providers: [DriversService, ToastrService, ]
+    providers: [DriversService, ToastrService ]
 })
 export class DriverlistComponent implements OnInit {
   public drivers: DriverFilters;
@@ -78,21 +78,30 @@ export class DriverlistComponent implements OnInit {
       }
 
 
-      editDriver(driver,selectedDriver) {
-        this._driverService.EditDrivers(driver).subscribe(response => {
-          this._toaster.success(selectedDriver+ " driver successfully updated", "Success");
-        }, error => {
-           this._toaster.error("error", "Try Again");
-          });
-          this.EditMode = false;
+      editDriver(drivers,selectedDriver) {
+        if(localStorage.selectedCompany == undefined){
+           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+         }else{
+          drivers['companyid']=localStorage.selectedCompany
+          this._driverService.EditDrivers(drivers).subscribe(response => {
+            this._toaster.success(selectedDriver+ " driver successfully updated", "Success", {timeOut: 3000,});
+          }, error => {
+             this._toaster.error("error", "Try Again", {timeOut: 2000,});
+            });
+            this.EditMode = false;
+         }
       }
 
-      // deleteDriver(driver) {
-      //   this._driverService.DeleteDrivers(driver._id).subscribe(data => {
-      //     this._toaster.info("Driver Data Delete", "Success");
-      //     this.getData();
-      //    });
-      //  }
+      deleteDriver(driver) {
+        if(localStorage.selectedCompany == undefined){
+           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+         }else{
+          this._driverService.DeleteDrivers(driver._id).subscribe(data => {
+            this._toaster.info("Driver Data Deleted", "Success", {timeOut: 2000,});
+            this.getData();
+           });
+         }
+       }
 
        Add() {
         this.router.navigateByUrl('/theme/driver');

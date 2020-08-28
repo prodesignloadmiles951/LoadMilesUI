@@ -1,43 +1,31 @@
+<div style="display: flex; justify-content: space-between;">
 <h2 class="formheader">PICKUP FORM</h2>
+  <button class="btn btn-link"(click)="onPickupAdd()">Add Pickup</button>
+</div>
 <div class="dx-viewport">
   <div class="grid-container">
-    <dx-data-grid #grid id="gridContainer" [dataSource]="data" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
+    <dx-data-grid #grid id="gridContainer" [dataSource]="pickuppopupdata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" >
       <dxo-paging [enabled]="false"></dxo-paging>
-      <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+      <dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="false">
       </dxo-editing>
       <dxo-selection mode="single"></dxo-selection>
-      <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
-      <dxi-column dataField="SlNo" caption="Sl No."></dxi-column>
-      <dxi-column dataField="Type" caption="Type" [width]="110">
-        <dxo-lookup [dataSource]="typeDetails" displayExpr="Name" valueExpr="ID">
-        </dxo-lookup>
-      </dxi-column>
-      <dxi-column dataField="Driver1" caption="Driver1" [width]="120" >
-        <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID">
-        </dxo-lookup>
-      </dxi-column>
-      <dxi-column dataField="Driver2" caption="Driver2" [width]="120">
-        <dxo-lookup [dataSource]="driverDetails" displayExpr="Name" valueExpr="ID">
-        </dxo-lookup>
-      </dxi-column>
-      <dxi-column dataField="Truck" caption="Truck" dataType='string' [width]="120">
-        <dxo-lookup [dataSource]="truckDetails" displayExpr="Name" valueExpr="ID">
-        </dxo-lookup>
-      </dxi-column>
-      <dxi-column dataField="Trailer" caption="Trailer" [width]="120">
-        <dxo-lookup [dataSource]="trailerDetails" displayExpr="Name" valueExpr="ID">
-        </dxo-lookup>
-      </dxi-column>
-      <dxi-column dataField="LoadStatus" caption="Load Status" [width]="180">
-        <dxo-lookup [dataSource]="loadstatusDetails" displayExpr="Name" valueExpr="ID">
-        </dxo-lookup>
-      </dxi-column>
-      <dxi-column dataField="PickupCompany" caption="Pickup Company"></dxi-column>
-      <dxi-column dataField="ContactName" caption="Contact Name"></dxi-column>
-      <dxi-column dataField="ContactNumber" caption="Contact Number"></dxi-column>
-      <dxi-column dataField="Address" caption="Address"></dxi-column>
-      <dxi-column dataField="PickupDate" dataType="date">
-      </dxi-column>
+      <!-- <dxi-column dataField="SlNo" caption="Sl No."></dxi-column> -->
+      <dxi-column dataField="type" caption="Type"></dxi-column>
+      <dxi-column dataField="driver1" caption="Driver1"></dxi-column>
+      <dxi-column dataField="driver2" caption="Driver2"></dxi-column>
+      <dxi-column dataField="truck" caption="Truck"></dxi-column>
+      <dxi-column dataField="trailer" caption="Trailer"></dxi-column>
+      <dxi-column dataField="loadstatus" caption="Load Status"></dxi-column>
+      <dxi-column dataField="pickupcompany" caption="Pickup Company"></dxi-column>
+      <dxi-column dataField="contactname" caption="Contact Name"></dxi-column>
+      <dxi-column dataField="contactnumber" caption="Contact Number"></dxi-column>
+      <dxi-column dataField="address" caption="Address"></dxi-column>
+      <dxi-column dataField="pickupdate" dataType="date"></dxi-column>
+      <dxi-column dataField="action" caption="Action" style="text-align: center;" cellTemplate="actionTemplate"></dxi-column>
+      <div *dxTemplate="let element of 'actionTemplate'">
+          <button class="btn btn-link" (click)="onpickEdit(element)">Edit</button>
+          <button class="btn btn-link" (click)="onpickDelete(element)">delete</button>
+      </div>
     </dx-data-grid>
   </div>
 </div>

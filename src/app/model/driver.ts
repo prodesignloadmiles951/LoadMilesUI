@@ -59,7 +59,5 @@ export class DriverFilters {
     accountnumber: number;
     routingnumber: number;
     advances: any;
-
-
-
+    vendoraccount: any;
 }

@@ -21,6 +21,13 @@ export class TrailerslistComponent implements OnInit {
     EditMode: boolean;
     trailerData={}
     showForm=false
+    trailerList=[
+      {'type':0,'name':'Dry Van'},
+      {'type':1,'name':'Reefer'},
+      {'type':2,'name':'Flat Bed'},
+      {'type':3,'name':'Step Deck'},
+      {'type':4,'name':'Special'}
+    ]
 
     constructor(private _toaster: ToastrService,
          private _trailersService: TrailerService,
@@ -72,24 +79,40 @@ export class TrailerslistComponent implements OnInit {
     
        getData() {
         this._trailersService.getTrailersData().subscribe(data => {
+          for (var i = 0; i < data.length; i++) {
+            this.trailerList.map(item => {
+              if(item.type == data[i]['trailerType'][0]){
+                data[i]['trailerType']=item.name
+              }
+            })            
+          }
           this.data = data;
         });
       }
     
       editTrailer(trailer,selectedTrailer) {
-        this._trailersService.EditTrailers(trailer).subscribe(response => {
-          this._toaster.success(selectedTrailer+" trailer successfully updated", "Success");
-        }, error => {
-           this._toaster.error("error", "Try Again");
-          });
-          this.EditMode = false;
+        if(localStorage.selectedCompany == undefined){
+           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+         }else{
+          trailer['companyid']=localStorage.selectedCompany
+          this._trailersService.EditTrailers(trailer).subscribe(response => {
+            this._toaster.success(selectedTrailer+" trailer successfully updated", "Success", {timeOut: 3000,});
+          }, error => {
+             this._toaster.error("error", "Try Again", {timeOut: 2000,});
+            });
+            this.EditMode = false;
+         }
       }
     
       deleteTrailers(trailer) {
-        this._trailersService.DeleteTrailers(trailer._id).subscribe(data => {
-        this._toaster.info("Trucks Data Delete", "Success");
-        this.getData();
-       });
+        if(localStorage.selectedCompany == undefined){
+           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+         }else{
+          this._trailersService.DeleteTrailers(trailer._id).subscribe(data => {
+          this._toaster.info("Trucks Data Deleted", "Success", {timeOut: 3000,});
+          this.getData();
+         });
+         }
        }
 
        Add() {

@@ -9,6 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { MatDialogModule} from '@angular/material/dialog';
+import { FileUploadModule} from 'ng2-file-upload';
 
 // Theme Routing
 import { ThemeRoutingModule } from './theme-routing.module';
@@ -46,6 +47,7 @@ import { DriverformComponent } from './driverform/driverform.component';
 import { CarrierformComponent } from './carrierform/carrierform.component';
 import { CustomerformComponent } from './customerform/customerform.component';
 import { DispatcherformComponent } from './dispatcherform/dispatcherform.component';
+import { CompanyformComponent } from './companyform/companyform.component';
 
 
 @NgModule({
@@ -61,7 +63,8 @@ import { DispatcherformComponent } from './dispatcherform/dispatcherform.compone
     MatExpansionModule,
     NgxDocViewerModule,
     PdfViewerModule,
-    MatDialogModule
+    MatDialogModule,
+    FileUploadModule
   ],
   declarations: [
     CompanyComponent,
@@ -90,7 +93,8 @@ import { DispatcherformComponent } from './dispatcherform/dispatcherform.compone
     DriverformComponent,
     CarrierformComponent,
     CustomerformComponent,
-    DispatcherformComponent
+    DispatcherformComponent,
+    CompanyformComponent
   ],
   entryComponents: [
   ],

@@ -66,18 +66,17 @@ export class DriverComponent implements OnInit {
         this.selectedDriver = driver.plate;
       }
 
-    submit() {
-        this.submitted = true;
-        this._driversService.SendForm(this.pageFilters).subscribe(response => {
-          this.submitted = true;
-          this._toaster.info("Data Submitted","Success");
-         this.router.navigateByUrl("theme/driver-list");
-        },error=>{
-          this.submitted=false;
-          this._toaster.error("Submit Agian","Faild");
-        });
-        // console.log(this.pageFilters);
-       }
+    // submit() {
+    //     this.submitted = true;
+    //     this._driversService.SendForm(this.pageFilters).subscribe(response => {
+    //       this.submitted = true;
+    //       this._toaster.info("Data Submitted","Success");
+    //      this.router.navigateByUrl("theme/driver-list");
+    //     },error=>{
+    //       this.submitted=false;
+    //       this._toaster.error("Submit Agian","Faild");
+    //     });
+    //    }
 
 
 }

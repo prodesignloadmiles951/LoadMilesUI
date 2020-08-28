@@ -31,15 +31,20 @@ export class CustomersComponent implements OnInit {
     }
 
     submit() {
-        this.submitted = true;
-        this._customersservice.SendForm(this.pageFilters).subscribe(response => {
-        this.submitted = true;
-        this._toaster.info("Data Submitted","Success");
-        this.router.navigateByUrl("theme/customers-list");
-    },error=>{
-        this.submitted=false;
-        this._toaster.error("Submit Agian","Faild");
-    });
+        if(localStorage.selectedCompany == undefined){
+           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+         }else{
+                this.submitted = true;
+                this.pageFilters['companyid']=localStorage.selectedCompany
+                this._customersservice.SendForm(this.pageFilters).subscribe(response => {
+                this.submitted = true;
+                this._toaster.info("Data Submitted","Success");
+                this.router.navigateByUrl("theme/customers-list");
+            },error=>{
+                this.submitted=false;
+                this._toaster.error("Submit Agian","Faild");
+            });
+         }
     }
 }
 

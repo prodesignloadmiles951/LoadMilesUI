@@ -5,6 +5,8 @@ import { TrucksService } from '../../../../services/trucks.service';
 import { TrailerService } from '../../../../services/trailers.service';
 import { DropoffserviceService } from '../../../../services/dropoffservice.service';
 import { ToastrService } from 'ngx-toastr';
+import { DropoffpopupformComponent} from '../dropoffpopupform/dropoffpopupform.component'
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-dropoff',
@@ -20,72 +22,46 @@ export class DropoffComponent implements OnInit {
   trailerDetails=[]
   truckDetails=[]
   loadstatusDetails=[]
+  dropoffdata=[]
+  dropOffdetails: any;
+  dropoffpopupdata=[];
   constructor(private _loadservice: CreateloadService, 
     private _driverService: DriversService, private _trucksservice: TrucksService, private _toaster: ToastrService,
-    private _trailersService: TrailerService, private _dropoff: DropoffserviceService) { }
+    private _trailersService: TrailerService, private _dropoff: DropoffserviceService, public dialog: MatDialog) { }
 
-   onAdd(eventName) {
-    console.log(eventName.key) 
-    var dropoffdata = eventName.key
-    this.SendDropoffform(dropoffdata)
-  }
-
-  onDelete(eventName) {
-    console.log(eventName.key)
-    this._loadservice.deleteLoadData(eventName.key).subscribe(data => {
-      console.log(data)
-    });
-  }
 
    SendDropoffform(dropoffdata){
-
     var dropoffinfo = {}
     dropoffinfo['_id']=sessionStorage.getItem('submitID')
-    dropoffinfo['dropContnumber']= JSON.parse(dropoffdata['dropContnumber'])
-    dropoffinfo['DropoffDate']= new Date(dropoffdata['DropoffDate']).getTime()
-    dropoffinfo['dropCompany'] = dropoffdata['dropCompany']
-    dropoffinfo['dropContact'] = dropoffdata['dropContact']
-    dropoffinfo['dropAddress'] = dropoffdata['dropAddress']
-    
-    for (var i = 0; i < this.typeDetails.length; i++) {
-      if(this.typeDetails[i]['ID'] == JSON.parse(dropoffdata['Type'])){
-        dropoffinfo['Type']= this.typeDetails[i]['Name']
-        break
-      }
+    dropoffinfo['dropContnumber']= dropoffdata['contactnumber']
+    dropoffinfo['DropoffDate']= new Date(dropoffdata['dropoffdate']).getTime()
+    dropoffinfo['dropCompany'] = dropoffdata['dropoffcompany']
+    dropoffinfo['dropContact'] = dropoffdata['contactname']
+    dropoffinfo['dropAddress'] = dropoffdata['address']
+    dropoffinfo['Type'] = dropoffdata['type']
+    dropoffinfo['Driver1'] = dropoffdata['driver1']
+    dropoffinfo['Driver2'] = dropoffdata['driver2']
+    dropoffinfo['Truck'] = dropoffdata['truck']
+    dropoffinfo['Trailer'] = dropoffdata['trailer']
+    dropoffinfo['LoadStatus'] = dropoffdata['loadstatus']
+
+    if(dropoffinfo['_id'] != null){
+      this._dropoff.SendDropoffform(dropoffinfo).subscribe(data => {
+        this.data = data
+        this._toaster.success("Dropoff successfully created", "Success");
+      }, error => {
+         this._toaster.error("error", "Try Again");
+          console.log(this.data)
+      })
+    }else{
+      this._toaster.error("Create Load First", "Try Again");
     }
-    for (var i = 0; i < this.driverDetails.length; i++) {
-      if(this.driverDetails[i]['ID'] == JSON.parse(dropoffdata['Driver1'])){
-        dropoffinfo['Driver1']= this.driverDetails[i]['Name']
-        break
-      }
-    }
-    for (var i = 0; i < this.driverDetails.length; i++) {
-      if(this.driverDetails[i]['ID'] == JSON.parse(dropoffdata['Driver2'])){
-        dropoffinfo['Driver2']= this.driverDetails[i]['Name']
-        break
-      }
-    }
-    for (var i = 0; i < this.truckDetails.length; i++) {
-      if(this.truckDetails[i]['ID'] == JSON.parse(dropoffdata['Truck'])){
-        dropoffinfo['Truck']= this.truckDetails[i]['Name']
-        break
-      }
-    }
-    for (var i = 0; i < this.trailerDetails.length; i++) {
-      if(this.trailerDetails[i]['ID'] == JSON.parse(dropoffdata['Trailer'])){
-        dropoffinfo['Trailer']= this.trailerDetails[i]['Name']
-        break
-      }
-    }
-    for (var i = 0; i < this.loadstatusDetails.length; i++) {
-      if(this.loadstatusDetails[i]['ID'] == JSON.parse(dropoffdata['loadStatus'])){
-        dropoffinfo['LoadStatus']= this.loadstatusDetails[i]['Name']
-        break
-      }
-    }
-    this._dropoff.SendDropoffform(dropoffinfo).subscribe(data => {
+  }
+  editDropoff(dropoffinfo){
+    dropoffinfo['_id']=sessionStorage.getItem('submitID')
+    this._dropoff.EditDropoff(dropoffinfo).subscribe(data => {
       this.data = data
-      this._toaster.success("Dropoff successfully created", "Success");
+      this._toaster.success("Dropoff successfully updated", "Success");
     }, error => {
        this._toaster.error("error", "Try Again");
         console.log(this.data)
@@ -132,6 +108,8 @@ export class DropoffComponent implements OnInit {
       }
 
   ngOnInit() {
+    this.dropoffpopupdata= JSON.parse(sessionStorage.getItem("dropOffdetails"))
+    console.log(this.dropoffpopupdata)
     this.getDriverData()
     this.getTruckData()
     this.getTrailerData()
@@ -175,6 +153,57 @@ export class DropoffComponent implements OnInit {
           "Name": "Completed"
       }
     ]
+  }
+  onDropoffAdd(){
+    this.dialog.open(DropoffpopupformComponent, {
+            data: {}
+    }).afterClosed().subscribe((confirm) => {
+        console.log(confirm)
+        if(confirm !=null){
+          this.SendDropoffform(confirm)
+          var submitId=sessionStorage.getItem('submitID')
+          if(submitId != null){
+            if(this.dropoffpopupdata == null){
+              var dropOffArry=[]
+            }else{
+              var dropOffArry=this.dropoffpopupdata            
+            }
+            dropOffArry.push(confirm)
+            for (var i = 0; i < dropOffArry.length; i++) {
+              dropOffArry[i]['SlNo']=i+1
+            }
+            this.dropoffpopupdata=dropOffArry
+            console.log(this.dropoffpopupdata)
+            sessionStorage.setItem('dropOffdetails',JSON.stringify(this.dropoffpopupdata))
+          }
+        }
+    })
+  }
+  ondropEdit(dataedit){
+    console.log(dataedit.data)
+    let editDataIndex=dataedit.rowIndex
+    this.dialog.open(DropoffpopupformComponent, {
+            data: dataedit.data
+    }).afterClosed().subscribe((res) => {
+        console.log(res)
+        if(res !=null){
+          this.dropoffpopupdata.splice(editDataIndex,1)
+          this.dropoffpopupdata.splice(editDataIndex,0,res)
+          sessionStorage.setItem('dropOffdetails',JSON.stringify(this.dropoffpopupdata))
+          this.editDropoff(res)
+        }
+    })
+  }
+  ondropDelete(data){
+    console.log(data.rowIndex)
+    this.dropoffpopupdata.splice(data.rowIndex,1)
+    for (var i = 0; i < this.dropoffpopupdata.length; i++) {
+        this.dropoffpopupdata[i]['SlNo']=i+1
+    }
+    this._loadservice.deleteLoadData(data.data).subscribe(data => {
+      console.log(data)
+    });
+    sessionStorage.setItem('dropOffdetails',JSON.stringify(this.dropoffpopupdata))
   }
 
 }

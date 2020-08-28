@@ -11,8 +11,10 @@ import { map,catchError } from 'rxjs/operators'
 export class CompanyService {
     
     companyurl: string;
+    URL:string;
     constructor(private http: Http, private _headerService:AuthHeaderService){
         this.companyurl=environment.companyurl;
+        this.URL=environment.url;
     }
 
     SendForm(pageFilters: CompanyFilters){
@@ -33,5 +35,10 @@ export class CompanyService {
       DeleteCompany(_id) {
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
         return this.http.delete(this.companyurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+      }
+      onCreateRole(obj){
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.post(this.URL+'roleapi/role',obj,options)
+        .pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
 }

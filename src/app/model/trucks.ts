@@ -54,4 +54,5 @@ export class TrucksFilters {
     comments: string;
     plateexpirydate: any;
     registerdstate: any;
+    notes: any;
 }

@@ -120,7 +120,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="file-upload" class="custom-file-upload">
+            <label for="file-upload" [ngClass]="mode?'':'disble'" class="custom-file-upload">
               <i class="fa fa-cloud-upload"></i> Upload
             </label>
             <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
@@ -198,13 +198,13 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="accountnum">Account Number:</label>
               <div class="col-md-8">
-                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="accountnum" name="accountnum" #accountnum="ngModel" [(ngModel)]="pageFilters.accountnum">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="accountnum" name="accountnum" #accountnum="ngModel" [(ngModel)]="pageFilters.accountnumber">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="routingnum">Routing Number:</label>
               <div class="col-md-8">
-                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="routingnum" name="routingnum" #routingnum="ngModel" [(ngModel)]="pageFilters.routingnum">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="routingnum" name="routingnum" #routingnum="ngModel" [(ngModel)]="pageFilters.routingnumber">
               </div>
             </div>
           </div>
@@ -298,9 +298,9 @@
         </mat-expansion-panel-header>
         <div class="dx-viewport">
           <div class="grid-container">
-            <dx-data-grid #grid id="gridContainer" [dataSource]="payratedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
+            <dx-data-grid #grid id="gridContainer" [dataSource]="payratedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onpayrateDelete($event)" (onRowInserted)="onpayrateAdd($event)">
               <dxo-paging [enabled]="false"></dxo-paging>
-              <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+              <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
               </dxo-editing>
               <dxo-selection mode="single"></dxo-selection>
               <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
@@ -328,9 +328,9 @@
         </mat-expansion-panel-header>
         <div class="dx-viewport">
           <div class="grid-container">
-            <dx-data-grid #grid id="gridContainer" [dataSource]="drugandmedicaldata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
+            <dx-data-grid #grid id="gridContainer" [dataSource]="drugandmedicaldata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="ondrugDelete($event)" (onRowInserted)="ondrugAdd($event)">
               <dxo-paging [enabled]="false"></dxo-paging>
-              <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+              <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
               </dxo-editing>
               <dxo-selection mode="single"></dxo-selection>
               <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->

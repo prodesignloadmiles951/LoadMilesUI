@@ -1,5 +1,6 @@
 export class TrailersFilters {
     unitNumber: number;
+    truck: string;
     trailerType: any;
     make: any;
     color: any;

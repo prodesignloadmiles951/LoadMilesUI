@@ -24,6 +24,8 @@ export class DriverformComponent implements OnInit {
   showAddOption=false
   submitted: boolean;
   pageFiltersshow=false;
+  payrateinfodata={};
+  drugdata={};
 
   constructor(private _driverService: DriversService,private _toaster: ToastrService,private router: Router) { }
 
@@ -36,7 +38,9 @@ export class DriverformComponent implements OnInit {
     }else{
       this.pageFilters=this.datatype
       this.mode=this.datatype['EditMode']
-      this.showAddOption=false      
+      this.showAddOption=false     
+      this.drugandmedicaldata.push(this.datatype.drugdata)
+      this.payratedata.push(this.datatype.payrate)
     }
     this.pageFiltersshow=true;
     this.typeDetails=[
@@ -65,6 +69,29 @@ export class DriverformComponent implements OnInit {
     ]
   }
 
+  onpayrateAdd(eventName) {
+    console.log(eventName.key) 
+    this.payrateinfodata = eventName.key
+  }
+
+  onpayrateDelete(eventName) {
+    console.log(eventName.key)
+    this._driverService.DeleteDrivers(eventName.key).subscribe(data => {
+      console.log(data)
+    });
+  }
+
+  ondrugAdd(eventName) {
+      console.log(eventName.key) 
+    this.drugdata = eventName.key
+  }
+  ondrugDelete(eventName) {
+    console.log(eventName.key)
+    this._driverService.DeleteDrivers(eventName.key).subscribe(data => {
+      console.log(data)
+    });
+  }
+
   addfiles(e){
       var finalArry=e.target.files
       if(finalArry.length > 0){
@@ -76,17 +103,22 @@ export class DriverformComponent implements OnInit {
       }
   }
    submit() {
+     if(localStorage.selectedCompany == undefined){
+       this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+     }else{
         this.submitted = true;
         var Driverlistdata:any=this.pageFilters
+        Driverlistdata['payrate']=this.payrateinfodata
+        Driverlistdata['drugdata']=this.drugdata
+        Driverlistdata['companyid']=localStorage.selectedCompany
         this._driverService.SendForm(Driverlistdata).subscribe(response => {
           this.submitted = true;
-          this._toaster.info("Data Submitted","Success");
+          this._toaster.info("Driver Data Submitted","Success", {timeOut: 3000,});
          this.router.navigateByUrl("theme/driver-list");
         },error=>{
           this.submitted=false;
-          this._toaster.error("Submit Agian","Faild");
+          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
-        console.log(this.pageFilters);
        }
-
+     }
 }

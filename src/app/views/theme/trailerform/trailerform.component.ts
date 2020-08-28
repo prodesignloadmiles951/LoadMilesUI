@@ -24,6 +24,8 @@ export class TrailerformComponent implements OnInit {
     categoryDetails= [];
     pageFiltersshow=false;
     submitted: boolean;
+    maintenanceformdata={}
+    showAddOption=false
 
   constructor(private _trailersService: TrailerService, private _trucksservice: TrucksService, private _driverService: DriversService, private _toaster: ToastrService, private router: Router) { }
 
@@ -31,12 +33,16 @@ export class TrailerformComponent implements OnInit {
     this.getDriverData()
     this.getTruckData()
   	console.log(this.datatype)
+
     if(this.datatype == undefined){
-      this.pageFilters=this.Trailerslistdata
+      // this.pageFilters=this.Trailerslistdata
       this.mode=true
+      this.showAddOption=true
     }else{
       this.pageFilters=this.datatype
-      this.mode=this.datatype['EditMode']      
+      this.mode=this.datatype['EditMode']  
+      this.showAddOption=false    
+      this.maintenancedata.push(this.datatype.maintenanceinfo)
     }
      this.pageFiltersshow=true 
      this.categoryDetails=[
@@ -65,6 +71,17 @@ export class TrailerformComponent implements OnInit {
         this.finalArry=JSON.parse(sessionStorage.file_upload)
       }
   }
+
+  onAdd(eventName) {
+    console.log(eventName.key) 
+    this.maintenanceformdata = eventName.key
+  }
+  onDelete(eventName) {
+    console.log(eventName.key)
+    this._trailersService.DeleteTrailers(eventName.key).subscribe(data => {
+      console.log(data)
+    });
+  }
   getDriverData() {
         this._driverService.getDriversData().subscribe(data => {
           this.driverdata = data;
@@ -78,17 +95,21 @@ export class TrailerformComponent implements OnInit {
     });
   }
   submit() {
+    if(localStorage.selectedCompany == undefined){
+       this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+     }else{
         this.submitted = true;
         var Trailerslistdata:any=this.pageFilters
+        Trailerslistdata['maintenanceinfo']=this.maintenanceformdata
+        Trailerslistdata['companyid']=localStorage.selectedCompany
         this._trailersService.SendForm(Trailerslistdata).subscribe(response => {
           this.submitted = true;
-          this._toaster.info("Data Submitted","Success");
+          this._toaster.info("Trailer Data Submitted","Success", {timeOut: 3000,});
          this.router.navigateByUrl("theme/trailers-list");
         },error=>{
           this.submitted=false;
-          this._toaster.error("Submit Agian","Faild");
+          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
-        // console.log(this.pageFilters);
        }
-
+     }
 }

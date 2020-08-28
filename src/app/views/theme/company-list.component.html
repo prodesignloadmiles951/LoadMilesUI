@@ -1,409 +1,336 @@
 <div class="animated fadeIn">
-  
-    <div class="card">
-      <div class="card-header">Search For Company
-          <strong></strong> <span *ngIf="Isusersloading"><img *ngIf="Isusersloading"
-              src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-              Loading..</span>
-      </div>
-      <div class="card-body">
-          <form>
-              <div class="form-group row">
-                  <div class="col-md-4">
-                      <input type="text" id="search" name="search" class="form-control" [(ngModel)]="SearchText"
-                          (keypress)="onSubmit()" (keyup.enter)="onSubmit()" placeholder="Find a Company">
-                  </div>
-                  <span>
-                    <button type="reset" style="float: left" class="btn btn-sm btn-danger" (click)="ClearSearch()"><i class="fa fa-ban"></i> Clear Search</button>    
-                  </span>  &nbsp;&nbsp; 
-                  
-              </div>
-          </form>
-      </div>
+  <div class="card">
+    <div class="card-header">Search For Company
+      <strong></strong> <span *ngIf="Isusersloading"><img *ngIf="Isusersloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        Loading..</span>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="form-group row">
+          <div class="col-md-4">
+            <input type="text" id="search" name="search" class="form-control" [(ngModel)]="SearchText" (keypress)="onSubmit()" (keyup.enter)="onSubmit()" placeholder="Find a Company">
+          </div>
+          <span>
+            <button type="reset" style="float: left" class="btn btn-sm btn-danger" (click)="ClearSearch()"><i class="fa fa-ban"></i> Clear Search</button>
+          </span> &nbsp;&nbsp;
+        </div>
+      </form>
+    </div>
   </div>
-  
-  
   <div class="row">
-          <div class="col-lg-12">
-            <div class="card">
-              <div class="card-header">  Company  List
-                  <span class="float-right">
-                      <button type="add" class="btn btn-sm btn-success" (click)="Add()"><i class="fa fa-plus"></i> New Company</button>    
-                  </span>              
-                  
-                </div>
-              <div class="card-body">
-                  <div class="animated fadeIn">
-                </div>
-                <table class="table table-responsive-sm table-hover table-outline mb-0">
-                  <thead>
-                    <tr>
-                      <th>S.no</th>
-                      <th>Company Name</th>
-                      <th>FEDID</th>
-                      <th>US DOT #</th>
-                      <th>MC</th>
-                      <th>Phone</th>
-                      <th>Email</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-      
-                  <tbody>
-                    <tr>
-                      <tr *ngFor="let cmp of data; let i=index">
-                          <td>{{i + 1}}</td>
-                          <td>{{cmp.companyname}}</td>
-                          <td>{{cmp.fedid}}</td>
-                          <td>{{cmp.usdot}}</td>
-                          <td>{{cmp.mc}}</td>
-                          <td>{{cmp.phone}}</td>
-                          <td>{{cmp.email}}</td>
-                          <td>
-                            <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                                (click)="viewModal.show();viewData(cmp);">View</a> |
-      
-                            <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                            (click)="viewModal.show();editData(cmp);">Edit</a>    
-                                                    
-                            <!-- <a style="cursor: pointer;color: #20a8d8;"
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header"> Company List
+          <span class="float-right">
+            <button type="add" class="btn btn-sm btn-success" (click)="Add()"><i class="fa fa-plus"></i> New Company</button>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="animated fadeIn">
+          </div>
+          <table class="table table-responsive-sm table-hover table-outline mb-0">
+            <thead>
+              <tr>
+                <th>S.no</th>
+                <th>Company Name</th>
+                <th>FEDID</th>
+                <th>US DOT #</th>
+                <th>MC</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <tr *ngFor="let cmp of data; let i=index">
+                <td>{{i + 1}}</td>
+                <td>{{cmp.companyname}}</td>
+                <td>{{cmp.fedid}}</td>
+                <td>{{cmp.usdot}}</td>
+                <td>{{cmp.mc}}</td>
+                <td>{{cmp.phone}}</td>
+                <td>{{cmp.email}}</td>
+                <td>
+                  <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal" (click)="viewModal.show();viewData(cmp);">View</a> |
+                  <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal" (click)="viewModal.show();editData(cmp);">Edit</a>
+                  <!-- <a style="cursor: pointer;color: #20a8d8;"
                                 (click)="deleteCompany(cmp)">Delete</a> -->
-                        </td>
-                      </tr>
-                  </tbody>
-      
-                  <!-- <tbody *ngIf="logslist.length==0">
+                </td>
+              </tr>
+            </tbody>
+            <!-- <tbody *ngIf="logslist.length==0">
                     <tr>
                       <td class="alert alert-warning" style="width:1050px;" align="center" colspan="10"><span>No records available</span></td>
                     </tr>
                   </tbody> -->
-                </table>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="max-width: 90%" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Manage Company - <span class="badge badge-success">{{selectedCompany}}</span></h4>
+          <button type="button" class="close" (click)="viewModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="animated fadeIn">
+              <div id="viewsection" *ngIf="EditMode==false">
+                <!-- <div id="viewsection"> -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6 style="color:firebrick">Company Information</h6>
+                    <div class="row" style="text-align: center">
+                      <div class="col-md-6" style="text-align: left">
+                        <span style="font-size: 12px;"><b>Company Name:</b></span>
+                      </div>
+                      <div class="col-md-5" style="text-align: left">
+                        <span style="font-size: 14px;">{{company.companyname}}</span>
+                      </div>
+                    </div>
+                    <div class="row" style="text-align: center">
+                      <div class="col-md-6" style="text-align: left">
+                        <span style="font-size: 12px;"><b>FED ID:</b></span>
+                      </div>
+                      <div class="col-md-5" style="text-align: left">
+                        <span style="font-size: 14px;">{{company.fedid}}</span>
+                      </div>
+                    </div>
+                    <div class="row" style="text-align: center">
+                      <div class="col-md-6" style="text-align: left">
+                        <span style="font-size: 12px;"><b>US DOT #:</b></span>
+                      </div>
+                      <div class="col-md-5" style="text-align: left">
+                        <span style="font-size: 14px;">{{company.usdot}}</span>
+                      </div>
+                    </div>
+                    <div class="row" style="text-align: center">
+                      <div class="col-md-6" style="text-align: left">
+                        <span style="font-size: 12px;"><b>MC:</b></span>
+                      </div>
+                      <div class="col-md-5" style="text-align: left">
+                        <span style="font-size: 14px;">{{company.mc}}</span>
+                      </div>
+                    </div>
+                    <div class="row" style="text-align: center">
+                      <div class="col-md-6" style="text-align: left">
+                        <span style="font-size: 12px;"><b>IFTA License #:</b></span>
+                      </div>
+                      <div class="col-md-5" style="text-align: left">
+                        <span style="font-size: 14px;">{{company.iftalicense}}</span>
+                      </div>
+                    </div>
+                    <div class="row" style="text-align: center">
+                      <div class="col-md-6" style="text-align: left">
+                        <span style="font-size: 12px;"><b>Phone:</b></span>
+                      </div>
+                      <div class="col-md-5" style="text-align: left">
+                        <span style="font-size: 14px;">{{company.phone}}</span>
+                      </div>
+                    </div>
+                    <div class="row" style="text-align: center">
+                      <div class="col-md-6" style="text-align: left">
+                        <span style="font-size: 12px;"><b>Email:</b></span>
+                      </div>
+                      <div class="col-md-5" style="text-align: left">
+                        <span style="font-size: 12px;">{{company.email}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    
+                    <h6 style="color:firebrick">Mailing Address</h6>
+                        <div class="row" style="text-align: center">
+                      <div class="col-md-6" style="text-align: left">
+                        <span style="font-size: 12px;"><b>Address:</b></span>
+                      </div>
+                      <div class="col-md-5" style="text-align: left">
+                        <span style="font-size: 12px;">{{company.address1}}</span>
+                      </div>
+                    </div>
+                    <div class="row" style="text-align: center">
+                      <div class="col-md-6" style="text-align: left">
+                        <span style="font-size: 12px;"><b>City:</b></span>
+                      </div>
+                      <div class="col-md-5" style="text-align: left">
+                        <span style="font-size: 12px;">{{company.city}}</span>
+                      </div>
+                    </div>
+                    <div class="row" style="text-align: center">
+                      <div class="col-md-6" style="text-align: left">
+                        <span style="font-size: 12px;"><b>State:</b></span>
+                      </div>
+                      <div class="col-md-5" style="text-align: left">
+                        <span style="font-size: 12px;">{{company.state}}</span>
+                      </div>
+                    </div>
+                    <div class="row" style="text-align: center">
+                      <div class="col-md-6" style="text-align: left">
+                        <span style="font-size: 12px;"><b>Zip:</b></span>
+                      </div>
+                      <div class="col-md-5" style="text-align: left">
+                        <span style="font-size: 12px;">{{company.zip}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="editsection" *ngIf="EditMode">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-header">Company Information</div>
+                      <div class="card-body">
+                        <div class="form-group row">
+                          <label class="col-md-4 col-form-label" for="companyname">Company Name :</label>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" id="companyname" [(ngModel)]="company.companyname">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-md-4 col-form-label" for="dba">DBA :</label>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" id="dba" [(ngModel)]="company.dba">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-md-4 col-form-label" for="fedid">FED ID :</label>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" id="fedid" [(ngModel)]="company.fedid">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-md-4 col-form-label" for="mc">MC :</label>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" id="mc" [(ngModel)]="company.mc">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-md-4 col-form-label" for="iftalicense">IFTA License # :</label>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" id="iftalicense" [(ngModel)]="company.iftalicense">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-md-4 col-form-label" for="phone">phone :</label>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" id="phone" [(ngModel)]="company.phone">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-md-4 col-form-label" for="email">Email :</label>
+                          <div class="col-md-8">
+                            <input type="text" class="form-control" id="email" [(ngModel)]="company.email">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-header">Mailing Address</div>
+                      <div class="card-body">
+                        <div class="form-group row">
+                          <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="address1" #address1="ngModel" name="address1" [(ngModel)]="company.address1" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="company.address2" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-md-3 col-form-label" for="address2">City :</label>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="company.city" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-6">State:
+                            <input type="text" class="form-control" id="state" placeholder="Enter state" #zip="ngModel" name="state" [(ngModel)]="company.state" required>
+                          </div>
+                          <div class="col-6">Zip:
+                            <input type="text" class="form-control" id="zip1" placeholder="Ex: 500013" #zip="ngModel" name="zip" [(ngModel)]="company.zip" required>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="card">
+                      <div class="card-header"><strong>Physical</strong> Address</div>
+                      <div class="card-body">
+                        <div class="form-group row">
+                          <button class="btn btn-outline-secondary btn-lg btn-block" type="button">Copy From Mailing Address</button>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="address1" name="address1" [(ngModel)]="company.address1" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
+                          <div class="col-md-9">
+                            <input type="text" class="form-control" id="address2" name="address4" [(ngModel)]="company.address4" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-md-3 col-form-label" for="city2">City :</label>
+                          <div class="col-md-9">
+                            <select class="form-control" type="text" name="city2" id="city2" [(ngModel)]="company.city2">
+                              <option value="0">Select State</option>
+                              <option value="0">Select</option>
+                              <option value="1">Option #1</option>
+                              <option value="2">Option #2</option>
+                              <option value="3">Option #3</option>s
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-6">State:
+                            <select class="form-control" id="state2" name="state2" [(ngModel)]="company.state2">
+                              <option value="0">Select</option>
+                              <option value="1">Option #1</option>
+                              <option value="2">Option #2</option>
+                              <option value="3">Option #3</option>
+                            </select>
+                          </div>
+                          <div class="col-6">Zip:
+                            <input type="text" class="form-control" id="zip1" placeholder="Ex: 500013" name="zip2" [(ngModel)]="company.zip2" required>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>  
-  
-  <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" style="max-width: 90%" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h4 class="modal-title">Manage Company - <span class="badge badge-success" >{{selectedCompany}}</span></h4>
-                  <button type="button" class="close" (click)="viewModal.hide()" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                  <div class="container">
-                      <div class="animated fadeIn">
-                          <div id="viewsection" *ngIf="EditMode==false">
-                              <!-- <div id="viewsection"> -->
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <h6 style="color:firebrick">Company Information</h6>
-                                  <div class="row" style="text-align: center">
-                                      <div class="col-md-6" style="text-align: left">
-                                          <span style="font-size: 12px;"><b>Company Name:</b></span>
-                                      </div>
-                                      <div class="col-md-5" style="text-align: left">
-                                          <span style="font-size: 14px;">{{company.companyname}}</span>
-                                      </div>
-                                  </div>
-                                  <div class="row" style="text-align: center">
-                                      <div class="col-md-6" style="text-align: left">
-                                          <span style="font-size: 12px;"><b>FED ID:</b></span>
-                                      </div>
-                                      <div class="col-md-5" style="text-align: left">
-                                          <span style="font-size: 14px;">{{company.fedid}}</span>
-                                      </div>
-                                  </div>
-                                  <div class="row" style="text-align: center">
-                                      <div class="col-md-6" style="text-align: left">
-                                          <span style="font-size: 12px;"><b>US DOT #:</b></span>
-                                      </div>
-                                      <div class="col-md-5" style="text-align: left">
-                                          <span style="font-size: 14px;">{{company.usdot}}</span>
-                                      </div>
-                                  </div>
-                                  <div class="row" style="text-align: center">
-                                      <div class="col-md-6" style="text-align: left">
-                                          <span style="font-size: 12px;"><b>MC:</b></span>
-                                      </div>
-                                      <div class="col-md-5" style="text-align: left">
-                                          <span style="font-size: 14px;">{{company.mc}}</span>
-                                      </div>
-                                  </div>
-                                  <div class="row" style="text-align: center">
-                                      <div class="col-md-6" style="text-align: left">
-                                          <span style="font-size: 12px;"><b>IFTA License #:</b></span>
-                                      </div>
-                                      <div class="col-md-5" style="text-align: left">
-                                          <span style="font-size: 14px;">{{company.iftalicense}}</span>
-                                      </div>
-                                  </div>
-                                  <div class="row" style="text-align: center">
-                                      <div class="col-md-6" style="text-align: left">
-                                          <span style="font-size: 12px;"><b>Phone:</b></span>
-                                      </div>
-                                      <div class="col-md-5" style="text-align: left">
-                                          <span style="font-size: 14px;">{{company.phone}}</span>
-                                      </div>
-                                  </div>
-                                  <div class="row" style="text-align: center">
-                                      <div class="col-md-6" style="text-align: left">
-                                          <span style="font-size: 12px;"><b>Email:</b></span>
-                                      </div>
-                                      <div class="col-md-5" style="text-align: left">
-                                          <span style="font-size: 12px;">{{company.email}}</span>
-                                      </div>
-                                  </div>
-                                  
-                              </div>
-                              <div class="col-md-6">
-                                  <h6 style="color:firebrick">Physical Address</h6>
-                                  <div class="row" style="text-align: center">
-                                      <div class="col-md-6" style="text-align: left">
-                                          <span style="font-size: 12px;"><b>Address:</b></span>
-                                      </div>
-                                      <div class="col-md-5" style="text-align: left">
-                                          <span style="font-size: 12px;">{{company.address1}}</span>
-                                      </div>
-                                  </div>
-                                  <div class="row" style="text-align: center">
-                                      <div class="col-md-6" style="text-align: left">
-                                          <span style="font-size: 12px;"><b>City:</b></span>
-                                      </div>
-                                      <div class="col-md-5" style="text-align: left">
-                                          <span style="font-size: 12px;">{{company.city}}</span>
-                                      </div>
-                                  </div>
-                                  <div class="row" style="text-align: center">
-                                      <div class="col-md-6" style="text-align: left">
-                                          <span style="font-size: 12px;"><b>State:</b></span>
-                                      </div>
-                                      <div class="col-md-5" style="text-align: left">
-                                          <span style="font-size: 12px;">{{company.state}}</span>
-                                      </div>
-                                  </div>
-                                  <div class="row" style="text-align: center">
-                                      <div class="col-md-6" style="text-align: left">
-                                          <span style="font-size: 12px;"><b>Zip:</b></span>
-                                      </div>
-                                      <div class="col-md-5" style="text-align: left">
-                                          <span style="font-size: 12px;">{{company.zip}}</span>
-                                      </div>
-                                  </div>
-
-                                  <h6 style="color:firebrick">Mailing Address</h6>
-                                  <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Address:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 12px;">{{company.address3}}</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>City:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 12px;">{{company.city2}}</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>State:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 12px;">{{company.sate2}}</span>
-                                    </div>
-                                </div>
-                                <div class="row" style="text-align: center">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <span style="font-size: 12px;"><b>Zip:</b></span>
-                                    </div>
-                                    <div class="col-md-5" style="text-align: left">
-                                        <span style="font-size: 12px;">{{company.zip2}}</span>
-                                    </div>
-                                </div>
-                              </div>
-                          </div>
-                          </div>
-  
-                          <div id="editsection" *ngIf="EditMode">
-
-                              <div class="row">
-                                <div class="col-sm-6">
-                                  <div class="card">
-                                    <div class="card-header">Company Information</div>
-                                        <div class="card-body">
-                                            <div class="form-group row">
-                                                <label  class="col-md-4 col-form-label" for="companyname">Company Name :</label>
-                                                <div class="col-md-8">
-                                                <input type="text" class="form-control" id="companyname" [(ngModel)]="company.companyname">
-                                            </div>
-                                            </div>
-                                            
-                                            <div class="form-group row">
-                                                <label  class="col-md-4 col-form-label" for="dba">DBA :</label>
-                                                <div class="col-md-8">
-                                                <input type="text" class="form-control" id="dba" [(ngModel)]="company.dba">
-                                            </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label  class="col-md-4 col-form-label" for="fedid">FED ID :</label>
-                                                <div class="col-md-8">
-                                                <input type="text" class="form-control" id="fedid" [(ngModel)]="company.fedid">
-                                            </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label  class="col-md-4 col-form-label" for="mc">MC :</label>
-                                                <div class="col-md-8">
-                                                <input type="text" class="form-control" id="mc" [(ngModel)]="company.mc">
-                                            </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label  class="col-md-4 col-form-label" for="iftalicense">IFTA License # :</label>
-                                                <div class="col-md-8">
-                                                <input type="text" class="form-control" id="iftalicense" [(ngModel)]="company.iftalicense">
-                                            </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label  class="col-md-4 col-form-label" for="phone">phone :</label>
-                                                <div class="col-md-8">
-                                                <input type="text" class="form-control" id="phone" [(ngModel)]="company.phone">
-                                            </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label  class="col-md-4 col-form-label" for="email">Email :</label>
-                                                <div class="col-md-8">
-                                                <input type="text" class="form-control" id="email" [(ngModel)]="company.email">
-                                            </div>
-                                            </div>
-                                    </div>
-
-                           
-                                  </div>
-                        
-                                  <div class="card">
-                                    <div class="card-header">Mailing Address</div>
-                                    <div class="card-body">
-                                        <div class="form-group row">
-                                            <label  class="col-md-4 col-form-label" for="address1">Address :</label>
-                                            <div class="col-md-8">
-                                            <input type="text" class="form-control" id="address1" [(ngModel)]="company.address1">
-                                        </div>
-                                        </div>
-                                        
-                                        <div class="form-group row">
-                                            <label  class="col-md-4 col-form-label" for="city">City :</label>
-                                            <div class="col-md-8">
-                                            <input type="text" class="form-control" id="city" [(ngModel)]="company.city">
-                                        </div>
-                                        </div>
-                                            
-                                        <div class="form-group row">
-                                            <label  class="col-md-4 col-form-label" for="state">State :</label>
-                                            <div class="col-md-8">
-                                            <input type="text" class="form-control" id="state" [(ngModel)]="company.state">
-                                        </div>
-                                        </div>
-                                        
-                                        <div class="form-group row">
-                                            <label  class="col-md-4 col-form-label" for="zip">Zip :</label>
-                                            <div class="col-md-8">
-                                            <input type="text" class="form-control" id="zip" [(ngModel)]="company.zip">
-                                        </div>
-                                        </div>
-                                    </div>
-                                  </div>
-                          </div>        
-                          
-                          <div class="col-sm-6">
-                                <div class="card">
-                                    <div class="card-header"><strong>Physical</strong> Address</div>
-                                      <div class="card-body">
-                                          <div class="form-group row">
-                                              <button class="btn btn-outline-secondary btn-lg btn-block" type="button">Copy From Mailing Address</button>
-                                          </div>
-                                          
-                                          <div class="form-group row">
-                                            <label class="col-md-3 col-form-label" for="address3">Address1 :</label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="address3" name="address3" [(ngModel)]="company.address3" required>
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="address2" name="address4" [(ngModel)]="company.address4" required>
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label class="col-md-3 col-form-label" for="city2">City :</label>
-                                            <div class="col-md-9">
-                                              <select class="form-control" type="text" name="city2"  id="city2" [(ngModel)]="company.city2">
-                                                  <option value="0">Select State</option>
-                                                  <option value="0">Select</option>
-                                                      <option value="1">Option #1</option>
-                                                      <option value="2">Option #2</option>
-                                                      <option value="3">Option #3</option>s
-                                                  
-                                                </select>
-                                          </div>
-                                          </div>
-                                          <div class="form-group row">
-                                              <div class="col-6">State:
-                                                  <select class="form-control" id="state2" name="state2" [(ngModel)]="company.state2">
-                                                      <option value="0">Select</option>
-                                                      <option value="1">Option #1</option>
-                                                      <option value="2">Option #2</option>
-                                                      <option value="3">Option #3</option>
-                                                    </select>
-                                              </div>
-                                              <div class="col-6">Zip:
-                                                  <input type="text" class="form-control" id="zip1" placeholder="Ex: 500013" name="zip2" [(ngModel)]="company.zip2" required>
-                                              </div>
-                                          </div>
-                                      </div>
-                            </div>
-                           </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right"
-                      class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
-
-                      <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
+            <div class="modal-footer">
+              <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
+              <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
                       class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>  -->
-
-
-                      <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
+              <!-- <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
                       class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> 
                        -->
-
-                      <!--<button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
-                      class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>--> 
-
-                  <button *ngIf="EditMode" type="reset" (click)="editCompany(company)" style="float: right"
-                      class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
-                      <img *ngIf="Iseditusrloading"
-                          src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                  </button>
-              </div>
+              <!--<button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
+                      class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>-->
+              <button *ngIf="EditMode" type="reset" (click)="editCompany(company);viewModal.hide()" style="float: right" class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update
+                <img *ngIf="Iseditusrloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              </button>
+            </div>
           </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-  </div>
-  
-
-  <!-- Edit
+        </div><!-- /.modal-dialog -->
+      </div>
+      <!-- Edit
 
   
   <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -534,5 +461,4 @@
           </div>
       </div>
   </div>-->
-</div>
-  
+    </div>

@@ -65,12 +65,17 @@ export class TruckslistComponent implements OnInit {
     }
 
   editTrucks(trucks,selectedTruck) {
-    this._trucksservice.EditTrucks(trucks).subscribe(response => {
-      this._toaster.success(selectedTruck+ " truck successfully updated", "Success");
-    }, error => {
-       this._toaster.error("error", "Try Again");
-      });
-      this.EditMode = false;
+    if(localStorage.selectedCompany == undefined){
+           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+       }else{
+        trucks['companyid']=localStorage.selectedCompany
+        this._trucksservice.EditTrucks(trucks).subscribe(response => {
+          this._toaster.success(selectedTruck+ " truck successfully updated", "Success", {timeOut: 3000,});
+        }, error => {
+           this._toaster.error("error", "Try Again", {timeOut: 2000,});
+          });
+          this.EditMode = false;
+       }
   }
 
   Add() {
@@ -78,10 +83,14 @@ export class TruckslistComponent implements OnInit {
   }
 
   deleteTrucks(truck) {
-    this._trucksservice.DeleteTrucks(truck._id).subscribe(data => {
-    this._toaster.info("Trucks Data Deleted", "Success");
-    this.getData();
-   });
+    if(localStorage.selectedCompany == undefined){
+           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+       }else{
+          this._trucksservice.DeleteTrucks(truck._id).subscribe(data => {
+          this._toaster.info("Trucks Data Deleted", "Success", {timeOut: 3000,});
+          this.getData();
+         });
+       }
    }
 }
  

@@ -73,7 +73,7 @@
                 </div>
               </div>
               <div class="form-group row">
-              <label for="file-upload" class="custom-file-upload">
+              <label for="file-upload" [ngClass]="mode?'':'disble'" class="custom-file-upload">
                   <i class="fa fa-cloud-upload"></i> Upload
               </label>
               <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
@@ -100,7 +100,7 @@
             <div class="grid-container">
               <dx-data-grid #grid id="gridContainer" [dataSource]="customerdata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
                 <dxo-paging [enabled]="false"></dxo-paging>
-                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
                 </dxo-editing>
                 <dxo-selection mode="single"></dxo-selection>
                 <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
@@ -158,9 +158,9 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="phone">Phone:</label>
+            <label class="col-md-4 col-form-label" for="cellphone">Phone:</label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="phone" name="phone" #phone="ngModel" [(ngModel)]="pageFilters.phone">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="cellphone" name="cellphone" #cellphone="ngModel" [(ngModel)]="pageFilters.cellphone">
             </div>
           </div>
           <div class="form-group row">
@@ -207,7 +207,7 @@
       </mat-accordion>
     </div>
   </div>
-   <div class="card-footer">
+   <div class="card-footer" *ngIf="showAddOption">
     <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
       <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
       Submit</button>&nbsp;&nbsp;

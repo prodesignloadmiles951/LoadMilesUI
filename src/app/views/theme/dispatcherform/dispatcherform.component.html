@@ -39,14 +39,9 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="dateofbirth">Date of Birth: <span style="color:red">*</span></label>
+              <label class="col-md-3 col-form-label" for="dateofbirth">Date of Birth:</label>
               <div class="col-md-9">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="dateofbirth" placeholder="Ex: 01-04-1990" name="dateofbirth" #dateofbirth="ngModel" [(ngModel)]="pageFilters.dateofbirth" required>
-                <div *ngIf="dateofbirth.errors && (dateofbirth.dirty || dateofbirth.touched)" style="font-size: smaller;">
-                  <div [hidden]="!dateofbirth.errors.required">
-                    <span style="color: red;">Date Of Birth is Required</span>
-                  </div>
-                </div>
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="dateofbirth" placeholder="Ex: 01-04-1990" name="dateofbirth" value="{{dateofbirth | date:'yyyy-MM-dd'}}" (change)="ondateofbirth($event)">
               </div>
             </div>
             <div class="form-group row">
@@ -120,7 +115,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="file-upload" class="custom-file-upload">
+              <label for="file-upload" [ngClass]="mode?'':'disble'" class="custom-file-upload">
                   <i class="fa fa-cloud-upload"></i> Upload
               </label>
               <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
@@ -160,13 +155,13 @@
               <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="hiredate">Hire Date:</label>
                 <div class="col-md-8">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="hiredate" name="hiredate" #hiredate="ngModel" [(ngModel)]="pageFilters.hiredate">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="hiredate" name="hiredate" value="{{hiredate | date:'yyyy-MM-dd'}}" (change)="onhiredate($event)">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="terminationdate">Termination Date:</label>
                 <div class="col-md-8">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="terminationdate" name="terminationdate" #terminationdate="ngModel" [(ngModel)]="pageFilters.terminationdate">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="terminationdate" name="terminationdate" value="{{terminationdate | date:'yyyy-MM-dd'}}" (change)="onterminationdate($event)">
                 </div>
               </div>
               <div class="form-group row">
@@ -225,7 +220,7 @@
         <div class="grid-container">
           <dx-data-grid #grid id="gridContainer" [dataSource]="dispatcherpaydata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
             <dxo-paging [enabled]="false"></dxo-paging>
-            <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+            <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
             </dxo-editing>
             <dxo-selection mode="single"></dxo-selection>
             <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
@@ -242,7 +237,7 @@
       </mat-accordion>
     </div>
   </div>
-  <div class="card-footer">
+  <div class="card-footer" *ngIf="showAddOption">
     <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
       <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
       Submit</button>&nbsp;&nbsp;

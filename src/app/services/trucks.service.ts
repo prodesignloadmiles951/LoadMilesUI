@@ -40,4 +40,8 @@ export class TrucksService {
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
         return this.http.post(this.uploadFileUrl,file,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
+    downloadFile(){
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.get(this.uploadFileUrl,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+    }
 }

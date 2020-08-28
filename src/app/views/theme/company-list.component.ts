@@ -16,12 +16,7 @@ export class CompanylistComponent implements OnInit {
   pageFilters: CompanyFilters;
   selectedCompany: any;
   EditMode: boolean;
- 
-//  userData: any = [
-//    {slno: '1', companyname: 'Company', fedid: 'abc123', usdot: 'abc', mc: 'abc', phone: '0123456789', email: 'test@gmail.com'},
-//    {slno: '2', companyname: 'Company', fedid: 'abc123', usdot: 'abc', mc: 'abc', phone: '0123456789', email: 'test@gmail.com'},
-//    {slno: '3', companyname: 'Company', fedid: 'abc123', usdot: 'abc', mc: 'abc', phone: '0123456789', email: 'test@gmail.com'},
-//  ];
+
 
  constructor(
   private router: Router,
@@ -29,7 +24,6 @@ export class CompanylistComponent implements OnInit {
   private _toaster: ToastrService,
  ) {
   this.pageFilters = new CompanyFilters();
-   //console.log(this.userData);
  }
   ngOnInit(): void {
     this.getData();
@@ -56,20 +50,28 @@ export class CompanylistComponent implements OnInit {
   }
 
   editCompany(cmp) {
-    this._companyservice.EditCompany(cmp).subscribe(response => {
-      this._toaster.success("company successfully updated", "Success");
-    }, error => {
-       this._toaster.error("error", "Try Again");
-      });
-      this.EditMode = false;
-
+    if(localStorage.selectedCompany == undefined){
+           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+       }else{
+        cmp['companyid']=localStorage.selectedCompany
+        this._companyservice.EditCompany(cmp).subscribe(response => {
+          this._toaster.success("company successfully updated", "Success", {timeOut: 3000,});
+        }, error => {
+           this._toaster.error("error", "Try Again", {timeOut: 2000,});
+          });
+          this.EditMode = false;
+       }
   }
 
   deleteCompany(cmp) {
-    this._companyservice.DeleteCompany(cmp._id).subscribe(data => {
-    this._toaster.info("Company Data Delete", "Success");
-    this.getData();
-   });
+    if(localStorage.selectedCompany == undefined){
+           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+     }else{
+        this._companyservice.DeleteCompany(cmp._id).subscribe(data => {
+        this._toaster.info("Company Data Delete", "Success", {timeOut: 3000,});
+        this.getData();
+       });
+     }
    }
 
   Add() {

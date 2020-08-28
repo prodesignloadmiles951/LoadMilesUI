@@ -9,7 +9,7 @@ import { DriversService } from '../../../services/driver.service';
   selector: 'app-carrierform',
   templateUrl: './carrierform.component.html',
   styleUrls: ['./carrierform.component.scss'],
-  providers: [CarrierService]
+  providers: [CarrierService,DriversService]
 })
 export class CarrierformComponent implements OnInit {
 	public pageFilters={};
@@ -29,6 +29,9 @@ export class CarrierformComponent implements OnInit {
     payrateinfodata={};
     drugdata={};
     driverdata= [];
+    showAddOption=false
+    medicalcardexpiration=undefined
+    cdlexpirytate=undefined
 
   constructor(private _carrierService: CarrierService,private _driverService: DriversService,private _toaster: ToastrService,private router: Router) { }
 
@@ -37,9 +40,21 @@ export class CarrierformComponent implements OnInit {
     if(this.datatype == undefined){
       // this.pageFilters=this.Carrierlistdata
       this.mode=true
+      this.showAddOption=true
     }else{
       this.pageFilters=this.datatype
-      this.mode=this.datatype['EditMode']      
+      this.mode=this.datatype['EditMode'] 
+      this.showAddOption=false     
+      this.contactdata.push(this.datatype.contactinfo)
+      this.payratedata.push(this.datatype.payrate)
+      this.drugmedicaldata.push(this.datatype.drugdata)
+      this.medicalcardexpiration= new Date(this.datatype['medicalcardexpiration'])
+      this.cdlexpirytate= new Date(this.datatype['cdlexpirytate'])
+      if(this.datatype['hazmatcertified']){
+        this.pageFilters['hazmatcertified']=0
+      }else{
+        this.pageFilters['hazmatcertified']=1
+      }
     }
     this.pageFiltersshow=true;
     this.getDriverData()
@@ -134,20 +149,35 @@ export class CarrierformComponent implements OnInit {
     });
   }
 
+  onmedcardexpdateselect(event) {
+    var medexpdate = new Date(event.target.value).getTime()
+    this.pageFilters['medicalcardexpiration'] = medexpdate
+  }
+  oncdlexpdateselect(event) {
+    var cdlexpdate = new Date(event.target.value).getTime()
+    this.pageFilters['cdlexpirytate'] = cdlexpdate
+  }
+
    submit() {
+     if(localStorage.selectedCompany == undefined){
+       this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+     }else{
         this.submitted = true;
         var Carrierlistdata:any=this.pageFilters
+        Carrierlistdata['contactinfo']=this.contactinfodata
         Carrierlistdata['payrate']=this.payrateinfodata
         Carrierlistdata['drugdata']=this.drugdata
+        Carrierlistdata['companyid']=localStorage.selectedCompany
         this._carrierService.SendForm(Carrierlistdata).subscribe(response => {
           this.submitted = true;
-          this._toaster.info("Carrierform Data Submitted","Success");
+          this._toaster.info("Carrierform Data Submitted","Success", {timeOut: 3000,});
          this.router.navigateByUrl("theme/carrier-list");
         },error=>{
           this.submitted=false;
-          this._toaster.error("Submit Again","Failed");
+          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
         console.log(this.pageFilters);
        }
+     }
 
 }

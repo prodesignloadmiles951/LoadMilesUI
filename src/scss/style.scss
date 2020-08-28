@@ -86,6 +86,10 @@ input[type="number"]::-webkit-inner-spin-button {
   display: none;
 }
 
+.breadcrumb {
+  border-width: 0px;
+}
+
 /* Show the indicator (dot/circle) when checked */
 .forma input:checked~.checkmark:after {
   display: block;
@@ -132,8 +136,17 @@ thead th {
 
 }
 
+.mat-select-panel {
+  position: absolute;
+  top: 26px;
+}
+
 tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
   background: #d7edff !important;
+}
+
+.dx-datagrid-headers.dx-header-multi-row .dx-row.dx-header-row > td{
+  border-width: 0;
 }
 
 .dx-scrollable-scroll {
@@ -166,5 +179,8 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
 
 .mat-expansion-panel-header-title {
   color: #2c5484;
+}
+.mat-dialog-container{
+  width: 950px !important;
 }
 

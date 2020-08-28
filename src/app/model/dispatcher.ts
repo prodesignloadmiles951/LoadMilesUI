@@ -33,4 +33,17 @@ export class DispatcherFilters {
     customeraccount1: any;
     customeraccount2: any;
     vendor: any;
+    dateofbirth: number;
+    ssn: any;
+    emergenctcontact: number;
+    emergencyphone: number;
+    employmenttype: boolean;
+    hiredate: number;
+    terminationdate: number;
+    vendoraccount: any;
+    quickpayid: any;
+    bankname: string;
+    accounttype: string;
+    accountnum: number;
+    routingnum: number;
 }

@@ -45,6 +45,9 @@ export class DefaultLayoutComponent implements OnDestroy {
   } 
 
   ngOnInit(): void {
+    if(localStorage.selectedCompanyName != undefined){
+      this.selectedCompany=localStorage.selectedCompanyName      
+    }
     if (this.authService.getloginUser()) {
       this.loginUser = this.authService.getloginUser();
       if (this.loginUser) {
@@ -73,8 +76,10 @@ export class DefaultLayoutComponent implements OnDestroy {
 
   companyselected(cmp) {
     console.log(cmp.companyname)
-   this._toaster.success(cmp.companyname+" selected successfully", "Success");
-    
+    localStorage.setItem('selectedCompany',cmp.companyid[0])
+    localStorage.setItem('selectedCompanyName',cmp.companyname)
+   this._toaster.success(cmp.companyname+" selected successfully", "Success", {timeOut: 2000,});
+   this.router.navigateByUrl('dashboard');
   }
 
 

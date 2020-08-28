@@ -19,7 +19,7 @@ export class CarrierlistComponent implements OnInit {
     data: any;
     selectedCarrier: any;
     selectedCompany: any;
-    EditMode: boolean;
+    EditMode=false;
     carrierData={}
     showForm=false
 
@@ -30,57 +30,64 @@ export class CarrierlistComponent implements OnInit {
         ngOnInit() {
             this.getData();
         }
-viewData(carrier) {
-    this.EditMode = false;
-    var carrierObj=carrier
-    carrierObj['EditMode']=this.EditMode
-    this.carrierData=carrierObj
-    this.carriers = new CarrierFilters();
-    this.carriers = carrier;
-    this.selectedCarrier = carrier.companyname;
-    this.showForm=true
-}
+    viewData(carrier) {
+        this.EditMode = false;
+        var carrierObj=carrier
+        carrierObj['EditMode']=this.EditMode
+        this.carrierData=carrierObj
+        this.carriers = new CarrierFilters();
+        this.carriers = carrier;
+        this.selectedCarrier = carrier.companyname;
+        this.showForm=true
+    }
     getData() {
     this._carrierservice.getCarrierData().subscribe(data => {
         this.data = data;
     });
     }
 
-editData(carrier) {
-    this.EditMode = true;
-    var carrierObj=carrier
-    carrierObj['EditMode']=this.EditMode
-    this.carrierData=carrierObj
-    this.carriers = new CarrierFilters();
-    this.carriers = carrier;
-    this.selectedCarrier = carrier.companyname;
-    this.showForm=true
-}
-
-hidePopup(){
-      this.showForm=false
+    editData(carrier) {
+        this.EditMode = true;
+        var carrierObj=carrier
+        carrierObj['EditMode']=this.EditMode
+        this.carrierData=carrierObj
+        this.carriers = new CarrierFilters();
+        this.carriers = carrier;
+        this.selectedCarrier = carrier.companyname;
+        this.showForm=true
     }
 
-editCarriers(carrier,selectedCarrier) {
-    this._carrierservice.EditCarrier(carrier).subscribe(response => {
-        this._toaster.success(selectedCarrier+ " carrier successfully updated", "Success");
-    }, error => {
-        this._toaster.error("error", "Try Again");
-        });
-        this.EditMode = false;
-    }
+    hidePopup(){
+          this.showForm=false
+        }
 
-    // submit() {
-    //     console.log(this.pageFilters);
-    // }
+    editCarriers(carrier,selectedCarrier) {
+        if(localStorage.selectedCompany == undefined){
+           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+         }else{
+            carrier['companyid']=localStorage.selectedCompany
+            this._carrierservice.EditCarrier(carrier).subscribe(response => {
+                this._toaster.success(selectedCarrier+ " carrier successfully updated", "Success", {timeOut: 3000,});
+            }, error => {
+                this._toaster.error("error", "Try Again", {timeOut: 2000,});
+                });
+                this.EditMode = false;
+         }
+        }
+
+    
     Add() {
         this.router.navigateByUrl('/theme/carrier');
       }
-// deleteCarriers(carrier) {
-//     this._carrierservice.DeleteCarrier(carrier._id).subscribe(data => {
-//     this._toaster.info("Carrier Data Delete", "Success");
-//     this.getData();
-//     });
-//     }
+    deleteCarriers(carrier) {
+        if(localStorage.selectedCompany == undefined){
+           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+         }else{
+            this._carrierservice.DeleteCarrier(carrier._id).subscribe(data => {
+            this._toaster.info("Carrier Data Delete", "Success", {timeOut: 3000,});
+            this.getData();
+            });
+         }
+    }
 }
  

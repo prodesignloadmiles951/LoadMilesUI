@@ -5,6 +5,9 @@ import { TrucksService } from '../../../../services/trucks.service';
 import { TrailerService } from '../../../../services/trailers.service';
 import { PickupserviceService } from '../../../../services/pickupservice.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { PickDropFormComponent } from '../pick-drop-form/pick-drop-form.component';
+
 
 @Component({
   selector: 'app-pickup',
@@ -21,73 +24,92 @@ export class PickupComponent implements OnInit {
   truckDetails=[]
   loadstatusDetails=[]
   unitNumberdata: any;
+  pickuppopupdata=[];
+  pickupdetails: any;
   constructor(private _loadservice: CreateloadService, 
     private _driverService: DriversService, private _trucksservice: TrucksService,private _toaster: ToastrService, 
-    private _trailersService: TrailerService, private _pickup: PickupserviceService) { }
+    private _trailersService: TrailerService, private _pickup: PickupserviceService, public dialog: MatDialog) { }
 
-  onAdd(eventName) {
-    console.log(eventName.key) 
-    var pickupdata = eventName.key
-    this.SendPickupForm(pickupdata)
-  }
+  
   SendPickupForm(pickupdata){
     var pickupinfo = {}
     
     pickupinfo['_id']=sessionStorage.getItem('submitID')
-    pickupinfo['ContactNumber']= JSON.parse(pickupdata['ContactNumber'])
-    pickupinfo['PickupDate']= new Date(pickupdata['PickupDate']).getTime()
-    pickupinfo['PickupCompany'] = pickupdata['PickupCompany']
-    pickupinfo['ContactName'] = pickupdata['ContactName']
-    pickupinfo['Address'] = pickupdata['Address']
+    pickupinfo['ContactNumber']= pickupdata['contactnumber']
+    pickupinfo['PickupDate']= new Date(pickupdata['pickupdate']).getTime()
+    pickupinfo['PickupCompany'] = pickupdata['pickupcompany']
+    pickupinfo['ContactName'] = pickupdata['contactname']
+    pickupinfo['Address'] = pickupdata['address']
+    pickupinfo['Type'] = pickupdata['type']
+    pickupinfo['Driver1'] = pickupdata['driver1']
+    pickupinfo['Driver2'] = pickupdata['driver2']
+    pickupinfo['Truck'] = pickupdata['truck']
+    pickupinfo['Trailer'] = pickupdata['trailer']
+    pickupinfo['LoadStatus'] = pickupdata['loadstatus']
 
-    for (var i = 0; i < this.typeDetails.length; i++) {
-      if(this.typeDetails[i]['ID'] == JSON.parse(pickupdata['Type'])){
-        pickupinfo['Type']= this.typeDetails[i]['Name']
-        break
-      }
+    // for (var i = 0; i < this.typeDetails.length; i++) {
+    //   if(this.typeDetails[i]['ID'] == JSON.parse(pickupdata['Type'])){
+    //     pickupinfo['Type']= this.typeDetails[i]['Name']
+    //     break
+    //   }
+    // }
+    // for (var i = 0; i < this.driverDetails.length; i++) {
+    //   if(this.driverDetails[i]['ID'] == JSON.parse(pickupdata['Driver1'])){
+    //     pickupinfo['Driver1']= this.driverDetails[i]['Name']
+    //     break
+    //   }
+    // }
+    // for (var i = 0; i < this.driverDetails.length; i++) {
+    //   if(this.driverDetails[i]['ID'] == JSON.parse(pickupdata['Driver2'])){
+    //     pickupinfo['Driver2']= this.driverDetails[i]['Name']
+    //     break
+    //   }
+    // }
+    // for (var i = 0; i < this.truckDetails.length; i++) {
+    //   if(this.truckDetails[i]['ID'] == JSON.parse(pickupdata['Truck'])){
+    //     pickupinfo['Truck']= this.truckDetails[i]['Name']
+    //     break
+    //   }
+    // }
+    // for (var i = 0; i < this.trailerDetails.length; i++) {
+    //   if(this.trailerDetails[i]['ID'] == JSON.parse(pickupdata['Trailer'])){
+    //     pickupinfo['Trailer']= this.trailerDetails[i]['Name']
+    //     break
+    //   }
+    // }
+    // for (var i = 0; i < this.loadstatusDetails.length; i++) {
+    //   if(this.loadstatusDetails[i]['ID'] == JSON.parse(pickupdata['LoadStatus'])){
+    //     pickupinfo['LoadStatus']= this.loadstatusDetails[i]['Name']
+    //     break
+    //   }
+    // }
+    console.log(pickupinfo)
+    if(pickupinfo['_id'] != null){
+      this._pickup.SendPickupForm(pickupinfo).subscribe(data => {
+        this.data = data
+        this._toaster.success("Pickup successfully created", "Success");
+      }, error => {
+         this._toaster.error("error", "Try Again");
+          console.log(this.data)
+      })
+    }else{
+      this._toaster.error("Create Load first", "Try Again");
     }
-    for (var i = 0; i < this.driverDetails.length; i++) {
-      if(this.driverDetails[i]['ID'] == JSON.parse(pickupdata['Driver1'])){
-        pickupinfo['Driver1']= this.driverDetails[i]['Name']
-        break
-      }
-    }
-    for (var i = 0; i < this.driverDetails.length; i++) {
-      if(this.driverDetails[i]['ID'] == JSON.parse(pickupdata['Driver2'])){
-        pickupinfo['Driver2']= this.driverDetails[i]['Name']
-        break
-      }
-    }
-    for (var i = 0; i < this.truckDetails.length; i++) {
-      if(this.truckDetails[i]['ID'] == JSON.parse(pickupdata['Truck'])){
-        pickupinfo['Truck']= this.truckDetails[i]['Name']
-        break
-      }
-    }
-    for (var i = 0; i < this.trailerDetails.length; i++) {
-      if(this.trailerDetails[i]['ID'] == JSON.parse(pickupdata['Trailer'])){
-        pickupinfo['Trailer']= this.trailerDetails[i]['Name']
-        break
-      }
-    }
-    for (var i = 0; i < this.loadstatusDetails.length; i++) {
-      if(this.loadstatusDetails[i]['ID'] == JSON.parse(pickupdata['LoadStatus'])){
-        pickupinfo['LoadStatus']= this.loadstatusDetails[i]['Name']
-        break
-      }
-    }
-    this._pickup.SendPickupForm(pickupinfo).subscribe(data => {
-      this.data = data
-      this._toaster.success("Pickup successfully created", "Success");
-    }, error => {
-       this._toaster.error("error", "Try Again");
-        console.log(this.data)
-    })
   }
   getPickupForm(){
     this._pickup.getpickupData().subscribe(data => {
       this.data = data
       console.log(this.data)
+    })
+  }
+  editPickup(pickupinfo){
+    pickupinfo['_id']=sessionStorage.getItem('submitID')
+     this._pickup.EditPickup(pickupinfo).subscribe(data => {
+      this.data = data
+      this._toaster.success("Pickup successfully updated", "Success");
+    }, error => {
+       this._toaster.error("error", "Try Again");
+        console.log(this.data)
     })
   }
 
@@ -122,29 +144,17 @@ export class PickupComponent implements OnInit {
             } 
         });
       }
-  onEdit(eventName) {
-    console.log(eventName.key)
-    var obj=eventName.key
-    console.log(obj.PickupDate)
-    var date=obj.PickupDate
-    console.log(date.getTime())
-    // this._loadservice.editLoadData(eventName.key).subscribe(data => {
-    //   console.log(data)
-    // });
-  }
-  onDelete(eventName) {
-    console.log(eventName.key)
-    this._loadservice.deleteLoadData(eventName.key).subscribe(data => {
-      console.log(data)
-    });
-  }
+ 
+  // onDelete(eventName) {
+  //   console.log(eventName.key)
+  //   this._loadservice.deleteLoadData(eventName.key).subscribe(data => {
+  //     console.log(data)
+  //   });
+  // }
 
-
-  onSelect(e){
-    console.log(e)
-  }
 
   ngOnInit() {
+    this.pickuppopupdata= JSON.parse(sessionStorage.getItem("pickupdetails"))
     this.getDriverData()
     this.getTruckData()
     this.getTrailerData()
@@ -192,6 +202,57 @@ export class PickupComponent implements OnInit {
           "Name": "Loaded Ontime"
       }
     ]
+  }
+  onPickupAdd(){
+    this.dialog.open(PickDropFormComponent, {
+            data: {}
+    }).afterClosed().subscribe((confirm) => {
+        console.log(confirm)
+        if(confirm !=null){
+          this.SendPickupForm(confirm)
+          var submitId=sessionStorage.getItem('submitID')
+          if(submitId != null){
+            if(this.pickuppopupdata == null){
+              var pickUpArry=[]
+            }else{
+              var pickUpArry=this.pickuppopupdata            
+            }
+            pickUpArry.push(confirm)
+            for (var i = 0; i < pickUpArry.length; i++) {
+              pickUpArry[i]['SlNo']=i+1
+            }
+            this.pickuppopupdata=pickUpArry
+            console.log(this.pickuppopupdata)
+            sessionStorage.setItem('pickupdetails',JSON.stringify(this.pickuppopupdata))
+          }
+        }
+    })
+  }
+
+    onpickEdit(dataedit){
+    console.log(dataedit.data)
+    let editDataIndex=dataedit.rowIndex
+    this.dialog.open(PickDropFormComponent, {
+            data: dataedit.data
+    }).afterClosed().subscribe((res) => {
+        if(res !=null){
+          this.pickuppopupdata.splice(editDataIndex,1)
+          this.pickuppopupdata.splice(editDataIndex,0,res)
+          sessionStorage.setItem('pickupdetails',JSON.stringify(this.pickuppopupdata))
+          this.editPickup(res)
+        }
+    })
+  }
+  onpickDelete(data){
+    console.log(data.data)
+   this.pickuppopupdata.splice(data.rowIndex,1)
+    for (var i = 0; i < this.pickuppopupdata.length; i++) {
+        this.pickuppopupdata[i]['SlNo']=i+1
+    }
+    this._loadservice.deleteLoadData(data.data).subscribe(data => {
+      console.log(data)
+    });
+    sessionStorage.setItem('pickupdetails',JSON.stringify(this.pickuppopupdata))
   }
 
 }

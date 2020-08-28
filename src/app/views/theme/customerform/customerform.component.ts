@@ -21,6 +21,7 @@ export class CustomerformComponent implements OnInit {
     pageFiltersshow=false;
     submitted: boolean;
     contactinfodata={};
+    showAddOption=false
 
   constructor(private _customersservice: CustomersService, private _toaster: ToastrService,private router: Router) { }
 
@@ -29,9 +30,13 @@ export class CustomerformComponent implements OnInit {
     if(this.datatype == undefined){
       // this.pageFilters=this.Customerslistdata
       this.mode=true
+      this.showAddOption=true
     }else{
       this.pageFilters=this.datatype
-      this.mode=this.datatype['EditMode']      
+      this.mode=this.datatype['EditMode']   
+      this.customerdata.push(this.datatype.contactinfodata)
+      this.showAddOption=false  
+      this.showAddOption=false     
     }
     this.pageFiltersshow=true;
   }
@@ -60,18 +65,23 @@ export class CustomerformComponent implements OnInit {
   }
 
    submit() {
+     if(localStorage.selectedCompany == undefined){
+       this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+     }else{
         this.submitted = true;
         var Customerslistdata:any=this.pageFilters
         Customerslistdata['contactinfodata']=this.contactinfodata
+        Customerslistdata['companyid']=localStorage.selectedCompany
         this._customersservice.SendForm(Customerslistdata).subscribe(response => {
           this.submitted = true;
-          this._toaster.info("Customerform Data Submitted","Success");
+          this._toaster.info("Customerform Data Submitted","Success", {timeOut: 3000,});
          this.router.navigateByUrl("theme/customers-list");
         },error=>{
           this.submitted=false;
-          this._toaster.error("Submit Again","Failed");
+          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
         console.log(this.pageFilters);
        }
+     }
 
 }

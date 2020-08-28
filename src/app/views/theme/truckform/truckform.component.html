@@ -144,7 +144,7 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="driver">Driver:</label>
               <div class="col-md-8">
-                <select [ngClass]="mode?'':'disble'" class="form-control">
+                <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.driverName">
                   <option value="" disabled selected hidden>Driver</option>
                   <option *ngFor="let cmp of driverdata" value="0">
                     <span>{{cmp.firstname}}</span>
@@ -155,10 +155,10 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="dispatcher">Dispatcher:</label>
               <div class="col-md-8">
-                <select [ngClass]="mode?'':'disble'" class="form-control">
+                <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.dispatcher">
                   <option value="" disabled selected hidden>Dispatcher</option>
                   <option *ngFor="let cmp of Dispatcherdata" value="0">
-                    <span>{{cmp.companyname}}</span>
+                    <span>{{cmp.firstname}}</span>
                   </option>
                 </select>
               </div>
@@ -166,7 +166,7 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="trailer">Trailer:</label>
               <div class="col-md-8">
-                <select [ngClass]="mode?'':'disble'" class="form-control">
+                <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.trailerType">
                   <option value="" disabled selected hidden>Trailer</option>
                   <option *ngFor="let cmp of trailerData" value="0">
                     <span>{{cmp.unitNumber}}</span>
@@ -177,21 +177,21 @@
             <div class="form-group row"> 
               <label class="col-md-4 col-form-label" for="notes">Notes:</label>
               <div class="col-md-8">
-                <textarea [ngClass]="mode?'':'disble'" class="form-control" name="notes"></textarea>
+                <textarea [ngClass]="mode?'':'disble'" class="form-control" name="notes" [(ngModel)]="pageFilters.notes"></textarea>
               </div>
             </div>
             <div class="form-group row">
-              <label for="file-upload" class="custom-file-upload">
+              <label for="file-upload"  [ngClass]="mode?'':'disble'" class="custom-file-upload">
                   <i class="fa fa-cloud-upload"></i> Upload
               </label>
               <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
               <div class="col-sm-12">
                 <div *ngFor="let data of finalArry;let i=index">
-                  {{data}} <span style="color: blue;" (click)="onView()">View</span><span style="color: red;"(click)="ondelete(i)">delete</span>
+                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="showviewedit" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
                 </div>
               </div>
-              <div *ngIf="itemShow">
-                <pdf-viewer #pdfViewer [src]="item" ></pdf-viewer>
+              <div>
+                <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
               </div>
             </div>
           </div>
@@ -261,7 +261,7 @@
             <div class="grid-container">
               <dx-data-grid #grid id="gridContainer" [dataSource]="maintenancedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
                 <dxo-paging [enabled]="false"></dxo-paging>
-                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
                 </dxo-editing>
                 <dxo-selection mode="single"></dxo-selection>
                 <dxi-column dataField="fromdate" dataType="date" caption="Service Date"></dxi-column>
@@ -275,11 +275,6 @@
                 <dxi-column dataField="servicefrom" caption="Serviced From"></dxi-column>
                 <dxi-column dataField="cost" caption="Cost"></dxi-column>
                 <dxi-column dataField="comments" caption="Comments"></dxi-column>
-                <dxi-column dataField="action" caption="Action" cellTemplate="actionTemplate"></dxi-column>
-                <div *dxTemplate="let element of 'actionTemplate'">
-                    <button (click)="onEdit()">Edit</button>
-                </div>  
-
               </dx-data-grid>
             </div>
           </div>
@@ -343,7 +338,7 @@
               <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="leased">Leased:</label>
                 <div class="col-md-8 col-form-label">
-                  <input [ngClass]="mode?'':'disble'" class="form-check-label" id="leassed" type="checkbox" value="true" #leassed="ngModel" name="leassed" [(ngModel)]="pageFilters.leassed">
+                  <input [ngClass]="mode?'':'disble'" class="form-check-label" id="leased" type="checkbox" value="true" #leased="ngModel" name="leased" [(ngModel)]="pageFilters.leased">
                 </div>
               </div>
               <div class="form-group row">
@@ -379,7 +374,7 @@
               <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="installmentduedate2">Installment Due Date:</label>
                 <div class="col-md-8">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="installmentduedate2" #installmentDuedate2="ngModel" name="dispatcher" [(ngModel)]="pageFilters.dispatcher">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="installmentduedate2" #installmentDuedate2="ngModel" name="installmentduedate2" [(ngModel)]="pageFilters.installmentduedate2">
                 </div>
               </div>
             </div>
@@ -388,7 +383,7 @@
       </mat-accordion>
     </div>
   </div>
-  <div class="card-footer">
+  <div class="card-footer" *ngIf="showAddOption">
     <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
       <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
       Submit</button>&nbsp;&nbsp;

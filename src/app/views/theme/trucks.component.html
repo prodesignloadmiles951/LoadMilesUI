@@ -7,7 +7,6 @@
     <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
   </div> -->
 </form>
-
 <!--View-->
 <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
@@ -23,7 +22,7 @@
           <div class="animated fadeIn">
             <div id="viewsection" *ngIf="EditMode==false">
               <!-- <div id="viewsection"> -->
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-md-6">
                   <div class="row" style="text-align: center">
                     <div class="col-md-6" style="text-align: left">
@@ -114,6 +113,32 @@
                     <div class="col-md-5" style="text-align: left">
                       <span style="font-size: 12px;">{{trucks.fuelCard}}</span>
                     </div>
+                  </div>
+                </div>
+              </div> -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="plate">Plate :</label>
+                    <input type="text" class="form-control" id="plate" [(ngModel)]="trucks.plate">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="dba">Make :</label>
+                    <input type="text" class="form-control" id="make" [(ngModel)]="trucks.make">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="fedid">Modal :</label>
+                    <input type="text" class="form-control" id="modal" [(ngModel)]="trucks.modal">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="mc">Year Of Make :</label>
+                    <input type="text" class="form-control" id="yom" [(ngModel)]="trucks.yom">
                   </div>
                 </div>
               </div>

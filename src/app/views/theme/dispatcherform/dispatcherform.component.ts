@@ -23,6 +23,10 @@ export class DispatcherformComponent implements OnInit {
     submitted: boolean;
     payratedata={}
     Dispatcherdata= [];
+    showAddOption=false
+    terminationdate=undefined
+    hiredate=undefined
+    dateofbirth=undefined
 
   constructor(private _dispatcherService: DispatcherService, private _toaster: ToastrService,
    private router: Router) { }
@@ -32,9 +36,15 @@ export class DispatcherformComponent implements OnInit {
     if(this.datatype == undefined){
       // this.pageFilters=this.dispatchers
       this.mode=true
+      this.showAddOption=true
     }else{
       this.pageFilters=this.datatype
-      this.mode=this.datatype['EditMode']      
+      this.mode=this.datatype['EditMode']  
+      this.dispatcherpaydata.push(this.datatype.payrate)
+      this.showAddOption=false    
+      this.terminationdate= new Date(this.datatype['terminationdate'])
+      this.hiredate= new Date(this.datatype['hiredate'])
+      this.dateofbirth= new Date(this.datatype['dateofbirth'])
     }
     this.pageFiltersshow=true
     this.typeDetails=[
@@ -79,23 +89,36 @@ export class DispatcherformComponent implements OnInit {
       this.Dispatcherdata = data;
     });
   }
+  ondateofbirth(event) {
+    var birthdate = new Date(event.target.value).getTime()
+    this.pageFilters['dateofbirth'] = birthdate
+  }
+  onhiredate(event) {
+    var hiredate = new Date(event.target.value).getTime()
+    this.pageFilters['hiredate'] = hiredate
+  }
+  onterminationdate(event) {
+    var terminationdate = new Date(event.target.value).getTime()
+    this.pageFilters['terminationdate'] = terminationdate
+  }
 
   submit() {
+    if(localStorage.selectedCompany == undefined){
+       this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+     }else{
         this.submitted = true;
         var Dispatcherlistdata=this.pageFilters
         Dispatcherlistdata['payrate']=this.payratedata
-        console.log(Dispatcherlistdata)
+        Dispatcherlistdata['companyid']=localStorage.selectedCompany
         this._dispatcherService.SendForm(Dispatcherlistdata).subscribe(response => {
-          console.log(response)
           this.submitted = true;
-          this._toaster.info("Dispatcherform Data Submitted","Success");
+          this._toaster.info("Dispatcherform Data Submitted","Success", {timeOut: 3000,});
          this.router.navigateByUrl("theme/dispatcher-list");
         },error=>{
           this.submitted=false;
-          this._toaster.error("Submit Again","Failed");
+          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
-        console.log(this.pageFilters);
         this.getDispatcherData();
        }
-
+     }
 }

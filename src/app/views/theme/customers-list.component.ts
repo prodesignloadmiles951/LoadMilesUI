@@ -20,6 +20,12 @@ export class CustomerslistComponent implements OnInit {
     EditMode: boolean;
     customerData={}
     showForm=false
+    paymentterms=[
+      {'type':0,'name':'QuickPay'},
+      {'type':1,'name':'15 days'},
+      {'type':2,'name':'35 days'},
+      {'type':3,'name':'45 days'}
+    ]
 
     constructor(private _customersservice: CustomersService,
         private _toasterservice: ToastrService,
@@ -41,6 +47,13 @@ export class CustomerslistComponent implements OnInit {
       }
       getData() {
         this._customersservice.getCustomersData().subscribe(data => {
+          for (var i = 0; i < data.length; i++) {
+            this.paymentterms.map(item => {
+              if(item.type == data[i]['paymentterms'][0]){
+                data[i]['paymentterms']=item.name
+              }
+            })            
+          }
           this.data = data;
         });
       }
@@ -61,12 +74,17 @@ export class CustomerslistComponent implements OnInit {
     }
 
       editCustomer(customer,selectedCustomer) {
-        this._customersservice.EditCustomers(customer).subscribe(response => {
-          this._toasterservice.success(selectedCustomer+ " customer successfully updated", "Success");
-        }, error => {
-           this._toasterservice.error("error", "Try Again");
-          });
-          this.EditMode = false;
+        if(localStorage.selectedCompany == undefined){
+           this._toasterservice.error("Please Select Company","Failed", {timeOut: 2000,});
+         }else{
+          customer['companyid']=localStorage.selectedCompany
+          this._customersservice.EditCustomers(customer).subscribe(response => {
+            this._toasterservice.success(selectedCustomer+ " customer successfully updated", "Success", {timeOut: 3000,});
+          }, error => {
+             this._toasterservice.error("error", "Try Again", {timeOut: 2000,});
+            });
+            this.EditMode = false;
+           }
       }
 
     submit() {
@@ -75,10 +93,14 @@ export class CustomerslistComponent implements OnInit {
     Add() {
         this.router.navigateByUrl('/theme/customers');
       }
-      // deleteCustomer(customer) {
-      //   this._customersservice.DeleteCustomers(customer._id).subscribe(data => {
-      //   this._toasterservice.info("Customer Data Delete", "Success");
-      //   this.getData();
-      //  });
-      //  }
+    deleteCustomer(customer) {
+      if(localStorage.selectedCompany == undefined){
+         this._toasterservice.error("Please Select Company","Failed", {timeOut: 2000,});
+       }else{
+          this._customersservice.DeleteCustomers(customer._id).subscribe(data => {
+          this._toasterservice.info("Customer Data Delete", "Success", {timeOut: 3000,});
+          this.getData();
+         });
+       }
+     }
 }

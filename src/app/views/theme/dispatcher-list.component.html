@@ -60,7 +60,7 @@
   </div>
   <!--View-->
   <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="max-width: 90%" role="document">
+    <div class="modal-dialog modal-lg" style="max-width: 100%; margin: 0;" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Manage Dispatcher - <span class="badge badge-success">{{selectedDispatcher}}</span></h4>
@@ -83,7 +83,7 @@
         <div class="modal-footer">
           <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
           <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right" class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>
-          <button *ngIf="EditMode==true" type="reset" (click)="editDispatcher(dispatcher,selectedDispatcher)" style="float: right" class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update
+          <button *ngIf="EditMode==true" type="reset" (click)="editDispatcher(dispatchers,selectedDispatcher);viewModal.hide()" style="float: right" class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update
             <img *ngIf="Iseditusrloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
           </button>
         </div>

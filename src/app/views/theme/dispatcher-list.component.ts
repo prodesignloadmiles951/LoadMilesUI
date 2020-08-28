@@ -53,7 +53,7 @@ viewData(dispatcher) {
     this.dispatcherData=dispatcherObj
     this.dispatchers = new DispatcherFilters();
     this.dispatchers = dispatcher;
-    this.selectedDispatcher = dispatcher.companyname;
+    this.selectedDispatcher = dispatcher.firstname;
     this.showForm=true
 }
 
@@ -62,13 +62,29 @@ hidePopup(){
     }
 
 editDispatcher(dispatcher,selectedDispatcher) {
-    this._dispatcherService.EditDispatcher(dispatcher).subscribe(response => {
-          this._toaster.success(selectedDispatcher+ " dispatcher successfully updated", "Success");
-        }, error => {
-           this._toaster.error("error", "Try Again");
-          });
-          this.EditMode = false;
+    if(localStorage.selectedCompany == undefined){
+           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+       }else{
+            dispatcher['companyid']=localStorage.selectedCompany
+            this._dispatcherService.EditDispatcher(dispatcher).subscribe(response => {
+                  this._toaster.success(selectedDispatcher+ " dispatcher successfully updated", "Success", {timeOut: 3000,});
+                }, error => {
+               this._toaster.error("error", "Try Again", {timeOut: 2000,});
+              });
+              this.EditMode = false;
+       }
 }
+
+// deleteDispatcher(dispatcher) {
+//         if(localStorage.selectedCompany == undefined){
+//            this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+//          }else{
+//             this._dispatcherService.DeleteDispatcher(dispatcher._id).subscribe(data => {
+//             this._toaster.info("Dispatcher Data Deleted", "Success", {timeOut: 3000,});
+//             this.getDispatcherData();
+//             });
+//          }
+//     }
 
     submit() {
         console.log(this.pageFilters);

@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule} from '@angular/material/expansion';
+import { MatDialogModule} from '@angular/material/dialog';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { Observable, interval, Subscription } from 'rxjs';
@@ -19,6 +20,8 @@ import {
 import {MatMenuModule} from '@angular/material';
 import { PickupComponent } from './components/pickup/pickup.component';
 import { DropoffComponent } from './components/dropoff/dropoff.component';
+import { PickDropFormComponent } from './components/pick-drop-form/pick-drop-form.component';
+import { DropoffpopupformComponent } from './components/dropoffpopupform/dropoffpopupform.component';
 
 @NgModule({
   imports: [
@@ -31,9 +34,14 @@ import { DropoffComponent } from './components/dropoff/dropoff.component';
     ButtonsModule.forRoot(),
     MatExpansionModule,
     DxDataGridModule,
-    MatMenuModule
-
+    MatMenuModule,
+    MatDialogModule
   ],
-  declarations: [ DashboardComponent, LoadformComponent, PickupComponent, DropoffComponent ]
+  declarations: [ DashboardComponent, LoadformComponent, PickupComponent,
+   DropoffComponent, PickDropFormComponent, DropoffpopupformComponent ],
+   entryComponents: [
+       PickDropFormComponent,
+       DropoffpopupformComponent
+   ]
 })
 export class DashboardModule { }

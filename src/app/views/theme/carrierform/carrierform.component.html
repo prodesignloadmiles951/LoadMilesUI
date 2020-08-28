@@ -58,7 +58,7 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="ssn">SSN/ Tax Id: <span style="color: red;">*</span> :</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ssn" name="ssn" #ssn="ngModel" [(ngModel)]="pageFilters.ssn" [pattern]="'^[1-9][0-9]*$'" required>
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="ssn" name="ssn" #ssn="ngModel" [(ngModel)]="pageFilters.ssn" [pattern]="'^[1-9][0-9]*$'" required>
                 <div *ngIf="ssn.errors && (ssn.dirty || ssn.touched)" style="font-size: smaller;">
                   <div [hidden]="!ssn.errors.required">
                     <span style="color: red;">SSN is Required</span>
@@ -72,27 +72,27 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="cellphone">Cell Phone:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="cellphone" name="cellphone" #cellphone="ngModel" [(ngModel)]="pageFilters.cellphone">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="cellphone" name="cellphone" #cellphone="ngModel" [(ngModel)]="pageFilters.cellphone">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="email">Email:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="pageFilters.email">
+                <input type="email" [ngClass]="mode?'':'disble'" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="pageFilters.cemail">
               </div>
             </div>
           </div>
           <div class="card-body col-sm-6">
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="emergenctcontact">Emergency Contact:</label>
+              <label class="col-md-4 col-form-label" for="cemergenctcontact">Emergency Contact:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergenctcontact" name="emergenctcontact" #emergenctcontact="ngModel" [(ngModel)]="pageFilters.emergenctcontact">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="cemergenctcontact" name="cemergenctcontact" #cemergenctcontact="ngModel" [(ngModel)]="pageFilters.cemergenctcontact">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="emergencyphone">Emergency Phone:</label>
+              <label class="col-md-4 col-form-label" for="cemergencyphone">Emergency Phone:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergencyphone" name="emergencyphone" #emergencyphone="ngModel" [(ngModel)]="pageFilters.emergencyphone">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="cemergencyphone" name="cemergencyphone" #cemergencyphone="ngModel" [(ngModel)]="pageFilters.cemergencyphone">
               </div>
             </div>
             <div class="form-group row">
@@ -122,11 +122,11 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="zipcode">Zip Code:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode" name="zipcode" #zipcode="ngModel" [(ngModel)]="pageFilters.zipcode">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode" name="zipcode" #zipcode="ngModel" [(ngModel)]="pageFilters.zipcode">
               </div>
             </div>
             <div class="form-group row">
-              <label for="file-upload" class="custom-file-upload">
+              <label for="file-upload" [ngClass]="mode?'':'disble'" class="custom-file-upload">
                   <i class="fa fa-cloud-upload"></i> Upload
               </label>
               <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
@@ -165,7 +165,7 @@
             <div class="grid-container">
               <dx-data-grid #grid id="gridContainer" [dataSource]="contactdata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
                 <dxo-paging [enabled]="false"></dxo-paging>
-                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
                 </dxo-editing>
                 <dxo-selection mode="single"></dxo-selection>
                 <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
@@ -243,15 +243,15 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="accountnum">Account Number:</label>
+                <label class="col-md-4 col-form-label" for="accountnumber">Account Number:</label>
                 <div class="col-md-8">
-                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="accountnum" name="accountnum" #accountnum="ngModel" [(ngModel)]="pageFilters.accountnum">
+                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="accountnumber" name="accountnumber" #accountnumber="ngModel" [(ngModel)]="pageFilters.accountnumber">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="routingnum">Routing Number:</label>
+                <label class="col-md-4 col-form-label" for="routingnumber">Routing Number:</label>
                 <div class="col-md-8">
-                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="routingnum" name="routingnum" #routingnum="ngModel" [(ngModel)]="pageFilters.routingnum">
+                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="routingnumber" name="routingnumber" #routingnumber="ngModel" [(ngModel)]="pageFilters.routingnumber">
                 </div>
               </div>
             </div>
@@ -294,7 +294,7 @@
               <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="cdlnumber">CDL Number:</label>
                 <div class="col-md-8">
-                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="cdlnumber" name="cdlnumber" #cdlnumber="ngModel" [(ngModel)]="pageFilters.cdlnumber">
+                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="cdlnumber" name="cdlnumber" #cdlnumber="ngModel" [(ngModel)]="pageFilters.cdlnumber">
                 </div>
               </div>
               <div class="form-group row">
@@ -306,13 +306,13 @@
               <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="cdlexpirytate">CDL Expiry Date:</label>
                 <div class="col-md-8">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="cdlexpirydate" name="cdlexpirytate" #cdlexpirytate="ngModel" [(ngModel)]="pageFilters.cdlexpirytate">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="cdlexpirydate" name="cdlexpirytate" value="{{cdlexpirytate | date:'yyyy-MM-dd'}}" (change)="oncdlexpdateselect($event)">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="medicalcardexpiration">Medical card Expiration:</label>
                 <div class="col-md-8 col-form-label">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="medicalcardexpiration" name="medicalcardexpiration" #medicalcardexpiration="ngModel" [(ngModel)]="pageFilters.medicalcardexpiration">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="medicalcardexpiration" name="medicalcardexpiration" value="{{medicalcardexpiration | date:'yyyy-MM-dd'}}" (change)="onmedcardexpdateselect($event)">
                 </div>
               </div>
             </div>
@@ -367,7 +367,7 @@
             <div class="grid-container">
               <dx-data-grid #grid id="gridContainer" [dataSource]="payratedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onpayrateDelete($event)" (onRowInserted)="onpayrateAdd($event)">
                 <dxo-paging [enabled]="false"></dxo-paging>
-                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
                 </dxo-editing>
                 <dxo-selection mode="single"></dxo-selection>
                 <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
@@ -403,7 +403,7 @@
             <div class="grid-container">
               <dx-data-grid #grid id="gridContainer" [dataSource]="drugmedicaldata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="ondrugDelete($event)" (onRowInserted)="ondrugAdd($event)">
                 <dxo-paging [enabled]="false"></dxo-paging>
-                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
                 </dxo-editing>
                 <dxo-selection mode="single"></dxo-selection>
                 <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
@@ -421,7 +421,7 @@
       </mat-accordion>
     </div>
   </div>
-  <div class="card-footer">
+  <div class="card-footer" *ngIf="showAddOption">
     <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
       <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
       Submit</button>&nbsp;&nbsp;
