@@ -2,7 +2,7 @@ import { Component, OnInit,Input,ViewChild,Output,EventEmitter } from '@angular/
 import { TrucksFilters } from '../../../model/trucks';
 import { TrucksService } from '../../../services/trucks.service';
 import { DriversService } from '../../../services/driver.service';
-import { DispatcherService } from '../../../services/Dispatcher.service';
+import { DispatcherService } from '../../../services/dispatcher.service';
 import { TrailerService } from '../../../services/trailers.service';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { ToastrService } from 'ngx-toastr';

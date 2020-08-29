@@ -1,7 +1,7 @@
 import { DispatcherFilters } from '../../model/dispatcher';
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { DispatcherService } from '../../services/Dispatcher.service';
+import { DispatcherService } from '../../services/dispatcher.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

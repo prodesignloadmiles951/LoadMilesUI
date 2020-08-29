@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TrucksService } from '../../services/trucks.service';
 import { Router } from '@angular/router';
 import { DriversService } from '../../services/driver.service';
-import { DispatcherService } from '../../services/Dispatcher.service';
+import { DispatcherService } from '../../services/dispatcher.service';
 import { TrailerService } from '../../services/trailers.service';
 
 @Component({
