@@ -8,7 +8,7 @@
   </div> -->
 </form>
 <!--View-->
-<div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -21,101 +21,6 @@
         <div class="container">
           <div class="animated fadeIn">
             <div id="viewsection" *ngIf="EditMode==false">
-              <!-- <div id="viewsection"> -->
-              <!-- <div class="row">
-                <div class="col-md-6">
-                  <div class="row" style="text-align: center">
-                    <div class="col-md-6" style="text-align: left">
-                      <span style="font-size: 12px;"><b>Plate Number:</b></span>
-                    </div>
-                    <div class="col-md-5" style="text-align: left">
-                      <span style="font-size: 14px;">{{trucks.plate}}</span>
-                    </div>
-                  </div>
-                  <div class="row" style="text-align: center">
-                    <div class="col-md-6" style="text-align: left">
-                      <span style="font-size: 12px;"><b>Starting Mileage:</b></span>
-                    </div>
-                    <div class="col-md-5" style="text-align: left">
-                      <span style="font-size: 14px;">{{trucks.startingMileage}}</span>
-                    </div>
-                  </div>
-                  <div class="row" style="text-align: center">
-                    <div class="col-md-6" style="text-align: left">
-                      <span style="font-size: 12px;"><b>Current Miles:</b></span>
-                    </div>
-                    <div class="col-md-5" style="text-align: left">
-                      <span style="font-size: 14px;">{{trucks.currentMiles}}</span>
-                    </div>
-                  </div>
-                  <div class="row" style="text-align: center">
-                    <div class="col-md-6" style="text-align: left">
-                      <span style="font-size: 12px;"><b>Make:</b></span>
-                    </div>
-                    <div class="col-md-5" style="text-align: left">
-                      <span style="font-size: 14px;">{{trucks.make}}</span>
-                    </div>
-                  </div>
-                  <div class="row" style="text-align: center">
-                    <div class="col-md-6" style="text-align: left">
-                      <span style="font-size: 12px;"><b>Modal:</b></span>
-                    </div>
-                    <div class="col-md-5" style="text-align: left">
-                      <span style="font-size: 14px;">{{trucks.make}}</span>
-                    </div>
-                  </div>
-                  <div class="row" style="text-align: center">
-                    <div class="col-md-6" style="text-align: left">
-                      <span style="font-size: 12px;"><b>Color:</b></span>
-                    </div>
-                    <div class="col-md-5" style="text-align: left">
-                      <span style="font-size: 14px;">{{trucks.color}}</span>
-                    </div>
-                  </div>
-                  <div class="row" style="text-align: center">
-                    <div class="col-md-6" style="text-align: left">
-                      <span style="font-size: 12px;"><b>Year of Make:</b></span>
-                    </div>
-                    <div class="col-md-5" style="text-align: left">
-                      <span style="font-size: 12px;">{{trucks.yom}}</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="row" style="text-align: center">
-                    <div class="col-md-6" style="text-align: left">
-                      <span style="font-size: 12px;"><b>Vin:</b></span>
-                    </div>
-                    <div class="col-md-5" style="text-align: left">
-                      <span style="font-size: 12px;">{{trucks.vin}}</span>
-                    </div>
-                  </div>
-                  <div class="row" style="text-align: center">
-                    <div class="col-md-6" style="text-align: left">
-                      <span style="font-size: 12px;"><b>Gear Type:</b></span>
-                    </div>
-                    <div class="col-md-5" style="text-align: left">
-                      <span style="font-size: 12px;">{{trucks.gearType}}</span>
-                    </div>
-                  </div>
-                  <div class="row" style="text-align: center">
-                    <div class="col-md-6" style="text-align: left">
-                      <span style="font-size: 12px;"><b>ELD:</b></span>
-                    </div>
-                    <div class="col-md-5" style="text-align: left">
-                      <span style="font-size: 12px;">{{trucks.eld}}</span>
-                    </div>
-                  </div>
-                  <div class="row" style="text-align: center">
-                    <div class="col-md-6" style="text-align: left">
-                      <span style="font-size: 12px;"><b>Fuel Card:</b></span>
-                    </div>
-                    <div class="col-md-5" style="text-align: left">
-                      <span style="font-size: 12px;">{{trucks.fuelCard}}</span>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
@@ -188,6 +93,6 @@
           <img *ngIf="Iseditusrloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
         </button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div>
+    </div>
+  </div>
+</div> -->

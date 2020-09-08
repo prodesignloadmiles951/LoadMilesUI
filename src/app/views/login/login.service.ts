@@ -1,4 +1,4 @@
-import {throwError as observableThrowError ,  Observable } from 'rxjs';
+import { throwError as observableThrowError ,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, Request, RequestOptions } from '@angular/http';
 import { map,catchError } from 'rxjs/operators'
@@ -14,7 +14,7 @@ constructor(private http:Http,
     private _headerService:AuthHeaderService  ){
         this.url=environment.loginurl;
 }
-Login(email:string,password:string,usertype:string){
+Login(email:string,password:string){
   let options = new RequestOptions({ headers: this._headerService.getHeader() });
   return this.http.post(this.url,{email:email,password:password},options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
 }

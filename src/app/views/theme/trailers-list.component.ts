@@ -4,6 +4,8 @@ import { TrailersFilters } from '../../model/trailers';
 import { TrailerService } from '../../services/trailers.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { TrailerformComponent } from './trailerform/trailerform.component';
 
 @Component({
     selector: 'app-trailers-list',
@@ -31,33 +33,33 @@ export class TrailerslistComponent implements OnInit {
 
     constructor(private _toaster: ToastrService,
          private _trailersService: TrailerService,
-         private router: Router) { }
+         private router: Router, public dialog: MatDialog) { }
 
     ngOnInit(): void {
         this.pageFilters = new TrailersFilters();
         this.getData();
     }
     viewData(trailer) {
-      this.EditMode = false;
       var trailerObj=trailer
-      trailerObj['EditMode']=this.EditMode
-      this.trailerData = trailerObj
-      this.trailers = new TrailersFilters();
-      this.trailers = trailer;
-      this.selectedTrailer = trailer.unitNumber;
-      this.showForm=true
+      trailerObj['EditMode']=false
+      let dialogConfig = Object.assign({ width: "900px" },{ data: trailerObj })
+      let viewDialogRef = this.dialog.open(TrailerformComponent, dialogConfig);
+      viewDialogRef.afterClosed().subscribe((data) => {
+        console.log(data)
+      })
     }
 
     editData(trailer) {
-      this.EditMode = true;
       var trailerObj=trailer
-      trailerObj['EditMode']=this.EditMode
-      this.trailerData = trailerObj
-      this.trailers = new TrailersFilters();
-      this.trailers = trailer;
-      this.selectedTrailer = trailer.unitNumber;
-      this.showForm=true
-  
+      trailerObj['EditMode']=true
+      let dialogConfig = Object.assign({ width: "1000px" },{ data: trailerObj })
+      let editDialogRef = this.dialog.open(TrailerformComponent, dialogConfig);
+      editDialogRef.afterClosed().subscribe((data) => {
+        console.log(data)
+        if(data == null){}else{
+          this.getData()        
+        }
+      })
     }
 
     hidePopup(){
@@ -116,6 +118,13 @@ export class TrailerslistComponent implements OnInit {
        }
 
        Add() {
-        this.router.navigateByUrl('/theme/trailers');
+        let dialogConfig = Object.assign({ width: "1000px" },{ data: {} })
+        let editDialogRef = this.dialog.open(TrailerformComponent, dialogConfig);
+        editDialogRef.afterClosed().subscribe((data) => {
+          console.log(data)
+          if(data == null){}else{
+            this.getData()        
+          }
+    })
       }
 }

@@ -15,8 +15,8 @@
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
- -webkit-appearance: none;
- margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .app-header .navbar-brand {
@@ -145,7 +145,7 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
   background: #d7edff !important;
 }
 
-.dx-datagrid-headers.dx-header-multi-row .dx-row.dx-header-row > td{
+.dx-datagrid-headers.dx-header-multi-row .dx-row.dx-header-row>td {
   border-width: 0;
 }
 
@@ -180,7 +180,62 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
 .mat-expansion-panel-header-title {
   color: #2c5484;
 }
-.mat-dialog-container{
-  width: 950px !important;
+
+.cdk-global-overlay-wrapper {
+  top: 7px;
 }
 
+@media (min-width: 992px) {
+  .header-fixed .app-header {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+  }
+  .sidebar-fixed .sidebar{
+    z-index: 999;
+  }
+}
+
+.modal-header .close{
+  outline: none;
+}
+@media (min-width: 992px) {
+  .mat-dialog-container{
+    width: 1000px !important;
+  }
+}
+
+.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  height: calc(100vh - 12%);
+}
+
+.mat-autocomplete-panel {
+    min-width: 112px;
+    max-width: 280px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    visibility: hidden;
+    max-width: none;
+    max-height: 256px;
+    position: absolute;
+    width: 100%;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    top: 50%;
+}
+.mat-progress-spinner {
+  width: 40px !important;
+  height: 40px !important;
+}
+.mat-progress-spinner svg{
+  width: 40px !important;
+  height: 40px !important;
+}

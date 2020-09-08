@@ -4,7 +4,9 @@ import { TrucksService } from '../../services/trucks.service';
 import { CompanyService } from '../../services/company.service';
 import { CompanyFilters } from './../../model/companydetails';
 import { TrucksFilters } from '../../model/trucks';
-import {Router} from '@angular/router';
+import { Router} from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { TruckformComponent } from './truckform/truckform.component';
 
 @Component({
     selector: 'app-trucks-list',
@@ -21,27 +23,23 @@ export class TruckslistComponent implements OnInit {
     data: any;
     selectedTruck: any;
     selectedCompany: any;
-    EditMode: boolean;
     truckData={}
-    showForm=false
  
     constructor(private _toaster: ToastrService,
       private _trucksservice: TrucksService,
-      private router: Router) {
-         }
+      private router: Router,public dialog: MatDialog) { }
 
     ngOnInit() {
       this.getData();
   }
   viewData(truck) {
-    this.EditMode = false;
     var truckObj=truck
-    truckObj['EditMode']=this.EditMode
-    this.truckData=truckObj
-    this.trucks = new TrucksFilters();
-    this.trucks = truck;
-    this.selectedTruck = truck.truckunitnumber;
-    this.showForm=true
+    truckObj['EditMode']=false
+    let dialogConfig = Object.assign({ width: "1000px" },{ data: truckObj })
+    let viewDialogRef = this.dialog.open(TruckformComponent, dialogConfig);
+    viewDialogRef.afterClosed().subscribe((data) => {
+      console.log(data)
+    })
   }
   getData() {
     this._trucksservice.getTrucksData().subscribe(data => {
@@ -50,19 +48,18 @@ export class TruckslistComponent implements OnInit {
   }
 
   editData(truck) {
-    this.EditMode = true;
     var truckObj=truck
-    truckObj['EditMode']=this.EditMode
-    this.truckData=truckObj
-    this.trucks = new TrucksFilters();
-    this.trucks = truck;
-    this.selectedTruck = truck.truckunitnumber;
-    this.showForm=true
+    truckObj['EditMode']=true
+    let dialogConfig = Object.assign({ width: "1000px" },{ data: truckObj })
+    let editDialogRef = this.dialog.open(TruckformComponent, dialogConfig);
+    editDialogRef.afterClosed().subscribe((data) => {
+      console.log(data)
+      if(data == null){}else{
+        this.getData()        
+      }
+    })
 
   }
-   hidePopup(){
-      this.showForm=false
-    }
 
   editTrucks(trucks,selectedTruck) {
     if(localStorage.selectedCompany == undefined){
@@ -74,12 +71,18 @@ export class TruckslistComponent implements OnInit {
         }, error => {
            this._toaster.error("error", "Try Again", {timeOut: 2000,});
           });
-          this.EditMode = false;
        }
   }
 
   Add() {
-    this.router.navigateByUrl('/theme/trucks');
+    let dialogConfig = Object.assign({ width: "1000px" },{ data: {} })
+    let editDialogRef = this.dialog.open(TruckformComponent, dialogConfig);
+    editDialogRef.afterClosed().subscribe((data) => {
+      console.log(data)
+      if(data == null){}else{
+        this.getData()        
+      }
+    })
   }
 
   deleteTrucks(truck) {

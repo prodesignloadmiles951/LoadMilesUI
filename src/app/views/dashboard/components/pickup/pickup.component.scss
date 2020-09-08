@@ -4,3 +4,11 @@
     font-weight: 700;
     color: #20a8d8;
 }
+.pickup-header{
+	display: flex; 
+	justify-content: space-between;
+	padding: 1rem 0 0 0;
+}
+.pickup-header .btn{
+	margin: 0 0 0.5rem 0;
+}

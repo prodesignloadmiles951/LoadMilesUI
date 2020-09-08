@@ -4,7 +4,7 @@ import { navItems } from '../../_nav';
 import { Router } from '@angular/router';
 import { LoginUser } from '../../model/loginuser';
 import { AuthenticationService } from '../../views/authentication.service';
-import {salesNavItems} from '../../_nav';
+import { salesNavItems} from '../../_nav';
 import { CompanyService } from '../../services/company.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -45,19 +45,20 @@ export class DefaultLayoutComponent implements OnDestroy {
   } 
 
   ngOnInit(): void {
+   
     if(localStorage.selectedCompanyName != undefined){
       this.selectedCompany=localStorage.selectedCompanyName      
     }
+    console.log(this.authService.getloginUser())
     if (this.authService.getloginUser()) {
       this.loginUser = this.authService.getloginUser();
       if (this.loginUser) {
-
-         if(this.loginUser.usertype=="sales"){
-           this.navItems = salesNavItems;
-         }
+         this.getData();
+         this.selectedCompany=this.loginUser['company']['companyname']
+         localStorage.setItem('selectedCompany',this.loginUser['company']['_id'])
+         localStorage.setItem('selectedCompanyName',this.selectedCompany)
       }
     }
-    this.getData();
   }
   
   getData() {
@@ -78,13 +79,12 @@ export class DefaultLayoutComponent implements OnDestroy {
     console.log(cmp.companyname)
     localStorage.setItem('selectedCompany',cmp.companyid[0])
     localStorage.setItem('selectedCompanyName',cmp.companyname)
-   this._toaster.success(cmp.companyname+" selected successfully", "Success", {timeOut: 2000,});
-   this.router.navigateByUrl('dashboard');
+    this._toaster.success(cmp.companyname+" selected successfully", "Success", {timeOut: 2000,});
+    this.router.navigateByUrl('dashboard');
   }
 
 
   Logout(){
-    sessionStorage.clear();
-    this.router.navigate(["login"]);
+    this.authService.clearAuthentication()
   }
 }

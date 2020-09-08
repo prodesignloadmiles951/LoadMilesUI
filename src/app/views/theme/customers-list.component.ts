@@ -3,6 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { CustomersService } from './../../services/customers.service';
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { CustomerformComponent } from './customerform/customerform.component'
 
 @Component({
     selector: 'app-customers-list',
@@ -29,21 +31,20 @@ export class CustomerslistComponent implements OnInit {
 
     constructor(private _customersservice: CustomersService,
         private _toasterservice: ToastrService,
-        private router: Router) { }
+        private router: Router, public dialog: MatDialog) { }
 
     ngOnInit() {
         this.getData();
     }
 
     viewData(customer) {
-        this.EditMode = false;
         var customerObj=customer
-        customerObj['EditMode']=this.EditMode
-        this.customerData=customerObj
-        this.customers = new CustomersFilters();
-        this.customers = customer;
-        this.selectedCustomer = customer.companyname;
-        this.showForm=true
+        customerObj['EditMode']=false
+        let dialogConfig = Object.assign({ width: "1000px" },{ data: customerObj })
+        let viewDialogRef = this.dialog.open(CustomerformComponent, dialogConfig);
+        viewDialogRef.afterClosed().subscribe((data) => {
+          console.log(data)
+        })
       }
       getData() {
         this._customersservice.getCustomersData().subscribe(data => {
@@ -59,14 +60,16 @@ export class CustomerslistComponent implements OnInit {
       }
 
       editData(customer) {
-        this.EditMode = true;
         var customerObj=customer
-        customerObj['EditMode']=this.EditMode
-        this.customerData=customerObj
-        this.customers = new CustomersFilters();
-        this.customers = customer;
-        this.selectedCustomer = customer.companyname;
-        this.showForm=true
+        customerObj['EditMode']=true
+        let dialogConfig = Object.assign({ width: "1000px" },{ data: customerObj })
+        let editDialogRef = this.dialog.open(CustomerformComponent, dialogConfig);
+        editDialogRef.afterClosed().subscribe((data) => {
+          console.log(data)
+          if(data == null){}else{
+            this.getData()        
+          }
+        })
       }
 
       hidePopup(){
@@ -87,11 +90,15 @@ export class CustomerslistComponent implements OnInit {
            }
       }
 
-    submit() {
-        console.log(this.pageFilters);
-    }
     Add() {
-        this.router.navigateByUrl('/theme/customers');
+        let dialogConfig = Object.assign({ width: "1000px" },{ data: {} })
+        let editDialogRef = this.dialog.open(CustomerformComponent, dialogConfig);
+        editDialogRef.afterClosed().subscribe((data) => {
+          console.log(data)
+          if(data == null){}else{
+            this.getData()        
+          }
+        })
       }
     deleteCustomer(customer) {
       if(localStorage.selectedCompany == undefined){

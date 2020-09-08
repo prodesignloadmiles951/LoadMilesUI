@@ -4,6 +4,8 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { DriverFilters } from '../../model/driver';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { DriverformComponent } from './driverform/driverform.component'
 
 @Component({
     selector: 'app-driver-list',
@@ -24,7 +26,7 @@ export class DriverlistComponent implements OnInit {
 
     constructor(private _toaster: ToastrService,
          private _driverService: DriversService,
-         private router: Router) {
+         private router: Router, public dialog: MatDialog) {
       
     }
 
@@ -33,26 +35,28 @@ export class DriverlistComponent implements OnInit {
         this.getData();
     }
     viewData(driver) {
-      console.log(driver)
+
       var driverObj=driver
-      driverObj['EditMode']=this.EditMode
-      this.driverData=driverObj
-      this.drivers = new DriverFilters();
-      this.drivers = driver;
-      this.selectedDriver = driver.firstname;
-      this.EditMode = false;
-      this.showForm=true
+      driverObj['EditMode']=false
+      let dialogConfig = Object.assign({ width: "1000px" },{ data: driverObj })
+      let viewDialogRef = this.dialog.open(DriverformComponent, dialogConfig);
+      viewDialogRef.afterClosed().subscribe((data) => {
+        console.log(data)
+      })
     }
 
     editData(driver) {
-      this.EditMode = true;
+
       var driverObj=driver
-      driverObj['EditMode']=this.EditMode
-      this.driverData=driverObj
-      this.drivers = new DriverFilters();
-      this.drivers = driver;
-      this.selectedDriver = driver.firstname;
-      this.showForm=true
+      driverObj['EditMode']=true
+      let dialogConfig = Object.assign({ width: "1000px" },{ data: driverObj })
+      let editDialogRef = this.dialog.open(DriverformComponent, dialogConfig);
+      editDialogRef.afterClosed().subscribe((data) => {
+        console.log(data)
+        if(data == null){}else{
+          this.getData()        
+        }
+      })
     }
     hidePopup(){
       this.showForm=false
@@ -104,6 +108,13 @@ export class DriverlistComponent implements OnInit {
        }
 
        Add() {
-        this.router.navigateByUrl('/theme/driver');
+        let dialogConfig = Object.assign({ width: "1000px" },{ data: {} })
+        let editDialogRef = this.dialog.open(DriverformComponent, dialogConfig);
+        editDialogRef.afterClosed().subscribe((data) => {
+          console.log(data)
+          if(data == null){}else{
+            this.getData()        
+          }
+        })
       }
 }

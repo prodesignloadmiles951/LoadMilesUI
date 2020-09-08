@@ -4,6 +4,8 @@ import { Component, OnInit} from '@angular/core';
 import { CarrierFilters } from '../../model/carrier';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { CarrierformComponent } from './carrierform/carrierform.component'
 
 @Component({
     selector: 'app-carrier-list',
@@ -25,20 +27,19 @@ export class CarrierlistComponent implements OnInit {
 
     constructor(private _toaster: ToastrService,
         private _carrierservice: CarrierService,
-        private router: Router) { }
+        private router: Router, public dialog: MatDialog) { }
 
         ngOnInit() {
             this.getData();
         }
     viewData(carrier) {
-        this.EditMode = false;
         var carrierObj=carrier
-        carrierObj['EditMode']=this.EditMode
-        this.carrierData=carrierObj
-        this.carriers = new CarrierFilters();
-        this.carriers = carrier;
-        this.selectedCarrier = carrier.companyname;
-        this.showForm=true
+        carrierObj['EditMode']=false
+        let dialogConfig = Object.assign({ width: "1000px" },{ data: carrierObj })
+        let viewDialogRef = this.dialog.open(CarrierformComponent, dialogConfig);
+        viewDialogRef.afterClosed().subscribe((data) => {
+          console.log(data)
+        })
     }
     getData() {
     this._carrierservice.getCarrierData().subscribe(data => {
@@ -47,14 +48,16 @@ export class CarrierlistComponent implements OnInit {
     }
 
     editData(carrier) {
-        this.EditMode = true;
         var carrierObj=carrier
-        carrierObj['EditMode']=this.EditMode
-        this.carrierData=carrierObj
-        this.carriers = new CarrierFilters();
-        this.carriers = carrier;
-        this.selectedCarrier = carrier.companyname;
-        this.showForm=true
+        carrierObj['EditMode']=true
+        let dialogConfig = Object.assign({ width: "1000px" },{ data: carrierObj })
+        let editDialogRef = this.dialog.open(CarrierformComponent, dialogConfig);
+        editDialogRef.afterClosed().subscribe((data) => {
+          console.log(data)
+          if(data == null){}else{
+            this.getData()        
+          }
+        })
     }
 
     hidePopup(){
@@ -77,7 +80,14 @@ export class CarrierlistComponent implements OnInit {
 
     
     Add() {
-        this.router.navigateByUrl('/theme/carrier');
+        let dialogConfig = Object.assign({ width: "1000px" },{ data: {} })
+        let editDialogRef = this.dialog.open(CarrierformComponent, dialogConfig);
+        editDialogRef.afterClosed().subscribe((data) => {
+          console.log(data)
+          if(data == null){}else{
+            this.getData()        
+          }
+        })
       }
     deleteCarriers(carrier) {
         if(localStorage.selectedCompany == undefined){

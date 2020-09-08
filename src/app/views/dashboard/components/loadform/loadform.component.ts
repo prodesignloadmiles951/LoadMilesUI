@@ -4,7 +4,9 @@ import { CreateloadService } from '../../../../services/createload.service'
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompanyService } from '../../../../services/company.service';
+import { AuthenticationService } from '../../../../views/authentication.service';
 import {Router} from '@angular/router';
+import { LoginUser } from '../../../../model/loginuser';
 
 @Component({
   selector: 'app-loadform',
@@ -26,9 +28,11 @@ export class LoadformComponent implements OnInit {
   user: any;
   currency
   loadForm: FormGroup;
+  public loginUser: LoginUser
   constructor(
     private _loadservice: CreateloadService,
     private _companyservice: CompanyService,
+    private authService: AuthenticationService,
     private router: Router,
     private _toaster: ToastrService,
   ) {
@@ -36,8 +40,8 @@ export class LoadformComponent implements OnInit {
   }
 
   ngOnInit() {
-  
-    this.newloadfilters['dispatcher']= sessionStorage.getItem('userdetails')
+    this.loginUser = this.authService.getloginUser();
+    this.newloadfilters['dispatcher']= this.loginUser['username'];
     var date= new Date()
     this.newloadfilters['date']= date.toLocaleDateString()
     this.newloadfilters['currency']='Select currency'

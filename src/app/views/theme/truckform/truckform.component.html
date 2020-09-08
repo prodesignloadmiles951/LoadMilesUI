@@ -1,242 +1,243 @@
+<div *ngIf="SelectedTruck" class="modal-header">
+  <h4 class="modal-title">Trucks Informtion - <span class="badge badge-success">{{pageFilters.truckunitnumber}}</span></h4>
+  <button type="button" class="close" (click)="hidePopup()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<button *ngIf="!SelectedTruck" type="button" class="close" (click)="hidePopup()" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
 <div class="row" *ngIf="pageFiltersshow">
-    <div class="col-sm-12">
-      <div class="card">
-        <div class="card-header">Trucks Information</div>
-        <div style="display: flex;">
-          <div class="card-body col-sm-6">
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="truckunitnumber">Unit Number: <span style="color:red">*</span></label>
-              <div class="col-md-8">
-                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="truckunitnumber" placeholder="Ex: 0123" name="truckunitnumber" #truckunitnumber="ngModel" [(ngModel)]="pageFilters.truckunitnumber" [pattern]="'^[1-9][0-9]*$'" required>
-                <div *ngIf="truckunitnumber.errors && (truckunitnumber.dirty || truckunitnumber.touched)" style="font-size: smaller;">
-                  <div [hidden]="!truckunitnumber.errors.required">
-                    <span style="color: red;">Unit Number is required</span>
-                  </div>
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">Trucks Information</div>
+      <div style="display: flex;">
+        <div class="card-body col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="truckunitnumber">Unit Number: <span style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="truckunitnumber" placeholder="Ex: 0123" name="truckunitnumber" #truckunitnumber="ngModel" [(ngModel)]="pageFilters.truckunitnumber" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="truckunitnumber.errors && (truckunitnumber.dirty || truckunitnumber.touched)" style="font-size: smaller;">
+                <div [hidden]="!truckunitnumber.errors.required">
+                  <span style="color: red;">Unit Number is required</span>
                 </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="plate">Plate:
-                <span style="color:red">*</span>
-              </label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="plate" placeholder="Ex: 1234" #plate="ngModel" name="plate" [(ngModel)]="pageFilters.plate" required>
-                <div *ngIf="plate.errors && (plate.dirty || plate.touched)" style="font-size: smaller;">
-                  <div [hidden]="!plate.errors.required">
-                    <span style="color: red;">Plate is required</span>
-                  </div>
-                  <!-- <div [hidden]="!plate.errors?.pattern">
-                        <span style="color: red;">Enter Numbers only</span>
-                     </div> -->
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="registerdstate">Plates registered State:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" placeholder="Enter plate registered state" id="registerdstate" #registerdstate="ngModel" name="registerdstate" [(ngModel)]="pageFilters.registerdstate" required>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="startingmileage">Starting Mileage:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" placeholder="Ex: 12" id="startingmileage" #startingMileage="ngModel" name="startingMileage" [(ngModel)]="pageFilters.startingMileage" required>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="currentmiles">Current Miles:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="currentmiles" placeholder="Ex: 12" #currentMiles="ngModel" name="currentMiles" [(ngModel)]="pageFilters.currentMiles" required>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="make">Make: <span style="color:red">*</span></label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="make" placeholder="Enter make details" #make="ngModel" name="make" [(ngModel)]="pageFilters.make" required>
-                <div *ngIf="make.errors && (make.dirty || make.touched)" style="font-size: smaller;">
-                  <div [hidden]="!make.errors.required">
-                    <span style="color: red;">Make is required</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="modal">Model: <span style="color:red">*</span></label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="modal" placeholder="Enter model details" #modal="ngModel" name="modal" [(ngModel)]="pageFilters.modal" required>
-                <div *ngIf="modal.errors && (modal.dirty || modal.touched)" style="font-size: smaller;">
-                  <div [hidden]="!modal.errors.required">
-                    <span style="color: red;">Model is required</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="color">Color:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="color" placeholder="Enter color details" #color="ngModel" name="color" [(ngModel)]="pageFilters.color">
-                <!-- <div *ngIf="color.errors && (color.dirty || color.touched)" style="font-size: smaller;">
-                        <div [hidden]="!color.errors.required">
-                            <span style="color: red;">Color is required</span>
-                        </div>
-                      </div> -->
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="yom">Year of Make: <span style="color:red">*</span></label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="yom" placeholder="Ex: 2020" name="yom" #yom="ngModel" [(ngModel)]="pageFilters.yom" [pattern]="'^[1-9][0-9]*$'" minlength="4" maxlength="4" required>
-                <div *ngIf="yom.errors && (yom.dirty || yom.touched)" style="font-size: smaller;">
-                  <div [hidden]="!yom.errors.required">
-                    <span style="color: red;">Year is Required</span>
-                  </div>
-                  <div [hidden]="!yom.errors?.pattern">
-                    <span style="color: red;">Enter Numbers only</span>
-                  </div>
-                  <div *ngIf="yom.errors.maxlength || yom.errors.minlength">
-                    <span style="color: red;">Year must be 4 numbers</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="vin">Vin:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="vin" placeholder="Enter vin details" #vin="ngModel" name="vin" [(ngModel)]="pageFilters.vin">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="geartype">Gear Type:</label>
-              <div class="col-md-8">
-                <select class="form-control" [ngClass]="mode?'':'disble'" id="geartype" #gearType="ngModel" name="gearType" [(ngModel)]="pageFilters.gearType">
-                  <option value="Select gear" disabled selected hidden>Select gear</option>
-                  <option value="0">Auto</option>
-                  <option value="1">Manual</option>
-                </select>
               </div>
             </div>
           </div>
-          <div class="card-body col-sm-6">
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="eld">ELD:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="eld" placeholder="Enter eld details" #eld="ngModel" name="eld" [(ngModel)]="pageFilters.eld">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="gps">GPS:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="gps" #gps="ngModel" placeholder="Enter gps details" name="gps" [(ngModel)]="pageFilters.gps">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="fuelcard">Fuel Card:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="fuelcard" placeholder="Enter fuelcard details" #fuelCard="ngModel" name="fuelCard" [(ngModel)]="pageFilters.fuelCard">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="ezpass">EZ Pass:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ezpass" #ezPass="ngModel" placeholder="Enter ezpass details" name="ezPass" [(ngModel)]="pageFilters.ezPass">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="driver">Driver:</label>
-              <div class="col-md-8">
-                <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.driverName">
-                  <option value="" disabled selected hidden>Driver</option>
-                  <option *ngFor="let cmp of driverdata" value="0">
-                    <span>{{cmp.firstname}}</span>
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="dispatcher">Dispatcher:</label>
-              <div class="col-md-8">
-                <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.dispatcher">
-                  <option value="" disabled selected hidden>Dispatcher</option>
-                  <option *ngFor="let cmp of Dispatcherdata" value="0">
-                    <span>{{cmp.firstname}}</span>
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="trailer">Trailer:</label>
-              <div class="col-md-8">
-                <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.trailerType">
-                  <option value="" disabled selected hidden>Trailer</option>
-                  <option *ngFor="let cmp of trailerData" value="0">
-                    <span>{{cmp.unitNumber}}</span>
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row"> 
-              <label class="col-md-4 col-form-label" for="notes">Notes:</label>
-              <div class="col-md-8">
-                <textarea [ngClass]="mode?'':'disble'" class="form-control" name="notes" [(ngModel)]="pageFilters.notes"></textarea>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="file-upload"  [ngClass]="mode?'':'disble'" class="custom-file-upload">
-                  <i class="fa fa-cloud-upload"></i> Upload
-              </label>
-              <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
-              <div class="col-sm-12">
-                <div *ngFor="let data of finalArry;let i=index">
-                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="showviewedit" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="plate">Plate:
+              <span style="color:red">*</span>
+            </label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="plate" placeholder="Ex: 1234" #plate="ngModel" name="plate" [(ngModel)]="pageFilters.plate" required>
+              <div *ngIf="plate.errors && (plate.dirty || plate.touched)" style="font-size: smaller;">
+                <div [hidden]="!plate.errors.required">
+                  <span style="color: red;">Plate is required</span>
                 </div>
               </div>
-              <div>
-                <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="registerdstate">Plates registered State:</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" placeholder="Enter plate registered state" id="registerdstate" #registerdstate="ngModel" name="registerdstate" [(ngModel)]="pageFilters.registerdstate" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="startingmileage">Starting Mileage:</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" placeholder="Ex: 12" id="startingmileage" #startingMileage="ngModel" name="startingMileage" [(ngModel)]="pageFilters.startingMileage" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="currentmiles">Current Miles:</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="currentmiles" placeholder="Ex: 12" #currentMiles="ngModel" name="currentMiles" [(ngModel)]="pageFilters.currentMiles" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="make">Make: <span style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="make" placeholder="Enter make details" #make="ngModel" name="make" [(ngModel)]="pageFilters.make" required>
+              <div *ngIf="make.errors && (make.dirty || make.touched)" style="font-size: smaller;">
+                <div [hidden]="!make.errors.required">
+                  <span style="color: red;">Make is required</span>
+                </div>
               </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="modal">Model: <span style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="modal" placeholder="Enter model details" #modal="ngModel" name="modal" [(ngModel)]="pageFilters.modal" required>
+              <div *ngIf="modal.errors && (modal.dirty || modal.touched)" style="font-size: smaller;">
+                <div [hidden]="!modal.errors.required">
+                  <span style="color: red;">Model is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="color">Color:</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="color" placeholder="Enter color details" #color="ngModel" name="color" [(ngModel)]="pageFilters.color">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="yom">Year of Make: <span style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="yom" placeholder="Ex: 2020" name="yom" #yom="ngModel" [(ngModel)]="pageFilters.yom" [pattern]="'^[1-9][0-9]*$'" minlength="4" maxlength="4" required>
+              <div *ngIf="yom.errors && (yom.dirty || yom.touched)" style="font-size: smaller;">
+                <div [hidden]="!yom.errors.required">
+                  <span style="color: red;">Year is Required</span>
+                </div>
+                <div [hidden]="!yom.errors?.pattern">
+                  <span style="color: red;">Enter Numbers only</span>
+                </div>
+                <div *ngIf="yom.errors.maxlength || yom.errors.minlength">
+                  <span style="color: red;">Year must be 4 numbers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="vin">Vin:</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="vin" placeholder="Enter vin details" #vin="ngModel" name="vin" [(ngModel)]="pageFilters.vin">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="geartype">Gear Type:</label>
+            <div class="col-md-8">
+              <select class="form-control" [ngClass]="mode?'':'disble'" id="geartype" #gearType="ngModel" name="gearType" [(ngModel)]="pageFilters.gearType">
+                <option value="Select gear" disabled selected hidden>Select gear</option>
+                <option value="0">Auto</option>
+                <option value="1">Manual</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="card-body col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="eld">ELD:</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="eld" placeholder="Enter eld details" #eld="ngModel" name="eld" [(ngModel)]="pageFilters.eld">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="gps">GPS:</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="gps" #gps="ngModel" placeholder="Enter gps details" name="gps" [(ngModel)]="pageFilters.gps">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="fuelcard">Fuel Card:</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="fuelcard" placeholder="Enter fuelcard details" #fuelCard="ngModel" name="fuelCard" [(ngModel)]="pageFilters.fuelCard">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="ezpass">EZ Pass:</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ezpass" #ezPass="ngModel" placeholder="Enter ezpass details" name="ezPass" [(ngModel)]="pageFilters.ezPass">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="driver">Driver:</label>
+            <div class="col-md-8">
+              <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.driverName">
+                <option value="" disabled selected hidden>Driver</option>
+                <option *ngFor="let cmp of driverdata" value="0">
+                  <span>{{cmp.firstname}}</span>
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="dispatcher">Dispatcher:</label>
+            <div class="col-md-8">
+              <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.dispatcher">
+                <option value="" disabled selected hidden>Dispatcher</option>
+                <option *ngFor="let cmp of Dispatcherdata" value="0">
+                  <span>{{cmp.firstname}}</span>
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="trailer">Trailer:</label>
+            <div class="col-md-8">
+              <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.trailerType">
+                <option value="" disabled selected hidden>Trailer</option>
+                <option *ngFor="let cmp of trailerData" value="0">
+                  <span>{{cmp.unitNumber}}</span>
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="notes">Notes:</label>
+            <div class="col-md-8">
+              <textarea [ngClass]="mode?'':'disble'" class="form-control" name="notes" [(ngModel)]="pageFilters.notes"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="file-upload" [ngClass]="mode?'':'disble'" class="custom-file-upload">
+              <i class="fa fa-cloud-upload"></i> Upload
+            </label>
+            <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
+            <div class="col-sm-12">
+              <div *ngFor="let data of finalArry;let i=index">
+                {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="showviewedit" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
             </div>
           </div>
         </div>
       </div>
-      <mat-accordion>
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header class="card-header">
-            <mat-panel-title>
-              Safety Information
-            </mat-panel-title>
-            <mat-panel-description>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div class="card">
-            <div class="card-body col-sm-6">
-              <div class="form-group row">
-                <label class="col-md-5 col-form-label" for="expirydate">DOT Inspection Expiry Date:</label>
-                <div class="col-md-7">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="expirydate" #expiryDate="ngModel" name="expiryDate" [(ngModel)]="pageFilters.expiryDate">
-                </div>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header class="card-header">
+          <mat-panel-title>
+            Safety Information
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="card">
+          <div class="card-body col-sm-8">
+            <div class="form-group row">
+              <label class="col-md-5 col-form-label" for="expirydate">DOT Inspection Expiry Date:</label>
+              <div class="col-md-7">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="expirydate" #expiryDate="ngModel" name="expiryDate" [(ngModel)]="pageFilters.expiryDate">
               </div>
-              <div class="form-group row">
-                <label class="col-md-5 col-form-label" for="plates_expirationdate">Plates Expiration Date:</label>
-                <div class="col-md-7">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="plates_expirationdate" #platesExpirationdate="ngModel" name="platesExpirationdate" [(ngModel)]="pageFilters.platesExpirationdate">
-                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-5 col-form-label" for="plates_expirationdate">Plates Expiration Date:</label>
+              <div class="col-md-7">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="plates_expirationdate" #platesExpirationdate="ngModel" name="platesExpirationdate" [(ngModel)]="pageFilters.platesExpirationdate">
               </div>
-              <div class="form-group row">
-                <label class="col-md-5 col-form-label" for="insuranceexpirationdate">Insurance Expiration Date:</label>
-                <div class="col-md-7">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="insuranceexpirationdate" #insuranceExpirationdate="ngModel" name="insuranceExpirationdate" [(ngModel)]="pageFilters.insuranceExpirationdate">
-                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-5 col-form-label" for="insuranceexpirationdate">Insurance Expiration Date:</label>
+              <div class="col-md-7">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="insuranceexpirationdate" #insuranceExpirationdate="ngModel" name="insuranceExpirationdate" [(ngModel)]="pageFilters.insuranceExpirationdate">
               </div>
-              <div class="form-group row">
-                <label class="col-md-5 col-form-label" for="insurancevalue1">Insurance Value:</label>
-                <div class="col-md-7">
-                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="insurancevalue1" #insuranceValue1="ngModel" name="insuranceValue1" [(ngModel)]="pageFilters.insuranceValue1">
-                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-5 col-form-label" for="insurancevalue1">Insurance Value:</label>
+              <div class="col-md-7">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="insurancevalue1" #insuranceValue1="ngModel" name="insuranceValue1" [(ngModel)]="pageFilters.insuranceValue1">
               </div>
             </div>
           </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-      <!-- <mat-accordion>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <!-- <mat-accordion>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header class="card-header">
             <mat-panel-title>
@@ -248,144 +249,144 @@
 
           </mat-expansion-panel>
       </mat-accordion> -->
-      <mat-accordion>
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header class="card-header">
-            <mat-panel-title>
-              Maintenance Records
-            </mat-panel-title>
-            <mat-panel-description>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div class="dx-viewport">
-            <div class="grid-container">
-              <dx-data-grid #grid id="gridContainer" [dataSource]="maintenancedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
-                <dxo-paging [enabled]="false"></dxo-paging>
-                <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
-                </dxo-editing>
-                <dxo-selection mode="single"></dxo-selection>
-                <dxi-column dataField="fromdate" dataType="date" caption="Service Date"></dxi-column>
-                <dxi-column dataField="type" caption="Category">
-                  <dxo-lookup [dataSource]="categoryDetails" displayExpr="Name" valueExpr="ID">
-                  </dxo-lookup>
-                </dxi-column>
-                <dxi-column dataField="curmiles" caption="Current Miles"></dxi-column>
-                <dxi-column dataField="nummiles" caption="Number of Miles"></dxi-column>
-                <dxi-column dataField="nxtservicemile" caption="Next Service Miles"></dxi-column>
-                <dxi-column dataField="servicefrom" caption="Serviced From"></dxi-column>
-                <dxi-column dataField="cost" caption="Cost"></dxi-column>
-                <dxi-column dataField="comments" caption="Comments"></dxi-column>
-              </dx-data-grid>
-            </div>
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header class="card-header">
+          <mat-panel-title>
+            Maintenance Records
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="dx-viewport">
+          <div class="grid-container">
+            <dx-data-grid #grid id="gridContainer" [dataSource]="maintenancedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
+              <dxo-paging [enabled]="false"></dxo-paging>
+              <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
+              </dxo-editing>
+              <dxo-selection mode="single"></dxo-selection>
+              <dxi-column dataField="fromdate" dataType="date" caption="Service Date"></dxi-column>
+              <dxi-column dataField="type" caption="Category">
+                <dxo-lookup [dataSource]="categoryDetails" displayExpr="Name" valueExpr="ID">
+                </dxo-lookup>
+              </dxi-column>
+              <dxi-column dataField="curmiles" caption="Current Miles"></dxi-column>
+              <dxi-column dataField="nummiles" caption="Number of Miles"></dxi-column>
+              <dxi-column dataField="nxtservicemile" caption="Next Service Miles"></dxi-column>
+              <dxi-column dataField="servicefrom" caption="Serviced From"></dxi-column>
+              <dxi-column dataField="cost" caption="Cost"></dxi-column>
+              <dxi-column dataField="comments" caption="Comments"></dxi-column>
+            </dx-data-grid>
           </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-      <mat-accordion>
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header class="card-header">
-            <mat-panel-title>
-              Ownership Information
-            </mat-panel-title>
-            <mat-panel-description>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div style="display: flex;">
-            <div class="card-body col-sm-6">
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="companyowned">Company Owned:</label>
-                <div class="col-md-8 col-form-label">
-                  <input class="form-check-label" [ngClass]="mode?'':'disble'" id="companyowned" type="checkbox" value="true" #comapnyOwned="ngModel" name="comapnyOwned" [(ngModel)]="pageFilters.comapnyOwned">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="price">Price:</label>
-                <div class="col-md-8">
-                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="price" #price="ngModel" name="price" [(ngModel)]="pageFilters.price">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="purchasedate">Start Date:</label>
-                <div class="col-md-8">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="purchasedate" #purchaseDate="ngModel" name="purchaseDate" [(ngModel)]="pageFilters.purchaseDate">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="operationdate">Operation Date:</label>
-                <div class="col-md-8">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="operationdate" #operationDate="ngModel" name="operationDate" [(ngModel)]="pageFilters.operationDate">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="financer">Financer:</label>
-                <div class="col-md-8">
-                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="financer" #financer="ngModel" name="financer" [(ngModel)]="pageFilters.financer">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="installment1">Installment:</label>
-                <div class="col-md-8">
-                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="installment1" #installment1="ngModel" name="installment1" [(ngModel)]="pageFilters.installment1">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="installmentduedate1">Installment Due Date:</label>
-                <div class="col-md-8">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="installmentduedate1" #installmentDuedate1="ngModel" name="installmentDuedate1" [(ngModel)]="pageFilters.installmentDuedate1">
-                </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header class="card-header">
+          <mat-panel-title>
+            Ownership Information
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div style="display: flex;">
+          <div class="card-body col-sm-6">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="companyowned">Company Owned:</label>
+              <div class="col-md-8 col-form-label">
+                <input class="form-check-label" [ngClass]="mode?'':'disble'" id="companyowned" type="checkbox" value="true" #comapnyOwned="ngModel" name="comapnyOwned" [(ngModel)]="pageFilters.comapnyOwned">
               </div>
             </div>
-            <div class="card-body col-sm-6">
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="leased">Leased:</label>
-                <div class="col-md-8 col-form-label">
-                  <input [ngClass]="mode?'':'disble'" class="form-check-label" id="leased" type="checkbox" value="true" #leased="ngModel" name="leased" [(ngModel)]="pageFilters.leased">
-                </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="price">Price:</label>
+              <div class="col-md-8">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="price" #price="ngModel" name="price" [(ngModel)]="pageFilters.price">
               </div>
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="dealer">Dealer:</label>
-                <div class="col-md-8">
-                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dealer" #dealer="ngModel" name="dealer" [(ngModel)]="pageFilters.dealer">
-                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="purchasedate">Start Date:</label>
+              <div class="col-md-8">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="purchasedate" #purchaseDate="ngModel" name="purchaseDate" [(ngModel)]="pageFilters.purchaseDate">
               </div>
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="leasedfrom">Leased from:</label>
-                <div class="col-md-8">
-                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leasedfrom" #leasedFrom="ngModel" name="leasedFrom" [(ngModel)]="pageFilters.leasedFrom">
-                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="operationdate">Operation Date:</label>
+              <div class="col-md-8">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="operationdate" #operationDate="ngModel" name="operationDate" [(ngModel)]="pageFilters.operationDate">
               </div>
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="leasestart">Lease Start:</label>
-                <div class="col-md-8">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="leasestart" #leaaseStart="ngModel" name="leaaseStart" [(ngModel)]="pageFilters.leaaseStart">
-                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="financer">Financer:</label>
+              <div class="col-md-8">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="financer" #financer="ngModel" name="financer" [(ngModel)]="pageFilters.financer">
               </div>
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="leaseexpirydate">Lease Expiry Date:</label>
-                <div class="col-md-8">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="leaseexpirydate" #leaseExpirydate="ngModel" name="leaseExpirydate" [(ngModel)]="pageFilters.leaseExpirydate">
-                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="installment1">Installment:</label>
+              <div class="col-md-8">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="installment1" #installment1="ngModel" name="installment1" [(ngModel)]="pageFilters.installment1">
               </div>
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="installment2">Installment:</label>
-                <div class="col-md-8">
-                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="installment2" #installment2="ngModel" name="installment2" [(ngModel)]="pageFilters.installment2">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="installmentduedate2">Installment Due Date:</label>
-                <div class="col-md-8">
-                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="installmentduedate2" #installmentDuedate2="ngModel" name="installmentduedate2" [(ngModel)]="pageFilters.installmentduedate2">
-                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="installmentduedate1">Installment Due Date:</label>
+              <div class="col-md-8">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="installmentduedate1" #installmentDuedate1="ngModel" name="installmentDuedate1" [(ngModel)]="pageFilters.installmentDuedate1">
               </div>
             </div>
           </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
+          <div class="card-body col-sm-6">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="leased">Leased:</label>
+              <div class="col-md-8 col-form-label">
+                <input [ngClass]="mode?'':'disble'" class="form-check-label" id="leased" type="checkbox" value="true" #leased="ngModel" name="leased" [(ngModel)]="pageFilters.leased">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="dealer">Dealer:</label>
+              <div class="col-md-8">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dealer" #dealer="ngModel" name="dealer" [(ngModel)]="pageFilters.dealer">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="leasedfrom">Leased from:</label>
+              <div class="col-md-8">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leasedfrom" #leasedFrom="ngModel" name="leasedFrom" [(ngModel)]="pageFilters.leasedFrom">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="leasestart">Lease Start:</label>
+              <div class="col-md-8">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="leasestart" #leaaseStart="ngModel" name="leaaseStart" [(ngModel)]="pageFilters.leaaseStart">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="leaseexpirydate">Lease Expiry Date:</label>
+              <div class="col-md-8">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="leaseexpirydate" #leaseExpirydate="ngModel" name="leaseExpirydate" [(ngModel)]="pageFilters.leaseExpirydate">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="installment2">Installment:</label>
+              <div class="col-md-8">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="installment2" #installment2="ngModel" name="installment2" [(ngModel)]="pageFilters.installment2">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="installmentduedate2">Installment Due Date:</label>
+              <div class="col-md-8">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="installmentduedate2" #installmentDuedate2="ngModel" name="installmentduedate2" [(ngModel)]="pageFilters.installmentduedate2">
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
-  <div class="card-footer" *ngIf="showAddOption">
-    <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
-      <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-      Submit</button>&nbsp;&nbsp;
-    <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-  </div>
+</div>
+<div class="card-footer" *ngIf="showAddOption">
+  <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+    <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+    Submit</button>&nbsp;&nbsp;
+  <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+</div>

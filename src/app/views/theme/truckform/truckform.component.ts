@@ -1,14 +1,14 @@
-import { Component, OnInit,Input,ViewChild,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit,Input,Inject } from '@angular/core';
 import { TrucksFilters } from '../../../model/trucks';
 import { TrucksService } from '../../../services/trucks.service';
 import { DriversService } from '../../../services/driver.service';
 import { DispatcherService } from '../../../services/dispatcher.service';
 import { TrailerService } from '../../../services/trailers.service';
-import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import { environment } from '../../../../environments/environment';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-truckform',
@@ -18,7 +18,6 @@ import { environment } from '../../../../environments/environment';
 })
 export class TruckformComponent implements OnInit {
 	public trucks: TrucksFilters;
-    // public pageFilters: TrucksFilters;
     pageFilters={}
     maintenancedata=[];
     Truckslistdata = new Array<TrucksFilters>();
@@ -42,14 +41,11 @@ export class TruckformComponent implements OnInit {
     base64FileArray=[]
     truckfiledata={}
     URL=environment.uploadUrl
-    @Output() changed = new EventEmitter();
-    @ViewChild(PdfViewerComponent, { static: true}) private pdfComponent: PdfViewerComponent;
-    public uploader:FileUploader = new FileUploader({
-      url: this.URL, 
-      disableMultipart:true
-    });
+    SelectedTruck=true
+    
 
-  constructor(private _trucksservice: TrucksService,
+  constructor(public dialogRef: MatDialogRef < TruckformComponent > ,
+        @Inject(MAT_DIALOG_DATA) public data: any,private _trucksservice: TrucksService,
         private _driverService: DriversService,
         private _trailersService: TrailerService,
         private _dispatcherService: DispatcherService,
@@ -61,17 +57,19 @@ export class TruckformComponent implements OnInit {
     this.getDriverData()
     this.getDispatcherData()
     this.getTrailerData()
-    console.log(this.datatype)
-    if(this.datatype == undefined){
-      // this.pageFilters=this.Truckslistdata
+    console.log(this.data)
+    
+    if(this.data['EditMode'] == undefined){
       this.mode=true
       this.showAddOption=true
+      this.SelectedTruck=false
     }else{
-      this.pageFilters=this.datatype
-      this.mode=this.datatype['EditMode'] 
-      this.maintenancedata.push(this.datatype.maintenancedata)
-      this.showAddOption=false     
+      this.mode=this.data['EditMode'] 
+      this.pageFilters=this.data
+      this.showAddOption=this.data['EditMode'] 
+      this.maintenancedata.push(this.data.maintenancedata)
     }
+    
     this.pageFiltersshow=true
     this.categoryDetails=[
       {
@@ -87,12 +85,10 @@ export class TruckformComponent implements OnInit {
           "Name": "Rebuild"
       }
     ]
-    this.changed.emit(this.pageFilters)
   }
    
   addfiles(e){
       var finalArry=e.target.files
-      console.log(finalArry)
       this.base64FileArray=[]
       this.fileArray=finalArry
         if(finalArry.length > 0){
@@ -106,7 +102,6 @@ export class TruckformComponent implements OnInit {
             reader.onload = this.handleReaderLoaded.bind(this);
             reader.readAsBinaryString(finalArry[i]);
           }
-          console.log(this.finalArry)
         sessionStorage.setItem('file_upload',JSON.stringify(this.finalArry))
         this.finalArry=JSON.parse(sessionStorage.file_upload)
       }
@@ -117,43 +112,29 @@ export class TruckformComponent implements OnInit {
     this.item= "data:application/vnd.ms-excel;base64,"+string
     var obj={}
     obj['file']=this.item
-    console.log(obj)
     this.base64FileArray.push(obj)
   }
     onUploadFile(){
-      console.log(this.finalArry)
-      console.log(this.base64FileArray)
       let arr3 = this.finalArry.map((item, i) => Object.assign({}, item, this.base64FileArray[i]));
-      console.log(arr3)
       this._trucksservice.uploadFile(arr3).subscribe(response => {
         console.log(response)
         var uploadArry=response.data
-        var fileArray=[]
-        for (var i = 0; i < uploadArry.length; i++) {
-          var filename=uploadArry[i]
-          var filenameSplit=filename.split('_')[1]
-          var obj={}
-          obj['name']=filenameSplit
-          obj['fname']=uploadArry[i]
-          fileArray.push(obj)
-        }
-        this.finalArry=fileArray
-        console.log(this.finalArry)
+        this.finalArry=uploadArry
         this.truckfiledata = response
+        if(response.Status == "ok"){
+          this.showviewedit=true
+        }
       },error=>{
         this._toaster.error("Submit Again","Failed");
       });
-
-      this.showviewedit=true
     }
 
     onView(data){
         let baseUrl = this.truckfiledata['base_url'];
-        let url = baseUrl + data.fname;   
+        let url = baseUrl + data.fileName;   
         window.open(url, '_blank');
     }
     ondelete(data){
-      console.log(data)
       this.finalArry.splice(data,1)
     }
 
@@ -174,11 +155,7 @@ export class TruckformComponent implements OnInit {
           this.trailerData = data;
         });
       } 
-  getData() {
-    this._trucksservice.getTrucksData().subscribe(data => {
-      this.unitNumberdata = data;
-    });
-  }
+ 
 
   onAdd(eventName) {
     console.log(eventName.key) 
@@ -200,52 +177,25 @@ export class TruckformComponent implements OnInit {
         var Truckslistdata:any = this.pageFilters
         Truckslistdata['maintenancedata']=this.maintenanceinfodata
         Truckslistdata['companyid']=localStorage.selectedCompany
+        var idArry=[]
+        for (var i = 0; i < this.finalArry.length; ++i) {
+          idArry.push(this.finalArry[i]._id)
+        }
+        Truckslistdata['files']=idArry
         this._trucksservice.SendForm(Truckslistdata).subscribe(response => {
           this.submitted = true;
           this._toaster.info("Truck Data Submitted","Success", {timeOut: 3000,});
-          this.router.navigateByUrl("theme/trucks-list");
+          this.dialogRef.close(response)
         },error=>{
           this.submitted=false;
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
-        this.getData()
        }
    }
-   public onFileSelected(event: EventEmitter<File[]>) { 
-     var base64FileArray=[]
-     console.log(this.uploader.queue)
-     var fileSize=this.uploader.queue
-     for (var i = 0; i < fileSize.length; i++) {
-      let file: File = event[i];
-      console.log(file);
-      readBase64(file)
-        .then(function(data) {
-        console.log(data);
-        var obj={}
-        obj['file']=data
-        base64FileArray.push(obj)
-        console.log(base64FileArray)
-      })
-     }
-
-
-    }
+   hidePopup(){
+     this.dialogRef.close(null)
+   }
+   
      
 }
 
-
-function readBase64(file): Promise<any> {
-    var reader  = new FileReader();
-    var future = new Promise((resolve, reject) => {
-      reader.addEventListener("load", function () {
-        resolve(reader.result);
-      }, false);
-
-      reader.addEventListener("error", function (event) {
-        reject(event);
-      }, false);
-
-      reader.readAsDataURL(file);
-    });
-    return future;
-  }

@@ -9,23 +9,19 @@ import { LoginUser } from '../model/loginuser';
 export class AuthenticationService {
     public sessionData: string = environment.Login_User;
     public LoginUser: LoginUser;
-    redirectUrl: string;
+    redirectUrl: string;  
     isLoggedin: boolean;
-    constructor(
-        private router: Router
-    ) {
+    constructor(private router: Router) {
         this.LoginUser = new LoginUser();
     }
-    logOut(): void {
-        sessionStorage.clear();
-        localStorage.clear();
-        this.clearAuthentication()
-    }
+    
     setLogin(loginuser: LoginUser) {
         sessionStorage.setItem(this.sessionData, JSON.stringify(loginuser));
     }
     clearAuthentication() {
-        sessionStorage.removeItem(this.sessionData);
+        sessionStorage.clear();
+        localStorage.clear();
+        this.router.navigateByUrl("");
     }
     checkUserLoging() {
         if (sessionStorage.getItem(this.sessionData) != null && sessionStorage.getItem(this.sessionData) != undefined) {

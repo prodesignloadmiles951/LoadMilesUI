@@ -13,7 +13,7 @@ import { FileUploadModule} from 'ng2-file-upload';
 
 // Theme Routing
 import { ThemeRoutingModule } from './theme-routing.module';
-import {CompanyComponent} from './company.component';
+import { CompanyComponent} from './company.component';
 import { TrucksComponent } from './trucks.component';
 import { TrailersComponent } from './trailers.component';
 import { DriverComponent } from './driver.component';
@@ -34,7 +34,7 @@ import { DispatcherlistComponent } from './dispatcher-list.component';
 import { CompanylistComponent } from './company-list.component';
 import { VendorlistComponent } from './vendor-list.component';
 import { FactorlistComponent } from './factor-list.component';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule} from '@angular/material/expansion';
 import {
     DxDataGridModule,
     DxBulletModule,
@@ -96,7 +96,6 @@ import { CompanyformComponent } from './companyform/companyform.component';
     DispatcherformComponent,
     CompanyformComponent
   ],
-  entryComponents: [
-  ],
+  entryComponents: [TruckformComponent, TrailerformComponent, DriverformComponent, CarrierformComponent, CustomerformComponent, DispatcherformComponent],
 })
 export class ThemeModule { }

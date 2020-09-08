@@ -12,8 +12,11 @@ import { map, catchError } from 'rxjs/operators';
 export class PickupserviceService {
 
 	pickupform: string;
+    zipurl: string;
     constructor(private http: Http, private _headerService: AuthHeaderService) {
         this.pickupform = environment.pickupform;
+        this.zipurl = environment.postalcodeUrl;
+
     }
 
     SendPickupForm(pickupdata) {
@@ -34,6 +37,10 @@ export class PickupserviceService {
     DeletePickup(id) {
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
     return this.http.delete(this.pickupform+"/"+id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+    }
+    getzipcodeData(id) {
+    let options = new RequestOptions({ headers: this._headerService.getHeader() });
+    return this.http.get(this.zipurl+id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 
 }

@@ -1,42 +1,32 @@
 <div class="animated fadeIn">
-  
   <div class="card">
     <div class="card-header"> Search For Customer
-        <strong></strong> <span *ngIf="Isusersloading"><img *ngIf="Isusersloading"
-            src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            Loading..</span>
+      <strong></strong> <span *ngIf="Isusersloading"><img *ngIf="Isusersloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        Loading..</span>
     </div>
     <div class="card-body">
-        <form>
-            <div class="form-group row">
-                <div class="col-md-4">
-                    <input type="text" id="search" name="search" class="form-control" [(ngModel)]="SearchText"
-                        (keypress)="onSubmit()" (keyup.enter)="onSubmit()" placeholder="Find a Customer">
-                </div>
-                <span>
-                  <button type="reset" style="float: left" class="btn btn-sm btn-danger" (click)="ClearSearch()"><i class="fa fa-ban"></i> Clear Search</button>    
-                </span>  &nbsp;&nbsp; 
-                <!-- <span>
-                  <button type="add" style="float: left" class="btn btn-sm btn-success" (click)="Add()"><i class="fa fa-plus"></i> New Truck</button>    
-                </span> -->
-            </div>
-        </form>
+      <form>
+        <div class="form-group row">
+          <div class="col-md-4">
+            <input type="text" id="search" name="search" class="form-control" [(ngModel)]="SearchText" (keypress)="onSubmit()" (keyup.enter)="onSubmit()" placeholder="Find a Customer">
+          </div>
+          <span>
+            <button type="reset" style="float: left" class="btn btn-sm btn-danger" (click)="ClearSearch()"><i class="fa fa-ban"></i> Clear Search</button>
+          </span> &nbsp;&nbsp;
+        </div>
+      </form>
     </div>
-</div>
-
-
-<div class="row">
+  </div>
+  <div class="row">
     <div class="col-lg-12">
       <div class="card">
-
-        <div class="card-header">  Customers List
-            <span class="float-right">
-                <button type="add" class="btn btn-sm btn-success" (click)="Add()"><i class="fa fa-plus"></i> New Customer</button>    
-            </span>              
+        <div class="card-header"> Customers List
+          <span class="float-right">
+            <button type="add" class="btn btn-sm btn-success" (click)="Add()"><i class="fa fa-plus"></i> New Customer</button>
+          </span>
         </div>
-
         <div class="card-body">
-            <div class="animated fadeIn">
+          <div class="animated fadeIn">
           </div>
           <table class="table table-responsive-sm table-hover table-outline mb-0">
             <thead>
@@ -52,79 +42,26 @@
                 <th>Action</th>
               </tr>
             </thead>
-
             <tbody>
               <tr>
-                <tr *ngFor="let customer of data; let i=index">
-                    <td>{{i + 1}}</td>
-                    <td>{{customer.companyname}}</td>
-                    <td>{{customer.dba}}</td>
-                    <td>{{customer.mcsf}}</td>
-                    <td>{{customer.paymentterms}}</td>
-                    <td>{{customer.contact}}</td>
-                    <td>{{customer.cellphone}}</td>
-                    <td>{{customer.email}}</td>
-                    
-                    <td>
-                      <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                          (click)="viewModal.show();viewData(customer);">View</a> |
-
-                      
-                      <a style="cursor: pointer;color: #20a8d8;"
-                          (click)="viewModal.show();editData(customer)">Edit</a>
-
-                      <!-- <a style="cursor: pointer;color: #20a8d8;"
-                          (click)="deleteCustomer(customer)">Delete</a> -->
-                  </td>
-                </tr>
-            </tbody>
-
-            <!-- <tbody *ngIf="logslist.length==0">
-              <tr>
-                <td class="alert alert-warning" style="width:1050px;" align="center" colspan="10"><span>No records available</span></td>
+              <tr *ngFor="let customer of data; let i=index">
+                <td>{{i + 1}}</td>
+                <td>{{customer.companyname}}</td>
+                <td>{{customer.dba}}</td>
+                <td>{{customer.mcsf}}</td>
+                <td>{{customer.paymentterms}}</td>
+                <td>{{customer.contact}}</td>
+                <td>{{customer.cellphone}}</td>
+                <td>{{customer.email}}</td>
+                <td>
+                  <a style="cursor: pointer;color: #20a8d8;" (click)="viewData(customer);">View</a> |
+                  <a style="cursor: pointer;color: #20a8d8;" (click)="editData(customer)">Edit</a>
+                </td>
               </tr>
-            </tbody> -->
+            </tbody>
           </table>
         </div>
       </div>
     </div>
-  </div>  
-
-  <!--View-->
-  <div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" style="max-width: 100%; margin: 0;" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">Manage Customer - <span class="badge badge-success" >{{selectedCustomer}}</span></h4>
-            <button type="button" class="close" (click)="viewModal.hide();hidePopup()" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="container" *ngIf="showForm">
-                <div class="animated fadeIn">
-                    <div id="viewsection" *ngIf="!EditMode">
-                      <app-customerform [datatype]='customerData'></app-customerform> 
-                    </div>
-                    <div id="editsection" *ngIf="EditMode">
-                        <app-customerform [datatype]='customerData'></app-customerform>                       
-                     </div>
-                </div>
-            </div>
-        </div>
-          <div class="modal-footer">
-              <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right"
-                  class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
-                  <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right"
-                  class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button> 
-              <button *ngIf="EditMode==true" type="reset" (click)="editCustomer(customers,selectedCustomer);viewModal.hide()"  style="float: right"
-                  class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update 
-                  <img *ngIf="Iseditusrloading"
-                      src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-              </button>
-          </div>
-      </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div>
+  </div>
 </div>

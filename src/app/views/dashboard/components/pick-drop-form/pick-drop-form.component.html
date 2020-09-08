@@ -1,133 +1,188 @@
-<form class="form-horizontal" #pickuppopupForm="ngForm" novalidate autocomplete="off" >
-<div class="col-sm-12">
-  <div class="card">
-  	<div class="modal-header">
-          <h4 class="modal-title">Pickup Information</h4>
-          <button style="outline:none" type="button" class="close" (click)="hidePopup()" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-    </div>
-    <div style="display: flex;">
-      <div class="card-body col-sm-6">
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="type">Type:</label>
-          <div class="col-md-8">
-            <select class="form-control" [(ngModel)]="pickup.type" [ngModelOptions]="{standalone: true}">
-              <option value="" disabled selected hidden>Type</option>
-              <option *ngFor="let type of typeDetails" [value]="type.Name">
-                <span>{{type.Name}}</span>
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="driver1">Driver1:</label>
-          <div class="col-md-8">
-            <select class="form-control" [(ngModel)]="pickup.driver1" [ngModelOptions]="{standalone: true}">
-              <option value="" disabled selected hidden>Driver</option>
-              <option *ngFor="let cmp of driverdata" [value]="cmp.firstname">
-                <span>{{cmp.firstname}}</span>
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="driver2">Driver2:</label>
-          <div class="col-md-8">
-            <select class="form-control" [(ngModel)]="pickup.driver2" [ngModelOptions]="{standalone: true}">
-              <option value="" disabled selected hidden>Driver</option>
-              <option *ngFor="let cmp of driverdata" [value]="cmp.firstname">
-                <span>{{cmp.firstname}}</span>
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="truck">Truck:</label>
-          <div class="col-md-8">
-            <select class="form-control" [(ngModel)]="pickup.truck" [ngModelOptions]="{standalone: true}">
-              <option value="" disabled selected hidden>Driver</option>
-              <option *ngFor="let cmp of unitNumberdata" [value]="cmp.truckunitnumber">
-                <span>{{cmp.truckunitnumber}}</span>
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="trailer">Trailer:</label>
-          <div class="col-md-8">
-            <select class="form-control" [(ngModel)]="pickup.trailer" [ngModelOptions]="{standalone: true}">
-              <option value="" disabled selected hidden>Driver</option>
-              <option *ngFor="let cmp of trailerData" [value]="cmp.unitNumber">
-                <span>{{cmp.unitNumber}}</span>
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="type">Load Status:</label>
-          <div class="col-md-8">
-            <select class="form-control" [(ngModel)]="pickup.loadstatus" [ngModelOptions]="{standalone: true}">
-              <option value="" disabled selected hidden>Load status</option>
-              <option *ngFor="let load of loadstatusDetails" [value]="load.Name">
-                <span>{{load.Name}}</span>
-              </option>
-            </select>
-          </div>
-        </div>
+<form class="form-horizontal" #pickuppopupForm="ngForm" novalidate autocomplete="off">
+  <div class="col-sm-12" style="padding: 0" >
+    <div class="card" style="margin: 0">
+      <div class="modal-header">
+        <h4 class="modal-title">Pickup Information</h4>
+        <button style="outline:none" type="button" class="close" (click)="hidePopup()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="card-body col-sm-6">
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="pickupcompany">PickUp Company:</label>
-          <div class="col-md-8">
-            <input type="text" class="form-control" id="pickupcompany" name="pickupcompany" #pickupcompany="ngModel" [(ngModel)]="pickup.pickupcompany" [ngModelOptions]="{standalone: true}">
+      <div style="display: flex;">
+        <div class="card-body col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="type">Type:</label>
+            <div class="col-md-8">
+              <select class="form-control" [(ngModel)]="pickup.type" [ngModelOptions]="{standalone: true}">
+                <option value="" disabled selected hidden>Type</option>
+                <option *ngFor="let type of typeDetails" [value]="type.Name">
+                  <span>{{type.Name}}</span>
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="driver1">Driver1:</label>
+            <div class="col-md-8">
+              <select class="form-control" [(ngModel)]="pickup.driver1" [ngModelOptions]="{standalone: true}">
+                <option value="" disabled selected hidden>Driver</option>
+                <option *ngFor="let cmp of driverdata" [value]="cmp.firstname">
+                  <span>{{cmp.firstname}}</span>
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="driver2">Driver2:</label>
+            <div class="col-md-8">
+              <select class="form-control" [(ngModel)]="pickup.driver2" [ngModelOptions]="{standalone: true}">
+                <option value="" disabled selected hidden>Driver</option>
+                <option *ngFor="let cmp of driverdata" [value]="cmp.firstname">
+                  <span>{{cmp.firstname}}</span>
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="truck">Truck:</label>
+            <div class="col-md-8">
+              <select class="form-control" [(ngModel)]="pickup.truck" [ngModelOptions]="{standalone: true}">
+                <option value="" disabled selected hidden>Driver</option>
+                <option *ngFor="let cmp of unitNumberdata" [value]="cmp.truckunitnumber">
+                  <span>{{cmp.truckunitnumber}}</span>
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="trailer">Trailer:</label>
+            <div class="col-md-8">
+              <select class="form-control" [(ngModel)]="pickup.trailer" [ngModelOptions]="{standalone: true}">
+                <option value="" disabled selected hidden>Driver</option>
+                <option *ngFor="let cmp of trailerData" [value]="cmp.unitNumber">
+                  <span>{{cmp.unitNumber}}</span>
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="type">Load Status:</label>
+            <div class="col-md-8">
+              <select class="form-control" [(ngModel)]="pickup.loadstatus" [ngModelOptions]="{standalone: true}">
+                <option value="" disabled selected hidden>Load status</option>
+                <option *ngFor="let load of loadstatusDetails" [value]="load.Name">
+                  <span>{{load.Name}}</span>
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="contactname">Contact name:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="contactname" name="contactname" #contactname="ngModel" [(ngModel)]="pickup.contactname" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="contactnumber">Contact number:</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="contactnumber" name="contactnumber" #contactnumber="ngModel" [(ngModel)]="pickup.contactnumber" [ngModelOptions]="{standalone: true}">
+            </div>
           </div>
         </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="contactname">Contact name:</label>
-          <div class="col-md-8">
-            <input type="text" class="form-control" id="contactname" name="contactname" #contactname="ngModel" [(ngModel)]="pickup.contactname" [ngModelOptions]="{standalone: true}">
+        <div class="card-body col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="pickupcompany">PickUp Company:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="pickupcompany" name="pickupcompany" #pickupcompany="ngModel" [(ngModel)]="pickup.pickupcompany" [ngModelOptions]="{standalone: true}">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="contactnumber">Contact number:</label>
-          <div class="col-md-8">
-            <input type="number" class="form-control" id="contactnumber" name="contactnumber" #contactnumber="ngModel" [(ngModel)]="pickup.contactnumber" [ngModelOptions]="{standalone: true}">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="pickupref">PickUp Reference:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="pickupref" name="pickupref" #pickupref="ngModel" [(ngModel)]="pickup.pickupref" [ngModelOptions]="{standalone: true}">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="address">Address:</label>
-          <div class="col-md-8">
-            <input type="text" class="form-control" id="address" name="address" #address="ngModel" [(ngModel)]="pickup.address" [ngModelOptions]="{standalone: true}">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="pickupdate">PickUp Date:</label>
+            <div class="col-md-8">
+              <!-- {{today | date:'dd-MM-yyyy'}} -->
+              <input type="date" class="form-control" id="pickupdate" name="pickupdate" #pickupdate="ngModel" [(ngModel)]="pickup.pickupdate" [ngModelOptions]="{standalone: true}">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="pickupdate">PickUp date:</label>
-          <div class="col-md-8">
-            <input type="date" class="form-control" id="pickupdate" name="pickupdate" #pickupdate="ngModel" [(ngModel)]="pickup.pickupdate" [ngModelOptions]="{standalone: true}">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="pickuptime">PickUp Time:</label>
+            <div class="col-md-8">
+              <!-- {{today | date:'hh:mm:ss a':'+0530'}} -->
+              <input type="time" class="form-control" id="pickuptime" value="13:48:24" name="pickuptime" #pickuptime="ngModel" [(ngModel)]="pickup.pickuptime" step="2" [ngModelOptions]="{standalone: true}">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="file-upload" class="custom-file-upload">
-            <i class="fa fa-cloud-upload"></i> Upload
-          </label><br />
-          <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
-          <div class="col-sm-12">
-            <div *ngFor="let data of finalArry">
-              {{data}}
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="address1">Address 1:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="address1" name="address1" #address1="ngModel" [(ngModel)]="pickup.address1" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="address2">Address 2:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="address2" name="address2" #address2="ngModel" [(ngModel)]="pickup.address2" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="zipcode">Zip Code:</label>
+            <div class="col-md-8">
+              <mat-form-field class="form-element-signup">
+                  <input type="text" placeholder="Postal code" aria-label="Number" matInput (keyup)="postalCode()" [(ngModel)]="inputPostalCode" [ngModelOptions]="{standalone: true}" [matAutocomplete]="auto" required>
+                  <mat-spinner *ngIf="showspinner"></mat-spinner>
+                  <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let option of postalCodeList" [value]="option.postal_code">
+                          {{option.postal_code}}
+                      </mat-option>
+                  </mat-autocomplete>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="city">City:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pickup.city" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="state">State:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pickup.state" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="country">Country:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="country" name="country" #country="ngModel" [(ngModel)]="pickup.country" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="file-upload" [ngClass]="mode?'':'disble'" class="custom-file-upload">
+              <i class="fa fa-cloud-upload"></i> Upload
+            </label>
+            <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
+            <div class="col-sm-12">
+              <div *ngFor="let data of finalArry;let i=index">
+                {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="showviewedit" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="loadformfooter">
-    <div class="card-footer">
-      <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submitpickup(pickup);pickuppopupForm.reset()"><i class="fa fa-dot-circle-o"></i>
-        <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        Submit</button>&nbsp;&nbsp;
-      <button type="reset" style="float: right" (click)="resetpickup()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+      <div class="loadformfooter">
+        <div class="card-footer">
+          <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submitpickup(pickup);pickuppopupForm.reset()"><i class="fa fa-dot-circle-o"></i>
+            <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            Submit</button>&nbsp;&nbsp;
+          <button type="reset" style="float: right" (click)="resetpickup()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+        </div>
+      </div>
     </div>
   </div>
-  </div>
-</div>
 </form>

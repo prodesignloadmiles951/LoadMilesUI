@@ -3,6 +3,8 @@ import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { DispatcherService } from '../../services/dispatcher.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { DispatcherformComponent } from './dispatcherform/dispatcherform.component'
 
 @Component({
     selector: 'app-dispatcher-list',
@@ -21,7 +23,8 @@ export class DispatcherlistComponent implements OnInit {
     showForm=false
 
     constructor(
-        private router: Router, private _dispatcherService: DispatcherService,private _toaster: ToastrService) { }
+        private router: Router, private _dispatcherService: DispatcherService,
+        private _toaster: ToastrService, public dialog: MatDialog) { }
 
     ngOnInit(): void {
         this.pageFilters = new DispatcherFilters();
@@ -36,25 +39,26 @@ export class DispatcherlistComponent implements OnInit {
   }
 
   editData(dispatcher) {
-    this.EditMode = true;
     var dispatcherObj=dispatcher
-    dispatcherObj['EditMode']=this.EditMode
-    this.dispatcherData=dispatcherObj
-    this.dispatchers = new DispatcherFilters();
-    this.dispatchers = dispatcher;
-    this.selectedDispatcher = dispatcher.firstname;
-    this.showForm=true
+    dispatcherObj['EditMode']=true
+    let dialogConfig = Object.assign({ width: "1000px" },{ data: dispatcherObj })
+    let editDialogRef = this.dialog.open(DispatcherformComponent, dialogConfig);
+    editDialogRef.afterClosed().subscribe((data) => {
+      console.log(data)
+      if(data == null){}else{
+        this.getDispatcherData()        
+      }
+    })
 }
 
 viewData(dispatcher) {
-    this.EditMode = false;
     var dispatcherObj=dispatcher
-    dispatcherObj['EditMode']=this.EditMode
-    this.dispatcherData=dispatcherObj
-    this.dispatchers = new DispatcherFilters();
-    this.dispatchers = dispatcher;
-    this.selectedDispatcher = dispatcher.firstname;
-    this.showForm=true
+    dispatcherObj['EditMode']=false
+    let dialogConfig = Object.assign({ width: "1000px" },{ data: dispatcherObj })
+    let viewDialogRef = this.dialog.open(DispatcherformComponent, dialogConfig);
+    viewDialogRef.afterClosed().subscribe((data) => {
+      console.log(data)
+    })
 }
 
 hidePopup(){
@@ -85,12 +89,16 @@ editDispatcher(dispatcher,selectedDispatcher) {
 //             });
 //          }
 //     }
-
-    submit() {
-        console.log(this.pageFilters);
-    }
+   
     Add() {
-        this.router.navigateByUrl('/theme/dispatcher');
+        let dialogConfig = Object.assign({ width: "1000px" },{ data: {} })
+        let editDialogRef = this.dialog.open(DispatcherformComponent, dialogConfig);
+        editDialogRef.afterClosed().subscribe((data) => {
+          console.log(data)
+          if(data == null){}else{
+            this.getDispatcherData()        
+          }
+        })
       }
 }
 

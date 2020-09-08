@@ -10,12 +10,12 @@ import { AuthHeaderService } from '../authheader.service';
 
 export class DashboardService{
     public url: string;
+    
 
     constructor(private http: Http,
         private headerService: AuthHeaderService
     ) {
         this.url = environment.dashboardurl;
-
     }
 
     
