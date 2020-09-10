@@ -45,16 +45,16 @@ export class CompanyformComponent implements OnInit {
   	this.pageFilters = new CompanyFilters();
     this.pageFilters.currency='Select currency'
 
-    // if(this.datatype == undefined){
-    //   // this.pageFilters=this.Customerslistdata
-    //   this.mode=true
-    //   this.showAddOption=true
-    // }else{
-    //   this.pageFilters=this.datatype
-    //   this.mode=this.datatype['EditMode']   
-    //   this.showAddOption=false  
-    //   this.showAddOption=false     
-    // }
+    if(this.datatype == undefined){
+      // this.pageFilters=this.Customerslistdata
+      this.mode=true
+      this.showAddOption=true
+    }else{
+      this.pageFilters=this.datatype
+      this.mode=this.datatype['EditMode']   
+      this.showAddOption=false  
+      this.showAddOption=false     
+    }
     this.pageFiltersshow=true;
     this.getroles()
 }
