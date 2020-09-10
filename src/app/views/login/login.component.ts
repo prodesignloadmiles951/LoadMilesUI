@@ -25,11 +25,20 @@ export class LoginComponent {
     this.isLogin=true;
     this._loginsevice.Login(this.Email,this.Password).subscribe(data => {
       this.isLogin=false;
-      this.authenticate.setLogin(data)
-      this.router.navigateByUrl("dashboard");
+      if (data && data.company) {
+          localStorage.setItem('selectedCompany', data.company._id);
+          localStorage.setItem('role', JSON.stringify(data.role));
+          localStorage.setItem('selectedCompanyName', data.company.companyname);
+          localStorage.setItem('userId', data._id);
+          this.authenticate.setLogin(data);
+          this.router.navigateByUrl("dashboard");
+      } else {
+        this.isLogin=false;
+        this._toaster.error("Invalid UserId and Password","Faild");
+      }
     },error=>{
       this.isLogin=false;
-      this._toaster.error("Invalid UserId and Password","Faild")
+      this._toaster.error("Invalid UserId and Password","Faild");
     });
   }
 }
