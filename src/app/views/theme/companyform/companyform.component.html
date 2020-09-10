@@ -81,12 +81,6 @@
           <div class="col-md-8">
             <input type="number" class="form-control" placeholder="Ex: 012 345 6789" id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" [pattern]="'^[1-9][0-9]*$'" minlength="10" maxlength="10" required>
             <div *ngIf="phone.errors && (phone.dirty || phone.touched)" style="font-size: smaller;">
-              <!-- <div [hidden]="!phone.errors.required">
-                  <span style="color: red;">Phone must be in Numbers</span>
-                </div> -->
-              <!-- <div [hidden]="!phone.errors?.pattern">
-                  <span style="color: red;">Enter Numbers only</span>
-                </div> -->
               <div *ngIf="phone.errors.maxlength || phone.errors.minlength">
                 <span style="color: red;">Phone Number must be 10 digits</span>
               </div>
@@ -98,12 +92,6 @@
           <div class="col-md-8">
             <input type="number" class="form-control" id="fax" #fax="ngModel" name="fax" [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" required>
             <div *ngIf="fax.errors && (fax.dirty || fax.touched)" style="font-size: smaller;">
-              <!-- <div [hidden]="!fax.errors.required">
-                  <span style="color: red;">Fax must be Number</span>
-                </div>
-                <div [hidden]="!fax.errors?.pattern">
-                  <span style="color: red;">Enter Numbers only</span>
-                </div> -->
             </div>
           </div>
         </div>
@@ -168,7 +156,7 @@
       </div>
     </div>
   </div>
-<div class="col-md-12">
+<div *ngIf="showusertable" class="col-md-12">
 	<mat-accordion>
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header class="card-header">
@@ -186,40 +174,17 @@
           </dxo-editing>
           <dxo-selection mode="single"></dxo-selection>
           <dxi-column dataField="firstname" caption="First name"></dxi-column>
-          <dxi-column dataField="middlename" caption="Middle name"></dxi-column>
           <dxi-column dataField="lastname" caption="Last name"></dxi-column>
           <dxi-column dataField="email" caption="Email"></dxi-column>
-          <dxi-column dataField="title" caption="Title"></dxi-column>
-          <dxi-column dataField="type" caption="Role">
-            <dxo-lookup [dataSource]="roleArray" displayExpr="Name" valueExpr="ID">
+          <dxi-column dataField="password" caption="Password"></dxi-column>
+          <dxi-column dataField="username" caption="Username"></dxi-column>
+          <dxi-column dataField="roleType" caption="Role">
+            <dxo-lookup [dataSource]="roleArray" displayExpr="name" valueExpr="ID">
             </dxo-lookup>
           </dxi-column>
         </dx-data-grid>
       </div>
     </div>
-    <!-- <div class="dx-viewport">
-      <div class="grid-container">
-        <dx-data-grid id="grid" #grid [dataSource]="usermanagementdata" [showBorders]="true" [allowColumnReordering]="true" [allowColumnResizing]="false" [columnAutoWidth]="true" [remoteOperations]="true">
-          <dxo-column-chooser [enabled]="false"></dxo-column-chooser>
-          <dxo-filter-row [visible]="false"></dxo-filter-row>
-          <dxo-header-filter [visible]="true"></dxo-header-filter>
-          <dxo-paging [pageSize]="10"></dxo-paging>
-          <dxo-state-storing [enabled]="true" type="localStorage" storageKey="jobstorage"></dxo-state-storing>
-          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10,15, 20]" [showInfo]="true">
-          </dxo-pager>
-          <dxo-selection mode="single"></dxo-selection>
-          <dxi-column dataField="firstname" dataType="date" caption="First name"></dxi-column>
-          <dxi-column dataField="middlename" caption="Middle name"></dxi-column>
-          <dxi-column dataField="lastname" caption="Last name"></dxi-column>
-          <dxi-column dataField="email" caption="Email"></dxi-column>
-          <dxi-column dataField="title" caption="Title"></dxi-column>
-          <dxi-column dataField="action" caption="Action" cellTemplate="actionTemplate"></dxi-column>
-          <div *dxTemplate="let element of 'actionTemplate'">
-            <button (click)="onEdit()">Edit</button>
-          </div>
-        </dx-data-grid>
-      </div>
-    </div> -->
   </mat-expansion-panel>
 </mat-accordion>
 </div>

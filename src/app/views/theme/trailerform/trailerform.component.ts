@@ -33,6 +33,8 @@ export class TrailerformComponent implements OnInit {
     filedata={}
     showviewedit=false
     SelectedTrailer= true;
+    showupdate=false
+    showsubmit=false
 
   constructor(
     public dialogRef: MatDialogRef < TrailerformComponent > ,
@@ -48,11 +50,15 @@ export class TrailerformComponent implements OnInit {
       this.mode=true
       this.showAddOption=true
       this.SelectedTrailer=false
+      this.showsubmit=true
     }else{
       this.mode=this.data['EditMode'] 
       this.pageFilters=this.data
       this.showAddOption=this.data['EditMode'] 
       this.maintenancedata.push(this.data.maintenanceinfo)
+      if(this.data['EditMode']=true){
+        this.showupdate=true
+      }
     }
      this.pageFiltersshow=true 
      this.categoryDetails=[
@@ -147,6 +153,15 @@ export class TrailerformComponent implements OnInit {
       console.log(this.truckdata)
     });
   }
+  update() {
+     this._trailersService.EditTrailers(this.data).subscribe(res => {
+         this._toaster.info("Trailer Data Updated successfully","Success", {timeOut: 3000,});
+         this.dialogRef.close(null)
+         },error=>{
+          this._toaster.error("Trailer Data Not Updated","Failed", {timeOut: 2000,});
+          this.dialogRef.close(null)
+     })
+   }
   submit() {
     if(localStorage.selectedCompany == undefined){
        this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});

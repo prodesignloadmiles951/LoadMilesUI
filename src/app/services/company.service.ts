@@ -12,9 +12,11 @@ export class CompanyService {
     
     companyurl: string;
     URL:string;
+    roleurl: string;
     constructor(private http: Http, private _headerService:AuthHeaderService){
         this.companyurl=environment.companyurl;
         this.URL=environment.url;
+        this.roleurl= environment.roledetailsUrl
     }
 
     SendForm(pageFilters: CompanyFilters){
@@ -40,5 +42,9 @@ export class CompanyService {
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
         return this.http.post(this.URL+'roleapi/role',obj,options)
         .pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+      }
+      getRoleData(){
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.get(this.roleurl,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
 }

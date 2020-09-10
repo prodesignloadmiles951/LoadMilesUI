@@ -30,6 +30,8 @@ export class CustomerformComponent implements OnInit {
     filedata={}
     showviewedit=false
     selectedCustomer=true
+    showupdate=false
+    showsubmit=false
 
   constructor(public dialogRef: MatDialogRef < CustomerformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -40,11 +42,15 @@ export class CustomerformComponent implements OnInit {
       this.mode=true
       this.showAddOption=true
       this.selectedCustomer=false
+      this.showsubmit=true
     }else{
       this.mode=this.data['EditMode'] 
       this.pageFilters=this.data
       this.showAddOption=this.data['EditMode'] 
       this.customerdata.push(this.data.contactinfodata)
+      if(this.data['EditMode']=true){
+        this.showupdate=true
+      }
     }
     this.pageFiltersshow=true;
   }
@@ -112,6 +118,15 @@ export class CustomerformComponent implements OnInit {
   }
   hidePopup(){
      this.dialogRef.close(null)
+   }
+   update() {
+     this._customersservice.EditCustomers(this.data).subscribe(res => {
+         this._toaster.info("Customer Data Updated successfully","Success", {timeOut: 3000,});
+         this.dialogRef.close(null)
+         },error=>{
+          this._toaster.error("Customer Data Not Updated","Failed", {timeOut: 2000,});
+          this.dialogRef.close(null)
+     })
    }
 
    submit() {

@@ -21,7 +21,8 @@ export const environment = {
   dropoffform: 'http://54.166.101.176:8081/dropoffapi/dropoff',
   // uploadUrl:'http://ec2-54-166-101-176.compute-1.amazonaws.com:8081/fileapi/file'
   uploadUrl:'http://54.166.101.176:8081/fileapi/file',
-  postalcodeUrl:'http://54.166.101.176:8081/fileapi/postal_code?postal_code='
+  postalcodeUrl:'http://54.166.101.176:8081/fileapi/postal_code?postal_code=',
+  roledetailsUrl: 'http://54.166.101.176:8081/roleapi/role'
   
 
   // url:"http://localhost:62585/api/",

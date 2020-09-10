@@ -34,6 +34,8 @@ export class DriverformComponent implements OnInit {
   filedata={}
   showviewedit=false
   selectedDriver=true
+  showupdate=false
+  showsubmit=false
 
   constructor(public dialogRef: MatDialogRef < DriverformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -45,12 +47,16 @@ export class DriverformComponent implements OnInit {
       this.mode=true
       this.showAddOption=true
       this.selectedDriver=false
+      this.showsubmit=true
     }else{
       this.mode=this.data['EditMode'] 
       this.pageFilters=this.data
       this.showAddOption=this.data['EditMode'] 
       this.drugandmedicaldata.push(this.data.drugdata)
       this.payratedata.push(this.data.payrate)
+      if(this.data['EditMode']=true){
+        this.showupdate=true
+      }
     }
 
 
@@ -153,6 +159,15 @@ export class DriverformComponent implements OnInit {
     ondelete(data){
       this.finalArry.splice(data,1)
     }
+    update() {
+     this._driverService.EditDrivers(this.data).subscribe(res => {
+         this._toaster.info("Driver Data Updated successfully","Success", {timeOut: 3000,});
+         this.dialogRef.close(null)
+         },error=>{
+          this._toaster.error("Driver Data Not Updated","Failed", {timeOut: 2000,});
+          this.dialogRef.close(null)
+     })
+   }
 
    submit() {
      if(localStorage.selectedCompany == undefined){

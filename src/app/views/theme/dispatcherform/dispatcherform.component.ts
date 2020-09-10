@@ -35,6 +35,8 @@ export class DispatcherformComponent implements OnInit {
     filedata={}
     showviewedit=false
     selectedDispatcher=true
+    showupdate=false
+    showsubmit=false
 
   constructor(public dialogRef: MatDialogRef < DispatcherformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -46,6 +48,7 @@ export class DispatcherformComponent implements OnInit {
       this.mode=true
       this.showAddOption=true
       this.selectedDispatcher=false
+      this.showsubmit=true
     }else{
       this.mode=this.data['EditMode'] 
       this.pageFilters=this.data
@@ -54,6 +57,9 @@ export class DispatcherformComponent implements OnInit {
       this.terminationdate= new Date(this.data['terminationdate'])
       this.hiredate= new Date(this.data['hiredate'])
       this.dateofbirth= new Date(this.data['dateofbirth'])
+      if(this.data['EditMode']=true){
+        this.showupdate=true
+      }
     }
 
     this.pageFiltersshow=true
@@ -152,6 +158,15 @@ export class DispatcherformComponent implements OnInit {
   }
   hidePopup(){
      this.dialogRef.close(null)
+   }
+   update() {
+     this._dispatcherService.EditDispatcher(this.data).subscribe(res => {
+         this._toaster.info("Dispatcher Data Updated successfully","Success", {timeOut: 3000,});
+         this.dialogRef.close(null)
+         },error=>{
+          this._toaster.error("Dispatcher Data Not Updated","Failed", {timeOut: 2000,});
+          this.dialogRef.close(null)
+     })
    }
 
   submit() {

@@ -40,6 +40,8 @@ export class CarrierformComponent implements OnInit {
     filedata={}
     showviewedit=false
     selectedCarrier=true
+    showupdate=false
+    showsubmit=false
 
   constructor(public dialogRef: MatDialogRef < CarrierformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -51,6 +53,7 @@ export class CarrierformComponent implements OnInit {
       this.mode=true
       this.showAddOption=true
       this.selectedCarrier=false
+      this.showsubmit=true
     }else{
       this.mode=this.data['EditMode'] 
       this.pageFilters=this.data
@@ -64,6 +67,9 @@ export class CarrierformComponent implements OnInit {
         this.pageFilters['hazmatcertified']=0
       }else{
         this.pageFilters['hazmatcertified']=1
+      }
+      if(this.data['EditMode']=true){
+        this.showupdate=true
       }
     }
 
@@ -209,6 +215,15 @@ export class CarrierformComponent implements OnInit {
   }
   hidePopup(){
      this.dialogRef.close(null)
+   }
+   update() {
+     this._carrierService.EditCarrier(this.data).subscribe(res => {
+         this._toaster.info("Carrier Data Updated successfully","Success", {timeOut: 3000,});
+         this.dialogRef.close(null)
+         },error=>{
+          this._toaster.error("Carrier Data Not Updated","Failed", {timeOut: 2000,});
+          this.dialogRef.close(null)
+     })
    }
 
    submit() {

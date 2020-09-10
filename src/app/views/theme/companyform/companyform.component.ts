@@ -3,6 +3,8 @@ import { CompanyFilters } from '../../../model/companydetails';
 import { CompanyService } from '../../../services/company.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { LoginUser } from '../../../model/loginuser';
+import { AuthenticationService } from '../../../views/authentication.service';
 
 @Component({
   selector: 'app-companyform',
@@ -12,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class CompanyformComponent implements OnInit {
 	  public pageFilters: CompanyFilters;
+    public loginUser: LoginUser;
 	  Companylistdata = new Array<CompanyFilters>();
 	  submitted: boolean;
 	  data: any;
@@ -22,42 +25,39 @@ export class CompanyformComponent implements OnInit {
 	  model: any = {};
 	  usermanagementdata= [];
     showAddOption=false
-    roleArray=[
-       {
-            "ID": 0,
-            "Name": "Admin"
-        },
-        {
-            "ID": 1,
-            "Name": "Dispatcher"
-        },
-        {
-            "ID": 2,
-            "Name": "Driver"
-        }
-    ]
+    roleArray=[]
+    showusertable=false
+   
 
   constructor(private _toaster: ToastrService,
      private _companyservice: CompanyService,
+     private authService: AuthenticationService,
      private router: Router) { }
 
   ngOnInit() {
+    if (this.authService.getloginUser()) {
+      this.loginUser = this.authService.getloginUser();
+      if (this.loginUser['role']['name'] == 'Admin') {
+         this.showusertable = true
+      }
+    }
+
   	this.pageFilters = new CompanyFilters();
     this.pageFilters.currency='Select currency'
 
-    console.log(this.datatype)
-    if(this.datatype == undefined){
-      // this.pageFilters=this.Customerslistdata
-      this.mode=true
-      this.showAddOption=true
-    }else{
-      this.pageFilters=this.datatype
-      this.mode=this.datatype['EditMode']   
-      this.showAddOption=false  
-      this.showAddOption=false     
-    }
+    // if(this.datatype == undefined){
+    //   // this.pageFilters=this.Customerslistdata
+    //   this.mode=true
+    //   this.showAddOption=true
+    // }else{
+    //   this.pageFilters=this.datatype
+    //   this.mode=this.datatype['EditMode']   
+    //   this.showAddOption=false  
+    //   this.showAddOption=false     
+    // }
     this.pageFiltersshow=true;
-  }
+    this.getroles()
+}
 
    submit() {
      if(localStorage.selectedCompany == undefined){
@@ -75,27 +75,38 @@ export class CompanyformComponent implements OnInit {
       });
      }
    }
+
+   getroles(){
+      this._companyservice.getRoleData().subscribe(res => {
+       console.log(res)
+       for (var i = 0; i < res.length; i++) {
+         res[i]['ID']=i
+       }
+       this.roleArray=res
+      })
+  }
+
    onAdd(e){
      var addObj=e.data
      if(localStorage.selectedCompany == undefined){
        this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
      }else{
+       addObj['company']=localStorage.selectedCompany
        for (var i = 0; i < this.roleArray.length; i++) {
-         if(addObj.type == this.roleArray[i]['ID']){
-           addObj['role']=this.roleArray[i]['Name']
-           break
+         if(addObj['roleType'] == this.roleArray[i]['ID']){
+           addObj['role']=this.roleArray[i]['_id']
+           break          
          }
        }
-       addObj['companyid']=localStorage.selectedCompany
-       delete addObj['type']
        delete addObj['__KEY__']
+       delete addObj['roleType']
        console.log(addObj)
-       this._companyservice.onCreateRole(addObj).subscribe(res => {
-           console.log(res)
-          this._toaster.info("Userrole Data Submitted","Success", {timeOut: 3000,});
-        },error=>{
-          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
-        });       
+       // this._companyservice.onCreateRole(addObj).subscribe(res => {
+       //     console.log(res)
+       //    this._toaster.info("Userrole Data Submitted","Success", {timeOut: 3000,});
+       //  },error=>{
+       //    this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
+       //  });       
      }
    }
    onDelete(e){

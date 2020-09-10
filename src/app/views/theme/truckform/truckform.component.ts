@@ -42,7 +42,8 @@ export class TruckformComponent implements OnInit {
     truckfiledata={}
     URL=environment.uploadUrl
     SelectedTruck=true
-    
+    showupdate=false
+    showsubmit=false
 
   constructor(public dialogRef: MatDialogRef < TruckformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,private _trucksservice: TrucksService,
@@ -63,11 +64,15 @@ export class TruckformComponent implements OnInit {
       this.mode=true
       this.showAddOption=true
       this.SelectedTruck=false
+      this.showsubmit=true
     }else{
       this.mode=this.data['EditMode'] 
       this.pageFilters=this.data
       this.showAddOption=this.data['EditMode'] 
       this.maintenancedata.push(this.data.maintenancedata)
+      if(this.data['EditMode']=true){
+        this.showupdate=true
+      }
     }
     
     this.pageFiltersshow=true
@@ -147,7 +152,6 @@ export class TruckformComponent implements OnInit {
   getDriverData() {
         this._driverService.getDriversData().subscribe(data => {
           this.driverdata = data;
-          console.log(this.driverdata)
         });
       }
   getTrailerData() {
@@ -191,6 +195,15 @@ export class TruckformComponent implements OnInit {
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
        }
+   }
+   update() {
+     this._trucksservice.EditTrucks(this.data).subscribe(res => {
+         this._toaster.info("Truck Data Updated successfully","Success", {timeOut: 3000,});
+         this.dialogRef.close(null)
+         },error=>{
+          this._toaster.error("Truck Data Not Updated","Failed", {timeOut: 2000,});
+          this.dialogRef.close(null)
+     })
    }
    hidePopup(){
      this.dialogRef.close(null)
