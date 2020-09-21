@@ -115,33 +115,37 @@ export class TruckformComponent implements OnInit {
     }
   }
    
-  addfiles(e){
-      var finalArry=e.target.files
-      this.base64FileArray=[]
-      this.fileArray=finalArry
-        if(finalArry.length > 0){
-          for (var i = 0; i < finalArry.length; i++) {
-            var objFile={}
-            objFile['name']=finalArry[i]['name']
-            objFile['size']=finalArry[i]['size']
-            objFile['type']=finalArry[i]['type']
-            this.finalArry.push(objFile) 
-            const reader = new FileReader();
-            reader.onload = this.handleReaderLoaded.bind(this);
-            reader.readAsBinaryString(finalArry[i]);
-          }
-        sessionStorage.setItem('file_upload',JSON.stringify(this.finalArry))
-        this.finalArry=JSON.parse(sessionStorage.file_upload)
-      }
-  }
-  handleReaderLoaded(e,name) {
-    this.item=''
-    var string = btoa(e.target.result);
-    this.item= "data:application/vnd.ms-excel;base64,"+string
-    var obj={}
-    obj['file']=this.item
-    this.base64FileArray.push(obj)
-  }
+    async addfiles(e){
+        var finalArry=e.target.files
+        this.base64FileArray=[]
+        this.fileArray=finalArry
+          if(finalArry.length > 0){
+            for (let finalArray of finalArry) {
+              var objFile={}
+              objFile['name']=finalArray['name']
+              objFile['size']=finalArray['size']
+              objFile['type']=finalArray['type']
+              this.finalArry.push(objFile);
+              await this.readerFile(this, finalArray);
+            }
+          sessionStorage.setItem('file_upload',JSON.stringify(this.finalArry))
+          this.finalArry=JSON.parse(sessionStorage.file_upload)
+        }
+    }
+
+    async readerFile (data, finalArray) {
+      const reader = new FileReader();
+      reader.onload = await this.handleReaderLoaded.bind(data);
+      reader.readAsBinaryString(finalArray);
+    }
+
+    handleReaderLoaded(e) {
+      this.item = '';
+      this.item = btoa(e.target.result);
+      var obj = {'file': this.item};
+      this.base64FileArray.push(obj);
+    }
+
     onUploadFile(){
       let arr3 = this.finalArry.map((item, i) => Object.assign({}, item, this.base64FileArray[i]));
       this._trucksservice.uploadFile(arr3).subscribe(response => {
