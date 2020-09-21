@@ -53,8 +53,17 @@ driverdata= [];
   }
 
   ngOnInit() {
-    if(this.data){
+    var pickup = JSON.parse(sessionStorage.getItem("Pickup"))
+    console.log(pickup)
+    console.log(this.data)
+    if(this.data['mode']){
       this.dropoff=this.data
+    }else if(pickup != undefined){
+      this.dropoff['type'] = pickup['type']
+      this.dropoff['driver1'] = pickup['driver1']
+      this.dropoff['driver2'] = pickup['driver2']
+      this.dropoff['truck'] = pickup['truck']
+      this.dropoff['trailer'] = pickup['trailer']      
     }
   	this.getDriverData()
     this.getTrailerData()
@@ -98,6 +107,8 @@ driverdata= [];
           "Name": "Completed"
       }
     ]
+
+    console.log(this.dropoff)
   }
   getDriverData() {
         this._driverService.getDriversData().subscribe(data => {
@@ -171,14 +182,14 @@ driverdata= [];
     this.debouncePostalCode(this.inputPostalCode)
     
   }
-  submitdropoff(dropoff){
+  submitdropoff(){
     var idArry=[]
         for (var i = 0; i < this.finalArry.length; ++i) {
           idArry.push(this.finalArry[i]._id)
         }
-        dropoff['files']=idArry
-        dropoff['zipcode']=this.inputPostalCode
-  	this.dialogRef.close(dropoff)
+        this.dropoff['files']=idArry
+        this.dropoff['zipcode']=this.inputPostalCode
+  	this.dialogRef.close(this.dropoff)
   }
    hidePopup(){
   	this.dialogRef.close(null)
@@ -198,4 +209,10 @@ driverdata= [];
             if (callNow) func.apply(context, args);
         };
     };
+    onPostalCodeSelect(option){
+    console.log(option)
+    this.dropoff['city']=option.city
+    this.dropoff['state']=option.state
+    this.dropoff['country']=option.country
+  }
 }

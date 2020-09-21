@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { DriverFilters } from '../../../model/driver';
 import { DriversService } from './../../../services/driver.service';
+import { TrailerService } from '../../../services/trailers.service';
 import { TrucksService } from '../../../services/trucks.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -10,7 +11,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   selector: 'app-driverform',
   templateUrl: './driverform.component.html',
   styleUrls: ['./driverform.component.scss'],
-  providers: [DriversService, TrucksService ]
+  providers: [DriversService, TrucksService, TrailerService ]
 })
 export class DriverformComponent implements OnInit {
   // public pageFilters: DriverFilters;
@@ -36,10 +37,13 @@ export class DriverformComponent implements OnInit {
   selectedDriver=true
   showupdate=false
   showsubmit=false
+  changeUplaod=true
+  editFileList=[]
+  btnHide=false
 
   constructor(public dialogRef: MatDialogRef < DriverformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,
-    private _driverService: DriversService,private _trucksservice: TrucksService, private _toaster: ToastrService,private router: Router) { }
+    private _driverService: DriversService,private _trailersService: TrailerService, private _trucksservice: TrucksService, private _toaster: ToastrService,private router: Router) { }
 
   ngOnInit() {
 
@@ -54,8 +58,10 @@ export class DriverformComponent implements OnInit {
       this.showAddOption=this.data['EditMode'] 
       this.drugandmedicaldata.push(this.data.drugdata)
       this.payratedata.push(this.data.payrate)
-      if(this.data['EditMode']=true){
+      this.changeUplaod=false
+      if(this.data['EditMode']){
         this.showupdate=true
+        this.editFileList=this.data['files']
       }
     }
 
@@ -85,6 +91,24 @@ export class DriverformComponent implements OnInit {
           "Name": "Fail"
       }
     ]
+
+    if(this.data['files'] != undefined){
+      this._trailersService.getFileList().subscribe(response => {
+          console.log(response)
+          this.editFileList=[]
+          var fileArray=response.data
+          fileArray.forEach(element => {
+            var arr=this.data['files']
+            for (var i = 0; i < arr.length; i++) {
+              if(element['_id'] == arr[i]){
+                this.editFileList.push(element)
+              }            
+            }
+          });        
+        },error=>{
+          console.log(error)
+        });
+    }
   }
 
   onpayrateAdd(eventName) {
@@ -98,6 +122,10 @@ export class DriverformComponent implements OnInit {
       console.log(data)
     });
   }
+  onpayrateEdit(eventName){
+    this.payrateinfodata = eventName.key
+    console.log(this.payrateinfodata)
+  }
 
   ondrugAdd(eventName) {
       console.log(eventName.key) 
@@ -108,6 +136,10 @@ export class DriverformComponent implements OnInit {
     this._driverService.DeleteDrivers(eventName.key).subscribe(data => {
       console.log(data)
     });
+  }
+  ondrugEdit(eventName){
+     console.log(eventName.key) 
+    this.drugdata = eventName.key
   }
 
     addfiles(e){
@@ -160,40 +192,74 @@ export class DriverformComponent implements OnInit {
       this.finalArry.splice(data,1)
     }
     update() {
+      if(this.editFileList.length > 0){
+      var array = this.finalArry.concat(this.editFileList);
+      var idArry=[]
+        for (var i = 0; i < array.length; ++i) {
+          idArry.push(array[i]._id)
+        }
+      this.data['files']=idArry
+    }
+    if(this.finalArry.length > 0 && this.editFileList.length == 0){
+     var idArry=[]
+        for (var i = 0; i < this.finalArry.length; ++i) {
+          idArry.push(this.finalArry[i]._id)
+        }
+     this.data['files']=idArry
+    }
+    if(this.data['payrate'] == undefined){
+     this.data['payrate']=this.payrateinfodata
+    }
+    if(this.data['drugdata'] == undefined){
+     this.data['drugdata']=this.drugdata
+    }
+     console.log(this.data)
+     if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
+          this.btnHide=true
      this._driverService.EditDrivers(this.data).subscribe(res => {
          this._toaster.info("Driver Data Updated successfully","Success", {timeOut: 3000,});
-         this.dialogRef.close(null)
+         this.btnHide=false
+         this.dialogRef.close(res)
          },error=>{
           this._toaster.error("Driver Data Not Updated","Failed", {timeOut: 2000,});
           this.dialogRef.close(null)
      })
+   }else{
+     this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
+   }
    }
 
    submit() {
-     if(localStorage.selectedCompany == undefined){
-       this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
-     }else{
-        this.submitted = true;
-        var Driverlistdata:any=this.pageFilters
-        Driverlistdata['payrate']=this.payrateinfodata
-        Driverlistdata['drugdata']=this.drugdata
-        Driverlistdata['companyid']=localStorage.selectedCompany
-        var idArry=[]
-        for (var i = 0; i < this.finalArry.length; ++i) {
-          idArry.push(this.finalArry[i]._id)
-        }
-        Driverlistdata['files']=idArry
-        this._driverService.SendForm(Driverlistdata).subscribe(response => {
-          this.submitted = true;
-          this._toaster.info("Driver Data Submitted","Success", {timeOut: 3000,});
-         this.router.navigateByUrl("theme/driver-list");
-        },error=>{
-          this.submitted=false;
-          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
-        });
-       }
-     }
-     hidePopup(){
+           if(localStorage.selectedCompany == undefined){
+             this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+           }else{
+              this.submitted = true;
+              var Driverlistdata:any=this.pageFilters
+              Driverlistdata['payrate']=this.payrateinfodata
+              Driverlistdata['drugdata']=this.drugdata
+              Driverlistdata['companyid']=localStorage.selectedCompany
+              var idArry=[]
+              for (var i = 0; i < this.finalArry.length; ++i) {
+                idArry.push(this.finalArry[i]._id)
+              }
+              Driverlistdata['files']=idArry
+              if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
+                this.btnHide=true
+              this._driverService.SendForm(Driverlistdata).subscribe(response => {
+                this.submitted = true;
+                this._toaster.info("Driver Data Submitted","Success", {timeOut: 3000,});
+                this.btnHide=false
+                this.dialogRef.close(response)
+              },error=>{
+                this.submitted=false;
+                this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
+              });
+            }else{
+           this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
+         }
+             }
+           }
+    hidePopup(){
      this.dialogRef.close(null)
    }
 }

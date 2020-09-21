@@ -9,6 +9,7 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
+import { CompanyregisterComponent } from './views/companyregister/companyregister.component'
 
 export const routes: Routes = [
   {
@@ -54,6 +55,13 @@ export const routes: Routes = [
     component: RegisterComponent,
     data: {
       title: 'Register Page'
+    }
+  },
+  {
+    path: 'companyregister',
+    component: CompanyregisterComponent,
+    data: {
+      title: 'Company Register Page'
     }
   },
   {

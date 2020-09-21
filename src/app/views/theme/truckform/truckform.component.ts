@@ -44,6 +44,9 @@ export class TruckformComponent implements OnInit {
     SelectedTruck=true
     showupdate=false
     showsubmit=false
+    changeUplaod=true
+    editFileList=[]
+    btnHide=false
 
   constructor(public dialogRef: MatDialogRef < TruckformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,private _trucksservice: TrucksService,
@@ -70,8 +73,10 @@ export class TruckformComponent implements OnInit {
       this.pageFilters=this.data
       this.showAddOption=this.data['EditMode'] 
       this.maintenancedata.push(this.data.maintenancedata)
-      if(this.data['EditMode']=true){
+      this.changeUplaod=false
+      if(this.data['EditMode']){
         this.showupdate=true
+        this.editFileList=this.data['files']
       }
     }
     
@@ -90,6 +95,24 @@ export class TruckformComponent implements OnInit {
           "Name": "Rebuild"
       }
     ]
+
+    if(this.data['files'] != undefined){
+      this._trailersService.getFileList().subscribe(response => {
+          console.log(response)
+          this.editFileList=[]
+          var fileArray=response.data
+          fileArray.forEach(element => {
+            var arr=this.data['files']
+            for (var i = 0; i < arr.length; i++) {
+              if(element['_id'] == arr[i]){
+                this.editFileList.push(element)
+              }            
+            }
+          });        
+        },error=>{
+          console.log(error)
+        });
+    }
   }
    
   addfiles(e){
@@ -186,6 +209,8 @@ export class TruckformComponent implements OnInit {
           idArry.push(this.finalArry[i]._id)
         }
         Truckslistdata['files']=idArry
+        if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
+          this.btnHide=true
         this._trucksservice.SendForm(Truckslistdata).subscribe(response => {
           this.submitted = true;
           this._toaster.info("Truck Data Submitted","Success", {timeOut: 3000,});
@@ -194,16 +219,44 @@ export class TruckformComponent implements OnInit {
           this.submitted=false;
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
+      }else{
+        this._toaster.error("Enter VIN Details","Failed", {timeOut: 2000,});
        }
+      }
    }
    update() {
-     this._trucksservice.EditTrucks(this.data).subscribe(res => {
+     if(this.editFileList.length > 0){
+      var array = this.finalArry.concat(this.editFileList);
+      var idArry=[]
+        for (var i = 0; i < array.length; ++i) {
+          idArry.push(array[i]._id)
+        }
+      this.data['files']=idArry
+    }
+    if(this.finalArry.length > 0 && this.editFileList.length == 0){
+     var idArry=[]
+        for (var i = 0; i < this.finalArry.length; ++i) {
+          idArry.push(this.finalArry[i]._id)
+        }
+     this.data['files']=idArry
+    }
+    if(this.data['maintenancedata'] == undefined){
+     this.data['maintenancedata']=this.maintenanceinfodata
+    }
+     console.log(this.data)
+     if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
+       this.btnHide=true
+       this._trucksservice.EditTrucks(this.data).subscribe(res => {
+         this.btnHide=false
          this._toaster.info("Truck Data Updated successfully","Success", {timeOut: 3000,});
+         this.dialogRef.close(res)
+       },error=>{
+         this._toaster.error("Truck Data Not Updated","Failed", {timeOut: 2000,});
          this.dialogRef.close(null)
-         },error=>{
-          this._toaster.error("Truck Data Not Updated","Failed", {timeOut: 2000,});
-          this.dialogRef.close(null)
-     })
+       })
+     }else{
+       this._toaster.error("Enter VIN Details","Failed", {timeOut: 2000,});
+     }
    }
    hidePopup(){
      this.dialogRef.close(null)

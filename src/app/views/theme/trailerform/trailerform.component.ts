@@ -35,6 +35,9 @@ export class TrailerformComponent implements OnInit {
     SelectedTrailer= true;
     showupdate=false
     showsubmit=false
+    changeUplaod=true
+    editFileList=[]
+    btnHide=false
 
   constructor(
     public dialogRef: MatDialogRef < TrailerformComponent > ,
@@ -42,7 +45,6 @@ export class TrailerformComponent implements OnInit {
     private _trailersService: TrailerService, private _trucksservice: TrucksService, private _driverService: DriversService, private _toaster: ToastrService, private router: Router) { }
 
   ngOnInit() {
-    this.getDriverData()
     this.getTruckData()
   	console.log(this.data)
 
@@ -56,8 +58,10 @@ export class TrailerformComponent implements OnInit {
       this.pageFilters=this.data
       this.showAddOption=this.data['EditMode'] 
       this.maintenancedata.push(this.data.maintenanceinfo)
-      if(this.data['EditMode']=true){
+      this.changeUplaod=false
+      if(this.data['EditMode']){
         this.showupdate=true
+        this.editFileList=this.data['files']
       }
     }
      this.pageFiltersshow=true 
@@ -75,6 +79,24 @@ export class TrailerformComponent implements OnInit {
           "Name": "Rebuild"
       }
     ]
+    if(this.data['files'] != undefined){
+      this._trailersService.getFileList().subscribe(response => {
+          console.log(response)
+          this.editFileList=[]
+          var fileArray=response.data
+          fileArray.forEach(element => {
+            var arr=this.data['files']
+            for (var i = 0; i < arr.length; i++) {
+              if(element['_id'] == arr[i]){
+                this.editFileList.push(element)
+              }            
+            }
+          });        
+        },error=>{
+          console.log(error)
+        });
+    }
+
   }
 
   addfiles(e){
@@ -95,6 +117,7 @@ export class TrailerformComponent implements OnInit {
         sessionStorage.setItem('file_upload',JSON.stringify(this.finalArry))
         this.finalArry=JSON.parse(sessionStorage.file_upload)
       }
+      console.log(this.finalArry)
   }
   handleReaderLoaded(e,name) {
     this.item=''
@@ -125,6 +148,7 @@ export class TrailerformComponent implements OnInit {
     }
     ondelete(data){
       this.finalArry.splice(data,1)
+      console.log(this.finalArry)
     }
     hidePopup(){
      this.dialogRef.close(null)
@@ -141,12 +165,7 @@ export class TrailerformComponent implements OnInit {
       console.log(data)
     });
   }
-  getDriverData() {
-        this._driverService.getDriversData().subscribe(data => {
-          this.driverdata = data;
-          console.log(this.driverdata)
-        });
-      }
+ 
   getTruckData() {
     this._trucksservice.getTrucksData().subscribe(data => {
       this.truckdata = data;
@@ -154,13 +173,38 @@ export class TrailerformComponent implements OnInit {
     });
   }
   update() {
+    if(this.editFileList.length > 0){
+      var array = this.finalArry.concat(this.editFileList);
+      var idArry=[]
+        for (var i = 0; i < array.length; ++i) {
+          idArry.push(array[i]._id)
+        }
+      this.data['files']=idArry
+    }
+    if(this.finalArry.length > 0 && this.editFileList.length == 0){
+     var idArry=[]
+        for (var i = 0; i < this.finalArry.length; ++i) {
+          idArry.push(this.finalArry[i]._id)
+        }
+     this.data['files']=idArry
+    }
+    if(this.data['maintenanceinfo'] == undefined){
+     this.data['maintenanceinfo']=this.maintenanceformdata
+    }
+     console.log(this.data)
+     if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
+     this.btnHide=true
      this._trailersService.EditTrailers(this.data).subscribe(res => {
          this._toaster.info("Trailer Data Updated successfully","Success", {timeOut: 3000,});
-         this.dialogRef.close(null)
+         this.btnHide=false
+         this.dialogRef.close(res)
          },error=>{
           this._toaster.error("Trailer Data Not Updated","Failed", {timeOut: 2000,});
           this.dialogRef.close(null)
      })
+     }else{
+       this._toaster.error("Enter VIN Details","Failed", {timeOut: 2000,});
+     }
    }
   submit() {
     if(localStorage.selectedCompany == undefined){
@@ -175,14 +219,21 @@ export class TrailerformComponent implements OnInit {
           idArry.push(this.finalArry[i]._id)
         }
         Trailerslistdata['files']=idArry
+        if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
+        this.btnHide=true
         this._trailersService.SendForm(Trailerslistdata).subscribe(response => {
           this.submitted = true;
           this._toaster.info("Trailer Data Submitted","Success", {timeOut: 3000,});
-         this.router.navigateByUrl("theme/trailers-list");
+          this.btnHide=false
+          this.dialogRef.close(response)
+          // this.router.navigateByUrl("theme/trailers-list");
         },error=>{
           this.submitted=false;
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
+      }else{
+        this._toaster.error("Enter VIN Details","Failed", {timeOut: 2000,});
        }
+      }
      }
 }

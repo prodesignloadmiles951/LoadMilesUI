@@ -58,7 +58,7 @@
   </ul>
 </app-header>
 <div class="app-body">
-  <app-sidebar [fixed]="true" [display]="'lg'">
+  <app-sidebar [fixed]="true" [display]="'lg'"> 
     <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
     <app-sidebar-minimizer></app-sidebar-minimizer>
   </app-sidebar>
@@ -69,17 +69,18 @@
     <!-- <cui-breadcrumb> -->
     <!-- Breadcrumb Menu-->
     <div class="col-md-12" style="display: flex; justify-content: space-between;">
-      <div class="col-md-3">
+      <div class="col-md-3" *ngIf="router.url != '/theme/company'">
         <mat-form-field>
           <mat-select [(ngModel)]="selectedCompany" name="cmp" placeholder="Select Company">
-            <mat-option *ngFor="let cmp of data" [value]="cmp.companyname" (click)="companyselected(cmp)">
+            <mat-option *ngFor="let cmp of companylinkeddata" [value]="cmp.companyname" (click)="companyselected(cmp)">
               {{cmp.companyname}}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
+      <div class="col-md-3" *ngIf="router.url == '/theme/company'"></div>
       <div class="col-md-5">
-        <li class="d-md-down-none" style="list-style-type: none; text-align: end;">
+        <li class="d-md-down-none" style="list-style-type: none; text-align: end; padding-bottom: 1.25rem;">
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <a class="btn" href="#"><i class="icon-speech"></i></a>
             <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>

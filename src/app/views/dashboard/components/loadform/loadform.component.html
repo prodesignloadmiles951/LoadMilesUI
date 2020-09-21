@@ -9,10 +9,10 @@
             <div class="col-md-5">
               <select class="form-control" id="customer" name="customer" [(ngModel)]="newloadfilters.customer">
                 <option value="Select customer" disabled selected hidden>Select custumer</option>
-                <option *ngFor="let cmp of companydata" value="0">{{cmp.companyname}}</option>
+                <option *ngFor="let cmp of customerdata" value="0">{{cmp.companyname}}</option>
               </select>
             </div>
-            <div class="col-md-3 no-padding" (click)="Addcompany()">
+            <div class="col-md-3 no-padding" (click)="Addcustomer()">
               <a href="javascript:void(0)" style="text-decoration: none"><small style="margin: 0 0.2rem 0 0">Add New customer</small>
               <small><i class="fas fa-plus-circle"></i></small>
               <!-- <small><i class="fas fa-plus"></i></small> -->
@@ -112,7 +112,12 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="dispatcher">Dispatcher :</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="dispatcher" #dispatcher="ngModel" placeholder="Enter dispatcher" name="dispatcher" [(ngModel)]="newloadfilters.dispatcher">
+              <!-- <input type="text" class="form-control" id="dispatcher" #dispatcher="ngModel" placeholder="Enter dispatcher" name="dispatcher" [(ngModel)]="newloadfilters.dispatcher"> -->
+
+              <select class="form-control" name="dispatcher" [(ngModel)]="newloadfilters.dispatcher" [ngModelOptions]="{standalone: true}">
+                <option value="Select equipment type" disabled selected hidden >Select</option>
+                <option *ngFor="let cmp of dispatcherdata" value="{{cmp.firstname}}">{{cmp.firstname}}</option>
+              </select>
             </div>
           </div>
           <div class="form-group row">

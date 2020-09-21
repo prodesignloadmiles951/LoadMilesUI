@@ -61,13 +61,10 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="ssn">SSN <span style="color: red;">*</span> :</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ssn" name="ssn" #ssn="ngModel" [(ngModel)]="pageFilters.ssn" [pattern]="'^[1-9][0-9]*$'" required>
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ssn" name="ssn" #ssn="ngModel" [(ngModel)]="pageFilters.ssn" maxlength="9" required>
               <div *ngIf="ssn.errors && (ssn.dirty || ssn.touched)" style="font-size: smaller;">
                 <div [hidden]="!ssn.errors.required">
                   <span style="color: red;">SSN is Required</span>
-                </div>
-                <div [hidden]="!ssn.errors?.pattern">
-                  <span style="color: red;">Enter Numbers only</span>
                 </div>
               </div>
             </div>
@@ -128,14 +125,34 @@
               <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode" name="zipcode" #zipcode="ngModel" [(ngModel)]="pageFilters.zipcode">
             </div>
           </div>
-          <div class="form-group row">
-              <label for="file-upload"  [ngClass]="mode?'':'disble'" class="custom-file-upload">
+          <div class="form-group row" *ngIf="changeUplaod">
+              <label for="file-upload" *ngIf="mode"  [ngClass]="mode?'':'disble'" class="custom-file-upload">
                   <i class="fa fa-cloud-upload"></i> Upload
               </label>
               <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
               <div class="col-sm-12">
                 <div *ngFor="let data of finalArry;let i=index">
-                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="showviewedit" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="mode" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+                </div>
+              </div>
+              <div *ngIf="mode">
+                <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
+              </div>
+          </div>
+          <div class="form-group row" *ngIf="!changeUplaod">
+              <label class="col-md-4 col-form-label" for="notes" *ngIf="!mode">Uploaded File :</label>
+              <div class="col-sm-12" *ngIf="editFileList?.length > 0">
+                <div *ngFor="let data of editFileList;let i=index">
+                  {{data.name}} &nbsp;<span (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;
+                </div>
+              </div>
+              <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'" class="custom-file-upload">
+                  <i class="fa fa-cloud-upload"></i> Upload
+              </label>
+              <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
+              <div class="col-sm-12">
+                <div *ngFor="let data of finalArry;let i=index">
+                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
                 </div>
               </div>
               <div>
@@ -310,7 +327,7 @@
         </mat-expansion-panel-header>
         <div class="dx-viewport">
           <div class="grid-container">
-            <dx-data-grid #grid id="gridContainer" [dataSource]="payratedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onpayrateDelete($event)" (onRowInserted)="onpayrateAdd($event)">
+            <dx-data-grid #grid id="gridContainer" [dataSource]="payratedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onpayrateEdit($event)" (onRowRemoved)="onpayrateDelete($event)" (onRowInserted)="onpayrateAdd($event)">
               <dxo-paging [enabled]="false"></dxo-paging>
               <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
               </dxo-editing>
@@ -340,7 +357,7 @@
         </mat-expansion-panel-header>
         <div class="dx-viewport">
           <div class="grid-container">
-            <dx-data-grid #grid id="gridContainer" [dataSource]="drugandmedicaldata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="ondrugDelete($event)" (onRowInserted)="ondrugAdd($event)">
+            <dx-data-grid #grid id="gridContainer" [dataSource]="drugandmedicaldata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="ondrugEdit($event)" (onRowRemoved)="ondrugDelete($event)" (onRowInserted)="ondrugAdd($event)">
               <dxo-paging [enabled]="false"></dxo-paging>
               <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
               </dxo-editing>
@@ -361,10 +378,10 @@
   </div>
 </div>
 <div class="card-footer" *ngIf="showAddOption">
-  <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+  <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
     <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
     Submit</button>&nbsp;&nbsp;
-    <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="update()"><i class="fa fa-dot-circle-o"></i>
+    <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
     <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
     Update</button>&nbsp;&nbsp;
   <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>

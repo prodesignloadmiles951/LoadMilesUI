@@ -22,7 +22,8 @@ export const environment = {
   // uploadUrl:'http://ec2-54-166-101-176.compute-1.amazonaws.com:8081/fileapi/file'
   uploadUrl:'http://54.166.101.176:8081/fileapi/file',
   postalcodeUrl:'http://54.166.101.176:8081/fileapi/postal_code?postal_code=',
-  roledetailsUrl: 'http://54.166.101.176:8081/roleapi/role'
+  roledetailsUrl: 'http://54.166.101.176:8081/roleapi/role',
+  newcompanyurl: 'http://54.166.101.176:8081/userapi/user/company'
   
 
   // url:"http://localhost:62585/api/",

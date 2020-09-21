@@ -31,11 +31,11 @@
             <label class="col-md-4 col-form-label" for="trailertype">Trailer Type: <span style="color:red">*</span></label>
             <div class="col-md-8">
               <select class="form-control" placeholder="Select Trailer type" [ngClass]="mode?'':'disble'" id="trailertype" name="trailerType" #trailerType="ngModel" [(ngModel)]="pageFilters.trailerType">
-                <option value="0">Dry Van</option>
-                <option value="1">Reefer</option>
-                <option value="2">Flat Bed</option>
-                <option value="3">Step Deck</option>
-                <option value="4">Special</option>
+                <option value="Dry Van">Dry Van</option>
+                <option value="Reefer">Reefer</option>
+                <option value="Flat Bed">Flat Bed</option>
+                <option value="Step Deck">Step Deck</option>
+                <option value="Special">Special</option>
               </select>
             </div>
           </div>
@@ -105,9 +105,9 @@
         </div>
         <div class="card-body col-sm-6">
           <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="vin">Vin:</label>
+            <label class="col-md-4 col-form-label" for="vin">Vin:<span style="color:red">*</span></label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="vin" name="vin" #vin="ngModel" [(ngModel)]="pageFilters.vin">
+              <input type="text" [ngClass]="mode?'':'disble'" maxlength="15" class="form-control" id="vin" name="vin" #vin="ngModel" [(ngModel)]="pageFilters.vin">
             </div>
           </div>
           <div class="form-group row">
@@ -127,7 +127,7 @@
             <div class="col-md-8">
               <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.truck">
                 <option value="" disabled selected hidden>Truck</option>
-                <option *ngFor="let cmp of truckData" value="0">
+                <option *ngFor="let cmp of truckdata" value="0">
                   <span *ngIf="cmp.truckunitnumber">{{cmp.truckunitnumber}}</span>
                 </option>
               </select>
@@ -139,14 +139,34 @@
               <textarea [ngClass]="mode?'':'disble'" class="form-control" name="notes" [(ngModel)]="pageFilters.notes"></textarea>
             </div>
           </div>
-          <div class="form-group row">
-              <label for="file-upload"  [ngClass]="mode?'':'disble'" class="custom-file-upload">
+          <div class="form-group row" *ngIf="changeUplaod">
+              <label for="file-upload" *ngIf="mode"  [ngClass]="mode?'':'disble'" class="custom-file-upload">
                   <i class="fa fa-cloud-upload"></i> Upload
               </label>
               <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
               <div class="col-sm-12">
                 <div *ngFor="let data of finalArry;let i=index">
-                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="showviewedit" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="mode" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+                </div>
+              </div>
+              <div *ngIf="mode">
+                <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
+              </div>
+          </div>
+          <div class="form-group row" *ngIf="!changeUplaod">
+              <label class="col-md-4 col-form-label" for="notes" *ngIf="!mode">Uploaded File :</label>
+              <div class="col-sm-12" *ngIf="editFileList?.length > 0">
+                <div *ngFor="let data of editFileList;let i=index">
+                  {{data.name}} &nbsp;<span (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;
+                </div>
+              </div>
+              <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'" class="custom-file-upload">
+                  <i class="fa fa-cloud-upload"></i> Upload
+              </label>
+              <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
+              <div class="col-sm-12">
+                <div *ngFor="let data of finalArry;let i=index">
+                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
                 </div>
               </div>
               <div>
@@ -234,82 +254,7 @@
           </div>
         </mat-expansion-panel>
       </mat-accordion>
-   <!--  <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header class="card-header">
-          <mat-panel-title>
-            Maintanance Records
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div style="display: flex;">
-          <div class="card-body col-md-6">
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="category">Category:</label>
-              <div class="col-md-9">
-                <select [ngClass]="mode?'':'disble'" class="form-control" id="category" #category="ngModel" name="category" [(ngModel)]="pageFilters.category">
-                  <option value="0">Select</option>
-                  <option value="1">Option #1</option>
-                  <option value="2">Option #2</option>
-                  <option value="3">Option #3</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="description">Description:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="description" name="description" #description="ngModel" [(ngModel)]="pageFilters.description">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="statedate">Start Date:</label>
-              <div class="col-md-9">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="startdate" name="startDate" #startDate="ngModel" [(ngModel)]="pageFilters.startDate">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="startingmileage">Starting Mileage:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="startingmileage" name="startingMileage" #startingMileage="ngModel" [(ngModel)]="pageFilters.startingMileage">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="numberofmiles">Number of Miles:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="numberofmiles" name="noofMiles" #noofMiles="ngModel" [(ngModel)]="pageFilters.noofMiles">
-              </div>
-            </div>
-          </div>
-          <div class="card-body col-md-6">
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="nextservicemiles">Next Service Miles:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="nextservicemiles" name="nextServicemiles" #nextServicemiles="ngModel" [(ngModel)]="pageFilters.nextServicemiles">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="lastservicedate">Last Service Date:</label>
-              <div class="col-md-9">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="lastservicedate" name="lastServicedate" #lastServicedate="ngModel" [(ngModel)]="pageFilters.lastServicedate">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="nextservicedate">Next Service Date:</label>
-              <div class="col-md-9">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="nextservicedate" name="nextServicedate" #nextServicedate="ngModel" [(ngModel)]="pageFilters.nextServicedate">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="comments">Comments:</label>
-              <div class="col-md-9">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="comments" name="comments" #comments="ngModel" [(ngModel)]="pageFilters.comments">
-              </div>
-            </div>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion> -->
+   
 
     <mat-accordion>
       <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -429,10 +374,10 @@
   </div>
 </div>
  <div class="card-footer" *ngIf="showAddOption">
-    <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+    <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
       <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
       Submit</button>&nbsp;&nbsp;
-      <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="update()"><i class="fa fa-dot-circle-o"></i>
+      <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
     <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
     Update</button>&nbsp;&nbsp;
     <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>

@@ -40,7 +40,7 @@ export class CustomerslistComponent implements OnInit {
     viewData(customer) {
         var customerObj=customer
         customerObj['EditMode']=false
-        let dialogConfig = Object.assign({ width: "1000px" },{ data: customerObj })
+        let dialogConfig = Object.assign({ width: "1100px" },{ data: customerObj })
         let viewDialogRef = this.dialog.open(CustomerformComponent, dialogConfig);
         viewDialogRef.afterClosed().subscribe((data) => {
           console.log(data)
@@ -62,7 +62,7 @@ export class CustomerslistComponent implements OnInit {
       editData(customer) {
         var customerObj=customer
         customerObj['EditMode']=true
-        let dialogConfig = Object.assign({ width: "1000px" },{ data: customerObj })
+        let dialogConfig = Object.assign({ width: "1100px" },{ data: customerObj })
         let editDialogRef = this.dialog.open(CustomerformComponent, dialogConfig);
         editDialogRef.afterClosed().subscribe((data) => {
           console.log(data)
@@ -91,7 +91,7 @@ export class CustomerslistComponent implements OnInit {
       }
 
     Add() {
-        let dialogConfig = Object.assign({ width: "1000px" },{ data: {} })
+        let dialogConfig = Object.assign({ width: "1100px" },{ data: {} })
         let editDialogRef = this.dialog.open(CustomerformComponent, dialogConfig);
         editDialogRef.afterClosed().subscribe((data) => {
           console.log(data)

@@ -156,7 +156,7 @@ export class DropoffComponent implements OnInit {
   }
   onDropoffAdd(){
     this.dialog.open(DropoffpopupformComponent, {
-            data: {}
+            data: {'mode':false}
     }).afterClosed().subscribe((confirm) => {
         console.log(confirm)
         if(confirm !=null){
@@ -181,9 +181,11 @@ export class DropoffComponent implements OnInit {
   }
   ondropEdit(dataedit){
     console.log(dataedit.data)
+    var editData=dataedit.data
+    editData['mode']=true
     let editDataIndex=dataedit.rowIndex
     this.dialog.open(DropoffpopupformComponent, {
-            data: dataedit.data
+            data: editData
     }).afterClosed().subscribe((res) => {
         console.log(res)
         if(res !=null){

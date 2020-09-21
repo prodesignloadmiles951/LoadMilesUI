@@ -172,6 +172,7 @@ export class PickDropFormComponent implements OnInit {
     pickup['files']=idArry
     pickup['zipcode']=this.inputPostalCode
     console.log(pickup)
+    sessionStorage.setItem('Pickup', JSON.stringify(pickup))
   	this.dialogRef.close(pickup)
   }
   hidePopup(){
@@ -192,5 +193,12 @@ export class PickDropFormComponent implements OnInit {
             if (callNow) func.apply(context, args);
         };
     };
+
+  onPostalCodeSelect(option){
+    console.log(option)
+    this.pickup['city']=option.city
+    this.pickup['state']=option.state
+    this.pickup['country']=option.country
+  }
 
 }

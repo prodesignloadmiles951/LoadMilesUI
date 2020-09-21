@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { LoadformComponent } from './components/loadform/loadform.component';
 
+
 const routes: Routes = [
   {
     path: '',

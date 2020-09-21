@@ -4,6 +4,7 @@ import { AuthenticationService } from '../authentication.service';
 import { AuthHeaderService } from '../authheader.service';
 import { ActivatedRoute,Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+// import { RegisterComponent } from '../register/register.component'
 
 @Component({
   selector: 'app-dashboard',
@@ -31,6 +32,11 @@ export class LoginComponent {
           localStorage.setItem('selectedCompanyName', data.company.companyname);
           localStorage.setItem('userId', data._id);
           this.authenticate.setLogin(data);
+          console.log(data)
+          if(data['role']['name'] == "Driver"){
+            console.log("hhhg")
+            this.router.navigateByUrl('theme/driver-list');
+          }
           this.router.navigateByUrl("dashboard");
       } else {
         this.isLogin=false;
@@ -40,5 +46,11 @@ export class LoginComponent {
       this.isLogin=false;
       this._toaster.error("Invalid UserId and Password","Faild");
     });
+  }
+  // onregister(){
+  //   this.router.navigateByUrl("register");
+  // }
+  oncompanyregister(){
+    this.router.navigateByUrl("companyregister");
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { DispatcherFilters } from '../../../model/dispatcher';
 import { DispatcherService } from '../../../services/dispatcher.service';
 import { TrucksService } from '../../../services/trucks.service';
+import { TrailerService } from '../../../services/trailers.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -10,7 +11,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   selector: 'app-dispatcherform',
   templateUrl: './dispatcherform.component.html',
   styleUrls: ['./dispatcherform.component.scss'],
-  providers: [DispatcherService, TrucksService]
+  providers: [DispatcherService, TrucksService, TrailerService]
 })
 export class DispatcherformComponent implements OnInit {
 	 pageFilters={}
@@ -37,10 +38,13 @@ export class DispatcherformComponent implements OnInit {
     selectedDispatcher=true
     showupdate=false
     showsubmit=false
+    changeUplaod=true
+    editFileList=[]
+    btnHide=false
 
   constructor(public dialogRef: MatDialogRef < DispatcherformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,
-    private _dispatcherService: DispatcherService, private _trucksservice: TrucksService, private _toaster: ToastrService,
+    private _dispatcherService: DispatcherService, private _trailersService: TrailerService, private _trucksservice: TrucksService, private _toaster: ToastrService,
    private router: Router) { }
 
   ngOnInit() {
@@ -57,8 +61,10 @@ export class DispatcherformComponent implements OnInit {
       this.terminationdate= new Date(this.data['terminationdate'])
       this.hiredate= new Date(this.data['hiredate'])
       this.dateofbirth= new Date(this.data['dateofbirth'])
-      if(this.data['EditMode']=true){
+      this.changeUplaod=false
+      if(this.data['EditMode']){
         this.showupdate=true
+        this.editFileList=this.data['files']
       }
     }
 
@@ -77,6 +83,24 @@ export class DispatcherformComponent implements OnInit {
           "Name": "Percentage(%)"
       }
     ]
+
+    if(this.data['files'] != undefined){
+      this._trailersService.getFileList().subscribe(response => {
+          console.log(response)
+          this.editFileList=[]
+          var fileArray=response.data
+          fileArray.forEach(element => {
+            var arr=this.data['files']
+            for (var i = 0; i < arr.length; i++) {
+              if(element['_id'] == arr[i]){
+                this.editFileList.push(element)
+              }            
+            }
+          });        
+        },error=>{
+          console.log(error)
+        });
+    }
   }
 
    addfiles(e){
@@ -132,6 +156,9 @@ export class DispatcherformComponent implements OnInit {
     console.log(eventName.key) 
     this.payratedata = eventName.key
   }
+  onEdit(eventName){
+    this.payratedata = eventName.key
+  }
 
   onDelete(eventName) {
     console.log(eventName.key)
@@ -160,13 +187,38 @@ export class DispatcherformComponent implements OnInit {
      this.dialogRef.close(null)
    }
    update() {
+     if(this.editFileList.length > 0){
+      var array = this.finalArry.concat(this.editFileList);
+      var idArry=[]
+        for (var i = 0; i < array.length; ++i) {
+          idArry.push(array[i]._id)
+        }
+      this.data['files']=idArry
+    }
+    if(this.finalArry.length > 0 && this.editFileList.length == 0){
+     var idArry=[]
+        for (var i = 0; i < this.finalArry.length; ++i) {
+          idArry.push(this.finalArry[i]._id)
+        }
+     this.data['files']=idArry
+    }
+    if(this.data['payrate'] == undefined){
+     this.data['payrate']=this.payratedata
+    }
+     console.log(this.data)
+     if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
+     this.btnHide=true
      this._dispatcherService.EditDispatcher(this.data).subscribe(res => {
          this._toaster.info("Dispatcher Data Updated successfully","Success", {timeOut: 3000,});
-         this.dialogRef.close(null)
+         this.btnHide=false
+         this.dialogRef.close(res)
          },error=>{
           this._toaster.error("Dispatcher Data Not Updated","Failed", {timeOut: 2000,});
           this.dialogRef.close(null)
      })
+   }else{
+     this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
+   }
    }
 
   submit() {
@@ -182,14 +234,20 @@ export class DispatcherformComponent implements OnInit {
           idArry.push(this.finalArry[i]._id)
         }
         Dispatcherlistdata['files']=idArry
+        if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
+        this.btnHide=true
         this._dispatcherService.SendForm(Dispatcherlistdata).subscribe(response => {
           this.submitted = true;
           this._toaster.info("Dispatcherform Data Submitted","Success", {timeOut: 3000,});
-         this.router.navigateByUrl("theme/dispatcher-list");
+          this.btnHide=false
+         this.dialogRef.close(response)
         },error=>{
           this.submitted=false;
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
+      }else{
+     this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
+   }
         this.getDispatcherData();
        }
      }

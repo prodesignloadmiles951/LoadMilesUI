@@ -30,6 +30,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
+import { MatExpansionModule} from '@angular/material/expansion';
+import {
+    DxDataGridModule,
+    DxBulletModule,
+    DxTemplateModule,
+    DxDataGridComponent
+} from 'devextreme-angular';
+
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
@@ -52,6 +60,7 @@ import { ChartsModule } from 'ng2-charts';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
+import { CompanyregisterComponent } from './views/companyregister/companyregister.component';
 
 
 @NgModule({
@@ -65,6 +74,7 @@ import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
     AppHeaderModule,
     AppSidebarModule,
     FormsModule,
+    MatExpansionModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
@@ -76,6 +86,7 @@ import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
     NgSelectModule,
     MatMenuModule,
     MatSelectModule,
+    DxDataGridModule,
     ModalModule,
     ToastrModule.forRoot({
 			timeOut: 10000,
@@ -92,7 +103,8 @@ import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
     P500Component,
     LoginComponent,
     RegisterComponent,
-    LoadstatusComponent
+    LoadstatusComponent,
+    CompanyregisterComponent
   ],
   providers: [
     {provide: LocationStrategy,useClass: HashLocationStrategy},

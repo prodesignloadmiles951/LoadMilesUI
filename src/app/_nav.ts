@@ -10,7 +10,7 @@ interface NavBadge {
   variant: string;
 }
 interface NavLabel {
-  class?: string;
+  class?: string; 
   variant: string;
 }
 

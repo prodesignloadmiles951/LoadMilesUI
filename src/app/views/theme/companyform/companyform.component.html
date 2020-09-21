@@ -15,9 +15,14 @@
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="companyid">Company ID :</label>
+          <label class="col-md-4 col-form-label" for="companyid">Company ID :<span style="color:red">*</span></label>
           <div class="col-md-8">
-            <input type="number" class="form-control" id="companyid" #companyid="ngModel" name="companyid" [(ngModel)]="pageFilters.companyid">
+            <input type="number" class="form-control" id="companyid" #companyid="ngModel" name="companyid" [(ngModel)]="pageFilters.companyid" required>
+            <div *ngIf="companyid.errors && (companyid.dirty || companyid.touched)" style="font-size: smaller;">
+              <div [hidden]="!companyid.errors.required">
+                <span style="color: red;">Company ID is required</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
@@ -38,12 +43,12 @@
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="fedid">FED ID<span style="color:red;"> *</span> :</label>
+          <label class="col-md-4 col-form-label" for="fedid">TAX ID<span style="color:red;"> *</span> :</label>
           <div class="col-md-8">
-            <input type="text" class="form-control" id="fedid" #fedid="ngModel" name="fedid" [(ngModel)]="pageFilters.fedid" required>
+            <input type="text" class="form-control" id="fedid" maxlength="9" #fedid="ngModel" name="fedid" [(ngModel)]="pageFilters.fedid" required>
             <div *ngIf="fedid.errors && (fedid.dirty || fedid.touched)" style="font-size: smaller;">
               <div [hidden]="!fedid.errors.required">
-                <span style="color: red;">FED ID is required</span>
+                <span style="color: red;">Tax ID is required</span>
               </div>
             </div>
           </div>
@@ -62,7 +67,7 @@
         <div class="form-group row">
           <label class="col-md-4 col-form-label" for="mc">MC<span style="color:red;"> *</span> :</label>
           <div class="col-md-8">
-            <input type="text" class="form-control" id="mc" #mc="ngModel" name="mc" [(ngModel)]="pageFilters.mc" required>
+            <input type="text" class="form-control" id="mc" maxlength="5" #mc="ngModel" name="mc" [(ngModel)]="pageFilters.mc" required>
             <div *ngIf="mc.errors && (mc.dirty || mc.touched)" style="font-size: smaller;">
               <div [hidden]="!mc.errors.required">
                 <span style="color: red;">MC is required</span>
@@ -156,8 +161,8 @@
       </div>
     </div>
   </div>
-<div *ngIf="showusertable" class="col-md-12">
-	<mat-accordion>
+  <!-- <div *ngIf="showusertable" class="col-md-12">
+  <mat-accordion>
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header class="card-header">
       <mat-panel-title>
@@ -187,11 +192,11 @@
     </div>
   </mat-expansion-panel>
 </mat-accordion>
-</div>
+</div> -->
 </div>
 <div class="card-footer" *ngIf="showAddOption">
-    <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
-      <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-      Submit</button>&nbsp;&nbsp;
-    <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-  </div>
+  <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+    <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+    Submit</button>&nbsp;&nbsp;
+  <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+</div>

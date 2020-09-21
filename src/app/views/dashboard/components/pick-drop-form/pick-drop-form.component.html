@@ -134,7 +134,7 @@
                   <input type="text" placeholder="Postal code" aria-label="Number" matInput (keyup)="postalCode()" [(ngModel)]="inputPostalCode" [ngModelOptions]="{standalone: true}" [matAutocomplete]="auto" required>
                   <mat-spinner *ngIf="showspinner"></mat-spinner>
                   <mat-autocomplete #auto="matAutocomplete">
-                      <mat-option *ngFor="let option of postalCodeList" [value]="option.postal_code">
+                      <mat-option *ngFor="let option of postalCodeList" [value]="option.postal_code" (click)="onPostalCodeSelect(option)">
                           {{option.postal_code}}
                       </mat-option>
                   </mat-autocomplete>
@@ -144,19 +144,19 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="city">City:</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pickup.city" [ngModelOptions]="{standalone: true}">
+              <input type="text" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pickup.city" [ngModelOptions]="{standalone: true}" disabled>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="state">State:</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pickup.state" [ngModelOptions]="{standalone: true}">
+              <input type="text" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pickup.state" [ngModelOptions]="{standalone: true}" disabled>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="country">Country:</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="country" name="country" #country="ngModel" [(ngModel)]="pickup.country" [ngModelOptions]="{standalone: true}">
+              <input type="text" class="form-control" id="country" name="country" #country="ngModel" [(ngModel)]="pickup.country" [ngModelOptions]="{standalone: true}" disabled>
             </div>
           </div>
           <div class="form-group row">

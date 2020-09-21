@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { CarrierService } from './../../../services/carrier.service';
 import { TrucksService } from '../../../services/trucks.service';
+import { TrailerService } from '../../../services/trailers.service';
 import { CarrierFilters } from '../../../model/carrier';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -11,26 +12,85 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   selector: 'app-carrierform',
   templateUrl: './carrierform.component.html',
   styleUrls: ['./carrierform.component.scss'],
-  providers: [CarrierService,DriversService, TrucksService]
+  providers: [CarrierService,DriversService, TrucksService, TrailerService]
 })
 export class CarrierformComponent implements OnInit {
 	public pageFilters={};
     Carrierlistdata = new Array<CarrierFilters>();
     contactdata=[];
     payratedata=[];
+    driversafetydata=[];
+    trucksafetydata=[];
     drugmedicaldata=[];
     @Input() datatype;
     mode=false
     finalArry=[]
-    typeDetails= [];
-    paytypeDetails= [];
-    resultDetails= [];
+    typeDetails= [ {
+          "ID": 0,
+          "Name": "Carrier"
+      },
+      {
+          "ID": 1,
+          "Name": "Driver"
+      },
+      {
+          "ID": 2,
+          "Name": "Owner"
+      }];
+    trucktypeDetails= [{
+          "ID": 0,
+          "Name": "Truck"
+      },
+      {
+          "ID": 1,
+          "Name": "Trailer"
+      }];
+    paytypeDetails= [{
+          "ID": 0,
+          "Name": "Per Hour"
+      },
+      {
+          "ID": 1,
+          "Name": "Per Mile"
+      },
+      {
+          "ID": 2,
+          "Name": "Percentage(%)"
+      }];
+    resultDetails= [
+    {
+          "ID": 0,
+          "Name": "Pass"
+      },
+      {
+          "ID": 1,
+          "Name": "Fail"
+      }
+    ];
+    statusDetails=[{
+          "ID": 0,
+          "Name": "Active"
+      },
+      {
+          "ID": 1,
+          "Name": "Inactive"
+      }];
     pageFiltersshow=false;
     submitted: boolean;
     contactinfodata={};
     payrateinfodata={};
+    driversafetyAddObj={};
+    trucksafetyAddObj={};
     drugdata={};
     driverdata= [];
+    hazmatDetails=[ {
+          "ID": 0,
+          "Name": "Yes"
+      },
+      {
+          "ID": 1,
+          "Name": "No"
+      }];
     showAddOption=false
     medicalcardexpiration=undefined
     cdlexpirytate=undefined
@@ -42,10 +102,14 @@ export class CarrierformComponent implements OnInit {
     selectedCarrier=true
     showupdate=false
     showsubmit=false
+    changeUplaod=true
+    editFileList=[]
+    btnHide=false
+    driversafetydetails=undefined
 
   constructor(public dialogRef: MatDialogRef < CarrierformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private _carrierService: CarrierService,private _trucksservice: TrucksService, private _driverService: DriversService,private _toaster: ToastrService,private router: Router) { }
+        private _carrierService: CarrierService,private _trailersService: TrailerService, private _trucksservice: TrucksService, private _driverService: DriversService,private _toaster: ToastrService,private router: Router) { }
 
   ngOnInit() {
 
@@ -61,58 +125,43 @@ export class CarrierformComponent implements OnInit {
       this.contactdata.push(this.data.contactinfo)
       this.payratedata.push(this.data.payrate)
       this.drugmedicaldata.push(this.data.drugdata)
+      this.trucksafetydata.push(this.data.trucksafetyAddObj)
+      this.driversafetydata.push(this.data.driversafetyAddObj)
       this.medicalcardexpiration= new Date(this.data['medicalcardexpiration'])
       this.cdlexpirytate= new Date(this.data['cdlexpirytate'])
+      this.changeUplaod=false
       if(this.data['hazmatcertified']){
         this.pageFilters['hazmatcertified']=0
       }else{
         this.pageFilters['hazmatcertified']=1
       }
-      if(this.data['EditMode']=true){
+      if(this.data['EditMode']){
         this.showupdate=true
+        this.editFileList=this.data['files']
       }
     }
 
     this.pageFiltersshow=true;
     this.getDriverData()
-    this.typeDetails=[
-      {
-          "ID": 0,
-          "Name": "Carrier"
-      },
-      {
-          "ID": 1,
-          "Name": "Driver"
-      },
-      {
-          "ID": 2,
-          "Name": "Owner"
-      }
-    ]
-    this.paytypeDetails=[
-      {
-          "ID": 0,
-          "Name": "Per Hour"
-      },
-      {
-          "ID": 1,
-          "Name": "Per Mile"
-      },
-      {
-          "ID": 2,
-          "Name": "Percentage(%)"
-      }
-    ]
-     this.resultDetails=[
-      {
-          "ID": 0,
-          "Name": "Pass"
-      },
-      {
-          "ID": 1,
-          "Name": "Fail"
-      }
-    ]
+    
+
+     if(this.data['files'] != undefined){
+      this._trailersService.getFileList().subscribe(response => {
+          console.log(response)
+          this.editFileList=[]
+          var fileArray=response.data
+          fileArray.forEach(element => {
+            var arr=this.data['files']
+            for (var i = 0; i < arr.length; i++) {
+              if(element['_id'] == arr[i]){
+                this.editFileList.push(element)
+              }            
+            }
+          });        
+        },error=>{
+          console.log(error)
+        });
+    }
     
   }
 
@@ -169,6 +218,9 @@ export class CarrierformComponent implements OnInit {
         this._driverService.getDriversData().subscribe(data => {
           this.driverdata = data;
           console.log(this.driverdata)
+          for (var i = 0; i < this.driverdata.length; i++) {
+            this.driverdata[i]['ID'] == i
+          }
         });
       }
 
@@ -176,7 +228,9 @@ export class CarrierformComponent implements OnInit {
     console.log(eventName.key) 
     this.contactinfodata = eventName.key
   }
-
+  onEdit(eventName){
+    this.contactinfodata = eventName.key
+  }
   onDelete(eventName) {
     console.log(eventName.key)
     this._carrierService.DeleteCarrier(eventName.key).subscribe(data => {
@@ -184,8 +238,41 @@ export class CarrierformComponent implements OnInit {
     });
   }
 
+  ontrucksafetyAdd(eventName) {
+      this.trucksafetyAddObj=eventName.key
+      var truckplateexpiry = new Date(this.trucksafetyAddObj['plateexpiry']).toLocaleDateString()
+      var truckinsuranceexpiry = new Date(this.trucksafetyAddObj['insuranceexpiry']).toLocaleDateString()
+      this.trucksafetyAddObj['plateexpiry'] = truckplateexpiry
+      this.trucksafetyAddObj['insuranceexpiry'] = truckinsuranceexpiry
+      delete this.trucksafetyAddObj['__KEY__']
+  }
+  ontrucksafetyEdit(eventName){
+    console.log(eventName)
+  }
+  ontrucksafetyDelete(eventName){
+    console.log(eventName)
+  }
+
+  ondriversafetyAdd(eventName){
+      this.driversafetyAddObj=eventName.key
+      var drivercdlexpiry = new Date(this.driversafetyAddObj['cdlexpirydate']).toLocaleDateString()
+      var medicalcardexpiry = new Date(this.driversafetyAddObj['medicalcardexpiration']).toLocaleDateString()
+      this.driversafetyAddObj['cdlexpirydate'] = drivercdlexpiry
+      this.driversafetyAddObj['medicalcardexpiration'] = medicalcardexpiry
+      delete this.driversafetyAddObj['__KEY__']
+  }
+  ondriversafetyEdit(eventName){
+    console.log(eventName)
+  }
+  ondriversafetyDelete(eventName){
+    console.log(eventName)
+  }
+
   onpayrateAdd(eventName) {
       console.log(eventName.key) 
+    this.payrateinfodata = eventName.key
+  }
+  onpayrateEdit(eventName){
     this.payrateinfodata = eventName.key
   }
   onpayrateDelete(eventName) {
@@ -196,6 +283,9 @@ export class CarrierformComponent implements OnInit {
   }
   ondrugAdd(eventName) {
       console.log(eventName.key) 
+    this.drugdata = eventName.key
+  }
+  ondrugEdit(eventName){
     this.drugdata = eventName.key
   }
   ondrugDelete(eventName) {
@@ -217,13 +307,50 @@ export class CarrierformComponent implements OnInit {
      this.dialogRef.close(null)
    }
    update() {
+     if(this.editFileList.length > 0){
+      var array = this.finalArry.concat(this.editFileList);
+      var idArry=[]
+        for (var i = 0; i < array.length; ++i) {
+          idArry.push(array[i]._id)
+        }
+      this.data['files']=idArry
+    }
+    if(this.finalArry.length > 0 && this.editFileList.length == 0){
+     var idArry=[]
+        for (var i = 0; i < this.finalArry.length; ++i) {
+          idArry.push(this.finalArry[i]._id)
+        }
+     this.data['files']=idArry
+    }
+    if(this.data['payrate'] == undefined){
+     this.data['payrate']=this.payrateinfodata
+    }
+    if(this.data['drugdata'] == undefined){
+     this.data['drugdata']=this.drugdata
+    }
+    if(this.data['trucksafetyAddObj'] == undefined){
+     this.data['trucksafetyAddObj']=this.trucksafetyAddObj
+    }
+    if(this.data['driversafetyAddObj'] == undefined){
+     this.data['driversafetyAddObj']=this.driversafetyAddObj
+    }
+    if(this.data['contactinfo'] == undefined){
+     this.data['contactinfo']=this.contactinfodata
+    }
+     console.log(this.data)
+     if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
+          this.btnHide=true
      this._carrierService.EditCarrier(this.data).subscribe(res => {
          this._toaster.info("Carrier Data Updated successfully","Success", {timeOut: 3000,});
-         this.dialogRef.close(null)
+         this.btnHide=false
+         this.dialogRef.close(res)
          },error=>{
           this._toaster.error("Carrier Data Not Updated","Failed", {timeOut: 2000,});
           this.dialogRef.close(null)
      })
+   }else{
+     this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
+   }
    }
 
    submit() {
@@ -235,20 +362,28 @@ export class CarrierformComponent implements OnInit {
         Carrierlistdata['contactinfo']=this.contactinfodata
         Carrierlistdata['payrate']=this.payrateinfodata
         Carrierlistdata['drugdata']=this.drugdata
+        Carrierlistdata['driversafetyAddObj']=this.driversafetyAddObj
+        Carrierlistdata['trucksafetyAddObj']=this.trucksafetyAddObj
         Carrierlistdata['companyid']=localStorage.selectedCompany
         var idArry=[]
         for (var i = 0; i < this.finalArry.length; ++i) {
           idArry.push(this.finalArry[i]._id)
         }
         Carrierlistdata['files']=idArry
+        if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
+          this.btnHide=true
         this._carrierService.SendForm(Carrierlistdata).subscribe(response => {
           this.submitted = true;
           this._toaster.info("Carrierform Data Submitted","Success", {timeOut: 3000,});
-         this.router.navigateByUrl("theme/carrier-list");
+          this.btnHide=false
+         this.dialogRef.close(response)
         },error=>{
           this.submitted=false;
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
+      }else{
+     this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
+   }
         console.log(this.pageFilters);
        }
      }

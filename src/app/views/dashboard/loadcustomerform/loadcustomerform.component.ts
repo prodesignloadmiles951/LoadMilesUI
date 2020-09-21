@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-customerform',
-  templateUrl: './customerform.component.html',
-  styleUrls: ['./customerform.component.scss'],
+  selector: 'app-loadcustomerform',
+  templateUrl: './loadcustomerform.component.html',
+  styleUrls: ['./loadcustomerform.component.scss'],
   providers: [CustomersService, TrucksService, TrailerService]
 })
-export class CustomerformComponent implements OnInit {
+export class LoadcustomerformComponent implements OnInit {
 	public pageFilters={};
     public customers: CustomersFilters;
     Customerslistdata = new Array<CustomersFilters>();
@@ -35,14 +35,13 @@ export class CustomerformComponent implements OnInit {
     showsubmit=false
     changeUplaod=true
     editFileList=[]
-    btnHide=false
 
-  constructor(public dialogRef: MatDialogRef < CustomerformComponent > ,
+  constructor(public dialogRef: MatDialogRef < LoadcustomerformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private _customersservice: CustomersService, private _trailersService: TrailerService, private _trucksservice: TrucksService, private _toaster: ToastrService,private router: Router) { }
 
   ngOnInit() {
-     if(this.data['EditMode'] == undefined){
+  	 if(this.data['EditMode'] == undefined){
       this.mode=true
       this.showAddOption=true
       this.selectedCustomer=false
@@ -78,8 +77,7 @@ export class CustomerformComponent implements OnInit {
         });
     }
   }
-
-   addfiles(e){
+     addfiles(e){
       var finalArry=e.target.files
       this.base64FileArray=[]
       this.fileArray=finalArry
@@ -165,19 +163,13 @@ export class CustomerformComponent implements OnInit {
      this.data['contactinfodata']=this.contactinfodata
     }
      console.log(this.data)
-     if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != ""){
-          this.btnHide=true
      this._customersservice.EditCustomers(this.data).subscribe(res => {
          this._toaster.info("Customer Data Updated successfully","Success", {timeOut: 3000,});
-         this.btnHide=false
-         this.dialogRef.close(res)
+         this.dialogRef.close(null)
          },error=>{
           this._toaster.error("Customer Data Not Updated","Failed", {timeOut: 2000,});
           this.dialogRef.close(null)
      })
-   }else{
-     this._toaster.error("Enter MC/FF Details","Failed", {timeOut: 2000,});
-   }
    }
 
    submit() {
@@ -193,20 +185,14 @@ export class CustomerformComponent implements OnInit {
           idArry.push(this.finalArry[i]._id)
         }
         Customerslistdata['files']=idArry
-        if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != ""){
-          this.btnHide=true
         this._customersservice.SendForm(Customerslistdata).subscribe(response => {
           this.submitted = true;
           this._toaster.info("Customerform Data Submitted","Success", {timeOut: 3000,});
-          this.btnHide=false
-         this.dialogRef.close(response)
+         this.router.navigateByUrl("theme/customers-list");
         },error=>{
           this.submitted=false;
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
-      }else{
-        this._toaster.error("Enter MC/FF Details","Failed", {timeOut: 2000,});
-       }
         console.log(this.pageFilters);
        }
      }

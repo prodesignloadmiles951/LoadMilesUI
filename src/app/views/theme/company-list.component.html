@@ -144,9 +144,8 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    
                     <h6 style="color:firebrick">Mailing Address</h6>
-                        <div class="row" style="text-align: center">
+                    <div class="row" style="text-align: center">
                       <div class="col-md-6" style="text-align: left">
                         <span style="font-size: 12px;"><b>Address:</b></span>
                       </div>
@@ -231,7 +230,6 @@
                         </div>
                       </div>
                     </div>
-                    
                   </div>
                   <div class="col-sm-6">
                     <div class="card">
@@ -310,6 +308,38 @@
                         </div>
                       </div>
                     </div> -->
+                  </div>
+                  <div *ngIf="showusertable" class="col-md-12">
+                    <mat-accordion>
+                      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header class="card-header">
+                          <mat-panel-title>
+                            User Management
+                          </mat-panel-title>
+                          <mat-panel-description>
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div class="dx-viewport">
+                          <div class="grid-container">
+                            <dx-data-grid #grid id="gridContainer" [dataSource]="usermanagementdata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
+                              <dxo-paging [enabled]="false"></dxo-paging>
+                              <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
+                              </dxo-editing>
+                              <dxo-selection mode="single"></dxo-selection>
+                              <dxi-column dataField="firstname" caption="First name"></dxi-column>
+                              <dxi-column dataField="lastname" caption="Last name"></dxi-column>
+                              <dxi-column dataField="email" caption="Email"></dxi-column>
+                              <dxi-column dataField="password" caption="Password"></dxi-column>
+                              <dxi-column dataField="username" caption="Username"></dxi-column>
+                              <dxi-column dataField="roleType" caption="Role">
+                                <dxo-lookup [dataSource]="roleArray" displayExpr="name" valueExpr="ID">
+                                </dxo-lookup>
+                              </dxi-column>
+                            </dx-data-grid>
+                          </div>
+                        </div>
+                      </mat-expansion-panel>
+                    </mat-accordion>
                   </div>
                 </div>
               </div>

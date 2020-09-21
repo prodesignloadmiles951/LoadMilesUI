@@ -9,10 +9,12 @@ import { map, catchError } from 'rxjs/operators';
 @Injectable()
 
 export class TrailerService {
-
     trailersurl: string;
+    uploadurl: string;
+
     constructor(private http: Http, private _headerService: AuthHeaderService) {
         this.trailersurl = environment.trailersurl;
+        this.uploadurl = environment.uploadUrl;
     }
 
     SendForm(pageFilters: TrailersFilters) {
@@ -33,5 +35,9 @@ export class TrailerService {
     DeleteTrailers(_id) {
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
     return this.http.delete(this.trailersurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+    }
+    getFileList() {
+    let options = new RequestOptions({ headers: this._headerService.getHeader() });
+    return this.http.get(this.uploadurl,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 }

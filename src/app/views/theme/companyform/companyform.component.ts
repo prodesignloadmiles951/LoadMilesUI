@@ -27,7 +27,7 @@ export class CompanyformComponent implements OnInit {
     showAddOption=false
     roleArray=[]
     showusertable=false
-   
+    btnHide=false 
 
   constructor(private _toaster: ToastrService,
      private _companyservice: CompanyService,
@@ -64,15 +64,20 @@ export class CompanyformComponent implements OnInit {
        this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
      }else{
       this.submitted = true;
-      this.pageFilters['companyid']=localStorage.selectedCompany
-      this._companyservice.SendForm(this.pageFilters).subscribe(response => {
-        this.submitted = true;
-        this._toaster.info("Company Data Submitted","Success", {timeOut: 3000,});
-        this.router.navigateByUrl("/theme/company-list");
-      },error=>{
-        this.submitted=false;
-        this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
-      });
+      if(this.pageFilters.companyid !== undefined){
+          console.log(this.pageFilters)
+          this.btnHide=true
+        this._companyservice.SendForm(this.pageFilters).subscribe(response => {
+          this.submitted = true;
+          this._toaster.info("Company Data Submitted","Success", {timeOut: 3000,});
+          this.router.navigateByUrl("/theme/company-list");
+        },error=>{
+          this.submitted=false;
+          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
+        });
+      }else{
+          this._toaster.error("Enter Company ID","Failed", {timeOut: 2000,});
+      }
      }
    }
 
@@ -101,12 +106,12 @@ export class CompanyformComponent implements OnInit {
        delete addObj['__KEY__']
        delete addObj['roleType']
        console.log(addObj)
-       // this._companyservice.onCreateRole(addObj).subscribe(res => {
-       //     console.log(res)
-       //    this._toaster.info("Userrole Data Submitted","Success", {timeOut: 3000,});
-       //  },error=>{
-       //    this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
-       //  });       
+       this._companyservice.onCreateRole(addObj).subscribe(res => {
+           console.log(res)
+          this._toaster.info("Userrole Data Submitted","Success", {timeOut: 3000,});
+        },error=>{
+          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
+        });       
      }
    }
    onDelete(e){

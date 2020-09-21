@@ -3,6 +3,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { ToastrService } from 'ngx-toastr';
 import {Router} from '@angular/router';
+import { AuthenticationService } from '../../views/authentication.service';
+import { LoginUser } from '../../model/loginuser';
 
 
 @Component({
@@ -12,21 +14,30 @@ import {Router} from '@angular/router';
 export class CompanylistComponent implements OnInit {
   public company: CompanyFilters;
   // public EditMode: boolean = false;
+  public loginUser: LoginUser;
   data: any;
   pageFilters: CompanyFilters;
   selectedCompany: any;
   EditMode: boolean;
+  showusertable=false
 
 
  constructor(
   private router: Router,
   private _companyservice: CompanyService,
+  private authService: AuthenticationService,
   private _toaster: ToastrService,
  ) {
   this.pageFilters = new CompanyFilters();
  }
   ngOnInit(): void {
     this.getData();
+    if (this.authService.getloginUser()) {
+      this.loginUser = this.authService.getloginUser();
+      if (this.loginUser['role']['name'] == 'Admin') {
+         this.showusertable = true
+      }
+    }
   }
   viewData(cmp) {
     this.EditMode = false;

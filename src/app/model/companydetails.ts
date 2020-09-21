@@ -22,6 +22,11 @@ export class CompanyFilters {
    state2: string;
    zip2: any;
    currency: any;
+   name: string;
+   bankname: string;
+   acctype: string;
+   accountnumber: number;
+   routingnumber: number;
 
    // constructor() {
    //    this.companyname = new companyname();

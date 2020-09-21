@@ -26,6 +26,8 @@ import { DropoffComponent } from './components/dropoff/dropoff.component';
 import { PickDropFormComponent } from './components/pick-drop-form/pick-drop-form.component';
 import { DropoffpopupformComponent } from './components/dropoffpopupform/dropoffpopupform.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoadcustomerformComponent } from './loadcustomerform/loadcustomerform.component';
+
 
 @NgModule({
   imports: [
@@ -47,10 +49,11 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatInputModule
   ],
   declarations: [ DashboardComponent, LoadformComponent, PickupComponent,
-   DropoffComponent, PickDropFormComponent, DropoffpopupformComponent ],
+   DropoffComponent, PickDropFormComponent, DropoffpopupformComponent, LoadcustomerformComponent ],
    entryComponents: [
        PickDropFormComponent,
-       DropoffpopupformComponent
+       DropoffpopupformComponent,
+       LoadcustomerformComponent
    ]
 })
 export class DashboardModule { }
