@@ -56,8 +56,9 @@ public company: CompanyFilters;
         console.log(resp)
         for (var i = 0; i < res.length;i++) {
           res[i]['load_number']=1000+i
-          res[i]['customer_name']=resp[JSON.parse(res[i]['customer'][0])].companyname
+          res[i]['customer_name'] = ((resp[res[i]['customer'][0] !== 'Select customer' ? res[i]['customer'][0] : parseInt(res[i]['customer'][0])]) || {}).companyname
         }
+        
           this._pickup.getpickupData().subscribe(data => {
             this.pickupdata = data
             for (var i = 0; i < this.loadDetails.length; i++) {

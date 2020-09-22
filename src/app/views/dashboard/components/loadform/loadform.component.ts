@@ -84,14 +84,9 @@ export class LoadformComponent implements OnInit {
       console.log(data)
     });
   }
-  submit(){
-    console.log(this.newloadfilters)
-    this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
-          console.log(data)
-        });
-  }
   submitload(){
     this.showsubmit=true
+    if(this.newloadfilters['customer'] !== undefined){
     this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
           console.log(data)
           sessionStorage.setItem('submitID', data.data._id)
@@ -101,6 +96,9 @@ export class LoadformComponent implements OnInit {
     }, error => {
        this._toaster.error("error", "Try Again");
     });
+    }else{
+      this._toaster.error("Select Company Details", "Try Again");
+    }
   }
   getDispatcherData() {
     this._dispatcherService.getDispatcherData().subscribe(data => {
