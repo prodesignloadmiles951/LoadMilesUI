@@ -255,6 +255,7 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
     .pad-hor{
     padding-left: 8px;
     padding-right: 4px;
+    align-self: center;
   }
       .m-width{
       max-width: 50px;
@@ -297,16 +298,9 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
       height: 100%;
     }
   }
-  .booked{
-    
-    
-    >div{
-      
-      
-    }
-  }
   .main{
-    font-size: 32px;
+    font-size: 20px;
+    font-weight: bolder;
     padding: 5px;
     &.pick{
       background-color: #dae4f2;
