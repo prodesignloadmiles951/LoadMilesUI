@@ -247,3 +247,92 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
   width: 40px !important;
   height: 40px !important;
 }
+
+.detail-box{
+  text-align: center;
+  >div{
+    margin: 5px auto;
+    .pad-hor{
+    padding-left: 8px;
+    padding-right: 4px;
+  }
+      .m-width{
+      max-width: 50px;
+    }
+
+  .status{
+    border-radius: 8px;
+    padding: 3px 4px;
+    margin: 0px 3px;
+
+    &.booked, &.intransit{
+      border: 1px solid #bfbfbf;
+      background-color: #f2f2f2;
+      >div{
+        color: #223c71;
+        background-color: #bfbfbf;    
+      }
+    }
+    &.cancelled, &.tonu, &.arr-delay, &.pickup-delay, &.delivery-delay{
+       border: 1px solid #ed7d31;
+      background-color: #ed7d31;
+      >div{
+        color: #223c71;
+        background-color: #ffd967;    
+      }
+    }
+    &.completed, &.invoiced, &.factored, &.arr-ontime, &.pickup-ontime, &.delivery-ontime{
+      border: 1px solid #70ad47;
+      background-color: #70ad47;
+      >div{
+        color: #223c71;
+        background-color: #70ad47;    
+      }
+    }
+    >div{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      font-size: 12px;
+      height: 100%;
+    }
+  }
+  .booked{
+    
+    
+    >div{
+      
+      
+    }
+  }
+  .main{
+    font-size: 32px;
+    padding: 5px;
+    &.pick{
+      background-color: #dae4f2;
+    }
+    &.load{
+      background-color: #ffd966;
+    }
+    &.delivery{
+      background-color: #c4e0b4;
+    }
+  }
+  .arrow{
+    &.load{
+      color: #ffc610;
+    }
+
+    &.pick{
+      color: #dae4f2;
+    }
+    
+    &.delivery{
+      color: #c4e0b4;
+    }
+    font-size: 38px;
+    padding-left: 4px;
+    padding-right: 4px; 
+  }
+  }
+}

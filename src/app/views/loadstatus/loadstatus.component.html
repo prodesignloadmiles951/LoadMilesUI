@@ -1,19 +1,149 @@
 <div class="animated fadeIn">
-<div class="row">
-        <div class="col-lg-12">
-          <div class="card">
-              <div class="card-header"> 
-                <span class="float-right">
-                    <button type="add" class="btn btn-sm btn-success" (click)="createLoad()"><i class="fa fa-plus"></i> Create Load</button>    
-                </span>              
-              </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <span class="float-right">
+            <button type="add" class="btn btn-sm btn-success" (click)="createLoad()"><i class="fa fa-plus"></i> Create
+              Load</button>
+          </span>
+        </div>
         <div class="card-body">
-            <div class="animated fadeIn">
+          <div class="animated fadeIn">
           </div>
           <div style="margin: 1rem 0">
-          	<button type="add" class="btn btn-sm btn-success" (click)="Goback()"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+            <button type="add" class="btn btn-sm btn-success" (click)="Goback()"><i class="fa fa-chevron-left"
+                aria-hidden="true"></i> Back</button>
           </div>
-          <table class="table table-responsive-sm table-hover table-bordered">
+          <div class="container detail-box animated fadeIn">
+            <div class="row">
+              <div class="col pad-hor">
+                <div class="main load">
+                  Loads
+                </div>
+              </div>
+              <div class="col pad-hor m-width">
+                <div class="arrow load">
+                  <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="col pad-hor status cancelled">
+                <div>
+                  <div>Cancelled</div>
+                  <div>1</div>
+                </div>
+              </div>
+              <div class="col pad-hor status tonu">
+                <div>
+                  <div>TONU</div>
+                  <div>1</div>
+                </div>
+              </div>
+              <div class="col pad-hor status completed">
+                <div>
+                  <div>Completed</div>
+                  <div>1</div>
+                </div>
+              </div>
+              <div class="col pad-hor status invoiced">
+                <div>
+                  <div>Invoiced</div>
+                  <div>1</div>
+                </div>
+              </div>
+              <div class="col pad-hor status factored">
+                <div>
+                  <div>Factored</div>
+                  <div>1</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col pad-hor">
+                <div class="main pick">
+                  Pick-ups
+                </div>
+              </div>
+              <div class="col pad-hor m-width">
+                <div class="arrow pick">
+                  <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="col pad-hor status booked">
+                <div>
+                  <div>Booked</div>
+                  <div>3</div>
+                </div>
+              </div>
+              <div class="col pad-hor status arr-delay">
+                <div>
+                  <div>Arrival - Delay</div>
+                  <div>1</div>
+                </div>
+              </div>
+              <div class="col pad-hor status arr-ontime">
+                <div>
+                  <div>Arrival - Ontime</div>
+                  <div>1</div>
+                </div>
+              </div>
+              <div class="col pad-hor status pickup-delay">
+                  <div>
+                    <div>Pickup - Delay</div>
+                    <div>1</div>
+                  </div>
+              </div>
+              <div class="col pad-hor status pickup-ontime">
+                  <div>
+                    <div>Pickup - Ontime</div>
+                    <div>1</div>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col pad-hor">
+                <div class="main delivery">
+                  Delivery
+                </div>
+              </div>
+              <div class="col pad-hor m-width">
+                <div class="arrow delivery ">
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="col pad-hor status intransit">
+                <div>
+                  <div>In-transit</div>
+                  <div>3</div>
+                </div>
+              </div>
+              <div class="col pad-hor status arr-delay">
+                <div>
+                  <div>Arrival - Delay</div>
+                  <div>1</div>
+                </div>
+              </div>
+              <div class="col pad-hor status arr-ontime">
+                <div>
+                  <div>Arrival - Ontime</div>
+                  <div>1</div>
+                </div>
+              </div>
+              <div class="col pad-hor status delivery-delay">
+                <div>
+                  <div>Delivery - Delay</div>
+                  <div>1</div>
+                </div>
+              </div>
+              <div class="col pad-hor status delivery-ontime">
+                <div>
+                  <div>Delivery - Ontime</div>
+                  <div>1</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <table class="table table-responsive-sm table-hover table-bordered">
             <thead>
               <tr>
                 <th style="background-color: rgb(60, 231, 146); text-align: center;">Booked</th>
@@ -47,19 +177,19 @@
                         
                     </tr>
                 </tbody>
-              </table>
-            </div>
-          </div>
+              </table> -->
         </div>
-      </div>  
+      </div>
+    </div>
+  </div>
 
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="card">
-        
-            <div class="card-body">
-                <div class="animated fadeIn">
-              </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+
+        <div class="card-body">
+          <div class="animated fadeIn">
+          </div>
           <table class="table table-responsive table-hover table-bordered">
             <thead>
               <tr>
@@ -77,47 +207,47 @@
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Drop-off Location</th>
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Dropoff Load Status</th>
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Comments</th>
+                <th style="background-color: rgb(178, 178, 224); text-align: center;">Edit</th>
               </tr>
             </thead>
-    
-                <tbody>
-                    <tr *ngFor="let load of loadDetails">
-                        <td style="color: red; font-weight: 700">{{load.load_number}}</td>
-                        <td>{{load.customer_name}}</td>
-                        <td>{{load.crefno}}</td>
-                        <td>{{load.phone}}</td>
-                        <td>{{load.email}}</td>
-                        <td>{{load.dispatcher}}</td>
-                        <td>
-                          <span *ngIf="load.pickupinfo!= undefined">Driver1:{{load.pickupinfo.Driver1}},</span>
-                          <span *ngIf="load.pickupinfo!= undefined">Driver2:{{load.pickupinfo.Driver2}}</span>
-                        </td>
-                        <td>
-                          <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.ContactNumber}}</span>
-                        </td>
-                        <td><span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.Truck}}</span></td>
-                        <td style="color: red; font-weight: 700">
-                          <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.LoadStatus}}</span>
-                        </td>
-                        <td>
-                          <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.PickupCompany}},</span> 
-                          <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.Address}}</span>
-                        </td>
-                        <td>
-                          <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.dropCompany}},</span>
-                          <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.dropAddress}}</span>
-                        </td>
-                        <td style="color: red; font-weight: 700">
-                          <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.LoadStatus}}</span>
-                        </td>
-                        <td>{{load.comments}}</td>
-                    </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+
+            <tbody>
+              <tr *ngFor="let load of loadDetails">
+                <td style="color: red; font-weight: 700">{{load.load_number}}</td>
+                <td>{{load.customer_name}}</td>
+                <td>{{load.crefno}}</td>
+                <td>{{load.phone}}</td>
+                <td>{{load.email}}</td>
+                <td>{{load.dispatcher}}</td>
+                <td>
+                  <span *ngIf="load.pickupinfo!= undefined">Driver1:{{load.pickupinfo.Driver1}},</span>
+                  <span *ngIf="load.pickupinfo!= undefined">Driver2:{{load.pickupinfo.Driver2}}</span>
+                </td>
+                <td>
+                  <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.ContactNumber}}</span>
+                </td>
+                <td><span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.Truck}}</span></td>
+                <td style="color: red; font-weight: 700">
+                  <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.LoadStatus}}</span>
+                </td>
+                <td>
+                  <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.PickupCompany}},</span>
+                  <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.Address}}</span>
+                </td>
+                <td>
+                  <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.dropCompany}},</span>
+                  <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.dropAddress}}</span>
+                </td>
+                <td style="color: red; font-weight: 700">
+                  <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.LoadStatus}}</span>
+                </td>
+                <td>{{load.comments}}</td>
+                <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+    </div>
+  </div>
 </div>
-
-
