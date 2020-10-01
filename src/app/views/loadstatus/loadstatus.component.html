@@ -17,7 +17,7 @@
           </div>
           <div class="container detail-box animated fadeIn">
             <div class="row">
-              <div class="col pad-hor">
+              <div class="col pad-hor" (click) = "filterLoad('loads')">
                 <div class="main load">
                   Loads
                 </div>
@@ -27,39 +27,39 @@
                   <i class="fa fa-arrows-v" aria-hidden="true"></i>
                 </div>
               </div>
-              <div class="col pad-hor status cancelled">
+              <div class="col pad-hor status cancelled" (click) = "filterLoad('Cancelled', 'loads')">
                 <div>
                   <div>Cancelled</div>
-                  <div>1</div>
+                  <div>{{statusCounts['load-Cancelled'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status tonu">
+              <div class="col pad-hor status tonu" (click) = "filterLoad('TONU', 'loads')">
                 <div>
                   <div>TONU</div>
-                  <div>1</div>
+                  <div>{{statusCounts['load-TONU'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status completed">
+              <div class="col pad-hor status completed" (click) = "filterLoad('Completed', 'loads')">
                 <div>
                   <div>Completed</div>
-                  <div>1</div>
+                  <div>{{statusCounts['load-Completed'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status invoiced">
+              <div class="col pad-hor status invoiced" (click) = "filterLoad('Invoiced', 'loads')">
                 <div>
                   <div>Invoiced</div>
-                  <div>1</div>
+                  <div>{{statusCounts['load-Invoiced'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status factored">
+              <div class="col pad-hor status factored" (click) = "filterLoad('Factored', 'loads')">
                 <div>
                   <div>Factored</div>
-                  <div>1</div>
+                  <div>{{statusCounts['load-Factored'] || 0}}</div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col pad-hor">
+              <div class="col pad-hor" (click) = "filterLoad('pickups')">
                 <div class="main pick">
                   Pick-ups
                 </div>
@@ -69,41 +69,41 @@
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </div>
               </div>
-              <div class="col pad-hor status booked">
+              <div class="col pad-hor status booked" (click) = "filterLoad('Booked', 'pickup')">
                 <div>
                   <div>Booked</div>
-                  <div>3</div>
+                  <div>{{statusCounts['pickup-Booked'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status arr-delay">
+              <div class="col pad-hor status arr-delay" (click) = "filterLoad('Arrival Delay', 'pickup')">
                 <div>
                   <div>Arrival - Delay</div>
-                  <div>1</div>
+                  <div>{{statusCounts['pickup-ArrivalDelay'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status arr-ontime">
+              <div class="col pad-hor status arr-ontime" (click) = "filterLoad('Arrival Ontime', 'pickup')">
                 <div>
                   <div>Arrival - Ontime</div>
-                  <div>1</div>
+                  <div>{{statusCounts['pickup-ArrivalOntime'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status pickup-delay">
+              <div class="col pad-hor status pickup-delay" (click) = "filterLoad('Pickup Delay', 'pickup')">
                   <div>
                     <div>Pickup - Delay</div>
-                    <div>1</div>
+                    <div>{{statusCounts['pickup-PickupDelay'] || 0}}</div>
                   </div>
               </div>
-              <div class="col pad-hor status pickup-ontime">
+              <div class="col pad-hor status pickup-ontime" (click) = "filterLoad('Pickup Ontime', 'pickup')">
                   <div>
                     <div>Pickup - Ontime</div>
-                    <div>1</div>
+                    <div>{{statusCounts['pickup-PickupOntime'] || 0}}</div>
                   </div>
               </div>
             </div>
             <div class="row">
-              <div class="col pad-hor">
+              <div class="col pad-hor" (click) = "filterLoad('dropoffs')">
                 <div class="main delivery">
-                  Delivery
+                  Drop-offs
                 </div>
               </div>
               <div class="col pad-hor m-width">
@@ -111,34 +111,34 @@
                   <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </div>
               </div>
-              <div class="col pad-hor status intransit">
+              <div class="col pad-hor status intransit" (click) = "filterLoad('InTransit', 'dropoff')">
                 <div>
                   <div>In-transit</div>
-                  <div>3</div>
+                  <div>{{statusCounts['dropoff-InTransit'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status arr-delay">
+              <div class="col pad-hor status arr-delay" (click) = "filterLoad('Arrival Delay', 'dropoff')">
                 <div>
                   <div>Arrival - Delay</div>
-                  <div>1</div>
+                  <div>{{statusCounts['dropoff-ArrivalDelay'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status arr-ontime">
+              <div class="col pad-hor status arr-ontime" (click) = "filterLoad('Arrival Ontime', 'dropoff')">
                 <div>
                   <div>Arrival - Ontime</div>
-                  <div>1</div>
+                  <div>{{statusCounts['dropoff-ArrivalOntime'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status delivery-delay">
+              <div class="col pad-hor status delivery-delay" (click) = "filterLoad('Delivery Delay', 'dropoff')">
                 <div>
                   <div>Delivery - Delay</div>
-                  <div>1</div>
+                  <div>{{statusCounts['dropoff-DeliveryDelay'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status delivery-ontime">
+              <div class="col pad-hor status delivery-ontime" (click) = "filterLoad('DeliveryOntime', 'dropoff')">
                 <div>
                   <div>Delivery - Ontime</div>
-                  <div>1</div>
+                  <div>{{statusCounts['dropoff-DeliveryOntime'] || 0}}</div>
                 </div>
               </div>
             </div>
@@ -202,17 +202,19 @@
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Driver</th>
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Driver Phone Number</th>
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Truck</th>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Pickup Load Status</th>
+                <!-- <th style="background-color: rgb(178, 178, 224); text-align: center;">Pickup Load Status</th> -->
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Pick-up Location</th>
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Drop-off Location</th>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Dropoff Load Status</th>
+                <!-- <th style="background-color: rgb(178, 178, 224); text-align: center;">Dropoff Load Status</th> -->
+                <th style="background-color: rgb(178, 178, 224); text-align: center;">Load Status</th>
+
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Comments</th>
                 <th style="background-color: rgb(178, 178, 224); text-align: center;">Edit</th>
               </tr>
             </thead>
 
             <tbody>
-              <tr *ngFor="let load of loadDetails">
+              <tr *ngFor="let load of loadDetails | statusFilter:activeFilter">
                 <td style="color: red; font-weight: 700">{{load.load_number}}</td>
                 <td>{{load.customer_name}}</td>
                 <td>{{load.crefno}}</td>
@@ -227,9 +229,9 @@
                   <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.ContactNumber}}</span>
                 </td>
                 <td><span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.Truck}}</span></td>
-                <td style="color: red; font-weight: 700">
+                <!-- <td style="color: red; font-weight: 700">
                   <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.LoadStatus}}</span>
-                </td>
+                </td> -->
                 <td>
                   <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.PickupCompany}},</span>
                   <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.Address}}</span>
@@ -238,9 +240,10 @@
                   <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.dropCompany}},</span>
                   <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.dropAddress}}</span>
                 </td>
-                <td style="color: red; font-weight: 700">
+                <!-- <td style="color: red; font-weight: 700">
                   <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.LoadStatus}}</span>
-                </td>
+                </td> -->
+                <td style="color: red; font-weight: 700" >{{(load.lastUpdated || {}).status || ''}}</td>
                 <td>{{load.comments}}</td>
                 <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
               </tr>

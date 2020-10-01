@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import { CreateloadService } from '../../services/createload.service';
 import { PickupserviceService } from '../../services/pickupservice.service';
 import { DropoffserviceService } from '../../services/dropoffservice.service';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-loadstatus',
@@ -24,6 +25,11 @@ public company: CompanyFilters;
   companydata=[];
   dropoffdata=[];
   pickupdata=[];
+  activeFilter = {
+    type: 'loads',
+    active: 'loads'
+  };
+  statusCounts =  Object;
 
 
  constructor(
@@ -48,12 +54,19 @@ public company: CompanyFilters;
 
   }
 
+  setCounts(loads){
+    loads.forEach(load => {
+      if (load.lastUpdated.type && load.lastUpdated.status){
+        load.lastUpdated.status = load.lastUpdated.status.replace(/\s/g, '');
+        this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] = this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] ? (this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] + 1) : 1;
+      }
+    })
+  }
 
   getData() {
     this._loadservice.getLoadData().subscribe(data => {
       var res=data
       this._customersservice.getCustomersData().subscribe(resp => {
-        console.log(resp)
         for (var i = 0; i < res.length;i++) {
           res[i]['load_number']=1000+i
           res[i]['customer_name'] = ((resp[res[i]['customer'][0] !== 'Select customer' ? res[i]['customer'][0] : parseInt(res[i]['customer'][0])]) || {}).companyname
@@ -80,8 +93,9 @@ public company: CompanyFilters;
                })
               }
           })
-        console.log(this.loadDetails)
+          this.setCounts(this.loadDetails);
       });
+     
     });
   }
 
@@ -106,5 +120,30 @@ public company: CompanyFilters;
     this.router.navigateByUrl('/dashboard/createload');
   }
 
+  filterLoad(active, type = ''){
+    this.activeFilter = {
+      active, type
+    };
+  }
 
+
+}
+
+
+@Pipe({
+  name: 'statusFilter',
+  pure: false
+})
+export class StatusFilterPipe implements PipeTransform {
+  transform(loadDetails: any[], filter): any {
+    if (!loadDetails || !loadDetails.length || !filter || filter.active === 'loads') {
+      return loadDetails;
+    } else if (filter.active === 'pickups'){
+      return loadDetails.filter(load => load.lastUpdated.type === 'pickup');
+    } else if (filter.active === 'dropoffs') {
+      return loadDetails.filter(load => load.lastUpdated.type === 'dropoff');
+    } else {
+      return loadDetails.filter(load => (load.lastUpdated.status === filter.active && load.lastUpdated.type === filter.type));
+    }
+  }
 }

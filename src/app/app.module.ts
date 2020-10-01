@@ -59,7 +59,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
+import { LoadstatusComponent, StatusFilterPipe } from './views/loadstatus/loadstatus.component';
 import { CompanyregisterComponent } from './views/companyregister/companyregister.component';
 
 
@@ -104,7 +104,8 @@ import { CompanyregisterComponent } from './views/companyregister/companyregiste
     LoginComponent,
     RegisterComponent,
     LoadstatusComponent,
-    CompanyregisterComponent
+    CompanyregisterComponent,
+    StatusFilterPipe
   ],
   providers: [
     {provide: LocationStrategy,useClass: HashLocationStrategy},
