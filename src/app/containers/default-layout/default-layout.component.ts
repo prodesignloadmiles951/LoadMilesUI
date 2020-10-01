@@ -8,7 +8,6 @@ import { salesNavItems} from '../../_nav';
 import { CompanyService } from '../../services/company.service';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html',
@@ -150,6 +149,17 @@ export class DefaultLayoutComponent implements OnDestroy {
          }
       }
     }
+    this.authService.loginEvent.asObservable().subscribe(
+      (data) => {
+        console.log(data)
+        this.loginUser = this.authService.getloginUser();
+        if(this.loginUser['role']['name'] == 'Driver'){
+          this.navItems=this.driverMenuList
+          this.router.navigateByUrl('theme/driver-list');
+        }else{
+          this.navItems=this.sideMenuList
+        }
+    })
   }
   getlinkedcompanydata(){
     this.companylinkeddata=[]
@@ -172,20 +182,20 @@ export class DefaultLayoutComponent implements OnDestroy {
     this.router.navigateByUrl('loadstatus');
   }
 
-  companyselected(cmp) {
+  companyselected(cmp) { 
     localStorage.setItem('selectedCompany',cmp._id)
     localStorage.setItem('selectedCompanyName',cmp.companyname)
     var cmpid = localStorage.getItem("selectedCompany")
     this.userid= this.loginUser['_id']
     console.log(cmpid)
     console.log(this.userid)
-    this._toaster.success(cmp.companyname+" selected successfully", "Success", {timeOut: 2000,});
-    const currentUrl = this.router.url;
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate([currentUrl]);
-    });
-      this._companyservice.getcompanyroleinfo(cmpid,this.userid).subscribe(data => {
+    
+    this._companyservice.getcompanyroleinfo(cmpid,this.userid).subscribe(data => {
       console.log(data)
+      this._toaster.success(cmp.companyname+" selected successfully", "Success", {timeOut: 2000,});
+      this.router.navigateByUrl('dashboard')
+      this.authService.setLogin(data);
+      this.authService.setRole(data);
     })
   }
 

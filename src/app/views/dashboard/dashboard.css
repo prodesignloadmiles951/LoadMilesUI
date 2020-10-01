@@ -41,5 +41,22 @@
 .dashboard-table th:last-child {
   border-width: 0 !important;
 }
-
+.cardsContainer {
+  display: flex;
+}
+.card-data{
+    margin: 2rem 1rem;
+    cursor: pointer;
+    box-shadow: 0 3px 5px 1px rgba(0,0,0,.15);
+    border-radius: 5px;
+    background: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+.card-data img{
+  width: auto;
+}
+.card-data:hover{
+    box-shadow: 0 5px 10px 1px rgba(0,0,0,.5);
+}
 

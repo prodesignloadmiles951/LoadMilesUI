@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { CompanyFilters } from '../../../model/companydetails';
 import { CompanyService } from '../../../services/company.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { LoginUser } from '../../../model/loginuser';
 import { AuthenticationService } from '../../../views/authentication.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-companyform',
@@ -17,7 +18,6 @@ export class CompanyformComponent implements OnInit {
     public loginUser: LoginUser;
 	  Companylistdata = new Array<CompanyFilters>();
 	  submitted: boolean;
-	  data: any;
     @Input() datatype;
 	  currency
     pageFiltersshow=false;
@@ -28,55 +28,83 @@ export class CompanyformComponent implements OnInit {
     roleArray=[]
     showusertable=false
     btnHide=false 
+    showupdate=false
+    showsubmit=false
+    changeUplaod=true
+    editFileList=[]
+    selectedCompany=true
+    finalArry=[];
 
-  constructor(private _toaster: ToastrService,
+  constructor(public dialogRef: MatDialogRef < CompanyformComponent > ,
+        @Inject(MAT_DIALOG_DATA) public data: any,private _toaster: ToastrService,
      private _companyservice: CompanyService,
      private authService: AuthenticationService,
-     private router: Router) { }
+     private router: Router) {
+      console.log(this.data)
+      }
 
   ngOnInit() {
     if (this.authService.getloginUser()) {
       this.loginUser = this.authService.getloginUser();
-      if (this.loginUser['role']['name'] == 'Admin') {
+      if (this.loginUser['role']['name'] == 'Admin' && this.data['companyname'] == localStorage.selectedCompanyName) {
          this.showusertable = true
+      }else{
+        this.showusertable = false
       }
     }
 
   	this.pageFilters = new CompanyFilters();
     this.pageFilters.currency='Select currency'
 
-    if(this.datatype == undefined){
-      // this.pageFilters=this.Customerslistdata
+   if(this.data['EditMode'] == undefined){
       this.mode=true
       this.showAddOption=true
+      this.selectedCompany=false
+      this.showsubmit=true
     }else{
-      this.pageFilters=this.datatype
-      this.mode=this.datatype['EditMode']   
-      this.showAddOption=false  
-      this.showAddOption=false     
+      this.mode=this.data['EditMode'] 
+      this.pageFilters=this.data
+      this.showAddOption=this.data['EditMode'] 
+      this.changeUplaod=false
+      if(this.data['EditMode']){
+        this.showupdate=true
+        this.editFileList=this.data['files']
+      }
     }
     this.pageFiltersshow=true;
     this.getroles()
 }
+
+update() {
+     console.log(this.data)
+          this.btnHide=true
+        this._companyservice.EditCompany(this.data).subscribe(response => {
+          this._toaster.success("company successfully updated", "Success", {timeOut: 3000,});
+          this.btnHide=false
+         this.dialogRef.close(response)
+        }, error => {
+           this._toaster.error("Company not updated", "Try Again", {timeOut: 2000,});
+          });
+   }
 
    submit() {
      if(localStorage.selectedCompany == undefined){
        this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
      }else{
       this.submitted = true;
-      if(this.pageFilters.companyid !== undefined){
+      if(this.pageFilters.companyname !== undefined){
           console.log(this.pageFilters)
           this.btnHide=true
         this._companyservice.SendForm(this.pageFilters).subscribe(response => {
           this.submitted = true;
           this._toaster.info("Company Data Submitted","Success", {timeOut: 3000,});
-          this.router.navigateByUrl("/theme/company-list");
+          this.dialogRef.close(response)
         },error=>{
           this.submitted=false;
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
       }else{
-          this._toaster.error("Enter Company ID","Failed", {timeOut: 2000,});
+          this._toaster.error("Enter Company Name","Failed", {timeOut: 2000,});
       }
      }
    }
@@ -90,15 +118,19 @@ export class CompanyformComponent implements OnInit {
        this.roleArray=res
       })
   }
+  hidePopup(){
+     this.dialogRef.close(null)
+   }
 
    onAdd(e){
      var addObj=e.data
+     console.log(addObj)
      if(localStorage.selectedCompany == undefined){
        this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
      }else{
        addObj['company']=localStorage.selectedCompany
        for (var i = 0; i < this.roleArray.length; i++) {
-         if(addObj['roleType'] == this.roleArray[i]['ID']){
+         if(addObj['name'] == this.roleArray[i]['ID']){
            addObj['role']=this.roleArray[i]['_id']
            break          
          }
@@ -106,7 +138,7 @@ export class CompanyformComponent implements OnInit {
        delete addObj['__KEY__']
        delete addObj['roleType']
        console.log(addObj)
-       this._companyservice.onCreateRole(addObj).subscribe(res => {
+       this._companyservice.onCreateRole(addObj,this.loginUser['_id']).subscribe(res => {
            console.log(res)
           this._toaster.info("Userrole Data Submitted","Success", {timeOut: 3000,});
         },error=>{

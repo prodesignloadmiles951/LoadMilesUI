@@ -41,9 +41,9 @@ export class CompanyService {
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
         return this.http.delete(this.companyurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
-      onCreateRole(obj){
+      onCreateRole(obj,id){
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
-        return this.http.post(this.URL+'userapi/user',obj,options)
+        return this.http.put(this.URL+'userapi/user'+"/"+id,obj,options)
         .pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
       getRoleData(){
@@ -53,6 +53,10 @@ export class CompanyService {
       getcompanyRoleData(){
         let options = new RequestOptions();
         return this.http.get(this.roleurl,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+      }
+      getallCompanyData(){
+        let options = new RequestOptions();
+        return this.http.get(this.companyurl,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
       newCompanyregister(pageFilters: CompanyFilters){
         let options = new RequestOptions();
@@ -66,4 +70,5 @@ export class CompanyService {
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
         return this.http.get(this.newcompanyurl+'/'+ cmpid + '/'+ userid,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
+
 }

@@ -96,6 +96,6 @@ import { CompanyformComponent } from './companyform/companyform.component';
     DispatcherformComponent,
     CompanyformComponent
   ],
-  entryComponents: [TruckformComponent, TrailerformComponent, DriverformComponent, CarrierformComponent, CustomerformComponent, DispatcherformComponent],
+  entryComponents: [TruckformComponent, TrailerformComponent, DriverformComponent, CarrierformComponent, CustomerformComponent, DispatcherformComponent, CompanyformComponent],
 })
 export class ThemeModule { }

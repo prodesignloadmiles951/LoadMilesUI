@@ -27,6 +27,7 @@ export class CompanyregisterComponent implements OnInit {
     roleArray=[]
     showusertable=false
     userroledetails={}
+    companyid=undefined
 
   constructor(private _toaster: ToastrService,
      private _companyservice: CompanyService,
@@ -34,7 +35,6 @@ export class CompanyregisterComponent implements OnInit {
      private router: Router) { }
 
   ngOnInit() {
-  	
 
   	this.pageFilters = new CompanyFilters();
     this.pageFilters.currency='Select currency'
@@ -51,17 +51,28 @@ export class CompanyregisterComponent implements OnInit {
     }
     this.pageFiltersshow=true;
     this.getroles()
+    this.getData()
   }
   Goback() {
     this.router.navigateByUrl('/login');
   }
+  getData() {
+    this._companyservice.getallCompanyData().subscribe(data => {
+      this.pageFilters['companyid'] = 1000+(data.length+1)
+    });
+  }
   submit() {
-      if(this.pageFilters.fedid !== undefined){
+      if(this.pageFilters.fedid !== undefined && this.pageFilters ['fedid'].length <= 9){
           this.pageFilters['user']=this.userroledetails
           console.log(this.pageFilters)
         this._companyservice.newCompanyregister(this.pageFilters).subscribe(response => {
-          this._toaster.info("New Company Data Submitted","Success", {timeOut: 3000,});
-          this.router.navigateByUrl("/login");
+          console.log(response)
+          if(response.Status != "error"){
+            this._toaster.info(response.message,"Success", {timeOut: 3000,});
+            this.router.navigateByUrl("/login");
+          }else{
+            this._toaster.error(response.error,"Failed", {timeOut: 2000,});
+          }
         },error=>{
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
@@ -82,15 +93,17 @@ export class CompanyregisterComponent implements OnInit {
 
    onAdd(e){
      var addObj=e.data
+     var roleObj={}
        for (var i = 0; i < this.roleArray.length; i++) {
-         if(addObj['roleType'] == this.roleArray[i]['ID']){
-           addObj['role']=this.roleArray[i]['_id']
+         if(addObj['name'] == this.roleArray[i]['ID']){
+           roleObj['name']=this.roleArray[i]['name']
+           roleObj['_id']=this.roleArray[i]['_id']
            break          
          }
        }
        delete addObj['__KEY__']
-       delete addObj['roleType']
        addObj['company']=this.pageFilters.companyid
+       addObj['role']=roleObj
        console.log(addObj)
        this.userroledetails=addObj
  }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CompanyFilters } from './../../model/companydetails';
-import { CompanyService } from '../../services/company.service';
+import { CustomersService } from '../../services/customers.service';
 import { ToastrService } from 'ngx-toastr';
 import {Router} from '@angular/router';
 import { CreateloadService } from '../../services/createload.service';
@@ -11,7 +11,7 @@ import { DropoffserviceService } from '../../services/dropoffservice.service';
   selector: 'app-loadstatus',
   templateUrl: './loadstatus.component.html',
   styleUrls: ['./loadstatus.component.scss'],
-  providers: [ToastrService, CompanyService, PickupserviceService, DropoffserviceService]
+  providers: [ToastrService, PickupserviceService, DropoffserviceService, CustomersService]
 })
 export class LoadstatusComponent implements OnInit {
 public company: CompanyFilters;
@@ -28,7 +28,7 @@ public company: CompanyFilters;
 
  constructor(
   private router: Router,
-  private _companyservice: CompanyService,
+  private _customersservice: CustomersService,
   private _toaster: ToastrService,
   private _pickup: PickupserviceService,
   private _dropoff: DropoffserviceService,
@@ -52,7 +52,7 @@ public company: CompanyFilters;
   getData() {
     this._loadservice.getLoadData().subscribe(data => {
       var res=data
-      this._companyservice.getCompanyData().subscribe(resp => {
+      this._customersservice.getCustomersData().subscribe(resp => {
         console.log(resp)
         for (var i = 0; i < res.length;i++) {
           res[i]['load_number']=1000+i

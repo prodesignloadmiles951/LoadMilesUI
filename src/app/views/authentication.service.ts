@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -11,6 +11,8 @@ export class AuthenticationService {
     public LoginUser: LoginUser;
     redirectUrl: string;  
     isLoggedin: boolean;
+    loginEvent = new EventEmitter < boolean > ();
+
     constructor(private router: Router) {
         this.LoginUser = new LoginUser();
     }
@@ -38,5 +40,8 @@ export class AuthenticationService {
             this.clearAuthentication();
         }
         return LoginUser;
+    }
+    setRole(data){
+        this.loginEvent.emit(true);
     }
 }

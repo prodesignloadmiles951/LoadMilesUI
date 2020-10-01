@@ -5,6 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import {Router} from '@angular/router';
 import { AuthenticationService } from '../../views/authentication.service';
 import { LoginUser } from '../../model/loginuser';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { CompanyformComponent } from './companyform/companyform.component'
+
 
 
 @Component({
@@ -20,72 +23,64 @@ export class CompanylistComponent implements OnInit {
   selectedCompany: any;
   EditMode: boolean;
   showusertable=false
+  userid={}
 
 
  constructor(
   private router: Router,
   private _companyservice: CompanyService,
   private authService: AuthenticationService,
+  public dialog: MatDialog,
   private _toaster: ToastrService,
  ) {
   this.pageFilters = new CompanyFilters();
  }
   ngOnInit(): void {
-    this.getData();
     if (this.authService.getloginUser()) {
       this.loginUser = this.authService.getloginUser();
+      this.getData();
       if (this.loginUser['role']['name'] == 'Admin') {
          this.showusertable = true
       }
     }
   }
   viewData(cmp) {
-    this.EditMode = false;
-    this.company = new CompanyFilters();
-    this.company = cmp;
-    this.selectedCompany = cmp.companyname;
-
+        var companyObj=cmp
+        companyObj['EditMode']=false
+        let dialogConfig = Object.assign({ width: "1000px" },{ data: companyObj })
+        let viewDialogRef = this.dialog.open(CompanyformComponent, dialogConfig);
+        viewDialogRef.afterClosed().subscribe((data) => {
+          console.log(data)
+        })
   }
   editData(cmp) {
-    this.EditMode = true;
-    this.company = new CompanyFilters();
-    this.company = cmp;
-    this.selectedCompany = cmp.companyname;
-
+    var companyObj=cmp
+        companyObj['EditMode']=true
+        let dialogConfig = Object.assign({ width: "1000px" },{ data: companyObj })
+        let editDialogRef = this.dialog.open(CompanyformComponent, dialogConfig);
+        editDialogRef.afterClosed().subscribe((data) => {
+          console.log(data)
+          if(data == null){}else{
+            this.getData()        
+          }
+        })
   }
 
   getData() {
-    this._companyservice.getCompanyData().subscribe(data => {
+    this.userid= this.loginUser['_id']
+    this._companyservice.getcompanylistinfo(this.userid).subscribe(data => {
       this.data = data;
     });
   }
 
-  editCompany(cmp) {
-    if(localStorage.selectedCompany == undefined){
-           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
-       }else{
-        cmp['companyid']=localStorage.selectedCompany
-        this._companyservice.EditCompany(cmp).subscribe(response => {
-          this._toaster.success("company successfully updated", "Success", {timeOut: 3000,});
-        }, error => {
-           this._toaster.error("error", "Try Again", {timeOut: 2000,});
-          });
-          this.EditMode = false;
-       }
-  }
-
-  deleteCompany(cmp) {
-    if(localStorage.selectedCompany == undefined){
-           this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
-     }else{
-        this._companyservice.DeleteCompany(cmp._id).subscribe(data => {
-        this._toaster.info("Company Data Delete", "Success", {timeOut: 3000,});
-        this.getData();
-       });
-     }
-   }
-
   Add() {
-    this.router.navigateByUrl('/theme/company');
+    let dialogConfig = Object.assign({ width: "1000px" },{ data: {} })
+        let editDialogRef = this.dialog.open(CompanyformComponent, dialogConfig);
+        editDialogRef.afterClosed().subscribe((data) => {
+          console.log(data)
+          if(data == null){}else{
+            this.getData()        
+          }
+        })
   }
 }
