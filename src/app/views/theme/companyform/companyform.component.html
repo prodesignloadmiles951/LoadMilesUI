@@ -187,11 +187,11 @@
           <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
           </dxo-editing>
           <dxo-selection mode="single"></dxo-selection>
-          <dxi-column dataField="firstname" caption="First name"></dxi-column>
-          <dxi-column dataField="lastname" caption="Last name"></dxi-column>
-          <dxi-column dataField="email" caption="Email"></dxi-column>
-          <!-- <dxi-column dataField="password" caption="Password"></dxi-column> -->
           <dxi-column dataField="username" caption="Username"></dxi-column>
+          <dxi-column dataField="email" caption="Email/Username">
+            <dxo-lookup [dataSource]="username" displayExpr="email" valueExpr="ID">
+            </dxo-lookup>
+          </dxi-column>
           <dxi-column dataField="name" caption="Role">
             <dxo-lookup [dataSource]="roleArray" displayExpr="name" valueExpr="ID">
             </dxo-lookup>

@@ -1,0 +1,597 @@
+<form class="form-horizontal" #trucksForm="ngForm" novalidate autocomplete="off">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">Load Ceation Part - I</div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="customer">Customer:
+              <span style="color:red">*</span>
+            </label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="customer" placeholder="Customer name" #customer="ngModel" name="customer" [(ngModel)]="newloadfilters.customer" required>
+              <div *ngIf="customer.errors && (customer.dirty || customer.touched)" style="font-size: smaller;">
+                <div [hidden]="!customer.errors.required">
+                  <span style="color: red;">Customer is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Contact Phone:<span style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="phone" placeholder="Phone number" #phone="ngModel" name="phone" [(ngModel)]="newloadfilters.phone" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="phone.errors && (phone.dirty || phone.touched)" style="font-size: smaller;">
+                <div [hidden]="!phone.errors.required">
+                  <span style="color: red;">Phone is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Contact Email:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" name="email" [(ngModel)]="newloadfilters.email" #email="ngModel" placeholder="Email" autocomplete="off" required>
+              <div *ngIf="email.errors && (email.dirty || email.touched)" style="font-size: smaller;">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Shipper Ref Number:<span style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="srefno" placeholder="Shipper reference number" #srefno="ngModel" name="srefno" [(ngModel)]="newloadfilters.srefno" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="srefno.errors && (srefno.dirty || srefno.touched)" style="font-size: smaller;">
+                <div [hidden]="!srefno.errors.required">
+                  <span style="color: red;">Shipper Reference number is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">Currency:</label>
+            <div class="col-md-8">
+              <select class="form-control" id="currency" name="currency" [(ngModel)]="newloadfilters.currency">
+                <option value="Select Currency" disabled selected hidden>Select Currency</option>
+                <option value="0">GBP</option>
+                <option value="1">USD</option>
+                <option value="2">CAD</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Load price:</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="loadprice" placeholder="Load price" #loadprice="ngModel" name="loadprice" [(ngModel)]="newloadfilters.loadprice" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="loadprice.errors && (loadprice.dirty || loadprice.touched)" style="font-size: smaller;">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Distance:</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="distance" placeholder="Enter distance" #distance="ngModel" name="distance" [(ngModel)]="newloadfilters.distance" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="distance.errors && (distance.dirty || distance.touched)" style="font-size: smaller;">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Dead head:</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="deadhead" placeholder="Enter deadhead distance" #deadhead="ngModel" name="deadhead" [(ngModel)]="newloadfilters.deadhead" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="deadhead.errors && (deadhead.dirty || deadhead.touched)" style="font-size: smaller;">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="crossborder">Cross border :</label>
+            <div class="col-md-8">
+              <select class="form-control" id="crossborder" #crossborder="ngModel" name="crossborder" [(ngModel)]="newloadfilters.crossborder">
+                <option value="Cross Border" disabled selected hidden>Cross border</option>
+                <option value="0">Yes</option>
+                <option value="1">No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">Load Creation Part - II</div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="date">Date :</label>
+            <div class="col-md-8">
+              <input type="date" class="form-control" id="date" #startdate="ngModel" name="date" [(ngModel)]="newloadfilters.date">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="dispatcher">Dispatcher :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="dispatcher" #dispatcher="ngModel" placeholder="Enter dispatcher" name="dispatcher" [(ngModel)]="newloadfilters.dispatcher">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="Equiptype">Equipment type:</label>
+            <div class="col-md-8">
+              <select class="form-control" id="Equiptype" #Equiptype="ngModel" name="Equiptype" [(ngModel)]="newloadfilters.Equiptype">
+                <option value="Select equipment type" disabled selected hidden>Select equipment type</option>
+                <option value="0">Type-I</option>
+                <option value="1">Type-II</option>
+                <option value="2">Type-III</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="eqipsize">Equipment size :</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="eqipsize" #eqipsize="ngModel" placeholder="Equipment size" name="eqipsize" [(ngModel)]="newloadfilters.eqipsize">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="commodity">Commodity :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="commodity" #commodity="ngModel" placeholder="Enter commodity" name="commodity" [(ngModel)]="newloadfilters.commodity">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="weight">Weight :</label>
+            <div class="col-md-8">
+              <input type="number" class="form-control" id="weight" #weight="ngModel" placeholder="Enter weight" name="weight" [(ngModel)]="newloadfilters.weight">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="comments">Comments :</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="comments" #comments="ngModel" placeholder="Enter comments" name="comments" [(ngModel)]="newloadfilters.comments">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="sealed">Sealed :</label>
+            <div class="col-md-8">
+              <select class="form-control" id="sealed" #sealed="ngModel" name="sealed" [(ngModel)]="newloadfilters.sealed">
+                <option value="Seal required" disabled selected hidden>Seal required</option>
+                <option value="0">Yes</option>
+                <option value="1">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="hazmat">Hazmat :</label>
+            <div class="col-md-8">
+              <select class="form-control" id="hazmat" #hazmat="ngModel" name="hazmat" [(ngModel)]="newloadfilters.hazmat">
+                <option value="Hazmat material" disabled selected hidden>Hazmat material</option>
+                <option value="0">Yes</option>
+                <option value="1">No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="loadformfooter">
+    <div class="card-footer">
+      <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submitload()"><i class="fa fa-dot-circle-o"></i>
+        <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        Submit</button>&nbsp;&nbsp;
+      <button type="reset" style="float: right" (click)="resetload()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">Notes :</div>
+    <div class="card-body">
+      <div class="form-group row">
+        <div class="col-md-12">
+          <textarea class="form-control" id="notes" #notes="ngModel" name="notes" [(ngModel)]="newloadfilters.notes"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          PickUp Form
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="loadformfooter">
+        <div class="card-footer">
+          <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="addpickup()"><i class="fa fa-dot-circle-o"></i>
+            <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            Add PickUp</button>&nbsp;&nbsp;
+          <button type="reset" style="float: right" (click)="deletepickup()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Delete PickUp</button>
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-12 pickupcontainer scroll" id="pickupform">
+      <!-- <ng-template #template> -->
+        <span class="col-lg-12 col-md-12 row" id="template">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-header">PickUp Form Part - I</div>
+              <div class="card-body">
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="drivertype">Driver type :</label>
+                  <div class="col-md-8">
+                    <select class="form-control" id="drivertype" #drivertype="ngModel" name="drivertype" [(ngModel)]="newloadfilters.drivertype">
+                      <option value="Select Driver type" disabled selected hidden>Select Driver type</option>
+                      <option value="0">Solo</option>
+                      <option value="1">Team</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="driver">Driver :
+                  </label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="driver" placeholder="Driver name" #driver="ngModel" name="driver" [(ngModel)]="newloadfilters.driver" required>
+                    <div *ngIf="driver.errors && (driver.dirty || driver.touched)" style="font-size: smaller;">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="truck">Truck :</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="truck" placeholder="Truck number" #truck="ngModel" name="truck" [(ngModel)]="newloadfilters.truck" required>
+                    <div *ngIf="truck.errors && (truck.dirty || truck.touched)" style="font-size: smaller;">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="trailer">Trailer :</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="trailer" placeholder="Trailer number" #trailer="ngModel" name="trailer" [(ngModel)]="newloadfilters.trailer" required>
+                    <div *ngIf="trailer.errors && (trailer.dirty || trailer.touched)" style="font-size: smaller;">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="prefno">Pickup Ref Number:<span style="color:red">*</span></label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="prefno" placeholder="Pickup reference number" #prefno="ngModel" name="prefno" [(ngModel)]="newloadfilters.prefno" [pattern]="'^[1-9][0-9]*$'" required>
+                    <div *ngIf="prefno.errors && (prefno.dirty || prefno.touched)" style="font-size: smaller;">
+                      <div [hidden]="!prefno.errors.required">
+                        <span style="color: red;">Pickup Reference number is required</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="pickupplan">Pickup plan :</label>
+                  <div class="col-md-8">
+                    <input type="time" class="form-control" id="pickupplan" [(ngModel)]="newloadfilters.pickupplan" value="16:32:55">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="arrtime">Arrival time :</label>
+                  <div class="col-md-8">
+                    <input type="time" class="form-control" id="arrtime" [(ngModel)]="newloadfilters.arrtime" value="16:00:55">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-header">PickUp Form Part - II</div>
+              <div class="card-body">
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="deptime">Departure time :</label>
+                  <div class="col-md-8">
+                    <input type="time" class="form-control" id="deptime" value="18:32:55">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="loadstatus">Load status :</label>
+                  <div class="col-md-8">
+                    <select class="form-control" id="loadstatus" #loadstatus="ngModel" name="loadstatus" [(ngModel)]="newloadfilters.loadstatus">
+                      <option value="Select load status" disabled selected hidden>Select load status</option>
+                      <option value="0">Booked</option>
+                      <option value="1">Arrival Delay</option>
+                      <option value="2">Arrival Ontime</option>
+                      <option value="3">Loaded Delay</option>
+                      <option value="4">Loaded Ontime</option>
+                      <option value="5">In Transit</option>
+                      <option value="6">Delivery Delay</option>
+                      <option value="7">Delivery Delay</option>
+                      <option value="8">Completed</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="pickcompany">Pickup company :</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="pickcompany" placeholder="Pickup Comapny name" #pickcompany="ngModel" name="pickcompany" [(ngModel)]="newloadfilters.pickcompany">
+                    <div *ngIf="pickcompany.errors && (pickcompany.dirty || pickcompany.touched)" style="font-size: smaller;">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="contact">Contact name :</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="contact" placeholder="Enter contact" #contact="ngModel" name="contact" [(ngModel)]="newloadfilters.contact" [pattern]="'^[1-9][0-9]*$'" required>
+                    <div *ngIf="contact.errors && (contact.dirty || contact.touched)" style="font-size: smaller;">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="contnumber">Contact number :</label>
+                  <div class="col-md-8">
+                    <input type="number" class="form-control" id="contnumber" placeholder="Enter contnumber Distance" #contnumber="ngModel" name="contnumber" [(ngModel)]="newloadfilters.contnumber" [pattern]="'^[1-9][0-9]*$'">
+                    <div *ngIf="contnumber.errors && (contnumber.dirty || contnumber.touched)" style="font-size: smaller;">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="address">Address :</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="address" placeholder="Enter address Distance" #address="ngModel" name="address" [(ngModel)]="newloadfilters.address" [pattern]="'^[1-9][0-9]*$'">
+                    <div *ngIf="address.errors && (address.dirty || address.touched)" style="font-size: smaller;">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label" for="pickcomments">Comments :</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" id="pickcomments" placeholder="Enter pickcomments Distance" #pickcomments="ngModel" name="pickcomments" [(ngModel)]="newloadfilters.pickcomments" [pattern]="'^[1-9][0-9]*$'">
+                    <div *ngIf="pickcomments.errors && (pickcomments.dirty || pickcomments.touched)" style="font-size: smaller;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </span>
+        <span class="col-lg-12 col-md-12"  id="viewContainer"></span>
+      </div>
+        <div class="loadformfooter">
+          <div class="card-footer">
+            <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+              <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              Submit PickUp</button>&nbsp;&nbsp;
+            <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset PickUp</button>
+          </div>
+        </div>
+        <!-- </ng-template> -->
+    </mat-expansion-panel>
+  </mat-accordion>
+  <!-- <ng-container *ngTemplateOutlet="template"></ng-container>
+<ng-container #viewContainer></ng-container> -->
+  <span id="viewContainer" *ngIf="pickupchild"></span>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          DropOff Form
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="loadformfooter">
+        <div class="card-footer">
+          <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="adddropoff()"><i class="fa fa-dot-circle-o"></i>
+            <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            Add DropOff</button>&nbsp;&nbsp;
+          <button type="reset" style="float: right" (click)="deletedropoff()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Delete DropOff</button>
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-12 dropoffcontainer scroll" id="dropoffform">
+      <span class="col-lg-12 col-md-12 row" id="droptemplate">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header">Dropoff Form Part - I</div>
+            <div class="card-body">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="drivertype">Driver type :</label>
+                <div class="col-md-8">
+                  <select class="form-control" id="drivertype" #drivertype="ngModel" name="drivertype" [(ngModel)]="newloadfilters.drivertype" [ngModelOptions]="{standalone: true}">
+                    <option value="Select Driver type" disabled selected hidden>Select Driver type</option>
+                    <option value="0">Solo</option>
+                    <option value="1">Team</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="driver">Driver :
+                </label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="driver" placeholder="Driver name" #driver="ngModel" name="driver" [(ngModel)]="newloadfilters.driver" [ngModelOptions]="{standalone: true}" required>
+                  <div *ngIf="driver.errors && (driver.dirty || driver.touched)" style="font-size: smaller;">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="truck">Truck :</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="truck" placeholder="Truck number" #truck="ngModel" name="truck" [(ngModel)]="newloadfilters.truck" [ngModelOptions]="{standalone: true}" required>
+                  <div *ngIf="truck.errors && (truck.dirty || truck.touched)" style="font-size: smaller;">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="trailer">Trailer :</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="trailer" placeholder="Trailer number" #trailer="ngModel" name="trailer" [(ngModel)]="newloadfilters.trailer" [ngModelOptions]="{standalone: true}" required>
+                  <div *ngIf="trailer.errors && (trailer.dirty || trailer.touched)" style="font-size: smaller;">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="prefno">Pickup Ref Number:<span style="color:red">*</span></label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="prefno" placeholder="Pickup reference number" #prefno="ngModel" name="prefno" [(ngModel)]="newloadfilters.prefno" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" required>
+                  <div *ngIf="prefno.errors && (prefno.dirty || prefno.touched)" style="font-size: smaller;">
+                    <div [hidden]="!prefno.errors.required">
+                      <span style="color: red;">Pickup Reference number is required</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="dropoffplan">DropOff plan :</label>
+                <div class="col-md-8">
+                  <input type="time" class="form-control" id="pickupplan" value="16:32:55">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="arrtime">Arrival time :</label>
+                <div class="col-md-8">
+                  <input type="time" class="form-control" id="arrtime" value="16:00:55">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header">DropOff Form Part - II</div>
+            <div class="card-body">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="deptime">Departure time :</label>
+                <div class="col-md-8">
+                  <input type="time" class="form-control" id="deptime" value="18:32:55">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="loadstatus">Load status :</label>
+                <div class="col-md-8">
+                  <select class="form-control" id="loadstatus" #loadstatus="ngModel" name="loadstatus" [(ngModel)]="newloadfilters.loadstatus" [ngModelOptions]="{standalone: true}">
+                    <option value="Select load status" disabled selected hidden>Select load status</option>
+                    <option value="0">Booked</option>
+                    <option value="1">Arrival Delay</option>
+                    <option value="2">Arrival Ontime</option>
+                    <option value="3">Loaded Delay</option>
+                    <option value="4">Loaded Ontime</option>
+                    <option value="5">In Transit</option>
+                    <option value="6">Delivery Delay</option>
+                    <option value="7">Delivery Delay</option>
+                    <option value="8">Completed</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="dropcompany">Dropoff company :</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="dropcompany" placeholder="Load price" #dropcompany="ngModel" name="dropcompany" [(ngModel)]="newloadfilters.dropcompany" [ngModelOptions]="{standalone: true}">
+                  <div *ngIf="dropcompany.errors && (dropcompany.dirty || dropcompany.touched)" style="font-size: smaller;">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="dropcontact">Contact name :</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="dropcontact" placeholder="Enter dropcontact" #dropcontact="ngModel" name="dropcontact" [(ngModel)]="newloadfilters.dropcontact" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" required>
+                  <div *ngIf="dropcontact.errors && (dropcontact.dirty || dropcontact.touched)" style="font-size: smaller;">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="dropcontnumber">Contact number :</label>
+                <div class="col-md-8">
+                  <input type="number" class="form-control" id="dropcontnumber" placeholder="Enter dropcontnumber Distance" #dropcontnumber="ngModel" name="dropcontnumber" [(ngModel)]="newloadfilters.dropcontnumber" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'">
+                  <div *ngIf="dropcontnumber.errors && (dropcontnumber.dirty || dropcontnumber.touched)" style="font-size: smaller;">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="dropaddress">Address :</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="dropaddress" placeholder="Enter dropaddress Distance" #dropaddress="ngModel" name="dropaddress" [(ngModel)]="newloadfilters.dropaddress" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'">
+                  <div *ngIf="dropaddress.errors && (dropaddress.dirty || dropaddress.touched)" style="font-size: smaller;">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="dropcomments">Comments :</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="dropcomments" placeholder="Enter dropcomments Distance" #dropcomments="ngModel" name="dropcomments" [(ngModel)]="newloadfilters.dropcomments" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'">
+                  <div *ngIf="dropcomments.errors && (dropcomments.dirty || dropcomments.touched)" style="font-size: smaller;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </span>
+      <span class="col-lg-12 col-md-12" id="dropoffContainer"></span>
+    </div>
+      <div class="card-footer">
+        <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+          <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+          Submit DropOff</button>&nbsp;&nbsp;
+        <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset DropOff</button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div id="dropoffContainer"></div>
+</form>
+<!--View-->
+<div bsModal #viewModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Manage Trucks - <span class="badge badge-success">{{selectedTruck}}</span></h4>
+        <button type="button" class="close" (click)="viewModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="animated fadeIn">
+            <div id="viewsection" *ngIf="EditMode==false">
+              <!-- <div id="viewsection"> -->
+              <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                </div>
+              </div>
+            </div>
+            <div id="editsection" *ngIf="EditMode==true">
+              <div class="card">
+                <div class="card-header">
+                  <strong>Edit</strong>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="plate">Plate :</label>
+                        <input type="text" class="form-control" id="plate" [(ngModel)]="trucks.plate">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="dba">Make :</label>
+                        <input type="text" class="form-control" id="make" [(ngModel)]="trucks.make">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="fedid">Modal :</label>
+                        <input type="text" class="form-control" id="modal" [(ngModel)]="trucks.modal">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="mc">Year Of Make :</label>
+                        <input type="text" class="form-control" id="yom" [(ngModel)]="trucks.yom">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" aria-label="Close" (click)="viewModal.hide()" style="float: right" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Close</button>
+        <button *ngIf="EditMode==false" type="reset" (click)="EditMode=true" style="float: right" class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Edit</button>
+        <button *ngIf="EditMode==true" type="reset" (click)="editCompany(truck)" style="float: right" class="btn btn-sm btn-success"><i class="fa fa-ban"></i> Update
+          <img *ngIf="Iseditusrloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>

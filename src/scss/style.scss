@@ -166,6 +166,12 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
 .dx-scrollbar-horizontal.dx-scrollbar-hoverable {
   height: 12px !important;
 }
+.dx-datagrid-headers{
+      background-color: rgb(178, 178, 224) !important;
+      text-align: center !important;
+      color: #000 !important;
+      font-weight: 700 !important;
+}
 
 .dx-datagrid .dx-datagrid-content .dx-datagrid-table .dx-row>td.dx-command-edit.dx-command-edit-with-icons .dx-link {
   font-size: 25px;

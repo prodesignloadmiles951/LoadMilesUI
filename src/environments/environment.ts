@@ -24,7 +24,8 @@ export const environment = {
   postalcodeUrl:'http://54.166.101.176:8081/fileapi/postal_code?postal_code=',
   roledetailsUrl: 'http://54.166.101.176:8081/roleapi/role',
   newcompanyurl: 'http://54.166.101.176:8081/userapi/user/company',
-  newcompanycreateurl: 'http://54.166.101.176:8081/companyapi/company/'
+  newcompanycreateurl: 'http://54.166.101.176:8081/companyapi/company/',
+  userdetailsurl: 'http://54.166.101.176:8081/userapi/user'
   
 
   // url:"http://localhost:62585/api/",

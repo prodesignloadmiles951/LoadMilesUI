@@ -153,11 +153,15 @@ export class DefaultLayoutComponent implements OnDestroy {
       (data) => {
         console.log(data)
         this.loginUser = this.authService.getloginUser();
-        if(this.loginUser['role']['name'] == 'Driver'){
-          this.navItems=this.driverMenuList
-          this.router.navigateByUrl('theme/driver-list');
-        }else{
+        if(this.loginUser['role'] == null){
           this.navItems=this.sideMenuList
+        }else{
+          if(this.loginUser['role']['name'] == 'Driver'){
+            this.navItems=this.driverMenuList
+            this.router.navigateByUrl('theme/driver-list');
+          }else{
+            this.navItems=this.sideMenuList
+          }          
         }
     })
   }

@@ -183,74 +183,63 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
 
-        <div class="card-body">
-          <div class="animated fadeIn">
-          </div>
-          <table class="table table-responsive table-hover table-bordered">
-            <thead>
-              <tr>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Load Number</th>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Customer</th>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Customer Load</th>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Contact Phone</th>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Contact Email</th>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Dispatcher</th>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Driver</th>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Driver Phone Number</th>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Truck</th>
-                <!-- <th style="background-color: rgb(178, 178, 224); text-align: center;">Pickup Load Status</th> -->
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Pick-up Location</th>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Drop-off Location</th>
-                <!-- <th style="background-color: rgb(178, 178, 224); text-align: center;">Dropoff Load Status</th> -->
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Load Status</th>
+<dx-data-grid 
+    id="gridContainer"
+    [dataSource]="loadDetails"
+    [allowColumnReordering]="true"
+    [showBorders]="true"
+    [columnAutoWidth]="true"
+    (onEditingStart)="logEvent('EditingStart')"
+    (onRowInserted)="logEvent('RowInserted')"
+    (onRowUpdated)="logEvent('RowUpdated')"
+    (onRowRemoved)="logEvent('RowRemoved')">
+    
+    <dxo-paging [enabled]="true" [pageSize]="5"></dxo-paging>
+    <!-- <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5]" [showInfo]="true">
+            </dxo-pager> -->
+    <dxo-editing 
+         mode="row"
+         [allowUpdating]="true"
+         [allowDeleting]="true"
+         [allowAdding]="false">
+    </dxo-editing>
+    
+    <dxi-column dataField="load_number" caption="Load Number"></dxi-column>
+    <dxi-column dataField="customer_name" caption="Customer"></dxi-column>
+    <dxi-column dataField="crefno" caption="Customer Load"></dxi-column>
+    <dxi-column dataField="phone" caption="Contact Phone"></dxi-column>
+    <dxi-column dataField="email" caption="Contact Email"></dxi-column>
+    <dxi-column dataField="dispatcher" caption="Dispatcher"></dxi-column>
+    <dxi-column dataField="driver" caption="Driver Details" cellTemplate="driverTemplate"></dxi-column>
+    <dxi-column dataField="ContactNumber" caption="Driver Phone number" cellTemplate="cellTemplate"></dxi-column>
+    <dxi-column dataField="Truck" caption="Truck" cellTemplate="truckTemplate"></dxi-column>
+    <dxi-column dataField="pickupaddress" caption="Pickup Location" [width]="200" cellTemplate="pickupaddressTemplate"></dxi-column>
+    <dxi-column dataField="dropoffaddress" caption="Dropoff Location" cellTemplate="dropoffaddressTemplate"></dxi-column>
+    <dxi-column dataField="loadstatus" caption="Load Status">
+      <dxo-lookup
+            [dataSource]="loadsstatus"
+            displayExpr="Name"
+            valueExpr="ID">
+        </dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="notes" caption="Comments"></dxi-column>
 
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Comments</th>
-                <th style="background-color: rgb(178, 178, 224); text-align: center;">Edit</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr *ngFor="let load of loadDetails | statusFilter:activeFilter">
-                <td style="color: red; font-weight: 700">{{load.load_number}}</td>
-                <td>{{load.customer_name}}</td>
-                <td>{{load.crefno}}</td>
-                <td>{{load.phone}}</td>
-                <td>{{load.email}}</td>
-                <td>{{load.dispatcher}}</td>
-                <td>
-                  <span *ngIf="load.pickupinfo!= undefined">Driver1:{{load.pickupinfo.Driver1}},</span>
-                  <span *ngIf="load.pickupinfo!= undefined">Driver2:{{load.pickupinfo.Driver2}}</span>
-                </td>
-                <td>
-                  <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.ContactNumber}}</span>
-                </td>
-                <td><span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.Truck}}</span></td>
-                <!-- <td style="color: red; font-weight: 700">
-                  <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.LoadStatus}}</span>
-                </td> -->
-                <td>
-                  <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.PickupCompany}},</span>
-                  <span *ngIf="load.pickupinfo!= undefined">{{load.pickupinfo.Address}}</span>
-                </td>
-                <td>
-                  <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.dropCompany}},</span>
-                  <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.dropAddress}}</span>
-                </td>
-                <!-- <td style="color: red; font-weight: 700">
-                  <span *ngIf="load.dropoffinfo!= undefined">{{load.dropoffinfo.LoadStatus}}</span>
-                </td> -->
-                <td style="color: red; font-weight: 700" >{{(load.lastUpdated || {}).status || ''}}</td>
-                <td>{{load.comments}}</td>
-                <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div *dxTemplate="let element of 'driverTemplate'">
+      Driver1 : <span *ngIf="element.data.dropoffinfo != undefined">{{element.data.dropoffinfo.Driver1}}</span><br>
+      Driver2 : <span *ngIf="element.data.dropoffinfo != undefined">{{element.data.dropoffinfo.Driver2}}</span>
     </div>
-  </div>
+    <div *dxTemplate="let element of 'cellTemplate'">
+      <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.ContactNumber}}</span>
+    </div>
+    <div *dxTemplate="let element of 'truckTemplate'">
+      <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.Truck}}</span>
+    </div>
+    <div *dxTemplate="let element of 'pickupaddressTemplate'">
+      <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.PickupCompany}} , {{element.data.pickupinfo.Address}}</span>
+    </div>
+    <div *dxTemplate="let element of 'dropoffaddressTemplate'">
+      <span *ngIf="element.data.dropoffinfo != undefined">{{element.data.dropoffinfo.dropCompany}} , {{element.data.dropoffinfo.dropAddress}}</span>
+    </div>
+</dx-data-grid>
 </div>

@@ -27,6 +27,9 @@ import { PickDropFormComponent } from './components/pick-drop-form/pick-drop-for
 import { DropoffpopupformComponent } from './components/dropoffpopupform/dropoffpopupform.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoadcustomerformComponent } from './loadcustomerform/loadcustomerform.component';
+// import { TruckformComponent } from '../theme/truckform/truckform.component';
+// import { DriverformComponent } from '../theme/driverform/driverform.component'
+// import { DispatcherformComponent } from '../theme/dispatcherform/dispatcherform.component'
 
 
 @NgModule({
@@ -49,11 +52,14 @@ import { LoadcustomerformComponent } from './loadcustomerform/loadcustomerform.c
     MatInputModule
   ],
   declarations: [ DashboardComponent, LoadformComponent, PickupComponent,
-   DropoffComponent, PickDropFormComponent, DropoffpopupformComponent, LoadcustomerformComponent ],
+   DropoffComponent, PickDropFormComponent, DropoffpopupformComponent, LoadcustomerformComponent],
    entryComponents: [
        PickDropFormComponent,
        DropoffpopupformComponent,
-       LoadcustomerformComponent
+       LoadcustomerformComponent,
+       // TruckformComponent,
+       // DriverformComponent,
+       // DispatcherformComponent
    ]
 })
 export class DashboardModule { }

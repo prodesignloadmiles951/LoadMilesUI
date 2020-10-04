@@ -26,6 +26,7 @@ export class CompanyformComponent implements OnInit {
 	  usermanagementdata= [];
     showAddOption=false
     roleArray=[]
+    username=[]
     showusertable=false
     btnHide=false 
     showupdate=false
@@ -34,6 +35,7 @@ export class CompanyformComponent implements OnInit {
     editFileList=[]
     selectedCompany=true
     finalArry=[];
+    cmpid=undefined
 
   constructor(public dialogRef: MatDialogRef < CompanyformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,private _toaster: ToastrService,
@@ -48,6 +50,17 @@ export class CompanyformComponent implements OnInit {
       this.loginUser = this.authService.getloginUser();
       if (this.loginUser['role']['name'] == 'Admin' && this.data['companyname'] == localStorage.selectedCompanyName) {
          this.showusertable = true
+          this.cmpid = this.data['_id']
+          this._companyservice.getUserroledetails(this.cmpid).subscribe(response => {
+            for (var i = 0; i < response.length; i++) {
+              response[i]['name'] = response[i]['role']['name']
+            }
+            this.usermanagementdata = response
+            console.log(this.usermanagementdata)
+        }, error => {
+           console.log(error)
+          });
+
       }else{
         this.showusertable = false
       }
@@ -73,6 +86,7 @@ export class CompanyformComponent implements OnInit {
     }
     this.pageFiltersshow=true;
     this.getroles()
+    this.getusers()
 }
 
 update() {
@@ -118,6 +132,15 @@ update() {
        this.roleArray=res
       })
   }
+  getusers(){
+    this._companyservice.getUserdetails().subscribe(res => {
+       console.log(res)
+       for (var i = 0; i < res.length; i++) {
+         res[i]['ID']=i
+       }
+       this.username=res
+     })
+  }
   hidePopup(){
      this.dialogRef.close(null)
    }
@@ -135,10 +158,19 @@ update() {
            break          
          }
        }
+       var userid={}
+       for (var i = 0; i < this.username.length; i++) {
+         if(addObj['email'] == this.username[i]['ID']){
+           userid=this.username[i]['_id']
+           break          
+         }
+       }
        delete addObj['__KEY__']
        delete addObj['roleType']
-       console.log(addObj)
-       this._companyservice.onCreateRole(addObj,this.loginUser['_id']).subscribe(res => {
+       var userObj={}
+       userObj['company'] = addObj['company']
+       userObj['role'] = addObj['role']
+       this._companyservice.onCreateRole(userObj,userid).subscribe(res => {
            console.log(res)
           this._toaster.info("Userrole Data Submitted","Success", {timeOut: 3000,});
         },error=>{

@@ -12,6 +12,7 @@ export class CompanyService {
     
     companyurl: string;
     newcompanyurl: string;
+    userdetailsurl: string;
     URL:string;
     roleurl: string;
     linkedcompanyurl: string;
@@ -20,6 +21,7 @@ export class CompanyService {
         this.URL=environment.url;
         this.roleurl= environment.roledetailsUrl
         this.newcompanyurl=environment.newcompanyurl;
+        this.userdetailsurl=environment.userdetailsurl;
     }
 
     SendForm(pageFilters: CompanyFilters){
@@ -70,5 +72,12 @@ export class CompanyService {
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
         return this.http.get(this.newcompanyurl+'/'+ cmpid + '/'+ userid,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
-
+      getUserdetails(){
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.get(this.userdetailsurl,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+      }
+      getUserroledetails(cmpid){
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.get(this.userdetailsurl+'/'+cmpid,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+      }
 }

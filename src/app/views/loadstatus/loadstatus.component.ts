@@ -25,6 +25,44 @@ public company: CompanyFilters;
   companydata=[];
   dropoffdata=[];
   pickupdata=[];
+  loadsstatus=[
+   {
+          "ID": 0,
+          "Name": "Booked"
+      },
+      {
+          "ID": 1,
+          "Name": "ArrivalDelay"
+      },
+      {
+          "ID": 2,
+          "Name": "ArrivalOntime"
+      },
+      {
+          "ID": 3,
+          "Name": "LoadedDelay"
+      },
+      {
+          "ID": 4,
+          "Name": "LoadedOntime"
+      },
+      {
+          "ID": 5,
+          "Name": "InTransit"
+      },
+      {
+          "ID": 6,
+          "Name": "DeliveryDelay"
+      },
+      {
+          "ID": 7,
+          "Name": "DeliveryOntime"
+      },
+      {
+          "ID": 8,
+          "Name": "Completed"
+      }
+  ];
   activeFilter = {
     type: 'loads',
     active: 'loads'
@@ -53,6 +91,10 @@ public company: CompanyFilters;
     this.selectedCompany = cmp.companyname;
 
   }
+  onEditingStart(){}
+  onRowInserted(){}
+  onRowUpdated(){}
+  onRowRemoved(){}
 
   setCounts(loads){
     loads.forEach(load => {
@@ -69,50 +111,42 @@ public company: CompanyFilters;
       this._customersservice.getCustomersData().subscribe(resp => {
         for (var i = 0; i < res.length;i++) {
           res[i]['load_number']=1000+i
+          res[i]['loadstatus']=res[i]['lastUpdated']['status']
           res[i]['customer_name'] = ((resp[res[i]['customer'][0] !== 'Select customer' ? res[i]['customer'][0] : parseInt(res[i]['customer'][0])]) || {}).companyname
         }
         
-          this._pickup.getpickupData().subscribe(data => {
-            this.pickupdata = data
-            for (var i = 0; i < this.loadDetails.length; i++) {
-               var pickitem = this.pickupdata.map(item => {
-                 if(item._id == this.loadDetails[i]._id){
-                   this.loadDetails[i]['pickupinfo'] = item
-                 }
-               })
-              }
-          })
           this.loadDetails = res;
-           this._dropoff.getdroppoffData().subscribe(data => {
-            this.dropoffdata = data
-            for (var i = 0; i < this.loadDetails.length; i++) {
-               var dropitem = this.dropoffdata.map(item => {
+          this._pickup.getpickupData().subscribe(pickupdata => {
+            this.pickupdata = pickupdata
+             this._dropoff.getdroppoffData().subscribe(dropupdata => {
+              this.dropoffdata = dropupdata
+              for (var i = 0; i < this.loadDetails.length; i++) {
+                 var pickitem = this.pickupdata.map(item => {
+                   if(item._id == this.loadDetails[i]._id){
+                     this.loadDetails[i]['pickupinfo'] = item
+                   }
+                 })
+                 var dropitem = this.dropoffdata.map(item => {
                  if(item._id == this.loadDetails[i]._id){
                    this.loadDetails[i]['dropoffinfo'] = item
                  }
-               })
-              }
+                })
+                 for (var j = 0; j < this.loadsstatus.length; j++) {
+                   if(this.loadsstatus[j]['Name'] == this.loadDetails[i]['lastUpdated']['status']){
+                     this.loadDetails[i]['loadstatus']=this.loadsstatus[j]['ID']
+                   }
+                 }
+               }
+
+            })
           })
+
+          console.log(this.loadDetails)
           this.setCounts(this.loadDetails);
       });
      
     });
   }
-
-  // editCompany(cmp) {
-  //   this._companyservice.EditCompany(cmp._id).subscribe(response => {
-  //     this._toaster.success("company successfull updated", "Success");
-  //   }, error => {
-  //      this._toaster.error("error", "Try Again");
-  //     });
-  // }
-
-  // deleteCompany(cmp) {
-  //   this._companyservice.DeleteCompany(cmp._id).subscribe(data => {
-  //   this._toaster.info("Company Data Delete", "Success");
-  //   this.getData();
-  //  });
-  //  }
   Goback() {
     this.router.navigateByUrl('/dashboard');
   }
