@@ -46,6 +46,8 @@ export class CompanyformComponent implements OnInit {
       }
 
   ngOnInit() {
+    this.getroles()
+    this.getusers()
     if (this.authService.getloginUser()) {
       this.loginUser = this.authService.getloginUser();
       if (this.loginUser['role']['name'] == 'Admin' && this.data['companyname'] == localStorage.selectedCompanyName) {
@@ -53,7 +55,19 @@ export class CompanyformComponent implements OnInit {
           this.cmpid = this.data['_id']
           this._companyservice.getUserroledetails(this.cmpid).subscribe(response => {
             for (var i = 0; i < response.length; i++) {
-              response[i]['name'] = response[i]['role']['name']
+              response[i]['isActive'] = response[i]['role']['isActive']
+
+              for (var j = 0; j < this.roleArray.length; j++) {
+                if(response[i]['role']['name'] == this.roleArray[j]['name']){
+                  response[i]['name'] = this.roleArray[j]['ID']
+                }
+              }
+
+              for (var k = 0; k < this.username.length; k++) {
+                if(response[i]['email'] == this.username[k]['email']){
+                  response[i]['email'] = this.username[k]['ID']
+                }
+              }
             }
             this.usermanagementdata = response
             console.log(this.usermanagementdata)
@@ -85,8 +99,7 @@ export class CompanyformComponent implements OnInit {
       }
     }
     this.pageFiltersshow=true;
-    this.getroles()
-    this.getusers()
+   
 }
 
 update() {
@@ -125,20 +138,20 @@ update() {
 
    getroles(){
       this._companyservice.getRoleData().subscribe(res => {
-       console.log(res)
        for (var i = 0; i < res.length; i++) {
          res[i]['ID']=i
        }
        this.roleArray=res
+       console.log(this.roleArray)
       })
   }
   getusers(){
     this._companyservice.getUserdetails().subscribe(res => {
-       console.log(res)
        for (var i = 0; i < res.length; i++) {
          res[i]['ID']=i
        }
        this.username=res
+       console.log(this.username)
      })
   }
   hidePopup(){
@@ -182,7 +195,22 @@ update() {
      console.log(e)
    }
    onEdit(e){
-     console.log(e)
+     var userid = e.data
+     var UserObj={}
+     UserObj['company']=this.data['_id']
+     for (var i = 0; i < this.roleArray.length; i++) {
+       if(userid['name'] == this.roleArray[i]['ID']){
+         UserObj['role'] = this.roleArray[i]['_id']
+       }
+     }
+     UserObj['userStatus'] = userid['userStatus']
+     console.log(UserObj)
+     this._companyservice.editrole(userid._id,UserObj).subscribe(res => {
+           console.log(res)
+          this._toaster.info("Userrole Data Updated","Success", {timeOut: 3000,});
+        },error=>{
+          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
+        });       
    }
 
 }

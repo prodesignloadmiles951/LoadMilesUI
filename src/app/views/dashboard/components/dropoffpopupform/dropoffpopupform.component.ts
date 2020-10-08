@@ -58,6 +58,7 @@ driverdata= [];
     console.log(this.data)
     if(this.data['mode']){
       this.dropoff=this.data
+      this.inputPostalCode = this.dropoff['zipcode']
     }else if(pickup != undefined){
       this.dropoff['type'] = pickup['type']
       this.dropoff['driver1'] = pickup['driver1']
@@ -104,7 +105,11 @@ driverdata= [];
       },
       {
           "ID": 3,
-          "Name": "Completed"
+          "Name": "Unload Delay"
+      },
+      {
+          "ID": 4,
+          "Name": "Load Completed"
       }
     ]
 

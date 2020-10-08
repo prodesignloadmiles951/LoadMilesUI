@@ -12,12 +12,11 @@
           <div class="animated fadeIn">
           </div>
           <div style="margin: 1rem 0">
-            <button type="add" class="btn btn-sm btn-success" (click)="Goback()"><i class="fa fa-chevron-left"
-                aria-hidden="true"></i> Back</button>
+            <button type="add" class="btn btn-sm btn-success" (click)="Goback()"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
           </div>
           <div class="container detail-box animated fadeIn">
             <div class="row">
-              <div class="col pad-hor" (click) = "filterLoad('loads')">
+              <div class="col pad-hor" (click)="filterLoad('loads')">
                 <div class="main load">
                   Loads
                 </div>
@@ -27,31 +26,31 @@
                   <i class="fa fa-arrows-v" aria-hidden="true"></i>
                 </div>
               </div>
-              <div class="col pad-hor status cancelled" (click) = "filterLoad('Cancelled', 'loads')">
+              <div class="col pad-hor status cancelled" (click)="filterLoad('Cancelled', 'loads')">
                 <div>
                   <div>Cancelled</div>
                   <div>{{statusCounts['load-Cancelled'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status tonu" (click) = "filterLoad('TONU', 'loads')">
+              <div class="col pad-hor status tonu" (click)="filterLoad('TONU', 'loads')">
                 <div>
                   <div>TONU</div>
                   <div>{{statusCounts['load-TONU'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status completed" (click) = "filterLoad('Completed', 'loads')">
+              <div class="col pad-hor status completed" (click)="filterLoad('Completed', 'loads')">
                 <div>
                   <div>Completed</div>
                   <div>{{statusCounts['load-Completed'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status invoiced" (click) = "filterLoad('Invoiced', 'loads')">
+              <div class="col pad-hor status invoiced" (click)="filterLoad('Invoiced', 'loads')">
                 <div>
                   <div>Invoiced</div>
                   <div>{{statusCounts['load-Invoiced'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status factored" (click) = "filterLoad('Factored', 'loads')">
+              <div class="col pad-hor status factored" (click)="filterLoad('Factored', 'loads')">
                 <div>
                   <div>Factored</div>
                   <div>{{statusCounts['load-Factored'] || 0}}</div>
@@ -59,7 +58,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col pad-hor" (click) = "filterLoad('pickups')">
+              <div class="col pad-hor" (click)="filterLoad('pickups')">
                 <div class="main pick">
                   Pick-ups
                 </div>
@@ -69,39 +68,39 @@
                   <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </div>
               </div>
-              <div class="col pad-hor status booked" (click) = "filterLoad('Booked', 'pickup')">
+              <div class="col pad-hor status booked" (click)="filterLoad('Booked', 'pickup')">
                 <div>
                   <div>Booked</div>
                   <div>{{statusCounts['pickup-Booked'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status arr-delay" (click) = "filterLoad('Arrival Delay', 'pickup')">
+              <div class="col pad-hor status arr-delay" (click)="filterLoad('Arrival Delay', 'pickup')">
                 <div>
                   <div>Arrival - Delay</div>
                   <div>{{statusCounts['pickup-ArrivalDelay'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status arr-ontime" (click) = "filterLoad('Arrival Ontime', 'pickup')">
+              <div class="col pad-hor status arr-ontime" (click)="filterLoad('Arrival Ontime', 'pickup')">
                 <div>
                   <div>Arrival - Ontime</div>
                   <div>{{statusCounts['pickup-ArrivalOntime'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status pickup-delay" (click) = "filterLoad('Pickup Delay', 'pickup')">
-                  <div>
-                    <div>Pickup - Delay</div>
-                    <div>{{statusCounts['pickup-PickupDelay'] || 0}}</div>
-                  </div>
+              <div class="col pad-hor status pickup-delay" (click)="filterLoad('Pickup Delay', 'pickup')">
+                <div>
+                  <div>Pickup - Delay</div>
+                  <div>{{statusCounts['pickup-PickupDelay'] || 0}}</div>
+                </div>
               </div>
-              <div class="col pad-hor status pickup-ontime" (click) = "filterLoad('Pickup Ontime', 'pickup')">
-                  <div>
-                    <div>Pickup - Ontime</div>
-                    <div>{{statusCounts['pickup-PickupOntime'] || 0}}</div>
-                  </div>
+              <div class="col pad-hor status pickup-ontime" (click)="filterLoad('Pickup Ontime', 'pickup')">
+                <div>
+                  <div>Pickup - Ontime</div>
+                  <div>{{statusCounts['pickup-PickupOntime'] || 0}}</div>
+                </div>
               </div>
             </div>
             <div class="row">
-              <div class="col pad-hor" (click) = "filterLoad('dropoffs')">
+              <div class="col pad-hor" (click)="filterLoad('dropoffs')">
                 <div class="main delivery">
                   Drop-offs
                 </div>
@@ -111,31 +110,31 @@
                   <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </div>
               </div>
-              <div class="col pad-hor status intransit" (click) = "filterLoad('InTransit', 'dropoff')">
+              <div class="col pad-hor status intransit" (click)="filterLoad('InTransit', 'dropoff')">
                 <div>
                   <div>In-transit</div>
                   <div>{{statusCounts['dropoff-InTransit'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status arr-delay" (click) = "filterLoad('Arrival Delay', 'dropoff')">
+              <div class="col pad-hor status arr-delay" (click)="filterLoad('Arrival Delay', 'dropoff')">
                 <div>
                   <div>Arrival - Delay</div>
                   <div>{{statusCounts['dropoff-ArrivalDelay'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status arr-ontime" (click) = "filterLoad('Arrival Ontime', 'dropoff')">
+              <div class="col pad-hor status arr-ontime" (click)="filterLoad('Arrival Ontime', 'dropoff')">
                 <div>
                   <div>Arrival - Ontime</div>
                   <div>{{statusCounts['dropoff-ArrivalOntime'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status delivery-delay" (click) = "filterLoad('Delivery Delay', 'dropoff')">
+              <div class="col pad-hor status delivery-delay" (click)="filterLoad('Delivery Delay', 'dropoff')">
                 <div>
                   <div>Delivery - Delay</div>
                   <div>{{statusCounts['dropoff-DeliveryDelay'] || 0}}</div>
                 </div>
               </div>
-              <div class="col pad-hor status delivery-ontime" (click) = "filterLoad('DeliveryOntime', 'dropoff')">
+              <div class="col pad-hor status delivery-ontime" (click)="filterLoad('DeliveryOntime', 'dropoff')">
                 <div>
                   <div>Delivery - Ontime</div>
                   <div>{{statusCounts['dropoff-DeliveryOntime'] || 0}}</div>
@@ -143,103 +142,51 @@
               </div>
             </div>
           </div>
-          <!-- <table class="table table-responsive-sm table-hover table-bordered">
-            <thead>
-              <tr>
-                <th style="background-color: rgb(60, 231, 146); text-align: center;">Booked</th>
-                <th style="background-color: rgb(60, 231, 146); text-align: center;">Pickup-Ontime</th>
-                <th style="background-color: yellow; text-align: center;">Pickup-Delay</th>
-                <th style="background-color: rgb(60, 231, 146); text-align: center;">Loaded-Ontime</th>
-                <th style="background-color: yellow; text-align: center;">Loaded-Delay</th>
-                <th style="background-color: rgb(60, 231, 146); text-align: center;">Delivery-Ontime</th>
-                <th style="background-color: red; text-align: center;">Delivery-Delay</th>
-                <th style="background-color: rgb(60, 231, 146); text-align: center;">Completed</th>
-                <th style="background-color: rgb(160, 77, 44); text-align: center;">Cancelled</th>
-                <th style="background-color: rgb(104, 187, 235); text-align: center;">TONU</th>
-                <th style="background-color: rgb(60, 231, 146); text-align: center;">Invoice</th>
-              </tr>
-            </thead>
-    
-                <tbody>
-                  <tr>
-                    <tr>
-                        <td>3</td>
-                        <td>2</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>1</td>
-                        <td>0</td>
-                        <td>5</td>
-                        
-                    </tr>
-                </tbody>
-              </table> -->
         </div>
       </div>
     </div>
   </div>
-
-
-<dx-data-grid 
-    id="gridContainer"
-    [dataSource]="loadDetails"
-    [allowColumnReordering]="true"
-    [showBorders]="true"
-    [columnAutoWidth]="true"
-    (onEditingStart)="logEvent('EditingStart')"
-    (onRowInserted)="logEvent('RowInserted')"
-    (onRowUpdated)="logEvent('RowUpdated')"
-    (onRowRemoved)="logEvent('RowRemoved')">
-    
-    <dxo-paging [enabled]="true" [pageSize]="5"></dxo-paging>
-    <!-- <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5]" [showInfo]="true">
-            </dxo-pager> -->
-    <dxo-editing 
-         mode="row"
-         [allowUpdating]="true"
-         [allowDeleting]="true"
-         [allowAdding]="false">
-    </dxo-editing>
-    
-    <dxi-column dataField="load_number" caption="Load Number"></dxi-column>
-    <dxi-column dataField="customer_name" caption="Customer"></dxi-column>
-    <dxi-column dataField="crefno" caption="Customer Load"></dxi-column>
-    <dxi-column dataField="phone" caption="Contact Phone"></dxi-column>
-    <dxi-column dataField="email" caption="Contact Email"></dxi-column>
-    <dxi-column dataField="dispatcher" caption="Dispatcher"></dxi-column>
-    <dxi-column dataField="driver" caption="Driver Details" cellTemplate="driverTemplate"></dxi-column>
-    <dxi-column dataField="ContactNumber" caption="Driver Phone number" cellTemplate="cellTemplate"></dxi-column>
-    <dxi-column dataField="Truck" caption="Truck" cellTemplate="truckTemplate"></dxi-column>
-    <dxi-column dataField="pickupaddress" caption="Pickup Location" [width]="200" cellTemplate="pickupaddressTemplate"></dxi-column>
-    <dxi-column dataField="dropoffaddress" caption="Dropoff Location" cellTemplate="dropoffaddressTemplate"></dxi-column>
-    <dxi-column dataField="loadstatus" caption="Load Status">
-      <dxo-lookup
-            [dataSource]="loadsstatus"
-            displayExpr="Name"
-            valueExpr="ID">
+  <div id="data-grid-demo">
+    <dx-data-grid id="gridContainer" [dataSource]="loadDetails" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onExporting)="onExporting($event)">
+      <dxo-paging [enabled]="true" [pageSize]="5"></dxo-paging>
+      <dxo-selection mode="multiple"></dxo-selection>
+      <dxi-column dataField="load_number" caption="Load Number"></dxi-column>
+      <dxi-column dataField="customer_name" caption="Customer"></dxi-column>
+      <dxi-column dataField="crefno" caption="Customer Load"></dxi-column>
+      <dxi-column dataField="phone" caption="Contact Phone"></dxi-column>
+      <dxi-column dataField="email" caption="Contact Email"></dxi-column>
+      <dxi-column dataField="dispatcher" caption="Dispatcher"></dxi-column>
+      <dxi-column dataField="driver" caption="Driver Details" cellTemplate="driverTemplate"></dxi-column>
+      <dxi-column dataField="ContactNumber" caption="Driver Phone number" cellTemplate="cellTemplate"></dxi-column>
+      <dxi-column dataField="Truck" caption="Truck" cellTemplate="truckTemplate"></dxi-column>
+      <dxi-column dataField="pickupaddress" caption="Pickup Location" [width]="250" cellTemplate="pickupaddressTemplate"></dxi-column>
+      <dxi-column dataField="dropoffaddress" caption="Dropoff Location" [width]="250" cellTemplate="dropoffaddressTemplate"></dxi-column>
+      <dxi-column dataField="loadstatus" caption="Load Status" [width]="200">
+        <dxo-lookup [dataSource]="loadsstatus" displayExpr="Name" valueExpr="ID">
         </dxo-lookup>
-    </dxi-column>
-    <dxi-column dataField="notes" caption="Comments"></dxi-column>
-
-    <div *dxTemplate="let element of 'driverTemplate'">
-      Driver1 : <span *ngIf="element.data.dropoffinfo != undefined">{{element.data.dropoffinfo.Driver1}}</span><br>
-      Driver2 : <span *ngIf="element.data.dropoffinfo != undefined">{{element.data.dropoffinfo.Driver2}}</span>
-    </div>
-    <div *dxTemplate="let element of 'cellTemplate'">
-      <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.ContactNumber}}</span>
-    </div>
-    <div *dxTemplate="let element of 'truckTemplate'">
-      <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.Truck}}</span>
-    </div>
-    <div *dxTemplate="let element of 'pickupaddressTemplate'">
-      <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.PickupCompany}} , {{element.data.pickupinfo.Address}}</span>
-    </div>
-    <div *dxTemplate="let element of 'dropoffaddressTemplate'">
-      <span *ngIf="element.data.dropoffinfo != undefined">{{element.data.dropoffinfo.dropCompany}} , {{element.data.dropoffinfo.dropAddress}}</span>
-    </div>
-</dx-data-grid>
+      </dxi-column>
+      <dxi-column dataField="notes" caption="Comments"></dxi-column>
+      <dxi-column dataField="Action" caption="Action" cellTemplate="actionTemplate"></dxi-column>
+      <div *dxTemplate="let element of 'actionTemplate'">
+        <span class="material-icons editload" (click)="onEditClick(element.data)">edit</span>
+      </div>
+      <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+      <div *dxTemplate="let element of 'driverTemplate'">
+        <span *ngIf="element.data.dropoffinfo != undefined">Driver1 : {{element.data.dropoffinfo.Driver1}}</span><br>
+        <span *ngIf="element.data.dropoffinfo != undefined">Driver2 : {{element.data.dropoffinfo.Driver2}}</span>
+      </div>
+      <div *dxTemplate="let element of 'cellTemplate'">
+        <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.ContactNumber}}</span>
+      </div>
+      <div *dxTemplate="let element of 'truckTemplate'">
+        <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.Truck}}</span>
+      </div>
+      <div *dxTemplate="let element of 'pickupaddressTemplate'">
+        <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.PickupCompany}} , {{element.data.pickupinfo.Address}}</span>
+      </div>
+      <div *dxTemplate="let element of 'dropoffaddressTemplate'">
+        <span *ngIf="element.data.dropoffinfo != undefined">{{element.data.dropoffinfo.dropCompany}} , {{element.data.dropoffinfo.dropAddress}}</span>
+      </div>
+    </dx-data-grid>
+  </div>
 </div>

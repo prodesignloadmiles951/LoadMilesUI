@@ -1,4 +1,10 @@
 <form class="form-horizontal" #loadForm="ngForm" novalidate autocomplete="off">
+  <div *ngIf="SelectedLoad" class="modal-header">
+    <h4 class="modal-title">Load Informtion</h4>
+    <button type="button" class="close" (click)="hidePopup()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
   <div class="row">
     <div class="col-sm-6">
       <div class="card">
@@ -13,7 +19,7 @@
               </select>
             </div>
             <div class="col-md-3 no-padding" (click)="Addcustomer()">
-              <a href="javascript:void(0)" style="text-decoration: none;"><small style="margin: 0 0.2rem 0 0">Add New customer</small>
+              <a href="javascript:void(0)" style="text-decoration: none; font-size: 13px;"><small style="margin: 0 0.2rem 0 0">Add New customer</small>
                 <small><i class="fas fa-plus-circle"></i></small>
                 <!-- <small><i class="fas fa-plus"></i></small> -->
               </a>
@@ -195,14 +201,14 @@
   </div>
   <div class="loadformfooter">
     <div class="card-footer">
-      <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submitload();loadForm.reset()" [ngClass]="showsubmit?'disable':''"><i class="fa fa-dot-circle-o"></i>
+      <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="updateload();loadForm.reset()"><i class="fa fa-dot-circle-o"></i>
         <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        Submit</button>&nbsp;&nbsp;
+        Update</button>&nbsp;&nbsp;
       <button type="reset" style="float: right" (click)="resetload()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
     </div>
   </div>
-  <app-pickup></app-pickup>
-  <app-dropoff></app-dropoff>
+  <app-pickup [pickupdata]="resdata.pickupinfo"></app-pickup>
+  <app-dropoff [dropoffdata]="resdata.dropoffinfo"></app-dropoff>
   <!-- <div id="dropoffContainer"></div> -->
 </form>
 <!--View-->

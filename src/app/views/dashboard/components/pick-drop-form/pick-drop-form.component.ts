@@ -54,6 +54,7 @@ export class PickDropFormComponent implements OnInit {
   ngOnInit() {
      if(this.data){
       this.pickup=this.data
+      this.inputPostalCode = this.pickup['zipcode']
     }
   	this.getDriverData()
     this.getTrailerData()
@@ -71,23 +72,23 @@ export class PickDropFormComponent implements OnInit {
     this.loadstatusDetails=[
       {
           "ID": 0,
-          "Name": "Booked"
+          "Name": "Pickup On The Way"
       },
       {
           "ID": 1,
-          "Name": "Arrival Delay"
+          "Name": "Pickup Delay"
       },
       {
           "ID": 2,
-          "Name": "Arrival Ontime"
+          "Name": "Pickup Ontime"
       },
       {
           "ID": 3,
-          "Name": "Loaded Delay"
+          "Name": "Loading Delay"
       },
       {
           "ID": 4,
-          "Name": "Loaded Ontime"
+          "Name": "Loading Ontime"
       }
     ]
   }
@@ -164,16 +165,16 @@ export class PickDropFormComponent implements OnInit {
     
   }
   resetpickup() {}
-  submitpickup(pickup){
+  submitpickup(){
     var idArry=[]
     for (var i = 0; i < this.finalArry.length; ++i) {
       idArry.push(this.finalArry[i]._id)
     }
-    pickup['files']=idArry
-    pickup['zipcode']=this.inputPostalCode
-    console.log(pickup)
-    sessionStorage.setItem('Pickup', JSON.stringify(pickup))
-  	this.dialogRef.close(pickup)
+    this.pickup['files']=idArry
+    this.pickup['zipcode']=this.inputPostalCode
+    console.log(this.pickup)
+    sessionStorage.setItem('Pickup', JSON.stringify(this.pickup))
+  	this.dialogRef.close(this.pickup)
   }
   hidePopup(){
   	this.dialogRef.close(null)

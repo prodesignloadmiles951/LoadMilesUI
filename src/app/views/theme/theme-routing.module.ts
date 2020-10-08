@@ -31,10 +31,6 @@ const routes: Routes = [
     },
     children: [
       {
-        path: '',
-        redirectTo: 'colors'
-      },
-      {
         path:'company',
         component:CompanyComponent,
         runGuardsAndResolvers:'always',

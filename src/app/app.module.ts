@@ -30,7 +30,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
+import { MatDialogModule} from '@angular/material/dialog';
 import { MatExpansionModule} from '@angular/material/expansion';
+import {DxButtonModule} from 'devextreme-angular';
 import {
     DxDataGridModule,
     DxBulletModule,
@@ -59,13 +61,14 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { DashboardModule } from './views/dashboard/dashboard.module'
 import { LoadstatusComponent, StatusFilterPipe } from './views/loadstatus/loadstatus.component';
 import { CompanyregisterComponent } from './views/companyregister/companyregister.component';
-
 
 @NgModule({
   imports: [
     BrowserModule,
+    DashboardModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AppAsideModule,
@@ -87,6 +90,8 @@ import { CompanyregisterComponent } from './views/companyregister/companyregiste
     MatMenuModule,
     MatSelectModule,
     DxDataGridModule,
+    MatDialogModule,
+    DxButtonModule,
     ModalModule,
     ToastrModule.forRoot({
 			timeOut: 10000,
@@ -112,6 +117,9 @@ import { CompanyregisterComponent } from './views/companyregister/companyregiste
     AuthenticationService,
     AuthHeaderService,CompanyService
    ],
+   // entryComponents: [
+   //     LoadformComponent
+   // ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

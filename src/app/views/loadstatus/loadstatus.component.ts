@@ -6,13 +6,19 @@ import {Router} from '@angular/router';
 import { CreateloadService } from '../../services/createload.service';
 import { PickupserviceService } from '../../services/pickupservice.service';
 import { DropoffserviceService } from '../../services/dropoffservice.service';
+import { DriversService } from '../../services/driver.service';
+import {DxButtonModule} from 'devextreme-angular';
 import { Pipe, PipeTransform } from '@angular/core';
+import { exportDataGrid } from 'devextreme/excel_exporter';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { LoadeditformComponent} from '../dashboard/components/loadeditform/loadeditform.component'
+
 
 @Component({
   selector: 'app-loadstatus',
   templateUrl: './loadstatus.component.html',
   styleUrls: ['./loadstatus.component.scss'],
-  providers: [ToastrService, PickupserviceService, DropoffserviceService, CustomersService]
+  providers: [ToastrService, PickupserviceService, DropoffserviceService, CustomersService, DriversService]
 })
 export class LoadstatusComponent implements OnInit {
 public company: CompanyFilters;
@@ -22,6 +28,7 @@ public company: CompanyFilters;
   selectedCompany: any;
   EditMode: boolean;
   loadDetails=[];
+  driverdata= [];
   companydata=[];
   dropoffdata=[];
   pickupdata=[];
@@ -76,6 +83,8 @@ public company: CompanyFilters;
   private _toaster: ToastrService,
   private _pickup: PickupserviceService,
   private _dropoff: DropoffserviceService,
+  private _driverService: DriversService,
+  public dialog: MatDialog,
   private _loadservice: CreateloadService,
  ) {
   this.pageFilters = new CompanyFilters();
@@ -83,6 +92,7 @@ public company: CompanyFilters;
  }
   ngOnInit(): void {
     this.getData();
+    this.getDriverData()
   }
   viewData(cmp) {
     this.EditMode = false;
@@ -91,10 +101,23 @@ public company: CompanyFilters;
     this.selectedCompany = cmp.companyname;
 
   }
-  onEditingStart(){}
-  onRowInserted(){}
-  onRowUpdated(){}
-  onRowRemoved(){}
+  getDriverData() {
+        this._driverService.getDriversData().subscribe(data => {
+          this.driverdata = data;
+        });
+      }
+  onDelete(e){
+     console.log(e)
+   }
+   onEdit(e){
+     console.log(e.data)
+     this._loadservice.editLoadData(e.data).subscribe(data => {
+      console.log(data)
+      this._toaster.success("Loads successfully updated", "Success", {timeOut: 3000,});
+    },error => {
+           this._toaster.error("Company not updated", "Try Again", {timeOut: 2000,});
+        })
+   }
 
   setCounts(loads){
     loads.forEach(load => {
@@ -112,6 +135,7 @@ public company: CompanyFilters;
         for (var i = 0; i < res.length;i++) {
           res[i]['load_number']=1000+i
           res[i]['loadstatus']=res[i]['lastUpdated']['status']
+          
           res[i]['customer_name'] = ((resp[res[i]['customer'][0] !== 'Select customer' ? res[i]['customer'][0] : parseInt(res[i]['customer'][0])]) || {}).companyname
         }
         
@@ -134,13 +158,18 @@ public company: CompanyFilters;
                  for (var j = 0; j < this.loadsstatus.length; j++) {
                    if(this.loadsstatus[j]['Name'] == this.loadDetails[i]['lastUpdated']['status']){
                      this.loadDetails[i]['loadstatus']=this.loadsstatus[j]['ID']
+                     this.loadDetails[i]['driver1']=this.loadDetails[i]['pickupinfo']['Driver1']
+                     this.loadDetails[i]['driver2']=this.loadDetails[i]['pickupinfo']['Driver2']
+                     this.loadDetails[i]['ContactNumber']=this.loadDetails[i]['pickupinfo']['ContactNumber']
+                     this.loadDetails[i]['Truck']=this.loadDetails[i]['pickupinfo']['Truck']
+                     this.loadDetails[i]['pickupaddress']=this.loadDetails[i]['pickupinfo']['Address']
+                     this.loadDetails[i]['dropoffaddress']=this.loadDetails[i]['dropoffinfo']['dropAddress']
                    }
                  }
                }
 
             })
           })
-
           console.log(this.loadDetails)
           this.setCounts(this.loadDetails);
       });
@@ -158,6 +187,19 @@ public company: CompanyFilters;
     this.activeFilter = {
       active, type
     };
+  }
+  onEditClick(data){
+    console.log(data)
+    var loadObj=data
+    loadObj['EditMode']=true
+    let dialogConfig = Object.assign({ width: "1000px" },{ data: loadObj })
+    let editDialogRef = this.dialog.open(LoadeditformComponent, dialogConfig);
+    editDialogRef.afterClosed().subscribe((data) => {
+      console.log(data)
+      if(data == null){}else{
+        this.getData()        
+      }
+    })
   }
 
 

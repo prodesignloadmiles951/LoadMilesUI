@@ -26,6 +26,7 @@ export class PickupComponent implements OnInit {
   unitNumberdata: any;
   pickuppopupdata=[];
   pickupdetails: any;
+  @Input()pickupdata;
   constructor(private _loadservice: CreateloadService, 
     private _driverService: DriversService, private _trucksservice: TrucksService,private _toaster: ToastrService, 
     private _trailersService: TrailerService, private _pickup: PickupserviceService, public dialog: MatDialog) { }
@@ -53,36 +54,7 @@ export class PickupComponent implements OnInit {
     //     break
     //   }
     // }
-    // for (var i = 0; i < this.driverDetails.length; i++) {
-    //   if(this.driverDetails[i]['ID'] == JSON.parse(pickupdata['Driver1'])){
-    //     pickupinfo['Driver1']= this.driverDetails[i]['Name']
-    //     break
-    //   }
-    // }
-    // for (var i = 0; i < this.driverDetails.length; i++) {
-    //   if(this.driverDetails[i]['ID'] == JSON.parse(pickupdata['Driver2'])){
-    //     pickupinfo['Driver2']= this.driverDetails[i]['Name']
-    //     break
-    //   }
-    // }
-    // for (var i = 0; i < this.truckDetails.length; i++) {
-    //   if(this.truckDetails[i]['ID'] == JSON.parse(pickupdata['Truck'])){
-    //     pickupinfo['Truck']= this.truckDetails[i]['Name']
-    //     break
-    //   }
-    // }
-    // for (var i = 0; i < this.trailerDetails.length; i++) {
-    //   if(this.trailerDetails[i]['ID'] == JSON.parse(pickupdata['Trailer'])){
-    //     pickupinfo['Trailer']= this.trailerDetails[i]['Name']
-    //     break
-    //   }
-    // }
-    // for (var i = 0; i < this.loadstatusDetails.length; i++) {
-    //   if(this.loadstatusDetails[i]['ID'] == JSON.parse(pickupdata['LoadStatus'])){
-    //     pickupinfo['LoadStatus']= this.loadstatusDetails[i]['Name']
-    //     break
-    //   }
-    // }
+    
     console.log(pickupinfo)
     if(pickupinfo['_id'] != null){
       this._pickup.SendPickupForm(pickupinfo).subscribe(data => {
@@ -103,7 +75,7 @@ export class PickupComponent implements OnInit {
     })
   }
   editPickup(pickupinfo){
-    pickupinfo['_id']=sessionStorage.getItem('submitID')
+    // pickupinfo['_id']=sessionStorage.getItem('submitID')
      this._pickup.EditPickup(pickupinfo).subscribe(data => {
       this.data = data
       this._toaster.success("Pickup successfully updated", "Success");
@@ -121,7 +93,6 @@ export class PickupComponent implements OnInit {
                     driverDetails['Name']=data[i].firstname
                     this.driverDetails.push(driverDetails)
                   }          
-
         });
       }
    getTruckData() {
@@ -154,7 +125,11 @@ export class PickupComponent implements OnInit {
 
 
   ngOnInit() {
-    this.pickuppopupdata= JSON.parse(sessionStorage.getItem("pickupdetails"))
+    if(this.pickupdata != undefined){
+      this.pickuppopupdata.push(this.pickupdata)
+    }else{
+      this.pickuppopupdata= JSON.parse(sessionStorage.getItem("pickupdetails"))
+    }
     this.getDriverData()
     this.getTruckData()
     this.getTrailerData()
@@ -229,7 +204,7 @@ export class PickupComponent implements OnInit {
     })
   }
 
-    onpickEdit(dataedit){
+  onpickEdit(dataedit){
     console.log(dataedit.data)
     let editDataIndex=dataedit.rowIndex
     this.dialog.open(PickDropFormComponent, {

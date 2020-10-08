@@ -6,7 +6,7 @@ import { ChartsModule } from 'ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { MatExpansionModule} from '@angular/material/expansion';
-import { MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -27,10 +27,8 @@ import { PickDropFormComponent } from './components/pick-drop-form/pick-drop-for
 import { DropoffpopupformComponent } from './components/dropoffpopupform/dropoffpopupform.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoadcustomerformComponent } from './loadcustomerform/loadcustomerform.component';
-// import { TruckformComponent } from '../theme/truckform/truckform.component';
-// import { DriverformComponent } from '../theme/driverform/driverform.component'
-// import { DispatcherformComponent } from '../theme/dispatcherform/dispatcherform.component'
-
+import { ThemeModule} from '../theme/theme.module';
+import { LoadeditformComponent } from './components/loadeditform/loadeditform.component';
 
 @NgModule({
   imports: [
@@ -39,6 +37,7 @@ import { LoadcustomerformComponent } from './loadcustomerform/loadcustomerform.c
     ReactiveFormsModule,
     DashboardRoutingModule,
     ChartsModule,
+    ThemeModule,
     BsDropdownModule,
     ModalModule,
     ButtonsModule.forRoot(),
@@ -51,15 +50,14 @@ import { LoadcustomerformComponent } from './loadcustomerform/loadcustomerform.c
     MatProgressSpinnerModule,
     MatInputModule
   ],
+  exports: [PickupComponent, DropoffComponent, LoadformComponent, PickDropFormComponent, DropoffpopupformComponent, LoadeditformComponent],
   declarations: [ DashboardComponent, LoadformComponent, PickupComponent,
-   DropoffComponent, PickDropFormComponent, DropoffpopupformComponent, LoadcustomerformComponent],
+   DropoffComponent, PickDropFormComponent, DropoffpopupformComponent, LoadcustomerformComponent, LoadeditformComponent],
    entryComponents: [
        PickDropFormComponent,
        DropoffpopupformComponent,
        LoadcustomerformComponent,
-       // TruckformComponent,
-       // DriverformComponent,
-       // DispatcherformComponent
+       LoadeditformComponent
    ]
 })
 export class DashboardModule { }

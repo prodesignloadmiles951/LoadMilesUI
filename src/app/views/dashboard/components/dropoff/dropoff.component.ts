@@ -22,9 +22,10 @@ export class DropoffComponent implements OnInit {
   trailerDetails=[]
   truckDetails=[]
   loadstatusDetails=[]
-  dropoffdata=[]
+  // dropoffdata=[]
   dropOffdetails: any;
   dropoffpopupdata=[];
+  @Input()dropoffdata;
   constructor(private _loadservice: CreateloadService, 
     private _driverService: DriversService, private _trucksservice: TrucksService, private _toaster: ToastrService,
     private _trailersService: TrailerService, private _dropoff: DropoffserviceService, public dialog: MatDialog) { }
@@ -58,7 +59,7 @@ export class DropoffComponent implements OnInit {
     }
   }
   editDropoff(dropoffinfo){
-    dropoffinfo['_id']=sessionStorage.getItem('submitID')
+    // dropoffinfo['_id']=sessionStorage.getItem('submitID')
     this._dropoff.EditDropoff(dropoffinfo).subscribe(data => {
       this.data = data
       this._toaster.success("Dropoff successfully updated", "Success");
@@ -108,7 +109,11 @@ export class DropoffComponent implements OnInit {
       }
 
   ngOnInit() {
+    if(this.dropoffdata != undefined){
+      this.dropoffpopupdata.push(this.dropoffdata)
+    }else{
     this.dropoffpopupdata= JSON.parse(sessionStorage.getItem("dropOffdetails"))
+    }
     console.log(this.dropoffpopupdata)
     this.getDriverData()
     this.getTruckData()

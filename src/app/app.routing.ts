@@ -17,11 +17,11 @@ export const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full',
   },
-  {
-    path: 'dashboard',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: 'dashboard',
+  //   redirectTo: 'dashboard',
+  //   pathMatch: 'full',
+  // },
   {
     path: 'loadstatus',
     component: LoadstatusComponent,

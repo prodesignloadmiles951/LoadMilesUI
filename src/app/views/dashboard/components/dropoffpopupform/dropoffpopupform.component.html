@@ -12,7 +12,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="type">Type:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="dropoff.type" [ngModelOptions]="{standalone: true}">
+              <select class="form-control" [(ngModel)]="dropoff.Type" [ngModelOptions]="{standalone: true}">
                 <option value="" disabled selected hidden>Type</option>
                 <option *ngFor="let type of typeDetails" [value]="type.Name">
                   <span>{{type.Name}}</span>
@@ -23,7 +23,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="driver1">Driver1:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="dropoff.driver1" [ngModelOptions]="{standalone: true}">
+              <select class="form-control" [(ngModel)]="dropoff.Driver1" [ngModelOptions]="{standalone: true}">
                 <option value="" disabled selected hidden>Driver</option>
                 <option *ngFor="let cmp of driverdata" [value]="cmp.firstname">
                   <span>{{cmp.firstname}}</span>
@@ -34,7 +34,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="driver2">Driver2:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="dropoff.driver2" [ngModelOptions]="{standalone: true}">
+              <select class="form-control" [(ngModel)]="dropoff.Driver2" [ngModelOptions]="{standalone: true}">
                 <option value="" disabled selected hidden>Driver</option>
                 <option *ngFor="let driver of driverdata" [value]="driver.firstname">
                   <span>{{driver.firstname}}</span>
@@ -45,7 +45,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="truck">Truck:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="dropoff.truck" [ngModelOptions]="{standalone: true}">
+              <select class="form-control" [(ngModel)]="dropoff.Truck" [ngModelOptions]="{standalone: true}">
                 <option value="" disabled selected hidden>Driver</option>
                 <option *ngFor="let cmp of unitNumberdata" [value]="cmp.truckunitnumber">
                   <span>{{cmp.truckunitnumber}}</span>
@@ -56,7 +56,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="trailer">Trailer:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="dropoff.trailer" [ngModelOptions]="{standalone: true}">
+              <select class="form-control" [(ngModel)]="dropoff.Trailer" [ngModelOptions]="{standalone: true}">
                 <option value="" disabled selected hidden>Trailer</option>
                 <option *ngFor="let cmp of trailerData" [value]="cmp.unitNumber">
                   <span>{{cmp.unitNumber}}</span>
@@ -67,7 +67,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="type">Load Status:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="dropoff.loadstatus" [ngModelOptions]="{standalone: true}">
+              <select class="form-control" [(ngModel)]="dropoff.LoadStatus" [ngModelOptions]="{standalone: true}">
                 <option value="" disabled selected hidden>Load status</option>
                 <option *ngFor="let load of loadstatusDetails" [value]="load.Name">
                   <span>{{load.Name}}</span>
@@ -78,13 +78,13 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="contactname">Contact name:</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="contactname" name="contactname" #contactname="ngModel" [(ngModel)]="dropoff.contactname" [ngModelOptions]="{standalone: true}">
+              <input type="text" class="form-control" id="contactname" name="contactname" #contactname="ngModel" [(ngModel)]="dropoff.dropContact" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="contactnumber">Contact number:</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="contactnumber" name="contactnumber" #contactnumber="ngModel" [(ngModel)]="dropoff.contactnumber" [ngModelOptions]="{standalone: true}">
+              <input type="number" class="form-control" id="contactnumber" name="contactnumber" #contactnumber="ngModel" [(ngModel)]="dropoff.dropContnumber" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="dropoffcompany">Dropoff Company:</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="dropoffcompany" name="dropoffcompany" #dropoffcompany="ngModel" [(ngModel)]="dropoff.dropoffcompany" [ngModelOptions]="{standalone: true}">
+              <input type="text" class="form-control" id="dropoffcompany" name="dropoffcompany" #dropoffcompany="ngModel" [(ngModel)]="dropoff.dropCompany" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
@@ -105,7 +105,7 @@
             <label class="col-md-4 col-form-label" for="dropoffdate">Dropoff Date:</label>
             <div class="col-md-8">
               <!-- {{today | date:'dd-MM-yyyy'}} -->
-              <input type="date" class="form-control" id="dropoffdate" name="dropoffdate" #dropoffdate="ngModel" [(ngModel)]="dropoff.dropoffdate" [ngModelOptions]="{standalone: true}">
+              <input type="date" class="form-control" id="dropoffdate" name="dropoffdate" #dropoffdate="ngModel" [(ngModel)]="dropoff.DropoffDate" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">

@@ -10,7 +10,7 @@
 <div class="row" *ngIf="pageFiltersshow">
   <div class="col-md-6">
     <div class="card">
-      <div class="card-header"><strong>Company</strong> Data</div>
+      <div class="card-header"><strong>Company</strong> Informtion</div>
       <div class="card-body">
         <div class="form-group row">
           <label class="col-md-4 col-form-label" for="companyname">Company Name: <span style="color:red">*</span></label>
@@ -45,9 +45,9 @@
           <div class="col-md-8">
             <select class="form-control" [ngClass]="mode?'':'disble'" id="currency" name="currency" [(ngModel)]="pageFilters.currency">
               <option value="Select currency" disabled selected hidden>Select currency</option>
-              <option value="0">USD</option>
-              <option value="1">CAD</option>
-              <option value="2">MXN</option>
+              <option value="USD">USD</option>
+              <option value="CAD">CAD</option>
+              <option value="MXN">MXN</option>
             </select>
           </div>
         </div>
@@ -188,13 +188,13 @@
           </dxo-editing>
           <dxo-selection mode="single"></dxo-selection>
           <dxi-column dataField="username" caption="Username"></dxi-column>
-          <dxi-column dataField="email" caption="Email/Username">
-            <dxo-lookup [dataSource]="username" displayExpr="email" valueExpr="ID">
-            </dxo-lookup>
+          <dxi-column dataField="email" caption="Email">
+            <dxo-lookup [dataSource]="username" displayExpr="email" valueExpr="ID"></dxo-lookup>
           </dxi-column>
           <dxi-column dataField="name" caption="Role">
-            <dxo-lookup [dataSource]="roleArray" displayExpr="name" valueExpr="ID">
-            </dxo-lookup>
+            <dxo-lookup [dataSource]="roleArray" displayExpr="name" valueExpr="ID"></dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField="userStatus" caption="Status">
           </dxi-column>
         </dx-data-grid>
       </div>

@@ -11,13 +11,14 @@ import { CustomersService } from '../../../../services/customers.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DispatcherService } from '../../../../services/dispatcher.service';
 import { LoadcustomerformComponent } from '../../loadcustomerform/loadcustomerform.component'
+
 @Component({
-  selector: 'app-loadform',
-  templateUrl: './loadform.component.html',
-  styleUrls: ['./loadform.component.scss'],
+  selector: 'app-loadeditform',
+  templateUrl: './loadeditform.component.html',
+  styleUrls: ['./loadeditform.component.scss'],
   providers: [ToastrService, CustomersService, CompanyService, DispatcherService]
 })
-export class LoadformComponent implements OnInit {
+export class LoadeditformComponent implements OnInit {
   public load: NewLoadFilters
   newloadfilters= {};
   panelOpenState = false;
@@ -31,13 +32,14 @@ export class LoadformComponent implements OnInit {
   companydata=[];
   customerdata=[];
   dispatcherdata=[];
+  SelectedLoad=true
   user: any;
   currency
   loadForm: FormGroup;
   public loginUser: LoginUser
   constructor(
-    // public dialogRef: MatDialogRef < LoadformComponent > ,
-    //     @Inject(MAT_DIALOG_DATA) public resdata: any,
+    public dialogRef: MatDialogRef < LoadeditformComponent > ,
+        @Inject(MAT_DIALOG_DATA) public resdata: any,
     private _loadservice: CreateloadService,
     private _companyservice: CompanyService,
     private _customersservice: CustomersService,
@@ -51,20 +53,16 @@ export class LoadformComponent implements OnInit {
   }
 
   ngOnInit() {
+    sessionStorage.removeItem('Pickup')
+    sessionStorage.removeItem('dropOffdetails')
+    sessionStorage.removeItem('pickupdetails')
+    
     this.loginUser = this.authService.getloginUser();
     this.newloadfilters['dispatcher']= this.loginUser['username'];
-    var date= new Date()
-    this.newloadfilters['date']= date.toLocaleDateString()
-    this.newloadfilters['currency']='Select currency'
-    this.newloadfilters['crossborder']="Cross border"
-    this.newloadfilters['Equiptype']="Select equipment type"
-    this.newloadfilters['sealed']="Seal required"
-    this.newloadfilters['hazmat']="Hazmat material"
-    this.newloadfilters['customer']="Select customer"
-    this.newloadfilters['drivertype']="Select Driver type"
-    this.newloadfilters['loadstatus']="Select load status"
-    this.getData();
-    this.getCompanyData();
+    console.log(this.resdata)
+    if(this.resdata['EditMode'] == true){
+      this.newloadfilters=this.resdata
+    }
     this.getCustomerdata()
     this.getDispatcherData()
   }
@@ -85,18 +83,14 @@ export class LoadformComponent implements OnInit {
       console.log(data)
     });
   }
-  submitload(){
-    this.showsubmit=true
-      console.log(this.newloadfilters)
-      this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
+  updateload(){
+  	    this._loadservice.editLoadData(this.resdata).subscribe(data => {
             console.log(data)
-            sessionStorage.setItem('submitID', data.data._id)
-            this.getData();
-            this.showsubmit=false
-            this._toaster.success("Load successfully created", "Success");
-      }, error => {
-         this._toaster.error("error", "Try Again");
-      });
+         this._toaster.success("Load successfully Updated", "Success");
+         this.dialogRef.close(data)
+	}, error => {
+        this._toaster.error("error", "Try Again");
+     });
   }
   getDispatcherData() {
     this._dispatcherService.getDispatcherData().subscribe(data => {
@@ -115,7 +109,9 @@ export class LoadformComponent implements OnInit {
       this.customerdata=data
         });
   }
- 
+  hidePopup(){
+     this.dialogRef.close(null)
+   }
   resetload(){}
   addpickup(){
     this.pickupchild= true
@@ -147,7 +143,5 @@ Addcustomer(){
           }
         })
 }
-    
 
 }
-

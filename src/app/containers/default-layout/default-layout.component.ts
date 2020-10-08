@@ -137,6 +137,7 @@ export class DefaultLayoutComponent implements OnDestroy {
         this.router.navigateByUrl('theme/driver-list');
       }else{
         this.navItems=this.sideMenuList
+        this.router.navigateByUrl('/dashboard');
       }
       if (this.loginUser) {
           this.userid= this.loginUser['_id']
