@@ -172,8 +172,8 @@
       </div>
       <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
       <div *dxTemplate="let element of 'driverTemplate'">
-        <span *ngIf="element.data.dropoffinfo != undefined">Driver1 : {{element.data.dropoffinfo.Driver1}}</span><br>
-        <span *ngIf="element.data.dropoffinfo != undefined">Driver2 : {{element.data.dropoffinfo.Driver2}}</span>
+        <span *ngIf="element.data.pickupinfo != undefined">Driver1 : {{element.data.pickupinfo.Driver1}}</span><br>
+        <span *ngIf="element.data.pickupinfo != undefined">Driver2 : {{element.data.pickupinfo.Driver2}}</span>
       </div>
       <div *dxTemplate="let element of 'cellTemplate'">
         <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.ContactNumber}}</span>

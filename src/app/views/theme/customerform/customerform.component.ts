@@ -196,16 +196,21 @@ export class CustomerformComponent implements OnInit {
         if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != ""){
           this.btnHide=true
         this._customersservice.SendForm(Customerslistdata).subscribe(response => {
-          this.submitted = true;
-          this._toaster.info("Customerform Data Submitted","Success", {timeOut: 3000,});
-          this.btnHide=false
-         this.dialogRef.close(response)
+          if(response.Status != "error"){
+            this.submitted = true;
+            this._toaster.info("Customerform Data Submitted","Success", {timeOut: 3000});
+            this.btnHide=false
+           this.dialogRef.close(response)
+          }else{
+            this.submitted=false;
+            this._toaster.info(response.error,"Failed", {timeOut: 2000});
+          }
         },error=>{
           this.submitted=false;
-          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
+          this._toaster.error("Submit again","Failed", {timeOut: 2000});
         });
       }else{
-        this._toaster.error("Enter MC/FF Details","Failed", {timeOut: 2000,});
+        this._toaster.error("Enter MC/FF Details","Failed", {timeOut: 2000});
        }
         console.log(this.pageFilters);
        }

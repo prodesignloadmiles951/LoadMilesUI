@@ -33,19 +33,26 @@ export class DropoffComponent implements OnInit {
 
    SendDropoffform(dropoffdata){
     var dropoffinfo = {}
+    console.log(dropoffdata)
     dropoffinfo['_id']=sessionStorage.getItem('submitID')
-    dropoffinfo['dropContnumber']= dropoffdata['contactnumber']
-    dropoffinfo['DropoffDate']= new Date(dropoffdata['dropoffdate']).getTime()
-    dropoffinfo['dropCompany'] = dropoffdata['dropoffcompany']
-    dropoffinfo['dropContact'] = dropoffdata['contactname']
-    dropoffinfo['dropAddress'] = dropoffdata['address']
-    dropoffinfo['Type'] = dropoffdata['type']
-    dropoffinfo['Driver1'] = dropoffdata['driver1']
-    dropoffinfo['Driver2'] = dropoffdata['driver2']
-    dropoffinfo['Truck'] = dropoffdata['truck']
-    dropoffinfo['Trailer'] = dropoffdata['trailer']
-    dropoffinfo['LoadStatus'] = dropoffdata['loadstatus']
-
+    dropoffinfo['dropContnumber']= dropoffdata['dropContnumber']
+    dropoffinfo['DropoffDate']= new Date(dropoffdata['DropoffDate']).getTime()
+    dropoffinfo['dropCompany'] = dropoffdata['dropCompany']
+    dropoffinfo['dropContact'] = dropoffdata['dropContact']
+    dropoffinfo['dropAddress'] = dropoffdata['address1'] + "," + dropoffdata['address2']
+    dropoffinfo['Type'] = dropoffdata['Type']
+    dropoffinfo['Driver1'] = dropoffdata['Driver1']
+    dropoffinfo['Driver2'] = dropoffdata['Driver2']
+    dropoffinfo['Truck'] = dropoffdata['Truck']
+    dropoffinfo['Trailer'] = dropoffdata['Trailer']
+    dropoffinfo['LoadStatus'] = dropoffdata['LoadStatus']
+    dropoffinfo['city'] = dropoffdata['city']
+    dropoffinfo['country'] = dropoffdata['country']
+    dropoffinfo['dropoffref'] = dropoffdata['dropoffref']
+    dropoffinfo['dropofftime'] = dropoffdata['dropofftime']
+    dropoffinfo['state'] = dropoffdata['state']
+    dropoffinfo['zipcode'] = dropoffdata['zipcode']
+    
     if(dropoffinfo['_id'] != null){
       this._dropoff.SendDropoffform(dropoffinfo).subscribe(data => {
         this.data = data
@@ -209,6 +216,7 @@ export class DropoffComponent implements OnInit {
     }
     this._loadservice.deleteLoadData(data.data).subscribe(data => {
       console.log(data)
+      this._toaster.success("Dropoff successfully deleted", "Success", {timeOut: 3000});
     });
     sessionStorage.setItem('dropOffdetails',JSON.stringify(this.dropoffpopupdata))
   }

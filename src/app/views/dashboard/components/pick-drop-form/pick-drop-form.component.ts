@@ -145,7 +145,6 @@ export class PickDropFormComponent implements OnInit {
   getDriverData() {
         this._driverService.getDriversData().subscribe(data => {
           this.driverdata = data;
-          console.log(this.driverdata)
         });
       }
   getTrailerData() {

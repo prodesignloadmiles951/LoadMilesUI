@@ -36,17 +36,23 @@ export class PickupComponent implements OnInit {
     var pickupinfo = {}
     
     pickupinfo['_id']=sessionStorage.getItem('submitID')
-    pickupinfo['ContactNumber']= pickupdata['contactnumber']
-    pickupinfo['PickupDate']= new Date(pickupdata['pickupdate']).getTime()
-    pickupinfo['PickupCompany'] = pickupdata['pickupcompany']
-    pickupinfo['ContactName'] = pickupdata['contactname']
-    pickupinfo['Address'] = pickupdata['address']
-    pickupinfo['Type'] = pickupdata['type']
-    pickupinfo['Driver1'] = pickupdata['driver1']
-    pickupinfo['Driver2'] = pickupdata['driver2']
-    pickupinfo['Truck'] = pickupdata['truck']
-    pickupinfo['Trailer'] = pickupdata['trailer']
-    pickupinfo['LoadStatus'] = pickupdata['loadstatus']
+    pickupinfo['ContactNumber']= pickupdata['ContactNumber']
+    pickupinfo['PickupDate']= new Date(pickupdata['PickupDate']).getTime()
+    pickupinfo['PickupCompany'] = pickupdata['PickupCompany']
+    pickupinfo['ContactName'] = pickupdata['ContactName']
+    pickupinfo['Address'] = pickupdata['address1'] +","+ pickupdata['address2']
+    pickupinfo['Type'] = pickupdata['Type']
+    pickupinfo['Driver1'] = pickupdata['Driver1']
+    pickupinfo['Driver2'] = pickupdata['Driver2']
+    pickupinfo['Truck'] = pickupdata['Truck']
+    pickupinfo['Trailer'] = pickupdata['Trailer']
+    pickupinfo['LoadStatus'] = pickupdata['LoadStatus']
+    pickupinfo['city'] = pickupdata['city']
+    pickupinfo['country'] = pickupdata['country']
+    pickupinfo['pickupref'] = pickupdata['pickupref']
+    pickupinfo['pickuptime'] = pickupdata['pickuptime']
+    pickupinfo['state'] = pickupdata['state']
+    pickupinfo['zipcode'] = pickupdata['zipcode']
 
     // for (var i = 0; i < this.typeDetails.length; i++) {
     //   if(this.typeDetails[i]['ID'] == JSON.parse(pickupdata['Type'])){
@@ -226,6 +232,7 @@ export class PickupComponent implements OnInit {
     }
     this._loadservice.deleteLoadData(data.data).subscribe(data => {
       console.log(data)
+      this._toaster.success("Pickup successfully deleted", "Success", {timeOut: 3000});
     });
     sessionStorage.setItem('pickupdetails',JSON.stringify(this.pickuppopupdata))
   }

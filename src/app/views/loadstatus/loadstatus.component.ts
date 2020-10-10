@@ -121,9 +121,11 @@ public company: CompanyFilters;
 
   setCounts(loads){
     loads.forEach(load => {
-      if (load.lastUpdated.type && load.lastUpdated.status){
-        load.lastUpdated.status = load.lastUpdated.status.replace(/\s/g, '');
-        this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] = this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] ? (this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] + 1) : 1;
+      if(load.lastUpdated != undefined){
+        if (load.lastUpdated.type && load.lastUpdated.status){
+          load.lastUpdated.status = load.lastUpdated.status.replace(/\s/g, '');
+          this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] = this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] ? (this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] + 1) : 1;
+        }
       }
     })
   }
@@ -134,8 +136,9 @@ public company: CompanyFilters;
       this._customersservice.getCustomersData().subscribe(resp => {
         for (var i = 0; i < res.length;i++) {
           res[i]['load_number']=1000+i
+          if(res[i]['lastUpdated'] != undefined){
           res[i]['loadstatus']=res[i]['lastUpdated']['status']
-          
+          }
           res[i]['customer_name'] = ((resp[res[i]['customer'][0] !== 'Select customer' ? res[i]['customer'][0] : parseInt(res[i]['customer'][0])]) || {}).companyname
         }
         
@@ -156,13 +159,18 @@ public company: CompanyFilters;
                  }
                 })
                  for (var j = 0; j < this.loadsstatus.length; j++) {
-                   if(this.loadsstatus[j]['Name'] == this.loadDetails[i]['lastUpdated']['status']){
-                     this.loadDetails[i]['loadstatus']=this.loadsstatus[j]['ID']
-                     this.loadDetails[i]['driver1']=this.loadDetails[i]['pickupinfo']['Driver1']
-                     this.loadDetails[i]['driver2']=this.loadDetails[i]['pickupinfo']['Driver2']
+                   if(res[i]['lastUpdated'] != undefined){
+                     this.loadsstatus[j]['Name'] == this.loadDetails[i]['lastUpdated']['status']
+                     this.loadDetails[j]['loadstatus']=this.loadsstatus[j]['ID']
+                   }
+                   if(this.loadDetails[i]['pickupinfo'] != undefined){
+                     this.loadDetails[i]['Driver1']=this.loadDetails[i]['pickupinfo']['Driver1']
+                     this.loadDetails[i]['Driver2']=this.loadDetails[i]['pickupinfo']['Driver2']
                      this.loadDetails[i]['ContactNumber']=this.loadDetails[i]['pickupinfo']['ContactNumber']
                      this.loadDetails[i]['Truck']=this.loadDetails[i]['pickupinfo']['Truck']
                      this.loadDetails[i]['pickupaddress']=this.loadDetails[i]['pickupinfo']['Address']
+                   }
+                   if(this.loadDetails[i]['dropoffinfo'] != undefined){
                      this.loadDetails[i]['dropoffaddress']=this.loadDetails[i]['dropoffinfo']['dropAddress']
                    }
                  }

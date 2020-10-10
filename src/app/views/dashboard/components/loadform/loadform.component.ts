@@ -51,6 +51,10 @@ export class LoadformComponent implements OnInit {
   }
 
   ngOnInit() {
+    sessionStorage.removeItem("Pickup")
+    sessionStorage.removeItem("dropOffdetails")
+    sessionStorage.removeItem("pickupdetails")
+    
     this.loginUser = this.authService.getloginUser();
     this.newloadfilters['dispatcher']= this.loginUser['username'];
     var date= new Date()

@@ -60,11 +60,11 @@ driverdata= [];
       this.dropoff=this.data
       this.inputPostalCode = this.dropoff['zipcode']
     }else if(pickup != undefined){
-      this.dropoff['type'] = pickup['type']
-      this.dropoff['driver1'] = pickup['driver1']
-      this.dropoff['driver2'] = pickup['driver2']
-      this.dropoff['truck'] = pickup['truck']
-      this.dropoff['trailer'] = pickup['trailer']      
+      this.dropoff['Type'] = pickup['Type']
+      this.dropoff['Driver1'] = pickup['Driver1']
+      this.dropoff['Driver2'] = pickup['Driver2']
+      this.dropoff['Truck'] = pickup['Truck']
+      this.dropoff['Trailer'] = pickup['Trailer']      
     }
   	this.getDriverData()
     this.getTrailerData()

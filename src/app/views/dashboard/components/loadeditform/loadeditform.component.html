@@ -80,25 +80,19 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="phone">Load price:</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="loadprice" placeholder="Load price" #loadprice="ngModel" name="loadprice" [(ngModel)]="newloadfilters.loadprice" [pattern]="'^[1-9][0-9]*$'" required>
-              <div *ngIf="loadprice.errors && (loadprice.dirty || loadprice.touched)" style="font-size: smaller;">
-              </div>
+              <input type="number" class="form-control" id="loadprice" placeholder="Load price" #loadprice="ngModel" name="loadprice" [(ngModel)]="newloadfilters.loadprice" [pattern]="'^[1-9][0-9]*$'" >
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="phone">Distance:</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="distance" placeholder="Enter distance" #distance="ngModel" name="distance" [(ngModel)]="newloadfilters.distance" [pattern]="'^[1-9][0-9]*$'" required>
-              <div *ngIf="distance.errors && (distance.dirty || distance.touched)" style="font-size: smaller;">
-              </div>
+              <input type="number" class="form-control" id="distance" placeholder="Enter distance" #distance="ngModel" name="distance" [(ngModel)]="newloadfilters.distance" [pattern]="'^[1-9][0-9]*$'">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="phone">Dead head:</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="deadhead" placeholder="Enter deadhead distance" #deadhead="ngModel" name="deadhead" [(ngModel)]="newloadfilters.deadhead" [pattern]="'^[1-9][0-9]*$'" required>
-              <div *ngIf="deadhead.errors && (deadhead.dirty || deadhead.touched)" style="font-size: smaller;">
-              </div>
+              <input type="number" class="form-control" id="deadhead" placeholder="Enter deadhead distance" #deadhead="ngModel" name="deadhead" [(ngModel)]="newloadfilters.deadhead" [pattern]="'^[1-9][0-9]*$'">
             </div>
           </div>
         </div>
