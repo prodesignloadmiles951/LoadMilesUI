@@ -173,6 +173,9 @@ export class PickDropFormComponent implements OnInit {
     this.pickup['zipcode']=this.inputPostalCode
     console.log(this.pickup)
     sessionStorage.setItem('Pickup', JSON.stringify(this.pickup))
+    this.pickup['Truck']=parseInt(this.pickup['Truck'])
+    this.pickup['Trailer']=parseInt(this.pickup['Trailer'])
+    this.pickup['zipcode']=parseInt(this.pickup['zipcode'])
   	this.dialogRef.close(this.pickup)
   }
   hidePopup(){
@@ -196,6 +199,8 @@ export class PickDropFormComponent implements OnInit {
 
   onPostalCodeSelect(option){
     console.log(option)
+    var code=option.postal_code
+    this.inputPostalCode=code.split("'")[1]
     this.pickup['city']=option.city
     this.pickup['state']=option.state
     this.pickup['country']=option.country

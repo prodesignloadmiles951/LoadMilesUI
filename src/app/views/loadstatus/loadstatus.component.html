@@ -148,7 +148,7 @@
   </div>
   <div id="data-grid-demo">
     <dx-data-grid id="gridContainer" [dataSource]="loadDetails" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onExporting)="onExporting($event)">
-      <dxo-paging [enabled]="true" [pageSize]="5"></dxo-paging>
+      <dxo-paging [enabled]="true" [pageSize]="10"></dxo-paging>
       <dxo-selection mode="multiple"></dxo-selection>
       <dxi-column dataField="load_number" caption="Load Number"></dxi-column>
       <dxi-column dataField="customer_name" caption="Customer"></dxi-column>

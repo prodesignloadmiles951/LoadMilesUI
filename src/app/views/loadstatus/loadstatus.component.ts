@@ -179,6 +179,17 @@ public company: CompanyFilters;
             })
           })
           console.log(this.loadDetails)
+          for (var i = 0; i < this.loadDetails.length; i++) {
+              if(this.loadDetails[i]['pickupinfo'] == undefined){
+                this.loadDetails[i]['pickupinfo']={}
+              }
+              if(this.loadDetails[i]['dropoffinfo'] == undefined){
+                this.loadDetails[i]['dropoffinfo']={}
+              }
+              this.loadDetails[i]['pickupinfo']['_id'] = this.loadDetails[i]['_id']
+              this.loadDetails[i]['dropoffinfo']['_id'] = this.loadDetails[i]['_id']
+          }
+              console.log(this.loadDetails)
           this.setCounts(this.loadDetails);
       });
      

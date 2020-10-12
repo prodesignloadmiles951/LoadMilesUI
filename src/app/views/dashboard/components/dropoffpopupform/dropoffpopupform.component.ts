@@ -194,7 +194,11 @@ driverdata= [];
         }
         this.dropoff['files']=idArry
         this.dropoff['zipcode']=this.inputPostalCode
-  	this.dialogRef.close(this.dropoff)
+        this.dropoff['DropoffDate']=new Date(this.dropoff['DropoffDate']).toLocaleDateString()
+        this.dropoff['Truck']=parseInt(this.dropoff['Truck'])
+        this.dropoff['Trailer']=parseInt(this.dropoff['Trailer'])
+        this.dropoff['zipcode']=parseInt(this.dropoff['zipcode'])
+  	    this.dialogRef.close(this.dropoff)
   }
    hidePopup(){
   	this.dialogRef.close(null)
@@ -216,6 +220,8 @@ driverdata= [];
     };
     onPostalCodeSelect(option){
     console.log(option)
+    var code=option.postal_code
+    this.inputPostalCode=code.split("'")[1]
     this.dropoff['city']=option.city
     this.dropoff['state']=option.state
     this.dropoff['country']=option.country
