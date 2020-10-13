@@ -35,7 +35,7 @@ export class PickupComponent implements OnInit {
   SendPickupForm(pickupdata){
     var pickupinfo = {}
     
-    pickupinfo['_id']=sessionStorage.getItem('submitID')
+    pickupinfo['load_id']=sessionStorage.getItem('submitID')
     pickupinfo['ContactNumber']= pickupdata['ContactNumber']
     pickupinfo['PickupDate']= new Date(pickupdata['PickupDate']).getTime()
     pickupinfo['PickupCompany'] = pickupdata['PickupCompany']
@@ -62,10 +62,16 @@ export class PickupComponent implements OnInit {
     // }
     
     console.log(pickupinfo)
-    if(pickupinfo['_id'] != null){
+    if(pickupinfo['load_id'] != null){
       this._pickup.SendPickupForm(pickupinfo).subscribe(data => {
-        this.data = data
         this._toaster.success("Pickup successfully created", "Success");
+        if(this.pickuppopupdata != null){
+          this.pickuppopupdata.push(data.data)
+        }else{
+          this.pickuppopupdata.push(data.data)
+        }
+        console.log(this.pickuppopupdata)
+        sessionStorage.setItem('pickupdetails',JSON.stringify(this.pickuppopupdata))
       }, error => {
          this._toaster.error("error", "Try Again");
           console.log(this.data)
@@ -132,13 +138,16 @@ export class PickupComponent implements OnInit {
 
   ngOnInit() {
     if(this.pickupdata != undefined){
-      this.pickuppopupdata.push(this.pickupdata)
+    if(this.pickupdata.length > 0){
+      this.pickuppopupdata=this.pickupdata
+      sessionStorage.setItem('submitID',this.pickupdata[0]['load_id'])
     }else{
       this.pickuppopupdata= JSON.parse(sessionStorage.getItem("pickupdetails"))
     }
-    this.getDriverData()
-    this.getTruckData()
-    this.getTrailerData()
+  }
+    // this.getDriverData()
+    // this.getTruckData()
+    // this.getTrailerData()
     // this.getPickupForm()
   	this.drivertypeDetails=[
       {
@@ -189,23 +198,17 @@ export class PickupComponent implements OnInit {
             data: {}
     }).afterClosed().subscribe((confirm) => {
         console.log(confirm)
+        var pickUpArry=[]
         if(confirm !=null){
-          this.SendPickupForm(confirm)
-          var submitId=sessionStorage.getItem('submitID')
-          if(submitId != null){
-            if(this.pickuppopupdata == null){
-              var pickUpArry=[]
-            }else{
-              var pickUpArry=this.pickuppopupdata            
-            }
-            pickUpArry.push(confirm)
-            for (var i = 0; i < pickUpArry.length; i++) {
-              pickUpArry[i]['SlNo']=i+1
-            }
-            this.pickuppopupdata=pickUpArry
-            console.log(this.pickuppopupdata)
-            sessionStorage.setItem('pickupdetails',JSON.stringify(this.pickuppopupdata))
-          }
+          // if(this.pickupdata['loadstatuspickupedit']){
+          //   pickUpArry.push(confirm)
+          //   for (var i = 0; i < pickUpArry.length; i++) {
+          //     pickUpArry[i]['SlNo']=i+1
+          //   }
+          //   this.pickuppopupdata=pickUpArry
+          // }
+            this.SendPickupForm(confirm)
+            var submitId=sessionStorage.getItem('submitID')
         }
     })
   }
@@ -225,6 +228,7 @@ export class PickupComponent implements OnInit {
     })
   }
   onpickDelete(data){
+    console.log(data)
     console.log(data.data)
    this.pickuppopupdata.splice(data.rowIndex,1)
     for (var i = 0; i < this.pickuppopupdata.length; i++) {

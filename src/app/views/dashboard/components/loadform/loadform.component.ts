@@ -51,6 +51,7 @@ export class LoadformComponent implements OnInit {
   }
 
   ngOnInit() {
+    sessionStorage.removeItem("submitID")
     sessionStorage.removeItem("Pickup")
     sessionStorage.removeItem("dropOffdetails")
     sessionStorage.removeItem("pickupdetails")

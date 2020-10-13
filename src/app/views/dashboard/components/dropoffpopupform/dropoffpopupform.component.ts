@@ -59,12 +59,22 @@ driverdata= [];
     if(this.data['mode']){
       this.dropoff=this.data
       this.inputPostalCode = this.dropoff['zipcode']
+      if(this.dropoff['dropAddress'] != undefined ){
+      this.dropoff['address1'] = this.dropoff['dropAddress'].split(",")[0]
+      this.dropoff['address2'] = this.dropoff['dropAddress'].split(",")[1]
+      }
     }else if(pickup != undefined){
       this.dropoff['Type'] = pickup['Type']
       this.dropoff['Driver1'] = pickup['Driver1']
       this.dropoff['Driver2'] = pickup['Driver2']
       this.dropoff['Truck'] = pickup['Truck']
-      this.dropoff['Trailer'] = pickup['Trailer']      
+      this.dropoff['Trailer'] = pickup['Trailer'] 
+      this.dropoff['address1'] = pickup['address1']
+      this.dropoff['address1'] = pickup['address2']
+      if(this.dropoff['dropAddress'] != undefined ){
+      this.dropoff['address1'] = this.dropoff['dropAddress'].split(",")[0]
+      this.dropoff['address2'] = this.dropoff['dropAddress'].split(",")[1]
+      }
     }
   	this.getDriverData()
     this.getTrailerData()
@@ -86,7 +96,7 @@ driverdata= [];
       },
       {
           "ID": 1,
-          "Name": "Carrier"
+          "Name": "carrier"
       }
     ]
 

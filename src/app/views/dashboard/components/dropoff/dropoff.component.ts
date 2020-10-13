@@ -28,13 +28,14 @@ export class DropoffComponent implements OnInit {
   @Input()dropoffdata;
   constructor(private _loadservice: CreateloadService, 
     private _driverService: DriversService, private _trucksservice: TrucksService, private _toaster: ToastrService,
-    private _trailersService: TrailerService, private _dropoff: DropoffserviceService, public dialog: MatDialog) { }
+    private _trailersService: TrailerService, private _dropoff: DropoffserviceService,
+     public dialog: MatDialog) { }
 
 
    SendDropoffform(dropoffdata){
     var dropoffinfo = {}
     console.log(dropoffdata)
-    dropoffinfo['_id']=sessionStorage.getItem('submitID')
+    dropoffinfo['load_id']=sessionStorage.getItem('submitID')
     dropoffinfo['dropContnumber']= dropoffdata['dropContnumber']
     dropoffinfo['DropoffDate']= new Date(dropoffdata['DropoffDate']).getTime()
     dropoffinfo['dropCompany'] = dropoffdata['dropCompany']
@@ -53,10 +54,15 @@ export class DropoffComponent implements OnInit {
     dropoffinfo['state'] = dropoffdata['state']
     dropoffinfo['zipcode'] = dropoffdata['zipcode']
     
-    if(dropoffinfo['_id'] != null){
+    if(dropoffinfo['load_id'] != null){
       this._dropoff.SendDropoffform(dropoffinfo).subscribe(data => {
-        this.data = data
         this._toaster.success("Dropoff successfully created", "Success");
+        if(this.dropoffpopupdata != null){
+          this.dropoffpopupdata.push(data.data)
+        }else{
+          this.dropoffpopupdata.push(data.data)
+        }
+        console.log(this.dropoffpopupdata)
       }, error => {
          this._toaster.error("error", "Try Again");
           console.log(this.data)
@@ -67,13 +73,13 @@ export class DropoffComponent implements OnInit {
   }
   editDropoff(dropoffinfo){
     // dropoffinfo['_id']=sessionStorage.getItem('submitID')
-    this._dropoff.EditDropoff(dropoffinfo).subscribe(data => {
-      this.data = data
-      this._toaster.success("Dropoff successfully updated", "Success");
-    }, error => {
-       this._toaster.error("error", "Try Again");
-        console.log(this.data)
-    })
+        this._dropoff.EditDropoff(dropoffinfo).subscribe(data => {
+          this.data = data
+          this._toaster.success("Dropoff successfully updated", "Success");
+        }, error => {
+           this._toaster.error("error", "Try Again");
+            console.log(this.data)
+        })        
   }
 
   getDropoffForm(){
@@ -116,15 +122,19 @@ export class DropoffComponent implements OnInit {
       }
 
   ngOnInit() {
+    console.log(this.dropoffdata)
     if(this.dropoffdata != undefined){
-      this.dropoffpopupdata.push(this.dropoffdata)
+    if(this.dropoffdata.length > 0){
+      sessionStorage.setItem('submitID',this.dropoffdata[0]['load_id'])
+      this.dropoffpopupdata=this.dropoffdata
     }else{
-    this.dropoffpopupdata= JSON.parse(sessionStorage.getItem("dropOffdetails"))
+      this.dropoffpopupdata= JSON.parse(sessionStorage.getItem("dropOffdetails"))
     }
+  }
     console.log(this.dropoffpopupdata)
-    this.getDriverData()
-    this.getTruckData()
-    this.getTrailerData()
+    // this.getDriverData()
+    // this.getTruckData()
+    // this.getTrailerData()
     // this.getDropoffForm()
   	this.drivertypeDetails=[
       {
@@ -171,23 +181,10 @@ export class DropoffComponent implements OnInit {
             data: {'mode':false}
     }).afterClosed().subscribe((confirm) => {
         console.log(confirm)
+        var dropOffArry=[]
         if(confirm !=null){
           this.SendDropoffform(confirm)
           var submitId=sessionStorage.getItem('submitID')
-          if(submitId != null){
-            if(this.dropoffpopupdata == null){
-              var dropOffArry=[]
-            }else{
-              var dropOffArry=this.dropoffpopupdata            
-            }
-            dropOffArry.push(confirm)
-            for (var i = 0; i < dropOffArry.length; i++) {
-              dropOffArry[i]['SlNo']=i+1
-            }
-            this.dropoffpopupdata=dropOffArry
-            console.log(this.dropoffpopupdata)
-            sessionStorage.setItem('dropOffdetails',JSON.stringify(this.dropoffpopupdata))
-          }
         }
     })
   }

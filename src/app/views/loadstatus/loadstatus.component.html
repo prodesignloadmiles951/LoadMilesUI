@@ -2,12 +2,12 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
-        <div class="card-header">
+        <!-- <div class="card-header">
           <span class="float-right">
             <button type="add" class="btn btn-sm btn-success" (click)="createLoad()"><i class="fa fa-plus"></i> Create
               Load</button>
           </span>
-        </div>
+        </div> -->
         <div class="card-body">
           <div class="animated fadeIn">
           </div>
@@ -148,7 +148,7 @@
   </div>
   <div id="data-grid-demo">
     <dx-data-grid id="gridContainer" [dataSource]="loadDetails" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onExporting)="onExporting($event)">
-      <dxo-paging [enabled]="true" [pageSize]="10"></dxo-paging>
+      <dxo-paging [enabled]="true" [pageSize]="5"></dxo-paging>
       <dxo-selection mode="multiple"></dxo-selection>
       <dxi-column dataField="load_number" caption="Load Number"></dxi-column>
       <dxi-column dataField="customer_name" caption="Customer"></dxi-column>
@@ -172,20 +172,20 @@
       </div>
       <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
       <div *dxTemplate="let element of 'driverTemplate'">
-        <span *ngIf="element.data.pickupinfo != undefined">Driver1 : {{element.data.pickupinfo.Driver1}}</span><br>
-        <span *ngIf="element.data.pickupinfo != undefined">Driver2 : {{element.data.pickupinfo.Driver2}}</span>
+        <span *ngIf="element.data.pickupinfoLength > 0">Driver1 : {{element.data.pickupinfo[0].Driver1}}</span><br>
+        <span *ngIf="element.data.pickupinfoLength > 0">Driver2 : {{element.data.pickupinfo[0].Driver2}}</span>
       </div>
       <div *dxTemplate="let element of 'cellTemplate'">
-        <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.ContactNumber}}</span>
+        <span *ngIf="element.data.pickupinfoLength > 0">{{element.data.pickupinfo[0].ContactNumber}}</span>
       </div>
       <div *dxTemplate="let element of 'truckTemplate'">
-        <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.Truck}}</span>
+        <span *ngIf="element.data.pickupinfoLength > 0">{{element.data.pickupinfo[0].Truck}}</span>
       </div>
       <div *dxTemplate="let element of 'pickupaddressTemplate'">
-        <span *ngIf="element.data.pickupinfo != undefined">{{element.data.pickupinfo.PickupCompany}} , {{element.data.pickupinfo.Address}}</span>
+        <span *ngIf="element.data.pickupinfoLength > 0">{{element.data.pickupinfo[0].PickupCompany}} , {{element.data.pickupinfo[0].Address}}</span>
       </div>
       <div *dxTemplate="let element of 'dropoffaddressTemplate'">
-        <span *ngIf="element.data.dropoffinfo != undefined">{{element.data.dropoffinfo.dropCompany}} , {{element.data.dropoffinfo.dropAddress}}</span>
+        <span *ngIf="element.data.dropoffinfoLength > 0">{{element.data.dropoffinfo[0].dropCompany}} , {{element.data.dropoffinfo[0].dropAddress}}</span>
       </div>
     </dx-data-grid>
   </div>

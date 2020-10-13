@@ -136,6 +136,10 @@ public company: CompanyFilters;
       this._customersservice.getCustomersData().subscribe(resp => {
         for (var i = 0; i < res.length;i++) {
           res[i]['load_number']=1000+i
+          res[i]['pickupinfo']=[]
+          res[i]['dropoffinfo']=[]
+          res[i]['pickupinfoLength']=0
+          res[i]['pickupinfoLength']=0
           if(res[i]['lastUpdated'] != undefined){
           res[i]['loadstatus']=res[i]['lastUpdated']['status']
           }
@@ -143,53 +147,38 @@ public company: CompanyFilters;
         }
         
           this.loadDetails = res;
+          var pickup=[]
+          var dropup=[]
           this._pickup.getpickupData().subscribe(pickupdata => {
             this.pickupdata = pickupdata
              this._dropoff.getdroppoffData().subscribe(dropupdata => {
               this.dropoffdata = dropupdata
+              
               for (var i = 0; i < this.loadDetails.length; i++) {
-                 var pickitem = this.pickupdata.map(item => {
-                   if(item._id == this.loadDetails[i]._id){
-                     this.loadDetails[i]['pickupinfo'] = item
-                   }
-                 })
-                 var dropitem = this.dropoffdata.map(item => {
-                 if(item._id == this.loadDetails[i]._id){
-                   this.loadDetails[i]['dropoffinfo'] = item
-                 }
+                this.pickupdata.forEach(item => {
+                  if(item.load_id == this.loadDetails[i]['_id']){
+                    this.loadDetails[i]['pickupinfo'].push(item)
+                    this.loadDetails[i]['pickupinfoLength']=this.loadDetails[i]['pickupinfo'].length
+                  }
                 })
-                 for (var j = 0; j < this.loadsstatus.length; j++) {
-                   if(res[i]['lastUpdated'] != undefined){
-                     this.loadsstatus[j]['Name'] == this.loadDetails[i]['lastUpdated']['status']
-                     this.loadDetails[j]['loadstatus']=this.loadsstatus[j]['ID']
-                   }
-                   if(this.loadDetails[i]['pickupinfo'] != undefined){
-                     this.loadDetails[i]['Driver1']=this.loadDetails[i]['pickupinfo']['Driver1']
-                     this.loadDetails[i]['Driver2']=this.loadDetails[i]['pickupinfo']['Driver2']
-                     this.loadDetails[i]['ContactNumber']=this.loadDetails[i]['pickupinfo']['ContactNumber']
-                     this.loadDetails[i]['Truck']=this.loadDetails[i]['pickupinfo']['Truck']
-                     this.loadDetails[i]['pickupaddress']=this.loadDetails[i]['pickupinfo']['Address']
-                   }
-                   if(this.loadDetails[i]['dropoffinfo'] != undefined){
-                     this.loadDetails[i]['dropoffaddress']=this.loadDetails[i]['dropoffinfo']['dropAddress']
+                this.dropoffdata.forEach(item => {
+                  if(item.load_id == this.loadDetails[i]['_id']){
+                    this.loadDetails[i]['dropoffinfo'].push(item)
+                    this.loadDetails[i]['dropoffinfoLength']=this.loadDetails[i]['dropoffinfo'].length
+                  }
+                })
+                for (var j = 0; j < this.loadsstatus.length; j++) {
+                 if(res[i]['lastUpdated'] != undefined){
+                   if(this.loadsstatus[j]['Name'] == this.loadDetails[i]['lastUpdated']['status']){
+                     this.loadDetails[i]['loadstatus'] = this.loadsstatus[j]['ID']                     
                    }
                  }
-               }
-
+                }
+              }
+              console.log(this.loadDetails)
             })
           })
-          console.log(this.loadDetails)
-          for (var i = 0; i < this.loadDetails.length; i++) {
-              if(this.loadDetails[i]['pickupinfo'] == undefined){
-                this.loadDetails[i]['pickupinfo']={}
-              }
-              if(this.loadDetails[i]['dropoffinfo'] == undefined){
-                this.loadDetails[i]['dropoffinfo']={}
-              }
-              this.loadDetails[i]['pickupinfo']['_id'] = this.loadDetails[i]['_id']
-              this.loadDetails[i]['dropoffinfo']['_id'] = this.loadDetails[i]['_id']
-          }
-              console.log(this.loadDetails)
+         
           this.setCounts(this.loadDetails);
       });
      
@@ -207,11 +196,11 @@ public company: CompanyFilters;
       active, type
     };
   }
-  onEditClick(data){
-    console.log(data)
-    var loadObj=data
-    loadObj['EditMode']=true
-    let dialogConfig = Object.assign({ width: "1000px" },{ data: loadObj })
+  onEditClick(editdata){    
+    var editLoad=editdata
+    editLoad['EditMode']=true
+    editLoad['loadstatusedit']=true
+    let dialogConfig = Object.assign({ width: "1000px" },{ data: editdata })
     let editDialogRef = this.dialog.open(LoadeditformComponent, dialogConfig);
     editDialogRef.afterClosed().subscribe((data) => {
       console.log(data)

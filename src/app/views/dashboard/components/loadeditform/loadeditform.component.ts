@@ -60,7 +60,12 @@ export class LoadeditformComponent implements OnInit {
     this.loginUser = this.authService.getloginUser();
     this.newloadfilters['dispatcher']= this.loginUser['username'];
     console.log(this.resdata)
-    if(this.resdata['EditMode'] == true){
+    if(this.resdata['EditMode'] && this.resdata['loadstatusedit']){
+      this.resdata['pickupinfo']['_id']= this.resdata['_id']
+      this.resdata['dropoffinfo']['_id']= this.resdata['_id']
+      this.newloadfilters=this.resdata
+      console.log(this.resdata)
+    }else if(this.resdata['EditMode']){
       this.newloadfilters=this.resdata
     }
     this.getCustomerdata()
@@ -84,7 +89,8 @@ export class LoadeditformComponent implements OnInit {
     });
   }
   updateload(){
-  	    this._loadservice.editLoadData(this.resdata).subscribe(data => {
+    console.log(this.resdata)
+  	this._loadservice.editLoadData(this.resdata).subscribe(data => {
             console.log(data)
          this._toaster.success("Load successfully Updated", "Success");
          this.dialogRef.close(data)
@@ -143,5 +149,15 @@ Addcustomer(){
           }
         })
 }
+
+// pickupeditdata(e){
+//   console.log(e)
+//   this.resdata['pickupinfo']=e
+// }
+
+// dropoffeditdata(e){
+//   console.log(e)
+//   this.resdata['dropoffinfo']=e
+// }
 
 }

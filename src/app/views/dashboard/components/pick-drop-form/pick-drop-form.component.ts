@@ -55,6 +55,10 @@ export class PickDropFormComponent implements OnInit {
      if(this.data){
       this.pickup=this.data
       this.inputPostalCode = this.pickup['zipcode']
+      if(this.pickup['Address'] != undefined ){
+      this.pickup['address1'] = this.pickup['Address'].split(",")[0]
+      this.pickup['address2'] = this.pickup['Address'].split(",")[1]
+      }
     }
   	this.getDriverData()
     this.getTrailerData()
