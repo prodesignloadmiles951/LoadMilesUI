@@ -93,15 +93,19 @@ export class LoadformComponent implements OnInit {
   submitload(){
     this.showsubmit=true
       console.log(this.newloadfilters)
-      this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
-            console.log(data)
-            sessionStorage.setItem('submitID', data.data._id)
-            this.getData();
-            this.showsubmit=false
-            this._toaster.success("Load successfully created", "Success");
-      }, error => {
-         this._toaster.error("error", "Try Again");
-      });
+      if(this.newloadfilters['companyname'] != undefined){
+        this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
+              console.log(data)
+              sessionStorage.setItem('submitID', data.data._id)
+              this.getData();
+              this.showsubmit=false
+              this._toaster.success("Load successfully created", "Success");
+        }, error => {
+           this._toaster.error("error", "Try Again");
+        });
+      }else{
+        this._toaster.error("error", "Please select customer name");
+      }
   }
   getDispatcherData() {
     this._dispatcherService.getDispatcherData().subscribe(data => {

@@ -74,7 +74,7 @@ export class CompanyregisterComponent implements OnInit {
             this._toaster.error(response.error,"Failed", {timeOut: 2000,});
           }
         },error=>{
-          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
+          this._toaster.error(error.error,"Failed", {timeOut: 2000,});
         });
       }else{
           this._toaster.error("Enter TAX ID","Failed", {timeOut: 2000,});

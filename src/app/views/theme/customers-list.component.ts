@@ -48,6 +48,7 @@ export class CustomerslistComponent implements OnInit {
       }
       getData() {
         this._customersservice.getCustomersData().subscribe(data => {
+          if(data.paymentterms != undefined){
           for (var i = 0; i < data.length; i++) {
             this.paymentterms.map(item => {
               if(item.type == data[i]['paymentterms'][0]){
@@ -55,6 +56,7 @@ export class CustomerslistComponent implements OnInit {
               }
             })            
           }
+        }
           this.data = data;
         });
       }
