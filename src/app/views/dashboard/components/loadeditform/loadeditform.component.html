@@ -1,6 +1,6 @@
 <form class="form-horizontal" #loadForm="ngForm" novalidate autocomplete="off">
   <div *ngIf="SelectedLoad" class="modal-header">
-    <h4 class="modal-title">Load Informtion</h4>
+    <h4 class="modal-title">Load Informtion - <span class="loaddetails">{{this.resdata['load_number']}}</span></h4>
     <button type="button" class="close" (click)="hidePopup()" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>

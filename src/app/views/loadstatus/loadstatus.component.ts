@@ -161,6 +161,7 @@ public company: CompanyFilters;
     this._loadservice.getLoadData().subscribe(data => {
       var res=data
       this._customersservice.getCustomersData().subscribe(resp => {
+        console.log(resp)
         for (var i = 0; i < res.length;i++) {
           res[i]['load_number']=1000+i
           res[i]['pickupinfo']=[]
@@ -170,7 +171,7 @@ public company: CompanyFilters;
           if(res[i]['lastUpdated'] != undefined){
           res[i]['loadstatus']=res[i]['lastUpdated']['status']
           }
-          res[i]['customer_name'] = ((resp[res[i]['customer'][0] !== 'Select customer' ? res[i]['customer'][0] : parseInt(res[i]['customer'][0])]) || {}).companyname
+          res[i]['customer_name'] = (res[i]['customer'][0].length > 1 ? res[i]['customer'][0] :resp[res[i]['customer'][0]].companyname)
         }
         
           this.loadDetails = res;
