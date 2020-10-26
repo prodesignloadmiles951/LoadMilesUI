@@ -8,26 +8,28 @@ import { PickupserviceService } from '../../services/pickupservice.service';
 import { DropoffserviceService } from '../../services/dropoffservice.service';
 import { DriversService } from '../../services/driver.service';
 import {DxButtonModule} from 'devextreme-angular';
-import { Pipe, PipeTransform } from '@angular/core';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { LoadeditformComponent} from '../dashboard/components/loadeditform/loadeditform.component'
+import { LoadeditformComponent} from '../dashboard/components/loadeditform/loadeditform.component';
+import {StatusFilterPipe} from './statusfilterpipe';
 
 
 @Component({
   selector: 'app-loadstatus',
   templateUrl: './loadstatus.component.html',
   styleUrls: ['./loadstatus.component.scss'],
-  providers: [ToastrService, PickupserviceService, DropoffserviceService, CustomersService, DriversService]
+  providers: [ToastrService, PickupserviceService, DropoffserviceService, CustomersService, DriversService, StatusFilterPipe]
 })
 export class LoadstatusComponent implements OnInit {
 public company: CompanyFilters;
   // public EditMode: boolean = false;
   data: any;
   pageFilters: CompanyFilters;
+  statusFilterPipe: StatusFilterPipe;
   selectedCompany: any;
   EditMode: boolean;
   loadDetails=[];
+  savyLoadDetails = []
   driverdata= [];
   companydata=[];
   dropoffdata=[];
@@ -38,36 +40,60 @@ public company: CompanyFilters;
           "Name": "Booked"
       },
       {
-          "ID": 1,
-          "Name": "ArrivalDelay"
+        "ID": 1,
+        "Name": "Cancelled"
       },
       {
-          "ID": 2,
-          "Name": "ArrivalOntime"
+        "ID": 2,
+        "Name": "TONU"
       },
       {
-          "ID": 3,
-          "Name": "LoadedDelay"
+        "ID": 3,
+        "Name": "Invoiced"
       },
       {
-          "ID": 4,
-          "Name": "LoadedOntime"
+        "ID": 4,
+        "Name": "Factored"
       },
       {
-          "ID": 5,
-          "Name": "InTransit"
+        "ID": 5,
+        "Name": "Pickup On The Way"
       },
       {
-          "ID": 6,
-          "Name": "DeliveryDelay"
+        "ID": 6,
+        "Name": "Pickup Delay"
       },
       {
-          "ID": 7,
-          "Name": "DeliveryOntime"
+        "ID": 7,
+        "Name": "Pickup Ontime"
       },
       {
-          "ID": 8,
-          "Name": "Completed"
+        "ID": 8,
+        "Name": "Loading Delay"
+      },
+      {
+        "ID": 9,
+        "Name": "Loading Ontime"
+      },
+      {
+        "ID": 10,
+        "Name": "In Transit"
+      },
+      {
+        "ID": 11,
+        "Name": "Delivery Delay"
+      },
+      {
+        "ID": 12,
+        "Name": "Delivery Ontime"
+      },
+      {
+        "ID": 13,
+        "Name": "Unload Delay"
+      },
+      {
+        "ID": 14,
+        "Name": "Load Completed"
       }
   ];
   activeFilter = {
@@ -85,8 +111,9 @@ public company: CompanyFilters;
   private _dropoff: DropoffserviceService,
   private _driverService: DriversService,
   public dialog: MatDialog,
-  private _loadservice: CreateloadService,
+  private _loadservice: CreateloadService
  ) {
+   this.statusFilterPipe = new StatusFilterPipe(),
   this.pageFilters = new CompanyFilters();
    //console.log(this.userData);
  }
@@ -175,7 +202,8 @@ public company: CompanyFilters;
                  }
                 }
               }
-              console.log(this.loadDetails)
+              console.log(this.loadDetails);
+               this.savyLoadDetails = Object.assign({}, this.loadDetails);
             })
           })
          
@@ -195,7 +223,9 @@ public company: CompanyFilters;
     this.activeFilter = {
       active, type
     };
+    this.loadDetails = this.statusFilterPipe.transform(this.loadDetails, this.activeFilter);
   }
+
   onEditClick(editdata){    
     var editLoad=editdata
     editLoad['EditMode']=true
@@ -214,20 +244,20 @@ public company: CompanyFilters;
 }
 
 
-@Pipe({
-  name: 'statusFilter',
-  pure: false
-})
-export class StatusFilterPipe implements PipeTransform {
-  transform(loadDetails: any[], filter): any {
-    if (!loadDetails || !loadDetails.length || !filter || filter.active === 'loads') {
-      return loadDetails;
-    } else if (filter.active === 'pickups'){
-      return loadDetails.filter(load => load.lastUpdated.type === 'pickup');
-    } else if (filter.active === 'dropoffs') {
-      return loadDetails.filter(load => load.lastUpdated.type === 'dropoff');
-    } else {
-      return loadDetails.filter(load => (load.lastUpdated.status === filter.active && load.lastUpdated.type === filter.type));
-    }
-  }
-}
+// @Pipe({
+//   name: 'statusFilter',
+//   pure: false
+// })
+// export class StatusFilterPipe implements PipeTransform {
+//   transform(loadDetails: any[], filter): any {
+//     if (!loadDetails || !loadDetails.length || !filter || filter.active === 'loads') {
+//       return loadDetails;
+//     } else if (filter.active === 'pickups'){
+//       return loadDetails.filter(load => load.lastUpdated.type === 'pickup');
+//     } else if (filter.active === 'dropoffs') {
+//       return loadDetails.filter(load => load.lastUpdated.type === 'dropoff');
+//     } else {
+//       return loadDetails.filter(load => (load.lastUpdated && load.lastUpdated.status === filter.active && load.lastUpdated.type === filter.type));
+//     }
+//   }
+// }
