@@ -100,22 +100,41 @@ driverdata= [];
       }
     ]
 
-    this.loadstatusDetails=[
+    // this.loadstatusDetails=[
+    //   {
+    //       "ID": 0,
+    //       "Name": "In Transit"
+    //   },
+    //   {
+    //       "ID": 1,
+    //       "Name": "Delivery Delay"
+    //   },
+    //   {
+    //       "ID": 2,
+    //       "Name": "Delivery Ontime"
+    //   },
+    //   {
+    //       "ID": 3,
+    //       "Name": "Completed"
+    //   }
+    // ]
+
+    this.loadstatusDetails = [
       {
-          "ID": 0,
-          "Name": "In Transit"
+        "ID": 0,
+        "Name": "In Transit"
       },
       {
-          "ID": 1,
-          "Name": "Delivery Delay"
+        "ID": 1,
+        "Name": "Delivery Delay"
       },
       {
-          "ID": 2,
-          "Name": "Delivery Ontime"
+        "ID": 2,
+        "Name": "Delivery Ontime"
       },
       {
-          "ID": 3,
-          "Name": "Unload Delay"
+        "ID": 3,
+        "Name": "Unload Delay"
       },
       {
           "ID": 4,

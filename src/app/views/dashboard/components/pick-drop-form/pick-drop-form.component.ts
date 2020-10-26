@@ -73,26 +73,48 @@ export class PickDropFormComponent implements OnInit {
           "Name": "carrier"
       }
     ]
-    this.loadstatusDetails=[
+    // this.loadstatusDetails=[
+    //   {
+    //       "ID": 0,
+    //       "Name": "Booked"
+    //   },
+    //   {
+    //       "ID": 1,
+    //       "Name": "Arrival Delay"
+    //   },
+    //   {
+    //       "ID": 2,
+    //       "Name": "Arrival Ontime"
+    //   },
+    //   {
+    //       "ID": 3,
+    //       "Name": "Loaded Delay"
+    //   },
+    //   {
+    //       "ID": 4,
+    //       "Name": "Loaded Ontime"
+    //   }
+    // ]
+    this.loadstatusDetails = [
       {
-          "ID": 0,
-          "Name": "Pickup On The Way"
+        "ID": 0,
+        "Name": "Pickup On The Way"
       },
       {
-          "ID": 1,
-          "Name": "Pickup Delay"
+        "ID": 1,
+        "Name": "Pickup Delay"
       },
       {
-          "ID": 2,
-          "Name": "Pickup Ontime"
+        "ID": 2,
+        "Name": "Pickup Ontime"
       },
       {
-          "ID": 3,
-          "Name": "Loading Delay"
+        "ID": 3,
+        "Name": "Loading Delay"
       },
       {
-          "ID": 4,
-          "Name": "Loading Ontime"
+        "ID": 4,
+        "Name": "Loading Ontime"
       }
     ]
   }
