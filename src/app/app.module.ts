@@ -55,6 +55,8 @@ import {
 // Import routing module
 import { AppRoutingModule } from './app.routing';
 
+import {StatusFilterPipe} from './views/loadstatus/statusfilterpipe';
+
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -62,7 +64,7 @@ import { ChartsModule } from 'ng2-charts';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DashboardModule } from './views/dashboard/dashboard.module'
-import { LoadstatusComponent, StatusFilterPipe } from './views/loadstatus/loadstatus.component';
+import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
 import { CompanyregisterComponent } from './views/companyregister/companyregister.component';
 
 @NgModule({
