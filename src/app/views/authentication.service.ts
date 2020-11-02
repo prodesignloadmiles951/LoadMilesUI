@@ -23,7 +23,7 @@ export class AuthenticationService {
     clearAuthentication() {
         sessionStorage.clear();
         localStorage.clear();
-        this.router.navigateByUrl("");
+        this.router.navigateByUrl("login");
     }
     checkUserLoging() {
         if (sessionStorage.getItem(this.sessionData) != null && sessionStorage.getItem(this.sessionData) != undefined) {

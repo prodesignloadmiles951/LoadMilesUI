@@ -65,7 +65,7 @@ export class LoadformComponent implements OnInit {
     this.newloadfilters['Equiptype']="Select equipment type"
     this.newloadfilters['sealed']="Seal required"
     this.newloadfilters['hazmat']="Hazmat material"
-    this.newloadfilters['customer']="Select customer"
+    // this.newloadfilters['customer']="Select customer"
     this.newloadfilters['drivertype']="Select Driver type"
     this.newloadfilters['loadstatus']="Select load status"
     this.getData();
@@ -83,7 +83,6 @@ export class LoadformComponent implements OnInit {
         }else{
           data[i]['drivType']=0
         }
-        // data[i]['loadstatus']=JSON.parse(data[i]['loadstatus'])
       }
       this.dataSource=[]
       this.dataSource = data;
@@ -92,8 +91,8 @@ export class LoadformComponent implements OnInit {
   }
   submitload(){
     this.showsubmit=true
-      console.log(this.newloadfilters)
-      if(this.newloadfilters['companyname'] != undefined){
+      console.log(this.newloadfilters['customer'])
+      if(this.newloadfilters['customer'] != undefined){
         this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
               console.log(data)
               sessionStorage.setItem('submitID', data.data._id)
@@ -104,6 +103,7 @@ export class LoadformComponent implements OnInit {
            this._toaster.error("error", "Try Again");
         });
       }else{
+        this.showsubmit=false
         this._toaster.error("error", "Please select customer name");
       }
   }

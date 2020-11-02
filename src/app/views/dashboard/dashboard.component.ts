@@ -10,7 +10,7 @@ import { DriversService } from './../../services/driver.service';
 import { DriverformComponent } from '../theme/driverform/driverform.component';
 import { DispatcherformComponent } from '../theme/dispatcherform/dispatcherform.component'
 import { DispatcherService } from '../../services/dispatcher.service';
-
+import { AuthenticationService } from '../../views/authentication.service';
 
 @Component({
   templateUrl: 'dashboard.component.html',
@@ -24,9 +24,11 @@ export class DashboardComponent implements OnInit {
 	constructor( private router: Router, 
 		private _driverService: DriversService,
 		private _dispatcherService: DispatcherService,
-		public dialog: MatDialog, private _trucksservice: TrucksService) {
+		public dialog: MatDialog, private _trucksservice: TrucksService,
+    private authService: AuthenticationService) {
  }
   ngOnInit() {
+    if (this.authService.getloginUser()) {}
   }
 
  createLoad() {

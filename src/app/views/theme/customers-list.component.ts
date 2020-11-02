@@ -77,6 +77,9 @@ export class CustomerslistComponent implements OnInit {
       hidePopup(){
       this.showForm=false
     }
+    onCustomerSearch(e){
+      console.log(e)
+    }
 
       editCustomer(customer,selectedCustomer) {
         if(localStorage.selectedCompany == undefined){
