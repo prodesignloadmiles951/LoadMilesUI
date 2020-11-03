@@ -171,7 +171,9 @@ public company: CompanyFilters;
           if(res[i]['lastUpdated'] != undefined){
           res[i]['loadstatus']=res[i]['lastUpdated']['status']
           }
+          if(res[i]['customer'][0] !== undefined){
           res[i]['customer_name'] = (res[i]['customer'][0].length > 1 ? res[i]['customer'][0] :resp[res[i]['customer'][0]].companyname)
+          }
         }
         
           this.loadDetails = res;
