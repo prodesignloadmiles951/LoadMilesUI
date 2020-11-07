@@ -107,7 +107,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="vin">Vin:<span style="color:red">*</span></label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" maxlength="15" class="form-control" id="vin" name="vin" #vin="ngModel" [(ngModel)]="pageFilters.vin">
+              <input type="text" [ngClass]="mode?'':'disble'" maxlength="17" class="form-control" id="vin" name="vin" #vin="ngModel" [(ngModel)]="pageFilters.vin">
             </div>
           </div>
           <div class="form-group row">
@@ -127,7 +127,7 @@
             <div class="col-md-8">
               <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.truck">
                 <option value="" disabled selected hidden>Truck</option>
-                <option *ngFor="let cmp of truckdata" value="0">
+                <option *ngFor="let cmp of truckdata" value="{{cmp.truckunitnumber}}">
                   <span *ngIf="cmp.truckunitnumber">{{cmp.truckunitnumber}}</span>
                 </option>
               </select>

@@ -65,7 +65,8 @@ export class CompanyregisterComponent implements OnInit {
       if(this.pageFilters.fedid !== undefined && this.pageFilters ['fedid'].length <= 9){
           this.pageFilters['user']=this.userroledetails
           console.log(this.pageFilters)
-        this._companyservice.newCompanyregister(this.pageFilters).subscribe(response => {
+          if(this.pageFilters['user']['email'] != undefined){
+          this._companyservice.newCompanyregister(this.pageFilters).subscribe(response => {
           console.log(response)
           if(response.Status != "error"){
             this._toaster.info(response.message,"Success", {timeOut: 3000,});
@@ -76,6 +77,9 @@ export class CompanyregisterComponent implements OnInit {
         },error=>{
           this._toaster.error(error.error,"Failed", {timeOut: 2000,});
         });
+       }else{
+          this._toaster.error("Create one user","Failed", {timeOut: 2000,});
+      }
       }else{
           this._toaster.error("Enter TAX ID","Failed", {timeOut: 2000,});
       }

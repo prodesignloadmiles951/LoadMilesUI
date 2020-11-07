@@ -176,7 +176,7 @@ export class CustomerformComponent implements OnInit {
           this.dialogRef.close(null)
      })
    }else{
-     this._toaster.error("Enter MC/FF Details","Failed", {timeOut: 2000,});
+     this._toaster.error("Enter MC Details","Failed", {timeOut: 2000,});
    }
    }
 
@@ -210,7 +210,7 @@ export class CustomerformComponent implements OnInit {
           this._toaster.error("Submit again","Failed", {timeOut: 2000});
         });
       }else{
-        this._toaster.error("Enter MC/FF Details","Failed", {timeOut: 2000});
+        this._toaster.error("Enter MC Details","Failed", {timeOut: 2000});
        }
         console.log(this.pageFilters);
        }

@@ -217,8 +217,14 @@ export class TruckformComponent implements OnInit {
           this.btnHide=true
         this._trucksservice.SendForm(Truckslistdata).subscribe(response => {
           this.submitted = true;
-          this._toaster.info("Truck Data Submitted","Success", {timeOut: 3000,});
-          this.dialogRef.close(response)
+          if(response.Status == "error"){
+           this.btnHide = false;
+            this._toaster.error(response.error,"Failed", {timeOut: 2000,});
+          }
+            else{
+            this._toaster.info("Truck Data Submitted","Success", {timeOut: 3000,});
+            this.dialogRef.close(response)
+            }
         },error=>{
           this.submitted=false;
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});

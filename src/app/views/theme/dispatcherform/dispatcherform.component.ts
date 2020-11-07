@@ -237,10 +237,15 @@ export class DispatcherformComponent implements OnInit {
         if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
         this.btnHide=true
         this._dispatcherService.SendForm(Dispatcherlistdata).subscribe(response => {
+          if(response.Status == "error"){
+                  this._toaster.error(response.error,"Failed", {timeOut: 2000,});
+                  this.btnHide=false
+                }else{
           this.submitted = true;
           this._toaster.info("Dispatcherform Data Submitted","Success", {timeOut: 3000,});
           this.btnHide=false
          this.dialogRef.close(response)
+                }
         },error=>{
           this.submitted=false;
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
