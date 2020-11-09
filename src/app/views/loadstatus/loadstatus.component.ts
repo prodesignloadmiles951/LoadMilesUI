@@ -73,7 +73,7 @@ public company: CompanyFilters;
       },
       {
         "ID": 9,
-        "Name": "Loading Ontime"
+        "Name": "Delay-Loaded"
       },
       {
         "ID": 10,
@@ -89,11 +89,11 @@ public company: CompanyFilters;
       },
       {
         "ID": 13,
-        "Name": "Unload Delay"
+        "Name": "Waiting Unload"
       },
       {
         "ID": 14,
-        "Name": "Load Completed"
+        "Name": "Delay-Unloaded"
       }
   ];
   activeFilter = {
