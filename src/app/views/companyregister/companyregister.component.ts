@@ -26,7 +26,7 @@ export class CompanyregisterComponent implements OnInit {
     showAddOption=false
     roleArray=[]
     showusertable=false
-    userroledetails={}
+    userroledetails=[]
     companyid=undefined
 
   constructor(private _toaster: ToastrService,
@@ -65,7 +65,7 @@ export class CompanyregisterComponent implements OnInit {
       if(this.pageFilters.fedid !== undefined && this.pageFilters ['fedid'].length <= 9){
           this.pageFilters['user']=this.userroledetails
           console.log(this.pageFilters)
-          if(this.pageFilters['user']['email'] != undefined){
+          if(this.pageFilters['user'].length > 0){
           this._companyservice.newCompanyregister(this.pageFilters).subscribe(response => {
           console.log(response)
           if(response.Status != "error"){
@@ -108,8 +108,8 @@ export class CompanyregisterComponent implements OnInit {
        delete addObj['__KEY__']
        addObj['company']=this.pageFilters.companyid
        addObj['role']=roleObj
-       console.log(addObj)
-       this.userroledetails=addObj
+       this.userroledetails.push(addObj)
+       console.log(this.userroledetails)
  }
    onEdit(e){
      console.log(e)
