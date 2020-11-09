@@ -179,6 +179,20 @@
               </select>
             </div>
           </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="loadstatus">Load status :</label>
+            <div class="col-md-8">
+              <select class="form-control" id="loadstatus" #loadstatus="ngModel" name="loadstatus"
+                [(ngModel)]="newloadfilters.Loadstatus">
+                <option value="Select load status" disabled selected hidden>Select load status</option>
+                <option value="Booked">Booked</option>
+                <option value="Cancelled">Cancelled</option>
+                <option value="TONU">TONU</option>
+                <option value="Invoiced">Invoiced</option>
+                <option value="Factored">Factored</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
     </div>

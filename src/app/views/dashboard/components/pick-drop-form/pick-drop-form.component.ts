@@ -114,7 +114,7 @@ export class PickDropFormComponent implements OnInit {
       },
       {
         "ID": 4,
-        "Name": "Delay - Loaded"
+        "Name": "Loading Ontime"
       }
     ]
   }
