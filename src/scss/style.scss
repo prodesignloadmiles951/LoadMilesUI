@@ -256,6 +256,8 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
 
 .detail-box{
   text-align: center;
+  max-width: 1300px;
+  margin: auto;
   >div{
     margin: 5px auto;
     .pad-hor{
@@ -263,6 +265,10 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
     padding-right: 4px;
     align-self: center;
     cursor: pointer;
+    .status-name{
+      font-size: 14px;
+      color: #000;
+    }
   }
       .m-width{
       max-width: 50px;
@@ -272,6 +278,8 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
     border-radius: 8px;
     padding: 3px 4px;
     margin: 0px 6px;
+    min-width: 194px;
+    box-sizing: border-box;
 
     &.booked, &.intransit{
       border: 1px solid #bfbfbf;
@@ -310,6 +318,8 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
     font-size: 32px;
     font-weight: bolder;
     padding: 5px;
+    min-width: 188px;
+    box-sizing: border-box;
     &.pick{
       background-color: #dae4f2;
     }
