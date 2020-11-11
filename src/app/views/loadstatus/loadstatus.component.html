@@ -173,7 +173,11 @@
       <dxo-paging [enabled]="true" [pageSize]="5"></dxo-paging>
       <!-- <dxo-filter-row [visible]="true" [applyFilter]="activeFilter"></dxo-filter-row> -->
       <dxo-selection mode="multiple"></dxo-selection>
-      <dxi-column dataField="load_number" caption="Load Number"></dxi-column>
+      <dxi-column dataField="Action" caption="Action" cellTemplate="actionTemplate" [width]="70"></dxi-column>
+      <div *dxTemplate="let element of 'actionTemplate'">
+        <span class="material-icons editload" (click)="onEditClick(element.data)">edit</span>
+      </div>
+      <dxi-column dataField="load_number" caption="Load Number" [width]="110" style="text-align: center;"></dxi-column>
       <dxi-column dataField="customer_name" caption="Customer"></dxi-column>
       <dxi-column dataField="crefno" caption="Customer Load"></dxi-column>
       <dxi-column dataField="phone" caption="Contact Phone"></dxi-column>
@@ -189,10 +193,6 @@
         </dxo-lookup>
       </dxi-column>
       <dxi-column dataField="notes" caption="Comments"></dxi-column>
-      <dxi-column dataField="Action" caption="Action" cellTemplate="actionTemplate"></dxi-column>
-      <div *dxTemplate="let element of 'actionTemplate'">
-        <span class="material-icons editload" (click)="onEditClick(element.data)">edit</span>
-      </div>
       <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
       <div *dxTemplate="let element of 'driverTemplate'">
         <span *ngIf="element.data.pickupinfoLength > 0">Driver1 : {{element.data.pickupinfo[0].Driver1}}</span><br>

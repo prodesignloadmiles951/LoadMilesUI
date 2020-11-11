@@ -10,6 +10,11 @@
       </dxo-editing>
       <dxo-selection mode="single"></dxo-selection>
       <!-- <dxi-column dataField="SlNo" caption="Sl No."></dxi-column> -->
+      <dxi-column dataField="action" caption="Action" style="text-align: center;" cellTemplate="actionTemplate"></dxi-column>
+      <div *dxTemplate="let element of 'actionTemplate'">
+          <button class="btn btn-link" (click)="ondropEdit(element)">Edit</button>
+          <button class="btn btn-link" (click)="ondropDelete(element)">delete</button>
+      </div>
       <dxi-column dataField="Type" caption="Type"></dxi-column>
       <dxi-column dataField="Driver1" caption="Driver1"></dxi-column>
       <dxi-column dataField="Driver2" caption="Driver2"></dxi-column>
@@ -21,11 +26,6 @@
       <dxi-column dataField="dropContnumber" caption="Contact Number"></dxi-column>
       <dxi-column dataField="dropAddress" caption="Address"></dxi-column>
       <!-- <dxi-column dataField="DropoffDate" dataType="date"></dxi-column> -->
-      <dxi-column dataField="action" caption="Action" style="text-align: center;" cellTemplate="actionTemplate"></dxi-column>
-      <div *dxTemplate="let element of 'actionTemplate'">
-          <button class="btn btn-link" (click)="ondropEdit(element)">Edit</button>
-          <button class="btn btn-link" (click)="ondropDelete(element)">delete</button>
-      </div>
     </dx-data-grid>
   </div>
 </div>
