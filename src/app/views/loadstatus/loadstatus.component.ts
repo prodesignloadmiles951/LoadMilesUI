@@ -197,16 +197,19 @@ public company: CompanyFilters;
                     this.loadDetails[i]['dropoffinfoLength']=this.loadDetails[i]['dropoffinfo'].length
                   }
                 })
-                for (var j = 0; j < this.loadsstatus.length; j++) {
-                 if(res[i]['lastUpdated'] != undefined){
-                   if(this.loadsstatus[j]['Name'] == this.loadDetails[i]['lastUpdated']['status']){
-                     this.loadDetails[i]['loadstatus'] = this.loadsstatus[j]['ID']                     
-                   }
-                 }
+                // for (var j = 0; j < this.loadsstatus.length; j++) {
+                //  if(res[i]['lastUpdated'] != undefined){
+                //    if(this.loadsstatus[j]['Name'] == this.loadDetails[i]['lastUpdated']['status']){
+                //      this.loadDetails[i]['loadstatus'] = this.loadsstatus[j]['ID']                     
+                //    }
+                //  }
+                // }
+                if (res[i]['lastUpdated'] != undefined) {
+                  this.loadDetails[i]['loadstatus'] = this.loadDetails[i]['lastUpdated']['status'];
                 }
               }
               console.log(this.loadDetails);
-               this.savyLoadDetails = Object.assign({}, this.loadDetails);
+               this.savyLoadDetails = [...this.loadDetails];
             })
           })
          
@@ -226,7 +229,8 @@ public company: CompanyFilters;
     this.activeFilter = {
       active, type
     };
-    this.loadDetails = this.statusFilterPipe.transform(this.loadDetails, this.activeFilter);
+    this.loadDetails = this.statusFilterPipe.transform(this.savyLoadDetails, this.activeFilter);
+    console.log(this.loadDetails);
   }
 
   onEditClick(editdata){    
