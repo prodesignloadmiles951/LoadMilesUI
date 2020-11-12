@@ -67,7 +67,7 @@ export class LoadformComponent implements OnInit {
     this.newloadfilters['hazmat']="Hazmat material"
     // this.newloadfilters['customer']="Select customer"
     this.newloadfilters['drivertype']="Select Driver type"
-    this.newloadfilters['Loadstatus']="Select load status"
+    this.newloadfilters['LoadStatus']="Select load status"
     this.getData();
     this.getCompanyData();
     this.getCustomerdata()

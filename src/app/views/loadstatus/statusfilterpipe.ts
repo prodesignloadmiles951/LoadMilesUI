@@ -7,7 +7,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class StatusFilterPipe implements PipeTransform {
     transform(loadDetails: any[], filter): any {
-        console.log(loadDetails, filter)
         if (!loadDetails || !loadDetails.length || !filter || filter.active === 'loads') {
             return loadDetails;
         } else if (filter.active === 'pickups') {
