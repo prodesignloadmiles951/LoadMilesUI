@@ -6,6 +6,7 @@ import { TrailerService } from '../../../services/trailers.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dispatcherform',
@@ -41,6 +42,7 @@ export class DispatcherformComponent implements OnInit {
     changeUplaod=true
     editFileList=[]
     btnHide=false
+    dispatcherForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef < DispatcherformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -225,7 +227,7 @@ export class DispatcherformComponent implements OnInit {
      this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
    }
    }
-
+   reset(){}
   submit() {
     if(localStorage.selectedCompany == undefined){
        this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});

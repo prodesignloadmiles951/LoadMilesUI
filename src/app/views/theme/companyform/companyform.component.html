@@ -7,6 +7,7 @@
 <button *ngIf="!selectedCompany" type="button" class="close" (click)="hidePopup()" aria-label="Close">
   <span aria-hidden="true">&times;</span>
 </button>
+<form class="form-horizontal" #companyForm="ngForm" novalidate autocomplete="off">
 <div class="row" *ngIf="pageFiltersshow">
   <div class="col-md-6">
     <div class="card">
@@ -212,6 +213,7 @@
     Update</button>&nbsp;&nbsp;
   <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
 </div>
+</form>
 
 
     

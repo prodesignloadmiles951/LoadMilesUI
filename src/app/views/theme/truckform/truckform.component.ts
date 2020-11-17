@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import { environment } from '../../../../environments/environment';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-truckform',
@@ -47,6 +48,7 @@ export class TruckformComponent implements OnInit {
     changeUplaod=true
     editFileList=[]
     btnHide=false
+    truckForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef < TruckformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,private _trucksservice: TrucksService,
@@ -199,7 +201,7 @@ export class TruckformComponent implements OnInit {
       console.log(data)
     });
   }
-
+  reset(){}
   submit() {
     if(localStorage.selectedCompany == undefined){
        this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});

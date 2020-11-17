@@ -3,6 +3,7 @@ import { CarrierService } from './../../../services/carrier.service';
 import { TrucksService } from '../../../services/trucks.service';
 import { TrailerService } from '../../../services/trailers.service';
 import { CarrierFilters } from '../../../model/carrier';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { DriversService } from '../../../services/driver.service';
@@ -22,6 +23,7 @@ export class CarrierformComponent implements OnInit {
     driversafetydata=[];
     trucksafetydata=[];
     drugmedicaldata=[];
+    carrierForm: FormGroup;
     @Input() datatype;
     mode=false
     finalArry=[]
@@ -352,7 +354,7 @@ export class CarrierformComponent implements OnInit {
      this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
    }
    }
-
+   reset(){}
    submit() {
      if(localStorage.selectedCompany == undefined){
        this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});

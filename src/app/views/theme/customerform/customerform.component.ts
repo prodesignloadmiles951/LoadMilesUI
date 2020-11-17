@@ -3,6 +3,7 @@ import { CustomersService } from './../../../services/customers.service';
 import { CustomersFilters } from './../../../model/customers';
 import { TrucksService } from '../../../services/trucks.service';
 import { TrailerService } from '../../../services/trailers.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -36,6 +37,7 @@ export class CustomerformComponent implements OnInit {
     changeUplaod=true
     editFileList=[]
     btnHide=false
+    customerForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef < CustomerformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -215,5 +217,6 @@ export class CustomerformComponent implements OnInit {
         console.log(this.pageFilters);
        }
      }
+     reset(){}
 
 }

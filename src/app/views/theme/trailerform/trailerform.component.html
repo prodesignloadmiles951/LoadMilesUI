@@ -7,6 +7,7 @@
 <button *ngIf="!SelectedTrailer" type="button" class="close" (click)="hidePopup()" aria-label="Close">
   <span aria-hidden="true">&times;</span>
 </button>
+<form class="form-horizontal" #trailerForm="ngForm" novalidate autocomplete="off">
 <div class="row" *ngIf="pageFiltersshow">
   <div class="col-sm-12">
     <div class="card">
@@ -16,7 +17,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="unitnumber">Unit Number: <span style="color:red">*</span></label>
             <div class="col-md-8">
-              <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="unitNumber" placeholder="Ex: 0123" name="unitNumber" #unitNumber="ngModel" [(ngModel)]="pageFilters.unitNumber" [pattern]="'^[1-9][0-9]*$'" required>
+              <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="unitNumber" placeholder="Ex: 0123" name="unitNumber" #unitNumber="ngModel" [(ngModel)]="pageFilters.unitNumber" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" required>
               <div *ngIf="unitNumber.errors && (unitNumber.dirty || unitNumber.touched)" style="font-size: smaller;">
                 <div [hidden]="!unitNumber.errors.required">
                   <span style="color: red;">Unit Number is required</span>
@@ -30,7 +31,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="trailertype">Trailer Type: <span style="color:red">*</span></label>
             <div class="col-md-8">
-              <select class="form-control" placeholder="Select Trailer type" [ngClass]="mode?'':'disble'" id="trailertype" name="trailerType" #trailerType="ngModel" [(ngModel)]="pageFilters.trailerType">
+              <select class="form-control" placeholder="Select Trailer type" [ngClass]="mode?'':'disble'" id="trailertype" name="trailerType" #trailerType="ngModel" [(ngModel)]="pageFilters.trailerType" [ngModelOptions]="{standalone: true}">
                 <option value="Dry Van">Dry Van</option>
                 <option value="Reefer">Reefer</option>
                 <option value="Flat Bed">Flat Bed</option>
@@ -42,7 +43,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="make">Make: <span style="color:red">*</span></label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="make" name="make" #make="ngModel" [(ngModel)]="pageFilters.make" required>
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="make" name="make" #make="ngModel" [(ngModel)]="pageFilters.make" [ngModelOptions]="{standalone: true}" required>
               <div *ngIf="make.errors && (make.dirty || make.touched)" style="font-size: smaller;">
                 <div [hidden]="!make.errors.required">
                   <span style="color: red;">Make is Required</span>
@@ -53,7 +54,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="color">Color: <span style="color:red">*</span></label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="color" name="color" #color="ngModel" [(ngModel)]="pageFilters.color" required>
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="color" name="color" #color="ngModel" [(ngModel)]="pageFilters.color" [ngModelOptions]="{standalone: true}" required>
               <div *ngIf="color.errors && (color.dirty || color.touched)" style="font-size: smaller;">
                 <div [hidden]="!color.errors.required">
                   <span style="color: red;">Color is Required</span>
@@ -64,7 +65,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="year">Year: <span style="color:red">*</span></label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="year" placeholder="Ex: 2020" name="year" #year="ngModel" [(ngModel)]="pageFilters.year" [pattern]="'^[1-9][0-9]*$'" minlength="4" maxlength="4" required>
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="year" placeholder="Ex: 2020" name="year" #year="ngModel" [(ngModel)]="pageFilters.year" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" minlength="4" maxlength="4" required>
               <div *ngIf="year.errors && (year.dirty || year.touched)" style="font-size: smaller;">
                 <div [hidden]="!year.errors.required">
                   <span style="color: red;">Year is Required</span>
@@ -81,25 +82,25 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="reefermake">Reefer Make:</label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reefermake" name="reeferMake" #reeferMake="ngModel" [(ngModel)]="pageFilters.reefermake">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reefermake" name="reeferMake" #reeferMake="ngModel" [(ngModel)]="pageFilters.reefermake" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="reefermodal">Reefer Model:</label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reefermodal" name="reeferModal" #reeferModal="ngModel" [(ngModel)]="pageFilters.reefermodal">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reefermodal" name="reeferModal" #reeferModal="ngModel" [(ngModel)]="pageFilters.reefermodal" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="reefermiles">Reefer Miles:</label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reefermiles" name="reefermiles" #reefermiles="ngModel" [(ngModel)]="pageFilters.reefermiles">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reefermiles" name="reefermiles" #reefermiles="ngModel" [(ngModel)]="pageFilters.reefermiles" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="reeferhours">Reefer Hours:</label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reeferhours" name="reeferhours" #reeferhours="ngModel" [(ngModel)]="pageFilters.reeferhours">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reeferhours" name="reeferhours" #reeferhours="ngModel" [(ngModel)]="pageFilters.reeferhours" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
         </div>
@@ -107,25 +108,25 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="vin">Vin:<span style="color:red">*</span></label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" maxlength="17" class="form-control" id="vin" name="vin" #vin="ngModel" [(ngModel)]="pageFilters.vin">
+              <input type="text" [ngClass]="mode?'':'disble'" maxlength="17" class="form-control" id="vin" name="vin" #vin="ngModel" [(ngModel)]="pageFilters.vin" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="registerState">Registered State:</label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="registerState" #registerState="ngModel" name="registerState" [(ngModel)]="pageFilters.registerState">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="registerState" #registerState="ngModel" name="registerState" [(ngModel)]="pageFilters.registerState" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="platenumber">Plate Number:</label>
             <div class="col-md-8">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="platenumber" name="platenumber" #platenumber="ngModel" [(ngModel)]="pageFilters.plateNumber">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="platenumber" name="platenumber" #platenumber="ngModel" [(ngModel)]="pageFilters.plateNumber" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="truck">Truck:</label>
             <div class="col-md-8">
-              <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.truck">
+              <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.truck" [ngModelOptions]="{standalone: true}">
                 <option value="" disabled selected hidden>Truck</option>
                 <option *ngFor="let cmp of truckdata" value="{{cmp.truckunitnumber}}">
                   <span *ngIf="cmp.truckunitnumber">{{cmp.truckunitnumber}}</span>
@@ -136,7 +137,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="notes">Notes:</label>
             <div class="col-md-8">
-              <textarea [ngClass]="mode?'':'disble'" class="form-control" name="notes" [(ngModel)]="pageFilters.notes"></textarea>
+              <textarea [ngClass]="mode?'':'disble'" class="form-control" name="notes" [(ngModel)]="pageFilters.notes" [ngModelOptions]="{standalone: true}"></textarea>
             </div>
           </div>
           <div class="form-group row" *ngIf="changeUplaod">
@@ -190,31 +191,31 @@
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="inspectionexpirydate">DOT Inspection Expiry Date:</label>
               <div class="col-md-7">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="inspectionexpirydate" name="inspectionExpirydate" #inspectionExpirydate="ngModel" [(ngModel)]="pageFilters.inspectionExpirydate">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="inspectionexpirydate" name="inspectionExpirydate" #inspectionExpirydate="ngModel" [(ngModel)]="pageFilters.inspectionExpirydate" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="registerdstate">Plates Registered State:</label>
               <div class="col-md-7">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="registerdstate" name="registerdState" #registerdState="ngModel" [(ngModel)]="pageFilters.registerdState">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="registerdstate" name="registerdState" #registerdState="ngModel" [(ngModel)]="pageFilters.registerdState" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="platesexpirationdate">Plates Expiration Date:</label>
               <div class="col-md-7">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="platesexpirationdate" name="platesExpirationdate" #platesExpirationdate="ngModel" [(ngModel)]="pageFilters.platesExpirationdate">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="platesexpirationdate" name="platesExpirationdate" #platesExpirationdate="ngModel" [(ngModel)]="pageFilters.platesExpirationdate" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="insuranceexpirationdate">Insurance Expiration Date:</label>
               <div class="col-md-7">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="insuranceexpirationdate" name="insuranceExpirationdate" #insuranceExpirationdate="ngModel" [(ngModel)]="pageFilters.insuranceExpirationdate">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="insuranceexpirationdate" name="insuranceExpirationdate" #insuranceExpirationdate="ngModel" [(ngModel)]="pageFilters.insuranceExpirationdate" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="insurancevalue">Insurance Value:</label>
               <div class="col-md-7">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="insurancevalue" name="insuranceValue" #insuranceValue="ngModel" [(ngModel)]="pageFilters.insuranceValue">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="insurancevalue" name="insuranceValue" #insuranceValue="ngModel" [(ngModel)]="pageFilters.insuranceValue" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
           </div>
@@ -271,7 +272,7 @@
               <label class="col-md-5 col-form-label" for="companyowned">Company Owned:</label>
               <div class="col-md-7 col-form-label" name="companyOwned">
                 <div class="form-check form-check-inline mr-1">
-                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio1" type="radio" value="yes" checked="checked" name="isFilter" #isFilter="ngModel" required [value]="true" [(ngModel)]="pageFilters.isFilter">
+                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio1" type="radio" value="yes" checked="checked" name="isFilter" #isFilter="ngModel" required [value]="true" [(ngModel)]="pageFilters.isFilter" [ngModelOptions]="{standalone: true}">
                   <label class="form-check-label" for="inline-radio1">Yes</label>
                 </div>
                 <div class="form-check form-check-inline mr-1">
@@ -283,31 +284,31 @@
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="price">Price:</label>
               <div class="col-md-7">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="price" name="price" #price="ngModel" [(ngModel)]="pageFilters.price">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="price" name="price" #price="ngModel" [(ngModel)]="pageFilters.price" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="purchasedate">Purchase Date:</label>
               <div class="col-md-7">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="purchasedate" name="purchaseDate" #purchaseDate="ngModel" [(ngModel)]="pageFilters.purchaseDate">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="purchasedate" name="purchaseDate" #purchaseDate="ngModel" [(ngModel)]="pageFilters.purchaseDate" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="operationdate">Operation Date:</label>
               <div class="col-md-7">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="operationdate" name="operationDate" #operationDate="ngModel" [(ngModel)]="pageFilters.operationDate">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="operationdate" name="operationDate" #operationDate="ngModel" [(ngModel)]="pageFilters.operationDate" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="financer">Financer:</label>
               <div class="col-md-7">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="financer" name="financer" #financer="ngModel" [(ngModel)]="pageFilters.financer">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="financer" name="financer" #financer="ngModel" [(ngModel)]="pageFilters.financer" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="dealer">Dealer:</label>
               <div class="col-md-7">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dealer" name="dealer" #dealer="ngModel" [(ngModel)]="pageFilters.dealer">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dealer" name="dealer" #dealer="ngModel" [(ngModel)]="pageFilters.dealer" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
           </div>
@@ -316,7 +317,7 @@
               <label class="col-md-5 col-form-label" for="leased">Leased:</label>
               <div class="col-md-7 col-form-label">
                 <div class="form-check form-check-inline mr-1">
-                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio1" type="radio" value="yes" name="isFilter1" #isFilter1="ngModel" required [value]="true" [(ngModel)]="pageFilters.isFilter1">
+                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio1" type="radio" value="yes" name="isFilter1" #isFilter1="ngModel" required [value]="true" [(ngModel)]="pageFilters.isFilter1" [ngModelOptions]="{standalone: true}">
                   <label class="form-check-label" for="inline-radio1">Yes</label>
                 </div>
                 <div class="form-check form-check-inline mr-1">
@@ -328,43 +329,43 @@
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="leasedfrom">Leased from:</label>
               <div class="col-md-7">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leasedfrom" name="leasedfrom" #leasedfrom="ngModel" [(ngModel)]="pageFilters.leasedfrom">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leasedfrom" name="leasedfrom" #leasedfrom="ngModel" [(ngModel)]="pageFilters.leasedfrom" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="leasestart">Lease Start:</label>
               <div class="col-md-7">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="leasstart" name="leaseStart" #leaseStart="ngModel" [(ngModel)]="pageFilters.leaseStart">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="leasstart" name="leaseStart" #leaseStart="ngModel" [(ngModel)]="pageFilters.leaseStart" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="leaseexpirydate">Lease Expiry Date:</label>
               <div class="col-md-7">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="leaseexpirydate" name="leaseExpirydate" #leaseExpirydate="ngModel" [(ngModel)]="pageFilters.leaseExpirydate">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="leaseexpirydate" name="leaseExpirydate" #leaseExpirydate="ngModel" [(ngModel)]="pageFilters.leaseExpirydate" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="leaseinstallment">Lease Installment:</label>
               <div class="col-md-7">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leaseinstallment" name="leaseInstallment" #leaseInstallment="ngModel" [(ngModel)]="pageFilters.leaseInstallment">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leaseinstallment" name="leaseInstallment" #leaseInstallment="ngModel" [(ngModel)]="pageFilters.leaseInstallment" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="reeferpurchasedate">Reefer Purchase Date:</label>
               <div class="col-md-7">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="reeferpurchasedate" name="reeferPurchasedate" #reeferPurchasedate="ngModel" [(ngModel)]="pageFilters.reeferPurchasedate">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="reeferpurchasedate" name="reeferPurchasedate" #reeferPurchasedate="ngModel" [(ngModel)]="pageFilters.reeferPurchasedate" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="reeferprice">Reefer Price:</label>
               <div class="col-md-7">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reeferprice" name="reeferPrice" #reeferPrice="ngModel" [(ngModel)]="pageFilters.reeferPrice">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="reeferprice" name="reeferPrice" #reeferPrice="ngModel" [(ngModel)]="pageFilters.reeferPrice" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-5 col-form-label" for="installment">Installment:</label>
               <div class="col-md-7">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="installment" name="installment" #installment="ngModel" [(ngModel)]="pageFilters.installment">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="installment" name="installment" #installment="ngModel" [(ngModel)]="pageFilters.installment" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
           </div>
@@ -382,3 +383,4 @@
     Update</button>&nbsp;&nbsp;
     <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
   </div>
+</form>

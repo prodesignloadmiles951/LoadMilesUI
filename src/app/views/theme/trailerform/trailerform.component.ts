@@ -6,6 +6,7 @@ import { DriversService } from '../../../services/driver.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-trailerform',
@@ -38,6 +39,7 @@ export class TrailerformComponent implements OnInit {
     changeUplaod=true
     editFileList=[]
     btnHide=false
+    trailerForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef < TrailerformComponent > ,
@@ -211,6 +213,7 @@ export class TrailerformComponent implements OnInit {
        this._toaster.error("Enter VIN Details","Failed", {timeOut: 2000,});
      }
    }
+  reset(){}
   submit() {
     if(localStorage.selectedCompany == undefined){
        this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});

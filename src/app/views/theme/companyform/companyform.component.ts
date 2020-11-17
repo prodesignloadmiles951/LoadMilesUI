@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { LoginUser } from '../../../model/loginuser';
 import { AuthenticationService } from '../../../views/authentication.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-companyform',
@@ -36,6 +37,7 @@ export class CompanyformComponent implements OnInit {
     selectedCompany=true
     finalArry=[];
     cmpid=undefined
+    companyForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef < CompanyformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,private _toaster: ToastrService,
