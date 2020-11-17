@@ -56,13 +56,15 @@ export class DropoffComponent implements OnInit {
     
     if(dropoffinfo['load_id'] != null){
       this._dropoff.SendDropoffform(dropoffinfo).subscribe(data => {
-        this._toaster.success("Dropoff successfully created", "Success");
+        console.log(data)
         if(this.dropoffpopupdata != null){
           this.dropoffpopupdata.push(data.data)
         }else{
+          this.dropoffpopupdata=[]
           this.dropoffpopupdata.push(data.data)
         }
         console.log(this.dropoffpopupdata)
+        this._toaster.success("Dropoff successfully created", "Success");
       }, error => {
          this._toaster.error("error", "Try Again");
           console.log(this.data)
@@ -125,7 +127,6 @@ export class DropoffComponent implements OnInit {
     console.log(this.dropoffdata)
     if(this.dropoffdata != undefined){
     if(this.dropoffdata.length > 0){
-      sessionStorage.setItem('submitID',this.dropoffdata[0]['load_id'])
       this.dropoffpopupdata=this.dropoffdata
     }else{
       this.dropoffpopupdata= JSON.parse(sessionStorage.getItem("dropOffdetails"))

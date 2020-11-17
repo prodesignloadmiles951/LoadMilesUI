@@ -12,6 +12,7 @@ import { exportDataGrid } from 'devextreme/excel_exporter';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { LoadeditformComponent} from '../dashboard/components/loadeditform/loadeditform.component';
 import {StatusFilterPipe} from './statusfilterpipe';
+import { AuthenticationService } from '../../views/authentication.service';
 
 
 @Component({
@@ -111,7 +112,8 @@ public company: CompanyFilters;
   private _dropoff: DropoffserviceService,
   private _driverService: DriversService,
   public dialog: MatDialog,
-  private _loadservice: CreateloadService
+  private _loadservice: CreateloadService,
+  private authService: AuthenticationService
  ) {
    this.statusFilterPipe = new StatusFilterPipe(),
   this.pageFilters = new CompanyFilters();
@@ -158,25 +160,30 @@ public company: CompanyFilters;
   }
 
   getData() {
+    var session=this.authService.getloginUser()
+     console.log(session.company.companyname) 
     this._loadservice.getLoadData().subscribe(data => {
       var res=data
       this._customersservice.getCustomersData().subscribe(resp => {
         console.log(resp)
+        var j=0
         for (var i = 0; i < res.length;i++) {
-          res[i]['load_number']=1000+i
-          res[i]['pickupinfo']=[]
-          res[i]['dropoffinfo']=[]
-          res[i]['pickupinfoLength']=0
-          res[i]['pickupinfoLength']=0
-          if(res[i]['lastUpdated'] != undefined){
-          res[i]['loadstatus']=res[i]['lastUpdated']['status']
-          }
           if(res[i]['customer'][0] !== undefined){
-          res[i]['customer_name'] = (res[i]['customer'][0].length > 1 ? res[i]['customer'][0] :resp[res[i]['customer'][0]].companyname)
+            res[i]['customer_name'] = (res[i]['customer'][0].length > 1 ? res[i]['customer'][0] :resp[res[i]['customer'][0]].companyname)
+            if(session.company.companyname == res[i]['company']){
+              res[i]['load_number']=1000+(j++)
+              res[i]['pickupinfo']=[]
+              res[i]['dropoffinfo']=[]
+              res[i]['pickupinfoLength']=0
+              res[i]['pickupinfoLength']=0
+              if(res[i]['lastUpdated'] != undefined){
+              res[i]['loadstatus']=res[i]['lastUpdated']['status']
+              }
+              this.loadDetails.push(res[i]);
+            }
           }
         }
-        
-          this.loadDetails = res;
+        if(this.loadDetails.length >0){
           var pickup=[]
           var dropup=[]
           this._pickup.getpickupData().subscribe(pickupdata => {
@@ -197,13 +204,7 @@ public company: CompanyFilters;
                     this.loadDetails[i]['dropoffinfoLength']=this.loadDetails[i]['dropoffinfo'].length
                   }
                 })
-                // for (var j = 0; j < this.loadsstatus.length; j++) {
-                //  if(res[i]['lastUpdated'] != undefined){
-                //    if(this.loadsstatus[j]['Name'] == this.loadDetails[i]['lastUpdated']['status']){
-                //      this.loadDetails[i]['loadstatus'] = this.loadsstatus[j]['ID']                     
-                //    }
-                //  }
-                // }
+                
                 if (res[i]['lastUpdated'] != undefined) {
                   this.loadDetails[i]['loadstatus'] = this.loadDetails[i]['lastUpdated']['status'];
                 }
@@ -214,6 +215,7 @@ public company: CompanyFilters;
           })
          
           this.setCounts(this.loadDetails);
+        }
       });
      
     });
@@ -233,11 +235,13 @@ public company: CompanyFilters;
     console.log(this.loadDetails);
   }
 
-  onEditClick(editdata){    
+  onEditClick(editdata){   
+  console.log(editdata) 
     var editLoad=editdata
     editLoad['EditMode']=true
     editLoad['loadstatusedit']=true
-    let dialogConfig = Object.assign({ width: "1000px" },{ data: editdata })
+    sessionStorage.setItem('submitID',editdata['_id'])
+    let dialogConfig = Object.assign({ width: "1000px" },{ data: editLoad })
     let editDialogRef = this.dialog.open(LoadeditformComponent, dialogConfig);
     editDialogRef.afterClosed().subscribe((data) => {
       console.log(data)

@@ -257,9 +257,14 @@ export class TruckformComponent implements OnInit {
      if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
        this.btnHide=true
        this._trucksservice.EditTrucks(this.data).subscribe(res => {
+         if(res.Status == "error"){
+           this.btnHide = false;
+            this._toaster.error(res.error,"Failed", {timeOut: 2000,});
+          }else{
          this.btnHide=false
          this._toaster.info("Truck Data Updated successfully","Success", {timeOut: 3000,});
          this.dialogRef.close(res)
+       }
        },error=>{
          this._toaster.error("Truck Data Not Updated","Failed", {timeOut: 2000,});
          this.dialogRef.close(null)

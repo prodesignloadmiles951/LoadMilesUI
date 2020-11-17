@@ -64,13 +64,15 @@ export class PickupComponent implements OnInit {
     console.log(pickupinfo)
     if(pickupinfo['load_id'] != null){
       this._pickup.SendPickupForm(pickupinfo).subscribe(data => {
-        this._toaster.success("Pickup successfully created", "Success");
+        console.log(data)
         if(this.pickuppopupdata != null){
           this.pickuppopupdata.push(data.data)
         }else{
+          this.pickuppopupdata=[]
           this.pickuppopupdata.push(data.data)
         }
         console.log(this.pickuppopupdata)
+        this._toaster.success("Pickup successfully created", "Success");
         sessionStorage.setItem('pickupdetails',JSON.stringify(this.pickuppopupdata))
       }, error => {
          this._toaster.error("error", "Try Again");
@@ -137,10 +139,10 @@ export class PickupComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.pickupdata)
     if(this.pickupdata != undefined){
     if(this.pickupdata.length > 0){
       this.pickuppopupdata=this.pickupdata
-      sessionStorage.setItem('submitID',this.pickupdata[0]['load_id'])
     }else{
       this.pickuppopupdata= JSON.parse(sessionStorage.getItem("pickupdetails"))
     }
@@ -209,6 +211,7 @@ export class PickupComponent implements OnInit {
           // }
             this.SendPickupForm(confirm)
             var submitId=sessionStorage.getItem('submitID')
+            console.log(submitId)
         }
     })
   }

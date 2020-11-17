@@ -211,9 +211,7 @@
         </dxo-lookup> -->
       </dxi-column>
       <dxi-column dataField="notes" caption="Comments"></dxi-column>
-      <div *dxTemplate="let element of 'actionTemplate'">
-        <span class="material-icons editload" (click)="onEditClick(element.data)">edit</span>
-      </div>
+      
       <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
       <div *dxTemplate="let element of 'driverTemplate'">
         <span *ngIf="element.data.pickupinfoLength > 0">Driver1 : {{element.data.pickupinfo[0].Driver1}}</span><br>

@@ -209,9 +209,14 @@ export class DispatcherformComponent implements OnInit {
      if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
      this.btnHide=true
      this._dispatcherService.EditDispatcher(this.data).subscribe(res => {
+       if(res.Status == "error"){
+                  this._toaster.error(res.error,"Failed", {timeOut: 2000,});
+                  this.btnHide=false
+                }else{
          this._toaster.info("Dispatcher Data Updated successfully","Success", {timeOut: 3000,});
          this.btnHide=false
          this.dialogRef.close(res)
+       }
          },error=>{
           this._toaster.error("Dispatcher Data Not Updated","Failed", {timeOut: 2000,});
           this.dialogRef.close(null)

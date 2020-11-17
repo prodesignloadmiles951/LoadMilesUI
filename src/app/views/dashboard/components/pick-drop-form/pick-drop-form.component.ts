@@ -55,6 +55,10 @@ export class PickDropFormComponent implements OnInit {
      if(this.data){
       this.pickup=this.data
       this.inputPostalCode = this.pickup['zipcode']
+      if(this.pickup['PickupDate'] != undefined){
+      this.pickup['PickupDate'] = new Date(parseInt(this.pickup['PickupDate'])).toISOString().split('T')[0]
+      }
+      console.log(this.pickup)
       if(this.pickup['Address'] != undefined ){
       this.pickup['address1'] = this.pickup['Address'].split(",")[0]
       this.pickup['address2'] = this.pickup['Address'].split(",")[1]
@@ -226,10 +230,16 @@ export class PickDropFormComponent implements OnInit {
   onPostalCodeSelect(option){
     console.log(option)
     var code=option.postal_code
-    this.inputPostalCode=code.split("'")[1]
-    this.pickup['city']=option.city
-    this.pickup['state']=option.state
-    this.pickup['country']=option.country
+    var codesplit=code.split("'")
+    console.log(codesplit)
+    if(codesplit.length > 1){
+      this.inputPostalCode=codesplit[1]
+    }else{
+      this.inputPostalCode=code
+    }
+      this.pickup['city']=option.city
+      this.pickup['state']=option.state
+      this.pickup['country']=option.country
   }
 
 }

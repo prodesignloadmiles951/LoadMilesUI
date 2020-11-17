@@ -217,9 +217,14 @@ export class DriverformComponent implements OnInit {
      if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
           this.btnHide=true
      this._driverService.EditDrivers(this.data).subscribe(res => {
+       if(res.Status == "error"){
+                  this._toaster.error(res.error,"Failed", {timeOut: 2000,});
+                  this.btnHide=false
+                }else{
          this._toaster.info("Driver Data Updated successfully","Success", {timeOut: 3000,});
          this.btnHide=false
          this.dialogRef.close(res)
+       }
          },error=>{
           this._toaster.error("Driver Data Not Updated","Failed", {timeOut: 2000,});
           this.dialogRef.close(null)

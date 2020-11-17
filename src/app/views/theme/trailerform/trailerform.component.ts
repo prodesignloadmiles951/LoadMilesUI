@@ -195,9 +195,14 @@ export class TrailerformComponent implements OnInit {
      if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
      this.btnHide=true
      this._trailersService.EditTrailers(this.data).subscribe(res => {
+       if(res.Status == "error"){
+            this._toaster.error(res.error,"Failed", {timeOut: 2000,});
+            this.btnHide=false
+          }else{
          this._toaster.info("Trailer Data Updated successfully","Success", {timeOut: 3000,});
          this.btnHide=false
          this.dialogRef.close(res)
+       }
          },error=>{
           this._toaster.error("Trailer Data Not Updated","Failed", {timeOut: 2000,});
           this.dialogRef.close(null)

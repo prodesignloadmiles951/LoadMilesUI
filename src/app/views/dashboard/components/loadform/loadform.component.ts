@@ -31,6 +31,7 @@ export class LoadformComponent implements OnInit {
   companydata=[];
   customerdata=[];
   dispatcherdata=[];
+  selectedCompanyName=undefined
   user: any;
   currency
   loadForm: FormGroup;
@@ -51,7 +52,7 @@ export class LoadformComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadForm.reset()
+    // this.loadForm.reset()
     sessionStorage.removeItem("submitID")
     sessionStorage.removeItem("Pickup")
     sessionStorage.removeItem("dropOffdetails")
@@ -59,6 +60,7 @@ export class LoadformComponent implements OnInit {
     
     this.loginUser = this.authService.getloginUser();
     this.newloadfilters['dispatcher']= this.loginUser['username'];
+    this.selectedCompanyName = localStorage.getItem("selectedCompanyName")
     var date= new Date()
     this.newloadfilters['date']= date.toLocaleDateString()
     this.newloadfilters['currency']='Select currency'
@@ -92,14 +94,17 @@ export class LoadformComponent implements OnInit {
   }
   submitload(){
     this.showsubmit=true
-      console.log(this.newloadfilters['customer'])
+      this.newloadfilters['company'] = this.selectedCompanyName
       if(this.newloadfilters['customer'] != undefined){
         this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
-              console.log(data)
+            if(data.Status == "error"){
+            this._toaster.error(data.error,"Failed", {timeOut: 2000,});
+          }else{
               sessionStorage.setItem('submitID', data.data._id)
               this.getData();
               this.showsubmit=false
               this._toaster.success("Load successfully created", "Success");
+            }
         }, error => {
            this._toaster.error("error", "Try Again");
         });
@@ -110,7 +115,6 @@ export class LoadformComponent implements OnInit {
   }
   getDispatcherData() {
     this._dispatcherService.getDispatcherData().subscribe(data => {
-      console.log(data)
       this.dispatcherdata = data;
       this.dispatcherdata.push({firstname:this.newloadfilters['dispatcher']})
     });

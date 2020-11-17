@@ -169,7 +169,6 @@ export class DefaultLayoutComponent implements OnDestroy {
   getlinkedcompanydata(){
     this.companylinkeddata=[]
     this._companyservice.getcompanylistinfo(this.userid).subscribe(data => {
-      console.log(data)
       this.companylinkeddata = data
     })
   }
@@ -191,12 +190,10 @@ export class DefaultLayoutComponent implements OnDestroy {
     localStorage.setItem('selectedCompany',cmp._id)
     localStorage.setItem('selectedCompanyName',cmp.companyname)
     var cmpid = localStorage.getItem("selectedCompany")
+    var selectedCompanyName = localStorage.getItem("selectedCompanyName")
     this.userid= this.loginUser['_id']
-    console.log(cmpid)
-    console.log(this.userid)
     
     this._companyservice.getcompanyroleinfo(cmpid,this.userid).subscribe(data => {
-      console.log(data)
       this._toaster.success(cmp.companyname+" selected successfully", "Success", {timeOut: 2000,});
       this.router.navigateByUrl('dashboard')
       this.authService.setLogin(data);

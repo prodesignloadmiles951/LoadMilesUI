@@ -62,7 +62,9 @@ export class LoadeditformComponent implements OnInit {
     console.log(this.resdata)
     if(this.resdata['EditMode'] && this.resdata['loadstatusedit']){
       this.resdata['pickupinfo']['_id']= this.resdata['_id']
+      this.resdata['pickupinfo']['load_id']= this.resdata['_id']
       this.resdata['dropoffinfo']['_id']= this.resdata['_id']
+      this.resdata['dropoffinfo']['load_id']= this.resdata['_id']
       this.newloadfilters=this.resdata
       console.log(this.resdata)
     }else if(this.resdata['EditMode']){
@@ -81,7 +83,6 @@ export class LoadeditformComponent implements OnInit {
         }else{
           data[i]['drivType']=0
         }
-        // data[i]['loadstatus']=JSON.parse(data[i]['loadstatus'])
       }
       this.dataSource=[]
       this.dataSource = data;

@@ -59,6 +59,9 @@ driverdata= [];
     if(this.data['mode']){
       this.dropoff=this.data
       this.inputPostalCode = this.dropoff['zipcode']
+      if(this.dropoff['DropoffDate'] != undefined){
+      this.dropoff['DropoffDate'] = new Date(parseInt(this.dropoff['DropoffDate'])).toISOString().split('T')[0]
+      }
       if(this.dropoff['dropAddress'] != undefined ){
       this.dropoff['address1'] = this.dropoff['dropAddress'].split(",")[0]
       this.dropoff['address2'] = this.dropoff['dropAddress'].split(",")[1]
@@ -250,7 +253,13 @@ driverdata= [];
     onPostalCodeSelect(option){
     console.log(option)
     var code=option.postal_code
-    this.inputPostalCode=code.split("'")[1]
+    var codesplit=code.split("'")
+    console.log(codesplit)
+    if(codesplit.length > 1){
+      this.inputPostalCode=codesplit[1]
+    }else{
+      this.inputPostalCode=code
+    }
     this.dropoff['city']=option.city
     this.dropoff['state']=option.state
     this.dropoff['country']=option.country
