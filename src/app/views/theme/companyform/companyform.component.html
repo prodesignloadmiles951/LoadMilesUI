@@ -95,9 +95,9 @@
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="phone">Phone <span style="color:red;"> *</span>:</label>
+          <label class="col-md-4 col-form-label" for="phone">Phone :</label>
           <div class="col-md-8">
-            <input type="number" [ngClass]="mode?'':'disble'" class="form-control" placeholder="Ex: 012 345 6789" id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" [pattern]="'^[1-9][0-9]*$'" minlength="10" maxlength="10" required>
+            <input type="number" [ngClass]="mode?'':'disble'" class="form-control" placeholder="Ex: 012 345 6789" id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" [pattern]="'^[1-9][0-9]*$'" minlength="10" maxlength="10" >
             <div *ngIf="phone.errors && (companyForm.submitted ||  phone.dirty || phone.touched)" style="font-size: smaller;">
               <div *ngIf="phone.errors.maxlength || phone.errors.minlength">
                 <span style="color: red;">Phone Number must be 10 digits</span>
@@ -106,17 +106,17 @@
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="fax">Fax <span style="color:red;"> *</span>:</label>
+          <label class="col-md-4 col-form-label" for="fax">Fax :</label>
           <div class="col-md-8">
-            <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="fax" #fax="ngModel" name="fax" [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" required>
+            <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="fax" #fax="ngModel" name="fax" [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" >
             <div *ngIf="fax.errors && (companyForm.submitted ||  fax.dirty || fax.touched)" style="font-size: smaller;">
             </div>
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="email">Email <span style="color:red;"> *</span>:</label>
+          <label class="col-md-4 col-form-label" for="email">Email:</label>
           <div class="col-md-8">
-            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" placeholder="example@info.com" id="email" #email="ngModel" name="email" [(ngModel)]="pageFilters.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" placeholder="example@info.com" id="email" #email="ngModel" name="email" [(ngModel)]="pageFilters.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
             <div *ngIf="email.errors && (companyForm.submitted ||  email.dirty || email.touched)" style="font-size: smaller;">
               <div [hidden]="!email.errors.required">
                 <span style="color: red;"> Invalid email address</span>
