@@ -35,6 +35,8 @@ export class LoadformComponent implements OnInit {
   user: any;
   currency
   loadForm: FormGroup;
+  showloadnumber=false;
+  loadNumber={}
   public loginUser: LoginUser
   constructor(
     // public dialogRef: MatDialogRef < LoadformComponent > ,
@@ -104,6 +106,10 @@ export class LoadformComponent implements OnInit {
               this.getData();
               this.showsubmit=false
               this._toaster.success("Load successfully created", "Success");
+              if(data.data.loadNumber != undefined){
+              this.showloadnumber=true
+              this.loadNumber = data.data.loadNumber
+              }
             }
         }, error => {
            this._toaster.error("error", "Try Again");
