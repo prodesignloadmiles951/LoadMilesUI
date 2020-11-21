@@ -100,14 +100,7 @@
                   <span class="status-name">Delay ({{statusCounts['pickup-PickupDelay'] || 0}})</span>
                 </div>
               </div>
-              <div class="col pad-hor status arr-ontime" (click) = "filterLoad('PickupOntime', 'pickup')">
-                <div>
-                  <!-- <div>Pickup - Ontime</div>
-                  <div>{{statusCounts['pickup-PickupOntime'] || 0}}</div> -->
-                  <img src="../../../assets/img/images/status/pickupontime.png" height="100">
-                  <span class="status-name">Ontime ({{statusCounts['pickup-PickupOntime'] || 0}})</span>
-                </div>
-              </div>
+              
               <div class="col pad-hor status pickup-delay" (click) = "filterLoad('LoadingDelay', 'pickup')">
                   <div>
                     <!-- <div>Loading - Delay</div>
@@ -115,6 +108,14 @@
                     <img src="../../../assets/img/images/status/Loadingdelay.png" height="100">
                     <span class="status-name">Loading Delay ({{statusCounts['pickup-LoadingDelay'] || 0}})</span>
                   </div>
+              </div>
+              <div class="col pad-hor status arr-ontime" (click)="filterLoad('PickupOntime', 'pickup')">
+                <div>
+                  <!-- <div>Pickup - Ontime</div>
+                                <div>{{statusCounts['pickup-PickupOntime'] || 0}}</div> -->
+                  <img src="../../../assets/img/images/status/pickupontime.png" height="100">
+                  <span class="status-name">Ontime ({{statusCounts['pickup-PickupOntime'] || 0}})</span>
+                </div>
               </div>
               <div class="col pad-hor status pickup-ontime" (click) = "filterLoad('Delay-Loaded', 'pickup')">
                   <div>
@@ -154,20 +155,21 @@
                   <span class="status-name">Delay ({{statusCounts['dropoff-DeliveryDelay'] || 0}})</span>
                 </div>
               </div>
-              <div class="col pad-hor status arr-ontime" (click) = "filterLoad('DeliveryOntime', 'dropoff')">
-                <div>
-                  <!-- <div>Delivery - Ontime</div>
-                  <div>{{statusCounts['dropoff-DeliveryOntime'] || 0}}</div> -->
-                  <img src="../../../assets/img/images/status/DeliveryOntime.png" height="100">
-                  <span class="status-name">Ontime ({{statusCounts['dropoff-DeliveryOntime'] || 0}})</span>
-                </div>
-              </div>
+             
               <div class="col pad-hor status delivery-delay" (click) = "filterLoad('WaitingUnload', 'dropoff')">
                 <div>
                   <!-- <div>Unload - Delay</div>
                   <div>{{statusCounts['dropoff-UnloadDelay'] || 0}}</div> -->
                   <img src="../../../assets/img/images/status/Waitingunload.png" height="100">
                   <span class="status-name">Waiting Unload ({{statusCounts['dropoff-WaitingUnload'] || 0}})</span>
+                </div>
+              </div>
+              <div class="col pad-hor status arr-ontime" (click)="filterLoad('DeliveryOntime', 'dropoff')">
+                <div>
+                  <!-- <div>Delivery - Ontime</div>
+                                <div>{{statusCounts['dropoff-DeliveryOntime'] || 0}}</div> -->
+                  <img src="../../../assets/img/images/status/DeliveryOntime.png" height="100">
+                  <span class="status-name">Ontime ({{statusCounts['dropoff-DeliveryOntime'] || 0}})</span>
                 </div>
               </div>
               <div class="col pad-hor status completed" (click)="filterLoad('Delay-Unloaded', 'dropoff')">
