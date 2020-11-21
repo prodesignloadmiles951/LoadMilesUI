@@ -118,7 +118,6 @@
           <div class="col-md-8">
             <input type="text" [ngClass]="mode?'':'disble'" class="form-control" placeholder="example@info.com" id="email" #email="ngModel" name="email" [(ngModel)]="pageFilters.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
             <div *ngIf="email.errors && (companyForm.submitted ||  email.dirty || email.touched)" style="font-size: smaller;">
-              {{email.errors}}
               <!-- <div [hidden]="!email.errors.required">
                 <span style="color: red;"> Invalid email address</span>
               </div> -->
