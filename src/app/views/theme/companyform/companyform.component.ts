@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { LoginUser } from '../../../model/loginuser';
 import { AuthenticationService } from '../../../views/authentication.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-companyform',
@@ -116,7 +116,8 @@ update() {
           });
    }
 
-   submit() {
+  submit(companyFormRecieved) {
+    if (companyFormRecieved.form.valid){
      if(localStorage.selectedCompany == undefined){
        this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
      }else{
@@ -136,6 +137,8 @@ update() {
           this._toaster.error("Enter Company Name","Failed", {timeOut: 2000,});
       }
      }
+    }
+
    }
 
    getroles(){
