@@ -47,9 +47,9 @@ export class LoginComponent {
       this._toaster.error("Invalid UserId and Password","Faild");
     });
   }
-  // onregister(){
-  //   this.router.navigateByUrl("register");
-  // }
+  onregister(){
+    this.router.navigateByUrl("register");
+  }
   oncompanyregister(){
     this.router.navigateByUrl("companyregister");
   }

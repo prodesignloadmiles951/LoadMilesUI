@@ -160,15 +160,18 @@ public company: CompanyFilters;
   }
 
   getData() {
+    this.loadDetails=[]
     var session=this.authService.getloginUser()
      console.log(session.company.companyname) 
     this._loadservice.getLoadData().subscribe(data => {
+      console.log(data)
       var res=data
       this._customersservice.getCustomersData().subscribe(resp => {
         console.log(resp)
         var j=0
         for (var i = 0; i < res.length;i++) {
-          if(res[i]['customer'][0] !== undefined){
+          if(res[i]['customer'] != undefined || res[i]['customer'] != null){
+          if(res[i]['customer'].length > 0 ){
             res[i]['customer_name'] = (res[i]['customer'][0].length > 1 ? res[i]['customer'][0] :resp[res[i]['customer'][0]].companyname)
             if(session.company.companyname == res[i]['company']){
               res[i]['load_number']=1000+(j++)
@@ -182,6 +185,7 @@ public company: CompanyFilters;
               this.loadDetails.push(res[i]);
             }
           }
+        }
         }
         if(this.loadDetails.length >0){
           var pickup=[]

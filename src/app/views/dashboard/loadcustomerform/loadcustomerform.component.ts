@@ -35,6 +35,7 @@ export class LoadcustomerformComponent implements OnInit {
     showsubmit=false
     changeUplaod=true
     editFileList=[]
+    btnHide=false
 
   constructor(public dialogRef: MatDialogRef < LoadcustomerformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -163,13 +164,24 @@ export class LoadcustomerformComponent implements OnInit {
      this.data['contactinfodata']=this.contactinfodata
     }
      console.log(this.data)
+     if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
+       this.btnHide=true
      this._customersservice.EditCustomers(this.data).subscribe(res => {
+         if(res.Status != "error"){
          this._toaster.info("Customer Data Updated successfully","Success", {timeOut: 3000,});
-         this.dialogRef.close(null)
+         this.btnHide=true
+         this.dialogRef.close(res)
+       }else{
+            this.submitted=false;
+            this._toaster.info(res.error,"Failed", {timeOut: 2000});
+          }
          },error=>{
           this._toaster.error("Customer Data Not Updated","Failed", {timeOut: 2000,});
           this.dialogRef.close(null)
      })
+   }else{
+     this._toaster.error("Enter MC Details","Failed", {timeOut: 2000,});
+   }
    }
 
    submit() {
@@ -185,14 +197,25 @@ export class LoadcustomerformComponent implements OnInit {
           idArry.push(this.finalArry[i]._id)
         }
         Customerslistdata['files']=idArry
+        if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
+          this.btnHide=true
         this._customersservice.SendForm(Customerslistdata).subscribe(response => {
+          if(response.Status != "error"){
           this.submitted = true;
           this._toaster.info("Customerform Data Submitted","Success", {timeOut: 3000,});
-         this.router.navigateByUrl("theme/customers-list");
+           this.btnHide=false
+           this.dialogRef.close(response)
+         }else{
+            this.submitted=false;
+            this._toaster.info(response.error,"Failed", {timeOut: 2000});
+          }
         },error=>{
           this.submitted=false;
-          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
+          this._toaster.error(error.error,"Failed", {timeOut: 2000,});
         });
+      }else{
+        this._toaster.error("Enter MC Details","Failed", {timeOut: 2000});
+       }
         console.log(this.pageFilters);
        }
      }

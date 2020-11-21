@@ -6,7 +6,12 @@
           <div class="card mx-4">
             <div class="card-body p-4">
               <form>
-                <h1>Register</h1>
+                <div style="display: flex; justify-content: space-between;">
+                  <h1>Register</h1>
+                  <button type="button" class="close" (click)="onclose()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
                 <p class="text-muted">Create your account</p>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
@@ -32,7 +37,7 @@
                   </div>
                   <input type="password" class="form-control" placeholder="Repeat password" autocomplete="new-password" required>
                 </div>
-                <button type="button" class="btn btn-block btn-success">Create Account</button>
+                <button type="button" class="btn btn-block btn-success" (click)="oncreateaccount()">Create Account</button>
               </form>
             </div>
             <div class="card-footer p-4">
@@ -47,6 +52,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </main>

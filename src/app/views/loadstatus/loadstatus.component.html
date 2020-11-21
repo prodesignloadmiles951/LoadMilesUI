@@ -198,6 +198,10 @@
       <dxi-column dataField="load_number" caption="Load Number" [width]="110" style="text-align: center;"></dxi-column>
       <dxi-column dataField="customer_name" caption="Customer"></dxi-column>
       <dxi-column dataField="crefno" caption="Customer Load"></dxi-column>
+      <dxi-column dataField="loadstatus" caption="Load Status" [width]="200">
+        <!-- <dxo-lookup [dataSource]="lastUpdated" displayExpr="Name" valueExpr="ID">
+        </dxo-lookup> -->
+      </dxi-column>
       <dxi-column dataField="phone" caption="Contact Phone"></dxi-column>
       <dxi-column dataField="email" caption="Contact Email"></dxi-column>
       <dxi-column dataField="dispatcher" caption="Dispatcher"></dxi-column>
@@ -206,10 +210,7 @@
       <dxi-column dataField="Truck" caption="Truck" cellTemplate="truckTemplate"></dxi-column>
       <dxi-column dataField="pickupaddress" caption="Pickup Location" [width]="250" cellTemplate="pickupaddressTemplate"></dxi-column>
       <dxi-column dataField="dropoffaddress" caption="Dropoff Location" [width]="250" cellTemplate="dropoffaddressTemplate"></dxi-column>
-      <dxi-column dataField="loadstatus" caption="Load Status" [width]="200">
-        <!-- <dxo-lookup [dataSource]="lastUpdated" displayExpr="Name" valueExpr="ID">
-        </dxo-lookup> -->
-      </dxi-column>
+      
       <dxi-column dataField="notes" caption="Comments"></dxi-column>
       
       <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>

@@ -157,7 +157,8 @@ Addcustomer(){
         editDialogRef.afterClosed().subscribe((data) => {
           console.log(data)
           if(data == null){}else{
-            this.getData()        
+            this.getData() 
+            this.getCustomerdata()       
           }
         })
 }

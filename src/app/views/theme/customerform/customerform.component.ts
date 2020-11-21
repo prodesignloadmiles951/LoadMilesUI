@@ -167,7 +167,7 @@ export class CustomerformComponent implements OnInit {
      this.data['contactinfodata']=this.contactinfodata
     }
      console.log(this.data)
-     if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != ""){
+     if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
           this.btnHide=true
      this._customersservice.EditCustomers(this.data).subscribe(res => {
          this._toaster.info("Customer Data Updated successfully","Success", {timeOut: 3000,});
@@ -195,7 +195,7 @@ export class CustomerformComponent implements OnInit {
           idArry.push(this.finalArry[i]._id)
         }
         Customerslistdata['files']=idArry
-        if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != ""){
+        if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
           this.btnHide=true
         this._customersservice.SendForm(Customerslistdata).subscribe(response => {
           if(response.Status != "error"){

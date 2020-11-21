@@ -95,6 +95,7 @@ export class LoadeditformComponent implements OnInit {
             console.log(data)
          this._toaster.success("Load successfully Updated", "Success");
          this.dialogRef.close(data)
+         this.getData()
 	}, error => {
         this._toaster.error("error", "Try Again");
      });
