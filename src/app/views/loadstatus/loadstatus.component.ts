@@ -153,7 +153,14 @@ public company: CompanyFilters;
       if(load.lastUpdated != undefined){
         if (load.lastUpdated.type && load.lastUpdated.status){
           load.lastUpdated.status = load.lastUpdated.status.replace(/\s/g, '');
+          if (load.lastUpdated.type === 'pickup'){
+            this.statusCounts['pickup'] = (this.statusCounts['pickup'] || 0) + 1;
+          } else if (load.lastUpdated.type === 'dropoff') {
+            this.statusCounts['dropoff'] = (this.statusCounts['dropoff'] || 0) + 1;
+          }
+          this.statusCounts['loads'] = (this.statusCounts['loads'] || 0) + 1;
           this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] = this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] ? (this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] + 1) : 1;
+          console.log(load.lastUpdated.type + '-' + load.lastUpdated.status)
         }
       }
     })
