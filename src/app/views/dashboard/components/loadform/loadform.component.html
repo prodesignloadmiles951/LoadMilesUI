@@ -1,5 +1,6 @@
 <form class="form-horizontal" #loadForm="ngForm" novalidate autocomplete="off">
   <div class="row">
+    <div class="col-sm-12 loadnumber" *ngIf="showloadnumber">Load Number - {{loadNumber}}</div>
     <div class="col-sm-6">
       <div class="card">
         <div class="card-header">Load Creation Part - I</div>
