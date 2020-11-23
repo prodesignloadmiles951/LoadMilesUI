@@ -175,13 +175,12 @@ public company: CompanyFilters;
       var res=data
       this._customersservice.getCustomersData().subscribe(resp => {
         console.log(resp)
-        var j=0
         for (var i = 0; i < res.length;i++) {
           if(res[i]['customer'] != undefined || res[i]['customer'] != null){
           if(res[i]['customer'].length > 0 ){
             res[i]['customer_name'] = (res[i]['customer'][0].length > 1 ? res[i]['customer'][0] :resp[res[i]['customer'][0]].companyname)
             if(session.company.companyname == res[i]['company']){
-              res[i]['load_number']=1000+(j++)
+              res[i]['load_number']=res[i]['loadNumber']
               res[i]['pickupinfo']=[]
               res[i]['dropoffinfo']=[]
               res[i]['pickupinfoLength']=0
