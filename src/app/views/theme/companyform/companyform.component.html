@@ -7,218 +7,240 @@
 <button *ngIf="!selectedCompany" type="button" class="close" (click)="hidePopup()" aria-label="Close">
   <span aria-hidden="true">&times;</span>
 </button>
-<form class="form-horizontal" #companyForm="ngForm" novalidate autocomplete="off" (ngSubmit) = "submit(companyForm)">
-<div class="row" *ngIf="pageFiltersshow">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header"><strong>Company</strong> Informtion</div>
-      <div class="card-body">
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="companyname">Company Name: <span style="color:red">*</span></label>
-          <div class="col-md-8">
-            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="companyname" name="companyname" #companyname="ngModel" [(ngModel)]="pageFilters.companyname" required>
-            <div *ngIf="companyname.errors && (companyForm.submitted || companyname.dirty || companyname.touched)" style="font-size: smaller;">
-              <div [hidden]="!companyname.errors.required">
-                <span style="color: red;">Company Name is required</span>
+<form class="form-horizontal" #companyForm="ngForm" novalidate autocomplete="off">
+  <div class="row" *ngIf="pageFiltersshow">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header"><strong>Company</strong> Informtion</div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="companyname">Company Name: <span
+                style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="companyname" name="companyname"
+                #companyname="ngModel" [(ngModel)]="pageFilters.companyname" required>
+              <div *ngIf="companyname.errors && (companyname.dirty || companyname.touched)" style="font-size: smaller;">
+                <div [hidden]="!companyname.errors.required">
+                  <span style="color: red;">Company Name is required</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="companyid">Company ID :<span style="color:red">*</span></label>
-          <div class="col-md-8">
-            <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="companyid" #companyid="ngModel" name="companyid" [(ngModel)]="pageFilters.companyid" required>
-            <div *ngIf="companyid.errors && (companyForm.submitted ||  companyid.dirty || companyid.touched)" style="font-size: smaller;">
-              <div [hidden]="!companyid.errors.required">
-                <span style="color: red;">Company ID is required</span>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="companyid">Company ID :<span style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="companyid" #companyid="ngModel"
+                name="companyid" [(ngModel)]="pageFilters.companyid" required>
+              <div *ngIf="companyid.errors && (companyid.dirty || companyid.touched)" style="font-size: smaller;">
+                <div [hidden]="!companyid.errors.required">
+                  <span style="color: red;">Company ID is required</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="dba">DBA :</label>
-          <div class="col-md-8">
-            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dba" #dba="ngModel" name="dba" [(ngModel)]="pageFilters.dba">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="dba">DBA :</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dba" #dba="ngModel" name="dba"
+                [(ngModel)]="pageFilters.dba">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label">Currency:</label>
-          <div class="col-md-8">
-            <select class="form-control" [ngClass]="mode?'':'disble'" id="currency" name="currency" [(ngModel)]="pageFilters.currency">
-              <option value="Select currency" disabled selected hidden>Select currency</option>
-              <option value="USD">USD</option>
-              <option value="CAD">CAD</option>
-              <option value="MXN">MXN</option>
-            </select>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">Currency:</label>
+            <div class="col-md-8">
+              <select class="form-control" [ngClass]="mode?'':'disble'" id="currency" name="currency"
+                [(ngModel)]="pageFilters.currency">
+                <option value="Select currency" disabled selected hidden>Select currency</option>
+                <option value="USD">USD</option>
+                <option value="CAD">CAD</option>
+                <option value="MXN">MXN</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="fedid">TAX ID<span style="color:red;"> *</span> :</label>
-          <div class="col-md-8">
-            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="fedid" maxlength="9" #fedid="ngModel" name="fedid" [(ngModel)]="pageFilters.fedid" required>
-            <div *ngIf="fedid.errors && (companyForm.submitted ||  fedid.dirty || fedid.touched)" style="font-size: smaller;">
-              <div [hidden]="!fedid.errors.required">
-                <span style="color: red;">Tax ID is required</span>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="fedid">TAX ID<span style="color:red;"> *</span> :</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="fedid" maxlength="9"
+                #fedid="ngModel" name="fedid" [(ngModel)]="pageFilters.fedid" required>
+              <div *ngIf="fedid.errors && (fedid.dirty || fedid.touched)" style="font-size: smaller;">
+                <div [hidden]="!fedid.errors.required">
+                  <span style="color: red;">Tax ID is required</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="us-dot">US DOT #<span style="color:red;"> *</span> :</label>
-          <div class="col-md-8">
-            <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="us-dot" #usdot="ngModel" name="usdot" [(ngModel)]="pageFilters.usdot" required>
-            <div *ngIf="usdot.errors && (companyForm.submitted ||  usdot.dirty || usdot.touched)" style="font-size: smaller;">
-              <div [hidden]="!usdot.errors.required">
-                <span style="color: red;">US DOT is required</span>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="us-dot">US DOT #<span style="color:red;"> *</span> :</label>
+            <div class="col-md-8">
+              <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="us-dot" #usdot="ngModel"
+                name="usdot" [(ngModel)]="pageFilters.usdot" required>
+              <div *ngIf="usdot.errors && (usdot.dirty || usdot.touched)" style="font-size: smaller;">
+                <div [hidden]="!usdot.errors.required">
+                  <span style="color: red;">US DOT is required</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="mc">MC<span style="color:red;"> *</span> :</label>
-          <div class="col-md-8">
-            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="mc"  [pattern]="'.{7,7}'" #mc="ngModel" name="mc" [(ngModel)]="pageFilters.mc" required>
-            <div *ngIf="mc.errors && (companyForm.submitted || mc.dirty || mc.touched)" style="font-size: smaller;">
-              <div [hidden]="!mc.errors.required">
-                <span style="color: red;">MC is required</span>
-              </div>
-              <div [hidden]="!mc.errors.pattern">
-                <span style="color: red;">MC should be 7 characters</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="ifta-license">IFTA License # :</label>
-          <div class="col-md-8">
-            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ifta-license" #iftalicense="ngModel" name="iftalicense" [(ngModel)]="pageFilters.iftalicense">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="phone">Phone <span style="color:red;"> *</span>:</label>
-          <div class="col-md-8">
-            <input type="number" [ngClass]="mode?'':'disble'" class="form-control" placeholder="Ex: 012 345 6789" id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" [pattern]="'^[1-9][0-9]*$'" minlength="10" maxlength="10" required>
-            <div *ngIf="phone.errors && (companyForm.submitted ||  phone.dirty || phone.touched)" style="font-size: smaller;">
-              <div *ngIf="phone.errors.maxlength || phone.errors.minlength">
-                <span style="color: red;">Phone Number must be 10 digits</span>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="mc">MC<span style="color:red;"> *</span> :</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="mc" #mc="ngModel"
+                name="mc" [(ngModel)]="pageFilters.mc" required [pattern]="'.{7,7}'">
+              <div *ngIf="mc.errors && (mc.dirty || mc.touched)" style="font-size: smaller;">
+                <div [hidden]="!mc.errors.required">
+                  <span style="color: red;">MC is required</span>
+                </div>
+                <div [hidden]="!mc.errors.pattern">
+                  <span style="color: red;">MC must be of 7 characters</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="fax">Fax <span style="color:red;"> *</span>:</label>
-          <div class="col-md-8">
-            <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="fax" #fax="ngModel" name="fax" [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" required>
-            <div *ngIf="fax.errors && (companyForm.submitted ||  fax.dirty || fax.touched)" style="font-size: smaller;">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="ifta-license">IFTA License # :</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ifta-license"
+                #iftalicense="ngModel" name="iftalicense" [(ngModel)]="pageFilters.iftalicense">
             </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="email">Email <span style="color:red;"> *</span>:</label>
-          <div class="col-md-8">
-            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" placeholder="example@info.com" id="email" #email="ngModel" name="email" [(ngModel)]="pageFilters.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-            <div *ngIf="email.errors && (companyForm.submitted ||  email.dirty || email.touched)" style="font-size: smaller;">
-              <div [hidden]="!email.errors.required">
-                <span style="color: red;"> Invalid email address</span>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="phone">Phone :</label>
+            <div class="col-md-8">
+              <input type="number" [ngClass]="mode?'':'disble'" class="form-control" placeholder="Ex: 012 345 6789"
+                id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" [pattern]="'^[1-9][0-9]*$'"
+                minlength="10" maxlength="10" required>
+              <div *ngIf="phone.errors && (phone.dirty || phone.touched)" style="font-size: smaller;">
+                <div *ngIf="phone.errors.maxlength || phone.errors.minlength">
+                  <span style="color: red;">Phone Number must be 10 digits</span>
+                </div>
               </div>
-              <div [hidden]="!email.errors?.pattern">
-                <span style="color: red;">Enter valid email only</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="fax">Fax :</label>
+            <div class="col-md-8">
+              <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="fax" #fax="ngModel" name="fax"
+                [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" required>
+              <div *ngIf="fax.errors && (fax.dirty || fax.touched)" style="font-size: smaller;">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="email">Email :</label>
+            <div class="col-md-8">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" placeholder="example@info.com"
+                id="email" #email="ngModel" name="email" [(ngModel)]="pageFilters.email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+              <div *ngIf="email.errors && (email.dirty || email.touched)" style="font-size: smaller;">
+                <div [hidden]="!email.errors.required">
+                  <span style="color: red;"> Invalid email address</span>
+                </div>
+                <div [hidden]="!email.errors?.pattern">
+                  <span style="color: red;">Enter valid email only</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header"><strong>Logo</strong></div>
+        <div class="card-body">
+          <div class="form-group row">
+            <div class="carousel-inner">
+              <div class="carousel-item active"><img class="d-block w-100" alt="image [800x800]"
+                  src="assets/img/brand/Load-miles.PNG" data-holder-rendered="true">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><strong>Mailing</strong> Address</div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
+            <div class="col-md-9">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address1" #address1="ngModel"
+                name="address1" [(ngModel)]="pageFilters.address1" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
+            <div class="col-md-9">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address2" #address2="ngModel"
+                name="address2" [(ngModel)]="pageFilters.address2" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="address2">City :</label>
+            <div class="col-md-9">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address2" #address2="ngModel"
+                name="address2" [(ngModel)]="pageFilters.city" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-6">State:
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state" placeholder="Enter state"
+                #zip="ngModel" name="state" [(ngModel)]="pageFilters.state" required>
+            </div>
+            <div class="col-6">Zip:
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zip1" placeholder="Ex: 500013"
+                #zip="ngModel" name="zip" [(ngModel)]="pageFilters.zip" required>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showusertable" class="col-md-12">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              User Management
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="dx-viewport">
+            <div class="grid-container">
+              <dx-data-grid #grid id="gridContainer" [dataSource]="usermanagementdata" [allowColumnReordering]="true"
+                [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)"
+                (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
+                <dxo-paging [enabled]="false"></dxo-paging>
+                <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
+                </dxo-editing>
+                <dxo-selection mode="single"></dxo-selection>
+                <dxi-column dataField="username" caption="Username"></dxi-column>
+                <dxi-column dataField="email" caption="Email">
+                  <dxo-lookup [dataSource]="username" displayExpr="email" valueExpr="ID"></dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="name" caption="Role">
+                  <dxo-lookup [dataSource]="roleArray" displayExpr="name" valueExpr="ID"></dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="userStatus" caption="Status">
+                </dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header"><strong>Logo</strong></div>
-      <div class="card-body">
-        <div class="form-group row">
-          <div class="carousel-inner">
-            <div class="carousel-item active"><img class="d-block w-100" alt="image [800x800]" src="assets/img/brand/Load-miles.PNG" data-holder-rendered="true">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header"><strong>Mailing</strong> Address</div>
-      <div class="card-body">
-        <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
-          <div class="col-md-9">
-            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address1" #address1="ngModel" name="address1" [(ngModel)]="pageFilters.address1" required>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
-          <div class="col-md-9">
-            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.address2" required>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="address2">City :</label>
-          <div class="col-md-9">
-            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.city" required>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-6">State:
-            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state" placeholder="Enter state" #zip="ngModel" name="state" [(ngModel)]="pageFilters.state" required>
-          </div>
-          <div class="col-6">Zip:
-            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zip1" placeholder="Ex: 500013" #zip="ngModel" name="zip" [(ngModel)]="pageFilters.zip" required>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="card-footer" *ngIf="showAddOption">
+    <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary"
+      [ngClass]="btnHide?'accessPointer':''" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+      <img *ngIf="IsDataloading"
+        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      Submit</button>&nbsp;&nbsp;
+    <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary"
+      [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
+      <img *ngIf="IsDataloading"
+        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      Update</button>&nbsp;&nbsp;
+    <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i>
+      Reset</button>
   </div>
-  <div *ngIf="showusertable" class="col-md-12">
-  <mat-accordion>
-  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-    <mat-expansion-panel-header class="card-header">
-      <mat-panel-title>
-        User Management
-      </mat-panel-title>
-      <mat-panel-description>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div class="dx-viewport">
-      <div class="grid-container">
-        <dx-data-grid #grid id="gridContainer" [dataSource]="usermanagementdata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
-          <dxo-paging [enabled]="false"></dxo-paging>
-          <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
-          </dxo-editing>
-          <dxo-selection mode="single"></dxo-selection>
-          <dxi-column dataField="username" caption="Username"></dxi-column>
-          <dxi-column dataField="email" caption="Email">
-            <dxo-lookup [dataSource]="username" displayExpr="email" valueExpr="ID"></dxo-lookup>
-          </dxi-column>
-          <dxi-column dataField="name" caption="Role">
-            <dxo-lookup [dataSource]="roleArray" displayExpr="name" valueExpr="ID"></dxo-lookup>
-          </dxi-column>
-          <dxi-column dataField="userStatus" caption="Status">
-          </dxi-column>
-        </dx-data-grid>
-      </div>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
-</div>
-</div>
-<div class="card-footer" *ngIf="showAddOption">
-  <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''"><i class="fa fa-dot-circle-o"></i>
-    <img *ngIf="IsDataloading" 
-    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-    Submit</button>&nbsp;&nbsp;
-    <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
-    <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-    Update</button>&nbsp;&nbsp;
-  <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-</div>
 </form>
-
-
-    
- 

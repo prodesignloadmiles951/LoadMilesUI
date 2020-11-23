@@ -217,18 +217,18 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
   }
 }
 
-.cdk-overlay-pane {
-  position: absolute;
-  pointer-events: auto;
-  box-sizing: border-box;
-  z-index: 1000;
-  display: flex;
-  max-width: 100%;
-  max-height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: calc(100vh - 12%);
-}
+// .cdk-overlay-pane {
+//   position: absolute;
+//   pointer-events: auto;
+//   box-sizing: border-box;
+//   z-index: 1000;
+//   display: flex;
+//   max-width: 100%;
+//   max-height: 100%;
+//   overflow-y: auto;
+//   overflow-x: hidden;
+//   height: calc(100vh - 12%);
+// }
 
 .mat-autocomplete-panel {
     min-width: 112px;
