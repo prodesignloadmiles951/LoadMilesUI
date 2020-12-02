@@ -105,7 +105,8 @@
             <label class="col-md-4 col-form-label" for="dropoffdate">Dropoff Date:</label>
             <div class="col-md-8">
               <!-- {{today | date:'dd-MM-yyyy'}} -->
-              <input type="date" class="form-control" id="dropoffdate" name="dropoffdate" #dropoffdate="ngModel" [(ngModel)]="dropoff.DropoffDate" [ngModelOptions]="{standalone: true}">
+              <input type="date" class="form-control" id="dropoffdate" name="DropoffDate" #DropoffDate="ngModel" 
+              [ngModel]="dropoff.DropoffDate | date:'yyyy-MM-dd'" (ngModelChange)="dropoff.DropoffDate = $event" >
             </div>
           </div>
           <div class="form-group row">
