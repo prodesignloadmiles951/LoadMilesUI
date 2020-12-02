@@ -261,9 +261,10 @@ public company: CompanyFilters;
     let editDialogRef = this.dialog.open(LoadeditformComponent, dialogConfig);
     editDialogRef.afterClosed().subscribe((data) => {
       console.log(data)
-      if(data == null){}else{
-        this.getData()        
-      }
+      this.getData()  
+      // if(data == null){}else{
+      //   this.getData()        
+      // }
     })
   }
 
