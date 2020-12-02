@@ -175,6 +175,12 @@ public company: CompanyFilters;
       var res=data
       this._customersservice.getCustomersData().subscribe(resp => {
         console.log(resp)
+        if (Object.keys(this.statusCounts).length){
+          let keys = Object.keys(this.statusCounts);
+          keys.forEach(item => {
+            this.statusCounts[item] = 0;
+          })
+        }
         for (var i = 0; i < res.length;i++) {
           if(res[i]['customer'] != undefined || res[i]['customer'] != null){
           if(res[i]['customer'].length > 0 ){
