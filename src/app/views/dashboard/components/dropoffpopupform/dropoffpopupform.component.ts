@@ -62,12 +62,12 @@ driverdata= [];
       this.dropoff=this.data
       this.inputPostalCode = this.dropoff['zipcode']
       if(this.dropoff['DropoffDate'] != undefined){
-      this.dropoff['DropoffDate'] = new Date(parseInt(this.dropoff['DropoffDate'])).toISOString().split('T')[0]
+      this.dropoff['DropoffDate'] = new Date(this.dropoff['DropoffDate']).toISOString().split('T')[0]
       }
-      if(this.dropoff['dropAddress'] != undefined ){
-      this.dropoff['address1'] = this.dropoff['dropAddress'].split(",")[0]
-      this.dropoff['address2'] = this.dropoff['dropAddress'].split(",")[1]
-      }
+      // if(this.dropoff['dropAddress'] != undefined ){
+      // this.dropoff['address1'] = this.dropoff['dropAddress'].split(",")[0]
+      // this.dropoff['address2'] = this.dropoff['dropAddress'].split(",")[1]
+      // }
     }else if(pickup != undefined){
       this.dropoff['Type'] = pickup['Type']
       console.log(this.driverdata)
@@ -224,7 +224,8 @@ driverdata= [];
         this.dropoff['Truck']=parseInt(this.dropoff['Truck'])
         this.dropoff['Trailer']=parseInt(this.dropoff['Trailer'])
         this.dropoff['zipcode']=parseInt(this.dropoff['zipcode'])
-  	    this.dialogRef.close(this.dropoff)
+        let data = {...this.dropoff};
+  	    this.dialogRef.close(data)
   }
    hidePopup(){
   	this.dialogRef.close(null)

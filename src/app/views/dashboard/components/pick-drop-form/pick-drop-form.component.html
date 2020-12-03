@@ -105,7 +105,8 @@
             <label class="col-md-4 col-form-label" for="pickupdate">PickUp Date:</label>
             <div class="col-md-8">
               <!-- {{today | date:'dd-MM-yyyy'}} -->
-              <input type="date" class="form-control" id="pickupdate" name="pickupdate" #pickupdate="ngModel" [(ngModel)]="pickup.PickupDate" [ngModelOptions]="{standalone: true}">
+              <input type="date" class="form-control" id="PickupDate" name="PickupDate" 
+              #PickupDate="ngModel" (ngModelChange)="pickup.PickupDate = $event" [ngModel]="pickup.PickupDate| date:'yyyy-MM-dd'">
             </div>
           </div>
           <div class="form-group row">
@@ -154,7 +155,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="country">Country:</label>
+            <label class="col-md-4 col-form-label" for="country">County:</label>
             <div class="col-md-8">
               <input type="text" class="form-control" id="country" name="country" #country="ngModel" [(ngModel)]="pickup.country" [ngModelOptions]="{standalone: true}" disabled>
             </div>

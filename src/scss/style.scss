@@ -230,6 +230,12 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
    height: calc(100vh - 12%);
  }
 
+ .cdk-overlay-pane.mat-autocomplete-panel-above{
+   height: auto !important;
+   overflow-x: visible;
+   overflow-y: visible;
+ }
+
 .mat-autocomplete-panel {
     min-width: 112px;
     max-width: 280px;
@@ -279,6 +285,7 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
     padding: 3px 4px;
     margin: 0px 6px;
     min-width: 194px;
+    max-width: 200px;
     box-sizing: border-box;
 
     &.booked, &.intransit{

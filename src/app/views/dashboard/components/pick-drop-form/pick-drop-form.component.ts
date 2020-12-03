@@ -58,13 +58,13 @@ export class PickDropFormComponent implements OnInit {
       this.pickup=this.data
       this.inputPostalCode = this.pickup['zipcode']
       if(this.pickup['PickupDate'] != undefined){
-      this.pickup['PickupDate'] = new Date(parseInt(this.pickup['PickupDate'])).toISOString().split('T')[0]
+      this.pickup['PickupDate'] = new Date(this.pickup['PickupDate']).toISOString().split('T')[0]
       }
       console.log(this.pickup)
-      if(this.pickup['Address'] != undefined ){
-      this.pickup['address1'] = this.pickup['Address'].split(",")[0]
-      this.pickup['address2'] = this.pickup['Address'].split(",")[1]
-      }
+      // if(this.pickup['Address'] != undefined ){
+      // this.pickup['address1'] = this.pickup['Address'].split(",")[0]
+      // this.pickup['address2'] = this.pickup['Address'].split(",")[1]
+      // }
     }
   	this.getDriverData()
     this.getTrailerData()
@@ -181,13 +181,13 @@ export class PickDropFormComponent implements OnInit {
       idArry.push(this.finalArry[i]._id)
     }
     this.pickup['files']=idArry
-    this.pickup['zipcode']=this.inputPostalCode
-    console.log(this.pickup)
+    this.pickup['zipcode']=this.inputPostalCode;
     sessionStorage.setItem('Pickup', JSON.stringify(this.pickup))
     this.pickup['Truck']=parseInt(this.pickup['Truck'])
     this.pickup['Trailer']=parseInt(this.pickup['Trailer'])
     this.pickup['zipcode']=parseInt(this.pickup['zipcode'])
-  	this.dialogRef.close(this.pickup)
+    let data = {...this.pickup}
+    this.dialogRef.close(data)
   }
   hidePopup(){
   	this.dialogRef.close(null)
