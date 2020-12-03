@@ -32,7 +32,9 @@ driverdata= [];
  postalCodeList=[]
  debouncePostalCode;
  showspinner=false
- 
+ Driver1=''
+ Driver2=''
+
   constructor(public dialogRef: MatDialogRef < DropoffpopupformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,private _trucksservice: TrucksService,
         private _driverService: DriversService,
@@ -68,8 +70,20 @@ driverdata= [];
       }
     }else if(pickup != undefined){
       this.dropoff['Type'] = pickup['Type']
-      this.dropoff['Driver1'] = pickup['Driver1']
-      this.dropoff['Driver2'] = pickup['Driver2']
+      console.log(this.driverdata)
+      for (var i = 0; i < this.driverdata.length; i++) {
+        if(this.driverdata[i]['_id'] == pickup['Driver1']){
+          this.Driver1 = this.driverdata[i]['firstname']
+          console.log(this.Driver1)
+        }
+        if(this.driverdata[i]['_id'] == pickup['Driver2']){
+          this.Driver2 = this.driverdata[i]['firstname']
+          console.log(this.Driver2)
+        }
+      }
+      // this.dropoff['Driver1'] = pickup['Driver1']
+      // this.dropoff['Driver2'] = pickup['Driver2']
+
       this.dropoff['Truck'] = pickup['Truck']
       this.dropoff['Trailer'] = pickup['Trailer'] 
       this.dropoff['address1'] = pickup['address1']
@@ -102,26 +116,6 @@ driverdata= [];
           "Name": "carrier"
       }
     ]
-
-    // this.loadstatusDetails=[
-    //   {
-    //       "ID": 0,
-    //       "Name": "In Transit"
-    //   },
-    //   {
-    //       "ID": 1,
-    //       "Name": "Delivery Delay"
-    //   },
-    //   {
-    //       "ID": 2,
-    //       "Name": "Delivery Ontime"
-    //   },
-    //   {
-    //       "ID": 3,
-    //       "Name": "Completed"
-    //   }
-    // ]
-
     this.loadstatusDetails = [
       {
         "ID": 0,
@@ -264,4 +258,25 @@ driverdata= [];
     this.dropoff['state']=option.state
     this.dropoff['country']=option.country
   }
+  selectChangeDriver1(e){
+    for (var i = 0; i < this.driverdata.length; i++) {
+      if(this.driverdata[i]['firstname']==e){
+        this.Driver1=e
+        this.dropoff['Driver1']=this.driverdata[i]['_id']
+        break
+      }
+    }
+    console.log(this.dropoff)
+  }
+  selectChangeDriver2(e){
+    for (var i = 0; i < this.driverdata.length; i++) {
+      if(this.driverdata[i]['firstname']==e){
+        this.Driver2=e
+        this.dropoff['Driver2']=this.driverdata[i]['_id']
+        break
+      }
+    }
+    console.log(this.dropoff)
+  }
+
 }

@@ -32,6 +32,8 @@ export class PickDropFormComponent implements OnInit {
  postalCodeList=[]
  debouncePostalCode;
  showspinner=false
+ Driver1=''
+ Driver2=''
 
   constructor(public dialogRef: MatDialogRef < PickDropFormComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,private _trucksservice: TrucksService,
@@ -77,28 +79,7 @@ export class PickDropFormComponent implements OnInit {
           "Name": "carrier"
       }
     ]
-    // this.loadstatusDetails=[
-    //   {
-    //       "ID": 0,
-    //       "Name": "Booked"
-    //   },
-    //   {
-    //       "ID": 1,
-    //       "Name": "Arrival Delay"
-    //   },
-    //   {
-    //       "ID": 2,
-    //       "Name": "Arrival Ontime"
-    //   },
-    //   {
-    //       "ID": 3,
-    //       "Name": "Loaded Delay"
-    //   },
-    //   {
-    //       "ID": 4,
-    //       "Name": "Loaded Ontime"
-    //   }
-    // ]
+  
     this.loadstatusDetails = [
       {
         "ID": 0,
@@ -240,6 +221,26 @@ export class PickDropFormComponent implements OnInit {
       this.pickup['city']=option.city
       this.pickup['state']=option.state
       this.pickup['country']=option.country
+  }
+   selectChangeDriver1(e){
+    for (var i = 0; i < this.driverdata.length; i++) {
+      if(this.driverdata[i]['firstname']==e){
+        this.Driver1=e
+        this.pickup['Driver1']=this.driverdata[i]['_id']
+        break
+      }
+    }
+    console.log(this.pickup)
+  }
+  selectChangeDriver2(e){
+    for (var i = 0; i < this.driverdata.length; i++) {
+      if(this.driverdata[i]['firstname']==e){
+        this.Driver2=e
+        this.pickup['Driver2']=this.driverdata[i]['_id']
+        break
+      }
+    }
+    console.log(this.pickup)
   }
 
 }

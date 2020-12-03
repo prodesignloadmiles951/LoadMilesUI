@@ -12,7 +12,7 @@ export class LoginService {
     public url:string;
 constructor(private http:Http,
     private _headerService:AuthHeaderService  ){
-        this.url=environment.loginurl;
+        this.url=environment.loginurl; 
 }
 Login(email:string,password:string){
   let options = new RequestOptions({ headers: this._headerService.getHeader() });

@@ -173,19 +173,21 @@ export class CompanyformComponent implements OnInit {
           break
         }
       }
-      var userid = {}
-      for (var i = 0; i < this.username.length; i++) {
-        if (addObj['email'] == this.username[i]['ID']) {
-          userid = this.username[i]['_id']
-          break
-        }
-      }
+      // var userid = {}
+      console.log(this.username)
+      // for (var i = 0; i < this.username.length; i++) {
+      //   if (addObj['email'] == this.username[i]['ID']) {
+      //     userid = this.username[i]['_id']
+      //     break
+      //   }
+      // }
       delete addObj['__KEY__']
-      delete addObj['roleType']
-      var userObj = {}
-      userObj['company'] = addObj['company']
-      userObj['role'] = addObj['role']
-      this._companyservice.onCreateRole(userObj, userid).subscribe(res => {
+      // delete addObj['roleType']
+      // var userObj = {}
+      // userObj['company'] = addObj['company']
+      // userObj['role'] = addObj['role']
+      console.log(addObj)
+      this._companyservice.onCreateRole(addObj).subscribe(res => {
         console.log(res)
         this._toaster.info("Userrole Data Submitted", "Success", { timeOut: 3000, });
       }, error => {

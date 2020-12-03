@@ -132,7 +132,11 @@ export class LoadformComponent implements OnInit {
   }
   getCustomerdata(){
     this._customersservice.getCustomersData().subscribe(data => {
-      this.customerdata=data
+      for (var i = 0; i < data.length; i++) {
+        if(data[i].companyname != undefined){
+          this.customerdata.push(data[i])
+        }
+      }
         });
   }
  

@@ -23,8 +23,8 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="driver1">Driver1:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="dropoff.Driver1" [ngModelOptions]="{standalone: true}">
-                <option value="" disabled selected hidden>Driver</option>
+              <select class="form-control" [(ngModel)]="Driver1" [ngModelOptions]="{standalone: true}" (ngModelChange)="selectChangeDriver1($event)">
+                <option value="" disabled selected hidden></option>
                 <option *ngFor="let cmp of driverdata" [value]="cmp.firstname">
                   <span>{{cmp.firstname}}</span>
                 </option>
@@ -34,8 +34,8 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="driver2">Driver2:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="dropoff.Driver2" [ngModelOptions]="{standalone: true}">
-                <option value="" disabled selected hidden>Driver</option>
+              <select class="form-control" [(ngModel)]="Driver2" [ngModelOptions]="{standalone: true}" (ngModelChange)="selectChangeDriver2($event)">
+                <option value="" disabled selected hidden></option>
                 <option *ngFor="let driver of driverdata" [value]="driver.firstname">
                   <span>{{driver.firstname}}</span>
                 </option>
