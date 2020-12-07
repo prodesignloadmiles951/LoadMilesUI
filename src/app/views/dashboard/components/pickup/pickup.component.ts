@@ -237,7 +237,7 @@ export class PickupComponent implements OnInit {
     for (var i = 0; i < this.pickuppopupdata.length; i++) {
         this.pickuppopupdata[i]['SlNo']=i+1
     }
-    this._loadservice.deleteLoadData(data.data).subscribe(data => {
+    this._pickup.DeletePickup(data.data).subscribe(data => {
       console.log(data)
       this._toaster.success("Pickup successfully deleted", "Success", {timeOut: 3000});
     });

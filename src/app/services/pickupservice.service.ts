@@ -34,9 +34,9 @@ export class PickupserviceService {
     return this.http.put(this.pickupform+"/"+obj._id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 
-    DeletePickup(id) {
+    DeletePickup(data) {
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    return this.http.delete(this.pickupform+"/"+id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+        return this.http.delete(this.pickupform + "/" + data._id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
     getzipcodeData(id) {
     let options = new RequestOptions({ headers: this._headerService.getHeader() });

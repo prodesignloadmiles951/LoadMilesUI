@@ -212,7 +212,7 @@ export class DropoffComponent implements OnInit {
     for (var i = 0; i < this.dropoffpopupdata.length; i++) {
         this.dropoffpopupdata[i]['SlNo']=i+1
     }
-    this._loadservice.deleteLoadData(data.data).subscribe(data => {
+    this._dropoff.DeleteDropoff(data.data).subscribe(data => {
       console.log(data)
       this._toaster.success("Dropoff successfully deleted", "Success", {timeOut: 3000});
     });

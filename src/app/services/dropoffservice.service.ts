@@ -31,9 +31,9 @@ export class DropoffserviceService {
     return this.http.put(this.dropoffform+"/"+obj._id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 
-    DeleteDropoff(_id) {
+    DeleteDropoff(data) {
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    return this.http.delete(this.dropoffform+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+        return this.http.delete(this.dropoffform + "/" + data._id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 
 }

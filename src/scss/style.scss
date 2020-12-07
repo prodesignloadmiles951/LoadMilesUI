@@ -271,6 +271,9 @@ tr.dx-row.dx-data-row.dx-row-lines.dx-selection {
     padding-right: 4px;
     align-self: center;
     cursor: pointer;
+    &.status-main{
+      max-width: 200px;
+    }
     .status-name{
       font-size: 14px;
       color: #000;
