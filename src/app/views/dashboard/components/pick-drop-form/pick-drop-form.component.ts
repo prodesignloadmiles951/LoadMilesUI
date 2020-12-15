@@ -1,6 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { TrucksService } from '../../../../services/trucks.service';
 import { DriversService } from '../../../../services/driver.service';
+import { GooglePinSearch } from '../../../../services/google-location.service';
 import { TrailerService } from '../../../../services/trailers.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -12,7 +13,7 @@ import { PickupserviceService } from '../../../../services/pickupservice.service
   selector: 'app-pick-drop-form',
   templateUrl: './pick-drop-form.component.html',
   styleUrls: ['./pick-drop-form.component.scss'],
-  providers: [TrucksService, TrailerService, , DriversService, ToastrService, PickupserviceService]
+  providers: [TrucksService, TrailerService, , DriversService, ToastrService, PickupserviceService, GooglePinSearch]
 })
 export class PickDropFormComponent implements OnInit {
  pickup={}
@@ -40,6 +41,7 @@ export class PickDropFormComponent implements OnInit {
         private _driverService: DriversService,
         private _pickup: PickupserviceService,
         private _trailersService: TrailerService,
+    private _gPin: GooglePinSearch,
         private _toaster: ToastrService) {
   	console.log(this.data)
     this.debouncePostalCode = this.debounce(this.postalCodeCheck.bind(this), 1000, null);
@@ -129,6 +131,21 @@ export class PickDropFormComponent implements OnInit {
     var obj={}
     obj['file']=this.item
     this.base64FileArray.push(obj)
+  }
+  getAddress(referPickup){
+    this._gPin.getAddress(referPickup).subscribe(data => {
+      console.log(data);
+      if (data.status === "OK") {
+        this.pickup['location'] = data.results[0];
+        this.pickup['formatted_address'] = this.pickup['location'].formatted_address;
+        console.log(this.pickup);
+    } else if (data.status === 'ZERO_RESULTS') {
+        this.pickup['location'] = {};
+        this.pickup['formatted_address'] = '';
+        this._toaster.error("No results found!!", "Failed", { timeOut: 2000, });
+    }
+    });
+   
   }
   onUploadFile(){
       let arr3 = this.finalArry.map((item, i) => Object.assign({}, item, this.base64FileArray[i]));

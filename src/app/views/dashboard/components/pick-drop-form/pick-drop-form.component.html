@@ -128,7 +128,16 @@
               <input type="text" class="form-control" id="address2" name="address2" #address2="ngModel" [(ngModel)]="pickup.address2" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
-          <div class="form-group row">
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label" for="address2">Location:</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control with-go-btn" id="formatted_address" name="formatted_address" #address2="ngModel"
+              [(ngModel)]="pickup.formatted_address" [ngModelOptions]="{standalone: true}"
+              >
+              <button type="button" class="get-address-btn" (click)="getAddress(pickup.formatted_address)">Go</button>
+          </div>
+        </div>
+          <!-- <div class="form-group row">
             <label class="col-md-4 col-form-label" for="zipcode">Zip Code:</label>
             <div class="col-md-8">
               <mat-form-field class="form-element-signup">
@@ -159,7 +168,7 @@
             <div class="col-md-8">
               <input type="text" class="form-control" id="country" name="country" #country="ngModel" [(ngModel)]="pickup.country" [ngModelOptions]="{standalone: true}" disabled>
             </div>
-          </div>
+          </div> -->
           <div class="form-group row">
             <label for="file-upload" [ngClass]="mode?'':'disble'" class="custom-file-upload">
               <i class="fa fa-cloud-upload"></i> Upload

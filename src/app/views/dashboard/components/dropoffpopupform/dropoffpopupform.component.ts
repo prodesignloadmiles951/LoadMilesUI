@@ -2,6 +2,7 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { TrucksService } from '../../../../services/trucks.service';
 import { DriversService } from '../../../../services/driver.service';
 import { TrailerService } from '../../../../services/trailers.service';
+import { GooglePinSearch } from '../../../../services/google-location.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -11,7 +12,7 @@ import { PickupserviceService } from '../../../../services/pickupservice.service
   selector: 'app-dropoffpopupform',
   templateUrl: './dropoffpopupform.component.html',
   styleUrls: ['./dropoffpopupform.component.scss'],
-  providers: [TrucksService, TrailerService, , DriversService, ToastrService, PickupserviceService]
+  providers: [TrucksService, TrailerService, , DriversService, ToastrService, PickupserviceService, GooglePinSearch]
 })
 export class DropoffpopupformComponent implements OnInit {
 dropoffpopupForm: FormGroup;
@@ -40,6 +41,7 @@ driverdata= [];
         private _driverService: DriversService,
         private _trailersService: TrailerService,
         private _pickup: PickupserviceService,
+    private _gPin: GooglePinSearch,
         private _toaster: ToastrService) { 
     this.debouncePostalCode = this.debounce(this.postalCodeCheck.bind(this), 1000, null);
   }
@@ -140,6 +142,21 @@ driverdata= [];
     ]
 
     console.log(this.dropoff)
+  }
+  getAddress(referPickup) {
+    this._gPin.getAddress(referPickup).subscribe(data => {
+      console.log(data);
+      if (data.status === "OK") {
+        this.dropoff['location'] = data.results[0];
+        this.dropoff['formatted_address'] = this.dropoff['location'].formatted_address;
+        console.log(this.dropoff);
+      } else if (data.status === 'ZERO_RESULTS'){
+        this.dropoff['location'] = {};
+        this.dropoff['formatted_address'] = '';
+        this._toaster.error("No results found!!", "Failed", { timeOut: 2000, });
+      }
+    });
+
   }
   getDriverData() {
         this._driverService.getDriversData().subscribe(data => {
