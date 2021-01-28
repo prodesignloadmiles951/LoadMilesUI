@@ -25,4 +25,9 @@ export class FuelcardService {
     return this.http.get(this.fuelCardurl,options).pipe(map(response=>response.json().data ? [] : response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 
+    EditVendor(obj) {
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.put(this.fuelCardurl + "/" + obj._id, obj, options).pipe(map(response => response.json()), catchError((error: Response) => { return observableThrowError(error); }));
+    }
+
 }

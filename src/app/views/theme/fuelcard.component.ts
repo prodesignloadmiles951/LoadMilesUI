@@ -35,15 +35,28 @@ export class FuelcardComponent implements OnInit {
 
     submit() {
         console.log(this.pageFilters);
-        this._fuelcardService.SendForm(this.pageFilters).subscribe(response => {
-            this.submitted = true;
-            this._toaster.info("Fuel card Data Submitted","Success");
-            this.router.navigateByUrl("theme/fuelcard-list");
-          },error=>{
-            this.submitted=false;
-            this._toaster.error("Submit Again","Failed");
-          });
-          this.getData();
+        if (this.pageFilters && this.pageFilters['EditMode']) {
+            this._fuelcardService.EditVendor(this.pageFilters).subscribe(response => {
+                this.submitted = true;
+                this._toaster.info("Fuel card Data Submitted", "Success");
+                // this.router.navigateByUrl("theme/fuelcard-list");
+                this.dialogRef.close(null)
+            }, error => {
+                this.submitted = false;
+                this._toaster.error("Submit Again", "Failed");
+            });
+        } else {
+            this._fuelcardService.SendForm(this.pageFilters).subscribe(response => {
+                this.submitted = true;
+                this._toaster.info("Fuel card Data Submitted", "Success");
+                this.router.navigateByUrl("theme/fuelcard-list");
+            }, error => {
+                this.submitted = false;
+                this._toaster.error("Submit Again", "Failed");
+            });
+            this.getData();
+        }
+        
        }
     getData() {
         this._fuelcardService.getFuelcardData().subscribe(data => {
