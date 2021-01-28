@@ -36,15 +36,29 @@ export class FactorComponent implements OnInit {
 
     submit() {
         console.log(this.pageFilters);
-        this._factorService.SendForm(this.pageFilters).subscribe(response => {
-            this.submitted = true;
-            this._toaster.info("Factor Data Submitted","Success");
-            this.router.navigateByUrl("theme/factor-list");
-          },error=>{
-            this.submitted=false;
-            this._toaster.error("Submit Again","Failed");
-          });
-          this.getData();
+        if (this.pageFilters && this.pageFilters['EditMode']) {
+            this._factorService.EditFactor(this.pageFilters).subscribe(response => {
+                this.submitted = true;
+                this._toaster.info("Factor Data Submitted", "Success");
+                // this.router.navigateByUrl("theme/factor-list");
+                this.dialogRef.close(null)
+            }, error => {
+                this.submitted = false;
+                this._toaster.error("Submit Again", "Failed");
+            });
+         }
+        else {
+            this._factorService.SendForm(this.pageFilters).subscribe(response => {
+                this.submitted = true;
+                this._toaster.info("Factor Data Submitted", "Success");
+                this.router.navigateByUrl("theme/factor-list");
+            }, error => {
+                this.submitted = false;
+                this._toaster.error("Submit Again", "Failed");
+            });
+            this.getData();
+        }
+        
        }
     getData() {
         this._factorService.getFactorData().subscribe(data => {
