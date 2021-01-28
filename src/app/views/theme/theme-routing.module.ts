@@ -1,3 +1,4 @@
+import { FuelcardListComponent } from './fuelcard-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CompanyComponent } from './company.component';
@@ -143,6 +144,12 @@ const routes: Routes = [
         component:FuelcardComponent,
         runGuardsAndResolvers:'always',
         data:{title:'Fuelcard'}
+      },
+      {
+        path:'fuelcard-list',
+        component:FuelcardListComponent,
+        runGuardsAndResolvers:'always',
+        data:{title:'Fuelcard List'}
       },
       {
         path:'accident',

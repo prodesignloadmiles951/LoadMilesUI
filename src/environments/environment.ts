@@ -25,8 +25,10 @@ export const environment = {
   roledetailsUrl: 'http://3.139.89.46:8081/roleapi/role',
   newcompanyurl: 'http://3.139.89.46:8081/userapi/user/company',
   newcompanycreateurl: 'http://3.139.89.46:8081/companyapi/company/',
-  userdetailsurl: 'http://3.139.89.46:8081/userapi/user'
-  
+  userdetailsurl: 'http://3.139.89.46:8081/userapi/user',
+  vendorurl: 'http://54.166.101.176:8081/vendorapi/vendor',
+  fuelCardurl: 'http://54.166.101.176:8081/fuelCardapi/fuelCard',
+  factorurl: 'http://54.166.101.176:8081/factorapi/factor',
 
   // url:"http://localhost:62585/api/",
   // conurl:"http://localhost:62585/api/Transactions/",

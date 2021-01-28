@@ -78,7 +78,6 @@ export class CarrierlistComponent implements OnInit {
          }
         }
 
-    
     Add() {
         let dialogConfig = Object.assign({ width: "1000px" },{ data: {} })
         let editDialogRef = this.dialog.open(CarrierformComponent, dialogConfig);

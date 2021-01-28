@@ -1,0 +1,77 @@
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-header"> Search For FuelCard
+            <strong></strong> <span *ngIf="Isusersloading"><img *ngIf="Isusersloading"
+                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                Loading..</span>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <input type="text" id="search" name="search" class="form-control" [(ngModel)]="SearchText"
+                            (keypress)="onSubmit()" (keyup.enter)="onSubmit()" placeholder="Find a FuelCard">
+                    </div>
+                    <span>
+                      <button type="reset" style="float: left" class="btn btn-sm btn-danger" (click)="ClearSearch()"><i class="fa fa-ban"></i> Clear Search</button>    
+                    </span>  &nbsp;&nbsp; 
+                    <!-- <span>
+                      <button type="add" style="float: left" class="btn btn-sm btn-success" (click)="Add()"><i class="fa fa-plus"></i> New Truck</button>    
+                    </span> -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">  FuelCard List
+                <span class="float-right">
+                    <button type="add" class="btn btn-sm btn-success" (click)="Add()"><i class="fa fa-plus"></i> New Factor</button>    
+                </span>              
+            </div>
+            <div class="card-body">
+                <div class="animated fadeIn">
+              </div>
+              <table class="table table-responsive-sm table-hover table-outline mb-0">
+                <thead>
+                  <tr>
+                    <th>S.no</th>
+                    <th>Company Name</th>
+                    <th>Dispaly Name</th>
+                    <th>Account Number</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+    
+                <tbody>
+                  <tr>
+                    <tr *ngFor="let fuelcard of fuelcarddata; let i=index">
+                        <td>{{i + 1}}</td>
+                        <td>{{fuelcard.companyname}}</td>
+                        <td>{{fuelcard.displayname}}</td>
+                        <td>{{fuelcard.accountnumber}}</td>
+                        <td>{{fuelcard.phone}}</td>
+                        <td>{{fuelcard.email}}</td>
+                        <td>
+                            <a style="cursor: pointer;color: #20a8d8;"(click)="viewData(fuelcard);">View</a> |
+                            <a style="cursor: pointer;color: #20a8d8;" (click)="editData(fuelcard);">Edit</a>      
+                          <!-- <a style="cursor: pointer;color: #20a8d8;"
+                              (click)="deleteTrailers(trailer)">Delete</a> -->
+                      </td>
+                    </tr>
+                </tbody>
+    
+                <!-- <tbody *ngIf="logslist.length==0">
+                  <tr>
+                    <td class="alert alert-warning" style="width:1050px;" align="center" colspan="10"><span>No records available</span></td>
+                  </tr>
+                </tbody> -->
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

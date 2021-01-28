@@ -1,3 +1,4 @@
+import { FuelcardListComponent } from './fuelcard-list.component';
 // Angular
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -88,6 +89,7 @@ import { CompanyformComponent } from './companyform/companyform.component';
     CompanylistComponent,
     VendorlistComponent,
     FactorlistComponent,
+    FuelcardListComponent,
     TruckformComponent,
     TrailerformComponent,
     DriverformComponent,

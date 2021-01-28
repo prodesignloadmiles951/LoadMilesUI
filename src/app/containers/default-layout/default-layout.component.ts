@@ -73,7 +73,7 @@ export class DefaultLayoutComponent implements OnDestroy {
   },
   {
     name: 'Fuel Card',
-    url: '/theme/fuelcard',
+    url: '/theme/fuelcard-list',
     icon: 'icon-info'
   },
   {

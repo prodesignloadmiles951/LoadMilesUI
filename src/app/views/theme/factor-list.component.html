@@ -37,30 +37,28 @@
                 <thead>
                   <tr>
                     <th>S.no</th>
-                    <th>Unit Number</th>
-                    <th>Trailer Type</th>
-                    <th>make</th>
-                    <th>Color</th>
-                    <th>Year</th>
+                    <th>Company Name</th>
+                    <th>Dispaly Name</th>
+                    <th>Account Number</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
                     <th>Action</th>
                   </tr>
                 </thead>
     
                 <tbody>
                   <tr>
-                    <tr *ngFor="let trailer of data; let i=index">
+                    <tr *ngFor="let factor of factordata; let i=index">
                         <td>{{i + 1}}</td>
-                        <td>{{trailer.t}}</td>
-                        <td>{{trailer.trailerType}}</td>
-                        <td>{{trailer.make}}</td>
-                        <td>{{trailer.color}}</td>
-                        <td>{{trailer.year}}</td>
+                        <td>{{factor.companyname}}</td>
+                        <td>{{factor.displayname}}</td>
+                        <td>{{factor.accountnumber}}</td>
+                        <td>{{factor.phone}}</td>
+                        <td>{{factor.email}}</td>
                         <td>
-                          <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                              (click)="viewModal.show();viewData(trailer);">View</a> |
+                            <a style="cursor: pointer;color: #20a8d8;"(click)="viewData(factor);">View</a>
     
-                          <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                          (click)="editModal.show();edti(user);">Edit</a>    
+                            <!-- <a style="cursor: pointer;color: #20a8d8;" (click)="editData(factor);">Edit</a>    -->
                           
                           <!-- <a style="cursor: pointer;color: #20a8d8;"
                               (click)="deleteTrailers(trailer)">Delete</a> -->

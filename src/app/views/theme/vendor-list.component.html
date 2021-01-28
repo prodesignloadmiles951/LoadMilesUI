@@ -21,7 +21,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> 
     <div class="row">
         <div class="col-lg-12">
           <div class="card">
@@ -37,30 +37,28 @@
                 <thead>
                   <tr>
                     <th>S.no</th>
-                    <th>Unit Number</th>
-                    <th>Trailer Type</th>
-                    <th>make</th>
-                    <th>Color</th>
-                    <th>Year</th>
+                    <th>Comapny Name</th>
+                    <th>Display Name</th>
+                    <th>SSN / Tax Id</th>
+                    <th>Phone Number</th>
+                    <th>Account Number</th>
                     <th>Action</th>
                   </tr>
                 </thead>
     
                 <tbody>
                   <tr>
-                    <tr *ngFor="let trailer of data; let i=index">
+                    <tr *ngFor="let vendor of vendordata; let i=index">
                         <td>{{i + 1}}</td>
-                        <td>{{trailer.t}}</td>
-                        <td>{{trailer.trailerType}}</td>
-                        <td>{{trailer.make}}</td>
-                        <td>{{trailer.color}}</td>
-                        <td>{{trailer.year}}</td>
+                        <td>{{vendor.companyname}}</td>
+                        <td>{{vendor.displayname}}</td>
+                        <td>{{vendor.ssn}}</td>
+                        <td>{{vendor.phone}}</td>
+                        <td>{{vendor.accountnumber}}</td>
                         <td>
-                          <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                              (click)="viewModal.show();viewData(trailer);">View</a> |
+                          <a style="cursor: pointer;color: #20a8d8;"(click)="viewData(vendor);">View</a> |
     
-                          <a style="cursor: pointer;color: #20a8d8;" data-toggle="modal"
-                          (click)="editModal.show();edti(user);">Edit</a>    
+                          <a style="cursor: pointer;color: #20a8d8;" (click)="editData(vendor);">Edit</a>    
                           
                           <!-- <a style="cursor: pointer;color: #20a8d8;"
                               (click)="deleteTrailers(trailer)">Delete</a> -->
@@ -85,7 +83,7 @@
       <div class="modal-dialog modal-lg" style="max-width: 50%" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                  <h4 class="modal-title">Manage Trailer - <span class="badge badge-success" >{{selectedTrailer}}</span></h4>
+                  <h4 class="modal-title">Manage Vendor - <span class="badge badge-success" >{{selectedVendor}}</span></h4>
                   <button type="button" class="close" (click)="viewModal.hide()" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>

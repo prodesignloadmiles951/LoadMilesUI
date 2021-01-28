@@ -1,1 +1,173 @@
-<p>FuelCard Works!</p>
+
+<button type="button" class="close" (click)="hidePopup()" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+<form class="form-horizontal" #vendorForm="ngForm" novalidate autocomplete="off"> 
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-header">Fuel Card Information</div>
+          <div class="card-body">
+            
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="companyname">Company Name:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="companyname" placeholder="" name="companyname" #companyname="ngModel" [(ngModel)]="pageFilters.companyname">
+                    <!-- <div *ngIf="unitNumber.errors && (unitNumber.dirty || unitNumber.touched)" style="font-size: smaller;">
+                      <div [hidden]="!unitNumber.errors.required">
+                         <span style="color: red;">Unit Number is required</span>
+                      </div>
+                      <div [hidden]="!unitNumber.errors?.pattern">
+                        <span style="color: red;">Enter Numbers only</span>
+                     </div>
+                    </div> -->
+                </div>
+              </div>
+
+              
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="displayname">Display Name:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="displayname" name="displayname" #displayname="ngModel" [(ngModel)]="pageFilters.displayname">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="accountnumber">Account Number:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="accountnumber" name="accountnumber" #accountnumber="ngModel" [(ngModel)]="pageFilters.accountnumber">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="currency">Currency:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="currency" name="currency" #currency="ngModel" [(ngModel)]="pageFilters.currency">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="discountrate">Discount Rate:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="discountrate" name="discountrate" #discountrate="ngModel" [(ngModel)]="pageFilters.discountrate">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="creditlimit">Credit Limit:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="creditlimit" name="creditlimit" #creditlimit="ngModel" [(ngModel)]="pageFilters.creditlimit">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="paymentterms">Payment Terms:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="paymentterms" name="paymentterms" #paymentterms="ngModel" [(ngModel)]="pageFilters.paymentterms">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="status">Status:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="status" name="status" #status="ngModel" [(ngModel)]="pageFilters.status">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="erpgl">ERP GL:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="erpgl" name="erpgl" #erpgl="ngModel" [(ngModel)]="pageFilters.erpgl">
+                </div>
+              </div>
+
+            </div>
+        </div>
+
+      </div>
+
+      
+      <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header"> Contact Information</div>
+            <div class="card-body">
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="contactname">Contact Name:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="contactname" name="contactname" #contactname="ngModel" [(ngModel)]="pageFilters.contactname">
+                    </div>
+                </div>
+                  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="phone">Phone:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="phone" name="phone" #phone="ngModel" [(ngModel)]="pageFilters.phone">
+                  </div>
+                </div>
+                
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="email">Email:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="pageFilters.email">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address1">Address 1:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="address1" name="address1" #address1="ngModel" [(ngModel)]="pageFilters.address1">
+                  </div>
+              </div>
+
+              <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="address2">Address 2:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="address2" name="address2" #address2="ngModel" [(ngModel)]="pageFilters.address2">
+                  </div>
+              </div>
+
+              <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="city">City:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pageFilters.city">
+                  </div>
+              </div>
+
+              <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="state">State:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pageFilters.state">
+                  </div>
+              </div>
+
+              <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="zipcode">Zipcode:</label>
+                  <div class="col-md-9">
+                      <input type="text" class="form-control" id="zipcode" name="zipcode" #zipcode="ngModel" [(ngModel)]="pageFilters.zipcode">
+                  </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="country">Country:</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="country" name="country" #country="ngModel" [(ngModel)]="pageFilters.country">
+                </div>
+            </div>
+
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+    <div class="card-footer">
+        <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+          <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" 
+          />
+          Submit</button>&nbsp;&nbsp;
+        <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+    </div>
+
+  </form>
+
