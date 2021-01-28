@@ -27,8 +27,7 @@ export class VendorService {
     
     EditVendor(obj) {
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    // return this.http.put(this.vendorurl+"/"+obj._id ,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
-    return this.http.put(this.vendorurl+"/"+obj._id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+    return this.http.put(this.vendorurl+"/"+obj._id ,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 
     // DeleteVendor(_id) {

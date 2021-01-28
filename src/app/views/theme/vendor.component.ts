@@ -38,15 +38,28 @@ export class VendorComponent implements OnInit {
 
     submit() {
         console.log(this.pageFilters);
-        this._vendorService.SendForm(this.pageFilters).subscribe(response => {
-            this.submitted = true;
-            this._toaster.info("Vendor Data Submitted","Success");
-            this.router.navigateByUrl("theme/vendor-list");
-          },error=>{
-            this.submitted=false;
-            this._toaster.error("Submit Again","Failed");
-          });
-          this.getData();
+        if (this.pageFilters && this.pageFilters['EditMode']){
+            
+            this._vendorService.EditVendor(this.pageFilters).subscribe(response => {
+                this.submitted = true;
+                this._toaster.info("Vendor Data Submitted", "Success");
+                // this.router.navigateByUrl("theme/vendor-list");
+                this.dialogRef.close(null)
+            }, error => {
+                this.submitted = false;
+                this._toaster.error("Submit Again", "Failed");
+            });
+        } else {
+            this._vendorService.SendForm(this.pageFilters).subscribe(response => {
+                this.submitted = true;
+                this._toaster.info("Vendor Data Submitted", "Success");
+                this.router.navigateByUrl("theme/vendor-list");
+            }, error => {
+                this.submitted = false;
+                this._toaster.error("Submit Again", "Failed");
+            });
+            this.getData();
+        }
        }
     getData() {
         this._vendorService.getVendorData().subscribe(data => {
