@@ -83,7 +83,6 @@ export class TrailerformComponent implements OnInit {
     ]
     if(this.data['files'] != undefined){
       this._trailersService.getFileList().subscribe(response => {
-          console.log(response)
           this.editFileList=[]
           var fileArray=response.data
           fileArray.forEach(element => {
@@ -239,7 +238,6 @@ export class TrailerformComponent implements OnInit {
           this._toaster.info("Trailer Data Submitted","Success", {timeOut: 3000,});
           this.btnHide=false
           this.dialogRef.close(response)
-          // this.router.navigateByUrl("theme/trailers-list");
             }
 
 

@@ -216,7 +216,6 @@ export class LoadcustomerformComponent implements OnInit {
       }else{
         this._toaster.error("Enter MC Details","Failed", {timeOut: 2000});
        }
-        console.log(this.pageFilters);
        }
      }
 

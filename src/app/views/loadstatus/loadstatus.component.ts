@@ -139,9 +139,7 @@ public company: CompanyFilters;
      console.log(e)
    }
    onEdit(e){
-     console.log(e.data)
      this._loadservice.editLoadData(e.data).subscribe(data => {
-      console.log(data)
       this._toaster.success("Loads successfully updated", "Success", {timeOut: 3000,});
     },error => {
            this._toaster.error("Company not updated", "Try Again", {timeOut: 2000,});
@@ -160,7 +158,7 @@ public company: CompanyFilters;
           }
           this.statusCounts['loads'] = (this.statusCounts['loads'] || 0) + 1;
           this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] = this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] ? (this.statusCounts[load.lastUpdated.type + '-' + load.lastUpdated.status] + 1) : 1;
-          console.log(load.lastUpdated.type + '-' + load.lastUpdated.status)
+          // console.log(load.lastUpdated.type + '-' + load.lastUpdated.status)
         }
       }
     })
@@ -169,12 +167,9 @@ public company: CompanyFilters;
   getData() {
     this.loadDetails=[]
     var session=this.authService.getloginUser()
-     console.log(session.company.companyname) 
     this._loadservice.getLoadData().subscribe(data => {
-      console.log(data)
       var res=data
       this._customersservice.getCustomersData().subscribe(resp => {
-        console.log(resp)
         if (Object.keys(this.statusCounts).length){
           let keys = Object.keys(this.statusCounts);
           keys.forEach(item => {
@@ -248,7 +243,6 @@ public company: CompanyFilters;
       active, type
     };
     this.loadDetails = this.statusFilterPipe.transform(this.savyLoadDetails, this.activeFilter);
-    console.log(this.loadDetails);
   }
 
   onEditClick(editdata){   
@@ -260,7 +254,6 @@ public company: CompanyFilters;
     let dialogConfig = Object.assign({ width: "1000px" },{ data: editLoad })
     let editDialogRef = this.dialog.open(LoadeditformComponent, dialogConfig);
     editDialogRef.afterClosed().subscribe((data) => {
-      console.log(data)
       this.getData()  
       // if(data == null){}else{
       //   this.getData()        

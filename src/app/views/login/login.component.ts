@@ -32,9 +32,7 @@ export class LoginComponent {
           localStorage.setItem('selectedCompanyName', data.company.companyname);
           localStorage.setItem('userId', data._id);
           this.authenticate.setLogin(data);
-          console.log(data)
           if(data['role']['name'] == "Driver"){
-            console.log("hhhg")
             this.router.navigateByUrl('theme/driver-list');
           }
           this.router.navigateByUrl("dashboard");

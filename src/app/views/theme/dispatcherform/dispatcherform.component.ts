@@ -88,7 +88,6 @@ export class DispatcherformComponent implements OnInit {
 
     if(this.data['files'] != undefined){
       this._trailersService.getFileList().subscribe(response => {
-          console.log(response)
           this.editFileList=[]
           var fileArray=response.data
           fileArray.forEach(element => {

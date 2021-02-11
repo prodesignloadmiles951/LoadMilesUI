@@ -149,7 +149,6 @@ export class CarrierformComponent implements OnInit {
 
      if(this.data['files'] != undefined){
       this._trailersService.getFileList().subscribe(response => {
-          console.log(response)
           this.editFileList=[]
           var fileArray=response.data
           fileArray.forEach(element => {
@@ -278,20 +277,17 @@ export class CarrierformComponent implements OnInit {
     this.payrateinfodata = eventName.key
   }
   onpayrateDelete(eventName) {
-    console.log(eventName.key)
     this._carrierService.DeleteCarrier(eventName.key).subscribe(data => {
       console.log(data)
     });
   }
   ondrugAdd(eventName) {
-      console.log(eventName.key) 
     this.drugdata = eventName.key
   }
   ondrugEdit(eventName){
     this.drugdata = eventName.key
   }
   ondrugDelete(eventName) {
-    console.log(eventName.key)
     this._carrierService.DeleteCarrier(eventName.key).subscribe(data => {
       console.log(data)
     });

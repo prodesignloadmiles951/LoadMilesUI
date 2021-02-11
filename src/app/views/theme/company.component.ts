@@ -30,24 +30,5 @@ export class CompanyComponent implements OnInit {
           
 }
 
-  // submit() {
-  //   this.submitted = true;
-  //   this._companyservice.SendForm(this.pageFilters).subscribe(response => {
-  //     this.submitted = true;
-  //     this._toaster.info("Data Submitted","Success");
-  //     this.router.navigateByUrl("/theme/company-list");
-  //   },error=>{
-  //     this.submitted=false;
-  //     this._toaster.error("Submit Agian","Faild");
-  //   });
-  //   // console.log(this.pageFilters);
-  //  }
-
-
-  //  editCompany() {
-  //   this._companyservice.EditCompany(this.pageFilters).subscribe(response => {
-  //     this._toaster.success("Company Details updated", "Success");
-  //   }, error => {this._toaster.error(error, "Error"); });
-  // } 
 
 }

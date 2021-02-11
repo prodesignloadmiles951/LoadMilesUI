@@ -15,7 +15,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   providers: [DriversService, TrucksService, TrailerService ]
 })
 export class DriverformComponent implements OnInit {
-  // public pageFilters: DriverFilters;
   pageFilters={};
   Driverlistdata = new Array<DriverFilters>();
   payratedata=[];

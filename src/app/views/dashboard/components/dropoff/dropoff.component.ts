@@ -80,14 +80,12 @@ export class DropoffComponent implements OnInit {
           this._toaster.success("Dropoff successfully updated", "Success");
         }, error => {
            this._toaster.error("error", "Try Again");
-            console.log(this.data)
         })        
   }
 
   getDropoffForm(){
     this._dropoff.getdroppoffData().subscribe(data => {
       this.data = data
-      console.log(this.data)
     })
   }
 

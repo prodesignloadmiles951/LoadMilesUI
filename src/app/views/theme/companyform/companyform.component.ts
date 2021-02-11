@@ -105,7 +105,6 @@ export class CompanyformComponent implements OnInit {
   }
 
   update() {
-    console.log(this.data)
     this.btnHide = true
     this._companyservice.EditCompany(this.data).subscribe(response => {
       this._toaster.success("company successfully updated", "Success", { timeOut: 3000, });
@@ -122,7 +121,6 @@ export class CompanyformComponent implements OnInit {
     } else {
       this.submitted = true;
       if (this.pageFilters.companyname !== undefined) {
-        console.log(this.pageFilters)
         this.btnHide = true
         this._companyservice.SendForm(this.pageFilters).subscribe(response => {
           this.submitted = true;
@@ -144,7 +142,6 @@ export class CompanyformComponent implements OnInit {
         res[i]['ID'] = i
       }
       this.roleArray = res
-      console.log(this.roleArray)
     })
   }
   getusers() {
@@ -153,7 +150,6 @@ export class CompanyformComponent implements OnInit {
         res[i]['ID'] = i
       }
       this.username = res
-      console.log(this.username)
     })
   }
   hidePopup() {
@@ -173,19 +169,9 @@ export class CompanyformComponent implements OnInit {
           break
         }
       }
-      // var userid = {}
-      console.log(this.username)
-      // for (var i = 0; i < this.username.length; i++) {
-      //   if (addObj['email'] == this.username[i]['ID']) {
-      //     userid = this.username[i]['_id']
-      //     break
-      //   }
-      // }
+    
       delete addObj['__KEY__']
-      // delete addObj['roleType']
-      // var userObj = {}
-      // userObj['company'] = addObj['company']
-      // userObj['role'] = addObj['role']
+      
       console.log(addObj)
       this._companyservice.onCreateRole(addObj).subscribe(res => {
         console.log(res)
@@ -208,9 +194,7 @@ export class CompanyformComponent implements OnInit {
       }
     }
     UserObj['userStatus'] = userid['userStatus']
-    console.log(UserObj)
     this._companyservice.editrole(userid._id, UserObj).subscribe(res => {
-      console.log(res)
       this._toaster.info("Userrole Data Updated", "Success", { timeOut: 3000, });
     }, error => {
       this._toaster.error("Submit Again", "Failed", { timeOut: 2000, });
