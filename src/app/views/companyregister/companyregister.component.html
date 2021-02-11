@@ -1,12 +1,14 @@
 <div class="siteContainer">
-  <div class="col-md-12" style="display: flex; justify-content: space-between;">
-   <!--  <div class="card">
+  <div class="col-md-12" style="display: flex; justify-content: center;">
+    <div class="card">
       <div class="carousel-inner">
         <div class="carousel-item active"><img class="d-block w-100" alt="image [400x400]" src="assets/img/brand/Load-miles.PNG" data-holder-rendered="true">
         </div>
       </div>
-    </div> -->
-      <h2>Create a new Company</h2>
+    </div>
+  </div>
+  <div class="col-md-12" style="display: flex; justify-content: space-between;">
+  <h2>Create a new Company</h2>
       <button type="button" class="close" (click)="Goback()" aria-label="Close">
         <span style="font-size: 3rem;" aria-hidden="true">&times;</span>
       </button>
@@ -19,7 +21,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="companyname">Company Name: <span style="color:red">*</span></label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="companyname" name="companyname" #companyname="ngModel" [(ngModel)]="pageFilters.companyname" required>
+              <input type="text" class="form-control" id="companyname" placeholder="Enter company name" name="companyname" #companyname="ngModel" [(ngModel)]="pageFilters.companyname" required>
               <div *ngIf="companyname.errors && (companyname.dirty || companyname.touched)" style="font-size: smaller;">
                 <div [hidden]="!companyname.errors.required">
                   <span style="color: red;">Company Name is required</span>
@@ -36,7 +38,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="dba">DBA :</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="dba" #dba="ngModel" name="dba" [(ngModel)]="pageFilters.dba">
+              <input type="text" class="form-control" id="dba" #dba="ngModel" placeholder="Enter DBA" name="dba" [(ngModel)]="pageFilters.dba">
             </div>
           </div>
           <div class="form-group row">
@@ -53,7 +55,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="fedid">TAX ID <small>(FED ID)</small><span style="color:red;"> *</span> :</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="fedid" maxlength="9" #fedid="ngModel" name="fedid" [(ngModel)]="pageFilters.fedid" required>
+              <input type="text" class="form-control" id="fedid" maxlength="9" placeholder="Enter TAX ID"#fedid="ngModel" name="fedid" [(ngModel)]="pageFilters.fedid" required>
               <div *ngIf="fedid.errors && (fedid.dirty || fedid.touched)" style="font-size: smaller;">
                 <div [hidden]="!fedid.errors.required">
                   <span style="color: red;">TAX ID is required</span>
@@ -64,7 +66,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="us-dot">US DOT #<span style="color:red;"> *</span> :</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="us-dot" #usdot="ngModel" name="usdot" [(ngModel)]="pageFilters.usdot" required>
+              <input type="number" class="form-control" id="us-dot" #usdot="ngModel" placeholder="Enter US DOT" name="usdot" [(ngModel)]="pageFilters.usdot" required>
               <div *ngIf="usdot.errors && (usdot.dirty || usdot.touched)" style="font-size: smaller;">
                 <div [hidden]="!usdot.errors.required">
                   <span style="color: red;">US DOT is required</span>
@@ -75,7 +77,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="mc">MC<span style="color:red;"> *</span> :</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="mc" maxlength="7" #mc="ngModel" name="mc" [(ngModel)]="pageFilters.mc" required>
+              <input type="text" class="form-control" id="mc" placeholder="Enter MC" maxlength="7" #mc="ngModel" name="mc" [(ngModel)]="pageFilters.mc" required>
               <div *ngIf="mc.errors && (mc.dirty || mc.touched)" style="font-size: smaller;">
                 <div [hidden]="!mc.errors.required">
                   <span style="color: red;">MC is required</span>
@@ -86,7 +88,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="ifta-license">IFTA License # :</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="ifta-license" #iftalicense="ngModel" name="iftalicense" [(ngModel)]="pageFilters.iftalicense">
+              <input type="text" class="form-control" id="ifta-license" placeholder="Enter IFTA license"#iftalicense="ngModel" name="iftalicense" [(ngModel)]="pageFilters.iftalicense">
             </div>
           </div>
           <div class="form-group row">
@@ -132,19 +134,19 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="address1" #address1="ngModel" name="address1" [(ngModel)]="pageFilters.address1" required>
+              <input type="text" class="form-control" id="address1" placeholder="Enter address1" #address1="ngModel" name="address1" [(ngModel)]="pageFilters.address1" required>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.address2" required>
+              <input type="text" class="form-control" id="address2" #address2="ngModel" placeholder="Enter address2" name="address2" [(ngModel)]="pageFilters.address2" required>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="address2">City :</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="address2" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.city" required>
+              <input type="text" class="form-control" id="address2" placeholder="Enter city" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.city" required>
             </div>
           </div>
           <div class="form-group row">
@@ -163,31 +165,31 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="bankname">Bank name :</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="bankname" #bankname="ngModel" name="bankname" [(ngModel)]="pageFilters.bankname" required>
+              <input type="text" class="form-control" id="bankname" placeholder="Enter bankname" #bankname="ngModel" name="bankname" [(ngModel)]="pageFilters.bankname" required>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="acctype">Account type :</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="acctype" #acctype="ngModel" name="acctype" [(ngModel)]="pageFilters.acctype" required>
+              <input type="text" class="form-control" id="acctype" placeholder="Enter account type" #acctype="ngModel" name="acctype" [(ngModel)]="pageFilters.acctype" required>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="routingnumber">Routing number :</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="routingnumber" #routingnumber="ngModel" name="routingnumber" [(ngModel)]="pageFilters.routingnumber" required>
+              <input type="number" class="form-control" id="routingnumber" placeholder="Enter routing number" #routingnumber="ngModel" name="routingnumber" [(ngModel)]="pageFilters.routingnumber" required>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="accountnumber">Account number :</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="accountnumber" #accountnumber="ngModel" name="accountnumber" [(ngModel)]="pageFilters.accountnumber" required>
+              <input type="number" class="form-control" id="accountnumber" placeholder="Enter account number" #accountnumber="ngModel" name="accountnumber" [(ngModel)]="pageFilters.accountnumber" required>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-12">
+    <!-- <div class="col-md-12">
       <mat-accordion>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header class="card-header">
@@ -208,7 +210,6 @@
                 <dxi-column dataField="lastname" caption="Last name"></dxi-column>
                 <dxi-column dataField="email" caption="Email/Username"></dxi-column>
                 <dxi-column dataField="password" caption="Password"></dxi-column>
-                <!-- <dxi-column dataField="username" caption="Username"></dxi-column> -->
                 <dxi-column dataField="name" caption="Role">
                   <dxo-lookup [dataSource]="roleArray" displayExpr="name" valueExpr="ID">
                   </dxo-lookup>
@@ -218,7 +219,7 @@
           </div>
         </mat-expansion-panel>
       </mat-accordion>
-    </div>
+    </div> -->
   </div>
   <div class="card-footer" *ngIf="showAddOption">
     <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>

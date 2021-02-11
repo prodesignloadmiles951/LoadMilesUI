@@ -95,26 +95,21 @@ export class CompanyregisterComponent implements OnInit {
       })
   }
 
-   onAdd(e){
-     var addObj=e.data
-     var roleObj={}
-       for (var i = 0; i < this.roleArray.length; i++) {
-         if(addObj['name'] == this.roleArray[i]['ID']){
-           roleObj['name']=this.roleArray[i]['name']
-           roleObj['_id']=this.roleArray[i]['_id']
-           break          
-         }
-       }
-       delete addObj['__KEY__']
-       addObj['company']=this.pageFilters.companyid
-       addObj['role']=roleObj
-       this.userroledetails.push(addObj)
-       console.log(this.userroledetails)
- }
-   onEdit(e){
-     console.log(e)
-   }
-   onDelete(e){
-     console.log(e)
-   }
+ //   onAdd(e){
+ //     var addObj=e.data
+ //     var roleObj={}
+ //       for (var i = 0; i < this.roleArray.length; i++) {
+ //         if(addObj['name'] == this.roleArray[i]['ID']){
+ //           roleObj['name']=this.roleArray[i]['name']
+ //           roleObj['_id']=this.roleArray[i]['_id']
+ //           break          
+ //         }
+ //       }
+ //       delete addObj['__KEY__']
+ //       addObj['company']=this.pageFilters.companyid
+ //       addObj['role']=roleObj
+ //       this.userroledetails.push(addObj)
+ //       console.log(this.userroledetails)
+ // }
+   
 }
