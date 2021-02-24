@@ -72,8 +72,8 @@
       <div class="col-md-3" *ngIf="router.url != '/theme/company'">
         <mat-form-field>
           <mat-select [(ngModel)]="selectedCompany" name="cmp" placeholder="Select Company">
-            <mat-option *ngFor="let cmp of companylinkeddata" [value]="cmp.companyname" (click)="companyselected(cmp)">
-              {{cmp.companyname}}
+            <mat-option *ngFor="let cmp of companylinkeddata" [value]="cmp.name" (click)="companyselected(cmp)">
+              {{cmp.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>

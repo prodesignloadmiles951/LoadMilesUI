@@ -125,39 +125,44 @@ export class DefaultLayoutComponent implements OnDestroy {
   } 
 
   ngOnInit(): void {
-    if (localStorage.selectedCompanyName != undefined) {
-      this.selectedCompany = localStorage.selectedCompanyName      
-    }
+    // if (localStorage.selectedCompanyName != undefined) {
+    //   this.selectedCompany = localStorage.selectedCompanyName      
+    // }
     if (this.authService.getloginUser()) {
       this.loginUser = this.authService.getloginUser();
-      console.log(this.loginUser['_id'])
-      console.log(this.loginUser['role']['name'])
-      if(this.loginUser['role']['name'] == 'Driver'){
+      console.log(this.loginUser)
+      if(this.loginUser['roleId'] == 5){
         this.navItems=this.driverMenuList
         this.router.navigateByUrl('theme/driver-list');
       }else{
         this.navItems=this.sideMenuList
         this.router.navigateByUrl('/dashboard');
       }
-      if (this.loginUser) {
-          this.userid= this.loginUser['_id']
-         this.getData();
-         this.getlinkedcompanydata()
-         if (!this.selectedCompany) {
-          this.selectedCompany = this.loginUser['company']['companyname'];
-          localStorage.setItem('selectedCompany',this.loginUser['company']['_id']);
-          localStorage.setItem('selectedCompanyName',this.selectedCompany);
-         }
-      }
+      var usercmpdetails = this.loginUser['company']
+      this.companylinkeddata = usercmpdetails
+      for (var i = 0; i < usercmpdetails.length; i++) {
+      if(usercmpdetails[i]['default']){
+              localStorage.setItem('selectedCompany', usercmpdetails[i]['_id']);
+              localStorage.setItem('role', JSON.stringify(usercmpdetails[i]['role']));
+              localStorage.setItem('selectedCompanyName', usercmpdetails[i]['name']);
+              console.log(localStorage.selectedCompany)
+              console.log(localStorage.role)
+              console.log(localStorage.selectedCompanyName)
+              this.selectedCompany=localStorage.selectedCompanyName
+              if(usercmpdetails['role'] == 5){
+                this.router.navigateByUrl('theme/driver-list');
+              }
+          }
+        }
     }
     this.authService.loginEvent.asObservable().subscribe(
       (data) => {
         console.log(data)
         this.loginUser = this.authService.getloginUser();
-        if(this.loginUser['role'] == null){
+        if(this.loginUser['roleId'] == null){
           this.navItems=this.sideMenuList
         }else{
-          if(this.loginUser['role']['name'] == 'Driver'){
+          if(this.loginUser['roleId'] == 5){
             this.navItems=this.driverMenuList
             this.router.navigateByUrl('theme/driver-list');
           }else{
@@ -166,12 +171,7 @@ export class DefaultLayoutComponent implements OnDestroy {
         }
     })
   }
-  getlinkedcompanydata(){
-    this.companylinkeddata=[]
-    this._companyservice.getcompanylistinfo(this.userid).subscribe(data => {
-      this.companylinkeddata = data
-    })
-  }
+  
   getData() {
     this._companyservice.getCompanyData().subscribe(data => {
       this.data = data;
@@ -188,17 +188,25 @@ export class DefaultLayoutComponent implements OnDestroy {
 
   companyselected(cmp) { 
     localStorage.setItem('selectedCompany',cmp._id)
-    localStorage.setItem('selectedCompanyName',cmp.companyname)
+    localStorage.setItem('selectedCompanyName',cmp.name)
     var cmpid = localStorage.getItem("selectedCompany")
     var selectedCompanyName = localStorage.getItem("selectedCompanyName")
     this.userid= this.loginUser['_id']
+          if(cmp['role'] == 5){
+                this.navItems=this.driverMenuList
+                this.router.navigateByUrl('theme/driver-list');
+           }else{
+            this.navItems=this.sideMenuList
+            this.router.navigateByUrl('dashboard')
+           }
+      this._toaster.success(cmp.name+" selected successfully", "Success", {timeOut: 2000,});
+
     
-    this._companyservice.getcompanyroleinfo(cmpid,this.userid).subscribe(data => {
-      this._toaster.success(cmp.companyname+" selected successfully", "Success", {timeOut: 2000,});
-      this.router.navigateByUrl('dashboard')
-      this.authService.setLogin(data);
-      this.authService.setRole(data);
-    })
+    // this._companyservice.getcompanyroleinfo(cmpid,this.userid).subscribe(data => {
+    //   this._toaster.success(cmp.name+" selected successfully", "Success", {timeOut: 2000,});
+    //   this.authService.setLogin(data);
+    //   this.authService.setRole(data);
+    // })
   }
 
 
