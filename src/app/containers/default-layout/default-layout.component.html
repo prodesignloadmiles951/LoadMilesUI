@@ -6,7 +6,7 @@
   </div>
   <div class="col-md-6 navlinks" style="display: flex; justify-content: flex-end; padding: 0 0 1rem;">
     <div class="row col-md-2" style="display: block;">
-      <button style="border-width: 0; background: none;" mat-button (click)="showLoadstatus()">loads</button>
+      <button style="border-width: 0; background: none;" mat-button (click)="showLoadstatus()">loads</button> 
     </div>
     <div class="row col-md-2" style="display: block;">
       <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="paymenu">Pay</button>
@@ -72,8 +72,8 @@
       <div class="col-md-3" *ngIf="router.url != '/theme/company'">
         <mat-form-field>
           <mat-select [(ngModel)]="selectedCompany" name="cmp" placeholder="Select Company">
-            <mat-option *ngFor="let cmp of companylinkeddata" [value]="cmp.companyname" (click)="companyselected(cmp)">
-              {{cmp.companyname}}
+            <mat-option *ngFor="let cmp of companylinkeddata" [value]="cmp.name" (click)="companyselected(cmp)">
+              {{cmp.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
