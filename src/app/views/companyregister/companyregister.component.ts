@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { LoginUser } from '../../model/loginuser';
 import { AuthenticationService } from '../../views/authentication.service';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-companyregister',
@@ -18,7 +19,6 @@ export class CompanyregisterComponent implements OnInit {
 	Companylistdata = new Array<CompanyFilters>();
 	data: any;
     @Input() datatype;
-	  currency
     pageFiltersshow=false;
     mode=false
 	  model: any = {};
@@ -27,6 +27,8 @@ export class CompanyregisterComponent implements OnInit {
     roleArray=[]
     showusertable=false
     userroledetails=[]
+    account
+    location
     companyid=undefined
 
   constructor(private _toaster: ToastrService,
@@ -37,8 +39,11 @@ export class CompanyregisterComponent implements OnInit {
   ngOnInit() {
 
   	this.pageFilters = new CompanyFilters();
-    this.pageFilters.currency='Select currency'
-
+    // this.pageFilters.currency='Select currency'
+    this.pageFilters.account = {
+      currency : 'Select currency'
+    };
+    this.pageFilters.location = {};
     if(this.datatype == undefined){
       // this.pageFilters=this.Customerslistdata
       this.mode=true
@@ -63,24 +68,25 @@ export class CompanyregisterComponent implements OnInit {
   }
   submit() {
       if(this.pageFilters.fedid !== undefined && this.pageFilters ['fedid'].length <= 9){
-          this.pageFilters['user']=this.userroledetails
-          console.log(this.pageFilters)
-          if(this.pageFilters['user'].length > 0){
-          this._companyservice.newCompanyregister(this.pageFilters).subscribe(response => {
-          console.log(response)
-          if(response.Status != "error"){
-            this._toaster.info(response.message,"Success", {timeOut: 3000,});
-            this.router.navigateByUrl("/login");
-          }else{
-            this._toaster.error(response.error,"Failed", {timeOut: 2000,});
-          }
-        },error=>{
-          this._toaster.error(error.error,"Failed", {timeOut: 2000,});
-        });
-       }else{
-          this._toaster.error("Create one user","Failed", {timeOut: 2000,});
-      }
-      }else{
+          // this.pageFilters['user']=this.userroledetails
+          // console.log(this.pageFilters)
+          // if(this.pageFilters['user'].length > 0){
+            this._companyservice.newCompanyregister(this.pageFilters).subscribe(response => {
+              console.log(response)
+              if(response.Status != "error"){
+                this._toaster.info(response.message,"Success", {timeOut: 3000,});
+                this.router.navigateByUrl("/login");
+              }else{
+                this._toaster.error(response.error,"Failed", {timeOut: 2000,});
+              }
+            },error=>{
+              this._toaster.error(error.error,"Failed", {timeOut: 2000,});
+            });
+          // }
+          // else{
+          //   this._toaster.error("Create one user","Failed", {timeOut: 2000,});
+          // }
+      } else{
           this._toaster.error("Enter TAX ID","Failed", {timeOut: 2000,});
       }
    }

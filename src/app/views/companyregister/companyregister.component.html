@@ -19,11 +19,11 @@
         <div class="card-header"><strong>Company</strong> Data</div>
         <div class="card-body">
           <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="companyname">Company Name: <span style="color:red">*</span></label>
+            <label class="col-md-4 col-form-label" for="name">Company Name: <span style="color:red">*</span></label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="companyname" placeholder="Enter company name" name="companyname" #companyname="ngModel" [(ngModel)]="pageFilters.companyname" required>
-              <div *ngIf="companyname.errors && (companyname.dirty || companyname.touched)" style="font-size: smaller;">
-                <div [hidden]="!companyname.errors.required">
+              <input type="text" class="form-control" id="name" placeholder="Enter company name" name="name" #name="ngModel" [(ngModel)]="pageFilters.name" required>
+              <div *ngIf="name.errors && (name.dirty || name.touched)" style="font-size: smaller;">
+                <div [hidden]="!name.errors.required">
                   <span style="color: red;">Company Name is required</span>
                 </div>
               </div>
@@ -44,7 +44,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label">Currency:</label>
             <div class="col-md-8">
-              <select class="form-control" id="currency" name="currency" [(ngModel)]="pageFilters.currency">
+              <select class="form-control" id="currency" name="currency" [(ngModel)]="pageFilters.account.currency">
                 <option value="Select currency" disabled selected hidden>Select currency</option>
                 <option value="0">USD</option>
                 <option value="1">CAD</option>
@@ -66,7 +66,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="us-dot">US DOT #<span style="color:red;"> *</span> :</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="us-dot" #usdot="ngModel" placeholder="Enter US DOT" name="usdot" [(ngModel)]="pageFilters.usdot" required>
+              <input type="text" class="form-control" id="us-dot" #usdot="ngModel" placeholder="Enter US DOT" name="usdot" [(ngModel)]="pageFilters.usdot" required>
               <div *ngIf="usdot.errors && (usdot.dirty || usdot.touched)" style="font-size: smaller;">
                 <div [hidden]="!usdot.errors.required">
                   <span style="color: red;">US DOT is required</span>
@@ -105,7 +105,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="fax">Fax :</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="fax" #fax="ngModel" name="fax" [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" required>
+              <input type="text" class="form-control" id="fax" #fax="ngModel" name="fax" [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" required>
               <div *ngIf="fax.errors && (fax.dirty || fax.touched)" style="font-size: smaller;">
               </div>
             </div>
@@ -124,6 +124,42 @@
               </div>
             </div>
           </div>
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label" for="password">Password: <span style="color:red">*</span></label>
+            <div class="col-md-8">
+              <input type="PASSWORD" class="form-control" id="password" placeholder="Enter Password" name="password"
+                #password="ngModel" [(ngModel)]="pageFilters.password" required>
+              <div *ngIf="password.errors && (password.dirty || password.touched)" style="font-size: smaller;">
+                <div [hidden]="!password.errors.required">
+                  <span style="color: red;">Password is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+                    <div class="form-group row">
+                      <label class="col-md-4 col-form-label" for="firstName">First Name: <span style="color:red">*</span></label>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" id="firstName" placeholder="Enter first name" name="firstName"
+                          #firstName="ngModel" [(ngModel)]="pageFilters.firstName" required>
+                        <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" style="font-size: smaller;">
+                          <div [hidden]="!firstName.errors.required">
+                            <span style="color: red;">First Name is required</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                              <div class="form-group row">
+                                <label class="col-md-4 col-form-label" for="lastName">Last Name: <span style="color:red">*</span></label>
+                                <div class="col-md-8">
+                                  <input type="text" class="form-control" id="lastName" placeholder="Enter last name" name="lastName"
+                                    #lastName="ngModel" [(ngModel)]="pageFilters.lastName" required>
+                                  <div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)" style="font-size: smaller;">
+                                    <div [hidden]="!lastName.errors.required">
+                                      <span style="color: red;">Last Name is required</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
         </div>
       </div>
     </div>
@@ -134,30 +170,30 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="address1">Address1 :</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="address1" placeholder="Enter address1" #address1="ngModel" name="address1" [(ngModel)]="pageFilters.address1" required>
+              <input type="text" class="form-control" id="address1" placeholder="Enter address1" #address1="ngModel" name="address1" [(ngModel)]="pageFilters.location.line" required>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="address2" #address2="ngModel" placeholder="Enter address2" name="address2" [(ngModel)]="pageFilters.address2" required>
+              <input type="text" class="form-control" id="address2" #address2="ngModel" placeholder="Enter address2" name="address2" [(ngModel)]="pageFilters.location.line1" required>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="address2">City :</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" id="address2" placeholder="Enter city" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.city" required>
+              <input type="text" class="form-control" id="address2" placeholder="Enter city" #address2="ngModel" name="address2" [(ngModel)]="pageFilters.location.city" required>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-6">State:
-              <input type="text" class="form-control" id="state" placeholder="Enter state" #zip="ngModel" name="state" [(ngModel)]="pageFilters.state" required>
+              <input type="text" class="form-control" id="state" placeholder="Enter state" #zip="ngModel" name="state" [(ngModel)]="pageFilters.location.state" required>
             </div>
             <div class="col-6">Zip:
-              <input type="text" class="form-control" id="zip1" placeholder="Ex: 500013" #zip="ngModel" name="zip" [(ngModel)]="pageFilters.zip" required>
+              <input type="text" class="form-control" id="zip1" placeholder="Ex: 500013" #zip="ngModel" name="zip" [(ngModel)]="pageFilters.location.zip" required>
             </div>
           </div>
-        </div>
+        </div>̉̉̉̉
       </div>
       <div class="card">
         <div class="card-header"><strong>Banking</strong> Details</div>
@@ -165,25 +201,26 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="bankname">Bank name :</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="bankname" placeholder="Enter bankname" #bankname="ngModel" name="bankname" [(ngModel)]="pageFilters.bankname" required>
+              <input type="text" class="form-control" id="bankname" placeholder="Enter bankname" #bankname="ngModel" name="bankname"
+                [(ngModel)]="pageFilters.account.bankname" required>
             </div>
-          </div>
-          <div class="form-group row">
+            </div>
+            <div class="form-group row">
             <label class="col-md-4 col-form-label" for="acctype">Account type :</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="acctype" placeholder="Enter account type" #acctype="ngModel" name="acctype" [(ngModel)]="pageFilters.acctype" required>
+              <input type="text" class="form-control" id="acctype" placeholder="Enter account type" #acctype="ngModel" name="acctype" [(ngModel)]="pageFilters.account.acctype" required>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="routingnumber">Routing number :</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="routingnumber" placeholder="Enter routing number" #routingnumber="ngModel" name="routingnumber" [(ngModel)]="pageFilters.routingnumber" required>
+              <input type="text" class="form-control" id="routingnumber" placeholder="Enter routing number" #routingnumber="ngModel" name="routingnumber" [(ngModel)]="pageFilters.routingnumber" required>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="accountnumber">Account number :</label>
+            <label class="col-md-4 col-form-label" for="account">Account number :</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="accountnumber" placeholder="Enter account number" #accountnumber="ngModel" name="accountnumber" [(ngModel)]="pageFilters.accountnumber" required>
+              <input type="text" class="form-control" id="account" placeholder="Enter account number" #account="ngModel" name="account" [(ngModel)]="pageFilters.account.accountnumber" required>
             </div>
           </div>
         </div>

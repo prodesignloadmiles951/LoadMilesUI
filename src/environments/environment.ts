@@ -3,6 +3,10 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+
+// const currentEnv = 'http://localhost'; //local
+const currentEnv = 'http://ec2-3-139-89-46.us-east-2.compute.amazonaws.com'; //dev Env
+
 export const environment = {
   production: false,
   Login_User: 'LOGIN_USER',
@@ -23,7 +27,7 @@ export const environment = {
   uploadUrl:'http://3.139.89.46:8081/fileapi/file',
   postalcodeUrl:'http://3.139.89.46:8081/fileapi/postal_code?postal_code=',
   roledetailsUrl: 'http://3.139.89.46:8081/roleapi/role',
-  newcompanyurl: 'http://3.139.89.46:8081/userapi/user/company',
+  newcompanyurl: currentEnv + ':5000/api/company',
   newcompanycreateurl: 'http://3.139.89.46:8081/companyapi/company/',
   userdetailsurl: 'http://3.139.89.46:8081/userapi/user',
   vendorurl: 'http://54.166.101.176:8081/vendorapi/vendor',

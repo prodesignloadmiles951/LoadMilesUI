@@ -27,6 +27,10 @@ export class CompanyFilters {
    acctype: string;
    accountnumber: number;
    routingnumber: number;
+   account : {
+      currency: string;
+   };
+   location : {};
 
    // constructor() {
    //    this.companyname = new companyname();
