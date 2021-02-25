@@ -12,7 +12,7 @@ import { PickupserviceService } from '../../../../services/pickupservice.service
   selector: 'app-dropoffpopupform',
   templateUrl: './dropoffpopupform.component.html',
   styleUrls: ['./dropoffpopupform.component.scss'],
-  providers: [TrucksService, TrailerService, , DriversService, ToastrService, PickupserviceService, GooglePinSearch]
+  providers: [TrucksService, TrailerService, DriversService, ToastrService, PickupserviceService, GooglePinSearch]
 })
 export class DropoffpopupformComponent implements OnInit {
 dropoffpopupForm: FormGroup;
