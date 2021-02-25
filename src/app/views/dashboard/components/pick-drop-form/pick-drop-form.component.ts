@@ -13,7 +13,7 @@ import { PickupserviceService } from '../../../../services/pickupservice.service
   selector: 'app-pick-drop-form',
   templateUrl: './pick-drop-form.component.html',
   styleUrls: ['./pick-drop-form.component.scss'],
-  providers: [TrucksService, TrailerService, , DriversService, ToastrService, PickupserviceService, GooglePinSearch]
+  providers: [TrucksService, TrailerService, DriversService, ToastrService, PickupserviceService, GooglePinSearch]
 })
 export class PickDropFormComponent implements OnInit {
  pickup={}
