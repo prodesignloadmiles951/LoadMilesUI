@@ -43,7 +43,7 @@ export class LoginComponent {
       this.isLogin=false;
       if (data.status == "SUCCESS!") {
               localStorage.setItem('userId', data._id);
-           var usercmpdetails = data['company']
+           var usercmpdetails = data['result']['company']
           for (var i = 0; i < usercmpdetails.length; i++) {
             if(usercmpdetails[i]['default']){
               localStorage.setItem('selectedCompany', usercmpdetails[i]['_id']);

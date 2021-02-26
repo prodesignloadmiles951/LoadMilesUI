@@ -138,8 +138,9 @@ export class DefaultLayoutComponent implements OnDestroy {
         this.navItems=this.sideMenuList
         this.router.navigateByUrl('/dashboard');
       }
-      var usercmpdetails = this.loginUser['company']
+      var usercmpdetails = this.loginUser['result']['company']
       this.companylinkeddata = usercmpdetails
+      console.log(usercmpdetails)
       for (var i = 0; i < usercmpdetails.length; i++) {
       if(usercmpdetails[i]['default']){
               localStorage.setItem('selectedCompany', usercmpdetails[i]['_id']);
