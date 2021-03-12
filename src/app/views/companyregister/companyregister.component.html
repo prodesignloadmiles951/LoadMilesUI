@@ -120,11 +120,11 @@
             <div class="col-md-8">
               <input type="number" class="form-control" placeholder="Ex: 012 345 6789" id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" [pattern]="'^[1-9][0-9]*$'" minlength="10" required>
               <div *ngIf="phone.errors && (phone.dirty || phone.touched)" style="font-size: smaller;">
-                <div *ngIf="phone.errors.minlength">
+                <!-- <div *ngIf="phone.errors.minlength">
                   <span style="color: red;">Phone Number must be 10 digits</span>
-                </div>
+                </div> -->
                 <div [hidden]="!phone.errors.required">
-                  <span style="color: red;">Phone Number is required</span>
+                  <span style="color: red;">Phone Number is required & must be 10 digits</span>
                 </div>
               </div>
             </div>
