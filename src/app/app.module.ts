@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -95,6 +95,7 @@ import { CompanyregisterComponent } from './views/companyregister/companyregiste
     MatDialogModule,
     DxButtonModule,
     ModalModule,
+    RecaptchaModule, RecaptchaFormsModule,
     ToastrModule.forRoot({
 			timeOut: 10000,
 			positionClass: 'toast-top-right',

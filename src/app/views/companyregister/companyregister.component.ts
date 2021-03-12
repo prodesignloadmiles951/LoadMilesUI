@@ -39,9 +39,8 @@ export class CompanyregisterComponent implements OnInit {
   ngOnInit() {
 
   	this.pageFilters = new CompanyFilters();
-    // this.pageFilters.currency='Select currency'
     this.pageFilters.account = {
-      currency : 'Select currency'
+      currency : 'Select currency',
     };
     this.pageFilters.location = {};
     if(this.datatype == undefined){
@@ -117,5 +116,9 @@ export class CompanyregisterComponent implements OnInit {
  //       this.userroledetails.push(addObj)
  //       console.log(this.userroledetails)
  // }
+ resolved(captchaResponse: string, res) {
+    console.log(`Resolved response token: ${captchaResponse}`);
+   
+  }
    
 }

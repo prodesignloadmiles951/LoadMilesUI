@@ -9,14 +9,33 @@
       <button style="border-width: 0; background: none;" mat-button (click)="showLoadstatus()">loads</button> 
     </div>
     <div class="row col-md-2" style="display: block;">
+      <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="paymenu">Set-up</button>
+      <mat-menu #paymenu="matMenu">
+        <button mat-menu-item>Company</button>
+        <button mat-menu-item>Users</button>
+        <button mat-menu-item>Trucks</button>
+        <button mat-menu-item>Trailers</button>
+        <button mat-menu-item>Fuel Card</button>
+        <button mat-menu-item>Factor</button>
+      </mat-menu>
+    </div>
+    <div class="row col-md-2" style="display: block;">
+      <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="paymenu">Hire</button>
+      <mat-menu #paymenu="matMenu">
+        <button mat-menu-item>Driver</button>
+        <button mat-menu-item>Dispatcher</button>
+        <button mat-menu-item>Carrier</button>
+      </mat-menu>
+    </div>
+   <!--  <div class="row col-md-2" style="display: block;">
       <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="paymenu">Pay</button>
       <mat-menu #paymenu="matMenu">
         <button mat-menu-item>Driver Pay</button>
         <button mat-menu-item>Dispatcher Pay</button>
         <button mat-menu-item>Vendor Pay</button>
       </mat-menu>
-    </div>
-    <div class="row col-md-2" style="display: block;">
+    </div> -->
+    <!-- <div class="row col-md-2" style="display: block;">
       <button style="border-width: 0; background: none;" mat-button [matMenuTriggerFor]="recordmenu">Record</button>
       <mat-menu #recordmenu="matMenu">
         <button mat-menu-item>Record Miles</button>
@@ -40,7 +59,7 @@
         <button mat-menu-item>Medical Register</button>
         <button mat-menu-item>Incident Register</button>
       </mat-menu>
-    </div>
+    </div> -->
   </div>
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item dropdown" dropdown placement="bottom right">
