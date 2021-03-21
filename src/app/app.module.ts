@@ -66,6 +66,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { DashboardModule } from './views/dashboard/dashboard.module'
 import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
 import { CompanyregisterComponent } from './views/companyregister/companyregister.component';
+import { EmailValidateComponent } from './views/email-validate/email-validate.component';
 
 @NgModule({
   imports: [
@@ -113,7 +114,8 @@ import { CompanyregisterComponent } from './views/companyregister/companyregiste
     RegisterComponent,
     LoadstatusComponent,
     CompanyregisterComponent,
-    StatusFilterPipe
+    StatusFilterPipe,
+    EmailValidateComponent
   ],
   providers: [
     {provide: LocationStrategy,useClass: HashLocationStrategy},

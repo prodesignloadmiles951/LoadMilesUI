@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { LoginService } from './login.service';
 import { AuthenticationService } from '../authentication.service';
 import { AuthHeaderService } from '../authheader.service';
 import { ActivatedRoute,Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 // import { RegisterComponent } from '../register/register.component'
+import { CompanyService } from '../../services/company.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -21,23 +22,21 @@ export class LoginComponent {
   constructor(private _loginsevice: LoginService,
     private authenticate: AuthenticationService,
     private authHeader:AuthHeaderService,
+    private cmpservice: CompanyService,
     private router:Router,
-    private _toaster: ToastrService) { }
-  Login() {
-      // this.logindetails={
-      //         "_id": "sd23423asf2saf232sfas",
-      //         "email": "user@gmail.com",
-      //         "phone": 12355434453,
-      //         "roleId": 3,
-      //         "password": "test",
-      //         "firstName": "Doctor",
-      //         "lastName": "Test",
-      //         "active": false,
-      //         "firstLogin": true,
-      //         "token": "edafdsfsd23423asf2saf232sfas.wsd23423asf2saf232sfas.dsd23423asf2saf232sfas",
-      //         "company": [{"name": "A Trucking", "_id": "sd23423asf2saf232sfas", "role": 3, "default": true},{"name": "B Trucking", "_id": "sd23423asf2saf232sfas", "role": 5, "default": false}]
-      //       }
+    private _toaster: ToastrService,public route: ActivatedRoute) { }
 
+  ngOnInit() {
+  console.log(this.route.snapshot.paramMap.get('token'))
+  var token=this.route.snapshot.paramMap.get('token')
+  if(token != null){
+    this.cmpservice.onCompanyValidate(token).subscribe(data => {
+      this._toaster.info("Email Validation Successful Please Login","Success", {timeOut: 3000,});
+      this.router.navigateByUrl("login");
+    })
+  }
+  }
+  Login() {
     this.isLogin=true;
     this._loginsevice.Login(this.Email,this.Password).subscribe(data => {
       this.isLogin=false;

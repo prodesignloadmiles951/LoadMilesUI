@@ -13,11 +13,13 @@ export class CompanyService {
     companyurl: string;
     newcompanyurl: string;
     userdetailsurl: string;
+    currentEnv: string;
     URL:string;
     roleurl: string;
     linkedcompanyurl: string;
     constructor(private http: Http, private _headerService:AuthHeaderService){
         this.companyurl=environment.companyurl;
+        this.currentEnv=environment.URL
         this.URL=environment.url;
         this.roleurl= environment.roledetailsUrl
         this.newcompanyurl=environment.newcompanyurl;
@@ -83,5 +85,9 @@ export class CompanyService {
       editrole(id,UserObj){
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
         return this.http.put(this.userdetailsurl+'/'+id,UserObj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+      }
+      onCompanyValidate(token){
+        let options = new RequestOptions();
+        return this.http.get(this.currentEnv+'/company/validate/'+token,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
 }

@@ -30,6 +30,7 @@ export class CompanyregisterComponent implements OnInit {
     account
     location
     companyid=undefined
+    captcha:any
 
   constructor(private _toaster: ToastrService,
      private _companyservice: CompanyService,
@@ -44,7 +45,6 @@ export class CompanyregisterComponent implements OnInit {
     };
     this.pageFilters.location = {};
     if(this.datatype == undefined){
-      // this.pageFilters=this.Customerslistdata
       this.mode=true
       this.showAddOption=true
     }else{
@@ -54,22 +54,14 @@ export class CompanyregisterComponent implements OnInit {
       this.showAddOption=false     
     }
     this.pageFiltersshow=true;
-    this.getroles()
-    this.getData()
   }
   Goback() {
     this.router.navigateByUrl('/login');
   }
-  getData() {
-    this._companyservice.getallCompanyData().subscribe(data => {
-      this.pageFilters['companyid'] = 1000+(data.length+1)
-    });
-  }
+  
   submit() {
       if(this.pageFilters.fedid !== undefined && this.pageFilters ['fedid'].length <= 9){
-          // this.pageFilters['user']=this.userroledetails
-          // console.log(this.pageFilters)
-          // if(this.pageFilters['user'].length > 0){
+            this.pageFilters['captchatoken'] = this.captcha
             this._companyservice.newCompanyregister(this.pageFilters).subscribe(response => {
               console.log(response)
               if(response.Status != "error"){
@@ -81,44 +73,15 @@ export class CompanyregisterComponent implements OnInit {
             },error=>{
               this._toaster.error(error.error,"Failed", {timeOut: 2000,});
             });
-          // }
-          // else{
-          //   this._toaster.error("Create one user","Failed", {timeOut: 2000,});
-          // }
       } else{
           this._toaster.error("Enter TAX ID","Failed", {timeOut: 2000,});
       }
    }
 
-   getroles(){
-      this._companyservice.getcompanyRoleData().subscribe(res => {
-       console.log(res)
-       for (var i = 0; i < res.length; i++) {
-         res[i]['ID']=i
-       }
-       this.roleArray=res
-      })
-  }
 
- //   onAdd(e){
- //     var addObj=e.data
- //     var roleObj={}
- //       for (var i = 0; i < this.roleArray.length; i++) {
- //         if(addObj['name'] == this.roleArray[i]['ID']){
- //           roleObj['name']=this.roleArray[i]['name']
- //           roleObj['_id']=this.roleArray[i]['_id']
- //           break          
- //         }
- //       }
- //       delete addObj['__KEY__']
- //       addObj['company']=this.pageFilters.companyid
- //       addObj['role']=roleObj
- //       this.userroledetails.push(addObj)
- //       console.log(this.userroledetails)
- // }
  resolved(captchaResponse: string, res) {
     console.log(`Resolved response token: ${captchaResponse}`);
-   
+    this.captcha = captchaResponse
   }
    
 }

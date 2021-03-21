@@ -4,7 +4,7 @@ import { AuthenticationService } from '../views/authentication.service';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable()
-export class AuthHeaderService {
+export class AuthHeaderService { 
     constructor(
         private _authservice: AuthenticationService
         ) {
@@ -12,11 +12,12 @@ export class AuthHeaderService {
     getHeader() {
         let header = new Headers();
         let LoginUser = this._authservice.getloginUser();
-        let token = LoginUser != null ? LoginUser.token : '';
+        let token = LoginUser != null ? LoginUser.result.token : '';
         header.append("Content-Type", 'application/json');
         header.append("Access-Control-Allow-Origin", "*");
         if (token) {
-            header.append('Authorization', 'Bearer ' + token);
+            header.append('Authorization', token);
+            // header.append('Authorization', 'Bearer ' + token);
         }
         return header;
     }

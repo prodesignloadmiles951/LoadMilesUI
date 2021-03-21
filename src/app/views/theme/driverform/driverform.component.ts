@@ -236,9 +236,9 @@ export class DriverformComponent implements OnInit {
    }
    reset(){}
    submit() {
-           if(localStorage.selectedCompany == undefined){
-             this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
-           }else{
+           // if(localStorage.selectedCompany == undefined){
+           //   this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+           // }else{
               this.submitted = true;
               var Driverlistdata:any=this.pageFilters
               Driverlistdata['payrate']=this.payrateinfodata
@@ -268,7 +268,7 @@ export class DriverformComponent implements OnInit {
             }else{
            this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
          }
-             }
+             // }
            }
     hidePopup(){
      this.dialogRef.close(null)

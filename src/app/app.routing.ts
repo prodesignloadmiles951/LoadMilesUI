@@ -10,6 +10,7 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
 import { CompanyregisterComponent } from './views/companyregister/companyregister.component'
+import { EmailValidateComponent } from './views/email-validate/email-validate.component';
 
 export const routes: Routes = [
   {
@@ -51,6 +52,13 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'login/:token',
+    component: LoginComponent,
+    data: {
+      title: 'Login Page'
+    }
+  },
+  {
     path: 'register',
     component: RegisterComponent,
     data: {
@@ -62,6 +70,13 @@ export const routes: Routes = [
     component: CompanyregisterComponent,
     data: {
       title: 'Company Register Page'
+    }
+  },
+  {
+    path: 'validate/:token',
+    component: EmailValidateComponent,
+    data: {
+      title: 'Email Validate'
     }
   },
   {
