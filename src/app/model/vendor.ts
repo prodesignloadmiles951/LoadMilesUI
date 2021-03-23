@@ -1,9 +1,6 @@
 export class VendorFilters {
-    companyname: string;
-    firstname: string;
-    middlename: string;
-    lastname: string;
-    displayname: string;
+    companyId: string;
+    name: Person;
     dateofbirth: any;
     ssn: any;
     currency: any;
@@ -15,11 +12,24 @@ export class VendorFilters {
     email: any;
     address1: string;
     address2: string;
+    country: string;
     city: string;
     state: string;
     zipcode: any;
     quickpayid: any;
-    bankname: any;
+    account: Account;
+}
+
+export class Person {
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    displayName: string;
+}
+
+export class Account {
+    bankId: any;
+    accountname: any;
     accounttype: any;
     accountnumber: any;
     routingnumber: any;
