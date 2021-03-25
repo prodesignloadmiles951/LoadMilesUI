@@ -532,19 +532,14 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label">Bank Name:</label>
             <div class="col-md-9">
-              <select
+                <input
+                type="text"
                 class="form-control"
                 id="bankname"
                 name="bankname"
-                [(ngModel)]="pageFilters.account.bankId"
-              >
-                <option value="Select currency" disabled selected hidden>
-                  Select currency
-                </option>
-                <option *ngFor="let bank of banks" [value]="bank._id">
-                  {{ bank.name }}
-                </option>
-              </select>
+                #bankName="ngModel"
+                [(ngModel)]="pageFilters.account.bankName"
+              />
             </div>
           </div>
 
@@ -571,8 +566,8 @@
             <div class="col-md-9">
               <select
                 class="form-control"
-                id="bankname"
-                name="bankname"
+                id="accounttype"
+                name="accounttype"
                 [(ngModel)]="pageFilters.account.accounttype"
               >
                 <option value="Checking">Checking</option>

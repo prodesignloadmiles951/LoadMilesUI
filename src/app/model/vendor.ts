@@ -31,7 +31,7 @@ export class Person {
 }
 
 export class Account {
-    bankId: any;
+    bankName: any;
     accountname: any;
     accounttype: any;
     accountnumber: any;
