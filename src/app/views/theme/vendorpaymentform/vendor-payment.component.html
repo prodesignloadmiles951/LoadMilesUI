@@ -28,7 +28,7 @@
                   <span style="color: red">*</span>
                 </option>
                 <option *ngFor="let vendor of vendors" [value]="vendor._id">
-                  {{ vendor.name.displayName }}
+                  {{ vendor.displayName }}
                 </option>
               </select>
               <div *ngIf="vendorPaymnetForm.submitted && vendorname.invalid">

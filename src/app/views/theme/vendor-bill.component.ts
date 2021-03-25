@@ -28,9 +28,10 @@ export class VendorBillComponent implements OnInit {
 
   ngOnInit() {
     this.pageFilters.paidAmount = 0;
+
     if (this.retreivedData) {
       this.pageFilters = this.retreivedData;
-      console.log(this.pageFilters);
+      console.log(this.vendors, "vendors");
       console.log("should not run")
     } else {
       this.pageFilters = <VendorBillsFilter>{};
@@ -39,17 +40,17 @@ export class VendorBillComponent implements OnInit {
       console.log("null ran");
     }
 
-
+    this.vendorService.getVendorData().subscribe((data) => {
+      this.vendors = data.result;
+      if (this.retreivedData)
+        this.pageFilters.vendorId = this.pageFilters.vendorId._id;
+    })     
+    
     this.setupdataService.getExpenseData().subscribe((data) => {
       console.log(data);
       this.setupExpense();
       this.expenseDetails = data;
     })
-
-    this.vendorService.getVendorData().subscribe((data) => {
-      this.vendors = data.result;
-    })
-
 
   }
 
@@ -85,9 +86,9 @@ export class VendorBillComponent implements OnInit {
     this.pageFilters.billLines = expenses;
 
     if (this.pageFilters && this.pageFilters["EditMode"]) {
-      console.log(this.pageFilters);
+      console.log(this.pageFilters, "submitted data");
       delete this.pageFilters["EditMode"];
-      this.pageFilters.vendorId = this.pageFilters.vendorId.name;
+      //this.pageFilters.vendorId = this.pageFilters.vendorId.name;
       this.vendorBillService.editBill(this.pageFilters).subscribe(
         (response) => {
           this._toaster.info("Vendor Data Submitted", "Success");

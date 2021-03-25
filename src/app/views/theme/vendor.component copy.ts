@@ -43,7 +43,6 @@ export class VendorComponent implements OnInit {
     } else {
       console.log("ran");
       this.pageFilters = new VendorFilters();
-      this.pageFilters.name = new Person();
       this.pageFilters.account = new Account();
     }
     this.getData();

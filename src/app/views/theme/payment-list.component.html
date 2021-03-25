@@ -66,7 +66,7 @@
               <tr></tr>
               <tr *ngFor="let payment of payments; let i = index">
                 <td>{{ i + 1 }}</td>
-                <td>{{ payment.vendorId.name.displayName }}</td>
+                <td>{{ payment.vendorId.displayName }}</td>
                 <td>{{ payment.paymentDate }}</td>
                 <td align="right">{{ payment.amount }}</td>
                 <td>

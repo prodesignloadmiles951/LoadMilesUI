@@ -105,7 +105,7 @@
               [(ngModel)]="pageFilters.isActive"
               required
             >
-              <option [ngValue]="true">Active</option>
+              <option [ngValue]="true" [selected]="true">Active</option>
               <option [ngValue]="false">Inactive</option>
             </select>
             <div *ngIf="expenseForm.submitted && expenseStatus.invalid">

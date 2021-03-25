@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { VendorPaymentService } from '../../services/vendor-payment.service';
 import { MatDialog } from '@angular/material';
 import { VendorPaymentDelailsComponent } from './vendorpaymentdetails/vendor-payment-delails.component';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-payment-list',
@@ -36,7 +37,8 @@ export class PaymentListComponent implements OnInit {
   getData() {
     this.vendorPaymentService.getVendorPaymentData().subscribe(data => {
       this.payments = data;
-      console.log(data);
+      this.payments = _.orderBy(this.payments, p => Date.parse(p.paymentDate), 'desc');
+      // console.log(data);
     })
   }
 

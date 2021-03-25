@@ -1,6 +1,9 @@
 export class VendorFilters {
     companyId: string;
-    name: Person;
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    displayName: string;
     dateofbirth: any;
     ssn: any;
     currency: any;

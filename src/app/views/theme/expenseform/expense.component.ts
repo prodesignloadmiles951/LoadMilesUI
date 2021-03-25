@@ -29,6 +29,7 @@ export class ExpenseComponent implements OnInit {
       console.log("should not run");
     } else {
       this.pageFilters = <any>{};
+      this.pageFilters.isActive = true;
       console.log("null ran");
     }
     this.getData();

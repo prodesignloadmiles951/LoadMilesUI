@@ -80,7 +80,7 @@
               <tr></tr>
               <tr *ngFor="let bill of vendorBills; let i = index">
                 <td>{{ i + 1 }}</td>
-                <td>{{ bill.vendorId.name.displayName }}</td>
+                <td>{{ bill.vendorId.displayName }}</td>
                 <td>{{ bill.loadId }}</td>
                 <td>{{ bill.driverId }}</td>
                 <td>{{ bill.truckId }}</td>
