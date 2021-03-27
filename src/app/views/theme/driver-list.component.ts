@@ -18,7 +18,7 @@ export class DriverlistComponent implements OnInit {
     Driverlistdata = new Array<DriverFilters>();
     model: any = {};
     submitted: boolean; 
-    data: any;
+    Driverdata: any;
     selectedDriver: any;
     EditMode=false
     showForm=false
@@ -62,22 +62,9 @@ export class DriverlistComponent implements OnInit {
       this.showForm=false
     }
 
-    // submit() {
-    //     this.submitted = true;
-    //     this._driverService.SendForm(this.pageFilters).subscribe(response => {
-    //       this.submitted = true;
-    //       this._toaster.info("Driver data submitted successfully","Success");
-    //       this.router.navigateByUrl("theme/driver");
-    //     },error=>{
-    //       this.submitted=false;
-    //       this._toaster.error("Submit Agian","Faild");
-    //     });
-    //     // console.log(this.pageFilters);
-    //    }
-
        getData() {
         this._driverService.getDriversData().subscribe(data => {
-          this.data = data;
+          this.Driverdata = data.result;
         });
       }
 
@@ -87,7 +74,7 @@ export class DriverlistComponent implements OnInit {
            this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
          }else{
           drivers['companyid']=localStorage.selectedCompany
-          this._driverService.EditDrivers(drivers).subscribe(response => {
+          this._driverService.EditDrivers(drivers,drivers['id']).subscribe(response => {
             this._toaster.success(selectedDriver+ " driver successfully updated", "Success", {timeOut: 3000,});
           }, error => {
              this._toaster.error("error", "Try Again", {timeOut: 2000,});
@@ -101,7 +88,7 @@ export class DriverlistComponent implements OnInit {
            this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
          }else{
           this._driverService.DeleteDrivers(driver._id).subscribe(data => {
-            this._toaster.info("Driver Data Deleted", "Success", {timeOut: 2000,});
+            this._toaster.info("Driver Data Deleted Successfully", "Success", {timeOut: 2000,});
             this.getData();
            });
          }

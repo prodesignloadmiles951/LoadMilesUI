@@ -125,9 +125,7 @@ export class DefaultLayoutComponent implements OnDestroy {
   } 
 
   ngOnInit(): void {
-    // if (localStorage.selectedCompanyName != undefined) {
-    //   this.selectedCompany = localStorage.selectedCompanyName      
-    // }
+    
     if (this.authService.getloginUser()) {
       this.loginUser = this.authService.getloginUser();
       console.log(this.loginUser)
@@ -143,12 +141,9 @@ export class DefaultLayoutComponent implements OnDestroy {
       console.log(usercmpdetails)
       for (var i = 0; i < usercmpdetails.length; i++) {
       if(usercmpdetails[i]['default']){
-              localStorage.setItem('selectedCompany', usercmpdetails[i]['_id']);
+              localStorage.setItem('selectedCompany', usercmpdetails[i]['company']);
               localStorage.setItem('role', JSON.stringify(usercmpdetails[i]['role']));
               localStorage.setItem('selectedCompanyName', usercmpdetails[i]['name']);
-              console.log(localStorage.selectedCompany)
-              console.log(localStorage.role)
-              console.log(localStorage.selectedCompanyName)
               this.selectedCompany=localStorage.selectedCompanyName
               if(usercmpdetails['role'] == 5){
                 this.router.navigateByUrl('theme/driver-list');

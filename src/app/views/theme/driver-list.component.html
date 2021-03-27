@@ -41,15 +41,16 @@
             </thead>
             <tbody>
               <tr>
-              <tr *ngFor="let driver of data; let i=index">
+              <tr *ngFor="let driver of Driverdata; let i=index">
                 <td>{{i + 1}}</td>
                 <td>{{driver.firstname}}</td>
-                <td>{{driver.cellphone}}</td>
+                <td>{{driver.emergencyPhone}}</td>
                 <td>{{driver.email}}</td>
-                <td>{{driver.emergenctcontact}}</td>
+                <td>{{driver.emergenctContact}}</td>
                 <td>
                   <a style="cursor: pointer;color: #20a8d8;" (click)="viewData(driver);">View</a> |
-                  <a style="cursor: pointer;color: #20a8d8;" (click)="editData(driver);">Edit</a>
+                  <a style="cursor: pointer;color: #20a8d8;" (click)="editData(driver);">Edit</a> |
+                  <a style="cursor: pointer;color: #20a8d8;" (click)="deleteDriver(driver);">Delete</a>
                 </td>
               </tr>
             </tbody>

@@ -33,7 +33,7 @@ export class DispatcherlistComponent implements OnInit {
 
     getDispatcherData() {
     this._dispatcherService.getDispatcherData().subscribe(data => {
-      this.Dispatcherdata = data;
+      this.Dispatcherdata = data.result;
       console.log(this.Dispatcherdata)
     });
   }
@@ -60,6 +60,14 @@ viewData(dispatcher) {
       console.log(data)
     })
 }
+deleteData(dispatcher){
+    this._dispatcherService.DeleteDispatcher(dispatcher['_id']).subscribe(response => {
+      this._toaster.success("Dispatcher data deleted successfully", "Success", {timeOut: 3000,});
+      this.getDispatcherData() 
+    },error => {
+      this._toaster.error("error", "Try Again", {timeOut: 2000,});
+    })
+}
 
 hidePopup(){
       this.showForm=false
@@ -70,7 +78,7 @@ editDispatcher(dispatcher,selectedDispatcher) {
            this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
        }else{
             dispatcher['companyid']=localStorage.selectedCompany
-            this._dispatcherService.EditDispatcher(dispatcher).subscribe(response => {
+            this._dispatcherService.EditDispatcher(dispatcher,dispatcher['id']).subscribe(response => {
                   this._toaster.success(selectedDispatcher+ " dispatcher successfully updated", "Success", {timeOut: 3000,});
                 }, error => {
                this._toaster.error("error", "Try Again", {timeOut: 2000,});

@@ -28,8 +28,8 @@ export class DispatcherformComponent implements OnInit {
     payratedata={}
     Dispatcherdata= [];
     showAddOption=false
-    terminationdate=undefined
-    hiredate=undefined
+    terminationDate=undefined
+    hireDate=undefined
     dateofbirth=undefined
     fileArray=[]
     base64FileArray=[]
@@ -50,6 +50,8 @@ export class DispatcherformComponent implements OnInit {
    private router: Router) { }
 
   ngOnInit() {
+  	localStorage.getItem('selectedCompany')
+  	console.log(localStorage.getItem('selectedCompany'))
     if(this.data['EditMode'] == undefined){
       this.mode=true
       this.showAddOption=true
@@ -60,8 +62,8 @@ export class DispatcherformComponent implements OnInit {
       this.pageFilters=this.data
       this.showAddOption=this.data['EditMode'] 
       this.dispatcherpaydata.push(this.data.payrate)
-      this.terminationdate= new Date(this.data['terminationdate'])
-      this.hiredate= new Date(this.data['hiredate'])
+      this.terminationDate= new Date(this.data['terminationDate'])
+      this.hireDate= new Date(this.data['hireDate'])
       this.dateofbirth= new Date(this.data['dateofbirth'])
       this.changeUplaod=false
       if(this.data['EditMode']){
@@ -176,13 +178,13 @@ export class DispatcherformComponent implements OnInit {
     var birthdate = new Date(event.target.value).getTime()
     this.pageFilters['dateofbirth'] = birthdate
   }
-  onhiredate(event) {
-    var hiredate = new Date(event.target.value).getTime()
-    this.pageFilters['hiredate'] = hiredate
+  onhireDate(event) {
+    var hireDate = new Date(event.target.value).getTime()
+    this.pageFilters['hireDate'] = hireDate
   }
-  onterminationdate(event) {
-    var terminationdate = new Date(event.target.value).getTime()
-    this.pageFilters['terminationdate'] = terminationdate
+  onterminationDate(event) {
+    var terminationDate = new Date(event.target.value).getTime()
+    this.pageFilters['terminationDate'] = terminationDate
   }
   hidePopup(){
      this.dialogRef.close(null)
@@ -207,9 +209,13 @@ export class DispatcherformComponent implements OnInit {
      this.data['payrate']=this.payratedata
     }
      console.log(this.data)
-     if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
      this.btnHide=true
-     this._dispatcherService.EditDispatcher(this.data).subscribe(res => {
+    delete this.data['companyId']
+    delete this.data['createdAt']
+    delete this.data['updatedAt']
+    delete this.data['EditMode']
+
+     this._dispatcherService.EditDispatcher(this.data,this.data['_id']).subscribe(res => {
        if(res.Status == "error"){
                   this._toaster.error(res.error,"Failed", {timeOut: 2000,});
                   this.btnHide=false
@@ -222,26 +228,53 @@ export class DispatcherformComponent implements OnInit {
           this._toaster.error("Dispatcher Data Not Updated","Failed", {timeOut: 2000,});
           this.dialogRef.close(null)
      })
-   }else{
-     this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
-   }
+   
    }
    reset(){}
   submit() {
-    if(localStorage.selectedCompany == undefined){
-       this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
-     }else{
+    
         this.submitted = true;
         var Dispatcherlistdata=this.pageFilters
         Dispatcherlistdata['payrate']=this.payratedata
-        Dispatcherlistdata['companyid']=localStorage.selectedCompany
+        Dispatcherlistdata['companyId']=localStorage.selectedCompany
         var idArry=[]
         for (var i = 0; i < this.finalArry.length; ++i) {
           idArry.push(this.finalArry[i]._id)
         }
         Dispatcherlistdata['files']=idArry
-        if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
         this.btnHide=true
+        var obj={}
+        obj['address1']=this.pageFilters['address1']
+        obj['address2']=this.pageFilters['address2']
+        obj['city']=this.pageFilters['city']
+        obj['state']=this.pageFilters['state']
+        obj['zipcode']=this.pageFilters['zipcode']
+        Dispatcherlistdata['address']=obj
+        var bankdata={}
+        bankdata['bankname']=this.pageFilters['bankname']
+        bankdata['accountnum']=this.pageFilters['accountnum']
+        bankdata['accounttype']=this.pageFilters['accounttype']
+        Dispatcherlistdata['account']=bankdata
+
+        delete Dispatcherlistdata['address1']
+        delete Dispatcherlistdata['address2']
+        delete Dispatcherlistdata['city']
+        delete Dispatcherlistdata['state']
+        delete Dispatcherlistdata['zipcode']
+        delete Dispatcherlistdata['bankname']
+        delete Dispatcherlistdata['accountnum']
+        delete Dispatcherlistdata['accounttype']
+        delete Dispatcherlistdata['firstname']
+        delete Dispatcherlistdata['lastname']
+        delete Dispatcherlistdata['middlename']
+        delete Dispatcherlistdata['cellphone']
+        delete Dispatcherlistdata['email']
+        delete Dispatcherlistdata['dislpalyname']
+        delete Dispatcherlistdata['dateofbirth']
+        delete Dispatcherlistdata['ssn']
+
+        
+
         this._dispatcherService.SendForm(Dispatcherlistdata).subscribe(response => {
           if(response.Status == "error"){
                   this._toaster.error(response.error,"Failed", {timeOut: 2000,});
@@ -256,10 +289,6 @@ export class DispatcherformComponent implements OnInit {
           this.submitted=false;
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
-      }else{
-     this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
-   }
         this.getDispatcherData();
-       }
      }
 }

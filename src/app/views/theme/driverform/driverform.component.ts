@@ -208,16 +208,19 @@ export class DriverformComponent implements OnInit {
         }
      this.data['files']=idArry
     }
-    if(this.data['payrate'] == undefined){
-     this.data['payrate']=this.payrateinfodata
+    if(this.data['payRate'] == undefined){
+     this.data['payRate']=this.payrateinfodata
     }
-    if(this.data['drugdata'] == undefined){
-     this.data['drugdata']=this.drugdata
+    if(this.data['drugData'] == undefined){
+     this.data['drugData']=this.drugdata
     }
      console.log(this.data)
-     if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
           this.btnHide=true
-     this._driverService.EditDrivers(this.data).subscribe(res => {
+              delete this.data['createdAt']
+              delete this.data['updatedAt']
+              delete this.data['EditMode']
+
+     this._driverService.EditDrivers(this.data,this.data['_id']).subscribe(res => {
        if(res.Status == "error"){
                   this._toaster.error(res.error,"Failed", {timeOut: 2000,});
                   this.btnHide=false
@@ -230,19 +233,15 @@ export class DriverformComponent implements OnInit {
           this._toaster.error("Driver Data Not Updated","Failed", {timeOut: 2000,});
           this.dialogRef.close(null)
      })
-   }else{
-     this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
-   }
+  
    }
    reset(){}
    submit() {
-           // if(localStorage.selectedCompany == undefined){
-           //   this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
-           // }else{
+           
               this.submitted = true;
               var Driverlistdata:any=this.pageFilters
-              Driverlistdata['payrate']=this.payrateinfodata
-              Driverlistdata['drugdata']=this.drugdata
+              Driverlistdata['payRate']=this.payrateinfodata
+              Driverlistdata['drugData']=this.drugdata
               Driverlistdata['companyid']=localStorage.selectedCompany
               var idArry=[]
               for (var i = 0; i < this.finalArry.length; ++i) {
@@ -251,6 +250,30 @@ export class DriverformComponent implements OnInit {
               Driverlistdata['files']=idArry
               if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
                 this.btnHide=true
+                this.pageFilters['companyId'] = localStorage.getItem('selectedCompany')
+                console.log(this.pageFilters['companyId'])
+
+              delete Driverlistdata['address1']
+              delete Driverlistdata['address2']
+              delete Driverlistdata['accountnumber']
+              delete Driverlistdata['bankname']
+              delete Driverlistdata['accounttype']
+              delete Driverlistdata['firstname']
+              delete Driverlistdata['middlename']
+              delete Driverlistdata['companyid']
+              delete Driverlistdata['dateofbirth']
+              delete Driverlistdata['dislplayname']
+              delete Driverlistdata['state']
+              delete Driverlistdata['ssn']
+              delete Driverlistdata['email']
+              delete Driverlistdata['zipcode']
+              delete Driverlistdata['cellphone']
+              delete Driverlistdata['lastname']
+              delete Driverlistdata['routingnumber']
+              delete Driverlistdata['city']
+              delete Driverlistdata['routingnumber']
+              
+
               this._driverService.SendForm(Driverlistdata).subscribe(response => {
                 if(response.Status == "error"){
                   this._toaster.error(response.error,"Failed", {timeOut: 2000,});
@@ -268,7 +291,6 @@ export class DriverformComponent implements OnInit {
             }else{
            this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
          }
-             // }
            }
     hidePopup(){
      this.dialogRef.close(null)

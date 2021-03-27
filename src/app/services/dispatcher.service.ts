@@ -25,13 +25,14 @@ export class DispatcherService {
     return this.http.get(this.dispatchersurl,options).pipe(map(response=>response.json().data ? [] : response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
     
-    EditDispatcher(obj) {
+    EditDispatcher(obj,id) {
+    delete obj['_id']
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    return this.http.put(this.dispatchersurl+"/"+obj._id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+    return this.http.put(this.dispatchersurl+"/"+id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 
-    DeleteDispatcher(_id) {
+    DeleteDispatcher(id) {
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    return this.http.delete(this.dispatchersurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+    return this.http.delete(this.dispatchersurl+"/"+id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 }
