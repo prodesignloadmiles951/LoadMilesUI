@@ -1,0 +1,280 @@
+<form
+  class="form-horizontal"
+  #vendorPaymnetForm="ngForm"
+  novalidate
+  autocomplete="off"
+>
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">Bill Information</div>
+      <div style="display: flex">
+        <div class="card-body col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="vendorname"
+              >Vendor: <span style="color: red">*</span></label
+            >
+            <div class="col-md-9">
+              <select
+                class="form-control"
+                id="vendorname"
+                name="vendorname"
+                #vendorname="ngModel"
+                [(ngModel)]="pageFilters.vendorId"
+                (change)="vendorSelect($event)"
+                required
+              >
+                <option value="Select vendor" disabled selected hidden>
+                  Select Vendor
+                  <span style="color: red">*</span>
+                </option>
+                <option *ngFor="let vendor of vendors" [value]="vendor._id">
+                  {{ vendor.displayName }}
+                </option>
+              </select>
+              <div *ngIf="vendorPaymnetForm.submitted && vendorname.invalid">
+                <span style="color: red">Please Select a Vendor</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="preferredBank"
+              >Preferred Bank:<span style="color: red">*</span></label
+            >
+            <div class="col-md-9">
+              <select
+                class="form-control"
+                id="preferredBank"
+                name="preferredBank"
+                #preferredBank="ngModel"
+                [(ngModel)]="pageFilters.preferredBank"
+                required
+              >
+                <option value="Select Bank" disabled selected hidden>
+                  Select Bank
+                  <span style="color: red">*</span>
+                </option>
+                <option value="1">EBL</option>
+                <option value="2">DBBL</option>
+              </select>
+              <div *ngIf="vendorPaymnetForm.submitted && preferredBank.invalid">
+                <span style="color: red">Please Select a Vendor</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="loadNo"
+              >Payment Method:<span style="color: red">*</span></label
+            >
+            <div class="col-md-9">
+              <select
+                class="form-control"
+                id="paymentMethod"
+                name="paymentMethod"
+                #paymentMethod="ngModel"
+                [(ngModel)]="pageFilters.paymentMethod"
+                required
+              >
+                <option value="Select load" disabled selected hidden>
+                  Select Method
+                  <span style="color: red">*</span>
+                </option>
+                <option value="1">Cash</option>
+                <option value="2">Reciept</option>
+              </select>
+              <div *ngIf="vendorPaymnetForm.submitted && paymentMethod.invalid">
+                <span style="color: red">Please Select a Vendor</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="paymentRef"
+              >Payment Ref:</label
+            >
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                id="paymentRef"
+                name="paymentRef"
+                #paymentRef="ngModel"
+                [(ngModel)]="pageFilters.paymentRef"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="card-body col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="paymentDate"
+              >Payment Date: <span style="color: red">*</span></label
+            >
+            <div class="col-md-9">
+              <input
+                type="date"
+                class="form-control"
+                id="paymentDate"
+                placeholder="Ex: 01-04-1990"
+                name="paymentDate"
+                #paymentDate="ngModel"
+                [(ngModel)]="pageFilters.paymentDate"
+                required
+              />
+              <div
+                *ngIf="
+                  paymentDate.errors &&
+                  (paymentDate.dirty ||
+                    paymentDate.touched ||
+                    vendorPaymnetForm.submitted)
+                "
+                style="font-size: smaller"
+              >
+                <div [hidden]="!paymentDate.errors.required">
+                  <span style="color: red">Bill Date is Required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="balance"
+              >Balance:</label
+            >
+            <div class="col-md-9">
+              <input
+                type="number"
+                step=".001"
+                class="form-control"
+                id="balance"
+                name="balance"
+                #balance="ngModel"
+                [(ngModel)]="pageFilters.balance"
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="amount">Amount:</label>
+            <div class="col-md-9">
+              <input
+                type="number"
+                disabled
+                class="form-control"
+                id="amount"
+                name="amount"
+                [value]="pageFilters.amount"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">Bill Line</div>
+      <div class="dx-viewport">
+        <div class="grid-container">
+          <dx-data-grid
+            #grid
+            id="gridContainer"
+            [dataSource]="vendorBills"
+            [allowColumnReordering]="true"
+            [showBorders]="true"
+            [columnAutoWidth]="true"
+            [remoteOperations]="true"
+            (onRowUpdated)="onExpenseEdit($event)"
+            (onEditorPreparing)="disableFieldsExceptPayment($event)"
+            (onEditorPrepared)="focusOnPayment($event)"
+            (onFocusedCellChanging)="disableFocus($event)"
+          >
+            <dxo-paging [enabled]="false"></dxo-paging>
+            <dxo-editing mode="row" [allowUpdating]="true"> </dxo-editing>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxi-column
+              dataField="_id"
+              caption="Bill Id"
+              aria-disabled="true"
+            ></dxi-column>
+
+            <dxi-column dataField="dueDate" caption="Due Date"> </dxi-column>
+
+            <dxi-column
+              dataType="number"
+              dataField="billAmount"
+              caption="Bill Amount"
+            >
+              <dxo-format type="fixedPoint" [precision]="3"> </dxo-format>
+              <dxi-validation-rule
+                type="range"
+                min="1"
+                max="99999999"
+                message="Price must be between 15 and 1000"
+              ></dxi-validation-rule>
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+
+            <dxi-column
+              dataType="number"
+              dataField="paidAmount"
+              caption="Paid Amount"
+            >
+              <dxo-format type="fixedPoint" [precision]="3"> </dxo-format>
+              <dxi-validation-rule
+                type="range"
+                min="0"
+                max="99999999"
+                message="Price must be between 15 and 1000"
+              ></dxi-validation-rule>
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+
+            <dxi-column
+              dataType="number"
+              dataField="remainingAmount"
+              caption="Remaining Amount"
+              [calculateCellValue]="calculateRemainingAmount"
+            >
+            </dxi-column>
+
+            <dxi-column dataType="number" dataField="payment" caption="Payment">
+              <dxo-format type="fixedPoint" [precision]="3"> </dxo-format>
+              <dxi-validation-rule
+                type="range"
+                min="1"
+                max="99999999"
+                message="Price must be between 15 and 1000"
+              ></dxi-validation-rule>
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+          </dx-data-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button
+      type="submit"
+      style="float: right; margin-left: 10px"
+      class="btn btn-sm btn-primary"
+      [disabled]="vendorPaymnetForm.invalid"
+      (click)="submit()"
+    >
+      <!-- <i class="fa fa-dot-circle-o"></i>
+      <img
+        *ngIf="IsDataloading"
+        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+      /> -->
+      Submit</button
+    >&nbsp;&nbsp;
+    <button
+      type="reset"
+      style="float: right"
+      (click)="reset()"
+      class="btn btn-sm btn-danger"
+    >
+      <i class="fa fa-ban"></i> Reset
+    </button>
+  </div>
+</form>

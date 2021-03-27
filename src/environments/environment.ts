@@ -35,6 +35,15 @@ export const environment = {
   vendorurl: 'http://54.166.101.176:8081/vendorapi/vendor',
   fuelCardurl: 'http://54.166.101.176:8081/fuelCardapi/fuelCard',
   factorurl: 'http://54.166.101.176:8081/factorapi/factor',
+  currencyurl: 'http://54.166.101.176:8081/api/currency',
+  countryurl: 'http://54.166.101.176:8081/api/country/countries',
+  stateurl: 'http://54.166.101.176:8081/api/country/states',
+  expensetypeurl: 'http://54.166.101.176:8081/api/expense/expensetypes',
+  expensecategoryurl: 'http://54.166.101.176:8081/api/expense/expensecategories',
+  vendorbillsurl: 'http://54.166.101.176:8081/api/companyApi/vendorbills',
+  vendorpaymenturl: 'http://54.166.101.176:8081/api/companyApi/vendorbills/payment',
+  bankurl: 'http://54.166.101.176:8081/api/bank',
+  paymenttermurl: 'http://54.166.101.176:8081/api/paymentterm'
 
   // url:"http://localhost:62585/api/",
   // conurl:"http://localhost:62585/api/Transactions/",
@@ -45,3 +54,5 @@ export const environment = {
   // maskurl:"http://localhost:62585/api/senderid/",
 
 };
+
+

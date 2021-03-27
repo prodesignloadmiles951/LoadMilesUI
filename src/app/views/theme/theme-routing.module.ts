@@ -23,6 +23,11 @@ import { CompanylistComponent } from './company-list.component';
 import { VendorlistComponent } from './vendor-list.component';
 import { FactorlistComponent } from './factor-list.component';
 
+import { VendorBillListComponent } from './vendor-bill-list.component';
+import { ExpenseListComponent } from './expense-list.component';
+import { VendorPaymentComponent } from './vendorpaymentform/vendor-payment.component';
+import { PaymentListComponent } from './payment-list.component';
+
 
 const routes: Routes = [
   {
@@ -32,136 +37,160 @@ const routes: Routes = [
     },
     children: [
       {
-        path:'company',
-        component:CompanyComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Company'}
+        path: 'company',
+        component: CompanyComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Company' }
       },
       {
-        path:'company-list',
-        component:CompanylistComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Company-List'}
+        path: 'company-list',
+        component: CompanylistComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Company-List' }
       },
       {
-        path:'trucks',
-        component:TrucksComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Trucks'}
+        path: 'trucks',
+        component: TrucksComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Trucks' }
       },
       {
-        path:'trucks-list',
-        component:TruckslistComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Trucks-List'}
+        path: 'trucks-list',
+        component: TruckslistComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Trucks-List' }
       },
       {
-        path:'trailers',
-        component:TrailersComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Trailres'}
+        path: 'trailers',
+        component: TrailersComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Trailres' }
       },
       {
-        path:'trailers-list',
-        component:TrailerslistComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Trailres-List'}
+        path: 'trailers-list',
+        component: TrailerslistComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Trailres-List' }
       },
       {
-        path:'driver',
-        component:DriverComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Driver'}
+        path: 'driver',
+        component: DriverComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Driver' }
       },
       {
-        path:'driver-list',
-        component:DriverlistComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Driver-List'}
+        path: 'driver-list',
+        component: DriverlistComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Driver-List' }
       },
       {
-        path:'carrier',
-        component:CarrierComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Carrier'}
+        path: 'carrier',
+        component: CarrierComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Carrier' }
       },
       {
-        path:'carrier-list',
-        component:CarrierlistComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Carrier-List'}
+        path: 'carrier-list',
+        component: CarrierlistComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Carrier-List' }
       },
       {
-        path:'customers',
-        component:CustomersComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Customers'}
+        path: 'customers',
+        component: CustomersComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Customers' }
       },
       {
-        path:'customers-list',
-        component:CustomerslistComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Customers-List'}
+        path: 'customers-list',
+        component: CustomerslistComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Customers-List' }
       },
       {
-        path:'dispatcher',
-        component:DispatcherComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Dispatcher'}
+        path: 'dispatcher',
+        component: DispatcherComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Dispatcher' }
       },
       {
-        path:'dispatcher-list',
-        component:DispatcherlistComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Dispatcher-List'}
+        path: 'dispatcher-list',
+        component: DispatcherlistComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Dispatcher-List' }
       },
       {
-        path:'vendor',
-        component:VendorComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Vendor'}
+        path: 'expense-list',
+        component: ExpenseListComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Expense Types' }
       },
       {
-        path:'vendor-list',
-        component:VendorlistComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Vendor List'}
+        path: 'vendor',
+        component: VendorComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Vendor' }
       },
       {
-        path:'factor',
-        component:FactorComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Factor'}
+        path: 'vendor-list',
+        component: VendorlistComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Vendor List' }
       },
       {
-        path:'factor-list',
-        component:FactorlistComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Factor List'}
+        path: 'vendor-bill-list',
+        component: VendorBillListComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Vendor Bills' }
       },
       {
-        path:'fuelcard',
-        component:FuelcardComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Fuelcard'}
+        path: 'vendorpaymentform/vendor-payment',
+        component: VendorPaymentComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Pay Vendor' }
       },
       {
-        path:'fuelcard-list',
-        component:FuelcardListComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Fuelcard List'}
+        path: 'payment-list',
+        component: PaymentListComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Payment History' }
       },
       {
-        path:'accident',
-        component:AccidentComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Accident'}
+        path: 'factor',
+        component: FactorComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Factor' }
       },
       {
-        path:'map',
-        component:MapComponent,
-        runGuardsAndResolvers:'always',
-        data:{title:'Map'}
+        path: 'factor-list',
+        component: FactorlistComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Factor List' }
+      },
+      {
+        path: 'fuelcard',
+        component: FuelcardComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Fuelcard' }
+      },
+      {
+        path: 'fuelcard-list',
+        component: FuelcardListComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Fuelcard List' }
+      },
+      {
+        path: 'accident',
+        component: AccidentComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Accident' }
+      },
+      {
+        path: 'map',
+        component: MapComponent,
+        runGuardsAndResolvers: 'always',
+        data: { title: 'Map' }
       },
     ]
   }
@@ -171,4 +200,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ThemeRoutingModule {}
+export class ThemeRoutingModule { }

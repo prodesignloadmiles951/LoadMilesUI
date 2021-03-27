@@ -1,0 +1,143 @@
+<form
+  class="form-horizontal"
+  #expenseForm="ngForm"
+  novalidate
+  autocomplete="off"
+>
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">Expense Information</div>
+      <div class="card-body col-sm-12">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="expenseName">Name:</label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              id="expenseName"
+              name="expenseName"
+              #expenseName="ngModel"
+              [(ngModel)]="pageFilters.name"
+              required
+            />
+            <div
+              *ngIf="
+                expenseName.errors &&
+                (expenseName.dirty ||
+                  expenseName.touched ||
+                  expenseForm.submitted)
+              "
+              style="font-size: smaller"
+            >
+              <div [hidden]="!expenseName.errors.required">
+                <span style="color: red">Expense name is required</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="expenseType"
+            >Expense Type: <span style="color: red">*</span></label
+          >
+          <div class="col-md-9">
+            <select
+              class="form-control"
+              id="expenseType"
+              name="expenseType"
+              #expenseType="ngModel"
+              [(ngModel)]="pageFilters.expenseCategoryId"
+              required
+            >
+              <option value="Select driver" disabled selected hidden>
+                Select Expense Type
+              </option>
+              <option
+                *ngFor="let expense of expenseTypes"
+                [value]="expense._id"
+              >
+                {{ expense.name }}
+              </option>
+            </select>
+            <div *ngIf="expenseForm.submitted && expenseType.invalid">
+              <span style="color: red">Please Select a Vendor</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="expenseCode">Code:</label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              id="expenseCode"
+              name="expenseCode"
+              #expenseCode="ngModel"
+              [(ngModel)]="pageFilters.code"
+              required
+            />
+            <div
+              *ngIf="
+                expenseCode.errors &&
+                (expenseCode.dirty ||
+                  expenseCode.touched ||
+                  expenseForm.submitted)
+              "
+              style="font-size: smaller"
+            >
+              <div [hidden]="!expenseCode.errors.required">
+                <span style="color: red">Expense code is required</span>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="expenseStatus"
+            >Status: <span style="color: red">*</span></label
+          >
+          <div class="col-md-9">
+            <select
+              class="form-control"
+              id="expenseStatus"
+              name="expenseStatus"
+              #expenseStatus="ngModel"
+              [(ngModel)]="pageFilters.isActive"
+              required
+            >
+              <option [ngValue]="true" [selected]="true">Active</option>
+              <option [ngValue]="false">Inactive</option>
+            </select>
+            <div *ngIf="expenseForm.submitted && expenseStatus.invalid">
+              <span style="color: red">Please Select a Vendor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button
+      type="submit"
+      style="float: right; margin-left: 10px"
+      class="btn btn-sm btn-primary"
+      [disabled]="expenseForm.invalid"
+      (click)="submit()"
+    >
+      <i class="fa fa-dot-circle-o"></i>
+      <img
+        *ngIf="IsDataloading"
+        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+      />
+      Submit</button
+    >&nbsp;&nbsp;
+    <button
+      type="reset"
+      style="float: right"
+      (click)="reset()"
+      class="btn btn-sm btn-danger"
+    >
+      <i class="fa fa-ban"></i> Reset
+    </button>
+  </div>
+</form>

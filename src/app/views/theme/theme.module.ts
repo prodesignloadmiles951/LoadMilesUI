@@ -9,12 +9,12 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { MatDialogModule} from '@angular/material/dialog';
-import { FileUploadModule} from 'ng2-file-upload';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FileUploadModule } from 'ng2-file-upload';
 
 // Theme Routing
 import { ThemeRoutingModule } from './theme-routing.module';
-import { CompanyComponent} from './company.component';
+import { CompanyComponent } from './company.component';
 import { TrucksComponent } from './trucks.component';
 import { TrailersComponent } from './trailers.component';
 import { DriverComponent } from './driver.component';
@@ -35,12 +35,12 @@ import { DispatcherlistComponent } from './dispatcher-list.component';
 import { CompanylistComponent } from './company-list.component';
 import { VendorlistComponent } from './vendor-list.component';
 import { FactorlistComponent } from './factor-list.component';
-import { MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import {
-    DxDataGridModule,
-    DxBulletModule,
-    DxTemplateModule,
-    DxDataGridComponent
+  DxDataGridModule,
+  DxBulletModule,
+  DxTemplateModule,
+  DxDataGridComponent
 } from 'devextreme-angular';
 import { TruckformComponent } from './truckform/truckform.component';
 import { TrailerformComponent } from './trailerform/trailerform.component';
@@ -49,6 +49,15 @@ import { CarrierformComponent } from './carrierform/carrierform.component';
 import { CustomerformComponent } from './customerform/customerform.component';
 import { DispatcherformComponent } from './dispatcherform/dispatcherform.component';
 import { CompanyformComponent } from './companyform/companyform.component';
+
+import { VendorBillComponent } from './vendor-bill.component';
+import { VendorBillListComponent } from './vendor-bill-list.component';
+import { ExpenseListComponent } from './expense-list.component';
+import { ExpenseComponent } from './expenseform/expense.component';
+import { VendorPaymentComponent } from './vendorpaymentform/vendor-payment.component';
+import { PaymentListComponent } from './payment-list.component';
+import { VendorPaymentDelailsComponent } from './vendorpaymentdetails/vendor-payment-delails.component';
+
 
 
 @NgModule({
@@ -96,9 +105,16 @@ import { CompanyformComponent } from './companyform/companyform.component';
     CarrierformComponent,
     CustomerformComponent,
     DispatcherformComponent,
-    CompanyformComponent
+    CompanyformComponent,
+    VendorBillListComponent,
+    VendorBillComponent,
+    ExpenseListComponent,
+    ExpenseComponent,
+    VendorPaymentComponent,
+    PaymentListComponent,
+    VendorPaymentDelailsComponent,
   ],
   exports: [TruckformComponent, TrailerformComponent, DriverformComponent, CarrierformComponent, CustomerformComponent, DispatcherformComponent, CompanyformComponent],
-  entryComponents: [TruckformComponent, TrailerformComponent, DriverformComponent, CarrierformComponent, CustomerformComponent, DispatcherformComponent, CompanyformComponent],
+  entryComponents: [TruckformComponent, TrailerformComponent, DriverformComponent, CarrierformComponent, CustomerformComponent, DispatcherformComponent, CompanyformComponent, VendorBillComponent, ExpenseComponent, VendorPaymentDelailsComponent],
 })
 export class ThemeModule { }

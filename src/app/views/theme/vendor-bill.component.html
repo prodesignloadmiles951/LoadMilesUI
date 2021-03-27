@@ -1,0 +1,346 @@
+<form
+  class="form-horizontal"
+  #vendorBillForm="ngForm"
+  novalidate
+  autocomplete="off"
+>
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">Bill Information</div>
+      <div style="display: flex">
+        <div class="card-body col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="vendorname"
+              >Vendor: <span style="color: red">*</span></label
+            >
+            <div class="col-md-9">
+              <select
+                class="form-control"
+                id="vendorname"
+                name="vendorname"
+                #vendorname="ngModel"
+                [(ngModel)]="pageFilters.vendorId"
+                required
+              >
+                <option value="Select vendor" disabled selected hidden>
+                  Select Vendor
+                  <span style="color: red">*</span>
+                </option>
+                <option *ngFor="let vendor of vendors" [(ngValue)]="vendor._id">
+                  {{ vendor.displayName }}
+                </option>
+              </select>
+              <div *ngIf="vendorBillForm.submitted && vendorname.invalid">
+                <span style="color: red">Please Select a Vendor</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="loadNo"
+              >Load :<span style="color: red">*</span></label
+            >
+            <div class="col-md-9">
+              <select
+                class="form-control"
+                id="loadNo"
+                name="loadNo"
+                #loadNo="ngModel"
+                [(ngModel)]="pageFilters.loadId"
+                required
+              >
+                <option value="Select load" disabled selected hidden>
+                  Select Load
+                  <span style="color: red">*</span>
+                </option>
+                <option value="1">load 1</option>
+                <option value="2">load 2</option>
+              </select>
+              <div *ngIf="vendorBillForm.submitted && loadNo.invalid">
+                <span style="color: red">Please Select a Vendor</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="driverNo"
+              >Driver : <span style="color: red">*</span></label
+            >
+            <div class="col-md-9">
+              <select
+                class="form-control"
+                id="driverNo"
+                name="driverNo"
+                #driverNo="ngModel"
+                [(ngModel)]="pageFilters.driverId"
+                required
+              >
+                <option value="Select driver" disabled selected hidden>
+                  Select Driver
+                </option>
+                <option value="1">driver 1</option>
+                <option value="2">driver 2</option>
+              </select>
+              <div *ngIf="vendorBillForm.submitted && driverNo.invalid">
+                <span style="color: red">Please Select a Vendor</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="truckNo"
+              >Truck :<span style="color: red">*</span>
+            </label>
+            <div class="col-md-9">
+              <select
+                class="form-control"
+                id="truckNo"
+                name="truckNo"
+                #truckNo="ngModel"
+                [(ngModel)]="pageFilters.truckId"
+                required
+              >
+                <option value="Select truck" disabled selected hidden>
+                  Select Truck
+                  <span style="color: red">*</span>
+                </option>
+                <option value="1">truck 1</option>
+                <option value="2">truck 2</option>
+              </select>
+              <div *ngIf="vendorBillForm.submitted && truckNo.invalid">
+                <span style="color: red">Please Select a Vendor</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="billDate"
+              >Bill Date: <span style="color: red">*</span></label
+            >
+            <div class="col-md-9">
+              <input
+                type="date"
+                class="form-control"
+                id="billdate"
+                placeholder="Ex: 01-04-1990"
+                name="billdate"
+                #billDate="ngModel"
+                [(ngModel)]="pageFilters.billDate"
+                required
+              />
+              <div
+                *ngIf="
+                  billDate.errors &&
+                  (billDate.dirty ||
+                    billDate.touched ||
+                    vendorBillForm.submitted)
+                "
+                style="font-size: smaller"
+              >
+                <div [hidden]="!billDate.errors.required">
+                  <span style="color: red">Bill Date is Required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="dueDate"
+              >Due Date: <span style="color: red">*</span></label
+            >
+            <div class="col-md-9">
+              <input
+                type="date"
+                class="form-control"
+                id="dueDate"
+                placeholder="Ex: 01-04-1990"
+                name="dueDate"
+                #dueDate="ngModel"
+                [(ngModel)]="pageFilters.dueDate"
+                required
+              />
+              <div
+                *ngIf="
+                  dueDate.errors &&
+                  (dueDate.dirty || dueDate.touched || vendorBillForm.submitted)
+                "
+                style="font-size: smaller"
+              >
+                <div [hidden]="!dueDate.errors.required">
+                  <span style="color: red">Due Date is Required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="billAmount"
+              >Bill Amount:<span style="color: red">*</span></label
+            >
+            <div class="col-md-9">
+              <input
+                type="number"
+                step=".001"
+                class="form-control"
+                id="billAmount"
+                name="billAmount"
+                #billAmount="ngModel"
+                [(ngModel)]="pageFilters.billAmount"
+                disabled
+                required
+              />
+              <div
+                *ngIf="
+                  billAmount.errors &&
+                  (billAmount.dirty ||
+                    billAmount.touched ||
+                    vendorBillForm.submitted)
+                "
+                style="font-size: smaller"
+              >
+                <div [hidden]="!billAmount.errors.required">
+                  <span style="color: red">Bill Amount is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="pageFilters.paidAmount > 0">
+            <label class="col-md-3 col-form-label" for="paidAmount"
+              >Paid Amount:</label
+            >
+            <div class="col-md-9">
+              <input
+                type="number"
+                step=".001"
+                class="form-control"
+                id="paidAmount"
+                name="paidAmount"
+                #paidAmount="ngModel"
+                (blur)="formatDecimal()"
+                [(ngModel)]="pageFilters.paidAmount"
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="pageFilters.remainingAmount > 0">
+            <label class="col-md-3 col-form-label" for="remainingAmount"
+              >Remaining Amount:</label
+            >
+            <div class="col-md-9">
+              <input
+                type="number"
+                step=".001"
+                disabled
+                class="form-control"
+                id="remainingAmount"
+                name="remainingAmount"
+                [value]="pageFilters.billAmount - pageFilters.paidAmount"
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="comment"
+              >Comment:</label
+            >
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                id="comment"
+                name="comment"
+                #comment="ngModel"
+                [(ngModel)]="pageFilters.comment"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">Detail Lines</div>
+      <div class="dx-viewport">
+        <div class="grid-container">
+          <dx-data-grid
+            #grid
+            id="gridContainer"
+            [dataSource]="pageFilters.billLines"
+            [allowColumnReordering]="true"
+            [showBorders]="true"
+            [columnAutoWidth]="true"
+            [remoteOperations]="true"
+            (onRowUpdating)="onExpenseEdit($event)"
+            (onRowRemoved)="onExpenseDelete($event)"
+            (onRowInserted)="onExpenseAdd($event)"
+            (onRowInserting)="onSavedRow($event)"
+          >
+            <dxo-paging [enabled]="false"></dxo-paging>
+            <dxo-editing
+              mode="row"
+              [allowUpdating]="true"
+              [allowDeleting]="true"
+              [allowAdding]="true"
+            >
+            </dxo-editing>
+            <dxo-selection mode="single"></dxo-selection>
+            <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
+            <dxi-column
+              dataField="expense"
+              [width]="300"
+              caption="Expense Type"
+            >
+              <dxo-lookup
+                [dataSource]="expenseDetails"
+                [displayExpr]="gridBox_displayExpr"
+                valueExpr="_id"
+              >
+              </dxo-lookup>
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+            <dxi-column
+              dataType="number"
+              dataField="billAmount"
+              caption="Bill Amount"
+            >
+              <dxo-format type="fixedPoint" [precision]="3"> </dxo-format>
+              <dxi-validation-rule
+                type="range"
+                min="1"
+                max="99999999"
+                message="Price must be between 15 and 1000"
+              ></dxi-validation-rule>
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+            <dxi-column
+              dataField="description"
+              caption="Description"
+            ></dxi-column>
+            <dxi-column dataField="comment" caption="Comment"></dxi-column>
+          </dx-data-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button
+      type="submit"
+      style="float: right; margin-left: 10px"
+      class="btn btn-sm btn-primary"
+      [disabled]="vendorBillForm.invalid || pageFilters.billLines.length < 1"
+      (click)="submit()"
+    >
+      <i class="fa fa-dot-circle-o"></i>
+      <img
+        *ngIf="IsDataloading"
+        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+      />
+      Submit</button
+    >&nbsp;&nbsp;
+    <button
+      type="reset"
+      style="float: right"
+      (click)="reset()"
+      class="btn btn-sm btn-danger"
+    >
+      <i class="fa fa-ban"></i> Reset
+    </button>
+  </div>
+</form>

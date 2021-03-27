@@ -1,0 +1,69 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          Expense Types
+          <span class="float-right">
+            <button type="add" class="btn btn-sm btn-success" (click)="Add()">
+              <i class="fa fa-plus"></i> New Expense
+            </button>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="animated fadeIn"></div>
+          <table
+            class="table table-responsive-sm table-hover table-outline mb-0"
+          >
+            <thead>
+              <tr>
+                <th>S.no</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr></tr>
+              <tr *ngFor="let expense of expenses; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ expense.code }}</td>
+                <td>{{ expense.name }}</td>
+                <td>{{ expense.expenseCategory.name }}</td>
+                <td>{{ expense.isActive ? "Active" : "Inactive" }}</td>
+                <td>
+                  <a
+                    style="cursor: pointer; color: #20a8d8"
+                    (click)="viewData(expense)"
+                    >View</a
+                  >
+                  |
+
+                  <a
+                    style="cursor: pointer; color: #20a8d8"
+                    (click)="editData(expense)"
+                    >Edit</a
+                  >
+
+                  <!-- <a style="cursor: pointer;color: #20a8d8;"
+                                  (click)="deleteTrailers(trailer)">Delete</a> -->
+                </td>
+              </tr>
+            </tbody>
+
+            <!-- <tbody *ngIf="logslist.length==0">
+                      <tr>
+                        <td class="alert alert-warning" style="width:1050px;" align="center" colspan="10"><span>No records available</span></td>
+                      </tr>
+                    </tbody> -->
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--View-->
+</div>

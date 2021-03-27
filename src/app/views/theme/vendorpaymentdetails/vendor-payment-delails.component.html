@@ -1,0 +1,131 @@
+<form class="form-horizontal">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">Payment Information</div>
+      <div style="display: flex">
+        <div class="card-body col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="vandorName"
+              >Vendor:</label
+            >
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                id="vandorName"
+                name="vandorName"
+                #vandorId="ngModel"
+                [(ngModel)]="vendorPayment.vendorId.displayName"
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="paymentMethod"
+              >Payment Method:</label
+            >
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                id="paymentMethod"
+                name="paymentMethod"
+                #paymentMethod="ngModel"
+                [(ngModel)]="vendorPayment.paymentMethod"
+                disabled
+              />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="paymentDate"
+              >Payment Date:</label
+            >
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                id="paymentDate"
+                name="paymentDate"
+                #paymentDate="ngModel"
+                [(ngModel)]="vendorPayment.paymentDate"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+        <div class="card-body col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="balance"
+              >Balance:</label
+            >
+            <div class="col-md-9">
+              <input
+                type="number"
+                class="form-control"
+                id="balance"
+                name="balance"
+                #balance="ngModel"
+                [(ngModel)]="vendorPayment.balance"
+                disabled
+              />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="amount">Amount:</label>
+            <div class="col-md-9">
+              <input
+                type="number"
+                class="form-control"
+                id="amount"
+                name="amount"
+                #amount="ngModel"
+                [(ngModel)]="vendorPayment.amount"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-header">Invoice Line</div>
+    <div class="card-body">
+      <div class="animated fadeIn"></div>
+      <table class="table table-responsive-sm table-hover table-outline mb-0">
+        <thead>
+          <tr>
+            <th>S.no</th>
+            <th>Bill Id</th>
+            <th>Payment Date</th>
+            <th>Bill Amount</th>
+            <th>Paid Amount</th>
+            <th>Remaining Amount</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr></tr>
+          <tr *ngFor="let payment of vendorPayment.paymentLine; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ payment.billId._id }}</td>
+            <td>{{ payment.paymentDate }}</td>
+            <td>{{ payment.billId.billAmount }}</td>
+            <td>{{ payment.paymentAmount }}</td>
+            <td>{{ payment.billId.billAmount - payment.paymentAmount }}</td>
+          </tr>
+        </tbody>
+
+        <!-- <tbody *ngIf="logslist.length==0">
+                    <tr>
+                      <td class="alert alert-warning" style="width:1050px;" align="center" colspan="10"><span>No records available</span></td>
+                    </tr>
+                  </tbody> -->
+      </table>
+    </div>
+  </div>
+</div>
