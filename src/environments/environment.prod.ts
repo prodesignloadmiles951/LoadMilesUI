@@ -33,7 +33,7 @@ export const environment = {
   newcompanyurl: currentEnv + ':5000/api/company',
   newcompanycreateurl: 'http://3.139.89.46:8081/companyapi/company/',
   userdetailsurl: 'http://3.139.89.46:8081/userapi/user',
-  vendorurl: 'http://54.166.101.176:8081/vendorapi/vendor',
+  vendorurl: 'http://localhost:5000/api/companyApi/vendor',
   fuelCardurl: 'http://54.166.101.176:8081/fuelCardapi/fuelCard',
   factorurl: 'http://54.166.101.176:8081/factorapi/factor',
   currencyurl: 'http://localhost:5000/api/currency',
