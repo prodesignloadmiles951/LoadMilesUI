@@ -45,7 +45,7 @@ export class LoginComponent {
            var usercmpdetails = data['result']['company']
           for (var i = 0; i < usercmpdetails.length; i++) {
             if(usercmpdetails[i]['default']){
-              localStorage.setItem('selectedCompany', usercmpdetails[i]['_id']);
+              localStorage.setItem('selectedCompany', usercmpdetails[i]['company']);
               localStorage.setItem('role', JSON.stringify(usercmpdetails[i]['role']));
               localStorage.setItem('selectedCompanyName', usercmpdetails[i]['name']);
               if(usercmpdetails['role'] == 5){

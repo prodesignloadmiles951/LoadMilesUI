@@ -80,15 +80,15 @@
         </div>
         <div class="card-body col-sm-6">
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="emergenctcontact">Emergency Contact:</label>
+            <label class="col-md-3 col-form-label" for="emergenctContact">Emergency Contact:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergenctcontact" name="emergenctcontact" #emergenctcontact="ngModel" [(ngModel)]="pageFilters.emergenctcontact">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergenctContact" name="emergenctContact" #emergenctContact="ngModel" [(ngModel)]="pageFilters.emergenctContact">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="emergencyphone">Emergency Phone:</label>
+            <label class="col-md-3 col-form-label" for="emergencyPhone">Emergency Phone:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergencyphone" name="emergencyphone" #emergencyphone="ngModel" [(ngModel)]="pageFilters.emergencyphone">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergencyPhone" name="emergencyPhone" #emergencyPhone="ngModel" [(ngModel)]="pageFilters.emergencyPhone">
             </div>
           </div>
           <div class="form-group row">
@@ -170,42 +170,42 @@
         <div style="display: flex;">
           <div class="card-body col-sm-6">
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="employmenttype">Employment Type:</label>
-              <div class="col-md-8 col-form-label" name="employmenttype">
+              <label class="col-md-4 col-form-label" for="employmentType">Employment Type:</label>
+              <div class="col-md-8 col-form-label" name="employmentType">
                 <div class="form-check form-check-inline mr-1">
-                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio1" type="radio" value="employee" checked="checked" name="employmenttype" #employmenttype="ngModel" [value]="true" [(ngModel)]="pageFilters.employmenttype">
+                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio1" type="radio" value="employee" checked="checked" name="employmentType" #employmentType="ngModel" [value]="true" [(ngModel)]="pageFilters.employmentType">
                   <label class="form-check-label" for="inline-radio1">Employee</label>
                 </div>
                 <div class="form-check form-check-inline mr-1">
-                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio2" type="radio" value="1099?" name="employmenttype" #employmenttype="ngModel" [value]="false" [(ngModel)]="pageFilters.employmenttype">
+                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio2" type="radio" value="1099?" name="employmentType" #employmentType="ngModel" [value]="false" [(ngModel)]="pageFilters.employmentType">
                   <label class="form-check-label" for="inline-radio2">1099?</label>
                 </div>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="hiredate">Hire Date:</label>
+              <label class="col-md-4 col-form-label" for="hireDate">Hire Date:</label>
               <div class="col-md-8">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="hiredate" name="hiredate" value="{{hiredate | date:'yyyy-MM-dd'}}" (change)="onhiredate($event)">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="hireDate" name="hireDate" value="{{hireDate | date:'yyyy-MM-dd'}}" (change)="onhireDate($event)">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="terminationdate">Termination Date:</label>
+              <label class="col-md-4 col-form-label" for="terminationDate">Termination Date:</label>
               <div class="col-md-8">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="terminationdate" name="terminationdate" value="{{terminationdate | date:'yyyy-MM-dd'}}" (change)="onterminationdate($event)">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="terminationDate" name="terminationDate" value="{{terminationDate | date:'yyyy-MM-dd'}}" (change)="onterminationDate($event)">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="vendoraccount">Vendor ID Account:</label>
+              <label class="col-md-4 col-form-label" for="vendorAccount">Vendor ID Account:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="vendoraccount" name="vendoraccount" #vendoraccount="ngModel" [(ngModel)]="pageFilters.vendoraccount">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="vendorAccount" name="vendorAccount" #vendorAccount="ngModel" [(ngModel)]="pageFilters.vendorAccount">
               </div>
             </div>
           </div>
           <div class="card-body col-sm-6">
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="quickpayid">Quickpay Id:</label>
+              <label class="col-md-4 col-form-label" for="quickpayId">Quickpay Id:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="quickpayid" name="quickpayid" #quickpayid="ngModel" [(ngModel)]="pageFilters.quickpayid">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="quickpayId" name="quickpayId" #quickpayId="ngModel" [(ngModel)]="pageFilters.quickpayId">
               </div>
             </div>
             <div class="form-group row">

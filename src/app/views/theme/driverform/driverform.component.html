@@ -45,7 +45,7 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="dislpalyname">Display Name: </label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dislpalyname" name="dislpalyname" #dislpalyname="ngModel" [(ngModel)]="pageFilters.dislpalyname">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dislpalyname" name="dislpalyname" #dislpalyname="ngModel" [(ngModel)]="pageFilters.dislplayname">
             </div>
           </div>
           <div class="form-group row">
@@ -85,15 +85,15 @@
         </div>
         <div class="card-body col-sm-6">
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="emergenctcontact">Emergency Contact:</label>
+            <label class="col-md-3 col-form-label" for="emergenctContact">Emergency Contact:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergenctcontact" name="emergenctcontact" #emergenctcontact="ngModel" [(ngModel)]="pageFilters.emergenctcontact">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergenctContact" name="emergenctContact" #emergenctContact="ngModel" [(ngModel)]="pageFilters.emergenctContact">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="emergencyphone">Emergency Phone:</label>
+            <label class="col-md-3 col-form-label" for="emergencyPhone">Emergency Phone:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergencyphone" name="emergencyphone" #emergencyphone="ngModel" [(ngModel)]="pageFilters.emergencyphone">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergencyPhone" name="emergencyPhone" #emergencyPhone="ngModel" [(ngModel)]="pageFilters.emergencyPhone">
             </div>
           </div>
           <div class="form-group row">
@@ -175,42 +175,42 @@
         <div style="display: flex;">
           <div class="card-body col-sm-6">
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="employmenttype">Employment Type:</label>
-              <div class="col-md-8 col-form-label" name="employmenttype">
+              <label class="col-md-4 col-form-label" for="employmentType">Employment Type:</label>
+              <div class="col-md-8 col-form-label" name="employmentType">
                 <div class="form-check form-check-inline mr-1">
-                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio1" type="radio" value="employee" checked="checked" name="employmenttype" #employmenttype="ngModel" [value]="true" [(ngModel)]="pageFilters.employmenttype">
+                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio1" type="radio" value="employee" checked="checked" name="employmentType" #employmentType="ngModel" [value]="true" [(ngModel)]="pageFilters.employmentType">
                   <label class="form-check-label" for="inline-radio1">Employee</label>
                 </div>
                 <div class="form-check form-check-inline mr-1">
-                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio2" type="radio" value="1099?" name="employmenttype" #employmenttype="ngModel" [value]="false" [(ngModel)]="pageFilters.employmenttype">
+                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio2" type="radio" value="1099?" name="employmentType" #employmentType="ngModel" [value]="false" [(ngModel)]="pageFilters.employmentType">
                   <label class="form-check-label" for="inline-radio2">1099?</label>
                 </div>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="hiredate">Hire Date:</label>
+              <label class="col-md-4 col-form-label" for="hireDate">Hire Date:</label>
               <div class="col-md-8">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="hiredate" name="hiredate" #hiredate="ngModel" [(ngModel)]="pageFilters.hiredate">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="hireDate" name="hireDate" #hireDate="ngModel" [(ngModel)]="pageFilters.hireDate">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="terminationdate">Termination Date:</label>
+              <label class="col-md-4 col-form-label" for="terminationDate">Termination Date:</label>
               <div class="col-md-8">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="terminationdate" name="terminationdate" #terminationdate="ngModel" [(ngModel)]="pageFilters.terminationdate">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="terminationDate" name="terminationDate" #terminationDate="ngModel" [(ngModel)]="pageFilters.terminationDate">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="vendoraccount">Vendor ID Account:</label>
+              <label class="col-md-4 col-form-label" for="vendorAccount">Vendor ID Account:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="vendoraccount" name="vendoraccount" #vendoraccount="ngModel" [(ngModel)]="pageFilters.vendoraccount">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="vendorAccount" name="vendorAccount" #vendorAccount="ngModel" [(ngModel)]="pageFilters.vendorAccount">
               </div>
             </div>
           </div>
           <div class="card-body col-sm-6">
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="quickpayid">Quickpay Id:</label>
+              <label class="col-md-4 col-form-label" for="quickPayId">Quickpay Id:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="quickpayid" name="quickpayid" #quickpayid="ngModel" [(ngModel)]="pageFilters.quickpayid">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="quickPayId" name="quickPayId" #quickPayId="ngModel" [(ngModel)]="pageFilters.quickPayId">
               </div>
             </div>
             <div class="form-group row">
@@ -253,9 +253,9 @@
         <div style="display: flex;">
           <div class="card-body col-md-6">
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="cdlclass">CDL Class:</label>
+              <label class="col-md-4 col-form-label" for="cdlClass">CDL Class:</label>
               <div class="col-md-8">
-                <select [ngClass]="mode?'':'disble'" class="form-control" id="cdlclass" name="cdlclass" #cdlclass="ngModel" [(ngModel)]="pageFilters.cdlclass">
+                <select [ngClass]="mode?'':'disble'" class="form-control" id="cdlClass" name="cdlClass" #cdlClass="ngModel" [(ngModel)]="pageFilters.cdlClass">
                   <option value="0">Select</option>
                   <option value="1">Class A</option>
                   <option value="2">Class B</option>
@@ -264,53 +264,53 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="cdlnumber">CDL Number:</label>
+              <label class="col-md-4 col-form-label" for="cdlNumber">CDL Number:</label>
               <div class="col-md-8">
-                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="cdlnumber" name="cdlnumber" #cdlnumber="ngModel" [(ngModel)]="pageFilters.cdlnumber">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="cdlNumber" name="cdlNumber" #cdlNumber="ngModel" [(ngModel)]="pageFilters.cdlNumber">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="cdlstate">CDL State:</label>
+              <label class="col-md-4 col-form-label" for="cdlState">CDL State:</label>
               <div class="col-md-8">
-                <input type="lookup" [ngClass]="mode?'':'disble'" class="form-control" id="cdlstate" name="cdlstate" #cdlstate="ngModel" [(ngModel)]="pageFilters.cdlstate">
+                <input type="lookup" [ngClass]="mode?'':'disble'" class="form-control" id="cdlState" name="cdlState" #cdlState="ngModel" [(ngModel)]="pageFilters.cdlState">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="cdlexpirytate">CDL Expiry Date:</label>
+              <label class="col-md-4 col-form-label" for="cdlExpiryDate">CDL Expiry Date:</label>
               <div class="col-md-8">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="cdlexpirydate" name="cdlexpirytate" #cdlexpirytate="ngModel" [(ngModel)]="pageFilters.cdlexpirytate">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="cdlexpirydate" name="cdlExpiryDate" #cdlExpiryDate="ngModel" [(ngModel)]="pageFilters.cdlExpiryDate">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="medicalcardexpiration">Medical card Expiration:</label>
+              <label class="col-md-4 col-form-label" for="medicalCardExpiration">Medical card Expiration:</label>
               <div class="col-md-8 col-form-label">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="medicalcardexpiration" name="medicalcardexpiration" #medicalcardexpiration="ngModel" [(ngModel)]="pageFilters.medicalcardexpiration">
+                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="medicalCardExpiration" name="medicalCardExpiration" #medicalCardExpiration="ngModel" [(ngModel)]="pageFilters.medicalCardExpiration">
               </div>
             </div>
           </div>
           <div class="card-body col-md-6">
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="yearsofexperience">Years Of Experience:</label>
+              <label class="col-md-4 col-form-label" for="yearsOfExperience">Years Of Experience:</label>
               <div class="col-md-8">
-                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="yearsofexperience" name="yearsofexperience" #yearsofexperience="ngModel" [(ngModel)]="pageFilters.yearsofexperience">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="yearsOfExperience" name="yearsOfExperience" #yearsOfExperience="ngModel" [(ngModel)]="pageFilters.yearsOfExperience">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="statesoperated">States Operated:</label>
+              <label class="col-md-4 col-form-label" for="statesOperated">States Operated:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="statesoperated" name="statesoperated" #statesoperated="ngModel" [(ngModel)]="pageFilters.statesoperated">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="statesOperated" name="statesOperated" #statesOperated="ngModel" [(ngModel)]="pageFilters.statesOperated">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="safetyawards">Safety Awards:</label>
+              <label class="col-md-4 col-form-label" for="safetyAwards">Safety Awards:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="safetyawards" name="safetyawards" #safetyawards="ngModel" [(ngModel)]="pageFilters.safetyawards">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="safetyAwards" name="safetyAwards" #safetyAwards="ngModel" [(ngModel)]="pageFilters.safetyAwards">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="specialtraining">Special Training:</label>
+              <label class="col-md-4 col-form-label" for="specialTraining">Special Training:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="specialtraining" name="specialtraining" #specialtraining="ngModel" [(ngModel)]="pageFilters.specialtraining">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="specialTraining" name="specialTraining" #specialTraining="ngModel" [(ngModel)]="pageFilters.specialTraining">
               </div>
             </div>
           </div>
