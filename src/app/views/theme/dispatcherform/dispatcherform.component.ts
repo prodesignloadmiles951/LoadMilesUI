@@ -256,22 +256,31 @@ export class DispatcherformComponent implements OnInit {
         bankdata['accounttype']=this.pageFilters['accounttype']
         Dispatcherlistdata['account']=bankdata
 
-        // delete Dispatcherlistdata['address1']
-        // delete Dispatcherlistdata['address2']
-        // delete Dispatcherlistdata['city']
-        // delete Dispatcherlistdata['state']
-        // delete Dispatcherlistdata['zipcode']
-        // delete Dispatcherlistdata['bankname']
-        // delete Dispatcherlistdata['accountnum']
-        // delete Dispatcherlistdata['accounttype']
-        // delete Dispatcherlistdata['firstname']
-        // delete Dispatcherlistdata['lastname']
-        // delete Dispatcherlistdata['middlename']
-        // delete Dispatcherlistdata['cellphone']
-        // delete Dispatcherlistdata['email']
-        // delete Dispatcherlistdata['dislpalyname']
-        // delete Dispatcherlistdata['dateofbirth']
-        // delete Dispatcherlistdata['ssn']
+         var addobj={}
+              addobj['line']=Dispatcherlistdata['line']
+              addobj['line1']=Dispatcherlistdata['line1']
+              addobj['city']=Dispatcherlistdata['city']
+              addobj['state']=Dispatcherlistdata['state']
+              addobj['zip']=Dispatcherlistdata['zip']
+              addobj['country']=Dispatcherlistdata['country']
+              delete Dispatcherlistdata['line']
+              delete Dispatcherlistdata['line1']
+              delete Dispatcherlistdata['city']
+              delete Dispatcherlistdata['state']
+              delete Dispatcherlistdata['zip']
+              delete Dispatcherlistdata['country']
+              Dispatcherlistdata['address']=addobj
+
+              var account={}
+              account['bankname']=Dispatcherlistdata['bankname']
+              account['accountnumber']=Dispatcherlistdata['accountnumber']
+              account['acctype']=Dispatcherlistdata['acctype']
+
+              delete Dispatcherlistdata['accountnumber']
+              delete Dispatcherlistdata['bankname']
+              delete Dispatcherlistdata['acctype']
+
+              Dispatcherlistdata['account']= account
 
         
 

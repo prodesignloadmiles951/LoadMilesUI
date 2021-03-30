@@ -253,26 +253,33 @@ export class DriverformComponent implements OnInit {
                 this.pageFilters['companyId'] = localStorage.getItem('selectedCompany')
                 console.log(this.pageFilters['companyId'])
 
-              // delete Driverlistdata['address1']
-              // delete Driverlistdata['address2']
-              // delete Driverlistdata['accountnumber']
-              // delete Driverlistdata['bankname']
-              // delete Driverlistdata['accounttype']
-              // delete Driverlistdata['firstname']
-              // delete Driverlistdata['middlename']
-              // delete Driverlistdata['companyid']
-              // delete Driverlistdata['dateofbirth']
-              // delete Driverlistdata['dislplayname']
-              // delete Driverlistdata['state']
-              // delete Driverlistdata['ssn']
-              // delete Driverlistdata['email']
-              // delete Driverlistdata['zipcode']
-              // delete Driverlistdata['cellphone']
-              // delete Driverlistdata['lastname']
-              // delete Driverlistdata['routingnumber']
-              // delete Driverlistdata['city']
-              // delete Driverlistdata['routingnumber']
               
+              var addobj={}
+              addobj['line']=Driverlistdata['line']
+              addobj['line1']=Driverlistdata['line1']
+              addobj['city']=Driverlistdata['city']
+              addobj['state']=Driverlistdata['state']
+              addobj['zip']=Driverlistdata['zip']
+              addobj['country']=Driverlistdata['country']
+              delete Driverlistdata['line']
+              delete Driverlistdata['line1']
+              delete Driverlistdata['city']
+              delete Driverlistdata['state']
+              delete Driverlistdata['zip']
+              delete Driverlistdata['country']
+              Driverlistdata['address']=addobj
+
+              var account={}
+              account['bankname']=Driverlistdata['bankname']
+              account['accountnumber']=Driverlistdata['accountnumber']
+              account['acctype']=Driverlistdata['acctype']
+
+              delete Driverlistdata['accountnumber']
+              delete Driverlistdata['bankname']
+              delete Driverlistdata['acctype']
+
+              Driverlistdata['account']= account
+
 
               this._driverService.SendForm(Driverlistdata).subscribe(response => {
                 if(response.Status == "error"){

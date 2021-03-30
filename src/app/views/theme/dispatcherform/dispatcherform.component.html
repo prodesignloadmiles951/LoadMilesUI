@@ -15,43 +15,43 @@
       <div style="display: flex;">
         <div class="card-body col-sm-6">
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="firstname">First Name: <span style="color:red">*</span></label>
+            <label class="col-md-3 col-form-label" for="firstName">First Name: <span style="color:red">*</span></label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="firstname" name="firstname" #firstname="ngModel" [(ngModel)]="pageFilters.firstname" required>
-              <div *ngIf="firstname.errors && (firstname.dirty || firstname.touched)" style="font-size: smaller;">
-                <div [hidden]="!firstname.errors.required">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="firstName" name="firstName" #firstName="ngModel" [(ngModel)]="pageFilters.firstName" required>
+              <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" style="font-size: smaller;">
+                <div [hidden]="!firstName.errors.required">
                   <span style="color: red;">Firstname is Required</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="middlename">Middle Name:</label>
+            <label class="col-md-3 col-form-label" for="middleName">Middle Name:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="middlename" name="middlename" #middlename="ngModel" [(ngModel)]="pageFilters.middlename">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="middleName" name="middleName" #middleName="ngModel" [(ngModel)]="pageFilters.middleName">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="lastname">Last Name: <span style="color:red">*</span></label>
+            <label class="col-md-3 col-form-label" for="lastName">Last Name: <span style="color:red">*</span></label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="lastname" name="lastname" #lastname="ngModel" [(ngModel)]="pageFilters.lastname" required>
-              <div *ngIf="lastname.errors && (lastname.dirty || lastname.touched)" style="font-size: smaller;">
-                <div [hidden]="!lastname.errors.required">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="lastName" name="lastName" #lastName="ngModel" [(ngModel)]="pageFilters.lastName" required>
+              <div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)" style="font-size: smaller;">
+                <div [hidden]="!lastName.errors.required">
                   <span style="color: red;">Lastname is Required</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="dislpalyname">Display Name: </label>
+            <label class="col-md-3 col-form-label" for="displayName">Display Name: </label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dislpalyname" name="dislpalyname" #dislpalyname="ngModel" [(ngModel)]="pageFilters.dislpalyname">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="displayName" name="displayName" #displayName="ngModel" [(ngModel)]="pageFilters.displayName">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="dateofbirth">Date of Birth:</label>
+            <label class="col-md-3 col-form-label" for="dob">Date of Birth:</label>
             <div class="col-md-9">
-              <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="dateofbirth" placeholder="Ex: 01-04-1990" name="dateofbirth" value="{{dateofbirth | date:'yyyy-MM-dd'}}" (change)="ondateofbirth($event)">
+              <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="dob" placeholder="Ex: 01-04-1990" name="dob" value="{{dob | date:'yyyy-MM-dd'}}" (change)="ondob($event)">
             </div>
           </div>
           <div class="form-group row">
@@ -66,9 +66,9 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="cellphone">Cell Phone:</label>
+            <label class="col-md-3 col-form-label" for="cellPhone">Cell Phone:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="cellphone" name="cellphone" #cellphone="ngModel" [(ngModel)]="pageFilters.cellphone">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="cellPhone" name="cellPhone" #cellPhone="ngModel" [(ngModel)]="pageFilters.cellPhone">
             </div>
           </div>
           <div class="form-group row">
@@ -92,15 +92,15 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="address1">Address 1:</label>
+            <label class="col-md-3 col-form-label" for="line">Address 1:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address1" name="address1" #address1="ngModel" [(ngModel)]="pageFilters.address1">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="line" name="line" #line="ngModel" [(ngModel)]="pageFilters.line">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="address2">Address 2:</label>
+            <label class="col-md-3 col-form-label" for="line1">Address 2:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address2" name="address2" #address2="ngModel" [(ngModel)]="pageFilters.address2">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="line1" name="line1" #line1="ngModel" [(ngModel)]="pageFilters.line1">
             </div>
           </div>
           <div class="form-group row">
@@ -116,9 +116,9 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="zipcode">Zip Code:</label>
+            <label class="col-md-3 col-form-label" for="zip">Zip Code:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode" name="zipcode" #zipcode="ngModel" [(ngModel)]="pageFilters.zipcode">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zip" name="zip" #zip="ngModel" [(ngModel)]="pageFilters.zip">
             </div>
           </div>
           <div class="form-group row" *ngIf="changeUplaod">
@@ -215,15 +215,15 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="accounttype">Account Type:</label>
+              <label class="col-md-4 col-form-label" for="acctype">Account Type:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="accounttype" name="accounttype" #accounttype="ngModel" [(ngModel)]="pageFilters.accounttype">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="acctype" name="acctype" #acctype="ngModel" [(ngModel)]="pageFilters.acctype">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="accountnum">Account Number:</label>
+              <label class="col-md-4 col-form-label" for="accountnumber">Account Number:</label>
               <div class="col-md-8">
-                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="accountnum" name="accountnum" #accountnum="ngModel" [(ngModel)]="pageFilters.accountnum">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="accountnumber" name="accountnumber" #accountnumber="ngModel" [(ngModel)]="pageFilters.accountnumber">
               </div>
             </div>
             <div class="form-group row">
