@@ -53,6 +53,8 @@ export class DriverformComponent implements OnInit {
       this.showAddOption=true
       this.selectedDriver=false
       this.showsubmit=true
+      this.pageFilters['address']={}
+      this.pageFilters['account']={}
     }else{
       this.mode=this.data['EditMode'] 
       this.pageFilters=this.data
