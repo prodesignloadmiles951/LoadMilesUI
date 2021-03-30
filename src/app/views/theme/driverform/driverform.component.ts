@@ -57,8 +57,8 @@ export class DriverformComponent implements OnInit {
       this.mode=this.data['EditMode'] 
       this.pageFilters=this.data
       this.showAddOption=this.data['EditMode'] 
-      this.drugandmedicaldata.push(this.data.drugdata)
-      this.payratedata.push(this.data.payrate)
+      this.drugandmedicaldata.push(this.data.drugData)
+      this.payratedata.push(this.data.payRate)
       this.changeUplaod=false
       if(this.data['EditMode']){
         this.showupdate=true
@@ -277,6 +277,7 @@ export class DriverformComponent implements OnInit {
               delete Driverlistdata['accountnumber']
               delete Driverlistdata['bankname']
               delete Driverlistdata['acctype']
+              delete Driverlistdata['companyid']
 
               Driverlistdata['account']= account
 

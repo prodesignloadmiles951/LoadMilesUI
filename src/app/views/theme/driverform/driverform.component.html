@@ -1,5 +1,5 @@
 <div *ngIf="selectedDriver" class="modal-header">
-  <h4 class="modal-title">Driver Informtion - <span class="badge badge-success">{{pageFilters.firstname}}</span></h4>
+  <h4 class="modal-title">Driver Informtion - <span class="badge badge-success">{{pageFilters.firstName}}</span></h4>
   <button type="button" class="close" (click)="hidePopup()" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -99,31 +99,31 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="line">Address 1:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="line" name="line" #line="ngModel" [(ngModel)]="pageFilters.line">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="line" name="line" #line="ngModel" [(ngModel)]="pageFilters.address.line">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="line1">Address 2:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="line1" name="line1" #line1="ngModel" [(ngModel)]="pageFilters.line1">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="line1" name="line1" #line1="ngModel" [(ngModel)]="pageFilters.address.line1">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="city">City:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pageFilters.city">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pageFilters.address.city">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="state">State:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pageFilters.state">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pageFilters.address.state">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="zip">Zip Code:</label>
             <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zip" name="zip" #zip="ngModel" [(ngModel)]="pageFilters.zip">
+              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zip" name="zip" #zip="ngModel" [(ngModel)]="pageFilters.address.zip">
             </div>
           </div>
           <div class="form-group row" *ngIf="changeUplaod">
@@ -216,25 +216,25 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="bankname">Bank Name:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="bankname" name="bankname" #bankname="ngModel" [(ngModel)]="pageFilters.bankname">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="bankname" name="bankname" #bankname="ngModel" [(ngModel)]="pageFilters.account.bankname">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="acctype">Account Type:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="acctype" name="acctype" #acctype="ngModel" [(ngModel)]="pageFilters.acctype">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="acctype" name="acctype" #acctype="ngModel" [(ngModel)]="pageFilters.account.acctype">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="accountnumber">Account Number:</label>
               <div class="col-md-8">
-                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="accountnumber" name="accountnumber" #accountnumber="ngModel" [(ngModel)]="pageFilters.accountnumber">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="accountnumber" name="accountnumber" #accountnumber="ngModel" [(ngModel)]="pageFilters.account.accountnumber">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="routingNumber">Routing Number:</label>
               <div class="col-md-8">
-                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="routingNumber" name="routingNumber" #routingNumber="ngModel" [(ngModel)]="pageFilters.routingNumber">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="routingNumber" name="routingNumber" #routingNumber="ngModel" [(ngModel)]="pageFilters.routingNumber">
               </div>
             </div>
           </div>
