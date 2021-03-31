@@ -24,20 +24,20 @@ export class VendorBillComponent implements OnInit {
     private setupdataService: SetupDataService,
     private vendorBillService: VendorBillService,
     private vendorService: VendorService
-  ) { console.log("started") }
+  ) { }
 
   ngOnInit() {
     this.pageFilters.paidAmount = 0;
 
     if (this.retreivedData) {
       this.pageFilters = this.retreivedData;
-      console.log(this.vendors, "vendors");
-      console.log("should not run")
+      //(this.vendors, "vendors");
+      //("should not run")
     } else {
       this.pageFilters = <VendorBillsFilter>{};
       this.pageFilters.billLines = [];
       this.pageFilters.billAmount = 0;
-      console.log("null ran");
+      //("null ran");
     }
 
     this.vendorService.getVendorData().subscribe((data) => {
@@ -47,7 +47,7 @@ export class VendorBillComponent implements OnInit {
     })     
     
     this.setupdataService.getExpenseData().subscribe((data) => {
-      console.log(data);
+      //(data);
       this.setupExpense();
       this.expenseDetails = data;
     })
@@ -65,28 +65,28 @@ export class VendorBillComponent implements OnInit {
   }
 
   findExpense(id: string) {
-    //console.log("done");
+    ////("done");
     let expense = this.expenseDetails.find(x =>
-      //console.log(x._id, id);
+      ////(x._id, id);
       x._id == id
     );
-    //console.log(expense, "expense");
+    ////(expense, "expense");
     return expense;
   }
 
   submit() {
 
-    //console.log(this.pageFilters.billLines);
+    ////(this.pageFilters.billLines);
     let expenses = this.pageFilters.billLines;
     expenses.forEach(x => {
       x.expense = this.findExpense(x.expense)
       delete x.__KEY__;
     });
-    //console.log(expenses);
+    ////(expenses);
     this.pageFilters.billLines = expenses;
 
     if (this.pageFilters && this.pageFilters["EditMode"]) {
-      console.log(this.pageFilters, "submitted data");
+      //(this.pageFilters, "submitted data");
       delete this.pageFilters["EditMode"];
       //this.pageFilters.vendorId = this.pageFilters.vendorId.name;
       this.vendorBillService.editBill(this.pageFilters).subscribe(
@@ -100,9 +100,9 @@ export class VendorBillComponent implements OnInit {
         });
     }
     else {
-      //console.log(details, "details");
-      console.log("should run");
-      console.log(this.pageFilters);
+      ////(details, "details");
+      //("should run");
+      //(this.pageFilters);
       this.pageFilters.paidAmount = 0;
       this.vendorBillService.sendBill(this.pageFilters).subscribe(
         (response) => {
@@ -110,7 +110,7 @@ export class VendorBillComponent implements OnInit {
           this.dialogRef.close(null);
         },
         (error) => {
-          console.log(error);
+          //(error);
           this._toaster.error("Please try again", "Failed");
         });
     }
@@ -119,8 +119,8 @@ export class VendorBillComponent implements OnInit {
   reset() { }
 
   onExpenseAdd(event: any) {
-    console.log(event.key);
-    console.log(this.pageFilters.billLines);
+    //(event.key);
+    //(this.pageFilters.billLines);
     //this.pageFilters.billAmount = (event.key.billAmount).toFixed(3);
     //this.pageFilters.billAmount += this.pageFilters.billLines  
     //this.pageFilters.billLines.billAmount = event.key.billAmount
@@ -135,7 +135,7 @@ export class VendorBillComponent implements OnInit {
   }
 
   onSavedRow(event: any) {
-    console.log(event);
+    //(event);
     let eventAmount = event.data.billAmount;
     this.pageFilters.billAmount = this.pageFilters.billAmount + parseFloat(eventAmount.toFixed(3));
     this.pageFilters.billAmount = parseFloat(this.pageFilters.billAmount.toFixed(3));

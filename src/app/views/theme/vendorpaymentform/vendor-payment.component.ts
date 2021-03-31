@@ -28,13 +28,13 @@ export class VendorPaymentComponent implements OnInit {
     this.pageFilters.amount = 0;
     this.vendorService.getVendorData().subscribe((data) => {
       this.vendors = data.result;
-      console.log(data.result);
+      //console.log(data.result);
     });
   }
 
   submit() {
-    console.log(this.pageFilters);
-    console.log(this.paidBills, 'Paid Bills');
+    //console.log(this.pageFilters);
+    //console.log(this.paidBills, 'Paid Bills');
     let payments = this.paidBills.map(bill => {
       let payment = {
         billId: bill._id,
@@ -49,15 +49,15 @@ export class VendorPaymentComponent implements OnInit {
 
     this.vendorPaymentService.SendForm(payments).subscribe(
       (data) => {
-        console.log(data);
+        //console.log(data);
         this._toasterService.info("Data Submitted", "Success");
         this.router.navigateByUrl('/theme/payment-list');
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
         this._toasterService.error("Please Try Again", "Error");
       });
-    console.log(payments);
+    //console.log(payments);
   }
 
   reset() {
@@ -80,13 +80,13 @@ export class VendorPaymentComponent implements OnInit {
   vendorSelect(event: any) {
     this.vendorBillService.getVendorBills(event.target.value).subscribe((data) => {
       this.vendorBills = data;
-      console.log(data);
+      //console.log(data);
       this.updateBalance();
     })
   }
 
   updateBalance() {
-    console.log(this.vendorBills);
+    //console.log(this.vendorBills);
     this.pageFilters.balance = 0;
     this.vendorBills.forEach(e => {
       this.pageFilters.balance = this.pageFilters.balance + (e.billAmount - e.paidAmount);

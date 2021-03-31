@@ -30,7 +30,7 @@ export class VendorlistComponent implements OnInit {
 
   ngOnInit(): void {
     // if (this.retreivedData) {
-    //   console.log(this.retreivedData, "retreived data")
+    //   //(this.retreivedData, "retreived data")
     // }
     this.pageFilters = new VendorFilters();
     this.getData();
@@ -38,36 +38,36 @@ export class VendorlistComponent implements OnInit {
 
   editData(vendor) {
     var vendorObj = vendor;
-    console.log(vendor, "vendor");
+    //(vendor, "vendor");
     vendorObj['EditMode'] = true;
-    console.log(vendorObj);
+    //(vendorObj);
     let dialogConfig = Object.assign({ width: "1000px" }, { data: vendorObj });
     let viewDialogRef = this.dialog.open(VendorComponent, dialogConfig);
     viewDialogRef.afterClosed().subscribe((data) => {
-      console.log(data)
+      //(data)
     })
   }
 
   viewData(vendor) {
     var vendorObj = vendor;
-    console.log(vendor, "vendor");
+    //(vendor, "vendor");
     vendorObj['EditMode'] = true;
-    console.log(vendorObj);
+    //(vendorObj);
     let dialogConfig = Object.assign({ width: "1000px" }, { data: vendorObj });
     let viewDialogRef = this.dialog.open(VendorComponent, dialogConfig);
     viewDialogRef.afterClosed().subscribe((data) => {
-      console.log(data)
+      //(data)
     })
   }
 
   submit() {
-    console.log(this.pageFilters);
+    //(this.pageFilters);
   }
   Add() {
     let dialogConfig = Object.assign({ width: "1000px" }, { data: {} })
     let editDialogRef = this.dialog.open(VendorComponent, dialogConfig);
     editDialogRef.afterClosed().subscribe((data) => {
-      console.log(data)
+      //(data)
       if (data == null) { this.getData(); } else {
 
       }
@@ -75,7 +75,7 @@ export class VendorlistComponent implements OnInit {
   }
   getData() {
     this._vendorService.getVendorData().subscribe(data => {
-      console.log(data);
+      //(data);
       this.vendordata = data.result;
     });
   }
