@@ -24,13 +24,13 @@ export class ExpenseComponent implements OnInit {
 
   ngOnInit() {
     if (this.retreivedData) {
-      console.log(this.retreivedData);
+      //console.log(this.retreivedData);
       this.pageFilters = this.retreivedData;
-      console.log("should not run");
+      //console.log("should not run");
     } else {
       this.pageFilters = <any>{};
       this.pageFilters.isActive = true;
-      console.log("null ran");
+      //console.log("null ran");
     }
     this.getData();
   }
@@ -53,31 +53,31 @@ export class ExpenseComponent implements OnInit {
 
   submit() {
     if (this.pageFilters && this.pageFilters["EditMode"]) {
-      console.log("edit ran");
+      //console.log("edit ran");
       delete this.pageFilters["EditMode"];
       this.setupDataService.updateExpenseType(this.pageFilters).subscribe(
         (response) => {
-          console.log(response, "response");
+          //console.log(response, "response");
           this._toaster.info("Data Submitted", "Success");
           this.dialogRef.close(null);
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           this._toaster.error("Please try aggain", "Error");
           this.pageFilters["EditMode"] = true;
         }
       )
     } else {
-      console.log(this.pageFilters);
+      //console.log(this.pageFilters);
 
       this.setupDataService.createExpense(this.pageFilters).subscribe(
         (response) => {
-          console.log(response, "response");
+          //console.log(response, "response");
           this._toaster.info("Data Submitted", "Success");
           this.dialogRef.close(null);
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
           this._toaster.error("Please try aggain", "Error");
         }
       );

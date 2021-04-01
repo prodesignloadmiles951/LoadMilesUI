@@ -23,7 +23,7 @@ export class VendorPaymentDelailsComponent implements OnInit {
   ngOnInit() {
     this.balance = 0;
     if (this.retreivedData) {
-      console.log(this.retreivedData);
+      //console.log(this.retreivedData);
       this.vendorPayment = this.retreivedData;
       this.vendorPayment.paymentLine.forEach(payment => {
         this.balance += payment.billId.billAmount;

@@ -28,7 +28,7 @@ export class PaymentListComponent implements OnInit {
     let dialogConfig = Object.assign({ width: "1000px" }, { data: payment })
     let editDialogRef = this.dialog.open(VendorPaymentDelailsComponent, dialogConfig);
     editDialogRef.afterClosed().subscribe((data) => {
-      console.log(data)
+      //console.log(data)
       if (data == null) { this.getData(); } else {
       }
     })

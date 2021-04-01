@@ -35,7 +35,7 @@ export class ExpenseListComponent implements OnInit {
     let dialogConfig = Object.assign({ width: "1000px" }, { data: null })
     let editDialogRef = this.dialog.open(ExpenseComponent, dialogConfig);
     editDialogRef.afterClosed().subscribe((data) => {
-      console.log(data)
+      //console.log(data)
       if (data == null) { this.getData(); } else {
       }
     })
@@ -46,7 +46,7 @@ export class ExpenseListComponent implements OnInit {
     let dialogConfig = Object.assign({ width: "1000px" }, { data: expense })
     let editDialogRef = this.dialog.open(ExpenseComponent, dialogConfig);
     editDialogRef.afterClosed().subscribe((data) => {
-      console.log(data)
+      //console.log(data)
       if (data == null) { this.getData(); } else {
       }
     })

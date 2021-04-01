@@ -34,14 +34,14 @@ export class VendorComponent implements OnInit {
         private _countryService: CountryService,
         private _setupDataSetvice: SetupDataService,
         private router: Router
-    ) { console.log("started") }
+    ) {  }
 
     ngOnInit(): void {
         if (this.retreivedData && this.retreivedData["EditMode"]) {
-            console.log(this.retreivedData, "retreived data");
+            //console.log(this.retreivedData, "retreived data");
             this.pageFilters = this.retreivedData;
         } else {
-            console.log("ran");
+            //console.log("ran");
             this.pageFilters = new VendorFilters();
             this.pageFilters.account = new Account();
         }
@@ -49,7 +49,7 @@ export class VendorComponent implements OnInit {
     }
 
     submit() {
-        console.log(this.pageFilters);
+        //console.log(this.pageFilters);
         this.submitted = true;
         if (this.pageFilters && this.pageFilters["EditMode"]) {
             delete this.pageFilters["EditMode"];

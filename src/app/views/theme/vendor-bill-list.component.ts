@@ -26,26 +26,26 @@ export class VendorBillListComponent implements OnInit {
 
   editData(bill) {
     var vendorObj = bill;
-    console.log(bill, "vendor");
+    //console.log(bill, "vendor");
     vendorObj['EditMode'] = true;
-    console.log(vendorObj);
+    //console.log(vendorObj);
     let dialogConfig = Object.assign({ width: "1000px" }, { data: vendorObj });
     let viewDialogRef = this.dialog.open(VendorBillComponent, dialogConfig);
     viewDialogRef.afterClosed().subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.getData();
     })
   }
 
   viewData(bill) {
     var vendorObj = bill;
-    console.log(bill, "vendor");
+    //console.log(bill, "vendor");
     vendorObj['EditMode'] = true;
-    console.log(vendorObj);
+    //console.log(vendorObj);
     let dialogConfig = Object.assign({ width: "1000px" }, { data: vendorObj });
     let viewDialogRef = this.dialog.open(VendorBillComponent, dialogConfig);
     viewDialogRef.afterClosed().subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.getData();
     })
   }
@@ -63,7 +63,7 @@ export class VendorBillListComponent implements OnInit {
 
   getData() {
     this.vendorBillService.getVendorBillsData().subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.vendorBills = data;
     })
   }
