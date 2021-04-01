@@ -43,7 +43,7 @@ export class TruckslistComponent implements OnInit {
   }
   getData() {
     this._trucksservice.getTrucksData().subscribe(data => {
-      this.truckdata = data;
+      this.truckdata = data.result;
     });
   }
 

@@ -59,7 +59,7 @@ export class TrailerformComponent implements OnInit {
       this.mode=this.data['EditMode'] 
       this.pageFilters=this.data
       this.showAddOption=this.data['EditMode'] 
-      this.maintenancedata.push(this.data.maintenanceinfo)
+      this.maintenancedata.push(this.data.maintenanceInfo)
       this.changeUplaod=false
       if(this.data['EditMode']){
         this.showupdate=true
@@ -169,7 +169,7 @@ export class TrailerformComponent implements OnInit {
  
   getTruckData() {
     this._trucksservice.getTrucksData().subscribe(data => {
-      this.truckdata = data;
+      this.truckdata = data.result;
       console.log(this.truckdata)
     });
   }
@@ -189,13 +189,18 @@ export class TrailerformComponent implements OnInit {
         }
      this.data['files']=idArry
     }
-    if(this.data['maintenanceinfo'] == undefined){
-     this.data['maintenanceinfo']=this.maintenanceformdata
+    if(this.data['maintenanceInfo'] == undefined){
+     this.data['maintenanceInfo']=this.maintenanceformdata
     }
      console.log(this.data)
      if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
      this.btnHide=true
-     this._trailersService.EditTrailers(this.data).subscribe(res => {
+    
+    delete this.data['createdAt']
+    delete this.data['updatedAt']
+    delete this.data['EditMode']
+
+     this._trailersService.EditTrailers(this.data,this.data['_id']).subscribe(res => {
        if(res.Status == "error"){
             this._toaster.error(res.error,"Failed", {timeOut: 2000,});
             this.btnHide=false
@@ -219,8 +224,8 @@ export class TrailerformComponent implements OnInit {
      }else{
         this.submitted = true;
         var Trailerslistdata:any=this.pageFilters
-        Trailerslistdata['maintenanceinfo']=this.maintenanceformdata
-        Trailerslistdata['companyid']=localStorage.selectedCompany
+        Trailerslistdata['maintenanceInfo']=this.maintenanceformdata
+        Trailerslistdata['companyId']=localStorage.selectedCompany
         var idArry=[]
         for (var i = 0; i < this.finalArry.length; ++i) {
           idArry.push(this.finalArry[i]._id)

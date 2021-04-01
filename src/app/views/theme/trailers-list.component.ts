@@ -81,6 +81,7 @@ export class TrailerslistComponent implements OnInit {
     
        getData() {
         this._trailersService.getTrailersData().subscribe(data => {
+          console.log(data)
           for (var i = 0; i < data.length; i++) {
             this.trailerList.map(item => {
               if(item.type == data[i]['trailerType'][0]){
@@ -88,7 +89,7 @@ export class TrailerslistComponent implements OnInit {
               }
             })            
           }
-          this.data = data;
+          this.data = data.result;
         });
       }
     
@@ -97,7 +98,7 @@ export class TrailerslistComponent implements OnInit {
            this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
          }else{
           trailer['companyid']=localStorage.selectedCompany
-          this._trailersService.EditTrailers(trailer).subscribe(response => {
+          this._trailersService.EditTrailers(trailer, trailer['_id']).subscribe(response => {
             this._toaster.success(selectedTrailer+" trailer successfully updated", "Success", {timeOut: 3000,});
           }, error => {
              this._toaster.error("error", "Try Again", {timeOut: 2000,});
@@ -111,7 +112,7 @@ export class TrailerslistComponent implements OnInit {
            this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
          }else{
           this._trailersService.DeleteTrailers(trailer._id).subscribe(data => {
-          this._toaster.info("Trucks Data Deleted", "Success", {timeOut: 3000,});
+          this._toaster.info("Trailers Data Deleted Successfully", "Success", {timeOut: 3000,});
           this.getData();
          });
          }
