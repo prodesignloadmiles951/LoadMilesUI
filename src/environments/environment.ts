@@ -32,7 +32,7 @@ export const environment = {
   newcompanyurl: currentEnv + ':5000/api/company',
   newcompanycreateurl: 'http://3.139.89.46:8081/companyapi/company/',
   userdetailsurl: 'http://3.139.89.46:8081/userapi/user',
-  vendorurl: 'http://3.139.89.46:8081/vendorapi/vendor',
+  vendorurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/companyApi/vendor',
   fuelCardurl: 'http://3.139.89.46.176:8081/fuelCardapi/fuelCard',
   factorurl: 'http://3.139.89.46:8081/factorapi/factor',
   currencyurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/currency',
