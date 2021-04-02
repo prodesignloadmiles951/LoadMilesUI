@@ -23,18 +23,19 @@ export class TrucksService {
     }
 
     getTrucksData() {
-    let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    return this.http.get(this.trucksurl,options).pipe(map(response=>response.json().data ? [] : response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.get(this.trucksurl,options).pipe(map(response=>response.json().data ? [] : response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
-    
-    EditTrucks(obj) {
-    let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    return this.http.put(this.trucksurl+"/"+obj._id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+
+    EditTrucks(obj,id) {
+        delete obj['_id']
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.put(this.trucksurl+"/"+id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
 
     DeleteTrucks(_id) {
-    let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    return this.http.delete(this.trucksurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+        let options = new RequestOptions({ headers: this._headerService.getHeader() });
+        return this.http.delete(this.trucksurl+"/"+_id,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
     uploadFile(file){
         let options = new RequestOptions({ headers: this._headerService.getHeader() });

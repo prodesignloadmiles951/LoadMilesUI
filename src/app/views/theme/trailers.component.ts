@@ -76,7 +76,7 @@ export class TrailersComponent implements OnInit {
            this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
          }else{
           trailer['companyid']=localStorage.selectedCompany
-          this._trailersService.EditTrailers(trailer).subscribe(response => {
+          this._trailersService.EditTrailers(this.data,this.data['_id']).subscribe(response => {
             this._toaster.success("Trailer successfully updated", "Success");
           }, error => {
              this._toaster.error("error", "Try Again");

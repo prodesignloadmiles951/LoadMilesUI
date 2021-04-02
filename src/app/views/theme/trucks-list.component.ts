@@ -66,7 +66,7 @@ export class TruckslistComponent implements OnInit {
            this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
        }else{
         trucks['companyid']=localStorage.selectedCompany
-        this._trucksservice.EditTrucks(trucks).subscribe(response => {
+        this._trucksservice.EditTrucks(trucks, trucks['_id']).subscribe(response => {
           this._toaster.success(selectedTruck+ " truck successfully updated", "Success", {timeOut: 3000,});
         }, error => {
            this._toaster.error("error", "Try Again", {timeOut: 2000,});
@@ -85,7 +85,7 @@ export class TruckslistComponent implements OnInit {
     })
   }
 
-  deleteTrucks(truck) {
+  deleteTruck(truck) {
     if(localStorage.selectedCompany == undefined){
            this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
        }else{
