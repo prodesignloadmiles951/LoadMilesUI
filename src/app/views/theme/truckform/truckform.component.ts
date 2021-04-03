@@ -203,13 +203,11 @@ export class TruckformComponent implements OnInit {
   }
   reset(){}
   submit() {
-    if(localStorage.selectedCompany == undefined){
-       this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
-     }else{
+    
         this.submitted = true;
         var Truckslistdata:any = this.pageFilters
         Truckslistdata['maintenancedata']=this.maintenanceinfodata
-        Truckslistdata['companyid']=localStorage.selectedCompany
+        Truckslistdata['companyId']=localStorage.selectedCompany
         var idArry=[]
         for (var i = 0; i < this.finalArry.length; ++i) {
           idArry.push(this.finalArry[i]._id)
@@ -217,6 +215,7 @@ export class TruckformComponent implements OnInit {
         Truckslistdata['files']=idArry
         if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
           this.btnHide=true
+          
         this._trucksservice.SendForm(Truckslistdata).subscribe(response => {
           this.submitted = true;
           if(response.Status == "error"){
@@ -234,7 +233,7 @@ export class TruckformComponent implements OnInit {
       }else{
         this._toaster.error("Enter VIN Details","Failed", {timeOut: 2000,});
        }
-      }
+      
    }
    update() {
      if(this.editFileList.length > 0){
@@ -255,10 +254,13 @@ export class TruckformComponent implements OnInit {
     if(this.data['maintenancedata'] == undefined){
      this.data['maintenancedata']=this.maintenanceinfodata
     }
-     console.log(this.data)
-     if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
-       this.btnHide=true
-       this._trucksservice.EditTrucks(this.data).subscribe(res => {
+    console.log(this.data)
+          this.btnHide=true
+              delete this.data['createdAt']
+              delete this.data['updatedAt']
+              delete this.data['EditMode']
+     
+       this._trucksservice.EditTrucks(this.data,this.data['_id']).subscribe(res => {
          if(res.Status == "error"){
            this.btnHide = false;
             this._toaster.error(res.error,"Failed", {timeOut: 2000,});
@@ -271,9 +273,7 @@ export class TruckformComponent implements OnInit {
          this._toaster.error("Truck Data Not Updated","Failed", {timeOut: 2000,});
          this.dialogRef.close(null)
        })
-     }else{
-       this._toaster.error("Enter VIN Details","Failed", {timeOut: 2000,});
-     }
+     
    }
    hidePopup(){
      this.dialogRef.close(null)
