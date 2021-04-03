@@ -133,8 +133,8 @@
             <div class="col-md-8">
               <select [ngClass]="mode?'':'disble'" class="form-control" [(ngModel)]="pageFilters.truck" [ngModelOptions]="{standalone: true}">
                 <option value="" disabled selected hidden>Truck</option>
-                <option *ngFor="let cmp of truckdata" value="{{cmp.truckunitnumber}}">
-                  <span *ngIf="cmp.truckunitnumber">{{cmp.truckunitnumber}}</span>
+                <option *ngFor="let cmp of truckdata" value="{{cmp.truckUnitNumber}}">
+                  <span *ngIf="cmp.truckUnitNumber">{{cmp.truckUnitNumber}}</span>
                 </option>
               </select>
             </div>
