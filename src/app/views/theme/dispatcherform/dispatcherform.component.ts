@@ -245,26 +245,15 @@ export class DispatcherformComponent implements OnInit {
         }
         Dispatcherlistdata['files']=idArry
         this.btnHide=true
-        var obj={}
-        obj['line']=this.pageFilters['address']['line']
-        obj['line1']=this.pageFilters['address']['line1']
-        obj['city']=this.pageFilters['address']['city']
-        obj['state']=this.pageFilters['address']['state']
-        obj['zip']=this.pageFilters['address']['zip']
-        Dispatcherlistdata['address']=obj
-        var bankdata={}
-        bankdata['bankname']=this.pageFilters['account']['bankname']
-        bankdata['accountnum']=this.pageFilters['account']['accountnum']
-        bankdata['accounttype']=this.pageFilters['account']['accounttype']
-        Dispatcherlistdata['account']=bankdata
+        
 
          var addobj={}
-              addobj['line']=Dispatcherlistdata['line']
-              addobj['line1']=Dispatcherlistdata['line1']
-              addobj['city']=Dispatcherlistdata['city']
-              addobj['state']=Dispatcherlistdata['state']
-              addobj['zip']=Dispatcherlistdata['zip']
-              addobj['country']=Dispatcherlistdata['country']
+              addobj['line']=Dispatcherlistdata['address']['line']
+              addobj['line1']=Dispatcherlistdata['address']['line1']
+              addobj['city']=Dispatcherlistdata['address']['city']
+              addobj['state']=Dispatcherlistdata['address']['state']
+              addobj['zip']=Dispatcherlistdata['address']['zip']
+              addobj['country']=Dispatcherlistdata['address']['country']
               delete Dispatcherlistdata['line']
               delete Dispatcherlistdata['line1']
               delete Dispatcherlistdata['city']
@@ -274,9 +263,9 @@ export class DispatcherformComponent implements OnInit {
               Dispatcherlistdata['address']=addobj
 
               var account={}
-              account['bankname']=Dispatcherlistdata['bankname']
-              account['accountnumber']=Dispatcherlistdata['accountnumber']
-              account['acctype']=Dispatcherlistdata['acctype']
+              account['bankname']=Dispatcherlistdata['account']['bankname']
+              account['accountnumber']=Dispatcherlistdata['account']['accountnumber']
+              account['acctype']=Dispatcherlistdata['account']['acctype']
 
               delete Dispatcherlistdata['accountnumber']
               delete Dispatcherlistdata['bankname']
