@@ -262,12 +262,12 @@ export class DriverformComponent implements OnInit {
               addobj['state']=Driverlistdata['address']['state']
               addobj['zip']=Driverlistdata['address']['zip']
               addobj['country']=Driverlistdata['address']['country']
-              // delete Driverlistdata['line']
-              // delete Driverlistdata['line1']
-              // delete Driverlistdata['city']
-              // delete Driverlistdata['state']
-              // delete Driverlistdata['zip']
-              // delete Driverlistdata['country']
+              delete Driverlistdata['line']
+              delete Driverlistdata['line1']
+              delete Driverlistdata['city']
+              delete Driverlistdata['state']
+              delete Driverlistdata['zip']
+              delete Driverlistdata['country']
               Driverlistdata['address']=addobj
 
               var account={}
@@ -275,9 +275,9 @@ export class DriverformComponent implements OnInit {
               account['accountnumber']=Driverlistdata['account']['accountnumber']
               account['acctype']=Driverlistdata['account']['acctype']
 
-              // delete Driverlistdata['accountnumber']
-              // delete Driverlistdata['bankname']
-              // delete Driverlistdata['acctype']
+              delete Driverlistdata['accountnumber']
+              delete Driverlistdata['bankname']
+              delete Driverlistdata['acctype']
               delete Driverlistdata['companyid']
 
               Driverlistdata['account']= account
