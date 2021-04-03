@@ -255,30 +255,29 @@ export class DriverformComponent implements OnInit {
                 this.pageFilters['companyId'] = localStorage.getItem('selectedCompany')
                 console.log(this.pageFilters['companyId'])
 
-              
               var addobj={}
-              addobj['line']=Driverlistdata['line']
-              addobj['line1']=Driverlistdata['line1']
-              addobj['city']=Driverlistdata['city']
-              addobj['state']=Driverlistdata['state']
-              addobj['zip']=Driverlistdata['zip']
-              addobj['country']=Driverlistdata['country']
-              delete Driverlistdata['line']
-              delete Driverlistdata['line1']
-              delete Driverlistdata['city']
-              delete Driverlistdata['state']
-              delete Driverlistdata['zip']
-              delete Driverlistdata['country']
+              addobj['line']=Driverlistdata['address']['line']
+              addobj['line1']=Driverlistdata['address']['line1']
+              addobj['city']=Driverlistdata['address']['city']
+              addobj['state']=Driverlistdata['address']['state']
+              addobj['zip']=Driverlistdata['address']['zip']
+              addobj['country']=Driverlistdata['address']['country']
+              // delete Driverlistdata['line']
+              // delete Driverlistdata['line1']
+              // delete Driverlistdata['city']
+              // delete Driverlistdata['state']
+              // delete Driverlistdata['zip']
+              // delete Driverlistdata['country']
               Driverlistdata['address']=addobj
 
               var account={}
-              account['bankname']=Driverlistdata['bankname']
-              account['accountnumber']=Driverlistdata['accountnumber']
-              account['acctype']=Driverlistdata['acctype']
+              account['bankname']=Driverlistdata['account']['bankname']
+              account['accountnumber']=Driverlistdata['account']['accountnumber']
+              account['acctype']=Driverlistdata['account']['acctype']
 
-              delete Driverlistdata['accountnumber']
-              delete Driverlistdata['bankname']
-              delete Driverlistdata['acctype']
+              // delete Driverlistdata['accountnumber']
+              // delete Driverlistdata['bankname']
+              // delete Driverlistdata['acctype']
               delete Driverlistdata['companyid']
 
               Driverlistdata['account']= account

@@ -246,16 +246,16 @@ export class DispatcherformComponent implements OnInit {
         Dispatcherlistdata['files']=idArry
         this.btnHide=true
         var obj={}
-        obj['address1']=this.pageFilters['address1']
-        obj['address2']=this.pageFilters['address2']
-        obj['city']=this.pageFilters['city']
-        obj['state']=this.pageFilters['state']
-        obj['zipcode']=this.pageFilters['zipcode']
+        obj['line']=this.pageFilters['address']['line']
+        obj['line1']=this.pageFilters['address']['line1']
+        obj['city']=this.pageFilters['address']['city']
+        obj['state']=this.pageFilters['address']['state']
+        obj['zip']=this.pageFilters['address']['zip']
         Dispatcherlistdata['address']=obj
         var bankdata={}
-        bankdata['bankname']=this.pageFilters['bankname']
-        bankdata['accountnum']=this.pageFilters['accountnum']
-        bankdata['accounttype']=this.pageFilters['accounttype']
+        bankdata['bankname']=this.pageFilters['account']['bankname']
+        bankdata['accountnum']=this.pageFilters['account']['accountnum']
+        bankdata['accounttype']=this.pageFilters['account']['accounttype']
         Dispatcherlistdata['account']=bankdata
 
          var addobj={}

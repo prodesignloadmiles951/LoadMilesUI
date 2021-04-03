@@ -219,9 +219,7 @@ export class TrailerformComponent implements OnInit {
    }
   reset(){}
   submit() {
-    if(localStorage.selectedCompany == undefined){
-       this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
-     }else{
+    
         this.submitted = true;
         var Trailerslistdata:any=this.pageFilters
         Trailerslistdata['maintenanceInfo']=this.maintenanceformdata
@@ -253,6 +251,5 @@ export class TrailerformComponent implements OnInit {
       }else{
         this._toaster.error("Enter VIN Details","Failed", {timeOut: 2000,});
        }
-      }
      }
 }
