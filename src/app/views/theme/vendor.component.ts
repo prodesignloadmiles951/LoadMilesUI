@@ -40,6 +40,8 @@ export class VendorComponent implements OnInit {
         if (this.retreivedData && this.retreivedData["EditMode"]) {
             //console.log(this.retreivedData, "retreived data");
             this.pageFilters = this.retreivedData;
+            if(typeof (this.pageFilters.account) === 'undefined')
+                this.pageFilters.account = new Account();
         } else {
             //console.log("ran");
             this.pageFilters = new VendorFilters();
