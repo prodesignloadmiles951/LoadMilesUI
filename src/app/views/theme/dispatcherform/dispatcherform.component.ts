@@ -233,6 +233,9 @@ export class DispatcherformComponent implements OnInit {
    
    }
    reset(){}
+   ondob(e){
+   	this.pageFilters['dob'] = e.target.value
+   }
   submit() {
     
         this.submitted = true;
