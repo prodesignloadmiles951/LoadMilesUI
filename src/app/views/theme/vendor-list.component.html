@@ -77,7 +77,8 @@
                 <td>{{ vendor.displayName }}</td>
                 <td>{{ vendor.ssn }}</td>
                 <td>{{ vendor.phone }}</td>
-                <td>{{ vendor.account.accountnumber }}</td>
+                <td *ngIf="vendor.account && vendor.account.accountnumber">{{ vendor.account.accountnumber }}</td>
+                <td *ngIf="!vendor.account || !vendor.account.accountnumber"></td>
                 <td>
                   <a
                     style="cursor: pointer; color: #20a8d8"
