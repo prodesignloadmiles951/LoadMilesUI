@@ -59,8 +59,8 @@ export class PickDropFormComponent implements OnInit {
      if(this.data){
       this.pickup=this.data
       this.inputPostalCode = this.pickup['zipcode']
-      if(this.pickup['PickupDate'] != undefined){
-      this.pickup['PickupDate'] = new Date(this.pickup['PickupDate']).toISOString().split('T')[0]
+      if(this.pickup['pickupDate'] != undefined){
+      this.pickup['pickupDate'] = new Date(this.pickup['pickupDate']).toISOString().split('T')[0]
       }
       console.log(this.pickup)
       // if(this.pickup['Address'] != undefined ){

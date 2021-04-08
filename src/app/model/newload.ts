@@ -1,14 +1,14 @@
 export class NewLoadFilters {
     customer: any;
     phone: number;
-    srefno: any;
-    crefno: any;
+    srefNo: any;
+    crefNo: any;
     currency: any;
     date: any;
     loadprice: number;
     dispatcher: any;
     distance: number;
-    deadhead: number;
+    deadHead: number;
     email: string;
     currentMiles: number;
     Equiptype: any;

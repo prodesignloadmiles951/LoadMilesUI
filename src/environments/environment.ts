@@ -22,8 +22,8 @@ export const environment = {
   carrierurl: 'http://3.139.89.46:8081/carriersapi/carriers',
   customersurl: currentEnv + ':5000/api/companyApi/customer',
   getloadsurl: currentEnv + ':5000/api/companyApi/load',
-  pickupform: currentEnv + ':5000/api/companyApi/pickUp',
-  dropoffform: currentEnv + ':5000/companyApi/dropOff',
+  pickupform: currentEnv + ':5000/api/companyApi/pickup',
+  dropoffform: currentEnv + ':5000/companyApi/dropoff',
   // uploadUrl:'http://ec2-54-166-101-176.compute-1.amazonaws.com:8081/fileapi/file'
   uploadUrl:'http://3.139.89.46:8081/fileapi/file',
   postalcodeUrl:'http://3.139.89.46:8081/fileapi/postal_code?postal_code=',

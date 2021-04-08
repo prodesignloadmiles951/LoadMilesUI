@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="phone">Contact Email:</label>
+            <label class="col-md-4 col-form-label" for="email">Contact Email:</label>
             <div class="col-md-8">
               <input type="text" class="form-control" name="email" [(ngModel)]="newloadfilters.email" #email="ngModel" placeholder="Email" autocomplete="off" required>
               <div *ngIf="email.errors && (email.dirty || email.touched)" style="font-size: smaller;">
@@ -40,11 +40,11 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="phone">Cust Ref Number:<span style="color:red">*</span></label>
+            <label class="col-md-4 col-form-label" for="crefNo">Cust Ref Number:<span style="color:red">*</span></label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="crefno" placeholder="Customer reference number" #crefno="ngModel" name="crefno" [(ngModel)]="newloadfilters.crefno" [pattern]="'^[1-9][0-9]*$'" required>
-              <div *ngIf="crefno.errors && (crefno.dirty || crefno.touched)" style="font-size: smaller;">
-                <div [hidden]="!crefno.errors.required">
+              <input type="text" class="form-control" id="crefNo" placeholder="Customer reference number" #crefNo="ngModel" name="crefNo" [(ngModel)]="newloadfilters.crefNo" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="crefNo.errors && (crefNo.dirty || crefNo.touched)" style="font-size: smaller;">
+                <div [hidden]="!crefNo.errors.required">
                   <span style="color: red;">Shipper Reference number is required</span>
                 </div>
               </div>
@@ -53,9 +53,9 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="phone">Shipper Ref Number:<span style="color:red">*</span></label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="srefno" placeholder="Shipper reference number" #srefno="ngModel" name="srefno" [(ngModel)]="newloadfilters.srefno" [pattern]="'^[1-9][0-9]*$'" required>
-              <div *ngIf="srefno.errors && (srefno.dirty || srefno.touched)" style="font-size: smaller;">
-                <div [hidden]="!srefno.errors.required">
+              <input type="text" class="form-control" id="srefNo" placeholder="Shipper reference number" #srefNo="ngModel" name="srefNo" [(ngModel)]="newloadfilters.srefNo" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="srefNo.errors && (srefNo.dirty || srefNo.touched)" style="font-size: smaller;">
+                <div [hidden]="!srefNo.errors.required">
                   <span style="color: red;">Shipper Reference number is required</span>
                 </div>
               </div>
@@ -73,10 +73,10 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="phone">Load price:</label>
+            <label class="col-md-4 col-form-label" for="loadPrice">Load price:</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="loadprice" placeholder="Load price" #loadprice="ngModel" name="loadprice" [(ngModel)]="newloadfilters.loadprice" [pattern]="'^[1-9][0-9]*$'" required>
-              <div *ngIf="loadprice.errors && (loadprice.dirty || loadprice.touched)" style="font-size: smaller;">
+              <input type="number" class="form-control" id="loadPrice" placeholder="Load price" #loadPrice="ngModel" name="loadPrice" [(ngModel)]="newloadfilters.loadPrice" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="loadPrice.errors && (loadPrice.dirty || loadPrice.touched)" style="font-size: smaller;">
               </div>
             </div>
           </div>
@@ -91,8 +91,8 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="phone">Dead head:</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="deadhead" placeholder="Enter deadhead distance" #deadhead="ngModel" name="deadhead" [(ngModel)]="newloadfilters.deadhead" [pattern]="'^[1-9][0-9]*$'" required>
-              <div *ngIf="deadhead.errors && (deadhead.dirty || deadhead.touched)" style="font-size: smaller;">
+              <input type="number" class="form-control" id="deadHead" placeholder="Enter deadhead distance" #deadHead="ngModel" name="deadHead" [(ngModel)]="newloadfilters.deadHead" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="deadHead.errors && (deadHead.dirty || deadHead.touched)" style="font-size: smaller;">
               </div>
             </div>
           </div>
@@ -122,7 +122,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="Equiptype">Equipment type:</label>
             <div class="col-md-8">
-              <select class="form-control" id="Equiptype" #Equiptype="ngModel" name="Equiptype" [(ngModel)]="newloadfilters.Equiptype">
+              <select class="form-control" id="equipType" #Equiptype="ngModel" name="equipType" [(ngModel)]="newloadfilters.equipType">
                 <option value="Select equipment type" disabled selected hidden>Select equipment type</option>
                 <option value="0">Dry Van</option>
                 <option value="1">Reefer</option>
@@ -133,9 +133,9 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="crossborder">Cross border :</label>
+            <label class="col-md-4 col-form-label" for="crossBorder">Cross border :</label>
             <div class="col-md-8">
-              <select class="form-control" id="crossborder" #crossborder="ngModel" name="crossborder" [(ngModel)]="newloadfilters.crossborder">
+              <select class="form-control" id="crossBorder" #crossBorder="ngModel" name="crossBorder" [(ngModel)]="newloadfilters.crossBorder">
                 <option value="Cross border" disabled selected hidden>Cross border</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
@@ -184,7 +184,7 @@
             <label class="col-md-4 col-form-label" for="loadstatus">Load status :</label>
             <div class="col-md-8">
               <select class="form-control" id="loadstatus" #loadstatus="ngModel" name="loadstatus"
-                [(ngModel)]="newloadfilters.LoadStatus">
+                [(ngModel)]="newloadfilters.loadStatus">
                 <option value="Select load status" disabled selected hidden>Select load status</option>
                 <option value="Booked">Booked</option>
                 <option value="Cancelled">Cancelled</option>
