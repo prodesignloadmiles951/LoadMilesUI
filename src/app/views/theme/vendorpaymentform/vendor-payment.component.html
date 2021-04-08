@@ -8,12 +8,12 @@
     <div class="card">
       <div class="card-header">Bill Information</div>
       <div style="display: flex">
-        <div class="card-body col-sm-6">
+        <div class="card-body">
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="vendorname"
-              >Vendor: <span style="color: red">*</span></label
-            >
-            <div class="col-md-9">
+            <div class="col-sm-3 align-bottom">
+              <label for="vendorname"
+                >Vendor: <span style="color: red">*</span></label
+              >
               <select
                 class="form-control"
                 id="vendorname"
@@ -35,13 +35,11 @@
                 <span style="color: red">Please Select a Vendor</span>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="preferredBank"
-              >Preferred Bank:<span style="color: red">*</span></label
-            >
-            <div class="col-md-9">
+            <div class="col-sm-3 align-bottom">
+              <label for="preferredBank"
+                >Preferred Bank:<span style="color: red">*</span></label
+              >
               <select
                 class="form-control"
                 id="preferredBank"
@@ -61,13 +59,39 @@
                 <span style="color: red">Please Select a Vendor</span>
               </div>
             </div>
+
+            <div class="col-md-3">
+              <label for="balance">Balance:</label>
+              <input
+                type="number"
+                step=".001"
+                class="form-control"
+                id="balance"
+                name="balance"
+                #balance="ngModel"
+                [(ngModel)]="pageFilters.balance"
+                disabled
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="amount">Amount:</label>
+              <input
+                type="number"
+                disabled
+                class="form-control"
+                id="amount"
+                name="amount"
+                [value]="pageFilters.amount"
+                disabled
+              />
+            </div>
           </div>
 
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="loadNo"
-              >Payment Method:<span style="color: red">*</span></label
-            >
-            <div class="col-md-9">
+            <div class="col-sm-3">
+              <label class="col-form-label" for="paymentMethod"
+                >Payment Method:<span style="color: red">*</span></label
+              >
               <select
                 class="form-control"
                 id="paymentMethod"
@@ -87,12 +111,10 @@
                 <span style="color: red">Please Select a Vendor</span>
               </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="paymentRef"
-              >Payment Ref:</label
-            >
-            <div class="col-md-9">
+            <div class="col-md-3">
+              <label class="col-form-label" for="paymentRef"
+                >Payment Ref:</label
+              >
               <input
                 type="text"
                 class="form-control"
@@ -102,14 +124,10 @@
                 [(ngModel)]="pageFilters.paymentRef"
               />
             </div>
-          </div>
-        </div>
-        <div class="card-body col-sm-6">
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="paymentDate"
-              >Payment Date: <span style="color: red">*</span></label
-            >
-            <div class="col-md-9">
+            <div class="col-md-3">
+              <label class="col-form-label" for="paymentDate"
+                >Payment Date: <span style="color: red">*</span></label
+              >
               <input
                 type="date"
                 class="form-control"
@@ -133,38 +151,6 @@
                   <span style="color: red">Bill Date is Required</span>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="balance"
-              >Balance:</label
-            >
-            <div class="col-md-9">
-              <input
-                type="number"
-                step=".001"
-                class="form-control"
-                id="balance"
-                name="balance"
-                #balance="ngModel"
-                [(ngModel)]="pageFilters.balance"
-                disabled
-              />
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="amount">Amount:</label>
-            <div class="col-md-9">
-              <input
-                type="number"
-                disabled
-                class="form-control"
-                id="amount"
-                name="amount"
-                [value]="pageFilters.amount"
-                disabled
-              />
             </div>
           </div>
         </div>

@@ -19,9 +19,11 @@
               id="search"
               name="search"
               class="form-control"
+              autocomplete="off"
               [(ngModel)]="SearchText"
-              (keypress)="onSubmit()"
+              (keyup)="onSubmit()"
               (keyup.enter)="onSubmit()"
+              (keyup.backspace) = "onSubmit()"
               placeholder="Find a Vendor"
             />
           </div>

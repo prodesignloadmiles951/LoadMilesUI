@@ -1,48 +1,4 @@
 <div class="animated fadeIn">
-  <div class="card">
-    <div class="card-header">
-      Search For Vendor <strong></strong>
-      <!-- <span *ngIf="Isusersloading"
-            ><img
-              *ngIf="Isusersloading"
-              src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-            />
-            Loading..</span
-          > -->
-    </div>
-    <div class="card-body">
-      <form>
-        <div class="form-group row">
-          <div class="col-md-4">
-            <input
-              type="text"
-              id="search"
-              name="search"
-              class="form-control"
-              [(ngModel)]="SearchText"
-              (keypress)="onSubmit()"
-              (keyup.enter)="onSubmit()"
-              placeholder="Find a Vendor"
-            />
-          </div>
-          <span>
-            <button
-              type="reset"
-              style="float: left"
-              class="btn btn-sm btn-danger"
-              (click)="clearSearch()"
-            >
-              <i class="fa fa-ban"></i> Clear Search
-            </button>
-          </span>
-          &nbsp;&nbsp;
-          <!-- <span>
-                          <button type="add" style="float: left" class="btn btn-sm btn-success" (click)="Add()"><i class="fa fa-plus"></i> New Truck</button>    
-                        </span> -->
-        </div>
-      </form>
-    </div>
-  </div>
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
@@ -56,30 +12,38 @@
               <tr>
                 <th>S.no</th>
                 <th>Vendor</th>
+                <th>Bill ID</th>
                 <th>Payment Date</th>
+                <th class="text-right">Bill Amount</th>
                 <th class="text-right">Paid Amount</th>
+                <th class="text-right">Remaining Amount</th>
                 <th></th>
               </tr>
             </thead>
 
             <tbody>
               <tr></tr>
-              <tr *ngFor="let payment of payments; let i = index">
-                <td>{{ i + 1 }}</td>
-                <td>{{ payment.vendorId.displayName }}</td>
-                <td>{{ payment.paymentDate }}</td>
-                <td align="right">{{ payment.amount }}</td>
-                <td>
-                  <a
-                    style="cursor: pointer; color: #20a8d8"
-                    (click)="details(payment)"
-                    >Details</a
-                  >
+              <ng-container *ngFor="let payment of payments; let i = index">
+                <tr *ngFor="let singlePayment of payment.paymentLine">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ payment.vendorId.displayName }}</td>
+                  <td>{{singlePayment.billId._id}}</td>
+                  <td>{{ payment.paymentDate }}</td>
+                  <td align="right">{{singlePayment.billId.billAmount}}</td>
+                  <td align="right">{{singlePayment.paymentAmount}}</td>
+                  <td align="right">{{ singlePayment.billId.billAmount - singlePayment.paymentAmount }}</td>
+                  <td>
+                    <a
+                      style="cursor: pointer; color: #20a8d8"
+                      (click)="details(payment)"
+                      >Details</a
+                    >
 
-                  <!-- <a style="cursor: pointer;color: #20a8d8;"
-                                  (click)="deleteTrailers(trailer)">Delete</a> -->
-                </td>
-              </tr>
+                    <!-- <a style="cursor: pointer;color: #20a8d8;"
+                                    (click)="deleteTrailers(trailer)">Delete</a> -->
+                  </td>
+                </tr>
+              </ng-container>
             </tbody>
 
             <!-- <tbody *ngIf="logslist.length==0">

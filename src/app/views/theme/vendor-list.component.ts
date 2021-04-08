@@ -13,11 +13,12 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class VendorlistComponent implements OnInit {
   public pageFilters: VendorFilters;
+  public constantPageFilters: VendorFilters[] = [];
   //Have to Implement
-  SearchText: any;
+  SearchText: string;
   VendorFilterslistdata = new Array<VendorFilters>();
   submitted: boolean;
-  vendordata: [];
+  vendordata: VendorFilters[] = [];
   data: any;
 
   constructor(
@@ -41,7 +42,7 @@ export class VendorlistComponent implements OnInit {
     //(vendor, "vendor");
     vendorObj['EditMode'] = true;
     //(vendorObj);
-    let dialogConfig = Object.assign({ width: "1000px" }, { data: vendorObj });
+    let dialogConfig = Object.assign({ width: "1024px" }, { data: vendorObj });
     let viewDialogRef = this.dialog.open(VendorComponent, dialogConfig);
     viewDialogRef.afterClosed().subscribe((data) => {
       //(data)
@@ -53,7 +54,7 @@ export class VendorlistComponent implements OnInit {
     //(vendor, "vendor");
     vendorObj['EditMode'] = true;
     //(vendorObj);
-    let dialogConfig = Object.assign({ width: "1000px" }, { data: vendorObj });
+    let dialogConfig = Object.assign({ width: "1024px" }, { data: vendorObj });
     let viewDialogRef = this.dialog.open(VendorComponent, dialogConfig);
     viewDialogRef.afterClosed().subscribe((data) => {
       //(data)
@@ -64,7 +65,7 @@ export class VendorlistComponent implements OnInit {
     //(this.pageFilters);
   }
   Add() {
-    let dialogConfig = Object.assign({ width: "1000px" }, { data: {} })
+    let dialogConfig = Object.assign({ width: "1024px" }, { data: {} })
     let editDialogRef = this.dialog.open(VendorComponent, dialogConfig);
     editDialogRef.afterClosed().subscribe((data) => {
       //(data)
@@ -77,14 +78,19 @@ export class VendorlistComponent implements OnInit {
     this._vendorService.getVendorData().subscribe(data => {
       //(data);
       this.vendordata = data.result;
+      this.constantPageFilters = data.result;
     });
   }
 
-  onSubmit() {
-    //Have to Implement
+  onSubmit() {   
+    this.vendordata = this.constantPageFilters.filter(vendor => {
+        return (vendor.displayName.toLowerCase().match(this.SearchText.toLowerCase())
+                || vendor.ssn.match(this.SearchText)
+                || vendor.phone === parseInt(this.SearchText));
+    })
   }
 
   clearSearch() {
-    //Have to Implement
+    this.ngOnInit();
   }
 }
