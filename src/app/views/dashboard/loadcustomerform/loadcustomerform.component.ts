@@ -14,7 +14,31 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   providers: [CustomersService, TrucksService, TrailerService]
 })
 export class LoadcustomerformComponent implements OnInit {
-	public pageFilters={};
+	public pageFilters={
+    paymentTerms: '',
+    address1: '',
+    address2: '',
+    city: '',
+    state: '',
+    zipcode: '',
+    country: '',
+    address3: '',
+    address4: '',
+    city1: '',
+    state1: '',
+    zipcode1: '',
+    country1: '',
+    customeraccount: '',
+    contact: '',
+    phone: '',
+    mobile: '',
+    email: '',
+    mcsf: '',
+    usdot: '',
+    billto: '',
+    fein: '',
+    dba: ''
+  };
     public customers: CustomersFilters;
     Customerslistdata = new Array<CustomersFilters>();
     customerdata=[];
@@ -23,7 +47,13 @@ export class LoadcustomerformComponent implements OnInit {
     finalArry=[]
     pageFiltersshow=false;
     submitted: boolean;
-    contactinfodata={};
+    contactinfodata={
+      name: '',
+      comments: '',
+      phone: '',
+      mobile: '',
+      email: ''
+    };
     showAddOption=false
     fileArray=[]
     base64FileArray=[]
@@ -189,17 +219,55 @@ export class LoadcustomerformComponent implements OnInit {
        this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
      }else{
         this.submitted = true;
-        var Customerslistdata:any=this.pageFilters
-        Customerslistdata['contactinfodata']=this.contactinfodata
-        Customerslistdata['companyid']=localStorage.selectedCompany
-        var idArry=[]
-        for (var i = 0; i < this.finalArry.length; ++i) {
-          idArry.push(this.finalArry[i]._id)
-        }
-        Customerslistdata['files']=idArry
+        debugger
+       var idArry = []
+       for (var i = 0; i < this.finalArry.length; ++i) {
+         idArry.push(this.finalArry[i]._id)
+       }
+        // var Customerslistdata:any=this.pageFilters
+        // Customerslistdata['contactinfodata']=this.contactinfodata
+
+       var data: any = {
+         "companyId": localStorage.selectedCompany,
+         "files": idArry,
+
+         "displayName": this.contactinfodata.name,
+         "paymentTerms": this.pageFilters.paymentTerms,
+         "address": {
+           "line": this.pageFilters.address1,
+           "line1": this.pageFilters.address2,
+           "city": this.pageFilters.city,
+           "state": this.pageFilters.state,
+           "zip": this.pageFilters.zipcode,
+           "country": this.pageFilters.country
+         },
+         "address1": {
+           "line": this.pageFilters.address3,
+           "line1": this.pageFilters.address4,
+           "city": this.pageFilters.city1,
+           "state": this.pageFilters.state1,
+           "zip": this.pageFilters.zipcode1,
+           "country": this.pageFilters.country1
+         },
+         "comments": this.contactinfodata.comments,
+         "customerAccount": this.pageFilters.customeraccount,
+         "contact": this.pageFilters.contact,
+         "homePhone": this.contactinfodata.phone,
+         "cellPhone": this.contactinfodata.mobile,
+         "email": this.contactinfodata.email,
+         "mcff": this.pageFilters.mcsf,
+         "usdot": this.pageFilters.usdot,
+         "billTo": this.pageFilters.billto,
+         "fein": this.pageFilters.fein,
+         "dba": this.pageFilters.dba,
+         "active": true
+       }
+
         if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
           this.btnHide=true
-        this._customersservice.SendForm(Customerslistdata).subscribe(response => {
+          this._customersservice.SendForm(
+            data
+          ).subscribe(response => {
           if(response.Status != "error"){
           this.submitted = true;
           this._toaster.info("Customerform Data Submitted","Success", {timeOut: 3000,});

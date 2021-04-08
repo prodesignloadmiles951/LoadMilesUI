@@ -97,6 +97,7 @@ export class LoadformComponent implements OnInit {
   submitload(){
     this.showsubmit=true
       this.newloadfilters['company'] = this.selectedCompanyName
+    this.newloadfilters['companyId'] =  localStorage.selectedCompany;
       if(this.newloadfilters['customer'] != undefined){
         this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
             if(data.Status == "error"){
@@ -121,7 +122,7 @@ export class LoadformComponent implements OnInit {
   }
   getDispatcherData() {
     this._dispatcherService.getDispatcherData().subscribe(data => {
-      this.dispatcherdata = data;
+      this.dispatcherdata = data.result;
       this.dispatcherdata.push({firstname:this.newloadfilters['dispatcher']})
     });
   }
@@ -132,8 +133,10 @@ export class LoadformComponent implements OnInit {
   }
   getCustomerdata(){
     this._customersservice.getCustomersData().subscribe(data => {
+      data = data.result;
+
       for (var i = 0; i < data.length; i++) {
-        if(data[i].companyname != undefined){
+        if (data[i].displayName != undefined){
           this.customerdata.push(data[i])
         }
       }

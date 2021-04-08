@@ -10,7 +10,7 @@
             <div class="col-md-5">
               <select class="form-control" id="customer" name="customer" [(ngModel)]="newloadfilters.customer">
                 <option value="Select customer" disabled selected hidden>Select custumer</option>
-                <option *ngFor="let cmp of customerdata" value="{{cmp.companyname}}">{{cmp.companyname}}</option>
+                <option *ngFor="let cmp of customerdata" value="{{cmp.displayName}}">{{cmp.displayName}}</option>
               </select>
             </div>
             <div class="col-md-3 no-padding" (click)="Addcustomer()">
