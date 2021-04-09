@@ -219,7 +219,6 @@ export class LoadcustomerformComponent implements OnInit {
        this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
      }else{
         this.submitted = true;
-        debugger
        var idArry = []
        for (var i = 0; i < this.finalArry.length; ++i) {
          idArry.push(this.finalArry[i]._id)
@@ -262,6 +261,9 @@ export class LoadcustomerformComponent implements OnInit {
          "dba": this.pageFilters.dba,
          "active": true
        }
+       Object.keys(data).forEach(key => {
+         if(!data[key]) delete data[key];
+       });
 
         if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
           this.btnHide=true

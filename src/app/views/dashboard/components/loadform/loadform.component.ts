@@ -102,6 +102,9 @@ export class LoadformComponent implements OnInit {
     if (!this.newloadfilters['dispatcher']) delete this.newloadfilters['dispatcher'];
     delete this.newloadfilters['company'];
       if(this.newloadfilters['customer'] != undefined){
+        Object.keys(this.newloadfilters).forEach(key => {
+          if(!this.newloadfilters[key]) delete this.newloadfilters[key];
+        });
         this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
           if(data.Status == "error"){
             this._toaster.error(data.error,"Failed", {timeOut: 2000,});

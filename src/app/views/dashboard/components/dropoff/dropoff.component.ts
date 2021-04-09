@@ -55,6 +55,9 @@ export class DropoffComponent implements OnInit {
     dropoffinfo['zipcode'] = dropoffdata['zipcode']
     
     if(dropoffinfo['load_id'] != null){
+      Object.keys(dropoffinfo).forEach(key => {
+        if(!dropoffinfo[key]) delete dropoffinfo[key];
+      });
       this._dropoff.SendDropoffform(dropoffinfo).subscribe(data => {
         console.log(data)
         if(this.dropoffpopupdata != null){

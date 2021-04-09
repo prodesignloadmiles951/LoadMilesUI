@@ -59,6 +59,9 @@ export class PickupComponent implements OnInit {
     
     console.log(pickupinfo)
     if(pickupinfo['loadId'] != null){
+      Object.keys(pickupinfo).forEach(key => {
+        if(!pickupinfo[key]) delete pickupinfo[key];
+      });
       this._pickup.SendPickupForm(pickupinfo).subscribe(data => {
         console.log(data)
         if(this.pickuppopupdata != null){
