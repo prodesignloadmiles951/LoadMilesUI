@@ -5,31 +5,31 @@
 
 
 // const currentEnv = 'http://localhost'; //local
-const currentEnv = 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com'; //dev Env
+const currentEnv = 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api'; //dev Env
 
 export const environment = {
   production: false,
   Login_User: 'LOGIN_USER',
   dashboardurl: 'http://localhost:4200/api/dashboard/',
-  URL: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api',
-  url: 'http://3.139.89.46:8081/',
+  URL: currentEnv,
+  url: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/',
   loginurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/user/login',
-  companyurl: currentEnv + ':5000/api/company',
+  companyurl: currentEnv + '/company',
   trucksurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/companyApi/truck',
   trailersurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/companyApi/trailer',
   driversurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/companyApi/driver',
   dispatchersurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/companyApi/dispatcher',
   carrierurl: 'http://3.139.89.46:8081/carriersapi/carriers',
-  customersurl: currentEnv + ':5000/api/companyApi/customer',
-  getloadsurl: currentEnv + ':5000/api/companyApi/load',
-  pickupform: currentEnv + ':5000/api/companyApi/pickup',
-  dropoffform: currentEnv + ':5000/companyApi/dropoff',
+  customersurl: currentEnv + '/companyApi/customer',
+  getloadsurl: currentEnv + '/companyApi/load',
+  pickupform: currentEnv + '/companyApi/pickup',
+  dropoffform: currentEnv + '/companyApi/dropoff',
   // uploadUrl:'http://ec2-54-166-101-176.compute-1.amazonaws.com:8081/fileapi/file'
   uploadUrl:'http://3.139.89.46:8081/fileapi/file',
   postalcodeUrl:'http://3.139.89.46:8081/fileapi/postal_code?postal_code=',
   roledetailsUrl: 'http://3.139.89.46:8081/roleapi/role',
-  newcompanyurl: currentEnv + ':5000/api/company',
-  newcompanycreateurl: currentEnv + ':5000/api/company/',
+  newcompanyurl: currentEnv + '/company',
+  newcompanycreateurl: currentEnv + '/company/',
   userdetailsurl: 'http://3.139.89.46:8081/userapi/user',
   vendorurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/companyApi/vendor',
   fuelCardurl: 'http://3.139.89.46.176:8081/fuelCardapi/fuelCard',

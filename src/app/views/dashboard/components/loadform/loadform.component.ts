@@ -62,7 +62,7 @@ export class LoadformComponent implements OnInit {
     sessionStorage.removeItem("pickupdetails")
     
     this.loginUser = this.authService.getloginUser();
-    this.newloadfilters['dispatcher']= this.loginUser['username'];
+    this.newloadfilters['dispatcher']= this.loginUser['fullname'];
     this.selectedCompanyName = localStorage.getItem("selectedCompanyName")
     var date= new Date()
     this.newloadfilters['date']= date.toLocaleDateString()
@@ -128,8 +128,8 @@ export class LoadformComponent implements OnInit {
   }
   getDispatcherData() {
     this._dispatcherService.getDispatcherData().subscribe(data => {
-      this.dispatcherdata = data.result;
-      this.dispatcherdata.push({firstname:this.newloadfilters['dispatcher']})
+      this.dispatcherdata = data.result || [];
+      this.dispatcherdata.push({firstname: this.newloadfilters['dispatcher']})
     });
   }
   getCompanyData() {

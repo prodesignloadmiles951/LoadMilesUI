@@ -15,6 +15,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class LoadcustomerformComponent implements OnInit {
 	public pageFilters={
+    name: '',
     paymentTerms: '',
     address1: '',
     address2: '',
