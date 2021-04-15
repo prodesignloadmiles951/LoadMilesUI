@@ -35,7 +35,7 @@ export class CustomersComponent implements OnInit {
            this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
          }else{
                 this.submitted = true;
-                this.pageFilters['companyid']=localStorage.selectedCompany
+                this.pageFilters['companyId']=localStorage.selectedCompany
                 this._customersservice.SendForm(this.pageFilters).subscribe(response => {
                 this.submitted = true;
                 this._toaster.info("Data Submitted","Success");

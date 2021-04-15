@@ -39,9 +39,9 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="phone">Shipper Ref Number:<span style="color:red">*</span></label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="srefno" placeholder="Shipper reference number" #srefno="ngModel" name="srefno" [(ngModel)]="newloadfilters.srefno" [pattern]="'^[1-9][0-9]*$'" required>
-              <div *ngIf="srefno.errors && (srefno.dirty || srefno.touched)" style="font-size: smaller;">
-                <div [hidden]="!srefno.errors.required">
+              <input type="text" class="form-control" id="srefNo" placeholder="Shipper reference number" #srefNo="ngModel" name="srefNo" [(ngModel)]="newloadfilters.srefNo" [pattern]="'^[1-9][0-9]*$'" required>
+              <div *ngIf="srefNo.errors && (srefNo.dirty || srefNo.touched)" style="font-size: smaller;">
+                <div [hidden]="!srefNo.errors.required">
                   <span style="color: red;">Shipper Reference number is required</span>
                 </div>
               </div>
@@ -114,7 +114,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="Equiptype">Equipment type:</label>
             <div class="col-md-8">
-              <select class="form-control" id="Equiptype" #Equiptype="ngModel" name="Equiptype" [(ngModel)]="newloadfilters.Equiptype">
+              <select class="form-control" id="equipType" #Equiptype="ngModel" name="equipType" [(ngModel)]="newloadfilters.equipType">
                 <option value="Select equipment type" disabled selected hidden>Select equipment type</option>
                 <option value="0">Type-I</option>
                 <option value="1">Type-II</option>
@@ -215,7 +215,7 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label" for="drivertype">Driver type :</label>
                   <div class="col-md-8">
-                    <select class="form-control" id="drivertype" #drivertype="ngModel" name="drivertype" [(ngModel)]="newloadfilters.drivertype">
+                    <select class="form-control" id="driverType" #drivertype="ngModel" name="driverType" [(ngModel)]="newloadfilters.driverType">
                       <option value="Select Driver type" disabled selected hidden>Select Driver type</option>
                       <option value="0">Solo</option>
                       <option value="1">Team</option>
@@ -384,7 +384,7 @@
               <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="drivertype">Driver type :</label>
                 <div class="col-md-8">
-                  <select class="form-control" id="drivertype" #drivertype="ngModel" name="drivertype" [(ngModel)]="newloadfilters.drivertype" [ngModelOptions]="{standalone: true}">
+                  <select class="form-control" id="driverType" #drivertype="ngModel" name="driverType" [(ngModel)]="newloadfilters.driverType" [ngModelOptions]="{standalone: true}">
                     <option value="Select Driver type" disabled selected hidden>Select Driver type</option>
                     <option value="0">Solo</option>
                     <option value="1">Team</option>

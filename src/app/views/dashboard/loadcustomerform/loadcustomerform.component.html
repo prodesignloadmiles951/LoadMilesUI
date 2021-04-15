@@ -17,10 +17,10 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="companyname">Customer Name :<span style="color:red">*</span></label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="companyname" name="companyname" #companyname="ngModel" [(ngModel)]="pageFilters.companyname" required>
-                <div *ngIf="companyname.errors && (companyname.dirty || companyname.touched)" style="font-size: smaller;">
-                  <div [hidden]="!companyname.errors.required">
-                    <span style="color: red;">Companyname is Required</span>
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="name" name="name" #companyname="ngModel" [(ngModel)]="pageFilters.name" required>
+                <div *ngIf="name && name.errors && (name.dirty || name.touched)" style="font-size: smaller;">
+                  <div [hidden]="!name.errors.required">
+                    <span style="color: red;">Customer name is Required</span>
                   </div>
                 </div>
               </div>
@@ -174,9 +174,9 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="paymentterms">Payment Terms:</label>
+              <label class="col-md-4 col-form-label" for="paymentTerms">Payment Terms:</label>
               <div class="col-md-8">
-                <select [ngClass]="mode?'':'disble'" class="form-control" id="paymentterms" name="paymentterms" #paymentterms="ngModel" [(ngModel)]="pageFilters.paymentterms">
+                <select [ngClass]="mode?'':'disble'" class="form-control" id="paymentTerms" name="paymentTerms" #paymentTerms="ngModel" [(ngModel)]="pageFilters.paymentTerms">
                   <option value="0">QuickPay</option>
                   <option value="1">15 days</option>
                   <option value="2">30 days</option>

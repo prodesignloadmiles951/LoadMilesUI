@@ -63,22 +63,22 @@ driverdata= [];
     if(this.data['mode']){
       this.dropoff=this.data
       this.inputPostalCode = this.dropoff['zipcode']
-      if(this.dropoff['DropoffDate'] != undefined){
-      this.dropoff['DropoffDate'] = new Date(this.dropoff['DropoffDate']).toISOString().split('T')[0]
+      if(this.dropoff['dropoffDate'] != undefined){
+        this.dropoff['dropoffDate'] = new Date(this.dropoff['dropoffDate']).toISOString().split('T')[0]
       }
       // if(this.dropoff['dropAddress'] != undefined ){
       // this.dropoff['address1'] = this.dropoff['dropAddress'].split(",")[0]
       // this.dropoff['address2'] = this.dropoff['dropAddress'].split(",")[1]
       // }
     }else if(pickup != undefined){
-      this.dropoff['Type'] = pickup['Type']
+      this.dropoff['type'] = pickup['type']
       console.log(this.driverdata)
       for (var i = 0; i < this.driverdata.length; i++) {
-        if(this.driverdata[i]['_id'] == pickup['Driver1']){
+        if(this.driverdata[i]['_id'] == pickup['driver1']){
           this.Driver1 = this.driverdata[i]['firstname']
           console.log(this.Driver1)
         }
-        if(this.driverdata[i]['_id'] == pickup['Driver2']){
+        if(this.driverdata[i]['_id'] == pickup['driver2']){
           this.Driver2 = this.driverdata[i]['firstname']
           console.log(this.Driver2)
         }
@@ -86,13 +86,19 @@ driverdata= [];
       // this.dropoff['Driver1'] = pickup['Driver1']
       // this.dropoff['Driver2'] = pickup['Driver2']
 
-      this.dropoff['Truck'] = pickup['Truck']
-      this.dropoff['Trailer'] = pickup['Trailer'] 
-      this.dropoff['address1'] = pickup['address1']
-      this.dropoff['address1'] = pickup['address2']
-      if(this.dropoff['dropAddress'] != undefined ){
-      this.dropoff['address1'] = this.dropoff['dropAddress'].split(",")[0]
-      this.dropoff['address2'] = this.dropoff['dropAddress'].split(",")[1]
+      this.dropoff['companyId']=localStorage.selectedCompany;
+      this.dropoff['truck'] = pickup['truck']
+      this.dropoff['trailer'] = pickup['trailer']
+      this.dropoff['address'] = {
+        line: pickup['line'] +","+ pickup['line1'],
+        city: pickup['city'],
+        country: pickup['country'],
+        state: pickup['state'],
+        zip: pickup['zip']
+      }
+      if(this.dropoff['location'] != undefined ){
+      this.dropoff['address']['line'] = this.dropoff['location'].split(",")[0]
+      this.dropoff['address']['line1'] = this.dropoff['location'].split(",")[1]
       }
     }
   	this.getDriverData()
@@ -237,9 +243,9 @@ driverdata= [];
         }
         this.dropoff['files']=idArry
         this.dropoff['zipcode']=this.inputPostalCode
-        this.dropoff['DropoffDate']=new Date(this.dropoff['DropoffDate']).toLocaleDateString()
-        this.dropoff['Truck']=parseInt(this.dropoff['Truck'])
-        this.dropoff['Trailer']=parseInt(this.dropoff['Trailer'])
+        this.dropoff['dropoffDate']=new Date(this.dropoff['dropoffDate']).toLocaleDateString()
+        this.dropoff['truck']=parseInt(this.dropoff['truck'])
+        this.dropoff['trailer']=parseInt(this.dropoff['trailer'])
         this.dropoff['zipcode']=parseInt(this.dropoff['zipcode'])
         let data = {...this.dropoff};
   	    this.dialogRef.close(data)

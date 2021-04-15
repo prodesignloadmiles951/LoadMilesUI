@@ -1,48 +1,4 @@
 <div class="animated fadeIn">
-  <div class="card">
-    <div class="card-header">
-      Search For Vendor <strong></strong>
-      <!-- <span *ngIf="Isusersloading"
-          ><img
-            *ngIf="Isusersloading"
-            src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-          />
-          Loading..</span
-        > -->
-    </div>
-    <div class="card-body">
-      <form>
-        <div class="form-group row">
-          <div class="col-md-4">
-            <input
-              type="text"
-              id="search"
-              name="search"
-              class="form-control"
-              [(ngModel)]="SearchText"
-              (keypress)="onSubmit()"
-              (keyup.enter)="onSubmit()"
-              placeholder="Find a Vendor"
-            />
-          </div>
-          <span>
-            <button
-              type="reset"
-              style="float: left"
-              class="btn btn-sm btn-danger"
-              (click)="clearSearch()"
-            >
-              <i class="fa fa-ban"></i> Clear Search
-            </button>
-          </span>
-          &nbsp;&nbsp;
-          <!-- <span>
-                        <button type="add" style="float: left" class="btn btn-sm btn-success" (click)="Add()"><i class="fa fa-plus"></i> New Truck</button>    
-                      </span> -->
-        </div>
-      </form>
-    </div>
-  </div>
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
@@ -55,6 +11,54 @@
           </span>
         </div>
         <div class="card-body">
+          <div class="row align-items-end pb-5">
+            <div class="col-sm-3">
+              <label for="vendorname"><strong>Vendor Select</strong></label>
+              <select
+                class="form-control"
+                id="vendorname"
+                name="vendorname"
+                [(ngModel)]="queryVendorId"
+                (change)="vendorSelect($event)"
+                required
+              >
+                <option value="All" selected>All</option>
+                <option *ngFor="let vendor of queryVendor" [value]="vendor._id">
+                  {{ vendor.displayName }}
+                </option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <label for="fromDate"><strong>From Date</strong></label>
+              <input
+                type="date"
+                class="form-control"
+                id="fromDate"
+                placeholder="From Date"
+                name="fromDate"
+                #fromDate="ngModel"
+                [(ngModel)]="queryFromDate"
+                required
+              />
+            </div>
+            <div class="col-sm-2">
+              <label for="toDate"><strong>To Date</strong></label>
+              <input
+                type="date"
+                class="form-control"
+                id="toDate"
+                placeholder="From Date"
+                name="toDate"
+                #toDate="ngModel"
+                [(ngModel)]="queryToDate"
+                required
+              />
+            </div>
+            <div class="col-sm-3 align-bottom">
+              <button class="btn btn-primary" (click)="onSearch()">Search</button>
+              <button class="btn btn-primary ml-5" (click)="onDownload()">Download</button>
+            </div>
+          </div>
           <div class="animated fadeIn"></div>
           <table
             class="table table-responsive-sm table-hover table-outline mb-0"

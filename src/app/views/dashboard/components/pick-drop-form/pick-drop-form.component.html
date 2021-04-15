@@ -12,7 +12,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="type">Type:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="pickup.Type" [ngModelOptions]="{standalone: true}">
+              <select class="form-control" [(ngModel)]="pickup.type" [ngModelOptions]="{standalone: true}">
                 <option value="" disabled selected hidden>Type</option>
                 <option *ngFor="let type of typeDetails" [value]="type.Name">
                   <span>{{type.Name}}</span>
@@ -23,7 +23,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="driver1">Driver1:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="Driver1" [ngModelOptions]="{standalone: true}" (ngModelChange)="selectChangeDriver1($event)">
+              <select class="form-control" [(ngModel)]="pickup.driver1" [ngModelOptions]="{standalone: true}" (ngModelChange)="selectChangeDriver1($event)">
                 <option value="" disabled selected hidden></option>
                 <option *ngFor="let cmp of driverdata" [value]="cmp.firstname">
                   <span>{{cmp.firstname}}</span>
@@ -34,7 +34,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="driver2">Driver2:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="Driver2" [ngModelOptions]="{standalone: true}" (ngModelChange)="selectChangeDriver2($event)">
+              <select class="form-control" [(ngModel)]="pickup.driver2" [ngModelOptions]="{standalone: true}" (ngModelChange)="selectChangeDriver2($event)">
                 <option value="" disabled selected hidden></option>
                 <option *ngFor="let cmp of driverdata" [value]="cmp.firstname">
                   <span>{{cmp.firstname}}</span>
@@ -45,7 +45,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="truck">Truck:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="pickup.Truck" [ngModelOptions]="{standalone: true}">
+              <select class="form-control" [(ngModel)]="pickup.truck" [ngModelOptions]="{standalone: true}">
                 <option value="" disabled selected hidden>Driver</option>
                 <option *ngFor="let cmp of unitNumberdata" [value]="cmp.truckunitnumber">
                   <span>{{cmp.truckunitnumber}}</span>
@@ -56,7 +56,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="trailer">Trailer:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="pickup.Trailer" [ngModelOptions]="{standalone: true}">
+              <select class="form-control" [(ngModel)]="pickup.trailer" [ngModelOptions]="{standalone: true}">
                 <option value="" disabled selected hidden>Driver</option>
                 <option *ngFor="let cmp of trailerData" [value]="cmp.unitNumber">
                   <span>{{cmp.unitNumber}}</span>
@@ -67,7 +67,7 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="type">Load Status:</label>
             <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="pickup.LoadStatus" [ngModelOptions]="{standalone: true}">
+              <select class="form-control" [(ngModel)]="pickup.loadStatus" [ngModelOptions]="{standalone: true}">
                 <option value="" disabled selected hidden>Load status</option>
                 <option *ngFor="let load of loadstatusDetails" [value]="load.Name">
                   <span>{{load.Name}}</span>
@@ -78,13 +78,13 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="contactname">Contact name:</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="contactname" name="contactname" #contactname="ngModel" [(ngModel)]="pickup.ContactName" [ngModelOptions]="{standalone: true}">
+              <input type="text" class="form-control" id="contactName" name="contactName" #contactname="ngModel" [(ngModel)]="pickup.contactName" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="contactnumber">Contact number:</label>
             <div class="col-md-8">
-              <input type="number" class="form-control" id="contactnumber" name="contactnumber" #contactnumber="ngModel" [(ngModel)]="pickup.ContactNumber" [ngModelOptions]="{standalone: true}">
+              <input type="number" class="form-control" id="contactNumber" name="contactNumber" #contactnumber="ngModel" [(ngModel)]="pickup.contactNumber" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
         </div>
@@ -92,49 +92,49 @@
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="pickupcompany">PickUp Company:</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="pickupcompany" name="pickupcompany" #pickupcompany="ngModel" [(ngModel)]="pickup.PickupCompany" [ngModelOptions]="{standalone: true}">
+              <input type="text" class="form-control" id="pickupCompany" name="pickupCompany" #pickupcompany="ngModel" [(ngModel)]="pickup.pickupCompany" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="pickupref">PickUp Reference:</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="pickupref" name="pickupref" #pickupref="ngModel" [(ngModel)]="pickup.pickupref" [ngModelOptions]="{standalone: true}">
+              <input type="text" class="form-control" id="pickupRef" name="pickupRef" #pickupref="ngModel" [(ngModel)]="pickup.pickupRef" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="pickupdate">PickUp Date:</label>
             <div class="col-md-8">
               <!-- {{today | date:'dd-MM-yyyy'}} -->
-              <input type="date" class="form-control" id="PickupDate" name="PickupDate" 
-              #PickupDate="ngModel" (ngModelChange)="pickup.PickupDate = $event" [ngModel]="pickup.PickupDate| date:'yyyy-MM-dd'">
+              <input type="date" class="form-control" id="pickupDate" name="pickupDate" 
+              #pickupdate="ngModel" (ngModelChange)="pickupDate = $event" [ngModel]="pickup.pickupDate| date:'yyyy-MM-dd'">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="pickuptime">PickUp Time:</label>
             <div class="col-md-8">
               <!-- today | date:'hh:mm:ss a':'+0530'}} -->
-              <input type="time" class="form-control" id="pickuptime" value="13:48:24" name="pickuptime" #pickuptime="ngModel" [(ngModel)]="pickup.pickuptime" step="2" [ngModelOptions]="{standalone: true}">
+              <input type="time" class="form-control" id="pickupTime" value="13:48:24" name="pickupTime" #pickuptime="ngModel" [(ngModel)]="pickup.pickupTime" step="2" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="address1">Address 1:</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="address1" name="address1" #address1="ngModel" [(ngModel)]="pickup.address1" [ngModelOptions]="{standalone: true}">
+              <input type="text" class="form-control" id="address1" name="address1" #address1="ngModel" [(ngModel)]="pickup.address.line" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-4 col-form-label" for="address2">Address 2:</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="address2" name="address2" #address2="ngModel" [(ngModel)]="pickup.address2" [ngModelOptions]="{standalone: true}">
+              <input type="text" class="form-control" id="address2" name="address2" #address2="ngModel" [(ngModel)]="pickup.address.line1" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
         <div class="form-group row">
-          <label class="col-md-4 col-form-label" for="address2">Location:</label>
+          <label class="col-md-4 col-form-label" for="location">Location:</label>
           <div class="col-md-8">
-            <input type="text" class="form-control with-go-btn" id="formatted_address" name="formatted_address" #address2="ngModel"
-              [(ngModel)]="pickup.formatted_address" [ngModelOptions]="{standalone: true}"
+            <input type="text" class="form-control with-go-btn" id="location" name="location" #location="ngModel"
+              [(ngModel)]="pickup.location" [ngModelOptions]="{standalone: true}"
               >
-              <button type="button" class="get-address-btn" (click)="getAddress(pickup.formatted_address)">Go</button>
+              <button type="button" class="get-address-btn" (click)="getAddress(pickup.location)">Go</button>
           </div>
         </div>
           <!-- <div class="form-group row">

@@ -35,34 +35,33 @@ export class PickupComponent implements OnInit {
   SendPickupForm(pickupdata){
     var pickupinfo = {}
     
-    pickupinfo['load_id']=sessionStorage.getItem('submitID')
-    pickupinfo['ContactNumber']= pickupdata['ContactNumber']
-    pickupinfo['PickupDate']= new Date(pickupdata['PickupDate']).getTime()
-    pickupinfo['PickupCompany'] = pickupdata['PickupCompany']
-    pickupinfo['ContactName'] = pickupdata['ContactName']
-    pickupinfo['Address'] = pickupdata['address1'] +","+ pickupdata['address2']
-    pickupinfo['Type'] = pickupdata['Type']
-    pickupinfo['Driver1'] = pickupdata['Driver1']
-    pickupinfo['Driver2'] = pickupdata['Driver2']
-    pickupinfo['Truck'] = pickupdata['Truck']
-    pickupinfo['Trailer'] = pickupdata['Trailer']
-    pickupinfo['LoadStatus'] = pickupdata['LoadStatus']
-    pickupinfo['city'] = pickupdata['city']
-    pickupinfo['country'] = pickupdata['country']
-    pickupinfo['pickupref'] = pickupdata['pickupref']
-    pickupinfo['pickuptime'] = pickupdata['pickuptime']
-    pickupinfo['state'] = pickupdata['state']
-    pickupinfo['zipcode'] = pickupdata['zipcode']
-
-    // for (var i = 0; i < this.typeDetails.length; i++) {
-    //   if(this.typeDetails[i]['ID'] == JSON.parse(pickupdata['Type'])){
-    //     pickupinfo['Type']= this.typeDetails[i]['Name']
-    //     break
-    //   }
-    // }
+    pickupinfo['companyId']=localStorage.selectedCompany;
+    pickupinfo['loadId']=sessionStorage.getItem('submitID')
+    pickupinfo['contactNumber']= pickupdata['contactNumber']
+    pickupinfo['pickupDate']= new Date(pickupdata['pickupDate']).getTime()
+    pickupinfo['pickupCompany'] = pickupdata['pickupCompany']
+    pickupinfo['contactName'] = pickupdata['contactName']
+    pickupinfo['type'] = pickupdata['type']
+    pickupinfo['driver1'] = pickupdata['driver1']
+    pickupinfo['driver2'] = pickupdata['driver2']
+    pickupinfo['truck'] = pickupdata['truck']
+    pickupinfo['trailer'] = pickupdata['trailer']
+    pickupinfo['loadStatus'] = pickupdata['loadStatus']
+    pickupinfo['address'] = {
+      line: pickupdata['line'] +","+ pickupdata['line1'],
+      city: pickupdata['city'],
+      country: pickupdata['country'],
+      state: pickupdata['state'],
+      zip: pickupdata['zip']
+    }
+    pickupinfo['pickupRef'] = pickupdata['pickupRef']
+    pickupinfo['pickupTime'] = pickupdata['pickupTime']
     
     console.log(pickupinfo)
-    if(pickupinfo['load_id'] != null){
+    if(pickupinfo['loadId'] != null){
+      Object.keys(pickupinfo).forEach(key => {
+        if(!pickupinfo[key]) delete pickupinfo[key];
+      });
       this._pickup.SendPickupForm(pickupinfo).subscribe(data => {
         console.log(data)
         if(this.pickuppopupdata != null){

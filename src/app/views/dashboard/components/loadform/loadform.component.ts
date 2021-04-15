@@ -10,7 +10,8 @@ import { LoginUser } from '../../../../model/loginuser';
 import { CustomersService } from '../../../../services/customers.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DispatcherService } from '../../../../services/dispatcher.service';
-import { LoadcustomerformComponent } from '../../loadcustomerform/loadcustomerform.component'
+import { LoadcustomerformComponent } from '../../loadcustomerform/loadcustomerform.component';
+
 @Component({
   selector: 'app-loadform',
   templateUrl: './loadform.component.html',
@@ -61,18 +62,18 @@ export class LoadformComponent implements OnInit {
     sessionStorage.removeItem("pickupdetails")
     
     this.loginUser = this.authService.getloginUser();
-    this.newloadfilters['dispatcher']= this.loginUser['username'];
+    this.newloadfilters['dispatcher']= this.loginUser['fullname'];
     this.selectedCompanyName = localStorage.getItem("selectedCompanyName")
     var date= new Date()
     this.newloadfilters['date']= date.toLocaleDateString()
     this.newloadfilters['currency']='Select currency'
-    this.newloadfilters['crossborder']="Cross border"
-    this.newloadfilters['Equiptype']="Select equipment type"
+    this.newloadfilters['crossBorder']="Cross border"
+    this.newloadfilters['equipType']="Select equipment type"
     this.newloadfilters['sealed']="Seal required"
     this.newloadfilters['hazmat']="Hazmat material"
     // this.newloadfilters['customer']="Select customer"
-    this.newloadfilters['drivertype']="Select Driver type"
-    this.newloadfilters['LoadStatus']="Select load status"
+    this.newloadfilters['driverType']="Select Driver type"
+    this.newloadfilters['loadStatus']="Select load status"
     this.getData();
     this.getCompanyData();
     this.getCustomerdata()
@@ -83,7 +84,7 @@ export class LoadformComponent implements OnInit {
  getData() {
     this._loadservice.getLoadData().subscribe(data => {
       for (var i = 0; i < data.length; i++) {
-        if(data[i].drivertype){
+        if(data[i].driverType){
           data[i]['drivType']=1
         }else{
           data[i]['drivType']=0
@@ -96,19 +97,25 @@ export class LoadformComponent implements OnInit {
   }
   submitload(){
     this.showsubmit=true
-      this.newloadfilters['company'] = this.selectedCompanyName
+    this.newloadfilters['company'] = this.selectedCompanyName
+    this.newloadfilters['companyId'] =  localStorage.selectedCompany;
+    if (!this.newloadfilters['dispatcher']) delete this.newloadfilters['dispatcher'];
+    delete this.newloadfilters['company'];
       if(this.newloadfilters['customer'] != undefined){
+        Object.keys(this.newloadfilters).forEach(key => {
+          if(!this.newloadfilters[key]) delete this.newloadfilters[key];
+        });
         this._loadservice.addLoadData(this.newloadfilters).subscribe(data => {
-            if(data.Status == "error"){
+          if(data.Status == "error"){
             this._toaster.error(data.error,"Failed", {timeOut: 2000,});
           }else{
-              sessionStorage.setItem('submitID', data.data._id)
+              sessionStorage.setItem('submitID', data.result._id)
               this.getData();
               this.showsubmit=false
               this._toaster.success("Load successfully created", "Success");
-              if(data.data.loadNumber != undefined){
-              this.showloadnumber=true
-              this.loadNumber = data.data.loadNumber
+              if(data.result.loadNumber != undefined){
+                this.showloadnumber=true
+                this.loadNumber = data.result.loadNumber
               }
             }
         }, error => {
@@ -121,8 +128,8 @@ export class LoadformComponent implements OnInit {
   }
   getDispatcherData() {
     this._dispatcherService.getDispatcherData().subscribe(data => {
-      this.dispatcherdata = data;
-      this.dispatcherdata.push({firstname:this.newloadfilters['dispatcher']})
+      this.dispatcherdata = data.result || [];
+      this.dispatcherdata.push({firstname: this.newloadfilters['dispatcher']})
     });
   }
   getCompanyData() {
@@ -132,8 +139,10 @@ export class LoadformComponent implements OnInit {
   }
   getCustomerdata(){
     this._customersservice.getCustomersData().subscribe(data => {
+      data = data.result;
+
       for (var i = 0; i < data.length; i++) {
-        if(data[i].companyname != undefined){
+        if (data[i].displayName != undefined){
           this.customerdata.push(data[i])
         }
       }
