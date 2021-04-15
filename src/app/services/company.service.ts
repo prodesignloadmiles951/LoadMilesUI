@@ -99,8 +99,8 @@ export class CompanyService {
         let options = new RequestOptions();
         return this.http.post(this.forgotpasswordurl,{email:email},options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
-      onPasswordValidate(password,confirmpassword,token){
+      onPasswordValidate(password,confirmPassword,token){
         let options = new RequestOptions();
-        return this.http.post(this.validatepasswordurl,{password,confirmpassword,token},options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+        return this.http.post(this.validatepasswordurl,{password,confirmPassword,token},options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
 }
