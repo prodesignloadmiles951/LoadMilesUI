@@ -23,12 +23,8 @@ public ConfirmPassword;
   	var validatetoken = this.route.snapshot.paramMap.get('token')
   	if(this.Password === this.ConfirmPassword){
   			this._companyservice.onPasswordValidate(this.Password,this.ConfirmPassword,validatetoken).subscribe(response => {
-  		if(response.status == "SUCCESS!"){
-                this._toaster.info(response.result,"Success", {timeOut: 3000,});
+                this._toaster.info(response.message,"Success", {timeOut: 3000,});
                 this.router.navigateByUrl("/login");
-              }else{
-                this._toaster.error(response.error,"Failed", {timeOut: 2000,});
-              }
   	})
   	}else{
   		this._toaster.info("Password not matching","Failed", {timeOut: 3000,});
