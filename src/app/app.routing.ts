@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
@@ -11,6 +12,8 @@ import { RegisterComponent } from './views/register/register.component';
 import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
 import { CompanyregisterComponent } from './views/companyregister/companyregister.component'
 import { EmailValidateComponent } from './views/email-validate/email-validate.component';
+import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
+import { ValidateupdatepasswordComponent } from './views/validateupdatepassword/validateupdatepassword.component'
 
 export const routes: Routes = [
   {
@@ -66,6 +69,20 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'forgotPassword',
+    component: ForgotpasswordComponent,
+    data: {
+      title: 'Forgotpassword Page'
+    }
+  },
+  {
+    path: 'forgotpassword/:token',
+    component: ValidateupdatepasswordComponent,
+    data: {
+      title: 'Validatepassword Page'
+    }
+  },
+  {
     path: 'companyregister',
     component: CompanyregisterComponent,
     data: {
@@ -110,8 +127,9 @@ export const routes: Routes = [
   { path: '**', component: P404Component }
 ];
 
-@NgModule({
-  imports: [ RouterModule.forRoot(routes, {onSameUrlNavigation:'reload'}) ],
-  exports: [ RouterModule ]
-})
-export class AppRoutingModule {}
+// @NgModule({
+//   imports: [ RouterModule.forRoot(routes, {onSameUrlNavigation:'reload'}) ],
+//   exports: [ RouterModule ]
+// })
+// export class AppRoutingModule {}
+export const AppRoutingModule: ModuleWithProviders = RouterModule.forRoot(routes);

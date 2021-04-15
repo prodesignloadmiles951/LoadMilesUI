@@ -64,6 +64,9 @@ export class LoginComponent {
       this._toaster.error("Invalid UserId and Password","Faild");
     });
   }
+  Forgotpassword(){
+    this.router.navigateByUrl("forgotPassword");
+  }
   onregister(){
     this.router.navigateByUrl("register");
   }

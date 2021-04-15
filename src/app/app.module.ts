@@ -67,6 +67,8 @@ import { DashboardModule } from './views/dashboard/dashboard.module'
 import { LoadstatusComponent } from './views/loadstatus/loadstatus.component';
 import { CompanyregisterComponent } from './views/companyregister/companyregister.component';
 import { EmailValidateComponent } from './views/email-validate/email-validate.component';
+import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
+import { ValidateupdatepasswordComponent } from './views/validateupdatepassword/validateupdatepassword.component';
 
 @NgModule({
   imports: [
@@ -115,7 +117,9 @@ import { EmailValidateComponent } from './views/email-validate/email-validate.co
     LoadstatusComponent,
     CompanyregisterComponent,
     StatusFilterPipe,
-    EmailValidateComponent
+    EmailValidateComponent,
+    ForgotpasswordComponent,
+    ValidateupdatepasswordComponent
   ],
   providers: [
     {provide: LocationStrategy,useClass: HashLocationStrategy},

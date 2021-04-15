@@ -43,6 +43,9 @@ export class CompanyregisterComponent implements OnInit {
     this.pageFilters.account = {
       currency : 'Select currency',
     };
+    // this.pageFilters.account = {
+    //   acctype : 'Select account type',
+    // };
     this.pageFilters.location = {};
     if(this.datatype == undefined){
       this.mode=true

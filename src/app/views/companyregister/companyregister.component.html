@@ -14,142 +14,85 @@
     </button>
   </div>
   <div class="row col-md-12" *ngIf="pageFiltersshow">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="card">
         <div class="card-header"><strong>Company</strong> Data</div>
-        <div class="card-body">
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="name">Company Name: <span style="color:red">*</span></label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="name" placeholder="Enter company name" name="name" #name="ngModel" maxlength="50" [(ngModel)]="pageFilters.name" required>
-              <div *ngIf="name.errors && (name.dirty || name.touched)" style="font-size: smaller;">
-                <div [hidden]="!name.errors.required">
-                  <span style="color: red;">Company Name is required</span>
+        <div class="card-body card-container">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="name">Company Name: <span style="color:red">*</span></label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="name" placeholder="Enter company name" name="name" #name="ngModel" maxlength="50" [(ngModel)]="pageFilters.name" required>
+                <div *ngIf="name.errors && (name.dirty || name.touched)" style="font-size: smaller;">
+                  <div [hidden]="!name.errors.required">
+                    <span style="color: red;">Company Name is required</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="companyid">Company ID :<span style="color:red">*</span></label>
-            <div class="col-md-8">
-              <input type="number" class="form-control" id="companyid" #companyid="ngModel" name="companyid" [(ngModel)]="pageFilters.companyid" disabled>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="dba">DBA :</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="dba" #dba="ngModel" maxlength="50" placeholder="Enter DBA" name="dba" [(ngModel)]="pageFilters.dba">
+              </div>
             </div>
-          </div> -->
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="dba">DBA :</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="dba" #dba="ngModel" maxlength="50" placeholder="Enter DBA" name="dba" [(ngModel)]="pageFilters.dba">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label">Currency:</label>
+              <div class="col-md-8">
+                <select class="form-control" id="currency" name="currency" [(ngModel)]="pageFilters.account.currency">
+                  <option value="Select currency" disabled selected hidden>Select currency</option>
+                  <option value="0">USD</option>
+                  <option value="1">CAD</option>
+                  <option value="2">MXN</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label">Currency:</label>
-            <div class="col-md-8">
-              <select class="form-control" id="currency" name="currency" [(ngModel)]="pageFilters.account.currency">
-                <option value="Select currency" disabled selected hidden>Select currency</option>
-                <option value="0">USD</option>
-                <option value="1">CAD</option>
-                <option value="2">MXN</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="fedid">TAX ID <small>(FED ID)</small>:</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="fedid" maxlength="9" placeholder="Enter TAX ID" #fedid="ngModel" name="fedid" [(ngModel)]="pageFilters.fedid">
-              <!-- <div *ngIf="fedid.errors && (fedid.dirty || fedid.touched)" style="font-size: smaller;">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="fedid">TAX ID <small>(FED ID)</small>:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="fedid" maxlength="9" placeholder="Enter TAX ID" #fedid="ngModel" name="fedid" [(ngModel)]="pageFilters.fedid">
+                <!-- <div *ngIf="fedid.errors && (fedid.dirty || fedid.touched)" style="font-size: smaller;">
                 <div [hidden]="!fedid.errors.required">
                   <span style="color: red;">TAX ID is required</span>
                 </div>
               </div> -->
+              </div>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="us-dot">US DOT:</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="us-dot" #usdot="ngModel" placeholder="Enter US DOT" name="usdot" [(ngModel)]="pageFilters.usdot" maxlength="9">
-              <!-- <div *ngIf="usdot.errors && (usdot.dirty || usdot.touched)" style="font-size: smaller;">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="us-dot">US DOT:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="us-dot" #usdot="ngModel" placeholder="Enter US DOT" name="usdot" [(ngModel)]="pageFilters.usdot" maxlength="9">
+                <!-- <div *ngIf="usdot.errors && (usdot.dirty || usdot.touched)" style="font-size: smaller;">
                 <div [hidden]="!usdot.errors.required">
                   <span style="color: red;">US DOT is required</span>
                 </div>
               </div> -->
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="mc">MC<span style="color:red;"> *</span> :</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="mc" placeholder="Enter MC" maxlength="9" #mc="ngModel" name="mc" [(ngModel)]="pageFilters.mc" required>
-              <div *ngIf="mc.errors && (mc.dirty || mc.touched)" style="font-size: smaller;">
-                <div [hidden]="!mc.errors.required">
-                  <span style="color: red;">MC is required</span>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="mc">MC<span style="color:red;"> *</span> :</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="mc" placeholder="Enter MC" maxlength="9" #mc="ngModel" name="mc" [(ngModel)]="pageFilters.mc" required>
+                <div *ngIf="mc.errors && (mc.dirty || mc.touched)" style="font-size: smaller;">
+                  <div [hidden]="!mc.errors.required">
+                    <span style="color: red;">MC is required</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="ifta-license">IFTA License:</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="ifta-license" placeholder="Enter IFTA license" #iftalicense="ngModel" name="iftalicense" maxlength="9" [(ngModel)]="pageFilters.iftalicense">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="fax">Fax :</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="fax" #fax="ngModel" name="fax" [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" required>
-              <div *ngIf="fax.errors && (fax.dirty || fax.touched)" style="font-size: smaller;">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="ifta-license">IFTA License:</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="ifta-license" placeholder="Enter IFTA license" #iftalicense="ngModel" name="iftalicense" maxlength="9" [(ngModel)]="pageFilters.iftalicense">
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header"><strong>Administrator</strong> Information</div>
-        <div class="card-body">
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="fullname">Full Name: <span style="color:red">*</span></label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="fullname" placeholder="Enter full name" name="fullname" #fullname="ngModel" [(ngModel)]="pageFilters.fullname" maxlength="50" required>
-              <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" style="font-size: smaller;">
-                <div [hidden]="!fullname.errors.required">
-                  <span style="color: red;">Full Name is required</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="phone">Phone:<span style="color:red">*</span></label>
-            <div class="col-md-8">
-              <input type="number" class="form-control" placeholder="Ex: 012 345 6789" id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" [pattern]="'^[1-9][0-9]*$'" minlength="10" required>
-              <div *ngIf="phone.errors && (phone.dirty || phone.touched)" style="font-size: smaller;">
-                <!-- <div *ngIf="phone.errors.minlength">
-                  <span style="color: red;">Phone Number must be 10 digits</span>
-                </div> -->
-                <div [hidden]="!phone.errors.required">
-                  <span style="color: red;">Phone Number is required & must be 10 digits</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="email">Email:<span style="color:red">*</span></label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" placeholder="example@info.com" id="email" #email="ngModel" name="email" [(ngModel)]="pageFilters.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-              <div *ngIf="email.errors && (email.dirty || email.touched)" style="font-size: smaller;">
-                <div [hidden]="!email.errors.required">
-                  <span style="color: red;">Email id is Required</span>
-                </div>
-                <div [hidden]="!email.errors?.pattern">
-                  <span style="color: red;">Enter valid email only</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="password">Password: <span style="color:red">*</span></label>
-            <div class="col-md-8">
-              <input type="PASSWORD" class="form-control" id="password" placeholder="Enter Password" name="password" #password="ngModel" [(ngModel)]="pageFilters.password" minlength="8" required>
-              <div *ngIf="password.errors && (password.dirty || password.touched)" style="font-size: smaller;">
-                <div [hidden]="!password.errors.required">
-                  <span style="color: red;">Password is required</span>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="fax">Fax :</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="fax" #fax="ngModel" name="fax" [(ngModel)]="pageFilters.fax" placeholder="Ex: 0123" pattern="[0-9]*" required>
+                <div *ngIf="fax.errors && (fax.dirty || fax.touched)" style="font-size: smaller;">
                 </div>
               </div>
             </div>
@@ -157,52 +100,66 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="card">
         <div class="card-header"><strong>Mailing</strong> Address</div>
-        <div class="card-body">
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="address1">Address1 :<span style="color:red">*</span></label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" id="address1" placeholder="Enter address1" #address1="ngModel" name="address1" [(ngModel)]="pageFilters.location.line" maxlength="50" required>
-              <div *ngIf="address1.errors && (address1.dirty || address1.touched)" style="font-size: smaller;">
-                <div [hidden]="!address1.errors.required">
-                  <span style="color: red;">Address1 is required</span>
+        <div class="card-body card-container">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="address1">Address1 :<span style="color:red">*</span></label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="address1" placeholder="Enter address1" #address1="ngModel" name="address1" [(ngModel)]="pageFilters.location.line" maxlength="50" required>
+                <div *ngIf="address1.errors && (address1.dirty || address1.touched)" style="font-size: smaller;">
+                  <div [hidden]="!address1.errors.required">
+                    <span style="color: red;">Address1 is required</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="city">City :<span style="color:red">*</span></label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="city" placeholder="Enter city" #city="ngModel" name="city" [(ngModel)]="pageFilters.location.city" maxlength="50" required>
+                <div *ngIf="city.errors && (city.dirty || city.touched)" style="font-size: smaller;">
+                  <div [hidden]="!city.errors.required">
+                    <span style="color: red;">City is required</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" id="address2" #address2="ngModel" placeholder="Enter address2" name="address2" [(ngModel)]="pageFilters.location.line1" maxlength="50">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="city">City :<span style="color:red">*</span></label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" id="city" placeholder="Enter city" #city="ngModel" name="city" [(ngModel)]="pageFilters.location.city" maxlength="50" required>
-              <div *ngIf="city.errors && (city.dirty || city.touched)" style="font-size: smaller;">
-                <div [hidden]="!city.errors.required">
-                  <span style="color: red;">City is required</span>
-                </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="address2">Address2 :</label>
+              <div class="col-md-9 no-padding">
+                <input type="text" class="form-control" id="address2" #address2="ngModel" placeholder="Enter address2" name="address2" [(ngModel)]="pageFilters.location.line1" maxlength="50">
               </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-6">State:<span style="color:red">*</span>
-              <input type="text" class="form-control" id="state" placeholder="Enter state" #state="ngModel" name="state" [(ngModel)]="pageFilters.location.state" maxlength="2" required>
-              <div *ngIf="state.errors && (state.dirty || state.touched)" style="font-size: smaller;">
-                <div [hidden]="!state.errors.required">
-                  <span style="color: red;">State is required</span>
+            <div class="form-group row">
+              <div class="col-6 card-container">
+                <div class="col-5 no-padding">
+                  State:<span style="color:red">*</span>
+                </div>
+                <div class="col-7">
+                  <input type="text" class="form-control" id="state" placeholder="Enter state" #state="ngModel" name="state" [(ngModel)]="pageFilters.location.state" maxlength="2" required>
+                  <div *ngIf="state.errors && (state.dirty || state.touched)" style="font-size: smaller;">
+                    <div [hidden]="!state.errors.required">
+                      <span style="color: red;">State is required</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-6">Zip:<span style="color:red">*</span>
-              <input type="text" class="form-control" id="zip" placeholder="Ex: 500013" #zip="ngModel" name="zip" [(ngModel)]="pageFilters.location.zip" maxlength="7" required>
-              <div *ngIf="zip.errors && (zip.dirty || zip.touched)" style="font-size: smaller;">
-                <div [hidden]="!zip.errors.required">
-                  <span style="color: red;">ZIP is required</span>
+              <div class="col-6 card-container">
+                <div class="col-5 no-padding">
+                  Zip:<span style="color:red">*</span>
+                </div>
+                <div class="col-7">
+                  <input type="text" class="form-control" id="zip" placeholder="Ex: 500013" #zip="ngModel" name="zip" [(ngModel)]="pageFilters.location.zip" maxlength="7" required>
+                  <div *ngIf="zip.errors && (zip.dirty || zip.touched)" style="font-size: smaller;">
+                    <div [hidden]="!zip.errors.required">
+                      <span style="color: red;">ZIP is required</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -211,40 +168,103 @@
       </div>
       <div class="card">
         <div class="card-header"><strong>Banking</strong> Details</div>
-        <div class="card-body">
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="bankname">Bank name :</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="bankname" placeholder="Enter bankname" #bankname="ngModel" name="bankname" [(ngModel)]="pageFilters.account.bankname" maxlength="50" required>
+        <div class="card-body card-container">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="bankname">Bank name :</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="bankname" placeholder="Enter bankname" #bankname="ngModel" name="bankname" [(ngModel)]="pageFilters.account.bankname" maxlength="50" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="routingnumber">Routing number :</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="routingnumber" placeholder="Enter routing number" #routingnumber="ngModel" name="routingnumber" maxlength="9" [(ngModel)]="pageFilters.routingnumber" required>
+              </div>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="acctype">Account type :</label>
-            <div class="col-md-8">
-              <!-- <input type="text" class="form-control" id="acctype" placeholder="Enter account type" #acctype="ngModel" name="acctype" [(ngModel)]="pageFilters.account.acctype" required> -->
-              <select class="form-control" id="acctype" name="acctype" [(ngModel)]="pageFilters.account.acctype">
-                <option value="Select accounttype" disabled selected hidden>Select Accounttype</option>
-                <option value="0">Checking</option>
-                <option value="1">Savings</option>
-              </select>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="acctype">Account type :</label>
+              <div class="col-md-8">
+                <!-- <input type="text" class="form-control" id="acctype" placeholder="Enter account type" #acctype="ngModel" name="acctype" [(ngModel)]="pageFilters.account.acctype" required> -->
+                <select class="form-control" id="acctype" name="acctype" [(ngModel)]="pageFilters.account.acctype">
+                  <option value="Select accounttype" disabled selected hidden>Select Accounttype</option>
+                  <option value="0">Checking</option>
+                  <option value="1">Savings</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="account">Account number :</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="account" placeholder="Enter account number" #account="ngModel" name="account" [(ngModel)]="pageFilters.account.accountnumber" maxlength="16" required>
+              </div>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="routingnumber">Routing number :</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="routingnumber" placeholder="Enter routing number" #routingnumber="ngModel" name="routingnumber" maxlength="9" [(ngModel)]="pageFilters.routingnumber" required>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><strong>Administrator</strong> Information</div>
+        <div class="card-body card-container">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="fullname">Full Name: <span style="color:red">*</span></label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="fullname" placeholder="Enter full name" name="fullname" #fullname="ngModel" [(ngModel)]="pageFilters.fullname" maxlength="50" required>
+                <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" style="font-size: smaller;">
+                  <div [hidden]="!fullname.errors.required">
+                    <span style="color: red;">Full Name is required</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="email">Email:<span style="color:red">*</span></label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" placeholder="example@info.com" id="email" #email="ngModel" name="email" [(ngModel)]="pageFilters.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <div *ngIf="email.errors && (email.dirty || email.touched)" style="font-size: smaller;">
+                  <div [hidden]="!email.errors.required">
+                    <span style="color: red;">Email id is Required</span>
+                  </div>
+                  <div [hidden]="!email.errors?.pattern">
+                    <span style="color: red;">Enter valid email only</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-md-4 col-form-label" for="account">Account number :</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="account" placeholder="Enter account number" #account="ngModel" name="account" [(ngModel)]="pageFilters.account.accountnumber" maxlength="16" required>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="phone">Phone:<span style="color:red">*</span></label>
+              <div class="col-md-8">
+                <input type="number" class="form-control" placeholder="Ex: 012 345 6789" id="phone" #phone="ngModel" name="phone" [(ngModel)]="pageFilters.phone" [pattern]="'^[1-9][0-9]*$'" minlength="10" required>
+                <div *ngIf="phone.errors && (phone.dirty || phone.touched)" style="font-size: smaller;">
+                  <!-- <div *ngIf="phone.errors.minlength">
+                  <span style="color: red;">Phone Number must be 10 digits</span>
+                </div> -->
+                  <div [hidden]="!phone.errors.required">
+                    <span style="color: red;">Phone Number is required & must be 10 digits</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="password">Password: <span style="color:red">*</span></label>
+              <div class="col-md-8">
+                <input type="PASSWORD" class="form-control" id="password" placeholder="Enter Password" name="password" #password="ngModel" [(ngModel)]="pageFilters.password" minlength="8" required>
+                <div *ngIf="password.errors && (password.dirty || password.touched)" style="font-size: smaller;">
+                  <div [hidden]="!password.errors.required">
+                    <span style="color: red;">Password is required</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <re-captcha (resolved)="resolved($event)" siteKey="6Lc5WXUaAAAAAIhlVLCAmjluSswW8b_TRdgAcmP4">
-        </re-captcha>
+      </re-captcha>
     </div>
     <!-- <div class="col-md-12">
       <mat-accordion>
@@ -278,7 +298,6 @@
       </mat-accordion>
     </div> -->
   </div>
-
   <div class="card-footer" *ngIf="showAddOption">
     <button type="submit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
       <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
@@ -286,5 +305,3 @@
     <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
   </div>
 </div>
-
-   

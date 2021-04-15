@@ -42,7 +42,9 @@ export const environment = {
   vendorbillsurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/companyApi/vendorbills',
   vendorpaymenturl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/companyApi/vendorbills/payment',
   bankurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/bank',
-  paymenttermurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/paymentterm'
+  paymenttermurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/paymentterm',
+  forgotpasswordurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/user/forgotPassword',
+  validateupdatepasswordurl: 'http://ec2-18-188-27-134.us-east-2.compute.amazonaws.com:5000/api/user/validateAndUpdatePassword'
 
   // url:"http://localhost:62585/api/",
   // conurl:"http://localhost:62585/api/Transactions/",

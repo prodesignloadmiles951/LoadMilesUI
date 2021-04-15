@@ -17,6 +17,9 @@ export class CompanyService {
     URL:string;
     roleurl: string;
     linkedcompanyurl: string;
+    forgotpasswordurl: string;
+    validatepasswordurl: string;
+
     constructor(private http: Http, private _headerService:AuthHeaderService){
         this.companyurl=environment.companyurl;
         this.currentEnv=environment.URL
@@ -24,6 +27,8 @@ export class CompanyService {
         this.roleurl= environment.roledetailsUrl
         this.newcompanyurl=environment.newcompanyurl;
         this.userdetailsurl=environment.userdetailsurl;
+        this.forgotpasswordurl=environment.forgotpasswordurl
+        this.validatepasswordurl=environment.validateupdatepasswordurl
     }
 
     SendForm(pageFilters: CompanyFilters){
@@ -89,5 +94,13 @@ export class CompanyService {
       onCompanyValidate(token){
         let options = new RequestOptions();
         return this.http.get(this.currentEnv+'/company/validate/'+token,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+      }
+      forgotpassword(email:string,){
+        let options = new RequestOptions();
+        return this.http.post(this.forgotpasswordurl,{email:email},options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+      }
+      onPasswordValidate(password,confirmpassword,token){
+        let options = new RequestOptions();
+        return this.http.post(this.validatepasswordurl,{password,confirmpassword,token},options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
 }
