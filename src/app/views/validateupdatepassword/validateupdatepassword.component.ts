@@ -22,7 +22,7 @@ public ConfirmPassword;
   submit(){
   	var validatetoken = this.route.snapshot.paramMap.get('token')
   	if(this.Password === this.ConfirmPassword){
-  			this._companyservice.onPasswordValidate(validatetoken,this.Password,this.ConfirmPassword).subscribe(response => {
+  			this._companyservice.onPasswordValidate(this.Password,this.ConfirmPassword,validatetoken).subscribe(response => {
   		if(response.status == "SUCCESS!"){
                 this._toaster.info(response.result,"Success", {timeOut: 3000,});
                 this.router.navigateByUrl("/login");
