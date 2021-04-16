@@ -37,7 +37,7 @@ export class PaymentListComponent implements OnInit {
     this.vendorPaymentService.getVendorPaymentData().subscribe(data => {
       this.payments = data;
       this.payments = _.orderBy(this.payments, p => Date.parse(p.paymentDate), 'desc');
-      // console.log(data);
+      console.log(data);
     })
   }
 

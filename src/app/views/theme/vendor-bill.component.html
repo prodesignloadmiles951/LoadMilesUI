@@ -37,75 +37,103 @@
           <label class="col-form-label" for="truckNo"
             >Truck :<span style="color: red">*</span>
           </label>
-            <select
-              class="form-control"
-              id="truckNo"
-              name="truckNo"
-              #truckNo="ngModel"
-              [(ngModel)]="pageFilters.truckId"
-              required
-            >
-              <option value="Select truck" disabled selected hidden>
-                Select Truck
-                <span style="color: red">*</span>
-              </option>
-              <option value="truck 1">truck 1</option>
-              <option value="truck 2">truck 2</option>
-            </select>
-            <div *ngIf="vendorBillForm.submitted && truckNo.invalid">
-              <span style="color: red">Please Select a Vendor</span>
-            </div>
+          <select
+            class="form-control"
+            id="truckNo"
+            name="truckNo"
+            #truckNo="ngModel"
+            [(ngModel)]="pageFilters.truckId"
+            required
+          >
+            <option value="Select truck" disabled selected hidden>
+              Select Truck
+              <span style="color: red">*</span>
+            </option>
+            <option *ngFor="let truck of trucks" [(ngValue)]="truck._id">
+              {{ truck.plate }}
+            </option>
+          </select>
+          <div *ngIf="vendorBillForm.submitted && truckNo.invalid">
+            <span style="color: red">Please Select a Truck</span>
+          </div>
         </div>
 
         <div class="col-sm-3">
           <label class="col-form-label" for="driverNo"
             >Driver : <span style="color: red">*</span></label
           >
-            <select
-              class="form-control"
-              id="driverNo"
-              name="driverNo"
-              #driverNo="ngModel"
-              [(ngModel)]="pageFilters.driverId"
-              required
-            >
-              <option value="Select driver" disabled selected hidden>
-                Select Driver
-              </option>
-              <option value="driver 1">driver 1</option>
-              <option value="driver 2">driver 2</option>
-            </select>
-            <div *ngIf="vendorBillForm.submitted && driverNo.invalid">
-              <span style="color: red">Please Select a Vendor</span>
-            </div>
+          <select
+            class="form-control"
+            id="driverNo"
+            name="driverNo"
+            #driverNo="ngModel"
+            [(ngModel)]="pageFilters.driverId"
+            required
+          >
+            <option value="Select driver" disabled selected hidden>
+              Select Driver
+            </option>
+            <option *ngFor="let driver of drivers" [(ngValue)]="driver._id">
+              {{ driver.displayName }}
+            </option>
+          </select>
+          <div *ngIf="vendorBillForm.submitted && driverNo.invalid">
+            <span style="color: red">Please Select a Vendor</span>
+          </div>
         </div>
 
         <div class="col-sm-3">
           <label class="col-form-label" for="loadNo"
             >Load :<span style="color: red">*</span></label
           >
-            <select
-              class="form-control"
-              id="loadNo"
-              name="loadNo"
-              #loadNo="ngModel"
-              [(ngModel)]="pageFilters.loadId"
-              required
-            >
-              <option value="Select load" disabled selected hidden>
-                Select Load
-                <span style="color: red">*</span>
-              </option>
-              <option value="load 1">load 1</option>
-              <option value="load 2">load 2</option>
-            </select>
-            <div *ngIf="vendorBillForm.submitted && loadNo.invalid">
-              <span style="color: red">Please Select a Vendor</span>
-            </div>
+          <select
+            class="form-control"
+            id="loadNo"
+            name="loadNo"
+            #loadNo="ngModel"
+            [(ngModel)]="pageFilters.loadId"
+            required
+          >
+            <option value="Select load" disabled selected hidden>
+              Select Load
+              <span style="color: red">*</span>
+            </option>
+            <option *ngFor="let load of loads" [(ngValue)]="load._id">
+              {{ load.loadNumber }}
+            </option>
+          </select>
+          <div *ngIf="vendorBillForm.submitted && loadNo.invalid">
+            <span style="color: red">Please Select a Vendor</span>
+          </div>
         </div>
       </div>
 
       <div class="form-group row pl-1 pr-1">
+        <div class="col-sm-3">
+          <label class="col-form-label" for="billId"
+            >Bill Id: <span style="color: red">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="billId"
+            name="billId"
+            #billId="ngModel"
+            [(ngModel)]="pageFilters.billId"
+            required
+          />
+          <div
+            *ngIf="
+            billId.errors &&
+              (billId.dirty || billId.touched || vendorBillForm.submitted)
+            "
+            style="font-size: smaller"
+          >
+            <div [hidden]="!billId.errors.required">
+              <span style="color: red">Bill Id is Required</span>
+            </div>
+          </div>
+        </div>
         <div class="col-sm-3">
           <label class="col-form-label" for="billDate"
             >Bill Date: <span style="color: red">*</span></label
@@ -257,7 +285,7 @@
           >
             <dxo-paging [enabled]="false"></dxo-paging>
             <dxo-editing
-              mode="row"
+              mode="batch"
               [allowUpdating]="true"
               [allowDeleting]="true"
               [allowAdding]="true"
@@ -307,8 +335,7 @@
       type="submit"
       style="float: right; margin-left: 10px"
       class="btn btn-sm btn-primary"
-      [disabled]="vendorBillForm.invalid || pageFilters.billLines.length < 1"
-      (click)="submit()"
+      (click)="submit(vendorBillForm.invalid)"
     >
       <i class="fa fa-dot-circle-o"></i>
       <img

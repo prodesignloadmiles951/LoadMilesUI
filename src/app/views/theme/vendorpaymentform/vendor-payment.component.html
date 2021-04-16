@@ -40,23 +40,16 @@
               <label for="preferredBank"
                 >Preferred Bank:<span style="color: red">*</span></label
               >
-              <select
+              <input
                 class="form-control"
                 id="preferredBank"
                 name="preferredBank"
                 #preferredBank="ngModel"
                 [(ngModel)]="pageFilters.preferredBank"
-                required
-              >
-                <option value="Select Bank" disabled selected hidden>
-                  Select Bank
-                  <span style="color: red">*</span>
-                </option>
-                <option value="1">EBL</option>
-                <option value="2">DBBL</option>
-              </select>
+                disabled
+              />
               <div *ngIf="vendorPaymnetForm.submitted && preferredBank.invalid">
-                <span style="color: red">Please Select a Vendor</span>
+                <span style="color: red">Please Select a Preferred Bank</span>
               </div>
             </div>
 
@@ -108,7 +101,7 @@
                 <option value="2">Reciept</option>
               </select>
               <div *ngIf="vendorPaymnetForm.submitted && paymentMethod.invalid">
-                <span style="color: red">Please Select a Vendor</span>
+                <span style="color: red">Please Select a Payment Method</span>
               </div>
             </div>
             <div class="col-md-3">
@@ -148,7 +141,7 @@
                 style="font-size: smaller"
               >
                 <div [hidden]="!paymentDate.errors.required">
-                  <span style="color: red">Bill Date is Required</span>
+                  <span style="color: red">Payment Date is Required</span>
                 </div>
               </div>
             </div>
@@ -171,15 +164,16 @@
             [columnAutoWidth]="true"
             [remoteOperations]="true"
             (onRowUpdated)="onExpenseEdit($event)"
+            (onRowUpdating)="cellChange($event)"
             (onEditorPreparing)="disableFieldsExceptPayment($event)"
             (onEditorPrepared)="focusOnPayment($event)"
             (onFocusedCellChanging)="disableFocus($event)"
           >
             <dxo-paging [enabled]="false"></dxo-paging>
-            <dxo-editing mode="row" [allowUpdating]="true"> </dxo-editing>
+            <dxo-editing mode="batch" [allowUpdating]="true"> </dxo-editing>
             <dxo-selection mode="single"></dxo-selection>
             <dxi-column
-              dataField="_id"
+              dataField="billId"
               caption="Bill Id"
               aria-disabled="true"
             ></dxi-column>
@@ -230,7 +224,7 @@
                 type="range"
                 min="1"
                 max="99999999"
-                message="Price must be between 15 and 1000"
+                message="Payment must be between 1 and 99999999"
               ></dxi-validation-rule>
               <dxi-validation-rule type="required"></dxi-validation-rule>
             </dxi-column>
@@ -244,8 +238,7 @@
       type="submit"
       style="float: right; margin-left: 10px"
       class="btn btn-sm btn-primary"
-      [disabled]="vendorPaymnetForm.invalid"
-      (click)="submit()"
+      (click)="submit(vendorPaymnetForm.invalid)"
     >
       <!-- <i class="fa fa-dot-circle-o"></i>
       <img

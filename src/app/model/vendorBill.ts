@@ -1,5 +1,6 @@
 export class VendorBillsFilter {
     vendorId: any;
+    billId: string;
     loadId: string;
     loadNo: string;
     driverId: string;

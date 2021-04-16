@@ -40,6 +40,7 @@ export class VendorComponent implements OnInit {
         if (this.retreivedData && this.retreivedData["EditMode"]) {
             //console.log(this.retreivedData, "retreived data");
             this.pageFilters = this.retreivedData;
+            if(this.pageFilters.country) this.getStateForCountry(this.pageFilters.country);
             if(typeof (this.pageFilters.account) === 'undefined')
                 this.pageFilters.account = new Account();
         } else {
@@ -50,8 +51,13 @@ export class VendorComponent implements OnInit {
         this.getData();
     }
 
-    submit() {
-        //console.log(this.pageFilters);
+    submit(isFormInvalid) {
+        //console.log(isFormInvalid);
+        if(isFormInvalid){
+            this._toaster.error("Please Enter All the Required Fields", "Failed");
+            this.submitted = true;
+            return;
+        }
         this.submitted = true;
         if (this.pageFilters && this.pageFilters["EditMode"]) {
             delete this.pageFilters["EditMode"];
@@ -71,10 +77,12 @@ export class VendorComponent implements OnInit {
                 }
             );
         } else {
+            //console.log(this.pageFilters);
             this.IsDataloading = true;
             this.pageFilters['companyId'] = localStorage.selectedCompany;
             this._vendorService.SendForm(this.pageFilters).subscribe(
                 (response) => {
+                    //console.log(response);
                     this.IsDataloading = false;
                     //this.submitted = true;
                     this._toaster.info("Vendor Data Submitted", "Success");
@@ -82,8 +90,9 @@ export class VendorComponent implements OnInit {
                     //this.router.navigateByUrl("theme/vendor-list");
                 },
                 (error) => {
+                    //console.log(error);
                     //this.submitted = false;
-                    this._toaster.error("Submit Again", "Failed");
+                    this._toaster.error(error._body, "Failed");
                 }
             );
             this.getData();
@@ -116,8 +125,15 @@ export class VendorComponent implements OnInit {
 
     onCountrySelect(event: any) {
         let id = event.target.value;
+        this.getStateForCountry(id);
+    }
+
+    getStateForCountry(id){
         this._countryService.getStates(id).subscribe((data) => {
             this.states = data;
         });
+    }
+    hidePopup(){
+        this.dialogRef.close(null);
     }
 }

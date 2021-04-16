@@ -5,14 +5,21 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { VendorBillsFilter } from '../../model/vendorBill';
 import { VendorBillService } from "../../services/vendorBills.service";
 import { VendorService } from "../../services/vendor.service";
+import { DriversService } from './../../services/driver.service';
+import { TrucksService } from '../../services/trucks.service';
+import { CreateloadService } from '../../services/createload.service';
+
 
 @Component({
   selector: 'app-vendor-bill',
   templateUrl: './vendor-bill.component.html',
-  providers: [SetupDataService, VendorBillService, VendorService]
+  providers: [SetupDataService, VendorBillService, VendorService, DriversService, TrucksService, CreateloadService]
 })
 export class VendorBillComponent implements OnInit {
   pageFilters: VendorBillsFilter = <VendorBillsFilter>{};
+  drivers: any[];
+  loads: any[];
+  trucks: any[];
   vendors: any[] = [];
   expenseDetails: any = {};
   IsDataloading: boolean = false;
@@ -23,7 +30,10 @@ export class VendorBillComponent implements OnInit {
     public dialogRef: MatDialogRef<VendorBillComponent>,
     private setupdataService: SetupDataService,
     private vendorBillService: VendorBillService,
-    private vendorService: VendorService
+    private vendorService: VendorService,
+    private _driverService: DriversService,
+    private _trucksService: TrucksService,
+    private _loadsService : CreateloadService
   ) { }
 
   ngOnInit() {
@@ -52,6 +62,18 @@ export class VendorBillComponent implements OnInit {
       this.expenseDetails = data;
     })
 
+    this._driverService.getDriversData().subscribe(data => {
+      this.drivers = data.result;
+    });
+
+    this._trucksService.getTrucksData().subscribe(data => {
+      this.trucks = data.result;
+    });
+
+    this._loadsService.getLoadData().subscribe(data => {
+      this.loads = data.result;
+    })
+
   }
 
   gridBox_displayExpr(item) {
@@ -74,8 +96,15 @@ export class VendorBillComponent implements OnInit {
     return expense;
   }
 
-  submit() {
-
+  submit(isFormInvalid) {
+    if(isFormInvalid){
+      this._toaster.error("Please Enter All the Required Fields", "Validation Error");
+      return;
+    }
+    if(this.pageFilters.billLines.length == 0){
+      this._toaster.error("Please Enter an Expense Line Item", "Validation Error");
+      return;
+    }
     ////(this.pageFilters.billLines);
     let expenses = this.pageFilters.billLines;
     expenses.forEach(x => {
@@ -85,9 +114,13 @@ export class VendorBillComponent implements OnInit {
     ////(expenses);
     this.pageFilters.billLines = expenses;
 
+
+
     if (this.pageFilters && this.pageFilters["EditMode"]) {
       //(this.pageFilters, "submitted data");
       delete this.pageFilters["EditMode"];
+      delete this.pageFilters['createdAt']
+      delete this.pageFilters['updatedAt']
       //this.pageFilters.vendorId = this.pageFilters.vendorId.name;
       this.vendorBillService.editBill(this.pageFilters).subscribe(
         (response) => {
@@ -96,7 +129,7 @@ export class VendorBillComponent implements OnInit {
         },
         (error) => {
           this.pageFilters["EditMode"] = true;
-          this._toaster.error("Please try again", "Failed");
+          this._toaster.error(error, "Failed");
         });
     }
     else {
@@ -106,12 +139,14 @@ export class VendorBillComponent implements OnInit {
       this.pageFilters.paidAmount = 0;
       this.vendorBillService.sendBill(this.pageFilters).subscribe(
         (response) => {
+         
           this._toaster.info("Vendor Data Submitted", "Success");
           this.dialogRef.close(null);
         },
         (error) => {
-          //(error);
-          this._toaster.error("Please try again", "Failed");
+          let resError = JSON.parse(error._body);
+
+          this._toaster.error(resError.error.message, "Failed");
         });
     }
   }
@@ -145,4 +180,7 @@ export class VendorBillComponent implements OnInit {
     this.pageFilters.paidAmount = parseFloat((this.pageFilters.paidAmount).toFixed(3));
   }
 
+  hidePopup(){
+    this.dialogRef.close(null);
+  }
 }

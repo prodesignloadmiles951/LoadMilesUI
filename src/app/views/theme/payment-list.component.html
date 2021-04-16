@@ -27,7 +27,8 @@
                 <tr *ngFor="let singlePayment of payment.paymentLine">
                   <td>{{ i + 1 }}</td>
                   <td>{{ payment.vendorId.displayName }}</td>
-                  <td>{{singlePayment.billId._id}}</td>
+                  <td *ngIf="singlePayment.billId.billId">{{singlePayment.billId.billId}}</td>
+                  <td *ngIf="!singlePayment.billId.billId"></td>
                   <td>{{ payment.paymentDate }}</td>
                   <td align="right">{{singlePayment.billId.billAmount}}</td>
                   <td align="right">{{singlePayment.paymentAmount}}</td>

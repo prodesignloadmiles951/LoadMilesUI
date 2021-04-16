@@ -1,3 +1,6 @@
+<button type="button" class="close" (click)="hidePopup()" aria-label="Close">
+  <span aria-hidden="true">x</span>
+</button>
 <form
   class="form-horizontal"
   #vendorForm="ngForm"
@@ -71,17 +74,6 @@
                     [(ngModel)]="pageFilters.lastName"
                     required
                   />
-                  <div
-                    *ngIf="
-                      lastname.errors &&
-                      (lastname.dirty || lastname.touched || this.submitted)
-                    "
-                    style="font-size: smaller"
-                  >
-                    <div [hidden]="!lastname.errors.required">
-                      <span style="color: red">Last Name is required</span>
-                    </div>
-                  </div>
                 </div>
               </div>
 
@@ -196,13 +188,13 @@
                     "
                     style="font-size: smaller"
                   >
-                    <div [hidden]="!ssn.errors.minlength && ssn.touched">
+                    <!-- <div [hidden]="!ssn.errors.minlength && ssn.touched">
                       <span style="color: red"
                         >SSN should be atleast 9 digits</span
                       >
-                    </div>
-                    <div [hidden]="!ssn.errors.required">
-                      <span style="color: red">SSN is Required</span>
+                    </div> -->
+                    <div [hidden]="!ssn.errors">
+                      <span style="color: red">Please Enter 9 Digit SSN</span>
                     </div>
                   </div>
                 </div>
@@ -276,6 +268,7 @@
                     name="paymentterm"
                     [(ngModel)]="pageFilters.paymentterm"
                   >
+                    <option></option>
                     <option
                       *ngFor="let paymentTerm of paymentTerms"
                       [value]="paymentTerm._id"
@@ -328,7 +321,7 @@
                     pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
                     required
                   />
-                  <div
+                  <!-- <div
                     *ngIf="
                       phone.errors &&
                       (phone.dirty || phone.touched || this.submitted)
@@ -347,7 +340,7 @@
                         >phone Number should be valid</span
                       >
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
 
@@ -364,7 +357,6 @@
                     #email="ngModel"
                     [(ngModel)]="pageFilters.email"
                     pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
-                    required
                   />
 
                   <div
@@ -374,9 +366,7 @@
                     "
                     style="font-size: smaller"
                   >
-                    <div
-                      [hidden]="!email.errors.required && !email.errors.pattern"
-                    >
+                    <div [hidden]="!email.errors.pattern">
                       <span style="color: red"
                         >Enter a valid email address</span
                       >
@@ -406,7 +396,7 @@
                     style="font-size: smaller"
                   >
                     <div [hidden]="!address1.errors.required">
-                      <span style="color: red">First Name is required</span>
+                      <span style="color: red">Address 1 is required</span>
                     </div>
                   </div>
                 </div>
@@ -560,81 +550,151 @@
           </div> -->
 
           <div class="form-group row">
-            <label class="col-md-3 col-form-label">Bank Name:</label>
-            <div class="col-md-9">
-              <input
-                type="text"
-                class="form-control"
-                id="bankname"
-                name="bankname"
-                #bankName="ngModel"
-                [(ngModel)]="pageFilters.account.bankName"
-              />
+            <div class="col-sm-6">
+              <div class="row">
+                <label class="col-md-3 col-form-label">Bank Name:</label>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="bankname"
+                    name="bankname"
+                    #bankName="ngModel"
+                    [(ngModel)]="pageFilters.account.bankName"
+                    maxlength="40"
+                    required
+                  />
+                  <div
+                    *ngIf="
+                      bankName.errors &&
+                      (bankName.dirty || bankName.touched || this.submitted)
+                    "
+                    style="font-size: smaller"
+                  >
+                    <div [hidden]="!bankName.errors.required">
+                      <span style="color: red">Bank Name is required</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="row">
+                <label class="col-md-3 col-form-label" for="accountname"
+                  >Account Name:</label
+                >
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="accountname"
+                    name="accountname"
+                    #accountName="ngModel"
+                    [(ngModel)]="pageFilters.account.accountname"
+                    maxlength="40"
+                    required
+                  />
+                  <div
+                    *ngIf="
+                      accountName.errors &&
+                      (accountName.dirty ||
+                        accountName.touched ||
+                        this.submitted)
+                    "
+                    style="font-size: smaller"
+                  >
+                    <div [hidden]="!accountName.errors.required">
+                      <span style="color: red">Account Name is required</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="accountname"
-              >Account Name:</label
-            >
-            <div class="col-md-9">
-              <input
-                type="text"
-                class="form-control"
-                id="accountname"
-                name="accountname"
-                #accounttype="ngModel"
-                [(ngModel)]="pageFilters.account.accountname"
-              />
+            <div class="col-sm-6">
+              <div class="row">
+                <label class="col-md-3 col-form-label" for="accounttype"
+                  >Account Type:</label
+                >
+                <div class="col-md-9">
+                  <select
+                    class="form-control"
+                    id="accounttype"
+                    name="accounttype"
+                    #accounttype="ngModel"
+                    [(ngModel)]="pageFilters.account.accounttype"
+                    required
+                  >
+                    <option value="Checking">Checking</option>
+                    <option value="Savings">Savings</option>
+                  </select>
+                  <div
+                    *ngIf="
+                      accounttype.errors &&
+                      (accounttype.dirty ||
+                        accounttype.touched ||
+                        this.submitted)
+                    "
+                    style="font-size: smaller"
+                  >
+                    <div [hidden]="!accountName.errors.required">
+                      <span style="color: red">Account Type is required</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="row">
+                <label class="col-md-3 col-form-label" for="accountnumber"
+                  >Account Number:</label
+                >
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="accountnumber"
+                    name="accountnumber"
+                    #accountnumber="ngModel"
+                    [(ngModel)]="pageFilters.account.accountnumber"
+                  />
+                  <div
+                    *ngIf="
+                      accountnumber.errors &&
+                      (accountnumber.dirty ||
+                        accountnumber.touched ||
+                        this.submitted)
+                    "
+                    style="font-size: smaller"
+                  >
+                    <div [hidden]="!accountnumber.errors.required">
+                      <span style="color: red">Account Number is required</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
           <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="accounttype"
-              >Account Type:</label
-            >
-            <div class="col-md-9">
-              <select
-                class="form-control"
-                id="accounttype"
-                name="accounttype"
-                [(ngModel)]="pageFilters.account.accounttype"
-              >
-                <option value="Checking">Checking</option>
-                <option value="Savings">Savings</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="accountnumber"
-              >Account Number:</label
-            >
-            <div class="col-md-9">
-              <input
-                type="text"
-                class="form-control"
-                id="accountnumber"
-                name="accountnumber"
-                #accountnumber="ngModel"
-                [(ngModel)]="pageFilters.account.accountnumber"
-              />
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="routingnumber"
-              >Routing Number:</label
-            >
-            <div class="col-md-9">
-              <input
-                type="text"
-                class="form-control"
-                id="routingnumber"
-                name="routingnumber"
-                #routingnumber="ngModel"
-                [(ngModel)]="pageFilters.account.routingnumber"
-              />
+            <div class="col-sm-6">
+              <div class="row">
+                <label class="col-md-3 col-form-label" for="routingnumber"
+                  >Routing Number:</label
+                >
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="routingnumber"
+                    name="routingnumber"
+                    #routingnumber="ngModel"
+                    [(ngModel)]="pageFilters.account.routingnumber"
+                    maxlength="9"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -647,8 +707,7 @@
       type="submit"
       style="float: right; margin-left: 10px"
       class="btn btn-sm btn-primary"
-      [disabled]="vendorForm.invalid"
-      (click)="submit()"
+      (click)="submit(vendorForm.invalid)"
     >
       <i class="fa fa-dot-circle-o"></i>
       <img

@@ -1,10 +1,15 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { SetupDataService } from "../../../services/setupdata.service";
 import { VendorService } from "../../../services/vendor.service";
 import { VendorBillService } from "../../../services/vendorBills.service";
 import { VendorPaymentService } from '../../../services/vendor-payment.service';
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
+import { DxDataGridModule,
+  DxDataGridComponent,
+  DxTemplateModule } from 'devextreme-angular';
+import { convertToObject } from "typescript";
+import { select } from "underscore";
 
 @Component({
   selector: 'app-vendor-payment',
@@ -12,6 +17,7 @@ import { Router } from "@angular/router";
   providers: [SetupDataService, VendorService, VendorBillService, VendorPaymentService]
 })
 export class VendorPaymentComponent implements OnInit {
+  @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
   pageFilters: any = [];
   vendorBills: any[] = [];
   vendors: any[] = [];
@@ -32,9 +38,17 @@ export class VendorPaymentComponent implements OnInit {
     });
   }
 
-  submit() {
+  submit(isFormInvalid) {
     //console.log(this.pageFilters);
     //console.log(this.paidBills, 'Paid Bills');
+    if(isFormInvalid){
+      this._toasterService.error("Please Input All the required Fields", "Validation Error");
+      return;
+    }
+    if(this.paidBills.length == 0){
+      this._toasterService.error("Please Input Payment in Payment Lines", "Validation Error");
+      return;
+    }
     let payments = this.paidBills.map(bill => {
       let payment = {
         billId: bill._id,
@@ -80,6 +94,8 @@ export class VendorPaymentComponent implements OnInit {
   vendorSelect(event: any) {
     this.vendorBillService.getVendorBills(event.target.value).subscribe((data) => {
       this.vendorBills = data;
+      let selectedVendor= this.vendors.find(x => x._id == event.target.value);
+      this.pageFilters.preferredBank = selectedVendor.account.bankName;
       //console.log(data);
       this.updateBalance();
     })
@@ -117,6 +133,9 @@ export class VendorPaymentComponent implements OnInit {
     if (event.dataField !== "payment") {
       event.isHighlighted = false;
     }
+  }
+  
+  cellChange(event:any){
   }
 
 }
