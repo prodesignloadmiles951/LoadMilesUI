@@ -73,6 +73,7 @@ export class VendorBillListComponent implements OnInit {
 
   getData() {
     this.vendorBillService.getVendorBillsData().subscribe((data) => {
+      //console.log(data);
       this.vendorBills = data;
       this.vendorBillsConstant = data;
     })

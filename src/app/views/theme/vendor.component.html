@@ -25,6 +25,7 @@
                     id="firstname"
                     name="firstname"
                     #firstname="ngModel"
+                    maxlength="40"
                     [(ngModel)]="pageFilters.firstName"
                     required
                   />
@@ -72,7 +73,7 @@
                     name="lastname"
                     #lastname="ngModel"
                     [(ngModel)]="pageFilters.lastName"
-                    required
+                    maxlength="40"
                   />
                 </div>
               </div>
@@ -89,6 +90,7 @@
                     name="displayname"
                     #displayname="ngModel"
                     [(ngModel)]="pageFilters.displayName"
+                    maxlength="40"
                     required
                   />
                   <div
@@ -317,9 +319,8 @@
                     name="phone"
                     #phone="ngModel"
                     [(ngModel)]="pageFilters.phone"
-                    maxlength="20"
+                    maxlength="10"
                     pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
-                    required
                   />
                   <!-- <div
                     *ngIf="
@@ -355,6 +356,7 @@
                     id="email"
                     name="email"
                     #email="ngModel"
+                    maxlength="50"
                     [(ngModel)]="pageFilters.email"
                     pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
                   />
@@ -386,7 +388,9 @@
                     id="address1"
                     name="address1"
                     #address1="ngModel"
+                    maxlength="40"
                     [(ngModel)]="pageFilters.address1"
+                    pattern=".*(\d+).*$"
                   />
                   <div
                     *ngIf="
@@ -397,6 +401,12 @@
                   >
                     <div [hidden]="!address1.errors.required">
                       <span style="color: red">Address 1 is required</span>
+                    </div>
+                    <div [hidden]="!address1.errors.pattern">
+                      <span style="color: red"
+                        >Address Should Contain Atleast 1 Numeric
+                        Character</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -413,8 +423,24 @@
                     id="address2"
                     name="address2"
                     #address2="ngModel"
+                    maxlength="40"
                     [(ngModel)]="pageFilters.address2"
+                    pattern=".*(\d+).*$"
                   />
+                  <div
+                    *ngIf="
+                    address2.errors &&
+                      (address2.dirty || address2.touched || this.submitted)
+                    "
+                    style="font-size: smaller"
+                  >
+                    <div [hidden]="!address2.errors.pattern">
+                      <span style="color: red"
+                        >Address Should Contain Atleast 1 Numeric
+                        Character</span
+                      >
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -457,9 +483,8 @@
                     name="city"
                     #city="ngModel"
                     [(ngModel)]="pageFilters.city"
-                    required
                   />
-                  <div
+                  <!-- <div
                     *ngIf="
                       city.errors &&
                       (city.dirty || city.touched || this.submitted)
@@ -467,9 +492,9 @@
                     style="font-size: smaller"
                   >
                     <div [hidden]="!city.errors.required">
-                      <span style="color: red">First Name is required</span>
+                      <span style="color: red">City is required</span>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
 
@@ -505,8 +530,28 @@
                     id="zipcode"
                     name="zipcode"
                     #zipcode="ngModel"
+                    maxlength="5"
+                    minlength="5"
                     [(ngModel)]="pageFilters.zipcode"
                   />
+                  <div
+                    *ngIf="
+                      zipcode.errors &&
+                      (zipcode.dirty || zipcode.touched || this.submitted)
+                    "
+                    style="font-size: smaller"
+                  >
+                    <!-- <div [hidden]="!ssn.errors.minlength && ssn.touched">
+                      <span style="color: red"
+                        >SSN should be atleast 9 digits</span
+                      >
+                    </div> -->
+                    <div [hidden]="!zipcode.errors">
+                      <span style="color: red"
+                        >Zip Code must be 5 characters</span
+                      >
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

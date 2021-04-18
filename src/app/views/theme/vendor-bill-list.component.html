@@ -67,9 +67,9 @@
               <tr>
                 <th>S.no</th>
                 <th>Vendor Name</th>
-                <th>Load No</th>
-                <th>Driver No</th>
-                <th>Truck No</th>
+                <th>Load</th>
+                <th>Driver</th>
+                <th>Truck </th>
                 <th>Bill Date</th>
                 <th>Due Date</th>
                 <th class="text-right">Bill Amount</th>
@@ -85,9 +85,9 @@
               <tr *ngFor="let bill of vendorBills; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{ bill.vendorId.displayName }}</td>
-                <td>{{ bill.loadId }}</td>
-                <td>{{ bill.driverId }}</td>
-                <td>{{ bill.truckId }}</td>
+                <td>{{ bill.loadId.loadNumber }}</td>
+                <td>{{ bill.driverId.firstName }}</td>
+                <td>{{ bill.truckId.plate }}</td>
                 <td>{{ bill.billDate }}</td>
                 <td>{{ bill.dueDate }}</td>
                 <td class="text-right">{{ bill.billAmount }}</td>

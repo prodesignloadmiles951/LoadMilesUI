@@ -72,6 +72,7 @@ export class VendorBillComponent implements OnInit {
 
     this._loadsService.getLoadData().subscribe(data => {
       this.loads = data.result;
+      
     })
 
   }

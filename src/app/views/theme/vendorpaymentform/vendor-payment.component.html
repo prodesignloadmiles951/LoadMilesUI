@@ -163,14 +163,13 @@
             [showBorders]="true"
             [columnAutoWidth]="true"
             [remoteOperations]="true"
-            (onRowUpdated)="onExpenseEdit($event)"
             (onRowUpdating)="cellChange($event)"
             (onEditorPreparing)="disableFieldsExceptPayment($event)"
             (onEditorPrepared)="focusOnPayment($event)"
             (onFocusedCellChanging)="disableFocus($event)"
           >
             <dxo-paging [enabled]="false"></dxo-paging>
-            <dxo-editing mode="batch" [allowUpdating]="true"> </dxo-editing>
+            <dxo-editing mode="cell" [allowUpdating]="true"> </dxo-editing>
             <dxo-selection mode="single"></dxo-selection>
             <dxi-column
               dataField="billId"

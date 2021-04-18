@@ -1,11 +1,11 @@
 export class VendorBillsFilter {
     vendorId: any;
     billId: string;
-    loadId: string;
-    loadNo: string;
-    driverId: string;
+    loadId: any;
+    loadNo: any;
+    driverId: any;
     driverNo: string;
-    truckId: string;
+    truckId: any;
     truckNo: string;
     billDate: string;
     dueDate: string;
@@ -15,6 +15,4 @@ export class VendorBillsFilter {
     comment: string;
     billLines: any[];
     status: string;
-
-
 }
