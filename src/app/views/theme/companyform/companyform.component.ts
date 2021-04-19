@@ -137,12 +137,28 @@ export class CompanyformComponent implements OnInit {
   }
 
   getroles() {
-    this._companyservice.getRoleData().subscribe(res => {
-      for (var i = 0; i < res.length; i++) {
-        res[i]['ID'] = i
-      }
-      this.roleArray = res
-    })
+    this.roleArray = [{
+      _id: 1,
+      name: 'SUPER_ADMIN'
+    },{
+      _id: 2,
+      name: 'CONTACT_ADMIN'
+    },{
+      _id: 3,
+      name: 'ADMIN'
+    },{
+      _id: 4,
+      name: 'DISPATCHER'
+    },{
+      _id: 5,
+      name: 'DRIVER'
+    },{
+      _id: 6,
+      name: 'USER'
+    }]
+    for (var i = 0; i < this.roleArray.length; i++) {
+      this.roleArray[i]['ID'] = i
+    }
   }
   getusers() {
     this._companyservice.getUserdetails().subscribe(res => {
@@ -152,6 +168,7 @@ export class CompanyformComponent implements OnInit {
       this.username = res
     })
   }
+  
   hidePopup() {
     this.dialogRef.close(null)
   }

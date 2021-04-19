@@ -16,12 +16,12 @@
         <div style="display:flex;">
           <div class="card-body col-md-6">
             <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="companyname">Customer Name :<span style="color:red">*</span></label>
+              <label class="col-md-4 col-form-label" for="name">Customer Name :<span style="color:red">*</span></label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="companyname" name="companyname" #companyname="ngModel" [(ngModel)]="pageFilters.companyname" required>
-                <div *ngIf="companyname.errors && (companyname.dirty || companyname.touched)" style="font-size: smaller;">
-                  <div [hidden]="!companyname.errors.required">
-                    <span style="color: red;">Companyname is Required</span>
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="name" name="name" #name="ngModel" [(ngModel)]="pageFilters.name" required>
+                <div *ngIf="name.errors && (name.dirty || name.touched)" style="font-size: smaller;">
+                  <div [hidden]="!name.errors.required">
+                    <span style="color: red;">Name is Required</span>
                   </div>
                 </div>
               </div>

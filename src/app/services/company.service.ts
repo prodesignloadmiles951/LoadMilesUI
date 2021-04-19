@@ -55,10 +55,10 @@ export class CompanyService {
         return this.http.post(this.URL+'userapi/user',obj,options)
         .pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
-      getRoleData(){
-        let options = new RequestOptions({ headers: this._headerService.getHeader() });
-        return this.http.get(this.roleurl,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
-      }
+      // getRoleData(){
+      //   let options = new RequestOptions({ headers: this._headerService.getHeader() });
+      //   return this.http.get(this.roleurl,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+      // }
       getcompanyRoleData(){
         let options = new RequestOptions();
         return this.http.get(this.roleurl,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
