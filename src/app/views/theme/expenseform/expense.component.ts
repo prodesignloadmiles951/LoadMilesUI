@@ -14,6 +14,7 @@ import { _ } from 'lodash';
 export class ExpenseComponent implements OnInit {
   pageFilters: any;
   expenseTypes: any;
+  IsDataloading: boolean;
 
   constructor(
     private _toaster: ToastrService,
@@ -23,6 +24,7 @@ export class ExpenseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.IsDataloading = false;
     if (this.retreivedData) {
       //console.log(this.retreivedData);
       this.pageFilters = this.retreivedData;

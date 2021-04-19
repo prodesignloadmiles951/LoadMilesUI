@@ -35,4 +35,8 @@ export class ForgotpasswordComponent implements OnInit {
   	})
   }
 
+  Login() {
+    
+  }
+
 }

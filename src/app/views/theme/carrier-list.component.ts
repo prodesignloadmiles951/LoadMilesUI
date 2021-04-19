@@ -21,6 +21,8 @@ export class CarrierlistComponent implements OnInit {
     data: any;
     selectedCarrier: any;
     selectedCompany: any;
+    Isusersloading: boolean;
+    SearchText: any;
     EditMode=false;
     carrierData={}
     showForm=false
@@ -30,6 +32,7 @@ export class CarrierlistComponent implements OnInit {
         private router: Router, public dialog: MatDialog) { }
 
         ngOnInit() {
+          this.Isusersloading = false;
             this.getData();
         }
     viewData(carrier) {

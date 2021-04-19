@@ -20,7 +20,29 @@ import { LoadcustomerformComponent } from '../../loadcustomerform/loadcustomerfo
 })
 export class LoadeditformComponent implements OnInit {
   public load: NewLoadFilters
-  newloadfilters= {};
+  newloadfilters= {
+    customer: '',
+    phone: '',
+    email: '',
+    crefNo: '',
+    srefNo: '',
+    currency: '',
+    loadPrice: '',
+    distance: '',
+    deadHead: '',
+    date: '',
+    dispatcher: '',
+    equipType: '',
+    crossBorder: '',
+    commodity: '',
+    weight: '',
+    comments: '',
+    sealed: '',
+    hazmat: '',
+    loadStatus: '',
+    notes: ''
+  };
+  IsDataloading: boolean;
   panelOpenState = false;
   pickupchild = false;
   dataSource=[];
@@ -53,6 +75,7 @@ export class LoadeditformComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.IsDataloading = false;
     sessionStorage.removeItem('Pickup')
     sessionStorage.removeItem('dropOffdetails')
     sessionStorage.removeItem('pickupdetails')

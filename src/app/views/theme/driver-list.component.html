@@ -8,10 +8,10 @@
       <form>
         <div class="form-group row">
           <div class="col-md-4">
-            <input type="text" id="search" name="search" class="form-control" [(ngModel)]="SearchText" (keypress)="onSubmit()" (keyup.enter)="onSubmit()" placeholder="Find a Driver">
+            <input type="text" id="search" name="search" class="form-control" [(ngModel)]="SearchText" placeholder="Find a Driver">
           </div>
           <span>
-            <button type="reset" style="float: left" class="btn btn-sm btn-danger" (click)="ClearSearch()"><i class="fa fa-ban"></i> Clear Search</button>
+            <button type="reset" style="float: left" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Clear Search</button>
           </span> &nbsp;&nbsp;
         </div>
       </form>

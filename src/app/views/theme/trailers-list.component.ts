@@ -21,6 +21,8 @@ export class TrailerslistComponent implements OnInit {
     data: any;
     selectedTrailer: any;
     EditMode: boolean;
+    Isusersloading: boolean;
+    SearchText: any;
     trailerData={}
     showForm=false
     trailerList=[
@@ -36,6 +38,7 @@ export class TrailerslistComponent implements OnInit {
          private router: Router, public dialog: MatDialog) { }
 
     ngOnInit(): void {
+      this.Isusersloading = false;
         this.pageFilters = new TrailersFilters();
         this.getData();
     }

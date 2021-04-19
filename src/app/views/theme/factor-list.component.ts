@@ -19,12 +19,16 @@ export class FactorlistComponent implements OnInit {
     factordata: [];
     data: any;
     EditMode: boolean;
+    Isusersloading: boolean;
+    SearchText: any;
+    selectedTrailer: any;
 
     constructor(private _toaster: ToastrService,
         private router: Router, private _factorService: FactorService,
         public dialog: MatDialog) { }
 
     ngOnInit(): void {
+      this.Isusersloading = false;
         this.pageFilters = new FactorFilters();
         this.getData();
     }

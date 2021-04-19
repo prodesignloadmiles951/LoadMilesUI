@@ -53,8 +53,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "minimumWarning": "4mb",
-                  "maximumError": "6mb"
+                  "minimumWarning": "8mb",
+                  "maximumError": "10mb"
                 }
               ],
               "fileReplacements": [

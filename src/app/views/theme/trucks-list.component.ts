@@ -23,13 +23,16 @@ export class TruckslistComponent implements OnInit {
     data: any;
     selectedTruck: any;
     selectedCompany: any;
-    truckData={}
+    SearchText: any;
+    truckData={};
+    Isusersloading: boolean;
  
     constructor(private _toaster: ToastrService,
       private _trucksservice: TrucksService,
       private router: Router,public dialog: MatDialog) { }
 
     ngOnInit() {
+      this.Isusersloading = false;
       this.getData();
   }
   viewData(truck) {

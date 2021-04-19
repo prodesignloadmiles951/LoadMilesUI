@@ -189,7 +189,7 @@
   <div id="data-grid-demo">
     <dx-data-grid id="gridContainer" [dataSource]="loadDetails" [allowColumnReordering]="true" 
     [showBorders]="true" [columnAutoWidth]="true" (onRowUpdated)="onEdit($event)" 
-    (onRowRemoved)="onDelete($event)" (onExporting)="onExporting($event)">
+    (onRowRemoved)="onDelete($event)">
       <dxo-paging [enabled]="true" [pageSize]="5"></dxo-paging>
       <!-- <dxo-filter-row [visible]="true" [applyFilter]="activeFilter"></dxo-filter-row> -->
       <dxo-selection mode="multiple"></dxo-selection>

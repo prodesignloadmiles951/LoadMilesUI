@@ -8,7 +8,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 import { ToastrModule } from 'ngx-toastr';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+// import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FileUploadModule } from 'ng2-file-upload';
 
@@ -72,7 +72,7 @@ import { VendorPaymentDelailsComponent } from './vendorpaymentdetails/vendor-pay
     ModalModule.forRoot(),
     MatExpansionModule,
     NgxDocViewerModule,
-    PdfViewerModule,
+    // PdfViewerModule,
     MatDialogModule,
     FileUploadModule
   ],

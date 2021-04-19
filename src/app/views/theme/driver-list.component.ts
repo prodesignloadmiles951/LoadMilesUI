@@ -20,6 +20,8 @@ export class DriverlistComponent implements OnInit {
     submitted: boolean; 
     Driverdata: any;
     selectedDriver: any;
+    Isusersloading: boolean;
+    SearchText: any;
     EditMode=false
     showForm=false
     driverData={}
@@ -31,6 +33,7 @@ export class DriverlistComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.Isusersloading = false;
         this.pageFilters = new DriverFilters();
         this.getData();
     }

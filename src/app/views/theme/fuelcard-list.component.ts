@@ -16,12 +16,16 @@ export class FuelcardListComponent implements OnInit {
     submitted: boolean;
     fuelcarddata: [];
     data: any;
+    Isusersloading: boolean;
+    SearchText: any;
+
     constructor(
         private router: Router,
         private _fuelcardService: FuelcardService,
         public dialog: MatDialog) { }
 
     ngOnInit(): void {
+        this.Isusersloading = false;
         this.pageFilters = new FuelcardFilters();
         this.getData();
     }

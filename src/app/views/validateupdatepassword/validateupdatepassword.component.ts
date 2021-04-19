@@ -10,12 +10,14 @@ import { ActivatedRoute,Router } from '@angular/router';
   providers: [CompanyService,ToastrService]
 })
 export class ValidateupdatepasswordComponent implements OnInit {
+  isSubmit: boolean;
 public Password;
 public ConfirmPassword;
   constructor(private _toaster: ToastrService,
      private _companyservice: CompanyService,private router: Router,public route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isSubmit = true;
   	console.log(this.route.snapshot.paramMap.get('token'))
   	var validatetoken = this.route.snapshot.paramMap.get('token')
   }
@@ -30,6 +32,9 @@ public ConfirmPassword;
   		this._toaster.info("Password not matching","Failed", {timeOut: 3000,});
   	}
   
+  }
+  Login() {
+    
   }
 
 }

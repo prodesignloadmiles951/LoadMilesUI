@@ -19,7 +19,27 @@ dropoffpopupForm: FormGroup;
 driverdata= [];
  trailerData= [];
  unitNumberdata: any;
- dropoff={}
+ dropoff={
+  type: '',
+  driver1: '',
+  driver2: '',
+  truck: '',
+  trailer: '',
+  loadStatus: '',
+  dropContact: '',
+  dropContactNumber: '',
+  dropCompany: '',
+  dropoffRef: '',
+  dropoffDate: '',
+  dropoffTime: '',
+  dropAddress: {
+    line: '',
+    line1: ''
+  },
+  location: '',
+  mode: ''
+ }
+ IsDataloading: any;
  loadstatusDetails=[];
  drivertypeDetails=[];
  typeDetails=[];
@@ -35,6 +55,7 @@ driverdata= [];
  showspinner=false
  Driver1=''
  Driver2=''
+ mode: boolean
 
   constructor(public dialogRef: MatDialogRef < DropoffpopupformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,private _trucksservice: TrucksService,
@@ -57,6 +78,8 @@ driverdata= [];
   }
 
   ngOnInit() {
+    this.IsDataloading = false;
+    this.mode = true;
     var pickup = JSON.parse(sessionStorage.getItem("Pickup"))
     console.log(pickup)
     console.log(this.data)
@@ -154,10 +177,10 @@ driverdata= [];
       console.log(data);
       if (data.status === "OK") {
         this.dropoff['location'] = data.results[0];
-        this.dropoff['formatted_address'] = this.dropoff['location'].formatted_address;
+        this.dropoff['formatted_address'] = data.results[0].formatted_address;
         console.log(this.dropoff);
       } else if (data.status === 'ZERO_RESULTS'){
-        this.dropoff['location'] = {};
+        // this.dropoff['location'] = {};
         this.dropoff['formatted_address'] = '';
         this._toaster.error("No results found!!", "Failed", { timeOut: 2000, });
       }
@@ -244,8 +267,8 @@ driverdata= [];
         this.dropoff['files']=idArry
         this.dropoff['zipcode']=this.inputPostalCode
         this.dropoff['dropoffDate']=new Date(this.dropoff['dropoffDate']).toLocaleDateString()
-        this.dropoff['truck']=parseInt(this.dropoff['truck'])
-        this.dropoff['trailer']=parseInt(this.dropoff['trailer'])
+        // this.dropoff['truck']=parseInt(this.dropoff['truck'])
+        // this.dropoff['trailer']=parseInt(this.dropoff['trailer'])
         this.dropoff['zipcode']=parseInt(this.dropoff['zipcode'])
         let data = {...this.dropoff};
   	    this.dialogRef.close(data)

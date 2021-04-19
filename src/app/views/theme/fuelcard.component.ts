@@ -15,6 +15,7 @@ export class FuelcardComponent implements OnInit {
     submitted: boolean;
     fuelcarddata: [];
     router: any;
+    IsDataloading: boolean;
 
     constructor(private _toaster: ToastrService,
         public dialogRef: MatDialogRef< FuelcardComponent >,
@@ -23,6 +24,7 @@ export class FuelcardComponent implements OnInit {
         }
 
     ngOnInit(): void {
+        this.IsDataloading = false;
         if (this.retreivedData) {
             console.log(this.retreivedData, "retreived data");
             this.pageFilters = this.retreivedData;

@@ -14,6 +14,7 @@ export class FactorComponent implements OnInit {
     Factorlistdata = new Array<FactorFilters>();
     submitted: boolean;
     router: any;
+    IsDataloading: boolean;
     factordata: [];
 
 
@@ -24,6 +25,7 @@ export class FactorComponent implements OnInit {
         }
 
     ngOnInit(): void {
+        this.IsDataloading = false;
         if (this.retreivedData) {
             console.log(this.retreivedData, "retreived data");
             this.pageFilters = this.retreivedData;

@@ -16,10 +16,30 @@ import { PickupserviceService } from '../../../../services/pickupservice.service
   providers: [TrucksService, TrailerService, DriversService, ToastrService, PickupserviceService, GooglePinSearch]
 })
 export class PickDropFormComponent implements OnInit {
- pickup={}
+ pickup={
+  type: '',
+  driver1: '',
+  driver2: '',
+  truck: '',
+  trailer: '',
+  loadStatus: '',
+  contactName: '',
+  contactNumber: 0,
+  pickupCompany: '',
+  pickupRef: '',
+  pickupDate: '',
+  pickupTime: '',
+  address: {
+    line: '',
+    line1: ''
+  },
+  location: {}
+ }
+ mode: boolean;
  driverdata= [];
  trailerData= [];
  unitNumberdata: any;
+ IsDataloading: any;
  pickuppopupForm: FormGroup;
  typeDetails=[]
  loadstatusDetails=[]
@@ -56,6 +76,8 @@ export class PickDropFormComponent implements OnInit {
     });
   }
   ngOnInit() {
+     this.IsDataloading = false;
+     this.mode = false;
      if(this.data){
       this.pickup=this.data
       this.inputPostalCode = this.pickup['zipcode']
@@ -137,7 +159,7 @@ export class PickDropFormComponent implements OnInit {
       console.log(data);
       if (data.status === "OK") {
         this.pickup['location'] = data.results[0];
-        this.pickup['formatted_address'] = this.pickup['location'].formatted_address;
+        this.pickup['formatted_address'] = data.results[0].formatted_address;
         console.log(this.pickup);
     } else if (data.status === 'ZERO_RESULTS') {
         this.pickup['location'] = {};

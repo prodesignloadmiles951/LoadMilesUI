@@ -162,7 +162,7 @@ export class VendorBillComponent implements OnInit {
     //this.pageFilters.billLines.billAmount = event.key.billAmount
   }
 
-  onExpenseDelete() { }
+  onExpenseDelete(e) { }
 
   onExpenseEdit(event: any) {
     if (event.newData.billAmount) {

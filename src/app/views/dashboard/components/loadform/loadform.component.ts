@@ -12,6 +12,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DispatcherService } from '../../../../services/dispatcher.service';
 import { LoadcustomerformComponent } from '../../loadcustomerform/loadcustomerform.component';
 
+
 @Component({
   selector: 'app-loadform',
   templateUrl: './loadform.component.html',
@@ -20,7 +21,29 @@ import { LoadcustomerformComponent } from '../../loadcustomerform/loadcustomerfo
 })
 export class LoadformComponent implements OnInit {
   public load: NewLoadFilters
-  newloadfilters= {};
+  newloadfilters= {
+    customer: '',
+    phone: '',
+    email: '',
+    crefNo: '',
+    srefNo: '',
+    currency: '',
+    loadPrice: '',
+    distance: '',
+    deadHead: '',
+    date: '',
+    dispatcher: '',
+    equipType: '',
+    crossBorder: '',
+    commodity: '',
+    weight: '',
+    comments: '',
+    sealed: '',
+    hazmat: '',
+    loadStatus: '',
+    notes: ''
+  };
+  IsDataloading: boolean;
   panelOpenState = false;
   pickupchild = false;
   dataSource=[];
@@ -55,6 +78,7 @@ export class LoadformComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.IsDataloading = false;
     // this.loadForm.reset()
     sessionStorage.removeItem("submitID")
     sessionStorage.removeItem("Pickup")

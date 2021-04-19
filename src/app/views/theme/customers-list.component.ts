@@ -20,6 +20,8 @@ export class CustomerslistComponent implements OnInit {
     selectedCustomer: any;
     selectedCompany: any;
     EditMode: boolean;
+    Isusersloading: boolean;
+    SearchText: any;
     customerData={}
     showForm=false
     paymentterms=[
@@ -34,6 +36,7 @@ export class CustomerslistComponent implements OnInit {
         private router: Router, public dialog: MatDialog) { }
 
     ngOnInit() {
+        this.Isusersloading = false;
         this.getData();
     }
 

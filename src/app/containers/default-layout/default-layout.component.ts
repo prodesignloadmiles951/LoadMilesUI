@@ -135,7 +135,7 @@ export class DefaultLayoutComponent implements OnDestroy {
   constructor(
     private authService: AuthenticationService,
     private _companyservice: CompanyService,
-    private router: Router,
+    public router: Router,
     private _toaster: ToastrService,
     @Inject(DOCUMENT) _document?: any
 

@@ -19,6 +19,8 @@ export class DispatcherlistComponent implements OnInit {
     Dispatcherdata = [];
     EditMode: boolean;
     selectedDispatcher: any;
+    Isusersloading: boolean;
+    SearchText: any;
     dispatcherData={}
     showForm=false
 
@@ -27,6 +29,7 @@ export class DispatcherlistComponent implements OnInit {
         private _toaster: ToastrService, public dialog: MatDialog) { }
 
     ngOnInit(): void {
+        this.Isusersloading = false;
         this.pageFilters = new DispatcherFilters();
         this.getDispatcherData();
     }

@@ -22,6 +22,8 @@ export class CompanylistComponent implements OnInit {
   pageFilters: CompanyFilters;
   selectedCompany: any;
   EditMode: boolean;
+  Isusersloading: boolean;
+  SearchText: any;
   showusertable=false
   userid={}
 
@@ -36,6 +38,7 @@ export class CompanylistComponent implements OnInit {
   this.pageFilters = new CompanyFilters();
  }
   ngOnInit(): void {
+    this.Isusersloading = false;
     if (this.authService.getloginUser()) {
       this.loginUser = this.authService.getloginUser();
       this.getData();
