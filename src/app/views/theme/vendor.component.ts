@@ -61,6 +61,8 @@ export class VendorComponent implements OnInit {
         this.submitted = true;
         if (this.pageFilters && this.pageFilters["EditMode"]) {
             delete this.pageFilters["EditMode"];
+            delete this.pageFilters['createdAt'];
+            delete this.pageFilters['updatedAt'];
             this.IsDataloading = true;
             this._vendorService.EditVendor(this.pageFilters).subscribe(
                 (response) => {

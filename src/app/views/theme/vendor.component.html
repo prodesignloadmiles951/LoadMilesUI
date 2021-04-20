@@ -62,7 +62,7 @@
 
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="lastname"
-                  >Last Name: <span style="color: red">*</span></label
+                  >Last Name:</label
                 >
                 <div class="col-md-9">
                   <input
@@ -180,8 +180,8 @@
                     name="ssn"
                     #ssn="ngModel"
                     [(ngModel)]="pageFilters.ssn"
-                    minlength="9"
                     maxlength="9"
+                    pattern="^\d{9,9}$"
                     required
                   />
                   <div
@@ -196,7 +196,7 @@
                       >
                     </div> -->
                     <div [hidden]="!ssn.errors">
-                      <span style="color: red">Please Enter 9 Digit SSN</span>
+                      <span style="color: red">Please Enter Numeric 9 Digit SSN</span>
                     </div>
                   </div>
                 </div>
@@ -309,7 +309,7 @@
             <div class="col-sm-6">
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="phone"
-                  >Phone:<span style="color: red">*</span></label
+                  >Phone: </label
                 >
                 <div class="col-md-9">
                   <input
@@ -320,34 +320,31 @@
                     #phone="ngModel"
                     [(ngModel)]="pageFilters.phone"
                     maxlength="10"
-                    pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
+                    pattern="^\d{10,10}$"
                   />
-                  <!-- <div
+                  <div
                     *ngIf="
                       phone.errors &&
                       (phone.dirty || phone.touched || this.submitted)
                     "
                     style="font-size: smaller"
                   >
-                    <div [hidden]="!phone.errors.required">
-                      <span style="color: red">phone is Required</span>
-                    </div>
                     <div
                       [hidden]="
-                        !phone.errors.pattern && !phone.errors.maxlength
+                        !phone.errors.pattern
                       "
                     >
                       <span style="color: red"
-                        >phone Number should be valid</span
+                        >Enter your ten digit phone number</span
                       >
                     </div>
-                  </div> -->
+                  </div>
                 </div>
               </div>
 
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="email"
-                  >Email:<span style="color: red">*</span></label
+                  >Email:</label
                 >
                 <div class="col-md-9">
                   <input
@@ -379,7 +376,7 @@
 
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="address1"
-                  >Address 1:<span style="color: red">*</span></label
+                  >Address 1:</label
                 >
                 <div class="col-md-9">
                   <input
@@ -448,7 +445,7 @@
             <div class="col-sm-6">
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="country"
-                  >Country:<span style="color: red">*</span></label
+                  >Country:</label
                 >
                 <div class="col-md-9">
                   <select
@@ -473,7 +470,7 @@
 
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="city"
-                  >City:<span style="color: red">*</span></label
+                  >City:</label
                 >
                 <div class="col-md-9">
                   <input
@@ -482,6 +479,7 @@
                     id="city"
                     name="city"
                     #city="ngModel"
+                    maxlength="40"
                     [(ngModel)]="pageFilters.city"
                   />
                   <!-- <div
@@ -500,7 +498,7 @@
 
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="state"
-                  >State:<span style="color: red">*</span></label
+                  >State:</label
                 >
                 <div class="col-md-9">
                   <select
@@ -533,6 +531,7 @@
                     maxlength="5"
                     minlength="5"
                     [(ngModel)]="pageFilters.zipcode"
+                    pattern="^\d{5,5}$"
                   />
                   <div
                     *ngIf="
@@ -548,7 +547,7 @@
                     </div> -->
                     <div [hidden]="!zipcode.errors">
                       <span style="color: red"
-                        >Zip Code must be 5 characters</span
+                        >Enter 5 Digit Zip Number</span
                       >
                     </div>
                   </div>
@@ -597,7 +596,7 @@
           <div class="form-group row">
             <div class="col-sm-6">
               <div class="row">
-                <label class="col-md-3 col-form-label">Bank Name:</label>
+                <label class="col-md-3 col-form-label">Bank Name:<span style="color: red">*</span></label>
                 <div class="col-md-9">
                   <input
                     type="text"
@@ -626,7 +625,7 @@
             <div class="col-sm-6">
               <div class="row">
                 <label class="col-md-3 col-form-label" for="accountname"
-                  >Account Name:</label
+                  >Account Name:<span style="color: red">*</span></label
                 >
                 <div class="col-md-9">
                   <input
@@ -661,7 +660,7 @@
             <div class="col-sm-6">
               <div class="row">
                 <label class="col-md-3 col-form-label" for="accounttype"
-                  >Account Type:</label
+                  >Account Type:<span style="color: red">*</span></label
                 >
                 <div class="col-md-9">
                   <select
@@ -704,6 +703,7 @@
                     name="accountnumber"
                     #accountnumber="ngModel"
                     [(ngModel)]="pageFilters.account.accountnumber"
+                    maxlength="16"
                   />
                   <div
                     *ngIf="
@@ -737,7 +737,25 @@
                     #routingnumber="ngModel"
                     [(ngModel)]="pageFilters.account.routingnumber"
                     maxlength="9"
+                    pattern="^\d{9,9}$"
                   />
+                  <div
+                  *ngIf="
+                  routingnumber.errors &&
+                    (routingnumber.dirty || routingnumber.touched || this.submitted)
+                  "
+                  style="font-size: smaller"
+                >
+                  <div
+                    [hidden]="
+                      !routingnumber.errors.pattern
+                    "
+                  >
+                    <span style="color: red"
+                      >Enter 9 Digit Routing Number</span
+                    >
+                  </div>
+                </div>
                 </div>
               </div>
             </div>
