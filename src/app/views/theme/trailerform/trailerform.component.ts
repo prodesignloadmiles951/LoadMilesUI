@@ -278,7 +278,11 @@ export class TrailerformComponent implements OnInit {
         }
         Trailerslistdata['files']=idArry
         if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
-        this.btnHide=true
+          if(this.pageFilters['unitNumber'] != undefined && this.pageFilters['unitNumber'] != ""){
+            if(this.pageFilters['plateNumber'] != undefined && this.pageFilters['plateNumber'] != ""){
+              if(this.pageFilters['registerState'] != undefined && this.pageFilters['registerState'] != ""){
+                if(this.pageFilters['trailerType'] != undefined && this.pageFilters['trailerType'] != ""){
+                         this.btnHide=true
         this._trailersService.SendForm(Trailerslistdata).subscribe(response => {
           if(response.Status == "error"){
             this._toaster.error(response.error,"Failed", {timeOut: 2000,});
@@ -297,6 +301,22 @@ export class TrailerformComponent implements OnInit {
           this.submitted=false;
           this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
         });
+                }else{
+        this._toaster.error("Choose Trailertype","Failed", {timeOut: 2000,});
+       }
+              
+              }else{
+        this._toaster.error("Enter Registered state Details","Failed", {timeOut: 2000,});
+       }
+             
+            }else{
+        this._toaster.error("Enter Plate Number Details","Failed", {timeOut: 2000,});
+       }
+            
+          }else{
+        this._toaster.error("Enter Unit Number Details","Failed", {timeOut: 2000,});
+       }
+    
       }else{
         this._toaster.error("Enter VIN Details","Failed", {timeOut: 2000,});
        }

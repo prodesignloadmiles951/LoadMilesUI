@@ -314,7 +314,6 @@ export class DriverformComponent implements OnInit {
                 idArry.push(this.finalArry[i]._id)
               }
               Driverlistdata['files']=idArry
-                this.btnHide=true
                 this.pageFilters['companyId'] = localStorage.getItem('selectedCompany')
                 console.log(this.pageFilters['companyId'])
 
@@ -345,8 +344,12 @@ export class DriverformComponent implements OnInit {
 
               Driverlistdata['account']= account
               Driverlistdata['cellPhone'] = JSON.stringify(Driverlistdata['cellPhone'])
-
-              this._driverService.SendForm(Driverlistdata).subscribe(response => {
+              if(this.pageFilters['fullName'] != undefined && this.pageFilters['fullName'] != ""){
+                if(this.pageFilters['email'] != undefined && this.pageFilters['email'] != ""){
+                    if(this.pageFilters['cellPhone'] != undefined && this.pageFilters['cellPhone'] != ""){
+                      if(this.pageFilters['emergencyPhone'] != undefined && this.pageFilters['emergencyPhone'] != ""){
+                          this.btnHide=true
+                          this._driverService.SendForm(Driverlistdata).subscribe(response => {
                 if(response.Status == "error"){
                   this._toaster.error(response.error,"Failed", {timeOut: 2000,});
                   this.btnHide=false
@@ -361,6 +364,23 @@ export class DriverformComponent implements OnInit {
                 this.submitted=false;
                 this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
               });
+                      }else{
+        this._toaster.error("Enter Emergency phone details","Failed", {timeOut: 2000,});
+       }
+                    }else{
+        this._toaster.error("Enter Cellphone details","Failed", {timeOut: 2000,});
+       }
+                }else{
+        this._toaster.error("Enter Email details","Failed", {timeOut: 2000,});
+       }
+              }else{
+        this._toaster.error("Enter Fullname details","Failed", {timeOut: 2000,});
+       }
+
+
+
+
+              
     }
     hidePopup(){
      this.dialogRef.close(null)
