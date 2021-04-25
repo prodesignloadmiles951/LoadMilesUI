@@ -40,6 +40,7 @@ export class DriverformComponent implements OnInit {
   changeUplaod=true
   editFileList=[]
   btnHide=false
+  DriverlistdataId
   driverForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef < DriverformComponent > ,
@@ -221,6 +222,8 @@ export class DriverformComponent implements OnInit {
               delete this.data['createdAt']
               delete this.data['updatedAt']
               delete this.data['EditMode']
+              this.data['ssn'] = JSON.stringify(this.data['ssn'])
+              this.data['cellPhone'] = JSON.stringify(this.data['cellPhone'])
 
      this._driverService.EditDrivers(this.data,this.data['_id']).subscribe(res => {
        if(res.Status == "error"){
@@ -250,7 +253,6 @@ export class DriverformComponent implements OnInit {
                 idArry.push(this.finalArry[i]._id)
               }
               Driverlistdata['files']=idArry
-              if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
                 this.btnHide=true
                 this.pageFilters['companyId'] = localStorage.getItem('selectedCompany')
                 console.log(this.pageFilters['companyId'])
@@ -281,9 +283,11 @@ export class DriverformComponent implements OnInit {
               delete Driverlistdata['companyid']
 
               Driverlistdata['account']= account
+              Driverlistdata['cellPhone'] = JSON.stringify(Driverlistdata['cellPhone'])
+              Driverlistdata['ssn'] = JSON.stringify(Driverlistdata['ssn'])
+              Driverlistdata['_id'] = this.DriverlistdataId
 
-
-              this._driverService.SendForm(Driverlistdata).subscribe(response => {
+              this._driverService.EditDrivers(Driverlistdata, Driverlistdata['_id']).subscribe(response => {
                 if(response.Status == "error"){
                   this._toaster.error(response.error,"Failed", {timeOut: 2000,});
                   this.btnHide=false
@@ -294,13 +298,70 @@ export class DriverformComponent implements OnInit {
                 this.dialogRef.close(response)
               }
               },error=>{
+                this.submitted=true;
+                this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
+              });
+           
+           }
+    submitpartI(){
+      this.submitted = true;
+              var Driverlistdata:any=this.pageFilters
+              Driverlistdata['payRate']=this.payrateinfodata
+              Driverlistdata['drugData']=this.drugdata
+              Driverlistdata['companyid']=localStorage.selectedCompany
+              var idArry=[]
+              for (var i = 0; i < this.finalArry.length; ++i) {
+                idArry.push(this.finalArry[i]._id)
+              }
+              Driverlistdata['files']=idArry
+                this.btnHide=true
+                this.pageFilters['companyId'] = localStorage.getItem('selectedCompany')
+                console.log(this.pageFilters['companyId'])
+
+              var addobj={}
+              addobj['line']=Driverlistdata['address']['line']
+              addobj['line1']=Driverlistdata['address']['line1']
+              addobj['city']=Driverlistdata['address']['city']
+              addobj['state']=Driverlistdata['address']['state']
+              addobj['zip']=Driverlistdata['address']['zip']
+              addobj['country']=Driverlistdata['address']['country']
+              delete Driverlistdata['line']
+              delete Driverlistdata['line1']
+              delete Driverlistdata['city']
+              delete Driverlistdata['state']
+              delete Driverlistdata['zip']
+              delete Driverlistdata['country']
+              Driverlistdata['address']=addobj
+
+              var account={}
+              account['bankname']=Driverlistdata['account']['bankname']
+              account['accountnumber']=Driverlistdata['account']['accountnumber']
+              account['acctype']=Driverlistdata['account']['acctype']
+
+              delete Driverlistdata['accountnumber']
+              delete Driverlistdata['bankname']
+              delete Driverlistdata['acctype']
+              delete Driverlistdata['companyid']
+
+              Driverlistdata['account']= account
+              Driverlistdata['cellPhone'] = JSON.stringify(Driverlistdata['cellPhone'])
+
+              this._driverService.SendForm(Driverlistdata).subscribe(response => {
+                if(response.Status == "error"){
+                  this._toaster.error(response.error,"Failed", {timeOut: 2000,});
+                  this.btnHide=false
+                }else{
+                this.submitted = true;
+                this._toaster.info("Driver Data Submitted","Success", {timeOut: 3000,});
+                this.btnHide=false
+                this.DriverlistdataId = response['result']['_id']
+                console.log(this.DriverlistdataId)
+              }
+              },error=>{
                 this.submitted=false;
                 this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
               });
-            }else{
-           this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
-         }
-           }
+    }
     hidePopup(){
      this.dialogRef.close(null)
    }

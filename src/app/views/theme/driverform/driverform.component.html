@@ -8,24 +8,24 @@
   <span aria-hidden="true">&times;</span>
 </button>
 <form class="form-horizontal" #driverForm="ngForm" novalidate autocomplete="off">
-<div class="row" *ngIf="pageFiltersshow">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-header">Driver Information</div>
-      <div style="display: flex;">
-        <div class="card-body col-sm-6">
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="firstName">First Name: <span style="color:red">*</span></label>
-            <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="firstName" name="firstName" #firstName="ngModel" [(ngModel)]="pageFilters.firstName" required>
-              <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" style="font-size: smaller;">
-                <div [hidden]="!firstName.errors.required">
-                  <span style="color: red;">Firstname is Required</span>
+  <div class="row" *ngIf="pageFiltersshow">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">Driver Information Part - I</div>
+        <div style="display: flex;">
+          <div class="card-body col-sm-6">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="fullName">Full Name: <span style="color:red">*</span></label>
+              <div class="col-md-9">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="firstName" name="fullName" #fullName="ngModel" [(ngModel)]="pageFilters.fullName" maxlength="50" required>
+                <div *ngIf="fullName.errors && (fullName.dirty || fullName.touched)" style="font-size: smaller;">
+                  <div [hidden]="!fullName.errors.required">
+                    <span style="color: red;">Fullname is Required</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="form-group row">
+            <!-- <div class="form-group row">
             <label class="col-md-3 col-form-label" for="middleName">Middle Name:</label>
             <div class="col-md-9">
               <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="middleName" name="middleName" #middleName="ngModel" [(ngModel)]="pageFilters.middleName">
@@ -41,350 +41,388 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="displayName">Display Name: </label>
-            <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="displayName" name="displayName" #displayName="ngModel" [(ngModel)]="pageFilters.displayName">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="dob">Date of Birth: <span style="color:red">*</span></label>
-            <div class="col-md-9">
-              <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="dob" placeholder="Ex: 01-04-1990" name="dob" #dob="ngModel" [(ngModel)]="pageFilters.dob" required>
-              <div *ngIf="dob.errors && (dob.dirty || dob.touched)" style="font-size: smaller;">
-                <div [hidden]="!dob.errors.required">
-                  <span style="color: red;">Date Of Birth is Required</span>
+          </div> -->
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="cellPhone">Cell Phone:<span style="color: red;">*</span></label>
+              <div class="col-md-9">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="cellPhone" name="cellPhone" #cellPhone="ngModel" [(ngModel)]="pageFilters.cellPhone" required>
+                <div *ngIf="cellPhone.errors && (cellPhone.dirty || cellPhone.touched)" style="font-size: smaller;">
+                  <div [hidden]="!cellPhone.errors.required">
+                    <span style="color: red;">Cellphone is Required</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="ssn">SSN <span style="color: red;">*</span> :</label>
-            <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ssn" name="ssn" #ssn="ngModel" [(ngModel)]="pageFilters.ssn" maxlength="9" required>
-              <div *ngIf="ssn.errors && (ssn.dirty || ssn.touched)" style="font-size: smaller;">
-                <div [hidden]="!ssn.errors.required">
-                  <span style="color: red;">SSN is Required</span>
+          <div class="card-body col-sm-6">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="email">Email:<span style="color: red;">*</span></label>
+              <div class="col-md-9">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="pageFilters.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <div *ngIf="email.errors && (email.dirty || email.touched)" style="font-size: smaller;">
+                  <div [hidden]="!email.errors.required">
+                    <span style="color: red;">Email is Required</span>
+                  </div>
+                  <div [hidden]="!email.errors?.pattern">
+                    <span style="color: red;">Enter valid email only</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="cellPhone">Cell Phone:</label>
-            <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="cellPhone" name="cellPhone" #cellPhone="ngModel" [(ngModel)]="pageFilters.cellPhone">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="email">Email:</label>
-            <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="pageFilters.email">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="emergencyPhone">Emergency Phone:<span style="color: red;">*</span></label>
+              <div class="col-md-9">
+                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="emergencyPhone" name="emergencyPhone" #emergencyPhone="ngModel" [(ngModel)]="pageFilters.emergencyPhone" required>
+                <div *ngIf="emergencyPhone.errors && (emergencyPhone.dirty || emergencyPhone.touched)" style="font-size: smaller;">
+                  <div [hidden]="!emergencyPhone.errors.required">
+                    <span style="color: red;">Emergency phone is Required</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="card-body col-sm-6">
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="emergenctContact">Emergency Contact:</label>
-            <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergenctContact" name="emergenctContact" #emergenctContact="ngModel" [(ngModel)]="pageFilters.emergenctContact">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="emergencyPhone">Emergency Phone:</label>
-            <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergencyPhone" name="emergencyPhone" #emergencyPhone="ngModel" [(ngModel)]="pageFilters.emergencyPhone">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="line">Address 1:</label>
-            <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="line" name="line" #line="ngModel" [(ngModel)]="pageFilters.address.line">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="line1">Address 2:</label>
-            <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="line1" name="line1" #line1="ngModel" [(ngModel)]="pageFilters.address.line1">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="city">City:</label>
-            <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pageFilters.address.city">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="state">State:</label>
-            <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pageFilters.address.state">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="zip">Zip Code:</label>
-            <div class="col-md-9">
-              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zip" name="zip" #zip="ngModel" [(ngModel)]="pageFilters.address.zip">
-            </div>
-          </div>
-          <div class="form-group row" *ngIf="changeUplaod">
-              <label for="file-upload" *ngIf="mode"  [ngClass]="mode?'':'disble'" class="custom-file-upload">
-                  <i class="fa fa-cloud-upload"></i> Upload
-              </label>
-              <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
-              <div class="col-sm-12">
-                <div *ngFor="let data of finalArry;let i=index">
-                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="mode" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
-                </div>
-              </div>
-              <div *ngIf="mode">
-                <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
-              </div>
-          </div>
-          <div class="form-group row" *ngIf="!changeUplaod">
-              <label class="col-md-4 col-form-label" for="notes" *ngIf="!mode">Uploaded File :</label>
-              <div class="col-sm-12" *ngIf="editFileList?.length > 0">
-                <div *ngFor="let data of editFileList;let i=index">
-                  {{data.name}} &nbsp;<span (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;
-                </div>
-              </div>
-              <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'" class="custom-file-upload">
-                  <i class="fa fa-cloud-upload"></i> Upload
-              </label>
-              <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
-              <div class="col-sm-12">
-                <div *ngFor="let data of finalArry;let i=index">
-                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
-                </div>
-              </div>
-              <div>
-                <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
-              </div>
-          </div>
+        <div class="card-footer" *ngIf="showAddOption">
+          <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submitpartI()"><i class="fa fa-dot-circle-o"></i>
+            <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            Submit</button>&nbsp;&nbsp;
+          <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
+            <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            Update</button>&nbsp;&nbsp;
+          <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
         </div>
       </div>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Driver Information Part - II
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div style="display: flex;">
+            <div class="card-body col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="displayName">Display Name: </label>
+                <div class="col-md-9">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="displayName" name="displayName" #displayName="ngModel" [(ngModel)]="pageFilters.displayName">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="dob">Date of Birth:</label>
+                <div class="col-md-9">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="dob" placeholder="Ex: 01-04-1990" name="dob" #dob="ngModel" [(ngModel)]="pageFilters.dob">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="ssn">SSN:</label>
+                <div class="col-md-9">
+                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="ssn" name="ssn" #ssn="ngModel" [(ngModel)]="pageFilters.ssn" maxlength="9">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="emergenctContact">Emergency Contact:</label>
+                <div class="col-md-9">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="emergenctContact" name="emergenctContact" #emergenctContact="ngModel" maxlength="40" [(ngModel)]="pageFilters.emergenctContact">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="line">Address 1:</label>
+                <div class="col-md-9">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="line" name="line" #line="ngModel" [(ngModel)]="pageFilters.address.line" maxlength="40">
+                </div>
+              </div>
+            </div>
+            <div class="card-body col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="line1">Address 2:</label>
+                <div class="col-md-9">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="line1" name="line1" #line1="ngModel" [(ngModel)]="pageFilters.address.line1" maxlength="40">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="city">City:</label>
+                <div class="col-md-9">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pageFilters.address.city" maxlength="40">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="state">State:</label>
+                <div class="col-md-9">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pageFilters.address.state" maxlength="2">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="zip">Zip Code:</label>
+                <div class="col-md-9">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zip" name="zip" #zip="ngModel" [(ngModel)]="pageFilters.address.zip" maxlength="6">
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="changeUplaod">
+                <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'" class="custom-file-upload">
+                  <i class="fa fa-cloud-upload"></i> Upload
+                </label>
+                <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
+                <div class="col-sm-12">
+                  <div *ngFor="let data of finalArry;let i=index">
+                    {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="mode" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+                  </div>
+                </div>
+                <div *ngIf="mode">
+                  <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="!changeUplaod">
+                <label class="col-md-4 col-form-label" for="notes" *ngIf="!mode">Uploaded File :</label>
+                <div class="col-sm-12" *ngIf="editFileList?.length > 0">
+                  <div *ngFor="let data of editFileList;let i=index">
+                    {{data.name}} &nbsp;<span (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;
+                  </div>
+                </div>
+                <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'" class="custom-file-upload">
+                  <i class="fa fa-cloud-upload"></i> Upload
+                </label>
+                <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
+                <div class="col-sm-12">
+                  <div *ngFor="let data of finalArry;let i=index">
+                    {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+                  </div>
+                </div>
+                <div>
+                  <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Employment Information
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div style="display: flex;">
+            <div class="card-body col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="employmentType">Employment Type:</label>
+                <div class="col-md-8 col-form-label" name="employmentType">
+                  <div class="form-check form-check-inline mr-1">
+                    <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio1" type="radio" value="employee" checked="checked" name="employmentType" #employmentType="ngModel" [value]="true" [(ngModel)]="pageFilters.employmentType">
+                    <label class="form-check-label" for="inline-radio1">Employee</label>
+                  </div>
+                  <div class="form-check form-check-inline mr-1">
+                    <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio2" type="radio" value="1099?" name="employmentType" #employmentType="ngModel" [value]="false" [(ngModel)]="pageFilters.employmentType">
+                    <label class="form-check-label" for="inline-radio2">1099?</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="hireDate">Hire Date:</label>
+                <div class="col-md-8">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="hireDate" name="hireDate" #hireDate="ngModel" [(ngModel)]="pageFilters.hireDate">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="terminationDate">Termination Date:</label>
+                <div class="col-md-8">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="terminationDate" name="terminationDate" #terminationDate="ngModel" [(ngModel)]="pageFilters.terminationDate">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="vendorAccount">Vendor ID Account:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="vendorAccount" name="vendorAccount" #vendorAccount="ngModel" [(ngModel)]="pageFilters.vendorAccount" maxlength="10">
+                </div>
+              </div>
+            </div>
+            <div class="card-body col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="quickPayId">Quickpay Id:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="quickPayId" name="quickPayId" #quickPayId="ngModel" [(ngModel)]="pageFilters.quickPayId" maxlength="40">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="bankname">Bank Name:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="bankname" name="bankname" #bankname="ngModel" [(ngModel)]="pageFilters.account.bankname" maxlength="40">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="acctype">Account type :</label>
+                <div class="col-md-8">
+                  <select class="form-control" id="acctype" name="acctype" [(ngModel)]="pageFilters.account.acctype">
+                    <option value="Select accounttype" disabled selected hidden>Select Accounttype</option>
+                    <option value="0">Checking</option>
+                    <option value="1">Savings</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="accountnumber">Account Number:</label>
+                <div class="col-md-8">
+                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="accountnumber" name="accountnumber" #accountnumber="ngModel" [(ngModel)]="pageFilters.account.accountnumber" maxlength="16">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="routingNumber">Routing Number:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="routingNumber" name="routingNumber" #routingNumber="ngModel" [(ngModel)]="pageFilters.routingNumber" maxlength="9">
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Safety and Compliance Information
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div style="display: flex;">
+            <div class="card-body col-md-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="cdlClass">CDL Class:</label>
+                <div class="col-md-8">
+                  <select [ngClass]="mode?'':'disble'" class="form-control" id="cdlClass" name="cdlClass" #cdlClass="ngModel" [(ngModel)]="pageFilters.cdlClass">
+                    <option value="0">Select</option>
+                    <option value="1">Class A</option>
+                    <option value="2">Class B</option>
+                    <option value="3">Class C</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="cdlNumber">CDL Number:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="cdlNumber" name="cdlNumber" #cdlNumber="ngModel" [(ngModel)]="pageFilters.cdlNumber" maxlength="10">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="cdlState">CDL State:</label>
+                <div class="col-md-8">
+                  <input type="lookup" [ngClass]="mode?'':'disble'" class="form-control" id="cdlState" name="cdlState" #cdlState="ngModel" [(ngModel)]="pageFilters.cdlState">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="cdlExpiryDate">CDL Expiry Date:</label>
+                <div class="col-md-8">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="cdlexpirydate" name="cdlExpiryDate" #cdlExpiryDate="ngModel" [(ngModel)]="pageFilters.cdlExpiryDate">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="medicalCardExpiration">Medical card Expiration:</label>
+                <div class="col-md-8 col-form-label">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="medicalCardExpiration" name="medicalCardExpiration" #medicalCardExpiration="ngModel" [(ngModel)]="pageFilters.medicalCardExpiration">
+                </div>
+              </div>
+            </div>
+            <div class="card-body col-md-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="yearsOfExperience">Years Of Experience:</label>
+                <div class="col-md-8">
+                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="yearsOfExperience" name="yearsOfExperience" #yearsOfExperience="ngModel" [(ngModel)]="pageFilters.yearsOfExperience" maxlength="2">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="statesOperated">States Operated:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="statesOperated" name="statesOperated" #statesOperated="ngModel" [(ngModel)]="pageFilters.statesOperated" maxlength="100">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="safetyAwards">Safety Awards:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="safetyAwards" name="safetyAwards" #safetyAwards="ngModel" [(ngModel)]="pageFilters.safetyAwards" maxlength="100">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="specialTraining">Special Training:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="specialTraining" name="specialTraining" #specialTraining="ngModel" [(ngModel)]="pageFilters.specialTraining" maxlength="100">
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Payrate Table
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="dx-viewport">
+            <div class="grid-container">
+              <dx-data-grid #grid id="gridContainer" [dataSource]="payratedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onpayrateEdit($event)" (onRowRemoved)="onpayrateDelete($event)" (onRowInserted)="onpayrateAdd($event)">
+                <dxo-paging [enabled]="false"></dxo-paging>
+                <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
+                </dxo-editing>
+                <dxo-selection mode="single"></dxo-selection>
+                <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
+                <dxi-column dataField="fromdate" dataType="date" caption="Date From"></dxi-column>
+                <dxi-column dataField="type" caption="Pay Type">
+                  <dxo-lookup [dataSource]="typeDetails" displayExpr="Name" valueExpr="ID">
+                  </dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="payrate" caption="Pay Rate"></dxi-column>
+                <dxi-column dataField="dispatcherpay" caption="Dispatcher Pay"></dxi-column>
+                <dxi-column dataField="deadheadpay" caption="Deadhead Pay"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Drug and Medical Test
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="dx-viewport">
+            <div class="grid-container">
+              <dx-data-grid #grid id="gridContainer" [dataSource]="drugandmedicaldata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="ondrugEdit($event)" (onRowRemoved)="ondrugDelete($event)" (onRowInserted)="ondrugAdd($event)">
+                <dxo-paging [enabled]="false"></dxo-paging>
+                <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
+                </dxo-editing>
+                <dxo-selection mode="single"></dxo-selection>
+                <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
+                <dxi-column dataField="fromdate" dataType="date" caption="Date"></dxi-column>
+                <dxi-column dataField="testfacility" caption="Test Facility"></dxi-column>
+                <dxi-column dataField="testresult" caption="Test Result">
+                  <dxo-lookup [dataSource]="resultDetails" displayExpr="Name" valueExpr="ID">
+                  </dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="comments" caption="Comments"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header class="card-header">
-          <mat-panel-title>
-            Employment Information
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div style="display: flex;">
-          <div class="card-body col-sm-6">
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="employmentType">Employment Type:</label>
-              <div class="col-md-8 col-form-label" name="employmentType">
-                <div class="form-check form-check-inline mr-1">
-                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio1" type="radio" value="employee" checked="checked" name="employmentType" #employmentType="ngModel" [value]="true" [(ngModel)]="pageFilters.employmentType">
-                  <label class="form-check-label" for="inline-radio1">Employee</label>
-                </div>
-                <div class="form-check form-check-inline mr-1">
-                  <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio2" type="radio" value="1099?" name="employmentType" #employmentType="ngModel" [value]="false" [(ngModel)]="pageFilters.employmentType">
-                  <label class="form-check-label" for="inline-radio2">1099?</label>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="hireDate">Hire Date:</label>
-              <div class="col-md-8">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="hireDate" name="hireDate" #hireDate="ngModel" [(ngModel)]="pageFilters.hireDate">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="terminationDate">Termination Date:</label>
-              <div class="col-md-8">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="terminationDate" name="terminationDate" #terminationDate="ngModel" [(ngModel)]="pageFilters.terminationDate">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="vendorAccount">Vendor ID Account:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="vendorAccount" name="vendorAccount" #vendorAccount="ngModel" [(ngModel)]="pageFilters.vendorAccount">
-              </div>
-            </div>
-          </div>
-          <div class="card-body col-sm-6">
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="quickPayId">Quickpay Id:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="quickPayId" name="quickPayId" #quickPayId="ngModel" [(ngModel)]="pageFilters.quickPayId">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="bankname">Bank Name:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="bankname" name="bankname" #bankname="ngModel" [(ngModel)]="pageFilters.account.bankname">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="acctype">Account Type:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="acctype" name="acctype" #acctype="ngModel" [(ngModel)]="pageFilters.account.acctype">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="accountnumber">Account Number:</label>
-              <div class="col-md-8">
-                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="accountnumber" name="accountnumber" #accountnumber="ngModel" [(ngModel)]="pageFilters.account.accountnumber">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="routingNumber">Routing Number:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="routingNumber" name="routingNumber" #routingNumber="ngModel" [(ngModel)]="pageFilters.routingNumber">
-              </div>
-            </div>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header class="card-header">
-          <mat-panel-title>
-            Safety and Compliance Information
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div style="display: flex;">
-          <div class="card-body col-md-6">
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="cdlClass">CDL Class:</label>
-              <div class="col-md-8">
-                <select [ngClass]="mode?'':'disble'" class="form-control" id="cdlClass" name="cdlClass" #cdlClass="ngModel" [(ngModel)]="pageFilters.cdlClass">
-                  <option value="0">Select</option>
-                  <option value="1">Class A</option>
-                  <option value="2">Class B</option>
-                  <option value="3">Class C</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="cdlNumber">CDL Number:</label>
-              <div class="col-md-8">
-                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="cdlNumber" name="cdlNumber" #cdlNumber="ngModel" [(ngModel)]="pageFilters.cdlNumber">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="cdlState">CDL State:</label>
-              <div class="col-md-8">
-                <input type="lookup" [ngClass]="mode?'':'disble'" class="form-control" id="cdlState" name="cdlState" #cdlState="ngModel" [(ngModel)]="pageFilters.cdlState">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="cdlExpiryDate">CDL Expiry Date:</label>
-              <div class="col-md-8">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="cdlexpirydate" name="cdlExpiryDate" #cdlExpiryDate="ngModel" [(ngModel)]="pageFilters.cdlExpiryDate">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="medicalCardExpiration">Medical card Expiration:</label>
-              <div class="col-md-8 col-form-label">
-                <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="medicalCardExpiration" name="medicalCardExpiration" #medicalCardExpiration="ngModel" [(ngModel)]="pageFilters.medicalCardExpiration">
-              </div>
-            </div>
-          </div>
-          <div class="card-body col-md-6">
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="yearsOfExperience">Years Of Experience:</label>
-              <div class="col-md-8">
-                <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="yearsOfExperience" name="yearsOfExperience" #yearsOfExperience="ngModel" [(ngModel)]="pageFilters.yearsOfExperience">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="statesOperated">States Operated:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="statesOperated" name="statesOperated" #statesOperated="ngModel" [(ngModel)]="pageFilters.statesOperated">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="safetyAwards">Safety Awards:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="safetyAwards" name="safetyAwards" #safetyAwards="ngModel" [(ngModel)]="pageFilters.safetyAwards">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="specialTraining">Special Training:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="specialTraining" name="specialTraining" #specialTraining="ngModel" [(ngModel)]="pageFilters.specialTraining">
-              </div>
-            </div>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header class="card-header">
-          <mat-panel-title>
-            Payrate Table
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="dx-viewport">
-          <div class="grid-container">
-            <dx-data-grid #grid id="gridContainer" [dataSource]="payratedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onpayrateEdit($event)" (onRowRemoved)="onpayrateDelete($event)" (onRowInserted)="onpayrateAdd($event)">
-              <dxo-paging [enabled]="false"></dxo-paging>
-              <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
-              </dxo-editing>
-              <dxo-selection mode="single"></dxo-selection>
-              <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
-              <dxi-column dataField="fromdate" dataType="date" caption="Date From"></dxi-column>
-              <dxi-column dataField="type" caption="Pay Type">
-                <dxo-lookup [dataSource]="typeDetails" displayExpr="Name" valueExpr="ID">
-                </dxo-lookup>
-              </dxi-column>
-              <dxi-column dataField="payrate" caption="Pay Rate"></dxi-column>
-              <dxi-column dataField="dispatcherpay" caption="Dispatcher Pay"></dxi-column>
-              <dxi-column dataField="deadheadpay" caption="Deadhead Pay"></dxi-column>
-            </dx-data-grid>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header class="card-header">
-          <mat-panel-title>
-            Drug and Medical Test
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="dx-viewport">
-          <div class="grid-container">
-            <dx-data-grid #grid id="gridContainer" [dataSource]="drugandmedicaldata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="ondrugEdit($event)" (onRowRemoved)="ondrugDelete($event)" (onRowInserted)="ondrugAdd($event)">
-              <dxo-paging [enabled]="false"></dxo-paging>
-              <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
-              </dxo-editing>
-              <dxo-selection mode="single"></dxo-selection>
-              <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
-              <dxi-column dataField="fromdate" dataType="date" caption="Date"></dxi-column>
-              <dxi-column dataField="testfacility" caption="Test Facility"></dxi-column>
-              <dxi-column dataField="testresult" caption="Test Result">
-                <dxo-lookup [dataSource]="resultDetails" displayExpr="Name" valueExpr="ID">
-                </dxo-lookup>
-              </dxi-column>
-              <dxi-column dataField="comments" caption="Comments"></dxi-column>
-            </dx-data-grid>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
   </div>
-</div>
-<div class="card-footer" *ngIf="showAddOption">
-  <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
-    <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-    Submit</button>&nbsp;&nbsp;
+  <div class="card-footer" *ngIf="showAddOption">
+    <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+      <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      Submit</button>&nbsp;&nbsp;
     <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
-    <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-    Update</button>&nbsp;&nbsp;
-  <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-</div>
+      <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      Update</button>&nbsp;&nbsp;
+    <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+  </div>
 </form>

@@ -51,6 +51,14 @@ export class LoginComponent {
               if(usercmpdetails['role'] == 5){
                 this.router.navigateByUrl('theme/driver-list');
               }
+          }else{
+            usercmpdetails[0]['default'] = true
+              localStorage.setItem('selectedCompany', usercmpdetails[0]['company']);
+              localStorage.setItem('role', JSON.stringify(usercmpdetails[0]['role']));
+              localStorage.setItem('selectedCompanyName', usercmpdetails[0]['name']);
+              if(usercmpdetails['role'] == 5){
+                this.router.navigateByUrl('theme/driver-list');
+              }
           }
         }
           this.authenticate.setLogin(data);

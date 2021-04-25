@@ -8,249 +8,272 @@
   <span aria-hidden="true">&times;</span>
 </button>
 <form class="form-horizontal" #customerForm="ngForm" novalidate autocomplete="off">
-<div class="row" *ngIf="pageFiltersshow" >
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-header">Customer Information</div>
-      <div class="card-body">
-        <div style="display:flex;">
-          <div class="card-body col-md-6">
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="name">Customer Name :<span style="color:red">*</span></label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="name" name="name" #name="ngModel" [(ngModel)]="pageFilters.name" required>
-                <div *ngIf="name.errors && (name.dirty || name.touched)" style="font-size: smaller;">
-                  <div [hidden]="!name.errors.required">
-                    <span style="color: red;">Name is Required</span>
+  <div class="row" *ngIf="pageFiltersshow">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">Customer Information Part - I</div>
+        <div class="card-body">
+          <div style="display:flex;">
+            <div class="card-body col-md-8">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="name">Customer Name :<span style="color:red">*</span></label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="name" name="name" #name="ngModel" [(ngModel)]="pageFilters.name" maxlength="50" required>
+                  <div *ngIf="name.errors && (name.dirty || name.touched)" style="font-size: smaller;">
+                    <div [hidden]="!name.errors.required">
+                      <span style="color: red;">Customer name is Required</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="mcsf">MC: <span style="color:red">*</span></label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" maxlength="7" class="form-control" id="mcsf" name="mcsf" #mcsf="ngModel" [(ngModel)]="pageFilters.mcsf" required>
+                  <div *ngIf="mcsf.errors && (mcsf.dirty || mcsf.touched)" style="font-size: smaller;">
+                    <div [hidden]="!mcsf.errors.required">
+                      <span style="color: red;">MC is Required</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="dba">DBA :</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dba" name="dba" #dba="ngModel" [(ngModel)]="pageFilters.dba">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="mcsf">MC: <span style="color:red">*</span></label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" maxlength="7" class="form-control" id="mcsf" name="mcsf" #mcsf="ngModel" [(ngModel)]="pageFilters.mcsf" required>
-                <div *ngIf="mcsf.errors && (mcsf.dirty || mcsf.touched)" style="font-size: smaller;">
-                  <div [hidden]="!mcsf.errors.required">
-                    <span style="color: red;">MC is Required</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="usdot">US DOT :</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="usdot" name="usdot" #usdot="ngModel" [(ngModel)]="pageFilters.usdot">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="fein">FEIN: </label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" maxlength="9" id="fein" name="fein" #fein="ngModel" [(ngModel)]="pageFilters.fein">
-              </div>
-            </div>
           </div>
-          <div class="card-body col-md-6">
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="address3">Address1:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address3" name="address3" #address3="ngModel" [(ngModel)]="pageFilters.address3">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="address4">Address2:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address4" name="address4" #address4="ngModel" [(ngModel)]="pageFilters.address4">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="city1">City:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city1" name="city1" #city1="ngModel" [(ngModel)]="pageFilters.city1">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="state1">State:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state1" name="state1" #state1="ngModel" [(ngModel)]="pageFilters.state1">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="zipcode1">Zip code:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode1" name="zipcode1" #zipcode1="ngModel" [(ngModel)]="pageFilters.zipcode1">
-              </div>
-            </div>
-            <div class="form-group row" *ngIf="changeUplaod">
-              <label for="file-upload" *ngIf="mode"  [ngClass]="mode?'':'disble'" class="custom-file-upload">
-                  <i class="fa fa-cloud-upload"></i> Upload
-              </label>
-              <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
-              <div class="col-sm-12">
-                <div *ngFor="let data of finalArry;let i=index">
-                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="mode" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
-                </div>
-              </div>
-              <div *ngIf="mode">
-                <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
-              </div>
-          </div>
-          <div class="form-group row" *ngIf="!changeUplaod">
-              <label class="col-md-4 col-form-label" for="notes" *ngIf="!mode">Uploaded File :</label>
-              <div class="col-sm-12" *ngIf="editFileList?.length > 0">
-                <div *ngFor="let data of editFileList;let i=index">
-                  {{data.name}} &nbsp;<span (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;
-                </div>
-              </div>
-              <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'" class="custom-file-upload">
-                  <i class="fa fa-cloud-upload"></i> Upload
-              </label>
-              <input id="file-upload" multiple type="file" (change)="addfiles($event)"/>
-              <div class="col-sm-12">
-                <div *ngFor="let data of finalArry;let i=index">
-                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
-                </div>
-              </div>
-              <div>
-                <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
-              </div>
-          </div>
+          <div class="card-footer" *ngIf="showAddOption">
+            <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submitpart1()"><i class="fa fa-dot-circle-o"></i>
+              <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              Submit</button>&nbsp;&nbsp;
+            <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
+              <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              Update</button>&nbsp;&nbsp;
+            <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
           </div>
         </div>
       </div>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Customer Information Part - II
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div style="display: flex;">
+            <div class="card-body col-md-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="dba">DBA :</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dba" name="dba" #dba="ngModel" [(ngModel)]="pageFilters.dba" maxlength="50">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="usdot">US DOT :</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="usdot" name="usdot" #usdot="ngModel" [(ngModel)]="pageFilters.usdot" maxlength="7">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="fein">FEIN: </label>
+                <div class="col-md-8">
+                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" maxlength="9" id="fein" name="fein" #fein="ngModel" [(ngModel)]="pageFilters.fein" maxlength="9">
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="changeUplaod">
+                <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'" class="custom-file-upload">
+                  <i class="fa fa-cloud-upload"></i> Upload
+                </label>
+                <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
+                <div class="col-sm-12">
+                  <div *ngFor="let data of finalArry;let i=index">
+                    {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="mode" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+                  </div>
+                </div>
+                <div *ngIf="mode">
+                  <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="!changeUplaod">
+                <label class="col-md-4 col-form-label" for="notes" *ngIf="!mode">Uploaded File :</label>
+                <div class="col-sm-12" *ngIf="editFileList?.length > 0">
+                  <div *ngFor="let data of editFileList;let i=index">
+                    {{data.name}} &nbsp;<span (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;
+                  </div>
+                </div>
+                <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'" class="custom-file-upload">
+                  <i class="fa fa-cloud-upload"></i> Upload
+                </label>
+                <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
+                <div class="col-sm-12">
+                  <div *ngFor="let data of finalArry;let i=index">
+                    {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+                  </div>
+                </div>
+                <div>
+                  <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body col-md-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="address3">Address1:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address3" name="address3" #address3="ngModel" [(ngModel)]="pageFilters.address3" maxlength="40">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="address4">Address2:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address4" name="address4" #address4="ngModel" [(ngModel)]="pageFilters.address4" maxlength="40">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="city1">City:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city1" name="city1" #city1="ngModel" [(ngModel)]="pageFilters.city1" maxlength="40">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="state1">State:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state1" name="state1" #state1="ngModel" [(ngModel)]="pageFilters.state1" maxlength="2">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="zipcode1">Zip code:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode1" name="zipcode1" #zipcode1="ngModel" [(ngModel)]="pageFilters.zipcode1" maxlength="6">
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Contact Information
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="dx-viewport">
+            <div class="grid-container">
+              <dx-data-grid #grid id="gridContainer" [dataSource]="customerdata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
+                <dxo-paging [enabled]="false"></dxo-paging>
+                <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
+                </dxo-editing>
+                <dxo-selection mode="single"></dxo-selection>
+                <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
+                <dxi-column dataField="name" caption="Name"></dxi-column>
+                <dxi-column dataField="mobile" caption="Mobile Number"></dxi-column>
+                <dxi-column dataField="phone" caption="Phone"></dxi-column>
+                <dxi-column dataField="ext" caption="Ext"></dxi-column>
+                <dxi-column dataField="email" caption="Email"></dxi-column>
+                <dxi-column dataField="comments" caption="Comments"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Billing
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div style="display: flex;">
+            <div class="card-body col-md-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="billto">Bill to:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="billto" name="billto" #billto="ngModel" [(ngModel)]="pageFilters.billto" maxlength="50">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="paymentterms">Payment Terms:</label>
+                <div class="col-md-8">
+                  <select [ngClass]="mode?'':'disble'" class="form-control" id="paymentterms" name="paymentterms" #paymentterms="ngModel" [(ngModel)]="pageFilters.paymentterms">
+                    <option value="0">QuickPay</option>
+                    <option value="1">15 days</option>
+                    <option value="2">30 days</option>
+                    <option value="3">45 days</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="customeraccount">Customer Account:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="customeraccount" name="customeraccount" #customeraccount="ngModel" [(ngModel)]="pageFilters.customeraccount" maxlength="7">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="contact">Contact:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="contact" name="contact" #contact="ngModel" [(ngModel)]="pageFilters.contact" maxlength="50">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="cellphone">Phone:</label>
+                <div class="col-md-8">
+                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="cellphone" name="cellphone" #cellphone="ngModel" [(ngModel)]="pageFilters.cellphone">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="email">Email:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="pageFilters.email">
+                </div>
+              </div>
+            </div>
+            <div class="card-body col-md-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="address1">Address1:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address1" name="address1" #address1="ngModel" [(ngModel)]="pageFilters.address1" maxlength="40">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="address2">Address2:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address2" name="address2" #address2="ngModel" [(ngModel)]="pageFilters.address2" maxlength="40">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="city">City:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pageFilters.city" maxlength="40">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="state">State:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pageFilters.state" maxlength="2">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="zipcode">Zip Code:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode" name="zipcode" #zipcode="ngModel" [(ngModel)]="pageFilters.zipcode" maxlength="6">
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header class="card-header">
-          <mat-panel-title>
-            Contact Information
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="dx-viewport">
-          <div class="grid-container">
-            <dx-data-grid #grid id="gridContainer" [dataSource]="customerdata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
-              <dxo-paging [enabled]="false"></dxo-paging>
-              <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
-              </dxo-editing>
-              <dxo-selection mode="single"></dxo-selection>
-              <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
-              <dxi-column dataField="name" caption="Name"></dxi-column>
-              <dxi-column dataField="mobile" caption="Mobile Number"></dxi-column>
-              <dxi-column dataField="phone" caption="Phone"></dxi-column>
-              <dxi-column dataField="ext" caption="Ext"></dxi-column>
-              <dxi-column dataField="email" caption="Email"></dxi-column>
-              <dxi-column dataField="comments" caption="Comments"></dxi-column>
-            </dx-data-grid>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header class="card-header">
-          <mat-panel-title>
-            Billing
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div style="display: flex;">
-          <div class="card-body col-md-6">
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="billto">Bill to:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="billto" name="billto" #billto="ngModel" [(ngModel)]="pageFilters.billto">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="paymentterms">Payment Terms:</label>
-              <div class="col-md-8">
-                <select [ngClass]="mode?'':'disble'" class="form-control" id="paymentterms" name="paymentterms" #paymentterms="ngModel" [(ngModel)]="pageFilters.paymentterms">
-                  <option value="0">QuickPay</option>
-                  <option value="1">15 days</option>
-                  <option value="2">30 days</option>
-                  <option value="3">45 days</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="customeraccount">Customer Account:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="customeraccount" name="customeraccount" #customeraccount="ngModel" [(ngModel)]="pageFilters.customeraccount">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="contact">Contact:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="contact" name="contact" #contact="ngModel" [(ngModel)]="pageFilters.contact">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="cellphone">Phone:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="cellphone" name="cellphone" #cellphone="ngModel" [(ngModel)]="pageFilters.cellphone">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="email">Email:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="pageFilters.email">
-              </div>
-            </div>
-          </div>
-          <div class="card-body col-md-6">
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="address1">Address1:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address1" name="address1" #address1="ngModel" [(ngModel)]="pageFilters.address1">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="address2">Address2:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address2" name="address2" #address2="ngModel" [(ngModel)]="pageFilters.address2">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="city">City:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pageFilters.city">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="state">State:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pageFilters.state">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-4 col-form-label" for="zipcode">Zip Code:</label>
-              <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode" name="zipcode" #zipcode="ngModel" [(ngModel)]="pageFilters.zipcode">
-              </div>
-            </div>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
   </div>
-</div>
-
-<div class="card-footer" *ngIf="showAddOption">
-  <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
-    <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-    Submit</button>&nbsp;&nbsp;
+  <div class="card-footer" *ngIf="showAddOption">
+    <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+      <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      Submit</button>&nbsp;&nbsp;
     <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
-    <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-    Update</button>&nbsp;&nbsp;
-  <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-</div>
-  </form>
+      <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      Update</button>&nbsp;&nbsp;
+    <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+  </div>
+</form>

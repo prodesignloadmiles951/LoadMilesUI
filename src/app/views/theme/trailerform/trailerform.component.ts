@@ -39,6 +39,7 @@ export class TrailerformComponent implements OnInit {
     changeUplaod=true
     editFileList=[]
     btnHide=false
+    TrailerlistdataId
     trailerForm: FormGroup;
 
   constructor(
@@ -199,6 +200,12 @@ export class TrailerformComponent implements OnInit {
     delete this.data['createdAt']
     delete this.data['updatedAt']
     delete this.data['EditMode']
+        this.data['reeferHours'] = JSON.stringify(this.data['reeferHours'])
+        this.data['reeferMiles'] = JSON.stringify(this.data['reeferMiles'])
+        this.data['reeferPrice'] = JSON.stringify(this.data['reeferPrice'])
+        this.data['installment'] = JSON.stringify(this.data['installment'])
+        this.data['price'] = JSON.stringify(this.data['price'])
+
 
      this._trailersService.EditTrailers(this.data,this.data['_id']).subscribe(res => {
        if(res.Status == "error"){
@@ -231,7 +238,15 @@ export class TrailerformComponent implements OnInit {
         Trailerslistdata['files']=idArry
         if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
         this.btnHide=true
-        this._trailersService.SendForm(Trailerslistdata).subscribe(response => {
+        Trailerslistdata['reeferHours'] = JSON.stringify(Trailerslistdata['reeferHours'])
+        Trailerslistdata['reeferMiles'] = JSON.stringify(Trailerslistdata['reeferMiles'])
+        Trailerslistdata['reeferPrice'] = JSON.stringify(Trailerslistdata['reeferPrice'])
+        Trailerslistdata['installment'] = JSON.stringify(Trailerslistdata['installment'])
+
+        Trailerslistdata['price'] = JSON.stringify(Trailerslistdata['price'])
+        Trailerslistdata['_id'] = this.TrailerlistdataId
+
+        this._trailersService.EditTrailers(Trailerslistdata, Trailerslistdata['_id']).subscribe(response => {
           if(response.Status == "error"){
             this._toaster.error(response.error,"Failed", {timeOut: 2000,});
             this.btnHide=false
@@ -241,6 +256,40 @@ export class TrailerformComponent implements OnInit {
           this._toaster.info("Trailer Data Submitted","Success", {timeOut: 3000,});
           this.btnHide=false
           this.dialogRef.close(response)
+            }
+
+
+         },error=>{
+          this.submitted=true;
+          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
+        });
+      }else{
+        this._toaster.error("Enter VIN Details","Failed", {timeOut: 2000,});
+       }
+     }
+     submitpart1(){
+             this.submitted = true;
+        var Trailerslistdata:any=this.pageFilters
+        Trailerslistdata['maintenanceInfo']=this.maintenanceformdata
+        Trailerslistdata['companyId']=localStorage.selectedCompany
+        var idArry=[]
+        for (var i = 0; i < this.finalArry.length; ++i) {
+          idArry.push(this.finalArry[i]._id)
+        }
+        Trailerslistdata['files']=idArry
+        if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
+        this.btnHide=true
+        this._trailersService.SendForm(Trailerslistdata).subscribe(response => {
+          if(response.Status == "error"){
+            this._toaster.error(response.error,"Failed", {timeOut: 2000,});
+            this.btnHide=false
+          }
+            else{
+          this.submitted = true;
+          this._toaster.info("Trailer Data Submitted","Success", {timeOut: 3000,});
+          this.btnHide=false
+          this.TrailerlistdataId = response['result']['_id']
+                console.log(this.TrailerlistdataId)
             }
 
 
