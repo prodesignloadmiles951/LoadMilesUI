@@ -18,7 +18,7 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="name">Customer Name :<span style="color:red">*</span></label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="name" name="name" #name="ngModel" [(ngModel)]="pageFilters.name" required>
+                <input type="text" [ngClass]="mode?'':'disble'" maxlength="50" class="form-control" id="name" name="name" #name="ngModel" [(ngModel)]="pageFilters.name" required>
                 <div *ngIf="name.errors && (name.dirty || name.touched)" style="font-size: smaller;">
                   <div [hidden]="!name.errors.required">
                     <span style="color: red;">Name is Required</span>
@@ -29,7 +29,7 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="dba">DBA :</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dba" name="dba" #dba="ngModel" [(ngModel)]="pageFilters.dba">
+                <input type="text" [ngClass]="mode?'':'disble'" maxlength="50" class="form-control" id="dba" name="dba" #dba="ngModel" [(ngModel)]="pageFilters.dba">
               </div>
             </div>
             <div class="form-group row">
@@ -46,13 +46,18 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="usdot">US DOT :</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="usdot" name="usdot" #usdot="ngModel" [(ngModel)]="pageFilters.usdot">
+                <input type="text" [ngClass]="mode?'':'disble'" maxlength="7" class="form-control" id="usdot" name="usdot" #usdot="ngModel" [(ngModel)]="pageFilters.usdot">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="fein">FEIN: </label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" maxlength="9" id="fein" name="fein" #fein="ngModel" [(ngModel)]="pageFilters.fein">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" placeholder="Ex: 01234" maxlength="9" [pattern]="'^[1-9][0-9]*$'" id="fein" name="fein" #fein="ngModel" [(ngModel)]="pageFilters.fein">
+                <div *ngIf="fein.errors && (fein.dirty || fein.touched)" style="font-size: smaller;">
+                  <div [hidden]="!fein.errors?.pattern">
+                      <span style="color: red;">Enter Numbers only</span>
+                  </div>
+              </div>
               </div>
             </div>
           </div>
@@ -60,31 +65,31 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="address3">Address1:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address3" name="address3" #address3="ngModel" [(ngModel)]="pageFilters.address3">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address3" name="address3" #address3="ngModel" maxlength="40" [(ngModel)]="pageFilters.address3">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="address4">Address2:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address4" name="address4" #address4="ngModel" [(ngModel)]="pageFilters.address4">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address4" name="address4" #address4="ngModel" maxlength="40" [(ngModel)]="pageFilters.address4">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="city1">City:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city1" name="city1" #city1="ngModel" [(ngModel)]="pageFilters.city1">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city1" name="city1" #city1="ngModel" maxlength="40" [(ngModel)]="pageFilters.city1">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="state1">State:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state1" name="state1" #state1="ngModel" [(ngModel)]="pageFilters.state1">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state1" name="state1" #state1="ngModel" maxlength="2" [(ngModel)]="pageFilters.state1">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="zipcode1">Zip code:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode1" name="zipcode1" #zipcode1="ngModel" [(ngModel)]="pageFilters.zipcode1">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode1" name="zipcode1" #zipcode1="ngModel" maxlength="6" [(ngModel)]="pageFilters.zipcode1">
               </div>
             </div>
             <div class="form-group row" *ngIf="changeUplaod">
@@ -142,12 +147,12 @@
               </dxo-editing>
               <dxo-selection mode="single"></dxo-selection>
               <!-- <dxi-column dataField="id" caption="LoadNumber"></dxi-column> -->
-              <dxi-column dataField="name" caption="Name"></dxi-column>
-              <dxi-column dataField="mobile" caption="Mobile Number"></dxi-column>
-              <dxi-column dataField="phone" caption="Phone"></dxi-column>
-              <dxi-column dataField="ext" caption="Ext"></dxi-column>
-              <dxi-column dataField="email" caption="Email"></dxi-column>
-              <dxi-column dataField="comments" caption="Comments"></dxi-column>
+              <dxi-column dataField="name" caption="Name" maxlength="50"></dxi-column>
+              <dxi-column dataField="mobile" caption="Mobile Number" maxlength="10"></dxi-column>
+              <dxi-column dataField="phone" caption="Phone" maxlength="10"></dxi-column>
+              <dxi-column dataField="ext" caption="Ext" maxlength="10"></dxi-column>
+              <dxi-column dataField="email" caption="Email" maxlength="40"></dxi-column>
+              <dxi-column dataField="comments" caption="Comments" maxlength="100"></dxi-column>
             </dx-data-grid>
           </div>
         </div>
@@ -167,7 +172,7 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="billto">Bill to:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="billto" name="billto" #billto="ngModel" [(ngModel)]="pageFilters.billto">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="billto" name="billto" #billto="ngModel" maxlength="50" [(ngModel)]="pageFilters.billto">
               </div>
             </div>
             <div class="form-group row">
@@ -184,25 +189,30 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="customeraccount">Customer Account:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="customeraccount" name="customeraccount" #customeraccount="ngModel" [(ngModel)]="pageFilters.customeraccount">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="customeraccount" name="customeraccount" maxlength="10" #customeraccount="ngModel" [(ngModel)]="pageFilters.customeraccount">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="contact">Contact:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="contact" name="contact" #contact="ngModel" [(ngModel)]="pageFilters.contact">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="contact" name="contact" #contact="ngModel" maxlength="50" [(ngModel)]="pageFilters.contact">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="cellphone">Phone:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="cellphone" name="cellphone" #cellphone="ngModel" [(ngModel)]="pageFilters.cellphone">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="cellphone" name="cellphone" #cellphone="ngModel" maxlength="10" [(ngModel)]="pageFilters.cellphone">
+                <div *ngIf="cellphone.errors && (cellphone.dirty || cellphone.touched)" style="font-size: smaller;">
+                  <div [hidden]="!cellphone.errors?.pattern">
+                      <span style="color: red;">Enter Numbers only</span>
+                  </div>
+              </div>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="email">Email:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="pageFilters.email">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="email" name="email" #email="ngModel" maxlength="40" [(ngModel)]="pageFilters.email">
               </div>
             </div>
           </div>
@@ -210,31 +220,31 @@
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="address1">Address1:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address1" name="address1" #address1="ngModel" [(ngModel)]="pageFilters.address1">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address1" name="address1" #address1="ngModel" maxlength="40" [(ngModel)]="pageFilters.address1">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="address2">Address2:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address2" name="address2" #address2="ngModel" [(ngModel)]="pageFilters.address2">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address2" name="address2" #address2="ngModel" maxlength="40" [(ngModel)]="pageFilters.address2">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="city">City:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pageFilters.city">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city" name="city" #city="ngModel" maxlength="40" [(ngModel)]="pageFilters.city">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="state">State:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pageFilters.state">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state" name="state" #state="ngModel" maxlength="2" [(ngModel)]="pageFilters.state">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-4 col-form-label" for="zipcode">Zip Code:</label>
               <div class="col-md-8">
-                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode" name="zipcode" #zipcode="ngModel" [(ngModel)]="pageFilters.zipcode">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode" name="zipcode" #zipcode="ngModel" maxlength="6" [(ngModel)]="pageFilters.zipcode">
               </div>
             </div>
           </div>

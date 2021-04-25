@@ -19,30 +19,54 @@
                           <label class="col-md-4 col-form-label" for="truckUnitNumber">Unit Number: <span
                                   style="color:red">*</span></label>
                           <div class="col-md-8">
-                              <input type="number" [ngClass]="mode?'':'disble'" class="form-control"
-                                  id="truckUnitNumber" placeholder="Ex: 0123" name="truckUnitNumber"
+                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
+                                  id="truckUnitNumber" placeholder="Ex: ABC0123" name="truckUnitNumber"
                                   #truckUnitNumber="ngModel" [(ngModel)]="pageFilters.truckUnitNumber"
-                                  [pattern]="'^[1-9][0-9]*$'" [ngModelOptions]="{standalone: true}" required>
+                                  [pattern]="'^[1-9][0-9]*$'" [ngModelOptions]="{standalone: true}" minlength="10"
+                                  maxlength="10" required>
                               <div *ngIf="truckUnitNumber.errors && (truckUnitNumber.dirty || truckUnitNumber.touched)"
                                   style="font-size: smaller;">
                                   <div [hidden]="!truckUnitNumber.errors.required">
                                       <span style="color: red;">Unit Number is required</span>
                                   </div>
+                                  
                               </div>
                           </div>
                       </div>
+                      <div class="form-group row">
+                        <label class="col-md-4 col-form-label" for="registerdState">Plates registered State:<span
+                          style="color:red">*</span></label>
+                        <div class="col-md-8">
+                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
+                                placeholder="Enter plate registered state" id="registerdState"
+                                #registerdState="ngModel" name="registerdState"
+                                [(ngModel)]="pageFilters.registerdState" [ngModelOptions]="{standalone: true}" minlength="2"
+                                maxlength="2" required>
+                              <div *ngIf="registerdState.errors && (registerdState.dirty || registerdState.touched)"
+                                style="font-size: smaller;">
+                                <div [hidden]="!registerdState.errors.required">
+                                    <span style="color: red;">State code is required</span>
+                                </div>
+                                <div *ngIf="registerdState.errors.maxlength || registerdState.errors.minlength">
+                                  <span style="color: red;">Two digit state code</span>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
                       <div class="form-group row">
                           <label class="col-md-4 col-form-label" for="plate">Plate:
                               <span style="color:red">*</span>
                           </label>
                           <div class="col-md-8">
                               <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="plate"
-                                  placeholder="Ex: 1234" #plate="ngModel" name="plate" [(ngModel)]="pageFilters.plate"
-                                  [ngModelOptions]="{standalone: true}" required>
+                                  placeholder="Ex: ABC01234" #plate="ngModel" name="plate" [(ngModel)]="pageFilters.plate"
+                                  [ngModelOptions]="{standalone: true}" minlength="8"
+                                  maxlength="8" required>
                               <div *ngIf="plate.errors && (plate.dirty || plate.touched)" style="font-size: smaller;">
                                   <div [hidden]="!plate.errors.required">
                                       <span style="color: red;">Plate is required</span>
                                   </div>
+                                  
                               </div>
                           </div>
                       </div>
@@ -52,63 +76,59 @@
                           <div class="col-md-8">
                               <input type="text" [ngClass]="mode?'':'disble'" maxlength="17" class="form-control"
                                   id="vin" placeholder="Enter vin details" #vin="ngModel" name="vin"
-                                  [(ngModel)]="pageFilters.vin" [ngModelOptions]="{standalone: true}">
+                                  [(ngModel)]="pageFilters.vin" [ngModelOptions]="{standalone: true}" minlength="17"
+                                  maxlength="17" required>
+                                <div *ngIf="vin.errors && (vin.dirty || vin.touched)" style="font-size: smaller;">
+                                    <div [hidden]="!vin.errors.required">
+                                        <span style="color: red;">Vin is required</span>
+                                    </div>
+                                    
+                                </div>
                           </div>
                       </div>
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="registerdState">Plates registered State:</label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
-                                  placeholder="Enter plate registered state" id="registerdState"
-                                  #registerdState="ngModel" name="registerdState"
-                                  [(ngModel)]="pageFilters.registerdState" [ngModelOptions]="{standalone: true}"
-                                  required>
-                          </div>
-                      </div>
+                      
                       <div class="form-group row">
                           <label class="col-md-4 col-form-label" for="startingMileage">Starting Mileage:</label>
                           <div class="col-md-8">
                               <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
-                                  placeholder="Ex: 12" id="startingMileage" #startingMileage="ngModel"
+                                  placeholder="Ex: 01234" id="startingMileage" #startingMileage="ngModel"
                                   name="startingMileage" [(ngModel)]="pageFilters.startingMileage"
-                                  [ngModelOptions]="{standalone: true}" required>
+                                  [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10" required>
+                                <div *ngIf="startingMileage.errors && (startingMileage.dirty || startingMileage.touched)" style="font-size: smaller;">
+                                    <div [hidden]="!startingMileage.errors?.pattern">
+                                        <span style="color: red;">Enter Numbers only</span>
+                                    </div>
+                                </div>
                           </div>
                       </div>
                       <div class="form-group row">
                           <label class="col-md-4 col-form-label" for="currentMiles">Current Miles:</label>
                           <div class="col-md-8">
                               <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="currentMiles"
-                                  placeholder="Ex: 12" #currentMiles="ngModel" name="currentMiles"
-                                  [(ngModel)]="pageFilters.currentMiles" [ngModelOptions]="{standalone: true}"
+                                  placeholder="Ex: 01234" #currentMiles="ngModel" name="currentMiles"
+                                  [(ngModel)]="pageFilters.currentMiles" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10"
                                   required>
+                                  <div *ngIf="currentMiles.errors && (currentMiles.dirty || currentMiles.touched)" style="font-size: smaller;">
+                                    <div [hidden]="!currentMiles.errors?.pattern">
+                                        <span style="color: red;">Enter Numbers only</span>
+                                    </div>
+                                </div>
                           </div>
                       </div>
                       <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="make">Make: <span
-                                  style="color:red">*</span></label>
+                          <label class="col-md-4 col-form-label" for="make">Make:</label>
                           <div class="col-md-8">
                               <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="make"
                                   placeholder="Enter make details" #make="ngModel" name="make"
-                                  [(ngModel)]="pageFilters.make" [ngModelOptions]="{standalone: true}" required>
-                              <div *ngIf="make.errors && (make.dirty || make.touched)" style="font-size: smaller;">
-                                  <div [hidden]="!make.errors.required">
-                                      <span style="color: red;">Make is required</span>
-                                  </div>
-                              </div>
+                                  [(ngModel)]="pageFilters.make" [ngModelOptions]="{standalone: true}" maxlength="20">
                           </div>
                       </div>
                       <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="modal">Model: <span
-                                  style="color:red">*</span></label>
+                          <label class="col-md-4 col-form-label" for="modal">Model:</label>
                           <div class="col-md-8">
                               <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="modal"
                                   placeholder="Enter model details" #modal="ngModel" name="modal"
-                                  [(ngModel)]="pageFilters.modal" [ngModelOptions]="{standalone: true}" required>
-                              <div *ngIf="modal.errors && (modal.dirty || modal.touched)" style="font-size: smaller;">
-                                  <div [hidden]="!modal.errors.required">
-                                      <span style="color: red;">Model is required</span>
-                                  </div>
-                              </div>
+                                  [(ngModel)]="pageFilters.modal" [ngModelOptions]="{standalone: true}" maxlength="20">
                           </div>
                       </div>
                       <div class="form-group row">
@@ -116,7 +136,7 @@
                           <div class="col-md-8">
                               <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="color"
                                   placeholder="Enter color details" #color="ngModel" name="color"
-                                  [(ngModel)]="pageFilters.color" [ngModelOptions]="{standalone: true}">
+                                  [(ngModel)]="pageFilters.color" [ngModelOptions]="{standalone: true}" maxlength="20">
                           </div>
                       </div>
                       <div class="form-group row">
@@ -160,7 +180,7 @@
                           <div class="col-md-8">
                               <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="eld"
                                   placeholder="Enter eld details" #eld="ngModel" name="eld"
-                                  [(ngModel)]="pageFilters.eld" [ngModelOptions]="{standalone: true}">
+                                  [(ngModel)]="pageFilters.eld" [ngModelOptions]="{standalone: true}" maxlength="20">
                           </div>
                       </div>
                       <div class="form-group row">
@@ -168,7 +188,7 @@
                           <div class="col-md-8">
                               <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="gps"
                                   #gps="ngModel" placeholder="Enter gps details" name="gps"
-                                  [(ngModel)]="pageFilters.gps" [ngModelOptions]="{standalone: true}">
+                                  [(ngModel)]="pageFilters.gps" [ngModelOptions]="{standalone: true}"  maxlength="20">
                           </div>
                       </div>
                       <div class="form-group row">
@@ -176,7 +196,7 @@
                           <div class="col-md-8">
                               <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="fuelCard"
                                   placeholder="Enter fuelCard details" #fuelCard="ngModel" name="fuelCard"
-                                  [(ngModel)]="pageFilters.fuelCard" [ngModelOptions]="{standalone: true}">
+                                  [(ngModel)]="pageFilters.fuelCard" [ngModelOptions]="{standalone: true}"  maxlength="20">
                           </div>
                       </div>
                       <div class="form-group row">
@@ -184,7 +204,7 @@
                           <div class="col-md-8">
                               <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ezPass"
                                   #ezPass="ngModel" placeholder="Enter ezPass details" name="ezPass"
-                                  [(ngModel)]="pageFilters.ezPass" [ngModelOptions]="{standalone: true}">
+                                  [(ngModel)]="pageFilters.ezPass" [ngModelOptions]="{standalone: true}"  maxlength="20">
                           </div>
                       </div>
                       <!-- <div class="form-group row">
@@ -227,7 +247,7 @@
                           <label class="col-md-4 col-form-label" for="notes">Notes:</label>
                           <div class="col-md-8">
                               <textarea [ngClass]="mode?'':'disble'" class="form-control" name="notes"
-                                  [(ngModel)]="pageFilters.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                                  [(ngModel)]="pageFilters.notes" [ngModelOptions]="{standalone: true}"  maxlength="100"></textarea>
                           </div>
                       </div>
                       <div class="form-group row" *ngIf="changeUplaod">
@@ -323,7 +343,10 @@
                               <div class="col-md-7">
                                   <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
                                       id="insuranceValue" #insuranceValue="ngModel" name="insuranceValue"
-                                      [(ngModel)]="pageFilters.insuranceValue" [ngModelOptions]="{standalone: true}">
+                                      [(ngModel)]="pageFilters.insuranceValue" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
+                                    <div [hidden]="!insuranceValue.errors?.pattern">
+                                        <span style="color: red;">Enter Numbers only</span>
+                                    </div>
                               </div>
                           </div>
                       </div>
@@ -400,17 +423,23 @@
                           <div class="form-group row">
                             <label class="col-md-4 col-form-label" for="comapnyOwned">Comapny Owned:</label>
                             <div class="col-md-8">
-                                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="comapnyOwned"
+                                <select class="form-control" [ngClass]="mode?'':'disble'" id="comapnyOwned"
                                     #comapnyOwned="ngModel" name="comapnyOwned" [(ngModel)]="pageFilters.comapnyOwned"
                                     [ngModelOptions]="{standalone: true}">
+                                    <option value="comapnyOwned" disabled selected hidden>Comapny Owned</option>
+                                </select>
                             </div>
                         </div>
+                        
                           <div class="form-group row">
                               <label class="col-md-4 col-form-label" for="price">Price:</label>
                               <div class="col-md-8">
                                   <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="price"
-                                      #price="ngModel" name="price" [(ngModel)]="pageFilters.price"
-                                      [ngModelOptions]="{standalone: true}">
+                                      #price="ngModel" name="price" [(ngModel)]="pageFilters.price" placeholder="0123"
+                                      [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
+                                <div [hidden]="!price.errors?.pattern">
+                                    <span style="color: red;">Enter Numbers only</span>
+                                </div>
                               </div>
                           </div>
                           <div class="form-group row">
@@ -434,7 +463,10 @@
                               <div class="col-md-8">
                                   <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="financer"
                                       #financer="ngModel" name="financer" [(ngModel)]="pageFilters.financer"
-                                      [ngModelOptions]="{standalone: true}">
+                                      [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
+                                    <div [hidden]="!financer.errors?.pattern">
+                                        <span style="color: red;">Enter Numbers only</span>
+                                    </div>
                               </div>
                           </div>
                           <div class="form-group row">
@@ -442,7 +474,10 @@
                               <div class="col-md-8">
                                   <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
                                       id="installment" #installment="ngModel" name="installment"
-                                      [(ngModel)]="pageFilters.installment" [ngModelOptions]="{standalone: true}">
+                                      [(ngModel)]="pageFilters.installment" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
+                                    <div [hidden]="!installment.errors?.pattern">
+                                        <span style="color: red;">Enter Numbers only</span>
+                                    </div>
                               </div>
                           </div>
                           <div class="form-group row">
@@ -468,9 +503,11 @@
                           <div class="form-group row">
                             <label class="col-md-4 col-form-label" for="leased">Leased:</label>
                             <div class="col-md-8">
-                                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leased"
+                                <select class="form-control" [ngClass]="mode?'':'disble'" id="leased"
                                     #leased="ngModel" name="leased" [(ngModel)]="pageFilters.leased"
                                     [ngModelOptions]="{standalone: true}">
+                                    <option value="leased" disabled selected hidden>Leased</option>
+                                </select>
                             </div>
                         </div>
                           <div class="form-group row">
@@ -478,7 +515,7 @@
                               <div class="col-md-8">
                                   <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dealer"
                                       #dealer="ngModel" name="dealer" [(ngModel)]="pageFilters.dealer"
-                                      [ngModelOptions]="{standalone: true}">
+                                      [ngModelOptions]="{standalone: true}" maxlength="20">
                               </div>
                           </div>
                           <div class="form-group row">
@@ -486,15 +523,18 @@
                               <div class="col-md-8">
                                   <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leasedFrom"
                                       #leasedFrom="ngModel" name="leasedFrom" [(ngModel)]="pageFilters.leasedFrom"
-                                      [ngModelOptions]="{standalone: true}">
+                                      [ngModelOptions]="{standalone: true}" maxlength="20">
                               </div>
                           </div>
                           <div class="form-group row">
                               <label class="col-md-4 col-form-label" for="leaaseStart">Lease Start:</label>
                               <div class="col-md-8">
-                                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="leasestart"
+                                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leasestart"
                                       #leaaseStart="ngModel" name="leaaseStart" [(ngModel)]="pageFilters.leaaseStart"
-                                      [ngModelOptions]="{standalone: true}">
+                                      [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
+                                <div [hidden]="!leaaseStart.errors?.pattern">
+                                    <span style="color: red;">Enter Numbers only</span>
+                                </div>
                               </div>
                           </div>
                           <div class="form-group row">
@@ -510,7 +550,10 @@
                               <div class="col-md-8">
                                   <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
                                       id="installment1" #installment1="ngModel" name="installment1"
-                                      [(ngModel)]="pageFilters.installment1" [ngModelOptions]="{standalone: true}">
+                                      [(ngModel)]="pageFilters.installment1" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
+                                <div [hidden]="!installment1.errors?.pattern">
+                                    <span style="color: red;">Enter Numbers only</span>
+                                </div>
                               </div>
                           </div>
                           <div class="form-group row">
