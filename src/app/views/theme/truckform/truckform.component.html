@@ -12,7 +12,7 @@
   <div class="row" *ngIf="pageFiltersshow">
       <div class="col-sm-12">
           <div class="card">
-              <div class="card-header">Trucks Information</div>
+              <div class="card-header">Trucks Information Part-I</div>
               <div style="display: flex;">
                   <div class="card-body col-sm-6">
                       <div class="form-group row">
@@ -53,6 +53,8 @@
                               </div>
                         </div>
                     </div>
+                  </div>
+                  <div class="card-body col-sm-6">
                       <div class="form-group row">
                           <label class="col-md-4 col-form-label" for="plate">Plate:
                               <span style="color:red">*</span>
@@ -87,217 +89,177 @@
                           </div>
                       </div>
                       
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="startingMileage">Starting Mileage:</label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
-                                  placeholder="Ex: 01234" id="startingMileage" #startingMileage="ngModel"
-                                  name="startingMileage" [(ngModel)]="pageFilters.startingMileage"
-                                  [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10" required>
-                                <div *ngIf="startingMileage.errors && (startingMileage.dirty || startingMileage.touched)" style="font-size: smaller;">
-                                    <div [hidden]="!startingMileage.errors?.pattern">
-                                        <span style="color: red;">Enter Numbers only</span>
-                                    </div>
-                                </div>
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="currentMiles">Current Miles:</label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="currentMiles"
-                                  placeholder="Ex: 01234" #currentMiles="ngModel" name="currentMiles"
-                                  [(ngModel)]="pageFilters.currentMiles" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10"
-                                  required>
-                                  <div *ngIf="currentMiles.errors && (currentMiles.dirty || currentMiles.touched)" style="font-size: smaller;">
-                                    <div [hidden]="!currentMiles.errors?.pattern">
-                                        <span style="color: red;">Enter Numbers only</span>
-                                    </div>
-                                </div>
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="make">Make:</label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="make"
-                                  placeholder="Enter make details" #make="ngModel" name="make"
-                                  [(ngModel)]="pageFilters.make" [ngModelOptions]="{standalone: true}" maxlength="20">
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="modal">Model:</label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="modal"
-                                  placeholder="Enter model details" #modal="ngModel" name="modal"
-                                  [(ngModel)]="pageFilters.modal" [ngModelOptions]="{standalone: true}" maxlength="20">
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="color">Color:</label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="color"
-                                  placeholder="Enter color details" #color="ngModel" name="color"
-                                  [(ngModel)]="pageFilters.color" [ngModelOptions]="{standalone: true}" maxlength="20">
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="yom">Year of Make: <span
-                                  style="color:red">*</span></label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="yom"
-                                  placeholder="Ex: 2020" name="yom" #yom="ngModel" [(ngModel)]="pageFilters.yom"
-                                  [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" minlength="4"
-                                  maxlength="4" required>
-                              <div *ngIf="yom.errors && (yom.dirty || yom.touched)" style="font-size: smaller;">
-                                  <div [hidden]="!yom.errors.required">
-                                      <span style="color: red;">Year is Required</span>
-                                  </div>
-                                  <div [hidden]="!yom.errors?.pattern">
-                                      <span style="color: red;">Enter Numbers only</span>
-                                  </div>
-                                  <div *ngIf="yom.errors.maxlength || yom.errors.minlength">
-                                      <span style="color: red;">Year must be 4 numbers</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="gearType">Gear Type:</label>
-                          <div class="col-md-8">
-                              <select class="form-control" [ngClass]="mode?'':'disble'" id="geartype"
-                                  #gearType="ngModel" name="gearType" [(ngModel)]="pageFilters.gearType"
-                                  [ngModelOptions]="{standalone: true}">
-                                  <option value="Select gear" disabled selected hidden>Select gear</option>
-                                  <option value="0">Auto</option>
-                                  <option value="1">Manual</option>
-                              </select>
-                          </div>
-                      </div>
                   </div>
-                  <div class="card-body col-sm-6">
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="eld">ELD:</label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="eld"
-                                  placeholder="Enter eld details" #eld="ngModel" name="eld"
-                                  [(ngModel)]="pageFilters.eld" [ngModelOptions]="{standalone: true}" maxlength="20">
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="gps">GPS:</label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="gps"
-                                  #gps="ngModel" placeholder="Enter gps details" name="gps"
-                                  [(ngModel)]="pageFilters.gps" [ngModelOptions]="{standalone: true}"  maxlength="20">
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="fuelCard">Fuel Card:</label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="fuelCard"
-                                  placeholder="Enter fuelCard details" #fuelCard="ngModel" name="fuelCard"
-                                  [(ngModel)]="pageFilters.fuelCard" [ngModelOptions]="{standalone: true}"  maxlength="20">
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="ezPass">EZ Pass:</label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ezPass"
-                                  #ezPass="ngModel" placeholder="Enter ezPass details" name="ezPass"
-                                  [(ngModel)]="pageFilters.ezPass" [ngModelOptions]="{standalone: true}"  maxlength="20">
-                          </div>
-                      </div>
-                      <!-- <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="driver">Driver:</label>
-                          <div class="col-md-8">
-                              <select [ngClass]="mode?'':'disble'" class="form-control"
-                                  [(ngModel)]="pageFilters.driverName" [ngModelOptions]="{standalone: true}">
-                                  <option value="" disabled selected hidden>Driver</option>
-                                  <option *ngFor="let cmp of driverdata" value="0">
-                                      <span>{{cmp.firstname}}</span>
-                                  </option>
-                              </select>
-                          </div>
-                      </div> 
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="dispatcher">Dispatcher:</label>
-                          <div class="col-md-8">
-                              <select [ngClass]="mode?'':'disble'" class="form-control"
-                                  [(ngModel)]="pageFilters.dispatcher" [ngModelOptions]="{standalone: true}">
-                                  <option value="" disabled selected hidden>Dispatcher</option>
-                                  <option *ngFor="let cmp of Dispatcherdata" value="0">
-                                      <span>{{cmp.firstname}}</span>
-                                  </option>
-                              </select>
-                          </div>
-                      </div>-->
-                      <!-- <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="trailer">Trailer:</label>
-                          <div class="col-md-8">
-                              <select [ngClass]="mode?'':'disble'" class="form-control"
-                                  [(ngModel)]="pageFilters.trailerType" [ngModelOptions]="{standalone: true}">
-                                  <option value="" disabled selected hidden>Trailer</option>
-                                  <option *ngFor="let cmp of trailerData" value="0">
-                                      <span>{{cmp.unitNumber}}</span>
-                                  </option>
-                              </select>
-                          </div>
-                      </div> -->
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="notes">Notes:</label>
-                          <div class="col-md-8">
-                              <textarea [ngClass]="mode?'':'disble'" class="form-control" name="notes"
-                                  [(ngModel)]="pageFilters.notes" [ngModelOptions]="{standalone: true}"  maxlength="100"></textarea>
-                          </div>
-                      </div>
-                      <div class="form-group row" *ngIf="changeUplaod">
-                          <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'"
-                              class="custom-file-upload">
-                              <i class="fa fa-cloud-upload"></i> Upload
-                          </label>
-                          <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
-                          <div class="col-sm-12">
-                              <div *ngFor="let data of finalArry;let i=index">
-                                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a
-                                          style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span
-                                      *ngIf="mode" (click)="ondelete(i)"><a style="color: red;"
-                                          href="javascript:void(0)">delete</a></span>
-                              </div>
-                          </div>
-                          <div *ngIf="mode">
-                              <button class="btn btn-success" *ngIf="finalArry?.length > 0"
-                                  (click)="onUploadFile()">Submit</button>
-                          </div>
-                      </div>
-                      <div class="form-group row" *ngIf="!changeUplaod">
-                          <label class="col-md-4 col-form-label" for="notes" *ngIf="!mode">Uploaded File :</label>
-                          <div class="col-sm-12" *ngIf="editFileList?.length > 0">
-                              <div *ngFor="let data of editFileList;let i=index">
-                                  {{data.name}} &nbsp;<span (click)="onView(data)"><a style="color: blue;"
-                                          href="javascript:void(0)">View</a></span>&nbsp;
-                              </div>
-                          </div>
-                          <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'"
-                              class="custom-file-upload">
-                              <i class="fa fa-cloud-upload"></i> Upload
-                          </label>
-                          <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
-                          <div class="col-sm-12">
-                              <div *ngFor="let data of finalArry;let i=index">
-                                  {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a
-                                          style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span
-                                      (click)="ondelete(i)"><a style="color: red;"
-                                          href="javascript:void(0)">delete</a></span>
-                              </div>
-                          </div>
-                          <div>
-                              <button class="btn btn-success" *ngIf="finalArry?.length > 0"
-                                  (click)="onUploadFile()">Submit</button>
-                          </div>
-                      </div>
-                  </div>
+                  
+              </div>
+              <div class="card-footer" *ngIf="showAddOption">
+                <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submitpart1()"><i class="fa fa-dot-circle-o"></i>
+                  <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                  Submit</button>&nbsp;&nbsp;
+                <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
+                  <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                  Update</button>&nbsp;&nbsp;
+                <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
               </div>
           </div>
+
+          <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header class="card-header">
+                <mat-panel-title>
+                    Trucks Information Part-II
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+    
+              <div style="display: flex;">
+                <div class="card-body col-sm-6">
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label" for="startingMileage">Starting Mileage:</label>
+                        <div class="col-md-8">
+                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
+                                placeholder="Ex: 01234" id="startingMileage" #startingMileage="ngModel"
+                                name="startingMileage" [(ngModel)]="pageFilters.startingMileage"
+                                [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10" required>
+                              <div *ngIf="startingMileage.errors && (startingMileage.dirty || startingMileage.touched)" style="font-size: smaller;">
+                                  <div [hidden]="!startingMileage.errors?.pattern">
+                                      <span style="color: red;">Enter Numbers only</span>
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label" for="currentMiles">Current Miles:</label>
+                        <div class="col-md-8">
+                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="currentMiles"
+                                placeholder="Ex: 01234" #currentMiles="ngModel" name="currentMiles"
+                                [(ngModel)]="pageFilters.currentMiles" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10"
+                                required>
+                                <div *ngIf="currentMiles.errors && (currentMiles.dirty || currentMiles.touched)" style="font-size: smaller;">
+                                  <div [hidden]="!currentMiles.errors?.pattern">
+                                      <span style="color: red;">Enter Numbers only</span>
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label" for="yom">Year of Make:</label>
+                        <div class="col-md-8">
+                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="yom"
+                                placeholder="Ex: 2020" name="yom" #yom="ngModel" [(ngModel)]="pageFilters.yom"
+                                [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" minlength="4"
+                                maxlength="4" required>
+                            <div *ngIf="yom.errors && (yom.dirty || yom.touched)" style="font-size: smaller;">
+                                
+                                <div [hidden]="!yom.errors?.pattern">
+                                    <span style="color: red;">Enter Numbers only</span>
+                                </div>
+                                <div *ngIf="yom.errors.maxlength || yom.errors.minlength">
+                                    <span style="color: red;">Year must be 4 numbers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label" for="gearType">Gear Type:</label>
+                        <div class="col-md-8">
+                            <select class="form-control" [ngClass]="mode?'':'disble'" id="geartype"
+                                #gearType="ngModel" name="gearType" [(ngModel)]="pageFilters.gearType"
+                                [ngModelOptions]="{standalone: true}">
+                                <option value="Select gear" disabled selected hidden>Select gear</option>
+                                <option value="0">Auto</option>
+                                <option value="1">Manual</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="card-body col-sm-6">
+                    
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label" for="gps">GPS:</label>
+                        <div class="col-md-8">
+                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="gps"
+                                #gps="ngModel" placeholder="Enter gps details" name="gps"
+                                [(ngModel)]="pageFilters.gps" [ngModelOptions]="{standalone: true}"  maxlength="20">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label" for="fuelCard">Fuel Card:</label>
+                        <div class="col-md-8">
+                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="fuelCard"
+                                placeholder="Enter fuelCard details" #fuelCard="ngModel" name="fuelCard"
+                                [(ngModel)]="pageFilters.fuelCard" [ngModelOptions]="{standalone: true}"  maxlength="20">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label" for="ezPass">EZ Pass:</label>
+                        <div class="col-md-8">
+                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ezPass"
+                                #ezPass="ngModel" placeholder="Enter ezPass details" name="ezPass"
+                                [(ngModel)]="pageFilters.ezPass" [ngModelOptions]="{standalone: true}"  maxlength="20">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label" for="notes">Notes:</label>
+                        <div class="col-md-8">
+                            <textarea [ngClass]="mode?'':'disble'" class="form-control" name="notes"
+                                [(ngModel)]="pageFilters.notes" [ngModelOptions]="{standalone: true}"  maxlength="100"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="changeUplaod">
+                        <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'"
+                            class="custom-file-upload">
+                            <i class="fa fa-cloud-upload"></i> Upload
+                        </label>
+                        <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
+                        <div class="col-sm-12">
+                            <div *ngFor="let data of finalArry;let i=index">
+                                {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a
+                                        style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span
+                                    *ngIf="mode" (click)="ondelete(i)"><a style="color: red;"
+                                        href="javascript:void(0)">delete</a></span>
+                            </div>
+                        </div>
+                        <div *ngIf="mode">
+                            <button class="btn btn-success" *ngIf="finalArry?.length > 0"
+                                (click)="onUploadFile()">Submit</button>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="!changeUplaod">
+                        <label class="col-md-4 col-form-label" for="notes" *ngIf="!mode">Uploaded File :</label>
+                        <div class="col-sm-12" *ngIf="editFileList?.length > 0">
+                            <div *ngFor="let data of editFileList;let i=index">
+                                {{data.name}} &nbsp;<span (click)="onView(data)"><a style="color: blue;"
+                                        href="javascript:void(0)">View</a></span>&nbsp;
+                            </div>
+                        </div>
+                        <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'"
+                            class="custom-file-upload">
+                            <i class="fa fa-cloud-upload"></i> Upload
+                        </label>
+                        <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
+                        <div class="col-sm-12">
+                            <div *ngFor="let data of finalArry;let i=index">
+                                {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a
+                                        style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span
+                                    (click)="ondelete(i)"><a style="color: red;"
+                                        href="javascript:void(0)">delete</a></span>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-success" *ngIf="finalArry?.length > 0"
+                                (click)="onUploadFile()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              </mat-expansion-panel>
+          </mat-accordion>
+
           <mat-accordion>
               <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                   <mat-expansion-panel-header class="card-header">

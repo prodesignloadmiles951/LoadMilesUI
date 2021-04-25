@@ -275,6 +275,29 @@ export class TruckformComponent implements OnInit {
        })
      
    }
+
+   submitpart1(){
+    var Trucklistdata:any=this.pageFilters
+    Trucklistdata['companyId']=localStorage.selectedCompany
+    if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != "" && this.pageFilters['companyname'] != ""){
+      this.btnHide=true
+    this._trucksservice.SendForm(Trucklistdata).subscribe(response => {
+      if(response.Status != "error"){
+        this.submitted = true;
+        this._toaster.info("Trucks Data Submitted","Success", {timeOut: 3000});
+        this.btnHide=false
+      }else{
+        this.submitted=false;
+        this._toaster.info(response.error,"Failed", {timeOut: 2000});
+      }
+    },error=>{
+      this.submitted=false;
+      this._toaster.error("Submit again","Failed", {timeOut: 2000});
+    });
+  }else{
+    this._toaster.error("Enter VIN Details","Failed", {timeOut: 2000});
+   }
+   }
    hidePopup(){
      this.dialogRef.close(null)
    }
