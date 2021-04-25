@@ -287,6 +287,28 @@ export class CustomerformComponent implements OnInit {
         console.log(this.pageFilters);
        }
      }
+     submitpart1(){
+        var Customerlistdata:any=this.pageFilters
+        Customerlistdata['companyId']=localStorage.selectedCompany
+        if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
+          this.btnHide=true
+        this._customersservice.SendForm(Customerlistdata).subscribe(response => {
+          if(response.Status != "error"){
+            this.submitted = true;
+            this._toaster.info("Customerform Data Submitted","Success", {timeOut: 3000});
+            this.btnHide=false
+          }else{
+            this.submitted=false;
+            this._toaster.info(response.error,"Failed", {timeOut: 2000});
+          }
+        },error=>{
+          this.submitted=false;
+          this._toaster.error("Submit again","Failed", {timeOut: 2000});
+        });
+      }else{
+        this._toaster.error("Enter MC Details","Failed", {timeOut: 2000});
+       }
+     }
      reset(){}
 
 }
