@@ -22,10 +22,11 @@ export class CustomersService {
 
       getCustomersData(){
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
-        return this.http.get(this.customersurl+'?companyId='+localStorage.selectedCompany,options).pipe(map(response=>response.json().data ? [] : response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+        return this.http.get(this.customersurl,options).pipe(map(response=>response.json().data ? [] : response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
       
-      EditCustomers(obj){
+      EditCustomers(obj,id){
+        delete obj['_id']
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
         return this.http.put(this.customersurl+"/"+obj._id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }

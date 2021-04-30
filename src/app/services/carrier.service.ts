@@ -22,10 +22,10 @@ export class CarrierService {
 
     getCarrierData() {
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
-    return this.http.get(this.carrierurl+'?companyid='+localStorage.selectedCompany,options).pipe(map(response=>response.json().data ? [] : response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+    return this.http.get(this.carrierurl,options).pipe(map(response=>response.json().data ? [] : response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }
     
-    EditCarrier(obj) {
+    EditCarrier(obj,id) {
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
     return this.http.put(this.carrierurl+"/"+obj._id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }

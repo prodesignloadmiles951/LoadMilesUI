@@ -338,7 +338,7 @@ export class CarrierformComponent implements OnInit {
      console.log(this.data)
      if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
           this.btnHide=true
-     this._carrierService.EditCarrier(this.data).subscribe(res => {
+     this._carrierService.EditCarrier(this.data, this.data['_id']).subscribe(res => {
          this._toaster.info("Carrier Data Updated successfully","Success", {timeOut: 3000,});
          this.btnHide=false
          this.dialogRef.close(res)
@@ -370,7 +370,7 @@ export class CarrierformComponent implements OnInit {
         Carrierlistdata['files']=idArry
         if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
           this.btnHide=true
-        this._carrierService.SendForm(Carrierlistdata).subscribe(response => {
+        this._carrierService.EditCarrier(Carrierlistdata, Carrierlistdata['_id']).subscribe(response => {
           if(response.Status == "error"){
                   this._toaster.error(response.error,"Failed", {timeOut: 2000,});
                   this.btnHide=false
@@ -386,6 +386,50 @@ export class CarrierformComponent implements OnInit {
         });
       }else{
      this._toaster.error("Enter SSN Details","Failed", {timeOut: 2000,});
+   }
+        console.log(this.pageFilters);
+       }
+     }
+     submitpart1(){
+            if(localStorage.selectedCompany == undefined){
+       this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
+     }else{
+        this.submitted = true;
+        var Carrierlistdata:any=this.pageFilters
+        Carrierlistdata['companyId']=localStorage.selectedCompany
+        var idArry=[]
+        for (var i = 0; i < this.finalArry.length; ++i) {
+          idArry.push(this.finalArry[i]._id)
+        }
+        Carrierlistdata['files']=idArry
+        if(this.pageFilters['companyname'] != undefined && this.pageFilters['companyname'] != ""){
+          if(this.pageFilters['cellphone'] != undefined && this.pageFilters['cellphone'] != ""){
+            if(this.pageFilters['cemergencyphone'] != undefined && this.pageFilters['cemergencyphone'] != ""){
+               this.btnHide=true
+        this._carrierService.SendForm(Carrierlistdata).subscribe(response => {
+          if(response.Status == "error"){
+                  this._toaster.error(response.error,"Failed", {timeOut: 2000,});
+                  this.btnHide=false
+                }else{
+          this.submitted = true;
+          this._toaster.info("Carrierform Data Submitted","Success", {timeOut: 3000,});
+          this.btnHide=false
+         this.dialogRef.close(response)
+       }
+        },error=>{
+          this.submitted=false;
+          this._toaster.error("Submit Again","Failed", {timeOut: 2000,});
+        });
+            }else{
+     this._toaster.error("Enter Emergency phone Details","Failed", {timeOut: 2000,});
+   }
+          }else{
+     this._toaster.error("Enter Cellphone Details","Failed", {timeOut: 2000,});
+   }
+
+         
+      }else{
+     this._toaster.error("Enter companyname Details","Failed", {timeOut: 2000,});
    }
         console.log(this.pageFilters);
        }

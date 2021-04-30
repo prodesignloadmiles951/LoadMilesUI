@@ -46,7 +46,7 @@ export class CarrierlistComponent implements OnInit {
     }
     getData() {
     this._carrierservice.getCarrierData().subscribe(data => {
-        this.data = data;
+        this.data = data.result;
     });
     }
 

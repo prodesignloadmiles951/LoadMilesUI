@@ -2,7 +2,7 @@
   <h4 class="modal-title">Trucks Informtion - <span class="badge badge-success">{{pageFilters.truckUnitNumber}}</span>
   </h4>
   <button type="button" class="close" (click)="hidePopup()" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
+    <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <button *ngIf="!SelectedTruck" type="button" class="close" (click)="hidePopup()" aria-label="Close">
@@ -10,312 +10,241 @@
 </button>
 <form class="form-horizontal" #truckForm="ngForm" novalidate autocomplete="off">
   <div class="row" *ngIf="pageFiltersshow">
-      <div class="col-sm-12">
-          <div class="card">
-              <div class="card-header">Trucks Information Part-I</div>
-              <div style="display: flex;">
-                  <div class="card-body col-sm-6">
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="truckUnitNumber">Unit Number: <span
-                                  style="color:red">*</span></label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
-                                  id="truckUnitNumber" placeholder="Ex: ABC0123" name="truckUnitNumber"
-                                  #truckUnitNumber="ngModel" [(ngModel)]="pageFilters.truckUnitNumber"
-                                  [pattern]="'^[1-9][0-9]*$'" [ngModelOptions]="{standalone: true}" minlength="10"
-                                  maxlength="10" required>
-                              <div *ngIf="truckUnitNumber.errors && (truckUnitNumber.dirty || truckUnitNumber.touched)"
-                                  style="font-size: smaller;">
-                                  <div [hidden]="!truckUnitNumber.errors.required">
-                                      <span style="color: red;">Unit Number is required</span>
-                                  </div>
-                                  
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                        <label class="col-md-4 col-form-label" for="registerdState">Plates registered State:<span
-                          style="color:red">*</span></label>
-                        <div class="col-md-8">
-                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
-                                placeholder="Enter plate registered state" id="registerdState"
-                                #registerdState="ngModel" name="registerdState"
-                                [(ngModel)]="pageFilters.registerdState" [ngModelOptions]="{standalone: true}" minlength="2"
-                                maxlength="2" required>
-                              <div *ngIf="registerdState.errors && (registerdState.dirty || registerdState.touched)"
-                                style="font-size: smaller;">
-                                <div [hidden]="!registerdState.errors.required">
-                                    <span style="color: red;">State code is required</span>
-                                </div>
-                                <div *ngIf="registerdState.errors.maxlength || registerdState.errors.minlength">
-                                  <span style="color: red;">Two digit state code</span>
-                                </div>
-                              </div>
-                        </div>
-                    </div>
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">Trucks Information Part-I</div>
+        <div style="display: flex;">
+          <div class="card-body col-sm-6">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="truckUnitNumber">Unit Number: <span style="color:red">*</span></label>
+              <div class="col-md-8">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="truckUnitNumber" placeholder="Ex: ABC0123" name="truckUnitNumber" #truckUnitNumber="ngModel" [(ngModel)]="pageFilters.truckUnitNumber" [pattern]="'^[1-9][0-9]*$'" [ngModelOptions]="{standalone: true}" minlength="10" maxlength="10" required>
+                <div *ngIf="truckUnitNumber.errors && (truckUnitNumber.dirty || truckUnitNumber.touched)" style="font-size: smaller;">
+                  <div [hidden]="!truckUnitNumber.errors.required">
+                    <span style="color: red;">Unit Number is required</span>
                   </div>
-                  <div class="card-body col-sm-6">
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="plate">Plate:
-                              <span style="color:red">*</span>
-                          </label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="plate"
-                                  placeholder="Ex: ABC01234" #plate="ngModel" name="plate" [(ngModel)]="pageFilters.plate"
-                                  [ngModelOptions]="{standalone: true}" minlength="8"
-                                  maxlength="8" required>
-                              <div *ngIf="plate.errors && (plate.dirty || plate.touched)" style="font-size: smaller;">
-                                  <div [hidden]="!plate.errors.required">
-                                      <span style="color: red;">Plate is required</span>
-                                  </div>
-                                  
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label" for="vin">Vin:<span
-                                  style="color:red">*</span></label>
-                          <div class="col-md-8">
-                              <input type="text" [ngClass]="mode?'':'disble'" maxlength="17" class="form-control"
-                                  id="vin" placeholder="Enter vin details" #vin="ngModel" name="vin"
-                                  [(ngModel)]="pageFilters.vin" [ngModelOptions]="{standalone: true}" minlength="17"
-                                  maxlength="17" required>
-                                <div *ngIf="vin.errors && (vin.dirty || vin.touched)" style="font-size: smaller;">
-                                    <div [hidden]="!vin.errors.required">
-                                        <span style="color: red;">Vin is required</span>
-                                    </div>
-                                    
-                                </div>
-                          </div>
-                      </div>
-                      
-                  </div>
-                  
-              </div>
-              <div class="card-footer" *ngIf="showAddOption">
-                <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submitpart1()"><i class="fa fa-dot-circle-o"></i>
-                  <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                  Submit</button>&nbsp;&nbsp;
-                <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
-                  <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                  Update</button>&nbsp;&nbsp;
-                <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-              </div>
-          </div>
-
-          <mat-accordion>
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-              <mat-expansion-panel-header class="card-header">
-                <mat-panel-title>
-                    Trucks Information Part-II
-                </mat-panel-title>
-                <mat-panel-description>
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-    
-              <div style="display: flex;">
-                <div class="card-body col-sm-6">
-                    <div class="form-group row">
-                        <label class="col-md-4 col-form-label" for="startingMileage">Starting Mileage:</label>
-                        <div class="col-md-8">
-                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
-                                placeholder="Ex: 01234" id="startingMileage" #startingMileage="ngModel"
-                                name="startingMileage" [(ngModel)]="pageFilters.startingMileage"
-                                [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10" required>
-                              <div *ngIf="startingMileage.errors && (startingMileage.dirty || startingMileage.touched)" style="font-size: smaller;">
-                                  <div [hidden]="!startingMileage.errors?.pattern">
-                                      <span style="color: red;">Enter Numbers only</span>
-                                  </div>
-                              </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-4 col-form-label" for="currentMiles">Current Miles:</label>
-                        <div class="col-md-8">
-                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="currentMiles"
-                                placeholder="Ex: 01234" #currentMiles="ngModel" name="currentMiles"
-                                [(ngModel)]="pageFilters.currentMiles" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10"
-                                required>
-                                <div *ngIf="currentMiles.errors && (currentMiles.dirty || currentMiles.touched)" style="font-size: smaller;">
-                                  <div [hidden]="!currentMiles.errors?.pattern">
-                                      <span style="color: red;">Enter Numbers only</span>
-                                  </div>
-                              </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                        <label class="col-md-4 col-form-label" for="yom">Year of Make:</label>
-                        <div class="col-md-8">
-                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="yom"
-                                placeholder="Ex: 2020" name="yom" #yom="ngModel" [(ngModel)]="pageFilters.yom"
-                                [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" minlength="4"
-                                maxlength="4" required>
-                            <div *ngIf="yom.errors && (yom.dirty || yom.touched)" style="font-size: smaller;">
-                                
-                                <div [hidden]="!yom.errors?.pattern">
-                                    <span style="color: red;">Enter Numbers only</span>
-                                </div>
-                                <div *ngIf="yom.errors.maxlength || yom.errors.minlength">
-                                    <span style="color: red;">Year must be 4 numbers</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-md-4 col-form-label" for="gearType">Gear Type:</label>
-                        <div class="col-md-8">
-                            <select class="form-control" [ngClass]="mode?'':'disble'" id="geartype"
-                                #gearType="ngModel" name="gearType" [(ngModel)]="pageFilters.gearType"
-                                [ngModelOptions]="{standalone: true}">
-                                <option value="Select gear" disabled selected hidden>Select gear</option>
-                                <option value="0">Auto</option>
-                                <option value="1">Manual</option>
-                            </select>
-                        </div>
-                    </div>
-                    
                 </div>
-                <div class="card-body col-sm-6">
-                    
-                    <div class="form-group row">
-                        <label class="col-md-4 col-form-label" for="gps">GPS:</label>
-                        <div class="col-md-8">
-                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="gps"
-                                #gps="ngModel" placeholder="Enter gps details" name="gps"
-                                [(ngModel)]="pageFilters.gps" [ngModelOptions]="{standalone: true}"  maxlength="20">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-4 col-form-label" for="fuelCard">Fuel Card:</label>
-                        <div class="col-md-8">
-                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="fuelCard"
-                                placeholder="Enter fuelCard details" #fuelCard="ngModel" name="fuelCard"
-                                [(ngModel)]="pageFilters.fuelCard" [ngModelOptions]="{standalone: true}"  maxlength="20">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-4 col-form-label" for="ezPass">EZ Pass:</label>
-                        <div class="col-md-8">
-                            <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ezPass"
-                                #ezPass="ngModel" placeholder="Enter ezPass details" name="ezPass"
-                                [(ngModel)]="pageFilters.ezPass" [ngModelOptions]="{standalone: true}"  maxlength="20">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-4 col-form-label" for="notes">Notes:</label>
-                        <div class="col-md-8">
-                            <textarea [ngClass]="mode?'':'disble'" class="form-control" name="notes"
-                                [(ngModel)]="pageFilters.notes" [ngModelOptions]="{standalone: true}"  maxlength="100"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row" *ngIf="changeUplaod">
-                        <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'"
-                            class="custom-file-upload">
-                            <i class="fa fa-cloud-upload"></i> Upload
-                        </label>
-                        <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
-                        <div class="col-sm-12">
-                            <div *ngFor="let data of finalArry;let i=index">
-                                {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a
-                                        style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span
-                                    *ngIf="mode" (click)="ondelete(i)"><a style="color: red;"
-                                        href="javascript:void(0)">delete</a></span>
-                            </div>
-                        </div>
-                        <div *ngIf="mode">
-                            <button class="btn btn-success" *ngIf="finalArry?.length > 0"
-                                (click)="onUploadFile()">Submit</button>
-                        </div>
-                    </div>
-                    <div class="form-group row" *ngIf="!changeUplaod">
-                        <label class="col-md-4 col-form-label" for="notes" *ngIf="!mode">Uploaded File :</label>
-                        <div class="col-sm-12" *ngIf="editFileList?.length > 0">
-                            <div *ngFor="let data of editFileList;let i=index">
-                                {{data.name}} &nbsp;<span (click)="onView(data)"><a style="color: blue;"
-                                        href="javascript:void(0)">View</a></span>&nbsp;
-                            </div>
-                        </div>
-                        <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'"
-                            class="custom-file-upload">
-                            <i class="fa fa-cloud-upload"></i> Upload
-                        </label>
-                        <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
-                        <div class="col-sm-12">
-                            <div *ngFor="let data of finalArry;let i=index">
-                                {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a
-                                        style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span
-                                    (click)="ondelete(i)"><a style="color: red;"
-                                        href="javascript:void(0)">delete</a></span>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="btn btn-success" *ngIf="finalArry?.length > 0"
-                                (click)="onUploadFile()">Submit</button>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-              </mat-expansion-panel>
-          </mat-accordion>
-
-          <mat-accordion>
-              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                  <mat-expansion-panel-header class="card-header">
-                      <mat-panel-title>
-                          Safety Information
-                      </mat-panel-title>
-                      <mat-panel-description>
-                      </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <div class="card">
-                      <div class="card-body col-sm-8">
-                          <div class="form-group row">
-                              <label class="col-md-5 col-form-label" for="expiryDate">DOT Inspection Expiry
-                                  Date:</label>
-                              <div class="col-md-7">
-                                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="expiryDate"
-                                      #expiryDate="ngModel" name="expiryDate" [(ngModel)]="pageFilters.expiryDate"
-                                      [ngModelOptions]="{standalone: true}">
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-5 col-form-label" for="plates_expirationdate">Plates Expiration
-                                  Date:</label>
-                              <div class="col-md-7">
-                                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control"
-                                      id="plates_expirationdate" #platesExpirationDate="ngModel"
-                                      name="platesExpirationDate" [(ngModel)]="pageFilters.platesExpirationDate"
-                                      [ngModelOptions]="{standalone: true}">
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-5 col-form-label" for="insuranceExpirationDate">Insurance
-                                  Expiration Date:</label>
-                              <div class="col-md-7">
-                                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control"
-                                      id="insuranceExpirationDate" #insuranceExpirationDate="ngModel"
-                                      name="insuranceExpirationDate" [(ngModel)]="pageFilters.insuranceExpirationDate"
-                                      [ngModelOptions]="{standalone: true}">
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-5 col-form-label" for="insuranceValue">Insurance Value:</label>
-                              <div class="col-md-7">
-                                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
-                                      id="insuranceValue" #insuranceValue="ngModel" name="insuranceValue"
-                                      [(ngModel)]="pageFilters.insuranceValue" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
-                                    <div [hidden]="!insuranceValue.errors?.pattern">
-                                        <span style="color: red;">Enter Numbers only</span>
-                                    </div>
-                              </div>
-                          </div>
-                      </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="registerdState">Plates registered State:<span style="color:red">*</span></label>
+              <div class="col-md-8">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" placeholder="Enter plate registered state" id="registerdState" #registerdState="ngModel" name="registerdState" [(ngModel)]="pageFilters.registerdState" [ngModelOptions]="{standalone: true}" minlength="2" maxlength="2" required>
+                <div *ngIf="registerdState.errors && (registerdState.dirty || registerdState.touched)" style="font-size: smaller;">
+                  <div [hidden]="!registerdState.errors.required">
+                    <span style="color: red;">State code is required</span>
                   </div>
-              </mat-expansion-panel>
-          </mat-accordion>
-          <!-- <mat-accordion>
+                  <div *ngIf="registerdState.errors.maxlength || registerdState.errors.minlength">
+                    <span style="color: red;">Two digit state code</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body col-sm-6">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="plate">Plate:
+                <span style="color:red">*</span>
+              </label>
+              <div class="col-md-8">
+                <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="plate" placeholder="Ex: ABC01234" #plate="ngModel" name="plate" [(ngModel)]="pageFilters.plate" [ngModelOptions]="{standalone: true}" minlength="8" maxlength="8" required>
+                <div *ngIf="plate.errors && (plate.dirty || plate.touched)" style="font-size: smaller;">
+                  <div [hidden]="!plate.errors.required">
+                    <span style="color: red;">Plate is required</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="vin">Vin:<span style="color:red">*</span></label>
+              <div class="col-md-8">
+                <input type="text" [ngClass]="mode?'':'disble'" maxlength="17" class="form-control" id="vin" placeholder="Enter vin details" #vin="ngModel" name="vin" [(ngModel)]="pageFilters.vin" [ngModelOptions]="{standalone: true}" minlength="17" maxlength="17" required>
+                <div *ngIf="vin.errors && (vin.dirty || vin.touched)" style="font-size: smaller;">
+                  <div [hidden]="!vin.errors.required">
+                    <span style="color: red;">Vin is required</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer" *ngIf="showAddOption">
+          <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submitpart1()"><i class="fa fa-dot-circle-o"></i>
+            <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            Submit</button>&nbsp;&nbsp;
+          <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
+            <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            Update</button>&nbsp;&nbsp;
+          <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+        </div>
+      </div>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Trucks Information Part-II
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div style="display: flex;">
+            <div class="card-body col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="startingMileage">Starting Mileage:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" placeholder="Ex: 01234" id="startingMileage" #startingMileage="ngModel" name="startingMileage" [(ngModel)]="pageFilters.startingMileage" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10" required>
+                  <div *ngIf="startingMileage.errors && (startingMileage.dirty || startingMileage.touched)" style="font-size: smaller;">
+                    <div [hidden]="!startingMileage.errors?.pattern">
+                      <span style="color: red;">Enter Numbers only</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="currentMiles">Current Miles:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="currentMiles" placeholder="Ex: 01234" #currentMiles="ngModel" name="currentMiles" [(ngModel)]="pageFilters.currentMiles" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10" required>
+                  <div *ngIf="currentMiles.errors && (currentMiles.dirty || currentMiles.touched)" style="font-size: smaller;">
+                    <div [hidden]="!currentMiles.errors?.pattern">
+                      <span style="color: red;">Enter Numbers only</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="yom">Year of Make:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="yom" placeholder="Ex: 2020" name="yom" #yom="ngModel" [(ngModel)]="pageFilters.yom" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" minlength="4" maxlength="4" required>
+                  <div *ngIf="yom.errors && (yom.dirty || yom.touched)" style="font-size: smaller;">
+                    <div [hidden]="!yom.errors?.pattern">
+                      <span style="color: red;">Enter Numbers only</span>
+                    </div>
+                    <div *ngIf="yom.errors.maxlength || yom.errors.minlength">
+                      <span style="color: red;">Year must be 4 numbers</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="gearType">Gear Type:</label>
+                <div class="col-md-8">
+                  <select class="form-control" [ngClass]="mode?'':'disble'" id="geartype" #gearType="ngModel" name="gearType" [(ngModel)]="pageFilters.gearType" [ngModelOptions]="{standalone: true}">
+                    <option value="Select gear" disabled selected hidden>Select gear</option>
+                    <option value="0">Auto</option>
+                    <option value="1">Manual</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="card-body col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="gps">GPS:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="gps" #gps="ngModel" placeholder="Enter gps details" name="gps" [(ngModel)]="pageFilters.gps" [ngModelOptions]="{standalone: true}" maxlength="20">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="fuelCard">Fuel Card:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="fuelCard" placeholder="Enter fuelCard details" #fuelCard="ngModel" name="fuelCard" [(ngModel)]="pageFilters.fuelCard" [ngModelOptions]="{standalone: true}" maxlength="20">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="ezPass">EZ Pass:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="ezPass" #ezPass="ngModel" placeholder="Enter ezPass details" name="ezPass" [(ngModel)]="pageFilters.ezPass" [ngModelOptions]="{standalone: true}" maxlength="20">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="notes">Notes:</label>
+                <div class="col-md-8">
+                  <textarea [ngClass]="mode?'':'disble'" class="form-control" name="notes" [(ngModel)]="pageFilters.notes" [ngModelOptions]="{standalone: true}" maxlength="100"></textarea>
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="changeUplaod">
+                <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'" class="custom-file-upload">
+                  <i class="fa fa-cloud-upload"></i> Upload
+                </label>
+                <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
+                <div class="col-sm-12">
+                  <div *ngFor="let data of finalArry;let i=index">
+                    {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span *ngIf="mode" (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+                  </div>
+                </div>
+                <div *ngIf="mode">
+                  <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="!changeUplaod">
+                <label class="col-md-4 col-form-label" for="notes" *ngIf="!mode">Uploaded File :</label>
+                <div class="col-sm-12" *ngIf="editFileList?.length > 0">
+                  <div *ngFor="let data of editFileList;let i=index">
+                    {{data.name}} &nbsp;<span (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;
+                  </div>
+                </div>
+                <label for="file-upload" *ngIf="mode" [ngClass]="mode?'':'disble'" class="custom-file-upload">
+                  <i class="fa fa-cloud-upload"></i> Upload
+                </label>
+                <input id="file-upload" multiple type="file" (change)="addfiles($event)" />
+                <div class="col-sm-12">
+                  <div *ngFor="let data of finalArry;let i=index">
+                    {{data.name}} &nbsp;<span *ngIf="showviewedit" (click)="onView(data)"><a style="color: blue;" href="javascript:void(0)">View</a></span>&nbsp;<span (click)="ondelete(i)"><a style="color: red;" href="javascript:void(0)">delete</a></span>
+                  </div>
+                </div>
+                <div>
+                  <button class="btn btn-success" *ngIf="finalArry?.length > 0" (click)="onUploadFile()">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Safety Information
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="card">
+            <div class="card-body col-sm-8">
+              <div class="form-group row">
+                <label class="col-md-5 col-form-label" for="expiryDate">DOT Inspection Expiry
+                  Date:</label>
+                <div class="col-md-7">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="expiryDate" #expiryDate="ngModel" name="expiryDate" [(ngModel)]="pageFilters.expiryDate" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-5 col-form-label" for="plates_expirationdate">Plates Expiration
+                  Date:</label>
+                <div class="col-md-7">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="plates_expirationdate" #platesExpirationDate="ngModel" name="platesExpirationDate" [(ngModel)]="pageFilters.platesExpirationDate" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-5 col-form-label" for="insuranceExpirationDate">Insurance
+                  Expiration Date:</label>
+                <div class="col-md-7">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="insuranceExpirationDate" #insuranceExpirationDate="ngModel" name="insuranceExpirationDate" [(ngModel)]="pageFilters.insuranceExpirationDate" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-5 col-form-label" for="insuranceValue">Insurance Value:</label>
+                <div class="col-md-7">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="insuranceValue" #insuranceValue="ngModel" name="insuranceValue" [(ngModel)]="pageFilters.insuranceValue" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
+                  <div [hidden]="!insuranceValue.errors?.pattern">
+                    <span style="color: red;">Enter Numbers only</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <!-- <mat-accordion>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header class="card-header">
             <mat-panel-title>
@@ -327,225 +256,179 @@
 
           </mat-expansion-panel>
       </mat-accordion> -->
-          <mat-accordion>
-              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                  <mat-expansion-panel-header class="card-header">
-                      <mat-panel-title>
-                          Maintenance Records
-                      </mat-panel-title>
-                      <mat-panel-description>
-                      </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <div class="dx-viewport">
-                      <div class="grid-container">
-                          <dx-data-grid #grid id="gridContainer" [dataSource]="maintenancedata"
-                              [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true"
-                              [remoteOperations]="true" (onRowUpdated)="onEdit($event)"
-                              (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
-                              <dxo-paging [enabled]="false"></dxo-paging>
-                              <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode"
-                                  [allowAdding]="mode">
-                              </dxo-editing>
-                              <dxo-selection mode="single"></dxo-selection>
-                              <dxi-column dataField="fromdate" dataType="date" caption="Service Date"></dxi-column>
-                              <dxi-column dataField="type" caption="Category">
-                                  <dxo-lookup [dataSource]="categoryDetails" displayExpr="Name" valueExpr="ID">
-                                  </dxo-lookup>
-                              </dxi-column>
-                              <dxi-column dataField="curmiles" caption="Current Miles"></dxi-column>
-                              <dxi-column dataField="nummiles" caption="Number of Miles"></dxi-column>
-                              <dxi-column dataField="nxtservicemile" caption="Next Service Miles"></dxi-column>
-                              <dxi-column dataField="servicefrom" caption="Serviced From"></dxi-column>
-                              <dxi-column dataField="cost" caption="Cost"></dxi-column>
-                              <dxi-column dataField="comments" caption="Comments"></dxi-column>
-                          </dx-data-grid>
-                      </div>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Maintenance Records
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="dx-viewport">
+            <div class="grid-container">
+              <dx-data-grid #grid id="gridContainer" [dataSource]="maintenancedata" [allowColumnReordering]="true" [showBorders]="true" [columnAutoWidth]="true" [remoteOperations]="true" (onRowUpdated)="onEdit($event)" (onRowRemoved)="onDelete($event)" (onRowInserted)="onAdd($event)">
+                <dxo-paging [enabled]="false"></dxo-paging>
+                <dxo-editing mode="row" [allowUpdating]="mode" [allowDeleting]="mode" [allowAdding]="mode">
+                </dxo-editing>
+                <dxo-selection mode="single"></dxo-selection>
+                <dxi-column dataField="fromdate" dataType="date" caption="Service Date"></dxi-column>
+                <dxi-column dataField="type" caption="Category">
+                  <dxo-lookup [dataSource]="categoryDetails" displayExpr="Name" valueExpr="ID">
+                  </dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="curmiles" caption="Current Miles"></dxi-column>
+                <dxi-column dataField="nummiles" caption="Number of Miles"></dxi-column>
+                <dxi-column dataField="nxtservicemile" caption="Next Service Miles"></dxi-column>
+                <dxi-column dataField="servicefrom" caption="Serviced From"></dxi-column>
+                <dxi-column dataField="cost" caption="Cost"></dxi-column>
+                <dxi-column dataField="comments" caption="Comments"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="card-header">
+            <mat-panel-title>
+              Ownership Information
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div style="display: flex;">
+            <div class="card-body col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-5 col-form-label" for="companyowned">Company Owned:</label>
+                <div class="col-md-7 col-form-label" name="companyOwned">
+                  <div class="form-check form-check-inline mr-1">
+                    <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio1" type="radio" value="yes" checked="checked" name="isFilter" #isFilter="ngModel" required [value]="true" [(ngModel)]="pageFilters.isFilter" [ngModelOptions]="{standalone: true}">
+                    <label class="form-check-label" for="inline-radio1">Yes</label>
                   </div>
-              </mat-expansion-panel>
-          </mat-accordion>
-          <mat-accordion>
-              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                  <mat-expansion-panel-header class="card-header">
-                      <mat-panel-title>
-                          Ownership Information
-                      </mat-panel-title>
-                      <mat-panel-description>
-                      </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <div style="display: flex;">
-                      <div class="card-body col-sm-6">
-                          <!-- <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="comapnyOwned">Company Owned:</label>
-                              <div class="col-md-8 col-form-label">
-                                  <input class="form-check-label" [ngClass]="mode?'':'disble'" id="comapnyOwned"
-                                      type="checkbox" value="true" #comapnyOwned="ngModel" name="comapnyOwned"
-                                      [(ngModel)]="pageFilters.comapnyOwned" [ngModelOptions]="{standalone: true}">
-                              </div>
-                          </div> -->
-                          <div class="form-group row">
-                            <label class="col-md-4 col-form-label" for="comapnyOwned">Comapny Owned:</label>
-                            <div class="col-md-8">
-                                <select class="form-control" [ngClass]="mode?'':'disble'" id="comapnyOwned"
-                                    #comapnyOwned="ngModel" name="comapnyOwned" [(ngModel)]="pageFilters.comapnyOwned"
-                                    [ngModelOptions]="{standalone: true}">
-                                    <option value="comapnyOwned" disabled selected hidden>Comapny Owned</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                          <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="price">Price:</label>
-                              <div class="col-md-8">
-                                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="price"
-                                      #price="ngModel" name="price" [(ngModel)]="pageFilters.price" placeholder="0123"
-                                      [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
-                                <div [hidden]="!price.errors?.pattern">
-                                    <span style="color: red;">Enter Numbers only</span>
-                                </div>
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="purchaseDate">Start Date:</label>
-                              <div class="col-md-8">
-                                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control"
-                                      id="purchaseDate" #purchaseDate="ngModel" name="purchaseDate"
-                                      [(ngModel)]="pageFilters.purchaseDate" [ngModelOptions]="{standalone: true}">
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="operationDate">Operation Date:</label>
-                              <div class="col-md-8">
-                                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control"
-                                      id="operationDate" #operationDate="ngModel" name="operationDate"
-                                      [(ngModel)]="pageFilters.operationDate" [ngModelOptions]="{standalone: true}">
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="financer">Financer:</label>
-                              <div class="col-md-8">
-                                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="financer"
-                                      #financer="ngModel" name="financer" [(ngModel)]="pageFilters.financer"
-                                      [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
-                                    <div [hidden]="!financer.errors?.pattern">
-                                        <span style="color: red;">Enter Numbers only</span>
-                                    </div>
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="installment">Installment:</label>
-                              <div class="col-md-8">
-                                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
-                                      id="installment" #installment="ngModel" name="installment"
-                                      [(ngModel)]="pageFilters.installment" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
-                                    <div [hidden]="!installment.errors?.pattern">
-                                        <span style="color: red;">Enter Numbers only</span>
-                                    </div>
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="installmentDuedate">Installment Due
-                                  Date:</label>
-                              <div class="col-md-8">
-                                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control"
-                                      id="installmentDuedate" #installmentDuedate="ngModel"
-                                      name="installmentDuedate" [(ngModel)]="pageFilters.installmentDuedate"
-                                      [ngModelOptions]="{standalone: true}">
-                              </div>
-                          </div>
-                      </div>
-                      <div class="card-body col-sm-6">
-                          <!-- <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="leased">Leased:</label>
-                              <div class="col-md-8 col-form-label">
-                                  <input [ngClass]="mode?'':'disble'" class="form-check-label" id="leased"
-                                      type="checkbox" value="true" #leased="ngModel" name="leased"
-                                      [(ngModel)]="pageFilters.leased" [ngModelOptions]="{standalone: true}">
-                              </div>
-                          </div> -->
-                          <div class="form-group row">
-                            <label class="col-md-4 col-form-label" for="leased">Leased:</label>
-                            <div class="col-md-8">
-                                <select class="form-control" [ngClass]="mode?'':'disble'" id="leased"
-                                    #leased="ngModel" name="leased" [(ngModel)]="pageFilters.leased"
-                                    [ngModelOptions]="{standalone: true}">
-                                    <option value="leased" disabled selected hidden>Leased</option>
-                                </select>
-                            </div>
-                        </div>
-                          <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="dealer">Dealer:</label>
-                              <div class="col-md-8">
-                                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dealer"
-                                      #dealer="ngModel" name="dealer" [(ngModel)]="pageFilters.dealer"
-                                      [ngModelOptions]="{standalone: true}" maxlength="20">
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="leasedFrom">Leased from:</label>
-                              <div class="col-md-8">
-                                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leasedFrom"
-                                      #leasedFrom="ngModel" name="leasedFrom" [(ngModel)]="pageFilters.leasedFrom"
-                                      [ngModelOptions]="{standalone: true}" maxlength="20">
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="leaaseStart">Lease Start:</label>
-                              <div class="col-md-8">
-                                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leasestart"
-                                      #leaaseStart="ngModel" name="leaaseStart" [(ngModel)]="pageFilters.leaaseStart"
-                                      [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
-                                <div [hidden]="!leaaseStart.errors?.pattern">
-                                    <span style="color: red;">Enter Numbers only</span>
-                                </div>
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="leaseExpirydate">Lease Expiry Date:</label>
-                              <div class="col-md-8">
-                                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control"
-                                      id="leaseExpirydate" #leaseExpirydate="ngModel" name="leaseExpirydate"
-                                      [(ngModel)]="pageFilters.leaseExpirydate" [ngModelOptions]="{standalone: true}">
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="installment1">Installment:</label>
-                              <div class="col-md-8">
-                                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control"
-                                      id="installment1" #installment1="ngModel" name="installment1"
-                                      [(ngModel)]="pageFilters.installment1" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
-                                <div [hidden]="!installment1.errors?.pattern">
-                                    <span style="color: red;">Enter Numbers only</span>
-                                </div>
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <label class="col-md-4 col-form-label" for="installmentDuedate1">Installment Due
-                                  Date:</label>
-                              <div class="col-md-8">
-                                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control"
-                                      id="installmentDuedate1" #installmentDuedate1="ngModel"
-                                      name="installmentDuedate1" [(ngModel)]="pageFilters.installmentDuedate1"
-                                      [ngModelOptions]="{standalone: true}">
-                              </div>
-                          </div>
-                      </div>
+                  <div class="form-check form-check-inline mr-1">
+                    <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio2" type="radio" value="no" name="isFilter" #isFilter="ngModel" required [value]="false" [(ngModel)]="pageFilters.isFilter">
+                    <label class="form-check-label" for="inline-radio2">No</label>
                   </div>
-              </mat-expansion-panel>
-          </mat-accordion>
-      </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="price">Price:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="price" #price="ngModel" name="price" [(ngModel)]="pageFilters.price" placeholder="0123" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
+                  <div [hidden]="!price.errors?.pattern">
+                    <span style="color: red;">Enter Numbers only</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="purchaseDate">Start Date:</label>
+                <div class="col-md-8">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="purchaseDate" #purchaseDate="ngModel" name="purchaseDate" [(ngModel)]="pageFilters.purchaseDate" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="operationDate">Operation Date:</label>
+                <div class="col-md-8">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="operationDate" #operationDate="ngModel" name="operationDate" [(ngModel)]="pageFilters.operationDate" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="financer">Financer:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="financer" #financer="ngModel" name="financer" [(ngModel)]="pageFilters.financer" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
+                  <div [hidden]="!financer.errors?.pattern">
+                    <span style="color: red;">Enter Numbers only</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="installment">Installment:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="installment" #installment="ngModel" name="installment" [(ngModel)]="pageFilters.installment" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
+                  <div [hidden]="!installment.errors?.pattern">
+                    <span style="color: red;">Enter Numbers only</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="installmentDuedate">Installment Due
+                  Date:</label>
+                <div class="col-md-8">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="installmentDuedate" #installmentDuedate="ngModel" name="installmentDuedate" [(ngModel)]="pageFilters.installmentDuedate" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+            </div>
+            <div class="card-body col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-5 col-form-label" for="leased">Leased:</label>
+                <div class="col-md-7 col-form-label">
+                  <div class="form-check form-check-inline mr-1">
+                    <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio1" type="radio" value="yes" name="isFilter1" #isFilter1="ngModel" required [value]="true" [(ngModel)]="pageFilters.isFilter1" [ngModelOptions]="{standalone: true}">
+                    <label class="form-check-label" for="inline-radio1">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline mr-1">
+                    <input [ngClass]="mode?'':'disble'" class="form-check-input" id="inline-radio2" type="radio" value="no" name="isFilter1" #isFilter1="ngModel" required [value]="false" [(ngModel)]="pageFilters.isFilter1">
+                    <label class="form-check-label" for="inline-radio2">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="dealer">Dealer:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="dealer" #dealer="ngModel" name="dealer" [(ngModel)]="pageFilters.dealer" [ngModelOptions]="{standalone: true}" maxlength="20">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="leasedFrom">Leased from:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leasedFrom" #leasedFrom="ngModel" name="leasedFrom" [(ngModel)]="pageFilters.leasedFrom" [ngModelOptions]="{standalone: true}" maxlength="20">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="leaaseStart">Lease Start:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="leasestart" #leaaseStart="ngModel" name="leaaseStart" [(ngModel)]="pageFilters.leaaseStart" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
+                  <div [hidden]="!leaaseStart.errors?.pattern">
+                    <span style="color: red;">Enter Numbers only</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="leaseExpirydate">Lease Expiry Date:</label>
+                <div class="col-md-8">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="leaseExpirydate" #leaseExpirydate="ngModel" name="leaseExpirydate" [(ngModel)]="pageFilters.leaseExpirydate" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="installment1">Installment:</label>
+                <div class="col-md-8">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="installment1" #installment1="ngModel" name="installment1" [(ngModel)]="pageFilters.installment1" [ngModelOptions]="{standalone: true}" [pattern]="'^[1-9][0-9]*$'" maxlength="10">
+                  <div [hidden]="!installment1.errors?.pattern">
+                    <span style="color: red;">Enter Numbers only</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label" for="installmentDuedate1">Installment Due
+                  Date:</label>
+                <div class="col-md-8">
+                  <input type="date" [ngClass]="mode?'':'disble'" class="form-control" id="installmentDuedate1" #installmentDuedate1="ngModel" name="installmentDuedate1" [(ngModel)]="pageFilters.installmentDuedate1" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
   </div>
   <div class="card-footer" *ngIf="showAddOption">
-      <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary"
-          [ngClass]="btnHide?'accessPointer':''" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
-          <img *ngIf="IsDataloading"
-              src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-          Submit</button>&nbsp;&nbsp;
-      <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary"
-          [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
-          <img *ngIf="IsDataloading"
-              src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-          Update</button>&nbsp;&nbsp;
-      <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i
-              class="fa fa-ban"></i> Reset</button>
+    <button type="submit" *ngIf="showsubmit" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="submit()"><i class="fa fa-dot-circle-o"></i>
+      <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      Submit</button>&nbsp;&nbsp;
+    <button type="submit" *ngIf="showupdate" style="float: right;margin-left: 10px;" class="btn btn-sm btn-primary" [ngClass]="btnHide?'accessPointer':''" (click)="update()"><i class="fa fa-dot-circle-o"></i>
+      <img *ngIf="IsDataloading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      Update</button>&nbsp;&nbsp;
+    <button type="reset" style="float: right" (click)="reset()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
   </div>
 </form>

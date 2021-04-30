@@ -60,7 +60,7 @@ export class CustomerslistComponent implements OnInit {
             })            
           }
         }
-          this.data = data;
+          this.data = data.result;
         });
       }
 

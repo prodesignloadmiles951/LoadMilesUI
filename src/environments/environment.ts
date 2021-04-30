@@ -19,7 +19,7 @@ export const environment = {
   trailersurl: currentEnv + '/companyApi/trailer',
   driversurl: currentEnv + '/companyApi/driver',
   dispatchersurl: currentEnv + '/companyApi/dispatcher',
-  carrierurl: 'http://3.139.89.46:8081/carriersapi/carriers',
+  carrierurl: currentEnv + '/companyApi/carrier',
   customersurl: currentEnv + '/companyApi/customer',
   getloadsurl: currentEnv + '/companyApi/load',
   pickupform: currentEnv + '/companyApi/pickup',

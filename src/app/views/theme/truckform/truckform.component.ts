@@ -48,6 +48,7 @@ export class TruckformComponent implements OnInit {
     changeUplaod=true
     editFileList=[]
     btnHide=false
+    TrucklistdataId
     truckForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef < TruckformComponent > ,
@@ -213,10 +214,10 @@ export class TruckformComponent implements OnInit {
           idArry.push(this.finalArry[i]._id)
         }
         Truckslistdata['files']=idArry
+        Truckslistdata['_id'] = this.TrucklistdataId
         if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
           this.btnHide=true
-          
-        this._trucksservice.SendForm(Truckslistdata).subscribe(response => {
+        this._trucksservice.EditTrucks(Truckslistdata, Truckslistdata['_id']).subscribe(response => {
           this.submitted = true;
           if(response.Status == "error"){
            this.btnHide = false;
@@ -279,13 +280,18 @@ export class TruckformComponent implements OnInit {
    submitpart1(){
     var Trucklistdata:any=this.pageFilters
     Trucklistdata['companyId']=localStorage.selectedCompany
-    if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != "" && this.pageFilters['companyname'] != ""){
-      this.btnHide=true
+    if(this.pageFilters['vin'] != undefined && this.pageFilters['vin'] != ""){
+      if(this.pageFilters['truckUnitNumber'] != undefined && this.pageFilters['truckUnitNumber'] != ""){
+        if(this.pageFilters['plate'] != undefined && this.pageFilters['plate'] != ""){
+          if(this.pageFilters['registerdState'] != undefined && this.pageFilters['registerdState'] != ""){
+                 this.btnHide=true
     this._trucksservice.SendForm(Trucklistdata).subscribe(response => {
       if(response.Status != "error"){
         this.submitted = true;
         this._toaster.info("Trucks Data Submitted","Success", {timeOut: 3000});
         this.btnHide=false
+        this.TrucklistdataId = response['result']['_id']
+                console.log(this.TrucklistdataId)
       }else{
         this.submitted=false;
         this._toaster.info(response.error,"Failed", {timeOut: 2000});
@@ -294,6 +300,18 @@ export class TruckformComponent implements OnInit {
       this.submitted=false;
       this._toaster.error("Submit again","Failed", {timeOut: 2000});
     });
+          }else{
+    this._toaster.error("Enter Registered state Details","Failed", {timeOut: 2000});
+   }
+        }else{
+    this._toaster.error("Enter Plate Details","Failed", {timeOut: 2000});
+   }
+      }else{
+    this._toaster.error("Enter Truckunit number Details","Failed", {timeOut: 2000});
+   }
+
+
+   
   }else{
     this._toaster.error("Enter VIN Details","Failed", {timeOut: 2000});
    }

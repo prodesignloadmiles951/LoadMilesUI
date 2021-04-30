@@ -283,7 +283,7 @@ export class DriverformComponent implements OnInit {
               delete Driverlistdata['companyid']
 
               Driverlistdata['account']= account
-              Driverlistdata['cellPhone'] = JSON.stringify(Driverlistdata['cellPhone'])
+              // Driverlistdata['cellPhone'] = JSON.stringify(Driverlistdata['cellPhone'])
               Driverlistdata['ssn'] = JSON.stringify(Driverlistdata['ssn'])
               Driverlistdata['_id'] = this.DriverlistdataId
 

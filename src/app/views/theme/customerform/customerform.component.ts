@@ -68,9 +68,10 @@ export class CustomerformComponent implements OnInit {
     changeUplaod=true
     editFileList=[]
     btnHide=false
-    customerForm: FormGroup;
-
-  constructor(public dialogRef: MatDialogRef < CustomerformComponent > ,
+    CustomerlistdataId
+    customerFormdata
+    customerForm
+ constructor(public dialogRef: MatDialogRef < CustomerformComponent > ,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private _customersservice: CustomersService, private _trailersService: TrailerService, private _trucksservice: TrucksService, private _toaster: ToastrService,private router: Router) { }
 
@@ -199,7 +200,7 @@ export class CustomerformComponent implements OnInit {
      console.log(this.data)
      if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
           this.btnHide=true
-     this._customersservice.EditCustomers(this.data).subscribe(res => {
+     this._customersservice.EditCustomers(this.data, this.data['_id']).subscribe(res => {
          this._toaster.info("Customer Data Updated successfully","Success", {timeOut: 3000,});
          this.btnHide=false
          this.dialogRef.close(res)
@@ -267,7 +268,8 @@ export class CustomerformComponent implements OnInit {
         });
         if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
           this.btnHide=true
-        this._customersservice.SendForm(data).subscribe(response => {
+          data['_id'] = this.CustomerlistdataId
+        this._customersservice.EditCustomers(data, data['_id']).subscribe(response => {
           if(response.Status != "error"){
             this.submitted = true;
             this._toaster.info("Customerform Data Submitted","Success", {timeOut: 3000});
@@ -288,15 +290,24 @@ export class CustomerformComponent implements OnInit {
        }
      }
      submitpart1(){
+       console.log(this.pageFilters)
         var Customerlistdata:any=this.pageFilters
-        Customerlistdata['companyId']=localStorage.selectedCompany
-        if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
-          this.btnHide=true
-        this._customersservice.SendForm(Customerlistdata).subscribe(response => {
+        this.pageFilters['companyId']=localStorage.selectedCompany
+                 var customerFormdata:any={}
+                 customerFormdata['mcff'] =  this.pageFilters['mcsf']  
+                 customerFormdata['name'] =  this.pageFilters['name'] 
+                 customerFormdata['companyId'] = this.pageFilters['companyId'] 
+                        
+        if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != ""){
+          if(this.pageFilters['name'] != undefined && this.pageFilters['name'] != ""){
+            this.btnHide=true
+        this._customersservice.SendForm(customerFormdata).subscribe(response => {
           if(response.Status != "error"){
             this.submitted = true;
             this._toaster.info("Customerform Data Submitted","Success", {timeOut: 3000});
             this.btnHide=false
+            this.CustomerlistdataId = response['result']['_id']
+                console.log(this.CustomerlistdataId)
           }else{
             this.submitted=false;
             this._toaster.info(response.error,"Failed", {timeOut: 2000});
@@ -305,6 +316,9 @@ export class CustomerformComponent implements OnInit {
           this.submitted=false;
           this._toaster.error("Submit again","Failed", {timeOut: 2000});
         });
+          }else{
+        this._toaster.error("Enter Customer name Details","Failed", {timeOut: 2000});
+       }
       }else{
         this._toaster.error("Enter MC Details","Failed", {timeOut: 2000});
        }
