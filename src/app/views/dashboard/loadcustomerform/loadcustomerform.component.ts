@@ -197,7 +197,7 @@ export class LoadcustomerformComponent implements OnInit {
      console.log(this.data)
      if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
        this.btnHide=true
-     this._customersservice.EditCustomers(this.data).subscribe(res => {
+     this._customersservice.EditCustomers(this.data, this.data['_id']).subscribe(res => {
          if(res.Status != "error"){
          this._toaster.info("Customer Data Updated successfully","Success", {timeOut: 3000,});
          this.btnHide=true

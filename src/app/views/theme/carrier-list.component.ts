@@ -72,7 +72,7 @@ export class CarrierlistComponent implements OnInit {
            this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
          }else{
             carrier['companyid']=localStorage.selectedCompany
-            this._carrierservice.EditCarrier(carrier).subscribe(response => {
+            this._carrierservice.EditCarrier(carrier, carrier['_id']).subscribe(response => {
                 this._toaster.success(selectedCarrier+ " carrier successfully updated", "Success", {timeOut: 3000,});
             }, error => {
                 this._toaster.error("error", "Try Again", {timeOut: 2000,});
@@ -91,12 +91,12 @@ export class CarrierlistComponent implements OnInit {
           }
         })
       }
-    deleteCarriers(carrier) {
+    deleteData(carrier) {
         if(localStorage.selectedCompany == undefined){
            this._toaster.error("Please Select Company","Failed", {timeOut: 2000,});
          }else{
-            this._carrierservice.DeleteCarrier(carrier._id).subscribe(data => {
-            this._toaster.info("Carrier Data Delete", "Success", {timeOut: 3000,});
+            this._carrierservice.DeleteCarrier(carrier['_id']).subscribe(data => {
+            this._toaster.info("Carrier Data Deleted", "Success", {timeOut: 3000,});
             this.getData();
             });
          }

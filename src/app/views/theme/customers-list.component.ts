@@ -89,7 +89,7 @@ export class CustomerslistComponent implements OnInit {
            this._toasterservice.error("Please Select Company","Failed", {timeOut: 2000,});
          }else{
           customer['companyid']=localStorage.selectedCompany
-          this._customersservice.EditCustomers(customer).subscribe(response => {
+          this._customersservice.EditCustomers(customer, customer['_id']).subscribe(response => {
             this._toasterservice.success(selectedCustomer+ " customer successfully updated", "Success", {timeOut: 3000,});
           }, error => {
              this._toasterservice.error("error", "Try Again", {timeOut: 2000,});

@@ -106,6 +106,7 @@ export class CarrierformComponent implements OnInit {
     showsubmit=false
     changeUplaod=true
     editFileList=[]
+    CarrierlistdataId
     btnHide=false
     driversafetydetails=undefined
 
@@ -368,6 +369,7 @@ export class CarrierformComponent implements OnInit {
           idArry.push(this.finalArry[i]._id)
         }
         Carrierlistdata['files']=idArry
+        Carrierlistdata['_id'] = this.CarrierlistdataId
         if(this.pageFilters['ssn'] != undefined && this.pageFilters['ssn'] != ""){
           this.btnHide=true
         this._carrierService.EditCarrier(Carrierlistdata, Carrierlistdata['_id']).subscribe(response => {
@@ -414,7 +416,8 @@ export class CarrierformComponent implements OnInit {
           this.submitted = true;
           this._toaster.info("Carrierform Data Submitted","Success", {timeOut: 3000,});
           this.btnHide=false
-         this.dialogRef.close(response)
+          this.CarrierlistdataId = response['result']['_id']
+                console.log(this.CarrierlistdataId)
        }
         },error=>{
           this.submitted=false;
