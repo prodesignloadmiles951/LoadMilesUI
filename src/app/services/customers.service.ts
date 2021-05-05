@@ -28,7 +28,7 @@ export class CustomersService {
       EditCustomers(obj,id){
         delete obj['_id']
         let options = new RequestOptions({ headers: this._headerService.getHeader() });
-        return this.http.put(this.customersurl+"/"+obj._id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
+        return this.http.put(this.customersurl+"/"+id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
       }
 
       DeleteCustomers(_id) {

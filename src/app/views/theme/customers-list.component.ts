@@ -112,7 +112,7 @@ export class CustomerslistComponent implements OnInit {
       if(localStorage.selectedCompany == undefined){
          this._toasterservice.error("Please Select Company","Failed", {timeOut: 2000,});
        }else{
-          this._customersservice.DeleteCustomers(customer._id).subscribe(data => {
+          this._customersservice.DeleteCustomers(customer['_id']).subscribe(data => {
           this._toasterservice.info("Customer Data Delete", "Success", {timeOut: 3000,});
           this.getData();
          });

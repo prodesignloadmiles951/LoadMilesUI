@@ -198,7 +198,7 @@ export class CustomerformComponent implements OnInit {
      this.data['contactinfodata']=this.contactinfodata
     }
      console.log(this.data)
-     if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
+     if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != ""){
           this.btnHide=true
      this._customersservice.EditCustomers(this.data, this.data['_id']).subscribe(res => {
          this._toaster.info("Customer Data Updated successfully","Success", {timeOut: 3000,});
@@ -223,13 +223,7 @@ export class CustomerformComponent implements OnInit {
           idArry.push(this.finalArry[i]._id)
         }
 
-        // var Customerslistdata:any=this.pageFilters
-        // Customerslistdata['contactinfodata']=this.contactinfodata
-        // Customerslistdata['companyid']=localStorage.selectedCompany
-        // Customerslistdata['files']=idArry
-
         var data: any = {
-          "companyId": localStorage.selectedCompany,
           "files": idArry,
  
           "displayName": this.contactinfodata.name,
@@ -261,14 +255,18 @@ export class CustomerformComponent implements OnInit {
           "billTo": this.pageFilters.billto,
           "fein": this.pageFilters.fein,
           "dba": this.pageFilters.dba,
-          "active": true
+          "active": true,
+          "_id":''
         }
-        Object.keys(data).forEach(key => {
-          if(!data[key]) delete data[key];
-        });
-        if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != "" && this.pageFilters['companyname'] != ""){
-          this.btnHide=true
+        // Object.keys(data).forEach(key => {
+        //   if(!data[key]) delete data[key];
+        // });
+        var Customerslistdata:any=data
+          console.log(data)
+          // console.log(this.Customerslistdata)
           data['_id'] = this.CustomerlistdataId
+        if(this.pageFilters['mcsf'] != undefined && this.pageFilters['mcsf'] != ""){
+          this.btnHide=true
         this._customersservice.EditCustomers(data, data['_id']).subscribe(response => {
           if(response.Status != "error"){
             this.submitted = true;

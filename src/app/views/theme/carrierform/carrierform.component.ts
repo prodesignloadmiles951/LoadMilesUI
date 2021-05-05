@@ -121,6 +121,8 @@ export class CarrierformComponent implements OnInit {
       this.showAddOption=true
       this.selectedCarrier=false
       this.showsubmit=true
+      this.pageFilters['address']={}
+      this.pageFilters['account']={}
     }else{
       this.mode=this.data['EditMode'] 
       this.pageFilters=this.data
@@ -364,6 +366,34 @@ export class CarrierformComponent implements OnInit {
         Carrierlistdata['driversafetyAddObj']=this.driversafetyAddObj
         Carrierlistdata['trucksafetyAddObj']=this.trucksafetyAddObj
         Carrierlistdata['companyid']=localStorage.selectedCompany
+
+
+              var addobj={}
+              addobj['line']=Carrierlistdata['address']['line']
+              addobj['line1']=Carrierlistdata['address']['line1']
+              addobj['city']=Carrierlistdata['address']['city']
+              addobj['state']=Carrierlistdata['address']['state']
+              addobj['zip']=Carrierlistdata['address']['zip']
+              addobj['country']=Carrierlistdata['address']['country']
+              delete Carrierlistdata['line']
+              delete Carrierlistdata['line1']
+              delete Carrierlistdata['city']
+              delete Carrierlistdata['state']
+              delete Carrierlistdata['zip']
+              delete Carrierlistdata['country']
+              Carrierlistdata['address']=addobj
+
+              var account={}
+              account['bankname']=Carrierlistdata['account']['bankname']
+              account['accountnumber']=Carrierlistdata['account']['accountnumber']
+              account['acctype']=Carrierlistdata['account']['acctype']
+
+              delete Carrierlistdata['accountnumber']
+              delete Carrierlistdata['bankname']
+              delete Carrierlistdata['acctype']
+              delete Carrierlistdata['companyid']
+
+              Carrierlistdata['account']= account
         var idArry=[]
         for (var i = 0; i < this.finalArry.length; ++i) {
           idArry.push(this.finalArry[i]._id)
@@ -404,6 +434,7 @@ export class CarrierformComponent implements OnInit {
           idArry.push(this.finalArry[i]._id)
         }
         Carrierlistdata['files']=idArry
+
         if(this.pageFilters['companyname'] != undefined && this.pageFilters['companyname'] != ""){
           if(this.pageFilters['cellphone'] != undefined && this.pageFilters['cellphone'] != ""){
             if(this.pageFilters['cemergencyphone'] != undefined && this.pageFilters['cemergencyphone'] != ""){

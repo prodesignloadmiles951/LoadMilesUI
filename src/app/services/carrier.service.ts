@@ -26,6 +26,7 @@ export class CarrierService {
     }
     
     EditCarrier(obj,id) {
+        delete obj['_id']
     let options = new RequestOptions({ headers: this._headerService.getHeader() });
     return this.http.put(this.carrierurl+"/"+obj._id,obj,options).pipe(map(response=>response.json()),catchError((error:Response)=>{return observableThrowError(error);}));
     }

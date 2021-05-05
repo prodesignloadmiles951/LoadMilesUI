@@ -81,9 +81,9 @@
           <div class="card" style="display: flex; flex-direction: row;">
             <div class="card-body col-sm-6">
               <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="fullname">Full Name:</label>
+                <label class="col-md-4 col-form-label" for="fullName">Full Name:</label>
                 <div class="col-md-8">
-                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="fullname" name="fullname" #fullname="ngModel" [(ngModel)]="pageFilters.fullname" maxlength="50">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="fullName" name="fullName" #fullName="ngModel" [(ngModel)]="pageFilters.fullName" maxlength="50">
                 </div>
               </div>
               <div class="form-group row">
@@ -119,33 +119,33 @@
             </div>
             <div class="card-body col-sm-6">
               <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="address1">Address 1:</label>
+                <label class="col-md-4 col-form-label" for="line">Address 1:</label>
                 <div class="col-md-8">
-                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address1" name="address1" #address1="ngModel" [(ngModel)]="pageFilters.address1">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="line" name="line" #line="ngModel" [(ngModel)]="pageFilters?.address.line">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="address2">Address 2:</label>
+                <label class="col-md-4 col-form-label" for="line1">Address 2:</label>
                 <div class="col-md-8">
-                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="address2" name="address2" #address2="ngModel" [(ngModel)]="pageFilters.address2">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="line1" name="line1" #line1="ngModel" [(ngModel)]="pageFilters?.address.line1">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="city">City:</label>
                 <div class="col-md-8">
-                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pageFilters.city">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="city" name="city" #city="ngModel" [(ngModel)]="pageFilters?.address.city">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-md-4 col-form-label" for="state">State:</label>
                 <div class="col-md-8">
-                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pageFilters.state">
+                  <input type="text" [ngClass]="mode?'':'disble'" class="form-control" id="state" name="state" #state="ngModel" [(ngModel)]="pageFilters?.address.state">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="zipcode">Zip Code:</label>
+                <label class="col-md-4 col-form-label" for="zip">Zip Code:</label>
                 <div class="col-md-8">
-                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="zipcode" name="zipcode" #zipcode="ngModel" [(ngModel)]="pageFilters.zipcode">
+                  <input type="number" [ngClass]="mode?'':'disble'" class="form-control" id="zip" name="zip" #zip="ngModel" [(ngModel)]="pageFilters?.address.zip">
                 </div>
               </div>
               <div class="form-group row" *ngIf="changeUplaod">

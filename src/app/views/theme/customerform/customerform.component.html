@@ -195,13 +195,13 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-md-4 col-form-label" for="paymentterms">Payment Terms:</label>
+                <label class="col-md-4 col-form-label" for="paymentTerms">Payment Terms:</label>
                 <div class="col-md-8">
-                  <select [ngClass]="mode?'':'disble'" class="form-control" id="paymentterms" name="paymentterms" #paymentterms="ngModel" [(ngModel)]="pageFilters.paymentterms">
-                    <option value="0">QuickPay</option>
-                    <option value="1">15 days</option>
-                    <option value="2">30 days</option>
-                    <option value="3">45 days</option>
+                  <select [ngClass]="mode?'':'disble'" class="form-control" id="paymentTerms" name="paymentTerms" [(ngModel)]="pageFilters.paymentTerms">
+                    <option value="QuickPay">QuickPay</option>
+                    <option value="15 days">15 days</option>
+                    <option value="30 days">30 days</option>
+                    <option value="45 days">45 days</option>
                   </select>
                 </div>
               </div>
