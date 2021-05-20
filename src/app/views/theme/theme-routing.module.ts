@@ -27,6 +27,7 @@ import { VendorBillListComponent } from './vendor-bill-list.component';
 import { ExpenseListComponent } from './expense-list.component';
 import { VendorPaymentComponent } from './vendorpaymentform/vendor-payment.component';
 import { PaymentListComponent } from './payment-list.component';
+import { SupportRequestListComponent } from './support-request-list.component';
 
 
 const routes: Routes = [
@@ -192,6 +193,12 @@ const routes: Routes = [
         runGuardsAndResolvers: 'always',
         data: { title: 'Map' }
       },
+      {
+        path: 'support-request-list',
+        component: SupportRequestListComponent,
+        runGuardsAndResolvers:'always',
+        data: {title: 'Support Request'}
+      }
     ]
   }
 ];

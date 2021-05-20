@@ -38,4 +38,16 @@ export class AuthHeaderService {
 
         return httpOptions;
     }
+
+    getMutipartHeader(){
+        let header = new Headers();
+        let LoginUser = this._authservice.getloginUser();
+        let token = LoginUser != null ? LoginUser.result.token : '';
+        header.append("Access-Control-Allow-Origin", "*");
+        if (token) {
+            header.append('Authorization', token);
+            // header.append('Authorization', 'Bearer ' + token);
+        }
+        return header;
+    }
 }

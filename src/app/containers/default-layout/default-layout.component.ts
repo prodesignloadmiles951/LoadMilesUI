@@ -94,6 +94,11 @@ export class DefaultLayoutComponent implements OnDestroy {
       ]
     },
     {
+      name: 'Support Request',
+      url: '/theme/support-request-list',
+      icon: 'icon-info'
+    },
+    {
       name: 'Factor',
       url: '/theme/factor-list',
       icon: 'icon-info'

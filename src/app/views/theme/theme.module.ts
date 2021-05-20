@@ -57,6 +57,8 @@ import { ExpenseComponent } from './expenseform/expense.component';
 import { VendorPaymentComponent } from './vendorpaymentform/vendor-payment.component';
 import { PaymentListComponent } from './payment-list.component';
 import { VendorPaymentDelailsComponent } from './vendorpaymentdetails/vendor-payment-delails.component';
+import { SupportRequestListComponent } from './support-request-list.component';
+import { SupportrequestformComponent } from './supportrequestform/supportrequestform.component';
 
 
 
@@ -113,8 +115,10 @@ import { VendorPaymentDelailsComponent } from './vendorpaymentdetails/vendor-pay
     VendorPaymentComponent,
     PaymentListComponent,
     VendorPaymentDelailsComponent,
+    SupportRequestListComponent,
+    SupportrequestformComponent,
   ],
   exports: [TruckformComponent, TrailerformComponent, DriverformComponent, CarrierformComponent, CustomerformComponent, DispatcherformComponent, CompanyformComponent],
-  entryComponents: [TruckformComponent, TrailerformComponent, DriverformComponent, CarrierformComponent, CustomerformComponent, DispatcherformComponent, CompanyformComponent, VendorBillComponent, ExpenseComponent, VendorPaymentDelailsComponent],
+  entryComponents: [TruckformComponent, TrailerformComponent, DriverformComponent, CarrierformComponent, CustomerformComponent, DispatcherformComponent, CompanyformComponent, VendorBillComponent, ExpenseComponent, VendorPaymentDelailsComponent, SupportrequestformComponent],
 })
 export class ThemeModule { }

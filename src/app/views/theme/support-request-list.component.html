@@ -1,0 +1,71 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          Support Requests
+          <span class="float-right">
+            <button type="add" class="btn btn-sm btn-success" (click)="Add()">
+              <i class="fa fa-plus"></i> New Request
+            </button>
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="animated fadeIn"></div>
+          <table
+            class="table table-responsive-sm table-hover table-outline mb-0"
+          >
+            <thead>
+              <tr>
+                <th>S.no</th>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Remarks</th>
+                <th>Response Preferrence</th>
+                <th>Requested On</th>
+                <th>Status</th>
+                <th>Updated Date</th>
+                <th>Completed On</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr></tr>
+              <ng-container
+                *ngFor="let supportRequest of supportRequests; let i = index"
+              >
+                <tr>
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ supportRequest.category }}</td>
+                  <td>{{ supportRequest.title }}</td>
+                  <td>{{ supportRequest.remarks }}</td>
+                  <td>{{ supportRequest.responsePreference }}</td>
+                  <td>{{ supportRequest["createdAt"].slice(0, 10) }}</td>
+                  <td>{{ supportRequest.status }}</td>
+                  <td>{{ supportRequest["updatedAt"].slice(0, 10) }}</td>
+                  <td>{{ supportRequest.completedOn }}</td>
+                  <td>
+                    <a
+                      style="cursor: pointer; color: #20a8d8"
+                      (click)="editData(supportRequest)"
+                      >Edit</a
+                    >
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+
+            <!-- <tbody *ngIf="logslist.length==0">
+                        <tr>
+                          <td class="alert alert-warning" style="width:1050px;" align="center" colspan="10"><span>No records available</span></td>
+                        </tr>
+                      </tbody> -->
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--View-->
+</div>
