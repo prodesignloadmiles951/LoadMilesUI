@@ -46,5 +46,6 @@ export const environment = {
   bankurl: currentEnv + '/bank',
   paymenttermurl: currentEnv + '/paymentterm',
   forgotpasswordurl: currentEnv + '/user/forgotPassword',
-  validateupdatepasswordurl: currentEnv + '/user/validateAndUpdatePassword'
+  validateupdatepasswordurl: currentEnv + '/user/validateAndUpdatePassword',
+  supportrequesturl: currentEnv + '/supportRequest',
 }
